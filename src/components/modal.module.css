@@ -33,7 +33,7 @@
   left: 10px;
   bottom: 10px;
   width: 50%;
-  height: calc(100vh - 60px);
+  height: calc(100dvh - 60px);
   background: white;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
@@ -47,7 +47,7 @@
 @media (max-width: 768px) { 
   .modal {
     top: 100px;
-    height: calc(100vh - 150px);
+    height: calc(100dvh - 150px);
     width: calc(100% - 60px);
   }
 }
@@ -58,6 +58,14 @@
   right: 20px;
   top: 20px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) { 
+  .closeIcon {
+    position: fixed;
+    top: 110px;
+    right: 20px;
+  }
 }
 
 .pin {
