@@ -80,10 +80,10 @@ const HerbMap = () => {
       zip: "79927",
       description: "Nestled in the vibrant city of El Paso, Bodega Loya is a delightful oasis that will captivate your senses and warm your heart. As you enter this enchanting space, you’ll discover a cozy coffee shop, an inspiring art area, and beautifully crafted leather designs, all within a family-owned farm and market dedicated to serving the community. \nBodega Loya offers an abundance of organic herbs, vegetables, and fruits, creating a feast for your senses with the intoxicating aromas of rosemary, calendula, and fresh watermelon.You’ll feel an instant connection to the land as you explore the back farm and garden, where you can watch the family lovingly harvest fresh produce for your next meal. \nThis charming destination is a must- visit while traveling through Texas, ensuring you leave with not just fresh ingredients but also a heart full of warmth and joy. \nWhether you’re stopping by for a cup of coffee or to pick up some farm - fresh goodies, Bodega Loya promises an unforgettable experience that will truly make your heart melt!",
       tagline: "A Charming Herb Farm Experience",
-      coverPhoto: "/assets/places/bodega-loya-cover.jpg",
+      coverPhoto: "./public/assets/places/bodega-loya-cover.jpg",
       photos: [
-        "/assets/places/bodega-loya-1.png",
-        "/assets/places/bodega-loya-2.png"
+        "./public/assets/places/bodega-loya-1.png",
+        "./public/assets/places/bodega-loya-2.png"
       ],
       longitude: -106.30,
       latitude: 31.65
@@ -97,10 +97,10 @@ const HerbMap = () => {
       zip: "78704",
       description: "Step into the enchanting world of the Herb Bar in Austin, Texas, where every visit feels like a cozy escape into a whimsical cabin in the woods! As you enter, you're greeted by the delightful aroma of herbs and the soothing ambiance that instantly warms your heart. \nThe Herb Bar features two distinct rooms: one filled with an array of dried herbs that invite you to explore their natural wonders, and another showcasing a treasure trove of local products that celebrate the spirit of Austin.Each corner is brimming with unique finds that capture the essence of the community! \nAs if that weren't enough, you're welcomed with a daily tea that wraps around you like a warm hug—perfect for melting away the hustle and bustle of your day.\nThe staff at the Herb Bar are not just friendly; they are also incredibly caring and knowledgeable, always ready to guide you through their offerings with a smile.\nNestled away from the clamor of Congress Avenue, this little gem provides a serene oasis in a quaint neighborhood, making it the perfect spot to unwind and connect with nature.Whether you're a local or just passing through, the Herb Bar promises a magical experience that's hard to forget!",
       tagline: "A Magical Retreat",
-      coverPhoto: "/assets/places/herb-bar-cover.jpg",
+      coverPhoto: "./public/assets/places/herb-bar-cover.jpg",
       photos: [
-        "/assets/places/herb-bar-1.png",
-        "/assets/places/herb-bar-2.png"
+        "./public/assets/places/herb-bar-1.png",
+        "./public/assets/places/herb-bar-2.png"
       ],
       longitude: -97.75,
       latitude: 30.24
@@ -114,9 +114,9 @@ const HerbMap = () => {
       zip: "78702",
       description: "Get ready to embark on a journey of herbal discovery at Earth Commons, the vibrant East Austin herb shop that's impossible to miss! With a huge HERB sign beckoning all herbalists and curious souls alike, this shop invites you into a world filled with organic herbs, soothing teas, thoughtful gifts, and rejuvenating body care products. \nStep inside and immerse yourself in the modern vibe created by bright lights and unique scents wafting from dried herbs and local products curated by talented herbalists.The shop features two charming rooms, each with its own character, but it's the back room that truly enchants—dedicated to all things magical! \nHere, you can sit down and enjoy a tarot reading, sip on a specially crafted astrology tea, or consult with seasoned herbalists who bring years of experience and wisdom to the table.Whether you're seeking guidance or simply want to explore the wonders of nature, Earth Commons offers a unique blend of the modern and the magical, making it a must-visit destination in Austin. Come on in, and let the adventure begin!",
       tagline: "East Austin Herbal Oasis",
-      coverPhoto: "/assets/places/earth-commons-cover.jpg",
+      coverPhoto: "./public/assets/places/earth-commons-cover.jpg",
       photos: [
-        "/assets/places/earth-commons-1.png",
+        "./public/assets/places/earth-commons-1.png",
       ],
       longitude: -97.71,
       latitude: 30.26
@@ -130,10 +130,10 @@ const HerbMap = () => {
       zip: "78636",
       description: "Nestled in the heart of Johnson City, June Bloom Lavender is a delightful boutique lavender business that beckons you in with the soothing aroma of lavender wafting from its cozy corner in the shopping center. As you step inside, you're enveloped in a relaxing and inviting atmosphere, where the gentle scent of lavender instantly calms your senses. \nJune Bloom Lavender is dedicated to cultivating 400 lavender plants to create a variety of products and experiences aimed at enhancing well- being.With a mission to promote mental health and self - care, this unique shop offers a range of relaxing products and services designed  for everyone. \nOne of the standout offerings is the Lavender Bunnies, lovingly created by the owner, a devoted bunny mom who has rescued many bunnies.These adorable creations are made from Minky fabric, providing a tactile sensory experience that is incredibly soft to touch, cuddle, and fidget with.Filled with flaxseed, they have a comforting weight, perfect for resting on your forehead or providing a soothing, grainy feel for fidgeting. \nEach Lavender Bunny is infused with French lavender, which releases calming aromatherapy when caressed, snuggled, or fidgeted with, making them perfect companions for easing anxiety and promoting relaxation.At June Bloom Lavender, you'll find a haven of tranquility and a commitment to nurturing well - being—one lavender scent at a time!",
       tagline: "Experience A Lavender Serenity.",
-      coverPhoto: "/assets/places/june-bloom-cover.jpg",
+      coverPhoto: "./public/assets/places/june-bloom-cover.jpg",
       photos: [
-        "/assets/places/june-bloom-1.png",
-        "/assets/places/june-bloom-2.png"
+        "./public/assets/places/june-bloom-1.png",
+        "./public/assets/places/june-bloom-2.png"
       ],
       longitude: -98.41,
       latitude: 30.28
@@ -147,9 +147,9 @@ const HerbMap = () => {
       zip: "78013",
       description: "Nestled in the delightful town of Comfort, Texas, where charm meets tranquility, you'll find the enchanting Comfort Botanical Apothecary—a magical oasis of wellness that truly lives up to its name! As you wander through the quaint antique stores that line the streets of Comfort, let your curiosity guide you to this hidden gem that promises to elevate your spirit and soothe your soul. \nStepping inside feels like entering an old- world German - style home, filled with an inviting warmth that wraps around you like a cozy blanket.The apothecary showcases a stunning array of locally sourced and made products, from soothing salves to therapeutic herbal oils, ensuring you have everything you need to heal your body from the inside out. \nIn the back, you'll discover a serene space dedicated to yoga and consultations, providing a perfect sanctuary for mindfulness and holistic healing. But perhaps the best part of Comfort Botanical Apothecary is the owner, who radiates knowledge and passion. You can easily lose track of time chatting with her, soaking up insights about herbal remedies and wellness practices that will leave you inspired and uplifted. \nWhether you're a local or just passing through, a visit to Comfort Botanical Apothecary is a must. It's not just a shop; it's a magical experience that will leave you feeling refreshed and connected to the healing power of nature!",
       tagline: "Discover the Enchantment of Comfort",
-      coverPhoto: "/assets/places/comfort-botanical-cover.jpg",
+      coverPhoto: "./public/assets/places/comfort-botanical-cover.jpg",
       photos: [
-        "/assets/places/comfort-botanical-1.png",
+        "./public/assets/places/comfort-botanical-1.png",
       ],
       longitude: -98.91,
       latitude: 29.97
@@ -163,10 +163,10 @@ const HerbMap = () => {
       zip: "85705",
       description: "Tucked away on the vibrant Fourth Avenue in Tucson, the Tucson Herb Store is a hidden gem brimming with enchantment and healing energy. As you step through the doors, you'll feel as if you've entered a secret sanctuary designed to nourish your soul and uplift your spirit. \nThis herb store, infused with the essence of magic dust and desert healing, offers an impressive selection of dried herbs, potent tinctures, and personalized consulting to help you on your wellness journey.Each corner is filled with the rich aromas of nature, inviting you to explore the myriad of remedies that await. \nThe talented owner, Amanda, also provides acupuncture services, ensuring you receive a holistic approach to your well- being.Whether you're battling the extremes of desert weather or simply seeking a moment of tranquility, Tucson Herb Store equips you with everything you need to thrive in the desert landscape. \nPrepare to be captivated by the atmosphere and leave with a sense of rejuvenation, ready to embrace whatever life throws your way!",
       tagline: "Unveil the Desert Magic",
-      coverPhoto: "/assets/places/tucson-herb-cover.jpg",
+      coverPhoto: "./public/assets/places/tucson-herb-cover.jpg",
       photos: [
-        "/assets/places/tucson-herb-1.png",
-        "/assets/places/tucson-herb-2.png"
+        "./public/assets/places/tucson-herb-1.png",
+        "./public/assets/places/tucson-herb-2.png"
       ],
       longitude: -110.97,
       latitude: 32.22
@@ -180,9 +180,9 @@ const HerbMap = () => {
       zip: "92252",
       description: "In the heart of Joshua Tree, a magical oasis awaits at Grateful Desert Apothecary, where the healing powers of the desert come to life! This unique space offers everything from enchanting perfumes to custom oils, all crafted to elevate your well-being and connection to nature. \nAt the helm is a goddess alchemist who artfully blends potent tinctures, turning nature's gifts into transformative remedies that nourish both body and soul.As you step into this cool, welcoming sanctuary, you'll instantly feel a sense of belonging within the vibrant community that thrives here. \nOn those hot desert days, take refuge at Grateful Desert Apothecary and immerse yourself in a nurturing environment where you can heal every part of your being.Whether you're seeking relaxation, rejuvenation, or simply a moment of magic, this apothecary promises to be a truly unforgettable experience!",
       tagline: "Unleash the Desert's Healing Energy",
-      coverPhoto: "/assets/places/grateful-desert-cover.jpg",
+      coverPhoto: "./public/assets/places/grateful-desert-cover.jpg",
       photos: [
-        "/assets/places/grateful-desert-1.png",
+        "./public/assets/places/grateful-desert-1.png",
       ],
       longitude: -116.32,
       latitude: 34.13
