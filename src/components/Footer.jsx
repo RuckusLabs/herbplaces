@@ -1,4 +1,4 @@
-import Logo from "../assets/little-herb-places-circle-logo.svg";
+import Logo from "/assets/little-herb-places-circle-logo.svg";
 import styles from "./footer.module.css";
 
 export default function Footer() {
