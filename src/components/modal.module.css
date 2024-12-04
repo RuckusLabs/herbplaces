@@ -33,12 +33,13 @@
   left: 10px;
   bottom: 10px;
   width: 50%;
-  height: calc(100dvh - 60px);
+  height: calc(100dvh - 40px);
   background: white;
   transition: transform 0.3s ease-in-out;
   z-index: 10;
   position: absolute;
   padding: 20px;
+  padding-bottom: 0;
   border-radius: 10px;
   opacity: 1;
   overflow: hidden;
@@ -46,9 +47,10 @@
 
 @media (max-width: 768px) { 
   .modal {
+    box-sizing: border-box;
     top: 100px;
-    height: calc(100dvh - 150px);
-    width: calc(100% - 60px);
+    height: calc(100dvh - 110px);
+    width: calc(100% - 20px);
   }
 }
 
@@ -78,7 +80,9 @@
 }
 
 .modalContent {
+  box-sizing: border-box;
   padding: 20px;
+  padding-bottom: 0;
   height: 100%;
   overflow: hidden;
   position: relative;
