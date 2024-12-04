@@ -1,0 +1,45 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav a {
+  color: #76805d;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.nav a + a {
+  margin-left: 20px;
+}
+
+.nav a img {
+  margin-right: 5px;
+}
+
+.nav a:hover {
+  transform: translateY(-5px);
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .nav a {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .nav .logo img {
+    height: 80px;
+    width: auto;
+  }
+
+  .nav a + a {
+    margin-left: 10px;
+  }
+}

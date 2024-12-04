@@ -1,0 +1,103 @@
+.popup {
+  border-radius: 20px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.popup .coverPhotoContainer {
+  height: 150px;
+}
+
+.popup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.popup p {
+  margin: 0 20px;
+  line-height: 1;
+}
+
+.popup .placeName {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.modal {
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  width: 50%;
+  height: calc(100vh - 60px);
+  background: white;
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+  position: absolute;
+  padding: 20px;
+  border-radius: 10px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) { 
+  .modal {
+    top: 100px;
+    height: calc(100vh - 150px);
+    width: calc(100% - 60px);
+  }
+}
+
+.closeIcon {
+  height: 40px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.pin {
+  filter: invert(1);
+  height: 25px;
+  position: relative;
+  top: 6px;
+  left: 0;
+  margin-right: 5px;
+}
+
+.modalContent {
+  padding: 20px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.modalContent h2 {
+  margin-top: 0;
+  margin-right: 20%;
+}
+
+.modalContent p + p {
+  margin: 0;
+  margin-top: 15px;
+}
+
+.modal.open {
+  transform: translateX(0);
+}
+
+.carousel {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
