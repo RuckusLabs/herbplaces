@@ -6,6 +6,7 @@ import modalStyles from "./modal.module.css";
 //Icons
 import Pin from "/assets/location-icon.svg";
 import CloseIcon from "/assets/close-icon.svg";
+import Globe from "/assets/globe-icon.svg";
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoibmV3bmVzc3BvaXNlIiwiYSI6ImNtNDd3a3h5dTBhZnIybXB6a2xiaWp6dmYifQ.dkGpXraTqTxcS2Jl1w7Qaw";
 
@@ -74,6 +75,7 @@ const HerbMap = () => {
     {
       id: 1,
       name: "Bodega Loya",
+      website: "https://gwsfarm.com/",
       address: "10257 Socorro Rd",
       city: "Socorro",
       state: "Texas",
@@ -91,6 +93,7 @@ const HerbMap = () => {
     {
       id: 2,
       name: "The Herb Bar",
+      website: "https://www.theherbbar.com/",
       address: "200 W Mary St",
       city: "Austin",
       state: "Texas",
@@ -108,6 +111,7 @@ const HerbMap = () => {
     {
       id: 3,
       name: "Earth Commons",
+      website: "https://earth-commons.com/",
       address: "641 Tillery St Suite 105",
       city: "Austin",
       state: "Texas",
@@ -122,8 +126,28 @@ const HerbMap = () => {
       latitude: 30.26
     },
     {
+      id: 8,
+      name: "Boggy Creek Farm",
+      website: "https://www.boggycreekfarm.com/",
+      address: "3414 Lyons Rd",
+      city: "Austin",
+      state: "Texas",
+      zip: "78702",
+      description: "Step into Boggy Farms, and leave the hustle and bustle of the busy city behind. As you walk through the charming entrance of the small barn, you are greeted by an explosion of vibrant colors. The shelves are adorned with an array of fresh produce, from radiant red tomatoes to lush green cucumbers, each item more inviting than the last. \nIn addition to the produce, the barn showcases local farm- fresh meats, farm - fresh eggs, and golden jars of honey, all sourced from the very fields surrounding you.It's a delightful reminder of the richness of local farming and sustainable practices, making each visit a feast for the senses. \nAs you step outside, the magic continues.Stroll through the farm and let the gentle breeze carry the intoxicating scents of fresh flowers and herbs.Each inhalation transports you deeper into your own little world—a sanctuary filled with the earthy fragrance of basil, the sweetness of blooming flowers, and the refreshing aroma of mint.With every step, you feel a sense of peace enveloping you, as if you've entered a hidden paradise where nature reigns supreme.At Boggy Farms, you're not just a visitor; you're a part of a vibrant tapestry of plants, flavors, and magic, inviting you to pause, breathe, and immerse yourself in the beauty around you.",
+      tagline: "Savor the Magic of Produce and Herbs",
+      coverPhoto: "/herbplaces/assets/places/boggy-creek-cover.jpg",
+      photos: [
+        "/herbplaces/assets/places/boggy-creek-1.jpeg",
+        "/herbplaces/assets/places/boggy-creek-2.jpeg",
+        "/herbplaces/assets/places/boggy-creek-3.jpeg",
+      ],
+      longitude: -97.70,
+      latitude: 30.26
+    },
+    {
       id: 4,
       name: "June Bloom Lavender",
+      website: "https://www.junebloomlavender.com/",
       address: "209 E Main St Suite D",
       city: "Johnson City",
       state: "Texas",
@@ -141,6 +165,7 @@ const HerbMap = () => {
     {
       id: 5,
       name: "Comfort Botanical Apothecary",
+      website: "https://ctmbotanicalapothecary.com/",
       address: "409 Seventh St",
       city: "Comfort",
       state: "Texas",
@@ -157,6 +182,7 @@ const HerbMap = () => {
     {
       id: 6,
       name: "Tucson Herb Store",
+      website: "https://www.tucsonherbstore.com/",
       address: "228 N 4th Ave",
       city: "Tucson",
       state: "Arizona",
@@ -174,6 +200,7 @@ const HerbMap = () => {
     {
       id: 7,
       name: "Grateful Desert Apothecary",
+      website: "https://www.gratefuldesert.com/",
       address: "61607 29 Palms Hwy Suite A",
       city: "Joshua Tree",
       state: "California",
@@ -256,10 +283,14 @@ const HerbMap = () => {
             <div className={modalStyles.modalContent}>
               <img className={modalStyles.closeIcon} src={CloseIcon} alt="Close modal." onClick={closeModal} />
               <h2>{selectedPlace?.name}</h2>
-              <p><img className={modalStyles.pin} src={Pin} alt="Place location." />{selectedPlace?.address}<br />{selectedPlace?.city}, {selectedPlace?.state} {selectedPlace.zip}</p>
-              {selectedPlace?.description?.split('\n').map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+              <h3>{selectedPlace?.tagline}</h3>
+              <p className={modalStyles.meta}><img className={modalStyles.globe} src={Globe} alt="Website." /><a target="_blank" href={selectedPlace?.website}>{selectedPlace?.website}</a></p>
+              <p className={modalStyles.meta}><img className={modalStyles.pin} src={Pin} alt="Place location." />{selectedPlace?.address}<br />{selectedPlace?.city}, {selectedPlace?.state} {selectedPlace.zip}</p>
+              <div className={modalStyles.description}>
+                {selectedPlace?.description?.split('\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
               <div className={modalStyles.carousel}>
                 {selectedPlace?.photos?.map((photo, index) => (
                   <img

@@ -70,13 +70,19 @@
   }
 }
 
-.pin {
+.pin, .globe {
   filter: invert(1);
   height: 25px;
-  position: relative;
-  top: 6px;
+  position: absolute;
+  top: 0;
   left: 0;
-  margin-right: 5px;
+}
+
+.globe {
+  filter: invert(0);
+  height: 22px;
+  left: 2px;
+  top: 1px;
 }
 
 .modalContent {
@@ -94,12 +100,37 @@
 
 .modalContent h2 {
   margin-top: 0;
+  margin-bottom: 0;
   margin-right: 20%;
+  font-size: 36px;
+  color: #535a42;
+}
+
+.modalContent h3 {
+  text-transform: uppercase;
+  color: #535a42;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
 .modalContent p + p {
   margin: 0;
   margin-top: 15px;
+}
+
+.modalContent .meta {
+  margin: 5px 0;
+  position: relative;
+  padding-left: 35px;
+}
+
+.modalContent .meta + .meta {
+  margin-top: 10px;
+}
+
+.modalContent .description {
+  margin-top: 25px;
 }
 
 .modal.open {
