@@ -14,8 +14,9 @@
 }
 
 a {
-  font-weight: 700;
+  font-weight: 400;
   text-decoration: inherit;
+  color: #535a42;
 }
 
 body {
