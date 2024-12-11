@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist --cname littleherbplaces.com"
+    "deploy": "vite build && cp ./dist/index.html ./dist/404.html && gh-pages -d dist --cname littleherbplaces.com"
   },
   "dependencies": {
     "mapbox-gl": "^3.8.0",
