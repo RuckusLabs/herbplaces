@@ -25,7 +25,7 @@
 
 @media (max-width: 768px) {
   .places {
-    height: calc(100dvh - 340px);
+    height: 100%;
   }
 }
 
