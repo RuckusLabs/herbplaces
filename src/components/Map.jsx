@@ -24,6 +24,7 @@ const HerbMap = () => {
 
   const handlePopupClick = (place) => {
     setModalOpen(true);
+    document.body.classList.add("no-scroll");
     setSelectedPlace(place);
 
     // Fly to the selected marker's location
@@ -41,6 +42,7 @@ const HerbMap = () => {
   const handleMarkerClick = (place) => {
 
     setModalOpen(true);
+    document.body.classList.add("no-scroll");
     setSelectedPlace(place);
 
     // Fly to the selected marker's location
@@ -58,6 +60,7 @@ const HerbMap = () => {
   const closeModal = () => {
     setSelectedPlace(null)
     setModalOpen(false);
+    document.body.classList.remove("no-scroll");
 
     // Reset the map position and zoom after closing the modal
     if (mapRef.current) {
