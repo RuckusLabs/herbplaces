@@ -1,6 +1,7 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 25px;
 }
 
 @media (max-width: 768px) {
@@ -10,11 +11,10 @@
 }
 
 .container h2 {
-  color: #272727;
+  color: #535a42;
   line-height: 1.25;
 }
 
 .container p {
   color: #272727;
-  font-size: 18px;
 }
