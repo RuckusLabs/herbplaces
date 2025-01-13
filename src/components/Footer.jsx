@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className={styles.container}>
         <img src={Logo} alt="Little Herb Places" />
-        <p>© {new Date().getFullYear()} | Little Herb Places</p>
+        <p>© 2024 – {new Date().getFullYear()} | Little Herb Places</p>
       </div>
     </footer>
   )
