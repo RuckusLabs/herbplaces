@@ -4,6 +4,10 @@ footer {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 
+  @include mobile {
+    padding: 25px 10px;
+  }
+
   .container {
     max-width: 600px;
     margin: 0 auto;
@@ -49,6 +53,10 @@ footer {
     flex-direction: row;
     width: 100%;
     gap: 33.3%;
+
+    @include mobile {
+      gap: 30px;
+    }
   }
 
   .column {
