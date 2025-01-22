@@ -12,6 +12,7 @@
     "deploy": "vite build && cp ./dist/index.html ./dist/404.html && gh-pages -d dist --cname littleherbplaces.com"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.47.14",
     "mapbox-gl": "^3.8.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -19,6 +20,7 @@
     "react-map-gl": "^7.1.7",
     "react-router-dom": "^7.0.2",
     "react-slick": "^0.30.2",
+    "sass": "^1.83.4",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.15"
   },
