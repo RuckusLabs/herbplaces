@@ -3,9 +3,11 @@
 }
 
 :root {
-  --primary-color: 251, 243, 240;
+  --primary-color: 255, 249, 241;
   --secondary-color: 100, 102, 78;
   --tertiary-color: 102, 78, 78;
+  --gray-color: 245, 245, 247;
+  --black-color: 29, 29, 31;
   --border-radius: 25px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   // letter-spacing: -0.09em;
@@ -34,4 +36,3 @@ body {
     overflow: hidden;
   }
 }
-

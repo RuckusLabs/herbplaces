@@ -5,8 +5,17 @@ h4,
 p,
 a {
   margin: 0;
+  color: rgb(var(--black-color));
 }
 
 a {
   color: var(--primary-color);
+}
+
+p + p {
+  margin-top: 15px;
+}
+
+h2 + p {
+  margin-top: 15px;
 }
