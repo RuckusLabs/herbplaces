@@ -19,7 +19,7 @@ export default function Footer() {
             <li><Link to="/map">Map</Link></li>
             {/* <li><Link to="/store">Store</Link></li> */}
             <li><Link to="/about">About</Link></li>
-            <li><hr /></li>
+            {/* <li><hr /></li> */}
             {/* <li><Link to="/suggest-a-little-herb-place">Suggest a Little Herb Place</Link></li> */}
             {/* <li><Link to="/partnerships">Partnerships</Link></li> */}
           </ul>

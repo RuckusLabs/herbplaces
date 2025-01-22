@@ -1,5 +1,4 @@
-import Footer from "../components/Footer";
-import styles from "./about.module.css";
+import styles from "./about.module.scss";
 import { Helmet } from "react-helmet";
 
 export default function About() {
@@ -16,7 +15,6 @@ export default function About() {
       <p>Through careful curation, Little Herb Places highlights the diversity and richness of herbal shops from around the globe. Each shop featured on the platform has its own unique story, reflecting the local culture, traditions, and practices that shape its approach to herbal medicine. By bringing these stories to a wider audience, the platform not only promotes the shops but also helps preserve and share the invaluable knowledge and heritage they represent.</p>
       <p>In a world where large-scale commercial interests often overshadow smaller enterprises, Little Herb Places stands as a testament to the importance of community and authenticity. It provides a space where herbal shops can gain visibility, connect with like-minded individuals, and continue to thrive in a supportive environment. At its core, Little Herb Places is more than just a directory; it's a celebration of the enduring relationship between people and plants.</p>
     </div>
-    <Footer />
     </>
   )
 }
