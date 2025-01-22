@@ -123,6 +123,10 @@ p {
   transition: background 0.3s ease;
   pointer-events: auto;
 
+  @include mobile {
+    display: none;
+  }
+
   &:hover {
     background: rgba(0, 0, 0, 0.8);
   }
