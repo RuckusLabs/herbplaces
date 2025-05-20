@@ -3,3 +3,53 @@
     @content;
   }
 }
+
+@mixin glass {
+  overflow-y: hidden;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/// Padding Utilities Generator
+$sides: (
+  'l': left,
+  'r': right
+);
+
+// Generate base classes and responsive variants
+@each $abbr, $side in $sides {
+  // Base classes (all screens)
+  @for $i from 0 through 50 {
+    .p#{$abbr}-#{$i} {
+      padding-#{$side}: percentage($i/100);
+    }
+  }
+  
+  // Desktop classes
+  @media (min-width: 769px) {
+    @for $i from 0 through 50 {
+      .p#{$abbr}-d-#{$i} {
+        padding-#{$side}: percentage($i/100);
+      }
+    }
+  }
+  
+  // Mobile classes
+  @media (max-width: 768px) {
+    @for $i from 0 through 50 {
+      .p#{$abbr}-m-#{$i} {
+        padding-#{$side}: percentage($i/100);
+      }
+    }
+  }
+}
