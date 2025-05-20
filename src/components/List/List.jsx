@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from "./list.module.scss";
 import fetchPlaces from '../../utilities/fetchPlaces';
 
-const ListComponent = () => {
+import LocationIcon from "/src/assets/location-icon.svg?react";
+
+export default function ListComponent({ className, limit }) {
 
   const [places, setPlaces] = useState([]);
 
@@ -16,9 +18,12 @@ const ListComponent = () => {
     loadPlaces();
   }, []);
 
+  // Limit the places array if limit prop is provided
+  const displayedPlaces = limit ? places.slice(0, limit) : places;
+
   return (
-    <div className={styles.places}>
-      {places.map((place) => (
+    <div className={`${styles.places} ${className}`}>
+      {displayedPlaces.map((place) => (
         <Link
           to={`/place/${place.urlSlug}`}
           className={styles.place}
@@ -33,13 +38,11 @@ const ListComponent = () => {
             <h3>{place.name}</h3>
             <p>{place.tagline}</p>
             <p className={styles.location}>
-              {place.city}, {place.state}
+              <LocationIcon className={styles.locationIcon} /> {place.city}, {place.state}
             </p>
           </div>
         </Link>
       ))}
     </div>
   );
-};
-
-export default ListComponent;
+}
