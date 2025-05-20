@@ -4,12 +4,23 @@ import supabase from '../../utilities/supabase';
 import styles from "./place.module.scss";
 import { Helmet } from "react-helmet";
 
+import LocationIcon from "/src/assets/location-icon.svg";
+import Badge from "/src/assets/icons/badge.svg?react";
+
 export default function Place() {
   const { slug } = useParams();
   const [place, setPlace] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   useEffect(() => {
+    document.body.classList.add('place');
+    return () => {
+      document.body.classList.remove('place');
+    };
+  }, []);
+
+  useEffect(() => {
+
     const fetchPlace = async () => {
       try {
         const { data, error } = await supabase
@@ -62,8 +73,66 @@ export default function Place() {
       <Helmet>
         <title>{place.name} in {place.city}, {place.state} | Little Herb Places</title>
       </Helmet>
+
       <div className={styles.wrapper}>
-        <h1>{place.name}</h1>
+
+        {place.photos && place.photos.length > 0 && (
+          <div className={styles.photoContainer}>
+            <div className={`gradientBlurTop ${styles.gradientBlurTop}`}>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            {place.photos.length > 1 ?
+              <>
+                <button
+                  className={`${styles.navButton} ${styles.prev}`}
+                  onClick={handlePrev}
+                  aria-label="Previous photo"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  className={`${styles.navButton} ${styles.next}`}
+                  onClick={handleNext}
+                  aria-label="Next photo"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              </>
+              : ''
+            }
+            <div className={styles.photoGallery} onScroll={handleScroll}>
+              {place.photos.map((photo, index) => (
+                <img
+                  key={index}
+                  src={photo}
+                  alt={`${place.name} - Photo ${index + 1}`}
+                  className={styles.galleryPhoto}
+                />
+              ))}
+            </div>
+            {place.photos.length > 1 ?
+              <div className={styles.dotsContainer}>
+                {place.photos.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToPhoto(index)}
+                    className={`${styles.dot} ${currentPhotoIndex === index ? styles.active : ''}`}
+                    aria-label={`View photo ${index + 1}`}
+                  />
+                ))}
+              </div>
+              : ''
+            }
+          </div>
+        )
+        }
+        <h1>{place.name} {place.isFeatured && <Badge className={styles.badge} />}</h1>
         <h2>{place.tagline}</h2>
 
         <ul className={styles.metaNav}>
@@ -119,57 +188,7 @@ export default function Place() {
           </li>
         </ul>
 
-        {place.photos && place.photos.length > 0 && (
-          <div className={styles.photoContainer}>
-            {place.photos.length > 1 ?
-              <>
-                <button
-                  className={`${styles.navButton} ${styles.prev}`}
-                  onClick={handlePrev}
-                  aria-label="Previous photo"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </button>
-                <button
-                  className={`${styles.navButton} ${styles.next}`}
-                  onClick={handleNext}
-                  aria-label="Next photo"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
-                </button>
-              </>
-              : ''
-            }
-            <div className={styles.photoGallery} onScroll={handleScroll}>
-              {place.photos.map((photo, index) => (
-                <img
-                  key={index}
-                  src={photo}
-                  alt={`${place.name} - Photo ${index + 1}`}
-                  className={styles.galleryPhoto}
-                />
-              ))}
-            </div>
-            {place.photos.length > 1 ?
-              <div className={styles.dotsContainer}>
-                {place.photos.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollToPhoto(index)}
-                    className={`${styles.dot} ${currentPhotoIndex === index ? styles.active : ''}`}
-                    aria-label={`View photo ${index + 1}`}
-                  />
-                ))}
-              </div>
-              : ''
-            }
-          </div>
-        )
-        }
+        
 
         {
           place.description.split('\n').map((paragraph, index) => (
@@ -178,7 +197,7 @@ export default function Place() {
         }
 
 
-      </div >
+      </div>
     </>
   );
 }
