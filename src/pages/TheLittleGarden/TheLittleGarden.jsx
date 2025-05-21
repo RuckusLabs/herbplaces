@@ -17,18 +17,18 @@ export default function TheLittleGarden() {
       <Header title="The Little Garden" backgroundImage={`/assets/pages/the-little-garden/hero.jpg`} />
       <section className={`${styles.container} ${styles.intro}`}>
         <h3>Nurture your herbal practice with The&nbsp;Little&nbsp;Garden</h3>
-        <p className="pr-d-8">You pour your heart into your craft—growing, blending, and creating with nature&apos;s gifts. The&nbsp;Little&nbsp;Garden is here to help your work flourish. Whether you&apos;re a seasoned herbalist or just beginning your journey, our platform connects you with those who seek the wisdom and healing of plants.</p>
+        <p className="padding-r-desktop-8">You pour your heart into your craft—growing, blending, and creating with nature&apos;s gifts. The&nbsp;Little&nbsp;Garden is here to help your work flourish. Whether you&apos;re a seasoned herbalist or just beginning your journey, our platform connects you with those who seek the wisdom and healing of plants.</p>
       </section>
       <section className={`${styles.container} ${styles.signup}`}>
-        <h3 className="pl-d-23">A place to share, grow, and be seen</h3>
-        <p className="pl-d-18">Choose a plan that aligns with your path, and let your herbal offerings reach a wider community.</p>
+        <h3 className="padding-l-deskop-23">A place to share, grow, and be seen</h3>
+        <p className="padding-l-desktop-18">Choose a plan that aligns with your path, and let your herbal offerings reach a wider community.</p>
       </section>
       <section className={styles.containesr}>
         <div className={styles.grid}>
           <div className={styles.card}>
             <div className={styles.content}>
               <h4><img src={SproutIcon} alt="A sprout icon." /> Sprout</h4>
-              <p className="pr-d-10">Plant the seed and start your journey.</p>
+              <p className="padding-r-desktop-10">Plant the seed and start your journey.</p>
               <ul>
                 <li>Join the community.</li>
               </ul>
