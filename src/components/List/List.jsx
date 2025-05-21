@@ -4,6 +4,7 @@ import styles from "./list.module.scss";
 import fetchPlaces from '../../utilities/fetchPlaces';
 
 import LocationIcon from "/src/assets/location-icon.svg?react";
+import Badge from "/src/assets/icons/badge.svg?react";
 
 export default function ListComponent({ className, limit }) {
 
@@ -35,7 +36,7 @@ export default function ListComponent({ className, limit }) {
             alt={place.name} 
           />
           <div className={styles.meta}>
-            <h3>{place.name}</h3>
+            <h3>{place.name}{place.isVerified && <Badge className={styles.badge} />}</h3>
             <p>{place.tagline}</p>
             <p className={styles.location}>
               <LocationIcon className={styles.locationIcon} /> {place.city}, {place.state}

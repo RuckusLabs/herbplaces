@@ -17,12 +17,16 @@
 
   h1 {
     font-size: 23px;
+    position: relative;
+
+    .badge {
+      position: absolute;
+      top: -2px;
+      margin-left: 5px;
+    }
   }
 
-  .badge {
-    position: relative;
-    top: 7px;
-  }
+
 
   h2 {
     font-size: 20px;

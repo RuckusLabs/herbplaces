@@ -132,7 +132,7 @@ export default function Place() {
           </div>
         )
         }
-        <h1>{place.name} {place.isFeatured && <Badge className={styles.badge} />}</h1>
+        <h1>{place.name} {place.isVerified && <Badge className={styles.badge} />}</h1>
         <h2>{place.tagline}</h2>
 
         <ul className={styles.metaNav}>
