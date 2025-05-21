@@ -34,8 +34,9 @@ p {
 .grid {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 5% 100px 5%;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto 100px auto;
+  max-width: 1200px;
 
   @include mobile {
     grid-template-columns: 1fr;

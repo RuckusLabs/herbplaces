@@ -20,7 +20,7 @@ export default function TheLittleGarden() {
         <p className="padding-r-desktop-8">You pour your heart into your craft—growing, blending, and creating with nature&apos;s gifts. The&nbsp;Little&nbsp;Garden is here to help your work flourish. Whether you&apos;re a seasoned herbalist or just beginning your journey, our platform connects you with those who seek the wisdom and healing of plants.</p>
       </section>
       <section className={`${styles.container} ${styles.signup}`}>
-        <h3 className="padding-l-deskop-23">A place to share, grow, and be seen</h3>
+        <h3 className="padding-l-desktop-23">A place to share, grow, and be seen</h3>
         <p className="padding-l-desktop-18">Choose a plan that aligns with your path, and let your herbal offerings reach a wider community.</p>
       </section>
       <section className={styles.containesr}>
@@ -40,17 +40,19 @@ export default function TheLittleGarden() {
               </Link>
             </div>
           </div>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.cardHidden}`}>
             <div className={styles.content}>
-              
               <h4><img src={BloomIcon} alt="A bloom icon." /> Bloom</h4>
               <p>Let your offerings unfurl and reach more hearts.</p>
               <ul>
-                <li>Feature up to 3 products.</li>
+                <li>Verified Place Badge</li>
+                <li>Claim your Place</li>
+                <li>Add images</li>
+                <li>Adjust Place content</li>
               </ul>
             </div>
             <div className={styles.meta}>
-              <p>$5/month</p>
+              <p>$10/month</p>
               <Link className={styles.button} to="#">
                 Get Bloom
               </Link>
@@ -61,19 +63,19 @@ export default function TheLittleGarden() {
               <h4><img src={ThriveIcon} alt="A thrive icon." /> Thrive</h4>
               <p>Deepen your roots and share your wisdom.</p>
               <ul>
-                <li>Feature up to 5 products.</li>
-                <li>Newsletter feature.</li>
+                <li>Everything in Bloom</li>
+                <li>Feature up to 10 products.</li>
                 <li>Social media feature.</li>
               </ul>
             </div>
             <div className={styles.meta}>
-              <p>$10/month</p>
+              <p>$15/month</p>
               <Link className={styles.button} to="#">
                 Get Thrive
               </Link>
             </div>
           </div>
-          <div className={styles.card}>
+          {/* <div className={styles.card}>
             <div className={styles.content}>
               <h4><img src={EvergreenIcon} alt="An evergreen icon." /> Evergreen</h4>
               <p>Stand tall, be seen, and grow without limits.</p>
@@ -90,7 +92,7 @@ export default function TheLittleGarden() {
                 Get Evergreen
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
