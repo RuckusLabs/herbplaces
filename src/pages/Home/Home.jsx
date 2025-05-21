@@ -17,6 +17,7 @@ export default function Home() {
       <div className={styles.container}>
         <Header
           title="Rooted in Nature. Connected through herbalism."
+          titleClassName="padding-r-desktop-25"
           backgroundImage={`/assets/pages/home/hero.jpg`}
         />
         <Banner className="newsletter-banner">
