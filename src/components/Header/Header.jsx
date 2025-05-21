@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import './Header.scss';
 
-export default function Header({ title, backgroundImage }) {
+export default function Header({ title, backgroundImage, titleClassName }) {
   return (
     <header
       className="header"
@@ -14,7 +15,7 @@ export default function Header({ title, backgroundImage }) {
       }
     >
       <div className="wrapper">
-        <h1>{title}</h1>
+        <h1 className={classNames(titleClassName)}>{title}</h1>
       </div>
       <div className="gradientBlur">
         <div></div>
@@ -33,4 +34,5 @@ export default function Header({ title, backgroundImage }) {
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   backgroundImage: PropTypes.string,
-}; 
+  titleClassName: PropTypes.string,
+};
