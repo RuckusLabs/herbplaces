@@ -51,7 +51,7 @@ export default function Home() {
         <section className={`${styles.section} places`}>
           <img src={PlaceIcon} alt="A icon of a storefront." />
           <h2>Places</h2>
-          <p>
+          <p className="padding-x-desktop-2 padding-x-mobile-8">
             The world of herbalism is rich with healing spaces—apothecaries,
             gardens, workshops, and gathering places. Whether you're seeking a
             quiet retreat, a trusted herbalist, or a shop filled with nature's
@@ -67,7 +67,7 @@ export default function Home() {
         <section className={`${styles.section} shop`}>
           <img src={ShopIcon} alt="A icon of a shopping bag." />
           <h2>Shop</h2>
-          <p>
+          <p className="padding-x-desktop-5 padding-x-mobile-5">
             Every tincture, tea, and salve carries the care and wisdom of its
             maker. In our shop, you'll find offerings from dedicated herbalists
             and small-batch creators who honor the healing power of plants.
