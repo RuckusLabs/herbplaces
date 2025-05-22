@@ -65,7 +65,7 @@ export default function Home() {
           </div>
           <ListComponent className={styles.places} limit={4} />
         </section>
-        <section className={`${styles.section} shop`}>
+        {/* <section className={`${styles.section} shop`}>
           <img src={ShopIcon} alt="A icon of a shopping bag." />
           <h2>Shop</h2>
           <p className="padding-x-desktop-5 padding-x-mobile-5">
@@ -79,7 +79,7 @@ export default function Home() {
             <h3>Featured Products</h3>
             <Link to="/shop">Browse More Items</Link>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );
