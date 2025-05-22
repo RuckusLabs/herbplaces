@@ -17,6 +17,10 @@
     //   }
   }
 
+  .logo {
+    margin-right: auto;
+  }
+
   a {
     display: flex;
     align-items: center;
@@ -38,10 +42,14 @@
     }
 
     svg {
-      margin-right: 5px;
+      margin-right: 0;
       cursor: pointer;
       height: auto;
       width: auto;
+
+      &.tiktok {
+        height: 22px;
+      }
 
       path {
         fill: rgb(var(--tertiary-color));

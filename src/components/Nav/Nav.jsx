@@ -23,7 +23,7 @@ export default function Nav({ variant, className }) {
         {/* <Link to="/about">About</Link> */}
         <Link to="/the-little-garden">The Little Garden</Link>
         <Link to="https://www.instagram.com/littleherbplaces/"><InstagramIcon /></Link>
-        <Link to="https://www.tiktok.com/@littleherbplaces"><TikTok /></Link>
+        <Link to="https://www.tiktok.com/@littleherbplaces"><TikTok className={styles.tiktok} /></Link>
       </div>
     </nav>
   );
