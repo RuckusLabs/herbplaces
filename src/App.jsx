@@ -7,6 +7,7 @@ import Shop from "./pages/Shop/Shop";
 import Map from "./pages/Map/Map";
 import Place from "./pages/Place/Place";
 import TheLittleGarden from "./pages/TheLittleGarden/TheLittleGarden";
+import SproutSignup from "./pages/TheLittleGarden/SproutSignup";
 
 const defaultConfig = {
   navVariant: 'garden'
@@ -18,6 +19,7 @@ const routes = [
   { path: '/shop', element: <Shop /> },
   { path: '/about', element: <About /> },
   { path: '/the-little-garden', element: <TheLittleGarden />, navVariant: 'bleed' },
+  { path: '/the-little-garden/sprout', element: <SproutSignup />},
   { path: '/place/:slug', element: <Place /> }
 ].map(route => ({ ...defaultConfig, ...route }));
 

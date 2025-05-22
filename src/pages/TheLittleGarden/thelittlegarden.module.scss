@@ -117,3 +117,16 @@ p {
     opacity: 0.5;
   }
 }
+
+.sproutSignup {
+  .grid {
+    grid-template-columns: 0.5fr;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

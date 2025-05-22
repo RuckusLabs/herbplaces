@@ -35,7 +35,7 @@ export default function TheLittleGarden() {
             </div>
             <div className={styles.meta}>
               <p>Free</p>
-              <Link className={styles.button} to="#">
+              <Link className={styles.button} to="/the-little-garden/sprout">
                 Get Sprout
               </Link>
             </div>
