@@ -1,5 +1,6 @@
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import ScrollToTop from "./utilities/ScrollToTop";
 import Nav from './components/Nav/Nav';
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
@@ -37,6 +38,7 @@ function AppContent() {
   return (
     <>
       <Nav variant={navVariant} />
+      <ScrollToTop />
       <Routes>
         {routes.map(route => (
           <Route key={route.path} path={route.path} element={route.element} />
