@@ -10,7 +10,7 @@ const fetchPlaces = async () => {
     const { data, timestamp } = JSON.parse(cached);
     // Check if cache is still valid
     if (Date.now() - timestamp < CACHE_DURATION) {
-      return data;
+      return data.sort((a, b) => a.city.localeCompare(b.city));
     }
   }
 
@@ -18,7 +18,7 @@ const fetchPlaces = async () => {
     const { data, error } = await supabase
       .from('places')
       .select('*')
-      .order('id');
+      .order('city', { ascending: true });
 
     if (error) {
       console.error('Error fetching places:', error.message);
