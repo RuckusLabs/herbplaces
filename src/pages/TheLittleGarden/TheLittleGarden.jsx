@@ -56,6 +56,7 @@ export default function TheLittleGarden() {
               <Link className={styles.button} to="#">
                 Get Bloom
               </Link>
+              <span className={styles.comingSoon}>Coming soon</span>
             </div>
           </div>
           <div className={`${styles.card} ${styles.cardHidden}`}>
@@ -73,6 +74,7 @@ export default function TheLittleGarden() {
               <Link className={styles.button} to="#">
                 Get Thrive
               </Link>
+              <span className={styles.comingSoon}>Coming soon</span>
             </div>
           </div>
           {/* <div className={styles.card}>
