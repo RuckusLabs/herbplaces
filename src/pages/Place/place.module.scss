@@ -15,6 +15,21 @@
   max-width: 600px;
   margin: 0px auto 30px auto;
 
+  .container {
+    @include mobile {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  .button {
+    margin-top: 25px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
   h1 {
     font-size: 23px;
     position: relative;
@@ -25,8 +40,6 @@
       margin-left: 5px;
     }
   }
-
-
 
   h2 {
     font-size: 20px;
@@ -74,7 +87,9 @@
 .photoGallery {
   position: relative;
   display: flex;
+  // align-items: center;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   width: 110%;
@@ -90,6 +105,7 @@
   @include mobile {
     width: 105%;
     transform: translateX(-2.5%);
+    max-height: 500px
   }
 }
 
