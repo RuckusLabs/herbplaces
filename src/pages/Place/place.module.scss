@@ -30,6 +30,10 @@
       font-family: "Inter", sans-serif;
       font-weight: 700;
 
+      @include mobile {
+        text-align: left;
+      }
+
       .badge {
         position: relative;
         top: -2px;
