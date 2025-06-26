@@ -11,6 +11,12 @@
   align-items: center;
   justify-content: center;
 
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 0;
+  }
+
   @include mobile {
     min-height: 100vh;
   }

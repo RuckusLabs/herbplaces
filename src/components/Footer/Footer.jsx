@@ -11,6 +11,7 @@ export default function Footer() {
         <div className={styles.column}>
           <Link to="/"><Logo /></Link>
           <p>Little Herb Places is a unique platform dedicated to supporting neighborhood herbal shops and fostering a thriving community of herbal enthusiasts.</p>
+          <p>Need help? Email us at <a href="mailto:help@littleherbplaces.com">help@littleherbplaces.com</a></p>
           <p>© 2024 – {new Date().getFullYear()}</p>
           <div className={styles.socialRow}>
             <Link to="https://www.instagram.com/littleherbplaces/"><Instagram /></Link>
