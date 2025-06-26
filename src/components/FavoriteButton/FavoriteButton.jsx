@@ -24,15 +24,7 @@ export default function FavoriteButton({
   const favorited = isFavorited(itemId);
 
   const handleToggle = async (e) => {
-    e.stopPropagation(); // Prevent event bubbling if button is inside a clickable card
-
-    if (!isLoggedIn) {
-      alert('Please log in to save favorites');
-      return;
-    }
-
-    // console.log('FavoriteButton: Toggling favorite for itemId:', itemId);
-
+    e.stopPropagation();
     setIsToggling(true);
     try {
       await toggleFavorite(itemId, itemType);
@@ -47,25 +39,22 @@ export default function FavoriteButton({
   return (
     <button
       onClick={handleToggle}
-      disabled={isToggling || !isLoggedIn}
+      disabled={isToggling}
       className={`favorite-button ${favorited ? 'favorited' : ''} ${className}`}
       style={{
         background: 'none',
         border: 'none',
-        cursor: isLoggedIn ? 'pointer' : 'not-allowed',
+        cursor: 'pointer',
         padding: '4px',
         display: 'flex',
         alignItems: 'center',
         gap: '4px',
-        opacity: !isLoggedIn ? 0.5 : 1,
-        ...(!isLoggedIn && { pointerEvents: 'none' })
+        opacity: isToggling ? 0.5 : 1,
       }}
       title={
-        !isLoggedIn
-          ? 'Log in to save favorites'
-          : favorited
-            ? 'Remove from favorites'
-            : 'Add to favorites'
+        favorited
+          ? 'Remove from favorites'
+          : 'Add to favorites'
       }
     >
       <HeartIcon

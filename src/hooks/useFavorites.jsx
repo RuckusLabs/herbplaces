@@ -1,26 +1,27 @@
 import { useState, useEffect } from 'react';
 import supabase from '/src/utilities/supabase';
 
+const LOCAL_KEY = 'guest_favorites';
+
 export function useFavorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
+  const isLoggedIn = !!user;
+
   useEffect(() => {
-    // Get current user
     const getCurrentUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
     };
     getCurrentUser();
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_event, session) => {
         setUser(session?.user || null);
       }
     );
-
     return () => subscription.unsubscribe();
   }, []);
 
@@ -28,14 +29,15 @@ export function useFavorites() {
     if (user) {
       loadFavorites();
     } else {
-      setFavorites([]);
+      // Load from localStorage for guests
+      const local = localStorage.getItem(LOCAL_KEY);
+      setFavorites(local ? JSON.parse(local) : []);
       setLoading(false);
     }
   }, [user]);
 
   const loadFavorites = async () => {
     if (!user) return;
-
     setLoading(true);
     try {
       const { data, error } = await supabase
@@ -43,7 +45,6 @@ export function useFavorites() {
         .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
-
       if (error) throw error;
       setFavorites(data || []);
     } catch (error) {
@@ -53,22 +54,26 @@ export function useFavorites() {
     }
   };
 
+  // For guests, store IDs as strings
+  const updateGuestFavorites = (itemId) => {
+    const id = String(itemId);
+    let updated;
+    if (favorites.includes(id)) {
+      updated = favorites.filter(fav => fav !== id);
+    } else {
+      updated = [...favorites, id];
+    }
+    setFavorites(updated);
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(updated));
+  };
+
   const addFavorite = async (itemId, itemType = null) => {
     if (!user) {
-      throw new Error('Must be logged in to add favorites');
+      updateGuestFavorites(itemId);
+      return;
     }
-
-    // Validate itemId
-    if (!itemId || itemId === null || itemId === undefined) {
-      throw new Error('Item ID is required and cannot be null or undefined');
-    }
-
-    // Convert itemId to string to ensure consistency
     const itemIdString = String(itemId);
-
     try {
-      console.log('Adding favorite:', { user_id: user.id, item_id: itemIdString, item_type: itemType });
-
       const { data, error } = await supabase
         .from('favorites')
         .insert([{
@@ -78,13 +83,7 @@ export function useFavorites() {
         }])
         .select()
         .single();
-
-      if (error) {
-        console.error('Supabase error details:', error);
-        throw error;
-      }
-
-      console.log('Favorite added successfully:', data);
+      if (error) throw error;
       setFavorites(prev => [data, ...prev]);
       return data;
     } catch (error) {
@@ -94,31 +93,18 @@ export function useFavorites() {
   };
 
   const removeFavorite = async (itemId) => {
-    if (!user) return;
-
-    // Validate itemId
-    if (!itemId || itemId === null || itemId === undefined) {
-      throw new Error('Item ID is required and cannot be null or undefined');
+    if (!user) {
+      updateGuestFavorites(itemId);
+      return;
     }
-
-    // Convert itemId to string to ensure consistency
     const itemIdString = String(itemId);
-
     try {
-      console.log('Removing favorite:', { user_id: user.id, item_id: itemIdString });
-
       const { error } = await supabase
         .from('favorites')
         .delete()
         .eq('user_id', user.id)
         .eq('item_id', itemIdString);
-
-      if (error) {
-        console.error('Supabase error details:', error);
-        throw error;
-      }
-
-      console.log('Favorite removed successfully');
+      if (error) throw error;
       setFavorites(prev => prev.filter(fav => fav.item_id !== itemIdString));
     } catch (error) {
       console.error('Error removing favorite:', error);
@@ -128,8 +114,12 @@ export function useFavorites() {
 
   const isFavorited = (itemId) => {
     if (!itemId) return false;
-    const itemIdString = String(itemId);
-    return favorites.some(fav => fav.item_id === itemIdString);
+    const id = String(itemId);
+    if (user) {
+      return favorites.some(fav => fav.item_id === id);
+    } else {
+      return favorites.includes(id);
+    }
   };
 
   const toggleFavorite = async (itemId, itemType = null) => {
@@ -140,13 +130,22 @@ export function useFavorites() {
     }
   };
 
+  // For syncing after login
+  const getGuestFavorites = () => {
+    const local = localStorage.getItem(LOCAL_KEY);
+    return local ? JSON.parse(local) : [];
+  };
+  const clearGuestFavorites = () => {
+    localStorage.removeItem(LOCAL_KEY);
+  };
+
   return {
     favorites,
-    loading,
-    addFavorite,
-    removeFavorite,
     isFavorited,
     toggleFavorite,
-    isLoggedIn: !!user
+    isLoggedIn,
+    getGuestFavorites,
+    clearGuestFavorites,
+    loading,
   };
 }

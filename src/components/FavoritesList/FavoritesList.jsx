@@ -39,8 +39,8 @@ export default function FavoritesList() {
     return (
       <div className={styles.container}>
         <h2>Favorites</h2>
-        <p>You haven't favorited any places yet.</p>
-        <p className={styles.hint}>
+        <p className="text-align-center">You haven't favorited any places yet.</p>
+        <p className="text-align-center">
           Click the ❤️ button on places you like to save them here.
         </p>
       </div>

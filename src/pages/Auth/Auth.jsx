@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import supabase from '/src/utilities/supabase';
+import { useFavorites } from '/src/hooks/useFavorites';
+import { useAuth } from '/src/contexts/AuthContext'; // <-- import this if you have it
 import styles from './Auth.module.scss';
 
 export default function Auth() {
@@ -10,7 +12,27 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [isLogin, setIsLogin] = useState(true);
+  const [needsSync, setNeedsSync] = useState(false);
+  const { user } = useAuth(); // <-- get user from AuthContext if available
+  const { getGuestFavorites, clearGuestFavorites, toggleFavorite } = useFavorites();
   const navigate = useNavigate();
+
+  // Sync guest favorites after user is set
+  useEffect(() => {
+    const doSync = async () => {
+      const guestFavs = getGuestFavorites();
+      if (user && guestFavs.length > 0 && needsSync) {
+        for (const id of guestFavs) {
+          await toggleFavorite(id);
+        }
+        clearGuestFavorites();
+        setNeedsSync(false);
+        navigate('/the-little-garden');
+      }
+    };
+    doSync();
+    // eslint-disable-next-line
+  }, [user, needsSync]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +46,9 @@ export default function Auth() {
           password,
         });
         if (error) throw error;
-        navigate('/the-little-garden');
+
+        // Set needsSync to true, actual sync will happen in useEffect after user is set
+        setNeedsSync(true);
       } else {
         // Sign up user
         const { data, error } = await supabase.auth.signUp({
@@ -54,6 +78,11 @@ export default function Auth() {
           } catch (profileErr) {
             console.error('Profile creation failed:', profileErr);
           }
+        }
+
+        // Only sync if session exists (user is logged in right away)
+        if (data.session) {
+          setNeedsSync(true);
         }
 
         if (data.user && !data.session) {
