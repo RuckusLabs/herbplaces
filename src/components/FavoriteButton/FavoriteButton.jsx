@@ -24,6 +24,7 @@ export default function FavoriteButton({
   const favorited = isFavorited(itemId);
 
   const handleToggle = async (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setIsToggling(true);
     try {

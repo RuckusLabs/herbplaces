@@ -31,23 +31,21 @@ export default function ListComponent({ className = '', limit, places: propPlace
       {displayedPlaces.map((place) => (
         <>
           <Link to={`/place/${place.urlSlug}`} className={styles.place} key={place.id}>
-            <img 
-              className={styles.coverPhoto} 
-              src={place.coverPhoto} 
-              alt={place.name} 
+            <img
+              className={styles.coverPhoto}
+              src={place.coverPhoto}
+              alt={place.name}
             />
             <div className={styles.meta}>
               <h3>
                 {place.name}
                 {place.isVerified && <Badge className={styles.badge} />}
-                {user && (
-                  <FavoriteButton
-                    className={styles.favorite}
-                    itemId={place.id}
-                    itemType="place"
-                    size={22}
-                  />
-                )}
+                <FavoriteButton
+                  className={styles.favorite}
+                  itemId={place.id}
+                  itemType="place"
+                  size={22}
+                />
               </h3>
               <p>{place.tagline}</p>
               <p className={styles.location}>
