@@ -10,16 +10,17 @@
 
   @include mobile {
     width: calc(100% - 20px);
-    // .logo {
-    //     svg {
-    //       width: 50px;
-    //       height: auto;
-    //     }
-    //   }
+    padding: 10px;
+    margin-bottom: 15px;
+    flex-direction: column;
   }
 
   .logo {
     margin-right: auto;
+
+    @include mobile {
+      margin: 10px 0 10px 0;
+    }
   }
 
   a {
@@ -79,4 +80,29 @@
 
 .navLinks {
   display: flex;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    color: var(--text-color);
+    font-size: 0.9rem;
+  }
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
