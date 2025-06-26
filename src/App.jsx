@@ -4,11 +4,16 @@ import ScrollToTop from "./utilities/ScrollToTop";
 import Nav from './components/Nav/Nav';
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
+import Help from "./pages/Help/Help";
 import Shop from "./pages/Shop/Shop";
 import Map from "./pages/Map/Map";
 import Place from "./pages/Place/Place";
+import FavoritesList from "./components/FavoritesList/FavoritesList";
 import TheLittleGarden from "./pages/TheLittleGarden/TheLittleGarden";
 import SproutSignup from "./pages/TheLittleGarden/SproutSignup";
+import { AuthProvider } from './contexts/AuthContext';
+import Auth from "./pages/Auth/Auth";
+import AuthCallback from './pages/Auth/AuthCallback';
 
 const defaultConfig = {
   navVariant: 'garden'
@@ -19,9 +24,13 @@ const routes = [
   { path: '/map', element: <Map /> },
   { path: '/shop', element: <Shop /> },
   { path: '/about', element: <About /> },
+  { path: '/help', element: <Help /> },
   { path: '/the-little-garden', element: <TheLittleGarden />, navVariant: 'bleed' },
   { path: '/the-little-garden/sprout', element: <SproutSignup />},
-  { path: '/place/:slug', element: <Place /> }
+  { path: '/place/:slug', element: <Place /> },
+  { path: '/auth', element: <Auth /> },
+  { path: '/favorites', element: <FavoritesList /> },
+  { path: '/auth/callback', element: <AuthCallback /> },
 ].map(route => ({ ...defaultConfig, ...route }));
 
 function AppContent() {
@@ -52,7 +61,9 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </Router>
   );
 }

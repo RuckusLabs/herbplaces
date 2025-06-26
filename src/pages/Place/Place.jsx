@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import supabase from '../../utilities/supabase';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
 import styles from "./place.module.scss";
 import { Helmet } from "react-helmet";
 
-import LocationIcon from "/src/assets/location-icon.svg";
 import Badge from "/src/assets/icons/badge.svg?react";
 
 export default function Place() {
@@ -66,7 +66,11 @@ export default function Place() {
     scrollToPhoto(newIndex);
   };
 
-  if (!place) return <p>Loading...</p>;
+  if (!place) return (
+    <div className={styles.container}>
+      <p className="text-align-center">Loading...</p>
+    </div>
+  );
 
   return (
     <>
@@ -133,7 +137,11 @@ export default function Place() {
         )
         }
         <div className={styles.container}>
-          <h1>{place.name} {place.isVerified && <Badge className={styles.badge} />}</h1>
+          <h1>
+            {place.name}
+            {place.isVerified && <Badge className={styles.badge} />}
+            <FavoriteButton className={styles.favorite} itemId={place.id}></FavoriteButton>
+          </h1>
           <h2>{place.tagline}</h2>
 
           <ul className={styles.metaNav}>

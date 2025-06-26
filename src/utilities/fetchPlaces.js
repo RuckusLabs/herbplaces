@@ -7,6 +7,7 @@ const fetchPlaces = async () => {
   // Try to get cached data from localStorage
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
+    console.log('Using cached places data');
     const { data, timestamp } = JSON.parse(cached);
     // Check if cache is still valid
     if (Date.now() - timestamp < CACHE_DURATION) {
@@ -15,6 +16,7 @@ const fetchPlaces = async () => {
   }
 
   try {
+    console.log('Fetching places from Supabase');
     const { data, error } = await supabase
       .from('places')
       .select('*')

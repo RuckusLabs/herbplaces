@@ -33,17 +33,24 @@
   text-decoration: none;
 
   h3 {
+    font-size: 23px;
     position: relative;
+    display: flex;
 
     .badge {
-      position: absolute;
+      position: relative;
       top: -4px;
-      margin-left: 5px;
+    }
+
+    .favorite {
+      position: relative;
+      margin-inline-start: auto;
+      top: -3px;
+      width: 24px;
+      pointer-events: none;
     }
   }
 }
-
-
 
 .place .coverPhoto {
   position: relative;
