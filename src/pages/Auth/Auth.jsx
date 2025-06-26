@@ -27,7 +27,7 @@ export default function Auth() {
         }
         clearGuestFavorites();
         setNeedsSync(false);
-        navigate('/the-little-garden');
+        navigate('/map');
       }
     };
     doSync();
@@ -88,7 +88,7 @@ export default function Auth() {
         if (data.user && !data.session) {
           setMessage('Check your email to confirm your account!');
         } else {
-          navigate('/the-little-garden');
+          navigate('/map');
         }
       }
     } catch (error) {
