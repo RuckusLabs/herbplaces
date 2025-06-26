@@ -1,14 +1,17 @@
 .places {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   width: 100%;
   padding-top: 5px;
-  max-width: 700px;
   overflow: scroll;
   position: relative;
   height: calc(100dvh - 165px);
   border-radius: var(--border-radius);
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr)
+  }
 }
 
 @include mobile {
@@ -22,43 +25,52 @@
 }
 
 .place {
-  background-color: white;
-  border-radius: var(--border-radius);
-  padding: 20px;
-  position: relative;
-  overflow: hidden;
   display: flex;
-  height: 500px;
+  flex-direction: column;
   cursor: pointer;
   transition: all ease-in-out 0.2s;
-}
+  text-align: left;
+  text-decoration: none;
 
-@include mobile {
-  .place {
-    height: 275px;
+  h3 {
+    font-size: 23px;
+    position: relative;
+    display: flex;
+
+    .badge {
+      position: relative;
+      top: -4px;
+    }
+
+    .favorite {
+      position: relative;
+      margin-inline-start: auto;
+      top: -3px;
+      width: 24px;
+    }
   }
 }
 
 .place .coverPhoto {
-  position: absolute;
+  position: relative;
   object-fit: cover;
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  aspect-ratio: 0.74 / 1;
+  border-radius: var(--border-radius);
 }
 
 .place .meta {
-  margin-top: auto;
-  z-index: 3;
+  padding: 15px 0;
 
-  h3, p {
-    color: white;
+  h3,
+  p {
+    color: var(--primary-color); // Change text color to dark
   }
 }
 
 .place .meta .location {
-  margin-top: 10px;
+  margin-top: 5px;
+  font-size: 12px;
 }
 
 .place .meta .pinIcon {
@@ -67,31 +79,25 @@
   top: 3px;
 }
 
+.locationIcon {
+  height: 15px;
+  position: relative;
+  top: 3px;
+  width: 15px;
+}
+
 .place .meta h3 {
-  font-size: 14px;
-  margin-bottom: 0;
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .place .meta p {
   margin: 0;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .place:hover {
   transform: translateY(-5px);
   z-index: 9;
   opacity: 0.75;
-}
-
-.place:after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 75%;
-  background: linear-gradient(to bottom,
-      rgba(118, 128, 93, 0) 0%,
-      rgba(118, 128, 93, 1) 100%);
-  z-index: 2;
 }

@@ -1,0 +1,118 @@
+.header {
+  width: 100%;
+  background-image: url(/assets/pages/the-little-garden/hero.jpg);
+  position: relative;
+  min-height: 70dvh;
+  // border-bottom-right-radius: 100px;
+  z-index: -2;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  @include mobile {
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-family: "Editorial";
+    font-weight: 100;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: white;
+    font-size: 122px;
+
+    @include mobile {
+      font-size: 80px;
+    }
+  }
+}
+
+.wrapper {
+  pointer-events: none;
+}
+
+@mixin gradientSet {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    backdrop-filter: blur(0.5px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 25%,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(0, 0, 0, 0) 75%
+    );
+  }
+
+  @for $i from 1 through 3 {
+    $start: 25% * $i;
+    $mid1: 50% * $i;
+    $mid2: 75% * $i;
+    $end: 100% * $i;
+    $blur: 1px + ($i * 1px);
+    
+    > div:nth-of-type(#{$i}) {
+      position: absolute;
+      inset: 0;
+      z-index: $i + 1;
+      backdrop-filter: blur($blur);
+      mask: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) $start,
+        rgba(0, 0, 0, 1) $mid1,
+        rgba(0, 0, 0, 1) $mid2,
+        rgba(0, 0, 0, 0) $end
+      );
+    }
+        @include mobile {
+          display: none;
+        }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    backdrop-filter: blur(4px);
+    mask: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 87.5%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    @include mobile {
+        display: none;
+      }
+  }
+}
+
+.gradientBlur {
+  position: absolute;
+  z-index: -1;
+  inset: auto 0 0 0;
+  height: 50%;
+  pointer-events: none;
+  @include gradientSet;
+}
+
+.gradientBlurTop {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto 0;
+  height: 50%;
+  pointer-events: none;
+  transform: rotate(180deg);
+  @include gradientSet;
+}

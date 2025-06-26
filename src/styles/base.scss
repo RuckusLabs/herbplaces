@@ -3,19 +3,21 @@
 }
 
 :root {
-  --primary-color: 255, 249, 241;
-  --secondary-color: 100, 102, 78;
-  --tertiary-color: 102, 78, 78;
-  --gray-color: 245, 245, 247;
+  --primary-color: 234, 255, 130;
+  --secondary-color: 192, 209, 107;
+  --tertiary-color: 44, 84, 47;
+  --gray-color: 247, 247, 247;
   --black-color: 29, 29, 31;
+  --orange-color: 209, 126, 107;
   --border-radius: 25px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   // letter-spacing: -0.09em;
   line-height: 1.25;
   font-weight: 400;
   color-scheme: light dark;
-  background-color: rgb(var(--primary-color));
-  color: rgb(var(--secondary-color));
+  //background-color: rgb(var(--primary-color));
+  color: rgb(var(--tertiary-color));
+  font-size: 14px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

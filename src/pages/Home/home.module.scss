@@ -1,9 +1,48 @@
 .container {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
 
-  @include mobile {
-    flex-direction: column-reverse;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0;
+
+  h1 {
+    font-size: 72px;
+    text-align: left;
+
+    @include mobile {
+      font-size: 36px;
+      
+    }
+  }
+
+  .section {
+    padding: 25px 0;
+    text-align: center;
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
+
+    +.section {
+      border-top: 1px solid rgba(var(--gray-color), 1);
+    }
+
+    > p {
+      font-size: 14px;
+    }
+  }
+
+  .places {
+    height: auto;
+    grid-template-columns: repeat(2, 1fr)
+  }
+
+  .sectionMetaNav {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  :global(.banner) {
+    margin-top: 20px;
   }
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import Logo from "/assets/little-herb-places-logo.svg";
-import Instagram from "/assets/instagram-icon.svg";
+import Logo from "/src/assets/little-herb-places-logo.svg?react";
+import Instagram from "/src/assets/instagram-icon.svg?react";
+import TikTok from "/src/assets/tiktok-icon.svg?react";
 import styles from "./footer.module.scss";
 
 export default function Footer() {
@@ -8,22 +9,26 @@ export default function Footer() {
     <footer className="footer">
       <div className={`${styles.row} ${styles.container}`}>
         <div className={styles.column}>
-          <Link to="/"><img src={Logo} className={styles.logo} alt="Little Herb Places" /></Link>
+          <Link to="/"><Logo /></Link>
           <p>Little Herb Places is a unique platform dedicated to supporting neighborhood herbal shops and fostering a thriving community of herbal enthusiasts.</p>
-          <p>© 2024 – {new Date().getFullYear()}</p>
-          <Link to="https://www.instagram.com/littleherbplaces/"><img src={Instagram} alt="Little Herb Places on Instagram" /></Link>
+          <p>Need help? Email us at <a href="mailto:help@littleherbplaces.com">help@littleherbplaces.com</a></p>
+          <p>© 2024 – {new Date().getFullYear()}</p>
+          <div className={styles.socialRow}>
+            <Link to="https://www.instagram.com/littleherbplaces/"><Instagram /></Link>
+            <Link to="https://www.tiktok.com/@littleherbplaces"><TikTok /></Link>
+          </div>
         </div>
-        <div className={styles.column}>
+        {/* <div className={styles.column}>
           <ul>
-            <li><Link to="/">All Little Herb Places</Link></li>
-            <li><Link to="/map">Map</Link></li>
-            {/* <li><Link to="/store">Store</Link></li> */}
+            <li><Link to="/map">Explore</Link></li>
+            <li><Link to="/store">Store</Link></li>
             <li><Link to="/about">About</Link></li>
-            {/* <li><hr /></li> */}
-            {/* <li><Link to="/suggest-a-little-herb-place">Suggest a Little Herb Place</Link></li> */}
-            {/* <li><Link to="/partnerships">Partnerships</Link></li> */}
+            <li><Link to="/the-little-garden">The Little Garden</Link></li>
+            <li><hr /></li>
+            <li><Link to="/suggest-a-little-herb-place">Suggest a Little Herb Place</Link></li>
+            <li><Link to="/partnerships">Partnerships</Link></li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </footer>
   )

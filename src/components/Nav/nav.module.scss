@@ -3,29 +3,77 @@
   align-items: center;
   justify-content: space-between;
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
+  top: 10px;
+  @include glass;
+
+  @include mobile {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    flex-direction: column;
+  }
+
+  .logo {
+    margin-right: auto;
+
+    @include mobile {
+      margin: 10px 0 10px 0;
+    }
+  }
 
   a {
     display: flex;
     align-items: center;
     position: relative;
-    transition: all ease-in-out 0.2s;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 10px;
+    padding: 5px;
+    color: rgb(var(--secondary));
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
     &:hover {
       transform: translateY(-5px);
       opacity: 0.8;
     }
 
-    + a {
-      margin-left: 40px;
+    +a {
+      margin-left: 10px;
     }
 
-    img {
-      margin-right: 5px;
+    svg {
+      margin-right: 0;
       cursor: pointer;
+      height: auto;
+      width: auto;
+
+      &.tiktok {
+        height: 22px;
+      }
+
+      path {
+        fill: rgb(var(--tertiary-color));
+      }
+    }
+  }
+
+  &--bleed {
+
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    transform: translateX(-50%);
+
+    a {
+      color: white;
+
+      svg {
+        path {
+          fill: white;
+        }
+      }
     }
   }
 }
@@ -34,18 +82,27 @@
   display: flex;
 }
 
-@media (max-width: 768px) {
-  .nav a {
-    padding: 10px;
-    font-size: 16px;
-  }
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 
-  .nav .logo img {
-    height: 80px;
-    width: auto;
+  span {
+    color: var(--text-color);
+    font-size: 0.9rem;
   }
+}
 
-  .nav a + a {
-    margin-left: 10px;
+.logoutButton {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+
+  &:hover {
+    opacity: 0.8;
   }
 }

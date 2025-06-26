@@ -1,0 +1,93 @@
+.container {
+  max-width: 600px;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 100px;
+
+  @include mobile {
+    margin-top: 25px;
+  }
+
+  +section {
+    margin-top: 100px;
+
+    @include mobile {
+      margin-top: 50px;
+    }
+  }
+
+  h3 {
+    font-family: "Editorial";
+    font-size: 56px;
+
+    @include mobile {
+      font-size: 48px;
+    }
+  }
+}
+
+.grid {
+  grid-template-columns: 0.5fr;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  gap: 10px;
+  margin: 0 auto 100px auto;
+  max-width: 1200px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: rgb(var(--gray-color));
+  border-radius: var(--border-radius);
+
+  h4 {
+    font-family: "Editorial";
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+      position: relative;
+      top: -5px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  a {
+    justify-self: center;
+    display: flex;
+  }
+
+  form {
+    margin: 25px 0;
+  }
+}
+
+.messageError, .messageSuccess {
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+.messageError {
+  background: rgba(var(--orange-color), 1);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.messageSuccess {
+  background: rgba(var(--primary-color), 1);
+  font-size: 14px;
+  margin-top: 10px;
+}

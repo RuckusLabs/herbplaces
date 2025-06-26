@@ -1,5 +1,5 @@
 footer {
-  background-color: rgb(var(--tertiary-color));
+  background-color: rgb(var(--secondary-color));
   padding: 50px;
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
@@ -14,18 +14,13 @@ footer {
   }
 
   p,
-  li,
-  a {
+  li {
     font-size: 12px;
-    color: white;
+    text-decoration: none;
   }
 
-  img {
-    filter: brightness(0) invert(1);
-  }
-
-  .logo {
-    width: 80px;
+  a {
+    text-decoration: underline;;
   }
 
   ul {
@@ -65,5 +60,19 @@ footer {
     flex-basis: 100%;
     flex: 1;
     row-gap: 15px;
+  }
+
+  .socialRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  svg path {
+    fill: rgb(var(--tertiary-color));
   }
 }

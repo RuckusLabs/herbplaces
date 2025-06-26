@@ -1,45 +1,65 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./list.module.scss";
 import fetchPlaces from '../../utilities/fetchPlaces';
 
-const ListComponent = () => {
+import LocationIcon from "/src/assets/location-icon.svg?react";
+import Badge from "/src/assets/icons/badge.svg?react";
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
+import PropTypes from 'prop-types';
 
+export default function ListComponent({ className = '', limit, places: propPlaces }) {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
-    async function loadPlaces() {
-      const data = await fetchPlaces();
-      setPlaces(data || []); // Handle null or empty data
+    if (propPlaces) {
+      setPlaces(propPlaces);
+    } else {
+      async function loadPlaces() {
+        const data = await fetchPlaces();
+        setPlaces(data || []);
+      }
+      loadPlaces();
     }
+  }, [propPlaces]);
 
-    loadPlaces();
-  }, []);
+  const displayedPlaces = limit ? places.slice(0, limit) : places;
 
   return (
-    <div className={styles.places}>
-      {places.map((place) => (
-        <Link
-          to={`/place/${place.urlSlug}`}
-          className={styles.place}
-          key={place.id}
-        >
-          <img 
-            className={styles.coverPhoto} 
-            src={place.coverPhoto} 
-            alt={place.name} 
-          />
-          <div className={styles.meta}>
-            <h3>{place.name}</h3>
-            <p>{place.tagline}</p>
-            <p className={styles.location}>
-              {place.city}, {place.state}
-            </p>
-          </div>
-        </Link>
+    <div className={`${styles.places} ${className}`}>
+      {displayedPlaces.map((place) => (
+        <>
+          <Link to={`/place/${place.urlSlug}`} className={styles.place} key={place.id}>
+            <img
+              className={styles.coverPhoto}
+              src={place.coverPhoto}
+              alt={place.name}
+            />
+            <div className={styles.meta}>
+              <h3>
+                {place.name}
+                {place.isVerified && <Badge className={styles.badge} />}
+                <FavoriteButton
+                  className={styles.favorite}
+                  itemId={place.id}
+                  itemType="place"
+                  size={22}
+                />
+              </h3>
+              <p>{place.tagline}</p>
+              <p className={styles.location}>
+                <LocationIcon className={styles.locationIcon} /> {place.city}, {place.state}
+              </p>
+            </div>
+          </Link>
+        </>
       ))}
     </div>
   );
-};
+}
 
-export default ListComponent;
+ListComponent.propTypes = {
+  className: PropTypes.string,
+  limit: PropTypes.number,
+  places: PropTypes.array
+};

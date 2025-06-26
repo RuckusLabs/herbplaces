@@ -1,0 +1,147 @@
+.container {
+  max-width: 600px;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 100px;
+
+  @include mobile {
+    margin-top: 25px;
+  }
+
+  +section {
+    margin-top: 100px;
+
+    @include mobile {
+      margin-top: 50px;
+    }
+  }
+
+  h3 {
+    font-family: "Editorial";
+    font-size: 56px;
+
+    @include mobile {
+      font-size: 48px;
+    }
+  }
+}
+
+p {
+  font-size: 22px;
+  line-height: 1.3;
+
+  @include mobile {
+    font-size: 18px;
+  }
+}
+
+.signup {
+  text-align: right;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto 100px auto;
+  max-width: 1200px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    margin: 0 2.5%;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: rgb(var(--gray-color));
+  border-radius: var(--border-radius);
+
+  h4 {
+    font-family: "Editorial";
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+      position: relative;
+      top: -5px;
+    }
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 25px auto;
+  }
+
+  li {
+    padding: 10px;
+    padding-inline-start: 20px;
+    position: relative;
+
+    &:before {
+      content: '';
+      background-image: url("data:image/svg+xml,%0A%3Csvg%20width%3D%2214.35px%22%20height%3D%2214.35px%22%20viewBox%3D%220%200%2014.35%2014.35%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22checkmark--green%22%20transform%3D%22translate(0.675%2C%200.675)%22%20fill%3D%22%232C542F%22%20fill-rule%3D%22nonzero%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6.5%2C-0.675%20C10.4626632%2C-0.675%2013.675%2C2.53734907%2013.675%2C6.5%20C13.675%2C10.462675%2010.462675%2C13.675%206.5%2C13.675%20C2.53734907%2C13.675%20-0.675%2C10.4626632%20-0.675%2C6.5%20C-0.675%2C2.53736089%202.53736089%2C-0.675%206.5%2C-0.675%20Z%20M6.5%2C0.675%20C3.28294531%2C0.675%200.675%2C3.28294531%200.675%2C6.5%20C0.675%2C9.71707762%203.28293233%2C12.325%206.5%2C12.325%20C9.71709059%2C12.325%2012.325%2C9.71709059%2012.325%2C6.5%20C12.325%2C3.28293233%209.71707762%2C0.675%206.5%2C0.675%20Z%20M7.946865%2C4.12179355%20L9.08761776%2C4.84372369%20C6.87002713%2C8.3478337%206.24655738%2C9.22148132%205.60596427%2C9.19001044%20C5.05929362%2C9.16315377%204.6383165%2C8.67406651%203.91329722%2C7.53482062%20L5.05222002%2C6.81000696%20C5.24210528%2C7.10837971%205.40860848%2C7.35133855%205.54946578%2C7.53693243%20L5.60575862%2C7.60875862%20L5.66137492%2C7.5386002%20C5.72119629%2C7.46055229%205.78653136%2C7.37291216%205.85720023%2C7.27585206%20L5.9671814%2C7.12321846%20C6.11210116%2C6.92014717%206.27498746%2C6.68473456%206.45576458%2C6.4170778%20L6.74033894%2C5.9914217%20C7.08797475%2C5.46663763%207.49028533%2C4.84325466%207.946865%2C4.12179355%20Z%22%20id%3D%22Combined-Shape%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      left: 0;
+      top: 11px;
+      display: inline-block;
+      background-size: 95%;
+      background-repeat: no-repeat;;
+    }
+  }
+
+  a {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+  .comingSoon {
+    text-transform: uppercase;
+    margin-left: 10px;
+    color: rgb(var(--orange-color));
+    font-weight: 700;
+  }
+}
+
+.cardHidden {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9;
+    background-filter: blur(25px);
+    opacity: 0.5;
+  }
+}
+
+.sproutSignup {
+  .grid {
+    grid-template-columns: 0.5fr;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

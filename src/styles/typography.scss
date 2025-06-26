@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Editorial';
+  src: url(/assets/fonts/EditorialNew-Light.woff2) format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Editorial';
+  src: url(/assets/fonts/EditorialNew-Ultralight.woff2) format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 h1,
 h2,
 h3,
@@ -5,11 +21,29 @@ h4,
 p,
 a {
   margin: 0;
-  color: rgb(var(--black-color));
+  color: rgb(var(--tertiary-color));
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--tertiary-color);
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 45px;
+  margin-top: 10px;
+  font-family: "Editorial";
+  font-weight: 100;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 p + p {
@@ -18,4 +52,8 @@ p + p {
 
 h2 + p {
   margin-top: 15px;
+}
+
+.text-align-center {
+  text-align: center;
 }

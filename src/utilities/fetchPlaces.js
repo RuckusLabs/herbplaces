@@ -7,18 +7,20 @@ const fetchPlaces = async () => {
   // Try to get cached data from localStorage
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
+    console.log('Using cached places data');
     const { data, timestamp } = JSON.parse(cached);
     // Check if cache is still valid
     if (Date.now() - timestamp < CACHE_DURATION) {
-      return data;
+      return data.sort((a, b) => a.city.localeCompare(b.city));
     }
   }
 
   try {
+    console.log('Fetching places from Supabase');
     const { data, error } = await supabase
       .from('places')
       .select('*')
-      .order('id');
+      .order('city', { ascending: true });
 
     if (error) {
       console.error('Error fetching places:', error.message);
