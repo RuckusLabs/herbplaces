@@ -25,7 +25,7 @@ export default function FavoritesList() {
     return (
       <div className={styles.container}>
         <h2>Favorites</h2>
-        <p>Loading your favorites...</p>
+        <p className="text-align-center">Loading your favorites...</p>
       </div>
     );
   }

@@ -6,11 +6,10 @@ import fetchPlaces from '../../utilities/fetchPlaces';
 import LocationIcon from "/src/assets/location-icon.svg?react";
 import Badge from "/src/assets/icons/badge.svg?react";
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
-import { useAuth } from '../../contexts/AuthContext';
+import PropTypes from 'prop-types';
 
 export default function ListComponent({ className = '', limit, places: propPlaces }) {
   const [places, setPlaces] = useState([]);
-  const { user } = useAuth();
 
   useEffect(() => {
     if (propPlaces) {
@@ -58,3 +57,9 @@ export default function ListComponent({ className = '', limit, places: propPlace
     </div>
   );
 }
+
+ListComponent.propTypes = {
+  className: PropTypes.string,
+  limit: PropTypes.number,
+  places: PropTypes.array
+};

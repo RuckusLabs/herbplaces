@@ -34,7 +34,7 @@ export function useFavorites() {
       setFavorites(local ? JSON.parse(local) : []);
       setLoading(false);
     }
-  }, [user]);
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadFavorites = async () => {
     if (!user) return;

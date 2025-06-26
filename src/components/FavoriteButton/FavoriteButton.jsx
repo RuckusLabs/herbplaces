@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useFavorites } from '/src/hooks/useFavorites';
+import Modal from '../Modal/Modal';
+import PropTypes from 'prop-types';
 
 export default function FavoriteButton({
   itemId,
@@ -10,6 +12,7 @@ export default function FavoriteButton({
 }) {
   const { isFavorited, toggleFavorite, isLoggedIn } = useFavorites();
   const [isToggling, setIsToggling] = useState(false);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   // Validate itemId
   if (!itemId || itemId === null || itemId === undefined) {
@@ -29,6 +32,10 @@ export default function FavoriteButton({
     setIsToggling(true);
     try {
       await toggleFavorite(itemId, itemType);
+      if (!isLoggedIn) {
+        setShowLoginPopup(true);
+        return;
+      }
     } catch (error) {
       console.error('Failed to toggle favorite:', error);
       alert(`Failed to update favorite: ${error.message}`);
@@ -38,39 +45,62 @@ export default function FavoriteButton({
   };
 
   return (
-    <button
-      onClick={handleToggle}
-      disabled={isToggling}
-      className={`favorite-button ${favorited ? 'favorited' : ''} ${className}`}
-      style={{
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        padding: '4px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '4px',
-        opacity: isToggling ? 0.5 : 1,
-      }}
-      title={
-        favorited
-          ? 'Remove from favorites'
-          : 'Add to favorites'
-      }
-    >
-      <HeartIcon
-        size={size}
-        filled={favorited}
-        loading={isToggling}
-      />
-      {showText && (
-        <span style={{ fontSize: '14px' }}>
-          {favorited ? 'Favorited' : 'Favorite'}
-        </span>
-      )}
-    </button>
+    <>
+      <button
+        onClick={handleToggle}
+        disabled={isToggling}
+        className={`favorite-button ${favorited ? 'favorited' : ''} ${className}`}
+        style={{
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          padding: '4px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px',
+          opacity: isToggling ? 0.5 : 1,
+        }}
+        title={
+          favorited
+            ? 'Remove from favorites'
+            : 'Add to favorites'
+        }
+      >
+        <HeartIcon
+          size={size}
+          filled={favorited}
+          loading={isToggling}
+        />
+        {showText && (
+          <span style={{ fontSize: '14px' }}>
+            {favorited ? 'Favorited' : 'Favorite'}
+          </span>
+        )}
+      </button>
+      <Modal open={showLoginPopup} onClose={() => setShowLoginPopup(false)}>
+        <h3 style={{marginBottom: '12px'}}>Don't lose access to your favorites!</h3>
+        <p style={{marginBottom: '20px'}}><a href="/register">Create an account</a> to save your favorite places.</p>
+        <button
+          onClick={() => setShowLoginPopup(false)}
+          className="button"
+        >
+          Close
+        </button>
+      </Modal>
+    </>
   );
 }
+
+FavoriteButton.propTypes = {
+  itemId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  itemType: PropTypes.string,
+  size: PropTypes.number,
+  className: PropTypes.string,
+  showText: PropTypes.bool
+};
 
 // Simple heart icon component
 function HeartIcon({ size = 24, filled = false, loading = false }) {
@@ -108,3 +138,9 @@ function HeartIcon({ size = 24, filled = false, loading = false }) {
     </svg>
   );
 }
+
+HeartIcon.propTypes = {
+  size: PropTypes.number,
+  filled: PropTypes.bool,
+  loading: PropTypes.bool
+};
