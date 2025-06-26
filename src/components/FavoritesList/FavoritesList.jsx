@@ -5,26 +5,21 @@ import List from '../List/List';
 import styles from './FavoritesList.module.scss';
 
 export default function FavoritesList() {
-  const { favorites, loading, isLoggedIn } = useFavorites();
+  const { favorites, loading } = useFavorites();
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
     fetchPlaces().then(setPlaces).catch(() => setPlaces([]));
   }, []);
 
-  // Map favorite item_id to place object
+  // Support both guest and logged-in favorites
   const favoritedPlaces = favorites
-    .map(fav => places.find(place => String(place.id) === String(fav.item_id)))
+    .map(fav =>
+      typeof fav === 'string'
+        ? places.find(place => String(place.id) === fav)
+        : places.find(place => String(place.id) === String(fav.item_id))
+    )
     .filter(Boolean);
-
-  if (!isLoggedIn) {
-    return (
-      <div className={styles.container}>
-        <h2>Favorites</h2>
-        <p className="text-align-center">Please <a href="/auth">log in</a> to view your favorites.</p>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
