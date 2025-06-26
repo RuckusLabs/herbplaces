@@ -40,7 +40,7 @@ export default function Nav({ variant, className }) {
             <Link to="/the-little-garden">The Little Garden</Link>
             <Link to="https://www.instagram.com/littleherbplaces/"><InstagramIcon /></Link>
             <Link to="https://www.tiktok.com/@littleherbplaces"><TikTok className={styles.tiktok} /></Link>
-            <Link to="/auth">Login</Link>
+            <Link to="/register">Register</Link>
           </>
         )}
 

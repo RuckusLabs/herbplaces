@@ -11,11 +11,11 @@ export default function AuthCallback() {
       
       if (error) {
         console.error('Auth callback error:', error);
-        navigate('/auth?error=Authentication failed');
+        navigate('/register?error=Authentication failed');
       } else if (session) {
         navigate('/');
       } else {
-        navigate('/auth');
+        navigate('/');
       }
     };
 

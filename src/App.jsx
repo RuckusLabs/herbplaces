@@ -12,8 +12,9 @@ import FavoritesList from "./components/FavoritesList/FavoritesList";
 import TheLittleGarden from "./pages/TheLittleGarden/TheLittleGarden";
 import SproutSignup from "./pages/TheLittleGarden/SproutSignup";
 import { AuthProvider } from './contexts/AuthContext';
-import Auth from "./pages/Auth/Auth";
 import AuthCallback from './pages/Auth/AuthCallback';
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
 const defaultConfig = {
   navVariant: 'garden'
@@ -28,7 +29,8 @@ const routes = [
   { path: '/the-little-garden', element: <TheLittleGarden />, navVariant: 'bleed' },
   { path: '/the-little-garden/sprout', element: <SproutSignup />},
   { path: '/place/:slug', element: <Place /> },
-  { path: '/auth', element: <Auth /> },
+  { path: '/login', element: <Login /> },
+  { path: '/register', element: <Register /> },
   { path: '/favorites', element: <FavoritesList /> },
   { path: '/auth/callback', element: <AuthCallback /> },
 ].map(route => ({ ...defaultConfig, ...route }));

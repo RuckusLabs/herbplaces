@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import supabase from '/src/utilities/supabase';
+import PropTypes from 'prop-types';
 
 const AuthContext = createContext({});
 
@@ -79,5 +80,9 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export const useAuth = () => useContext(AuthContext);
