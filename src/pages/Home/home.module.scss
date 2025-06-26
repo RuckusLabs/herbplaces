@@ -6,10 +6,11 @@
 
   h1 {
     font-size: 72px;
+    text-align: left;
 
     @include mobile {
       font-size: 36px;
-      text-align: left;
+      
     }
   }
 
