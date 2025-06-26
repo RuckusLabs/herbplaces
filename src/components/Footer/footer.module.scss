@@ -14,10 +14,13 @@ footer {
   }
 
   p,
-  li,
-  a {
+  li {
     font-size: 12px;
     text-decoration: none;
+  }
+
+  a {
+    text-decoration: underline;;
   }
 
   ul {
