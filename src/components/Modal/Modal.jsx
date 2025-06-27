@@ -5,10 +5,19 @@ import styles from './modal.module.scss';
 export default function Modal({ open, onClose, children }) {
   if (!open) return null;
   return createPortal(
-    <div className={styles['modal-backdrop']}>
-      <div className={styles['modal-content']}>
+    <div
+      className={styles['modal-backdrop']}
+      onClick={e => {
+        e.stopPropagation();
+        onClose();
+      }}
+    >
+      <div
+        className={styles['modal-content']}
+        onClick={e => e.stopPropagation()}
+      >
         <button
-          onClick={onClose}
+          onClick={e => { e.stopPropagation(); onClose(); }}
           className={styles['modal-close']}
           aria-label="Close modal"
         >
