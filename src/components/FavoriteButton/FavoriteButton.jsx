@@ -47,7 +47,7 @@ export default function FavoriteButton({
   return (
     <>
       <button
-        onClick={handleToggle}
+        onClick={(e) => { e.stopPropagation(); handleToggle(e); }}
         disabled={isToggling}
         className={`favorite-button ${favorited ? 'favorited' : ''} ${className}`}
         style={{
@@ -78,14 +78,16 @@ export default function FavoriteButton({
         )}
       </button>
       <Modal open={showLoginPopup} onClose={() => setShowLoginPopup(false)}>
-        <h3 style={{marginBottom: '12px'}}>Don't lose access to your favorites!</h3>
-        <p style={{marginBottom: '20px'}}><a href="/register">Create an account</a> to save your favorite places.</p>
-        <button
-          onClick={() => setShowLoginPopup(false)}
-          className="button"
-        >
-          Close
-        </button>
+        <div onClick={e => e.stopPropagation()}>
+          <h3 style={{marginBottom: '12px'}}>Don&apos;t lose access to your favorites!</h3>
+          <p style={{marginBottom: '20px'}}><a href="/register">Create an account</a> to save your favorite places.</p>
+          <button
+            onClick={e => { e.stopPropagation(); setShowLoginPopup(false); }}
+            className="button"
+          >
+            Close
+          </button>
+        </div>
       </Modal>
     </>
   );
