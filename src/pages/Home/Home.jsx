@@ -26,20 +26,6 @@ export default function Home() {
             <img src="/assets/pages/home/herb-image-2.jpg" alt="" />
           </div>
           <div className="newsletter-banner__text">
-            <div className="polariod-container">
-              <Polaroid
-                imageUrl="/herbs1.jpg"
-                rotation={-4}
-                offsetX={20}
-                offsetY={0}
-              />
-              <Polaroid
-                imageUrl="/herbs2.jpg"
-                rotation={6}
-                offsetX={90}
-                offsetY={-70}
-              />
-            </div>
             <h3>
               Get the latest on local herb shops, expert herbalists, and
               exclusive deals straight to your inbox.
