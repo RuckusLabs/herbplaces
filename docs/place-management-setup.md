@@ -10,7 +10,7 @@ The photo bucket accepts JPEG, PNG, and WebP up to 10 MB. Server configuration a
 
 An ignored local backup of listing data and original permissions is saved under `supabase/.temp/backups/`. Deployment credentials are kept out of Git. Frontend releases are reviewed through a GitHub pull request before merging to main.
 
-Remaining setup: add Stripe credentials/Price/webhook configuration and schedule reconciliation when billing is enabled. `BLOOM_ENABLED=false`; subscriptions have not been enabled. Public endpoint, CORS, and access-denial checks passed against the hosted functions. After explicit approval, the authenticated hosted test in `scripts/verify-beta-backend.mjs` also passed real sign-in, claim approval, subscription enforcement, photo upload/delivery, publishing, conflict handling, history restoration, and access revocation. Its temporary accounts, listing, and photo were removed. The admin extension additionally passed hosted ownership checks, sorted user/place associations, self-removal and billing-contact protections, and real temporary-account removal with immediate access denial while preserving the listing. The final local suite contains 78 unit/database tests and 26 browser checks across desktop and phone layouts.
+Remaining setup: add Stripe credentials/Price/webhook configuration and schedule reconciliation when billing is enabled. `BLOOM_ENABLED=false`; subscriptions have not been enabled. Public endpoint, CORS, and access-denial checks passed against the hosted functions. After explicit approval, the authenticated hosted test in `scripts/verify-beta-backend.mjs` also passed real sign-in, claim approval, subscription enforcement, photo upload/delivery, publishing, conflict handling, history restoration, and access revocation. Its temporary accounts, listing, and photo were removed. The admin extension additionally passed hosted ownership checks, sorted user/place associations, self-removal and billing-contact protections, and real temporary-account removal with immediate access denial while preserving the listing. The final local suite contains 87 unit/database tests and 32 browser checks across desktop and phone layouts.
 
 The live test identified a hosted PostgREST retry issue when a version conflict used SQLSTATE `40001`. Follow-up migration `202610190002` returns `PT409`/HTTP 409 instead, and the editor shows the reload prompt while retaining the draft. Fresh installations must apply all migrations in order. Database tests cover the corrected response; desktop and phone browser conflict checks passed after the fix.
 
@@ -18,7 +18,7 @@ Migration `202610190004` adds administrator-only place creation. Add Place uses 
 
 ## Included behavior
 
-- Confirmed users request a claim; admins verify and approve it before payment.
+- Claim This Place opens a two-step ownership form for guests and signed-in users: full name, role, business email, optional phone and verification link, supporting ownership details, then review and authorization confirmation. Guests keep a per-place draft in session storage (up to 24 hours) while signing in; confirmed users send it to the existing private admin claim queue. Admins verify and approve the claim before payment.
 - `/my-places` shows assignments, claims, subscription notices, Checkout, and billing.
 - The editor opens on the public place page, with preview, publish, conflict detection, photos, ordering, covers, alt text, phone, hours, generic links with custom text, and categories. Editing appears above the location line. Claiming appears in Plan a Little Visit only for unclaimed places; assigned managers and pending invitations reserve a place even without an active subscription.
 - Add Place appears at the top of `/admin`; after creating a listing, admins can add photos and assign managers through the existing controls.
@@ -28,6 +28,27 @@ Migration `202610190004` adds administrator-only place creation. Add Place uses 
 - Database permissions protect publishing and private records. The public directory uses an explicit projection.
 - Failed renewals allow seven days of editing from the first failure. Retries do not reset the deadline. Cancellation retains access through the paid period. Expiry preserves content, photos, and memberships.
 - Verified appears from approved membership plus an eligible subscription, or from existing editorial verification. Featured remains editorial.
+
+## Claim notification email (prepared locally; not yet activated)
+
+Migration `202610190005` queues an email job in the same transaction as each new claim. The `claim-notifications` Edge Function sends the saved place name, account email, relationship, ownership evidence, claim reference, and links to the listing and `/admin` to **verification@littleherbplaces.com** through Resend. The destination is fixed on the server. It does not approve claims or email the claimant; decisions and review notes still appear in My Places. Existing claims are not backfilled.
+
+Activation requires a Resend account, a verified sending domain/address, and these server-only Supabase secrets:
+
+| Secret | Value |
+| --- | --- |
+| `RESEND_API_KEY` | Resend key with permission to send from the verified domain |
+| `CLAIM_EMAIL_FROM` | Verified sender, optionally `Little Herb Places <YOUR_VERIFIED_ADDRESS>` |
+| `CLAIM_NOTIFICATION_SECRET` | New random secret of at least 32 characters, shared only with the database dispatcher |
+| `SITE_URL` | Public website origin used for review links; already required by management |
+
+Apply migration `202610190005`, deploy `claim-notifications` with `supabase/config.toml`, enable the hosted `pg_net` and `pg_cron` extensions, and add `claim_notification_url` and `claim_notification_secret` through the Supabase Vault dashboard. The URL is the deployed `/functions/v1/claim-notifications` endpoint, and the Vault secret must match `CLAIM_NOTIFICATION_SECRET`. Then run `supabase/setup-claim-notifications.sql`. The setup script installs an immediate asynchronous dispatch trigger and a one-minute retry schedule, reads secrets from Vault, and can be rerun without duplicating the schedule.
+
+Delivery failures preserve the claim and notification. Jobs use five-minute leases, up to eight attempts, and a stable Resend idempotency key per claim. Automatic retries stop 23 hours after the first attempt, within Resend's 24-hour idempotency window. Keep the sender and site URL stable during retries. Missing email configuration returns 503 without consuming attempts. Monitor the scheduler, `net._http_response`, and unsent rows in `public.place_claim_notifications`; exhausted jobs require investigation before a deliberate retry. No API keys, ownership evidence, or provider response bodies are logged. Keep this table private and include it in the same retention policy as claims.
+
+Verify with a claim from an account you control, confirm the email arrives once at verification@littleherbplaces.com, and confirm `/admin` still requires administrator access. Local tests cover the durable queue, private grants, overlapping leases, retries, limits, recipient, email contents, authentication, and provider failures using mocks. Real provider delivery and hosted scheduling remain unverified until activation.
+
+References: [Resend sending API](https://resend.com/docs/api-reference/emails/send-email), [Resend idempotency](https://resend.com/docs/dashboard/emails/idempotency-keys), and [Supabase scheduling](https://supabase.com/docs/guides/functions/schedule-functions).
 
 ## 1. Database preflight and migration
 
@@ -108,7 +129,7 @@ npm run lint
 npm run build
 npx playwright install chromium
 npm run test:ui
-deno check --node-modules-dir=none supabase/functions/place-management/index.ts supabase/functions/stripe-webhook/index.ts supabase/functions/billing-reconcile/index.ts supabase/functions/admin-users/index.ts
+deno check --node-modules-dir=none supabase/functions/place-management/index.ts supabase/functions/stripe-webhook/index.ts supabase/functions/billing-reconcile/index.ts supabase/functions/admin-users/index.ts supabase/functions/claim-notifications/index.ts
 ```
 
 Database tests run real PostgreSQL roles, grants, policies, migrations, and RPCs in an embedded instance. Browser tests use test-only auth/API fixtures on a separate local port and never contact production or charge cards. They cover desktop and phone layouts, claims, uploads, publishing, conflicts, billing lockouts, admin assignments, sortable tables, linked users and places, account-removal confirmation and failures, and denied admin access.

@@ -1,3 +1,4 @@
+import { claimEvidence } from '../utilities/placeClaim.js';
 import { after, before, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -12,6 +13,8 @@ const ids = {
 const migration = await readFile(new URL('../../supabase/migrations/202610190001_place_management.sql', import.meta.url), 'utf8');
 const conflictMigration = await readFile(new URL('../../supabase/migrations/202610190002_publish_conflict_response.sql', import.meta.url), 'utf8');
 const adminMigration = await readFile(new URL('../../supabase/migrations/202610190003_admin_directory_and_claims.sql', import.meta.url), 'utf8');
+const notificationSetup = await readFile(new URL('../../supabase/setup-claim-notifications.sql', import.meta.url), 'utf8');
+const notificationMigration = await readFile(new URL('../../supabase/migrations/202610190005_claim_notifications.sql', import.meta.url), 'utf8');
 const createMigration = await readFile(new URL('../../supabase/migrations/202610190004_admin_create_place.sql', import.meta.url), 'utf8');
 let db;
 
@@ -37,6 +40,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(conflictMigration);
   await database.exec(adminMigration);
   if (includeCreation) await database.exec(createMigration);
+  await database.exec(notificationMigration);
 }
 
 before(async () => {
@@ -161,10 +165,13 @@ test('address changes hide stale coordinates and a stale geocoder cannot overwri
 test('claim requests require confirmed email, prevent duplicates, and admin approval assigns access', async () => {
   await assert.rejects(asRole('authenticated', ids.unconfirmed, () => rpc('request_place_claim', [ids.otherPlace, 'Owner', 'See our business website.'])), /Confirm your email/);
   await asRole('authenticated', ids.outsider, async () => {
-    await rpc('request_place_claim', [ids.otherPlace, 'Owner', 'See our business website.']);
+    const evidence = claimEvidence({ name: 'Jamie Green', email: 'jamie@example.com', phone: '303-555-0123', verificationUrl: 'https://example.com/team', evidence: 'Our team page lists me as the owner. Please use our business email to confirm.' });
+    await rpc('request_place_claim', [ids.otherPlace, 'Owner', evidence]);
     const context = await rpc('get_management_context'); assert.equal(context.claims.length, 1);
     await db.exec('set local role authenticated');
     await db.query("select set_config('request.jwt.claim.sub', $1, true)", [ids.admin]);
+    const queue = await rpc('admin_directory', ['claims']);
+    assert.equal(queue.items.find(item => item.id === context.claims[0].id).evidence, evidence);
     await rpc('admin_review_claim', [context.claims[0].id, true, 'Ownership confirmed.']);
     await db.query("select set_config('request.jwt.claim.sub', $1, true)", [ids.outsider]);
     const approved = await rpc('get_management_context');
@@ -453,4 +460,89 @@ test('creation advances an imported numeric ID sequence without changing existin
     assert.equal(created.id, 10);
     assert.equal((await other.query('select count(*) from public.public_places')).rows[0].count, 3);
   } finally { await other.close(); }
+});
+
+
+test('new claims queue private notification details accessible only to the delivery service', async () => {
+  for (const role of ['anon', 'authenticated']) {
+    await assert.rejects(asRole(role, ids.outsider, () => db.query('select * from public.place_claim_notifications')), /permission denied/);
+    await assert.rejects(asRole(role, ids.outsider, () => rpc('take_claim_notifications')), /permission denied/);
+    await assert.rejects(asRole(role, ids.outsider, () => rpc('finish_claim_notification', [ids.owner, ids.owner, 'email-1'])), /permission denied/);
+  }
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace, 'Owner', 'Our business website lists me as the owner.']);
+    await db.exec('set local role service_role');
+    const jobs = await rpc('take_claim_notifications');
+    assert.equal(jobs.length, 1);
+    assert.equal(jobs[0].payload.place_name, 'Other Garden');
+    assert.equal(jobs[0].payload.account_email, 'outsider@example.com');
+    assert.equal(jobs[0].payload.evidence, 'Our business website lists me as the owner.');
+    assert.deepEqual(await rpc('take_claim_notifications'), []);
+    await rpc('finish_claim_notification', [jobs[0].claim_id, jobs[0].lease_token, 'email-1']);
+    assert.deepEqual(await rpc('take_claim_notifications'), []);
+  });
+});
+
+test('failed notification delivery retries with a fresh lease and stops at the retry limit', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace, 'Owner', 'Our business website lists me as the owner.']);
+    await db.exec('set local role service_role');
+    const [job] = await rpc('take_claim_notifications');
+    await rpc('finish_claim_notification', [job.claim_id, job.lease_token, null]);
+    assert.deepEqual(await rpc('take_claim_notifications'), []);
+    await db.exec('reset role');
+    await db.query('update public.place_claim_notifications set available_at=now() where claim_id=$1', [job.claim_id]);
+    await db.exec('set local role service_role');
+    const [retry] = await rpc('take_claim_notifications');
+    assert.notEqual(retry.lease_token, job.lease_token);
+    assert.deepEqual(retry.payload, job.payload);
+    await db.exec('savepoint stale_lease');
+    await assert.rejects(rpc('finish_claim_notification', [job.claim_id, job.lease_token, 'email-stale']), /no longer valid/);
+    await db.exec('rollback to savepoint stale_lease');
+    await rpc('finish_claim_notification', [retry.claim_id, retry.lease_token, null]);
+    await db.exec('reset role');
+    await db.query('update public.place_claim_notifications set available_at=now(),attempts=8 where claim_id=$1', [job.claim_id]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_claim_notifications'), []);
+    await db.exec('reset role');
+    await db.query("update public.place_claim_notifications set attempts=1,first_attempt_at=now()-interval '24 hours' where claim_id=$1", [job.claim_id]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_claim_notifications'), []);
+  });
+});
+
+
+test('notification setup schedules immediate delivery and preserves claims when dispatch is unavailable', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec(`
+      create schema vault; create schema net; create schema cron;
+      create table vault.decrypted_secrets(name text primary key, decrypted_secret text);
+      insert into vault.decrypted_secrets values ('claim_notification_url','https://test.supabase.co/functions/v1/claim-notifications'),
+        ('claim_notification_secret','a-test-secret-longer-than-thirty-two-characters');
+      create table net.requests(url text, headers jsonb, body jsonb);
+      create function net.http_post(url text, headers jsonb, body jsonb, timeout_milliseconds integer) returns bigint language plpgsql as $$
+      begin
+        if current_setting('test.dispatch_failure', true) = 'true' then raise exception 'Network unavailable'; end if;
+        insert into net.requests values(url,headers,body); return 1;
+      end $$;
+      create table cron.jobs(name text, schedule text, command text);
+      create function cron.schedule(text,text,text) returns bigint language sql as $$
+        insert into cron.jobs values($1,$2,$3); select 1::bigint;
+      $$;
+    `);
+    await db.exec(notificationSetup.replace('\nbegin;', '').replace(/\ncommit;\s*$/, ''));
+    assert.equal((await db.query('select schedule from cron.jobs')).rows[0].schedule, '* * * * *');
+    await db.query("select set_config('request.jwt.claim.sub', $1, true)", [ids.outsider]);
+    await db.exec('set local role authenticated');
+    await rpc('request_place_claim', [ids.otherPlace, 'Owner', 'Please check our team page for my ownership details.']);
+    await db.exec('reset role');
+    const request = (await db.query('select * from net.requests')).rows[0];
+    assert.equal(request.url, 'https://test.supabase.co/functions/v1/claim-notifications');
+    assert.deepEqual(request.body, {}); // Ownership evidence stays out of the webhook body.
+    assert.ok(request.headers.Authorization.startsWith('Bearer '));
+    await db.query("select set_config('test.dispatch_failure', 'true', true)");
+    await db.query('insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,$3,$4)', [ids.otherPlace, ids.teammate, 'Owner', 'A second claim survives an unavailable dispatcher.']);
+    assert.equal((await db.query('select count(*) from public.place_claim_notifications')).rows[0].count, 2);
+  } finally { await db.exec('rollback'); }
 });
