@@ -1,16 +1,10 @@
-.container {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.container { padding: 55px 6% 70px; max-width: 1240px; margin: auto; min-height: 60vh; h1 { font-family: 'Editorial', Georgia, serif; font-size: clamp(40px, 5vw, 60px); font-weight: 200; margin-top: 15px; } }
 
-  h2 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-}
+.intro { margin: 18px 0 35px; font-weight: 400; color: rgba(var(--tertiary-color), .78); font-size: 13px; line-height: 1.8; }
+.empty { padding: 60px 25px; background: rgba(var(--primary-color), .18); border: 1px solid rgba(var(--tertiary-color), .2); text-align: center; h2 { font-size: 34px; font-weight: 200; } p { font-size: 13px; font-weight: 400; line-height: 1.8; } a, button { display: inline-flex; gap: 18px; align-items: center; margin-top: 25px; } }
 
-.places {
-  max-height: none;
-  height: initial;
-  overflow: visible;;
-}
+.accountPrompt { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; gap: 24px; margin-bottom: 35px; padding: 30px; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: var(--border-radius); background: rgba(var(--primary-color), .18); > svg { flex-shrink: 0; } }
+.accountCopy { h2 { font-size: 32px; font-weight: 200; line-height: 1.15; margin: 0 0 14px; } p { font-size: 13px; font-weight: 400; line-height: 1.8; color: rgba(var(--tertiary-color), .8); } }
+.accountActions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; :global(.button) { display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; } .signIn { background: #fff; border: 1px solid rgba(var(--tertiary-color), .2); box-shadow: none; } }
+@media (max-width: 800px) { .accountPrompt { grid-template-columns: 56px minmax(0, 1fr); gap: 20px; padding: 25px; > svg { width: 56px; height: 56px; } } .accountActions { grid-column: 2; flex-direction: row; flex-wrap: wrap; } }
+@media (max-width: 540px) { .accountPrompt { grid-template-columns: 1fr; gap: 18px; padding: 24px; } .accountCopy h2 { font-size: 31px; } .accountActions { grid-column: 1; flex-direction: column; } }

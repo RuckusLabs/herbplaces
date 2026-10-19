@@ -1,51 +1,23 @@
-import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { useFavorites } from '../../hooks/useFavorites';
-import fetchPlaces from '../../utilities/fetchPlaces';
+import usePlaces from '../../hooks/usePlaces';
 import List from '../List/List';
+import Icon from '../Icons/Icon';
 import styles from './FavoritesList.module.scss';
 
 export default function FavoritesList() {
-  const { favorites, loading } = useFavorites();
-  const [places, setPlaces] = useState([]);
-
-  useEffect(() => {
-    fetchPlaces().then(setPlaces).catch(() => setPlaces([]));
-  }, []);
-
-  // Support both guest and logged-in favorites
-  const favoritedPlaces = favorites
-    .map(fav =>
-      typeof fav === 'string'
-        ? places.find(place => String(place.id) === fav)
-        : places.find(place => String(place.id) === String(fav.item_id))
-    )
-    .filter(Boolean);
-
-  if (loading) {
-    return (
-      <div className={styles.container}>
-        <h2>Favorites</h2>
-        <p className="text-align-center">Loading your favorites...</p>
-      </div>
-    );
-  }
-
-  if (favoritedPlaces.length === 0) {
-    return (
-      <div className={styles.container}>
-        <h2>Favorites</h2>
-        <p className="text-align-center">You haven't favorited any places yet.</p>
-        <p className="text-align-center">
-          Click the ❤️ button on places you like to save them here.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className={styles.container}>
-      <h2>Favorites</h2>
-      <List className={styles.places} places={favoritedPlaces} />
-    </div>
-  );
+  const { favorites, loading, isLoggedIn, error: favoritesError, retry: retryFavorites } = useFavorites();
+  const { places, loading: placesLoading, error, retry } = usePlaces(favorites.length > 0);
+  const ids = new Set(favorites.map(fav => String(typeof fav === 'string' ? fav : fav.item_id)));
+  const saved = places.filter(place => ids.has(String(place.id)));
+  return <main id="main-content" className={styles.container}>
+    <Helmet><title>Saved Places | Little Herb Places</title></Helmet><h1>Your Saved Places.</h1><p className={styles.intro}>Little discoveries to come back to, whenever you’re ready.</p>
+    {!loading && !isLoggedIn && <section className={styles.accountPrompt} aria-labelledby="saved-account-title">
+      <Icon name="heart" size={64} />
+      <div className={styles.accountCopy}><h2 id="saved-account-title">Keep Your Little Discoveries Close.</h2><p>{favorites.length ? 'These places are saved on this device. Sign in or create a free account to access your favorites across your devices.' : 'Sign in to see your saved places, or create a free account to start a collection of little places you love.'}</p></div>
+      <div className={styles.accountActions}><Link to="/register?next=%2Ffavorites" className="button">Create an Account <Icon name="arrow" size={17} /></Link><Link to="/login?next=%2Ffavorites" className={`button ${styles.signIn}`}>Sign In</Link></div>
+    </section>}
+    {loading || (favorites.length > 0 && placesLoading) ? <p role="status">Gathering your saved places…</p> : (error || favoritesError) ? <div className={styles.empty} role="status"><p>{favoritesError || error}</p><button className="button" onClick={favoritesError ? retryFavorites : retry}>Try Again</button></div> : !saved.length ? <div className={styles.empty}><Icon name="heart" size={64} /><h2>A Little Room for Discovery.</h2><p>Tap the heart on a place you love to keep it here.</p><Link to="/map" className="button">Explore Places <Icon name="arrow" size={17} /></Link></div> : <List places={saved} />}
+  </main>;
 }

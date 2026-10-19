@@ -1,148 +1,48 @@
-import { useState } from 'react';
-import { useFavorites } from '/src/hooks/useFavorites';
-import Modal from '../Modal/Modal';
+import { useEffect, useId, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useFavorites } from '../../hooks/useFavorites';
 import PropTypes from 'prop-types';
+import Icon from '../Icons/Icon';
+import Modal from '../Modal/Modal';
+import styles from './favoriteButton.module.scss';
 
-export default function FavoriteButton({
-  itemId,
-  itemType = null,
-  size = 24,
-  className = "",
-  showText = false
-}) {
-  const { isFavorited, toggleFavorite, isLoggedIn } = useFavorites();
-  const [isToggling, setIsToggling] = useState(false);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
-
-  // Validate itemId
-  if (!itemId || itemId === null || itemId === undefined) {
-    console.error('FavoriteButton: itemId is required but got:', itemId);
-    return (
-      <div style={{ color: 'red', fontSize: '12px' }}>
-        Error: No item ID provided
-      </div>
-    );
-  }
-
-  const favorited = isFavorited(itemId);
-
-  const handleToggle = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsToggling(true);
+export default function FavoriteButton({ itemId, itemType = 'place', size = 30, className = '', showText = false }) {
+  const { isFavorited, toggleFavorite, loading, error: loadError, isLoggedIn } = useFavorites();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [showAccountPrompt, setShowAccountPrompt] = useState(false);
+  const promptId = useId();
+  useEffect(() => { if (isLoggedIn) setShowAccountPrompt(false); }, [isLoggedIn]);
+  const saved = isFavorited(itemId);
+  const toggle = async event => {
+    event.preventDefault();
+    event.stopPropagation();
+    setBusy(true);
+    setError('');
     try {
-      await toggleFavorite(itemId, itemType);
-      if (!isLoggedIn) {
-        setShowLoginPopup(true);
-        return;
-      }
-    } catch (error) {
-      console.error('Failed to toggle favorite:', error);
-      alert(`Failed to update favorite: ${error.message}`);
-    } finally {
-      setIsToggling(false);
-    }
+      const added = await toggleFavorite(itemId, itemType);
+      if (added && !isLoggedIn) setShowAccountPrompt(true);
+    } catch { setError('Couldn’t save this place. Please try again.'); }
+    finally { setBusy(false); }
   };
-
-  return (
-    <>
-      <button
-        onClick={(e) => { e.stopPropagation(); handleToggle(e); }}
-        disabled={isToggling}
-        className={`favorite-button ${favorited ? 'favorited' : ''} ${className}`}
-        style={{
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          padding: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px',
-          opacity: isToggling ? 0.5 : 1,
-        }}
-        title={
-          favorited
-            ? 'Remove from favorites'
-            : 'Add to favorites'
-        }
-      >
-        <HeartIcon
-          size={size}
-          filled={favorited}
-          loading={isToggling}
-        />
-        {showText && (
-          <span style={{ fontSize: '14px' }}>
-            {favorited ? 'Favorited' : 'Favorite'}
-          </span>
-        )}
-      </button>
-      <Modal open={showLoginPopup} onClose={() => setShowLoginPopup(false)}>
-        <div onClick={e => e.stopPropagation()}>
-          <h3 style={{marginBottom: '12px'}}>Don&apos;t lose access to your favorites!</h3>
-          <p style={{marginBottom: '20px'}}><a href="/register">Create an account</a> to save your favorite places.</p>
-          <button
-            onClick={e => { e.stopPropagation(); setShowLoginPopup(false); }}
-            className="button"
-          >
-            Close
-          </button>
+  return <>
+    <button type="button" className={`favorite-button ${className}`} onClick={toggle} disabled={busy || loading || !!loadError} aria-pressed={saved} aria-label={saved ? 'Remove from favorites' : 'Save to favorites'} title={loadError || (saved ? 'Remove from favorites' : 'Save to favorites')}>
+      <Icon name="heart" size={size} fill={saved ? 'currentColor' : 'none'} />
+      {showText && <span>{saved ? 'Saved' : 'Save Place'}</span>}
+    </button>
+    {error && <span role="alert" className="favorite-error">{error}</span>}
+    <Modal open={showAccountPrompt && !isLoggedIn} onClose={() => setShowAccountPrompt(false)} labelledBy={`${promptId}-title`} describedBy={`${promptId}-description`}>
+      <div className={styles.prompt}>
+        <Icon name="sprout" size={72} />
+        <h2 id={`${promptId}-title`}>Keep Your Favorite Places Close.</h2>
+        <p id={`${promptId}-description`}>We’ve saved this place on this device. Create a free account to keep your favorites with you wherever you sign in.</p>
+        <div className={styles.actions}>
+          <Link to="/register?next=%2Ffavorites" className="button" onClick={() => setShowAccountPrompt(false)}>Create an Account <Icon name="arrow" size={18} /></Link>
+          <Link to="/login?next=%2Ffavorites" className={`button ${styles.secondary}`} onClick={() => setShowAccountPrompt(false)}>Already a Member? Sign In</Link>
+          <button type="button" className={`button ${styles.browse}`} onClick={() => setShowAccountPrompt(false)}>Keep Browsing</button>
         </div>
-      </Modal>
-    </>
-  );
+      </div>
+    </Modal>
+  </>;
 }
-
-FavoriteButton.propTypes = {
-  itemId: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]).isRequired,
-  itemType: PropTypes.string,
-  size: PropTypes.number,
-  className: PropTypes.string,
-  showText: PropTypes.bool
-};
-
-// Simple heart icon component
-function HeartIcon({ size = 24, filled = false, loading = false }) {
-  if (loading) {
-    return (
-      <div
-        style={{
-          width: size,
-          height: size,
-          border: '2px solid #ccc',
-          borderTop: '2px solid #007bff',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }}
-      />
-    );
-  }
-
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill={filled ? '#ff4757' : 'none'}
-      stroke={filled ? '#ff4757' : '#ff4757'}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      style={{
-        transition: 'all 0.2s ease',
-        transform: filled ? 'scale(1.1)' : 'scale(1)'
-      }}
-    >
-      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-    </svg>
-  );
-}
-
-HeartIcon.propTypes = {
-  size: PropTypes.number,
-  filled: PropTypes.bool,
-  loading: PropTypes.bool
-};
+FavoriteButton.propTypes = { itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, itemType: PropTypes.string, size: PropTypes.number, className: PropTypes.string, showText: PropTypes.bool };

@@ -1,56 +1,40 @@
-import { Link } from 'react-router-dom';
-import styles from "./nav.module.scss";
-import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Logo from "/src/assets/little-herb-places-logo.svg?react";
-import InstagramIcon from "/src/assets/instagram-icon.svg?react";
-import TikTok from "/src/assets/tiktok-icon.svg?react";
+import styles from './nav.module.scss';
+import Logo from '../../assets/little-herb-places-logo.svg?react';
+import Icon from '../Icons/Icon';
 import { useAuth } from '../../contexts/AuthContext';
-import supabase from '/src/utilities/supabase.js';
 
-export default function Nav({ variant, className }) {
-  const { user } = useAuth();
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+export default function Nav({ variant, className = '' }) {
+  const { user, signOut } = useAuth();
+  const [open, setOpen] = useState(false);
+  const [logoutError, setLogoutError] = useState('');
+  const { pathname } = useLocation();
+  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    const escape = event => { if (event.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', escape);
+    return () => document.removeEventListener('keydown', escape);
+  }, []);
+  const logout = async () => {
+    const result = await signOut();
+    if (result?.error) setLogoutError('Unable to sign out. Please try again.');
   };
-
-  return (
-    <nav className={classNames(
-      styles.nav,
-      `${styles.nav}--glass`,
-      styles[`nav--${variant}`],
-      className
-    )}>
-      <Link to="/" className={styles.logo}>
-        <Logo />
-      </Link>
-      <div className={styles.navLinks}>
-        {user ? (
-          <>
-            <Link to="/map">Explore</Link>
-            <Link to="/favorites">Favorites</Link>
-            <Link onClick={handleLogout} to="#">Logout</Link>
-          </>
-        ) : (
-          <>
-            <Link to="/map">Explore</Link>
-            {/* <Link to="/shop">Shop</Link> */}
-            {/* <Link to="/about">About</Link> */}
-            <Link to="/the-little-garden">The Little Garden</Link>
-            <Link to="https://www.instagram.com/littleherbplaces/"><InstagramIcon /></Link>
-            <Link to="https://www.tiktok.com/@littleherbplaces"><TikTok className={styles.tiktok} /></Link>
-            <Link to="/register">Register</Link>
-          </>
-        )}
-
-
+  return <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <nav className={`${styles.nav} ${variant === 'bleed' ? styles.bleed : ''} ${className}`} aria-label="Main navigation">
+      <Link to="/" className={styles.brand} aria-label="Little Herb Places home"><Logo aria-hidden="true" focusable="false" /></Link>
+      <button className={styles.menuButton} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'menu'} size={23} /></button>
+      <div id="main-navigation" className={`${styles.links} ${open ? styles.open : ''}`}>
+        <NavLink to="/map">Explore Places</NavLink>
+        <NavLink to="/about">Our Story</NavLink>
+        <NavLink to="/the-little-garden">The Little Garden</NavLink>
+        <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>Saved Places</span></NavLink>
+        {user ? <button onClick={logout} className={`button ${styles.join}`}>Sign Out</button> : <Link className={`button ${styles.join}`} to="/register">Join the Community <Icon name="arrow" size={15} /></Link>}
+        {logoutError && <p role="alert">{logoutError}</p>}
       </div>
     </nav>
-  );
+  </>;
 }
-
-Nav.propTypes = {
-  variant: PropTypes.string.isRequired,
-  className: PropTypes.string
-};
+Nav.propTypes = { variant: PropTypes.string.isRequired, className: PropTypes.string };

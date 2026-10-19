@@ -1,35 +1,5 @@
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 24px 32px;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
-  text-align: center;
-  max-width: 90vw;
-  min-width: 260px;
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #888;
-  line-height: 1;
-}
+.dialog { width: min(480px, calc(100% - 32px)); max-height: calc(100dvh - 40px); margin: auto; padding: 0; border: 1px solid rgba(var(--tertiary-color), .15); border-radius: var(--border-radius); background: #fff; color: rgb(var(--tertiary-color)); box-shadow: 0 20px 80px rgba(var(--tertiary-color), .2); overflow-y: auto; overscroll-behavior: contain; &::backdrop { background: rgba(var(--tertiary-color), .4); } }
+.content { position: relative; padding: 38px; text-align: center; }
+.close { position: absolute; top: 15px; right: 15px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border-radius: 50%; background: rgba(var(--primary-color), .25); color: rgb(var(--tertiary-color)); }
+@media (prefers-reduced-motion: no-preference) { .dialog[open] { animation: dialog-arrive .25s ease both; } @keyframes dialog-arrive { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } } }
+@media (max-width: 540px) { .content { padding: 32px 24px; } }

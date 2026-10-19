@@ -1,17 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="38px" height="43px" viewBox="0 0 38 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Group 12</title>
-    <g id="February-Redesign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="The-Little-Garden" transform="translate(-25, -1437)">
-            <g id="Group-12" transform="translate(25, 1437)">
-                <g id="Group-7" fill="#EAFF82">
-                    <path d="M15.5,43 C27.3741221,43 38,31.3741221 38,19.5 C38,7.62587788 32.3741221,0 20.5,0 C8.62587788,0 0,7.62587788 0,19.5 C0,31.3741221 3.62587788,43 15.5,43 Z" id="Oval"></path>
-                </g>
-                <g id="Group" transform="translate(9, 11)" stroke="#C0D16B" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                    <path d="M9,18.0000327 C5.35925333,18.0110291 2.31788104,15.2293806 2.00473531,11.6021092 C1.69158958,7.97483779 4.21123082,4.71310175 7.8,4.1 C13.5,3 15,2.48 17,0 C18,2 19,4.18 19,8 C19,13.5 14.22,18.0000327 9,18.0000327 Z" id="Path"></path>
-                    <path d="M0,19 C0,16 1.85,13.64 5.08,13 C7.5,12.52 10,11 11,10" id="Path"></path>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="43" viewBox="0 0 38 43" fill="none">
+  <path fill="#EAFF82" d="M15.5 43C27.374 43 38 31.374 38 19.5S32.374 0 20.5 0 0 7.626 0 19.5 3.626 43 15.5 43Z"/>
+  <g stroke="#C0D16B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 32V18m-5 14h10"/>
+    <path d="M19 18c-4-3-4-6 0-9 4 3 4 6 0 9Z"/>
+    <path d="M19 26c-6 0-9-3-9-8 6 0 9 3 9 8Zm0 0c6 0 9-3 9-8-6 0-9 3-9 8Z"/>
+  </g>
 </svg>

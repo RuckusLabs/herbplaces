@@ -1,150 +1,28 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Helmet } from "react-helmet";
-import styles from "./thelittlegarden.module.scss"
-
-import SproutIcon from "/assets/icons/sprout.svg";
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import Icon from '../../components/Icons/Icon';
+import Reveal from '../../components/Reveal/Reveal';
+import styles from './thelittlegarden.module.scss';
 
 export default function SproutSignup() {
-
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const iframeRef = useRef(null);
-
-  const handleIframeLoad = () => {
-    if (!isSubmitting) return;
-    
-    try {
-      const iframeContent = iframeRef.current.contentDocument || iframeRef.current.contentWindow.document;
-      
-      // Check for Mailchimp error messages
-      const errorElement = iframeContent.querySelector('.mce_inline_error');
-      const successElement = iframeContent.querySelector('#mce-success-response');
-      
-      if (errorElement) {
-        setError(errorElement.textContent || 'Registration failed. Please try again.');
-        setSubmitted(false);
-      } else if (successElement) {
-        setError('');
-        setSubmitted(true);
-      }
-    } catch (err) {
-      console.error('Error checking registration status:', err);
-      setError('Something went wrong. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    setIsSubmitting(true);
-    setError('');
-    // Form will submit normally due to action attribute
-  };
-
-  return (
-    <>
-      <Helmet>
-        <title>Sprout Signup | The Little Garden | Little Herb Places</title>
-      </Helmet>
-      <section className={styles.sproutSignup}>
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <div className={styles.content}>
-              <h4><img src={SproutIcon} alt="A sprout icon." /> Sprout</h4>
-              <p className="padding-r-desktop-10">Plant the seed and start your journey.</p>
-              <ul>
-                <li>Join the community.</li>
-              </ul>
-              {submitted ? (
-                <p className={styles.success}>Thanks for subscribing! 🌿</p>
-              ) : (
-                <>
-                  <form
-                    action="https://littleherbplaces.us11.list-manage.com/subscribe/post?u=ac649b78dd0024f5b2ecd08e5&amp;id=566234165b&amp;f_id=0063c6e3f0"
-                    method="POST"
-                    target="hidden_iframe"
-                    noValidate
-                    className={styles.form}
-                    onSubmit={handleSubmit}
-                  >
-                    <input type="hidden" name="f_id" value="0063c6e3f0" />
-
-                    <label htmlFor="email" className="sr-only">Email (Required)</label>
-                    <input
-                      type="email"
-                      id="email"
-                      autoComplete="email"
-                      name="EMAIL"
-                      placeholder="Your email"
-                      required
-                      className=""
-                    />
-
-                    <label htmlFor="fname" className="sr-only">First name</label>
-                    <input
-                      type="text"
-                      name="FNAME"
-                      autoComplete="given-name"
-                      placeholder="First name"
-                      className=""
-                    />
-
-                    <label htmlFor="lname" className="sr-only">Last name</label>
-                    <input
-                      type="text"
-                      name="LNAME"
-                      autoComplete="family-name"
-                      placeholder="Last name"
-                      className=""
-                    />
-                    <label htmlFor="company" className="sr-only">Shop name</label>
-                    <input
-                      type="text"
-                      name="COMPANY"
-                      autoComplete="organization"
-                      placeholder="Shop name"
-                      className=""
-                    />
-
-                    <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-                      <input
-                        type="text"
-                        name="b_ac649b78dd0024f5b2ecd08e5_566234165b"
-                        tabIndex="-1"
-                        defaultValue=""
-                      />
-                    </div>
-
-                    {error && (
-                      <div className={styles.error}>
-                        {error}
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      className="button"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Signing up...' : 'Sign up for Sprout'}
-                    </button>
-                  </form>
-
-                  <iframe
-                    name="hidden_iframe"
-                    ref={iframeRef}
-                    onLoad={handleIframeLoad}
-                    style={{ display: 'none' }}
-                    title="MailChimp"
-                  />
-                </>
-              )}
-            </div>
-          </div>
-        </div>
+  return <main id="main-content" className={styles.signupPage}>
+    <Helmet><title>Join Sprout | The Little Garden | Little Herb Places</title></Helmet>
+    <Link to="/the-little-garden" className={styles.backLink}><Icon name="arrow" size={17} />The Little Garden</Link>
+    <Reveal as="div" className={styles.signupLayout}>
+      <section className={styles.signupIntro}><Icon name="sprout" size={80} /><h1>Every Good Thing Starts With a Little Seed.</h1><p>Join Sprout, our free community plan, and make a little room for connection. For herbalists, growers, makers, and the endlessly plant-curious.</p><p>Keep your favorite places close with a free account, and join the community below for updates.</p><Link to="/register?next=%2Ffavorites" className="button">Create a Free Account <Icon name="arrow" size={18} /></Link></section>
+      <section className={styles.signupCard} aria-labelledby="signup-title">
+        <h2 id="signup-title">Join Sprout</h2><p>Free to join. A little place to start growing.</p>
+        <form action="https://littleherbplaces.us11.list-manage.com/subscribe/post?u=ac649b78dd0024f5b2ecd08e5&id=566234165b&f_id=0063c6e3f0" method="POST" target="_blank" rel="noopener noreferrer" className={styles.form}>
+          <input type="hidden" name="f_id" value="0063c6e3f0" />
+          <label htmlFor="sprout-email">Email (Required)</label><input id="sprout-email" type="email" autoComplete="email" name="EMAIL" placeholder="Your Email" required />
+          <label htmlFor="sprout-first-name">First Name</label><input id="sprout-first-name" type="text" autoComplete="given-name" name="FNAME" placeholder="First Name" />
+          <label htmlFor="sprout-last-name">Last Name</label><input id="sprout-last-name" type="text" autoComplete="family-name" name="LNAME" placeholder="Last Name" />
+          <label htmlFor="sprout-shop">Shop Name</label><input id="sprout-shop" type="text" autoComplete="organization" name="COMPANY" placeholder="Shop Name (Optional)" />
+          <div className={styles.honeypot} aria-hidden="true"><input type="text" name="b_ac649b78dd0024f5b2ecd08e5_566234165b" tabIndex="-1" defaultValue="" /></div>
+          <button type="submit" className="button">Sign Up for Sprout <Icon name="arrow" size={18} /></button>
+          <p className={styles.formNote}>Your signup confirmation opens in a new tab.</p>
+        </form>
       </section>
-      
-    </>
-  )
+    </Reveal>
+  </main>;
 }
