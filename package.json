@@ -10,6 +10,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "node --test src/tests/*.test.js",
+    "test:ui": "playwright test",
     "preview": "vite preview",
     "deploy": "vite build && cp ./dist/index.html ./dist/404.html && gh-pages -d dist --cname littleherbplaces.com"
   },
@@ -25,12 +26,14 @@
     "react-slick": "^0.30.2",
     "sass": "^1.83.4",
     "slick-carousel": "^1.8.1",
+    "supercluster": "^8.0.1",
     "swiper": "^11.1.15",
-    "vite-plugin-svgr": "^4.3.0",
-    "supercluster": "^8.0.1"
+    "vite-plugin-svgr": "^4.3.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
     "@eslint/js": "^9.15.0",
+    "@playwright/test": "^1.64.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",

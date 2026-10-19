@@ -13,6 +13,7 @@ jobs:
       VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
       VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+      VITE_BLOOM_ENABLED: ${{ vars.VITE_BLOOM_ENABLED }}
       
     steps:
       - uses: actions/checkout@v4

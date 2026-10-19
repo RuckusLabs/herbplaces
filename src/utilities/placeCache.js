@@ -1,8 +1,8 @@
 // One request is shared by concurrent consumers. Storage is an optional optimization.
-export function createPlaceLoader({ request, getStorage = () => globalThis.localStorage, now = Date.now, duration = 72 * 60 * 60 * 1000 }) {
+export function createPlaceLoader({ request, getStorage = () => globalThis.localStorage, now = Date.now, duration = 5 * 60 * 1000 }) {
   let memory;
   let pending;
-  const key = 'places_cache';
+  const key = 'places_cache_v3';
   const valid = cache => Array.isArray(cache?.data) && cache.data.every(place => place && typeof place === 'object' && !Array.isArray(place)) && typeof cache.timestamp === 'number' && now() - cache.timestamp >= 0 && now() - cache.timestamp < duration;
   return async function loadPlaces({ force = false } = {}) {
     if (!force && valid(memory)) return memory.data;

@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav';
 import Home from './pages/Home/Home';
 import { AuthProvider } from './contexts/AuthContext';
 import { FavoritesProvider } from './hooks/useFavorites';
+import ManagementProvider from './contexts/ManagementProvider';
 
 const About = lazy(() => import('./pages/About/About'));
 const Help = lazy(() => import('./pages/Help/Help'));
@@ -18,6 +19,8 @@ const SproutSignup = lazy(() => import('./pages/TheLittleGarden/SproutSignup'));
 const AuthCallback = lazy(() => import('./pages/Auth/AuthCallback'));
 const Login = lazy(() => import('./pages/Auth/Login'));
 const Register = lazy(() => import('./pages/Auth/Register'));
+const MyPlaces = lazy(() => import('./pages/Management/MyPlaces'));
+const Admin = lazy(() => import('./pages/Management/Admin'));
 
 const routes = [
   { path: '/', element: <Home /> },
@@ -32,6 +35,8 @@ const routes = [
   { path: '/register', element: <Register /> },
   { path: '/favorites', element: <FavoritesList /> },
   { path: '/auth/callback', element: <AuthCallback /> },
+  { path: '/my-places', element: <MyPlaces /> },
+  { path: '/admin', element: <Admin /> },
 ];
 
 function AppContent() {
@@ -51,5 +56,5 @@ function AppContent() {
 }
 
 export default function App() {
-  return <Router><AuthProvider><FavoritesProvider><AppContent /></FavoritesProvider></AuthProvider></Router>;
+  return <Router><AuthProvider><ManagementProvider><FavoritesProvider><AppContent /></FavoritesProvider></ManagementProvider></AuthProvider></Router>;
 }
