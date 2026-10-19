@@ -31,3 +31,30 @@ export function getHeroMapLayout(places, width, height, mobile = false) {
   });
   return { longitude, latitude, zoom, groups };
 }
+
+// Share static-image URLs across nearby viewport sizes, leaving image caching to
+// Mapbox's HTTP headers. Project pins into the exact camera returned by its API.
+export function getHeroMapView(places, width, height, mobile = false) {
+  const canvasWidth = Math.max(128, Math.round(width / 128) * 128);
+  const canvasHeight = Math.max(128, Math.round(height / 32) * 32);
+  const layout = getHeroMapLayout(places, canvasWidth, canvasHeight, mobile);
+  const cameraScale = Math.min(1, 1280 / canvasWidth, 1280 / canvasHeight);
+  const imageWidth = Math.round(canvasWidth * cameraScale);
+  const imageHeight = Math.round(canvasHeight * cameraScale);
+  const longitude = Number(layout.longitude.toFixed(6));
+  const latitude = Number(layout.latitude.toFixed(6));
+  const zoom = Number((layout.zoom + Math.log2(cameraScale)).toFixed(2));
+  const center = worldPoint(longitude, latitude);
+  const scale = TILE_SIZE * 2 ** zoom;
+  return {
+    longitude, latitude, zoom, imageWidth, imageHeight,
+    groups: layout.groups.map(group => {
+      const point = worldPoint(group.places[0].longitude, group.places[0].latitude);
+      return {
+        ...group,
+        x: (imageWidth / 2 + (point[0] - center[0]) * scale) * width / imageWidth,
+        y: (imageHeight / 2 + (point[1] - center[1]) * scale) * height / imageHeight,
+      };
+    }),
+  };
+}

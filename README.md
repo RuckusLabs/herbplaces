@@ -17,6 +17,12 @@ VITE_MAPBOX_TOKEN=your-public-mapbox-token
 
 Use a public Supabase anon key with appropriate row-level security policies, never a service-role key. Use a public Mapbox token for maps; configure it in the build environment as well as locally. Without Supabase configuration, the site renders normally and directory/account requests show an unavailable state. Restart Vite after changing environment variables.
 
+## Maps in GitHub Pages deployments
+
+GitHub Actions must have a repository secret named `VITE_MAPBOX_TOKEN` (Settings → Secrets and variables → Actions). Local `.env.local` settings do not reach GitHub Actions. The deployment workflow passes this secret into the Vite build and stops with a clear error if it is missing. Redeploy after adding or changing it; the value is embedded at build time.
+
+Use the same working public Mapbox token for the homepage Static Images API and the interactive Discover map. If maps still fail, check the failed request: 401 means an invalid or deleted token; 403 can mean missing permissions or a URL restriction. Allow the actual site origin (`https://littleherbplaces.com`, plus `https://www.littleherbplaces.com` if used) and local preview origins on restricted tokens. See [Mapbox token troubleshooting](https://docs.mapbox.com/help/troubleshooting/token-errors/).
+
 ## Checks
 
 - `npm test` checks directory search, category filtering, resilient caching, guest saves, account merges, and safe account redirects.
@@ -30,6 +36,10 @@ Homepage search links to `/map?view=map&q=...`. Category links use `/map?categor
 The homepage hero uses a lightweight Mapbox static image with accessible place-preview buttons positioned from actual listing coordinates. Nearby places share a pin and can be browsed in the preview card, including their existing Featured/Verified badges. Hero searches and category shortcuts open Map view with the requested filters. Both maps share their pin and preview components; Discover retains saving, dismissible popups, and mobile bottom sheets. Its individual pin labels appear on hover, keyboard focus, or selection to keep nearby places legible. The full map library remains lazy-loaded in the directory.
 
 The list is the default view. `?view=map` preserves Map view in shareable URLs. Mapbox and its styles load only when the visitor chooses Map. Map view links place cards to category pins, clusters nearby places, and offers an explicit area search. Filtering preserves the current camera; Show All Places clears the area restriction and fits the matching places. On mobile, selected places appear in a bottom sheet and the results list can be expanded. Places share one pending request and a 72-hour memory/local-storage cache. Blocked, full, or malformed storage does not prevent loading places. Retry refreshes the cache.
+
+Map usage is reduced in two ways: Discover enables `reuseMaps`, so switching List/Map or returning from another route reuses the existing Mapbox instance in the current page session instead of initializing another billable map load. The homepage groups similar viewport dimensions into shared static-image requests, with pins projected into that exact camera so they remain aligned when the image scales. Small resizes within a size bucket and preview selections do not generate different map URLs. Static images use the browser's ordinary HTTP cache and Mapbox's `Cache-Control` headers (currently 12 hours); there is no separate tile store or cache that overrides expiration. The places-data cache above is separate from Mapbox billing.
+
+This reduces redundant requests but does not cap charges: full page reloads, separate tabs, new visitors, and Mapbox's session limits can still create loads. See [Mapbox GL JS billing](https://docs.mapbox.com/mapbox-gl-js/guides/pricing/), [map reuse](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#minimize-cost-from-frequent-re-mounting), and [static-image caching](https://docs.mapbox.com/api/maps/static-images/#static-images-api-restrictions-and-limits). Use token URL restrictions and review usage in Mapbox to limit unauthorized use and spot unusual traffic.
 
 Guests save places on their device; a successful new save opens an account prompt with Create an Account, Sign In, and Keep Browsing options. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
 
