@@ -1,78 +1,8 @@
-footer {
-  background-color: rgb(var(--secondary-color));
-  padding: 50px;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-
-  @include mobile {
-    padding: 25px 10px;
-  }
-
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  p,
-  li {
-    font-size: 12px;
-    text-decoration: none;
-  }
-
-  a {
-    text-decoration: underline;;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    padding: 0;
-
-    +li {
-      margin-top: 15px;
-    }
-  }
-
-  hr {
-    background-color: white;
-    border: none;
-    height: 1px;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 33.3%;
-
-    @include mobile {
-      gap: 30px;
-    }
-  }
-
-  .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-    row-gap: 15px;
-  }
-
-  .socialRow {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    svg {
-      height: 20px;
-      width: 20px;
-    }
-  }
-  svg path {
-    fill: rgb(var(--tertiary-color));
-  }
-}
+.footer { background: rgb(var(--secondary-color)); color: rgb(var(--tertiary-color)); padding: 45px max(6%, calc((100% - 1240px) / 2)) 22px; a { color: rgb(var(--tertiary-color)); text-decoration: none; &:hover { text-decoration: underline; text-underline-offset: 4px; } } }
+.top { display: grid; grid-template-columns: 1.6fr 1fr 1.1fr .8fr; gap: 35px; padding-bottom: 40px; }
+.brand { display: flex; align-items: center; svg { width: 64px; height: 52px; path { fill: rgb(var(--tertiary-color)); } } }
+.intro p { color: rgb(var(--tertiary-color)); font-size: 13px; font-weight: 400; line-height: 1.9; margin-top: 20px; }
+.column { display: flex; flex-direction: column; align-items: flex-start; gap: 13px; h3 { color: rgb(var(--tertiary-color)); font-size: 14px; font-weight: 600; margin: 8px 0 6px; } a { font-size: 12px; } }
+.social { display: flex; align-items: center; gap: 9px; svg { width: 15px; height: 15px; path { fill: rgb(var(--tertiary-color)); } } }
+.bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(var(--tertiary-color), .25); font-size: 11px; a { font-size: 11px; } }
+@media (max-width: 760px) { .top { grid-template-columns: 1fr 1fr; gap: 30px; } .column { gap: 15px; } .intro { grid-column: 1 / -1; } .bottom { flex-wrap: wrap; > span:nth-child(2) { display: none; } } }

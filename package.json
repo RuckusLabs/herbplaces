@@ -9,6 +9,7 @@
     "host": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
+    "test": "node --test src/tests/*.test.js",
     "preview": "vite preview",
     "deploy": "vite build && cp ./dist/index.html ./dist/404.html && gh-pages -d dist --cname littleherbplaces.com"
   },
@@ -25,7 +26,8 @@
     "sass": "^1.83.4",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.15",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "supercluster": "^8.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

@@ -1,0 +1,3 @@
+.prompt { > svg { margin: 5px auto 18px; } h2 { font-family: 'Editorial', Georgia, serif; font-size: 38px; font-weight: 200; line-height: 1.15; margin: 0 0 19px; } p { font-size: 14px; line-height: 1.85; font-weight: 400; color: rgba(var(--tertiary-color), .82); } }
+.actions { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; :global(.button) { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 43px; } .secondary { background: rgba(var(--primary-color), .28); box-shadow: none; } .browse { background: transparent; box-shadow: none; border: 1px solid rgba(var(--tertiary-color), .18); } }
+@media (max-width: 540px) { .prompt h2 { font-size: 34px; } }

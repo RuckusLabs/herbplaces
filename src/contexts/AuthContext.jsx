@@ -7,8 +7,13 @@ const AuthContext = createContext({});
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [creatingAccount, setCreatingAccount] = useState(false);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     let mounted = true;
 
     // Check active sessions
@@ -33,6 +38,7 @@ export function AuthProvider({ children }) {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (mounted) {
         setUser(session?.user ?? null);
+        setLoading(false);
       }
     });
 
@@ -45,22 +51,25 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
-    loading,
-    signIn: (options) => supabase.auth.signInWithPassword({
-      ...options,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`
-      }
-    }),
-    signUp: (options) => supabase.auth.signUp({
-      ...options,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`
-      }
-    }),
-    signOut: () => supabase.auth.signOut(),
+    loading: loading || creatingAccount,
+    signIn: options => supabase ? supabase.auth.signInWithPassword(options) : Promise.resolve({ error: new Error('Sign in is temporarily unavailable.') }),
+    signUp: async ({ email, password }) => {
+      if (!supabase) return { error: new Error('Registration is temporarily unavailable.') };
+      // Wait for profile setup before favorites begin merging into a new account.
+      setCreatingAccount(true);
+      try {
+        const result = await supabase.auth.signUp({ email, password, options: { data: { email }, emailRedirectTo: `${window.location.origin}/auth/callback` } });
+        if (!result.error && result.data.user && result.data.session) {
+          const { error } = await supabase.from('profiles').upsert({ id: result.data.user.id, email: result.data.user.email || email, created_at: new Date().toISOString() }, { onConflict: 'id', ignoreDuplicates: true });
+          if (error) console.warn('Profile creation could not be confirmed:', error.message);
+        }
+        return result;
+      } finally { setCreatingAccount(false); }
+    },
+    signOut: () => supabase?.auth.signOut(),
     checkEmail: async (email) => {
       try {
+        if (!supabase) return false;
         const { data, error } = await supabase.rpc('check_if_email_exists', {
           email_input: email
         });

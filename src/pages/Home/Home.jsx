@@ -1,73 +1,73 @@
-import ListComponent from "../../components/List/List";
-import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Banner from "../../components/Banner/Banner";
-import Polaroid from "../../components/Polaroid/Polaroid";
-import PlaceIcon from "/assets/icons/place.svg";
-import ShopIcon from "/assets/icons/shop.svg";
-import { Helmet } from "react-helmet";
-import styles from "./home.module.scss";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import ListComponent from '../../components/List/List';
+import Icon from '../../components/Icons/Icon';
+import Reveal from '../../components/Reveal/Reveal';
+import HeroMap from '../../components/HeroMap/HeroMap';
+import { categories } from '../../utilities/placeFilters';
+import styles from './home.module.scss';
 
 export default function Home() {
-  return (
-    <>
-      <Helmet>
-        <title>Little Herb Places | Home</title>
-      </Helmet>
-      <div className={styles.container}>
-        <Header
-          title="Rooted in Nature. Connected through herbalism."
-          titleClassName="padding-b-desktop-25"
-          centerTitle={true}
-          backgroundImage={`/assets/pages/home/hero.jpg`}
-        />
-        <Banner className="newsletter-banner">
-          <div className="newsletter-banner__images">
-            <img src="/assets/pages/home/herb-image-1.jpg" alt="" />
-            <img src="/assets/pages/home/herb-image-2.jpg" alt="" />
-          </div>
-          <div className="newsletter-banner__text">
-            <h3>
-              Get the latest on local herb shops, expert herbalists, and
-              exclusive deals straight to your inbox.
-            </h3>
-            <Link className="button" to="the-little-garden">
-              Join The Little Garden
-            </Link>
-          </div>
-        </Banner>
-        <section className={`${styles.section} places`}>
-          <img src={PlaceIcon} alt="A icon of a storefront." />
-          <h2>Places</h2>
-          <p className="padding-x-desktop-2 padding-x-mobile-8">
-            The world of herbalism is rich with healing spaces—apothecaries,
-            gardens, workshops, and gathering places. Whether you're seeking a
-            quiet retreat, a trusted herbalist, or a shop filled with nature's
-            remedies, our curated guide leads you to places where plants and
-            people thrive together.
-          </p>
-          <div className={`${styles.sectionMetaNav}`}>
-            <h3>Featured Places</h3>
-            <Link to="/map">View All</Link>
-          </div>
-          <ListComponent className={styles.places} limit={4} />
-        </section>
-        {/* <section className={`${styles.section} shop`}>
-          <img src={ShopIcon} alt="A icon of a shopping bag." />
-          <h2>Shop</h2>
-          <p className="padding-x-desktop-5 padding-x-mobile-5">
-            Every tincture, tea, and salve carries the care and wisdom of its
-            maker. In our shop, you'll find offerings from dedicated herbalists
-            and small-batch creators who honor the healing power of plants.
-            Browse thoughtfully crafted remedies, sustainable skincare, and
-            botanical treasures—all made with intention and integrity.
-          </p>
-          <div className={`${styles.sectionMetaNav}`}>
-            <h3>Featured Products</h3>
-            <Link to="/shop">Browse More Items</Link>
-          </div>
-        </section> */}
-      </div>
-    </>
-  );
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
+  const search = event => {
+    event.preventDefault();
+    navigate(`/map?view=map${query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''}`);
+  };
+  return <>
+    <Helmet>
+      <title>Little Herb Places — Find your connection to nature</title>
+      <meta name="description" content="A thoughtful guide to independent herb shops, apothecaries, herbalists, and gardens. Discover a little herb place near you." />
+    </Helmet>
+    <main id="main-content" className={styles.home}>
+      <section className={styles.hero} aria-labelledby="hero-title">
+        <div className={styles.heroCopy}>
+          <p className={styles.heroIntro}><Icon name="map" size={22} />Your Guide to Plant-Loving Places</p>
+          <h1 id="hero-title">A Little Closer<br />to <em>Nature.</em></h1>
+          <p>Follow a little curiosity. Find independent herb shops,<br className={styles.desktopBreak} /> herbalists, gardens, and gatherings that bring<br className={styles.desktopBreak} /> you closer to plants — and each other.</p>
+          <form className={styles.search} onSubmit={search} role="search">
+            <Icon name="pin" size={21} />
+            <label className={styles.srOnly} htmlFor="home-search">Search by city, state, or place</label>
+            <input id="home-search" type="search" placeholder="Your city, state, or a little herb place" value={query} onChange={event => setQuery(event.target.value)} />
+            <button type="submit" className="button">Explore the Map <Icon name="arrow" size={18} /></button>
+          </form>
+          <div className={styles.heroCategories} aria-label="Explore by kind of place">{categories.map(category => <Link key={category.id} to={`/map?view=map&category=${category.id}`}><Icon name={category.icon} size={28} />{category.short}</Link>)}</div>
+        </div>
+        <HeroMap />
+      </section>
+      <div className={styles.values} aria-label="Our values"><div className={styles.valuesInner}>
+        <span><Icon name="shop" size={34} /> Small businesses, big heart</span><i />
+        <span><Icon name="lightbulb" size={34} /> Rooted in plant wisdom</span><i />
+        <span><Icon name="heart" size={34} /> A community worth growing</span>
+      </div></div>
+      <Reveal className={styles.discover} aria-labelledby="discover-title">
+        <div className={styles.sectionHeading}>
+          <div><h2 id="discover-title">Find Your Kind of Place.</h2></div>
+          <Link to="/map" className={`button ${styles.textLink}`}>Explore the Directory <Icon name="arrow" size={18} /></Link>
+        </div>
+        <div className={styles.categories}>
+          {categories.map(category => <Link key={category.id} to={`/map?category=${category.id}`} className={styles.category}>
+            <div className={styles.categoryTop}><Icon name={category.icon} size={68} /></div>
+            <h3>{category.name}</h3><p>{category.description}</p><Icon className={styles.categoryArrow} name="arrow" size={20} />
+          </Link>)}
+        </div>
+      </Reveal>
+      <Reveal className={styles.featured} aria-labelledby="featured-title">
+        <div className={styles.sectionHeading}>
+          <div><h2 id="featured-title">Somewhere Worth Finding.</h2></div>
+          <Link to="/map" className={`button ${styles.textLink}`}>View All Places <Icon name="arrow" size={18} /></Link>
+        </div>
+        <ListComponent limit={3} prioritizeFeatured />
+        <p className={styles.saveNote}><Icon name="heart" size={25} /> See a place you love? Save it for a slower day.</p>
+      </Reveal>
+      <Reveal className={styles.community} aria-labelledby="community-title"><div className={styles.communityInner}>
+        <div className={styles.communityImage}><img src="/assets/pages/home/herb-image-1.jpg" alt="A botanical tea blend surrounded by fresh flowers" width="500" height="500" loading="lazy" decoding="async" /><span>Plants bring us together.</span></div>
+        <div className={styles.communityCopy}><h2 id="community-title">Good Things Grow<br />With <em>Good Company.</em></h2><p>For the growers, the makers, the endlessly curious.<br />The Little Garden is a place to share your craft, put down roots, and connect with a community that cares.</p><Link to="/the-little-garden" className={`button ${styles.primaryLink}`}>Come Grow With Us <Icon name="arrow" size={18} /></Link><Link to="/about" className={`button ${styles.storyLink}`}>A Little More About Us</Link></div>
+      </div></Reveal>
+      <section className={styles.closing}><div className={styles.closingInner}>
+        <Icon name="community" size={50} /><p>There’s a little herb place for everyone.</p><Link to="/map" className={`button ${styles.textLink}`}>Let’s Find Yours <Icon name="arrow" size={18} /></Link>
+      </div></section>
+    </main>
+  </>;
 }

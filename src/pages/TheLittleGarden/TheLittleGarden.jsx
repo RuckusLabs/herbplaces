@@ -1,102 +1,45 @@
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import styles from "./thelittlegarden.module.scss"
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import Icon from '../../components/Icons/Icon';
+import Reveal from '../../components/Reveal/Reveal';
+import styles from './thelittlegarden.module.scss';
 
-import SproutIcon from "/assets/icons/sprout.svg";
-import BloomIcon from "/assets/icons/bloom.svg";
-import ThriveIcon from "/assets/icons/thrive.svg";
-import EvergreenIcon from "/assets/icons/evergreen.svg";
+const plans = [
+  { name: 'Sprout', icon: 'sprout', description: 'Plant the seed and start your journey.', price: 'Free', features: ['Join the Community', 'Save Your Favorite Places'], available: true },
+  { name: 'Bloom', icon: 'sun', description: 'Let your offerings unfurl and reach more hearts.', price: '$19', features: ['Everything in Sprout', 'Verified Place Badge', 'Claim Your Place', 'Add Images', 'Update Your Place'], available: false },
+  { name: 'Thrive', icon: 'thrive', description: 'Deepen your roots and share your wisdom.', price: '$49', features: ['Everything in Bloom', 'Feature up to 10 products', 'Social media feature'], available: false },
+];
 
 export default function TheLittleGarden() {
-  return (
-    <>
-      <Helmet>
-        <title>Little Herb Places | The Little Garden</title>
-      </Helmet>
-      <Header title="The Little Garden" backgroundImage={`/assets/pages/the-little-garden/hero.jpg`} />
-      <section className={`${styles.container} ${styles.intro}`}>
-        <h3>Nurture your herbal practice with The&nbsp;Little&nbsp;Garden</h3>
-        <p className="padding-r-desktop-8">You pour your heart into your craft—growing, blending, and creating with nature&apos;s gifts. The&nbsp;Little&nbsp;Garden is here to help your work flourish. Whether you&apos;re a seasoned herbalist or just beginning your journey, our platform connects you with those who seek the wisdom and healing of plants.</p>
-      </section>
-      <section className={`${styles.container} ${styles.signup}`}>
-        <h3 className="padding-l-desktop-23">A place to share, grow, and be seen</h3>
-        <p className="padding-l-desktop-18">Choose a plan that aligns with your path, and let your herbal offerings reach a wider community.</p>
-      </section>
-      <section className={styles.containesr}>
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <div className={styles.content}>
-              <h4><img src={SproutIcon} alt="A sprout icon." /> Sprout</h4>
-              <p className="padding-r-desktop-10">Plant the seed and start your journey.</p>
-              <ul>
-                <li>Join the community.</li>
-              </ul>
-            </div>
-            <div className={styles.meta}>
-              <p>Free</p>
-              <Link className={styles.button} to="/the-little-garden/sprout">
-                Get Sprout
-              </Link>
-            </div>
-          </div>
-          <div className={`${styles.card} ${styles.cardHidden}`}>
-            <div className={styles.content}>
-              <h4><img src={BloomIcon} alt="A bloom icon." /> Bloom</h4>
-              <p>Let your offerings unfurl and reach more hearts.</p>
-              <ul>
-                <li>Verified Place Badge</li>
-                <li>Claim your Place</li>
-                <li>Add images</li>
-                <li>Adjust Place content</li>
-              </ul>
-            </div>
-            <div className={styles.meta}>
-              <p>$10/month</p>
-              <Link className={styles.button} to="#">
-                Get Bloom
-              </Link>
-              <span className={styles.comingSoon}>Coming soon</span>
-            </div>
-          </div>
-          <div className={`${styles.card} ${styles.cardHidden}`}>
-            <div className={styles.content}>
-              <h4><img src={ThriveIcon} alt="A thrive icon." /> Thrive</h4>
-              <p>Deepen your roots and share your wisdom.</p>
-              <ul>
-                <li>Everything in Bloom</li>
-                <li>Feature up to 10 products.</li>
-                <li>Social media feature.</li>
-              </ul>
-            </div>
-            <div className={styles.meta}>
-              <p>$15/month</p>
-              <Link className={styles.button} to="#">
-                Get Thrive
-              </Link>
-              <span className={styles.comingSoon}>Coming soon</span>
-            </div>
-          </div>
-          {/* <div className={styles.card}>
-            <div className={styles.content}>
-              <h4><img src={EvergreenIcon} alt="An evergreen icon." /> Evergreen</h4>
-              <p>Stand tall, be seen, and grow without limits.</p>
-              <ul>
-                <li>Everything in Thrive.</li>
-                <li>Feature up to 30 products.</li>
-                <li>Place Badge.</li>
-                <li>Featured interview.</li>
-              </ul>
-            </div>
-            <div className={styles.meta}>
-              <p>$50/month</p>
-              <Link className={styles.button} to="#">
-                Get Evergreen
-              </Link>
-            </div>
-          </div> */}
-        </div>
-      </section>
-    </>
-  )
+  return <main id="main-content" className={styles.garden}>
+    <Helmet><title>The Little Garden | Little Herb Places</title><meta name="description" content="A place for herbalists, growers, and makers to share their craft and connect with a community rooted in plants. Come grow with The Little Garden." /></Helmet>
+    <section className={styles.hero} aria-labelledby="garden-title">
+      <div className={styles.heroCopy}>
+        <Icon name="garden" size={76} />
+        <h1 id="garden-title">The Little<br />Garden.</h1>
+        <p>A Place to Share, Grow, and Be Seen.</p>
+        <p>You put care into everything you grow and create. Find a community that cares just as much. The Little Garden connects herbalists, growers, and makers with people who love the world of plants.</p>
+        <a href="#garden-plans" className="button">Put Down Roots <Icon name="arrow" size={18} /></a>
+      </div>
+      <div className={styles.heroImage}><img src="/assets/pages/the-little-garden/garden.webp" alt="A leafy archway opening onto a sunlit garden path" width="1000" height="1500" fetchPriority="high" /><span>There’s Room for You to Grow Here.</span></div>
+    </section>
+    <Reveal className={styles.values} aria-label="A community for your craft"><div className={styles.valuesInner}>
+      <div><Icon name="craft" size={58} /><h2>Share Your Craft</h2><p>Bring your plant knowledge, your care, and your own way of making things.</p></div>
+      <div><Icon name="community" size={58} /><h2>Find Your People</h2><p>Connect with a community drawn together by a love of plants.</p></div>
+      <div><Icon name="sprout" size={58} /><h2>Grow at Your Pace</h2><p>Start with a little seed. There’s no hurry to be anything more.</p></div>
+    </div></Reveal>
+    <Reveal id="garden-plans" className={styles.plans} aria-labelledby="plans-title">
+      <div className={styles.sectionIntro}><h2 id="plans-title">A Little Support for Your Next Chapter.</h2><p>Start with Sprout, our free community plan. More ways to grow are taking root.</p></div>
+      <div className={styles.planGrid}>
+        {plans.map(plan => <article key={plan.name} className={`${styles.plan} ${plan.available ? styles.available : ''}`}>
+          <div className={styles.planTop}><Icon name={plan.icon} size={64} />{!plan.available && <span className={styles.comingSoon}>Coming Soon</span>}</div>
+          <h3>{plan.name}</h3><p className={styles.planDescription}>{plan.description}</p>
+          <p className={styles.price}>{plan.price}{!plan.available && <span> / month</span>}</p>
+          <ul>{plan.features.map(feature => <li key={feature}><img src="/assets/icons/checkmark--green.svg" alt="" width="15" height="15" />{feature}</li>)}</ul>
+          {plan.available ? <Link to="/the-little-garden/sprout" className="button">Get Sprout <Icon name="arrow" size={18} /></Link> : <button className="button" disabled>{plan.name} Is Growing</button>}
+        </article>)}
+      </div>
+    </Reveal>
+    <Reveal className={styles.invitation}><div className={styles.invitationInner}><Icon name="community" size={56} /><div><h2>Good Company Makes All the Difference.</h2><p>Meet the little places and plant people at the heart of our community.</p></div><Link to="/map" className="button">Explore Places <Icon name="arrow" size={18} /></Link></div></Reveal>
+  </main>;
 }

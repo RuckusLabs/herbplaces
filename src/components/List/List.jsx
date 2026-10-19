@@ -1,65 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styles from "./list.module.scss";
-import fetchPlaces from '../../utilities/fetchPlaces';
-
-import LocationIcon from "/src/assets/location-icon.svg?react";
-import Badge from "/src/assets/icons/badge.svg?react";
-import FavoriteButton from '../FavoriteButton/FavoriteButton';
 import PropTypes from 'prop-types';
+import styles from './list.module.scss';
+import usePlaces from '../../hooks/usePlaces';
+import PlaceCard from '../PlaceCard/PlaceCard';
+import Icon from '../Icons/Icon';
 
-export default function ListComponent({ className = '', limit, places: propPlaces }) {
-  const [places, setPlaces] = useState([]);
-
-  useEffect(() => {
-    if (propPlaces) {
-      setPlaces(propPlaces);
-    } else {
-      async function loadPlaces() {
-        const data = await fetchPlaces();
-        setPlaces(data || []);
-      }
-      loadPlaces();
-    }
-  }, [propPlaces]);
-
-  const displayedPlaces = limit ? places.slice(0, limit) : places;
-
-  return (
-    <div className={`${styles.places} ${className}`}>
-      {displayedPlaces.map((place) => (
-        <>
-          <Link to={`/place/${place.urlSlug}`} className={styles.place} key={place.id}>
-            <img
-              className={styles.coverPhoto}
-              src={place.coverPhoto}
-              alt={place.name}
-            />
-            <div className={styles.meta}>
-              <h3>
-                {place.name}
-                {place.isVerified && <Badge className={styles.badge} />}
-                <FavoriteButton
-                  className={styles.favorite}
-                  itemId={place.id}
-                  itemType="place"
-                  size={22}
-                />
-              </h3>
-              <p>{place.tagline}</p>
-              <p className={styles.location}>
-                <LocationIcon className={styles.locationIcon} /> {place.city}, {place.state}
-              </p>
-            </div>
-          </Link>
-        </>
-      ))}
-    </div>
-  );
+export default function ListComponent({ className = '', limit, places: suppliedPlaces, prioritizeFeatured = false }) {
+  const { places, loading, error, retry } = usePlaces(suppliedPlaces === undefined);
+  const all = suppliedPlaces ?? places;
+  const ordered = prioritizeFeatured
+    ? [...all].sort((a, b) => Number(Boolean(b.isFeatured)) - Number(Boolean(a.isFeatured)) || Number(Boolean(b.isVerified)) - Number(Boolean(a.isVerified)))
+    : all;
+  const shown = limit ? ordered.slice(0, limit) : ordered;
+  if (suppliedPlaces === undefined && loading) return <div className={`${styles.places} ${className}`} aria-label="Loading places" aria-busy="true">{Array.from({ length: limit || 3 }, (_, i) => <div key={i} className={styles.skeleton}><div /><span /><span /></div>)}</div>;
+  if (suppliedPlaces === undefined && error) return <div className={styles.status} role="status"><Icon name="sprout" size={54} /><h3>A Little Pause in the Garden.</h3><p>{error}</p><button className="button" onClick={retry}>Try Again <Icon name="arrow" size={16} /></button></div>;
+  if (!shown.length) return <div className={styles.status}><Icon name="search" size={28} /><h3>No Places Found Just Yet.</h3><p>Try another city, a shorter search, or a different category.</p></div>;
+  return <div className={`${styles.places} ${className}`}>{shown.map(place => <PlaceCard place={place} key={place.id} />)}</div>;
 }
-
-ListComponent.propTypes = {
-  className: PropTypes.string,
-  limit: PropTypes.number,
-  places: PropTypes.array
-};
+ListComponent.propTypes = { className: PropTypes.string, limit: PropTypes.number, places: PropTypes.array, prioritizeFeatured: PropTypes.bool };

@@ -14,12 +14,12 @@ const Polaroid = ({
   };
 
   return (
-    <div className={`polaroid ${className || ''}`} style={styles}>
-      <div className="polaroid__frame">
+    <div className={`${styles.polaroid} ${className || ''}`} style={style}>
+      <div className={styles.polaroid__frame}>
         <img 
           src={imageUrl} 
           alt={alt} 
-          className="polaroid__image"
+          className={styles.polaroid__image}
           loading="lazy"
         />
       </div>
@@ -36,4 +36,4 @@ Polaroid.propTypes = {
   className: PropTypes.string
 };
 
-export default Polaroid; 
+export default Polaroid;

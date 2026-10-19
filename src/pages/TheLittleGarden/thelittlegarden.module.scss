@@ -1,147 +1,27 @@
-.container {
-  max-width: 600px;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 100px;
+.garden { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1440px) minmax(0, 1fr); > * { grid-column: 2; } h1, h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; line-height: 1.1; } p { font-size: 14px; font-weight: 400; line-height: 1.85; color: rgba(var(--tertiary-color), .8); } :global(.button) { display: inline-flex; align-items: center; justify-content: center; gap: 12px; } }
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 9%; align-items: center; padding: 50px 7.2% 65px; }
+.heroCopy { > svg { margin-bottom: 22px; } h1 { font-size: clamp(64px, 7vw, 96px); margin-bottom: 25px; } > p:first-of-type { font-family: 'Editorial', Georgia, serif; font-size: 29px; line-height: 1.35; color: rgb(var(--tertiary-color)); } > p + p { margin-top: 18px; max-width: 440px; } > a { margin-top: 28px; } }
+.heroImage { position: relative; img { display: block; width: 100%; height: 560px; object-fit: cover; border-radius: 240px 240px var(--border-radius) var(--border-radius); } span { position: absolute; bottom: 22px; left: 22px; right: 22px; padding: 17px 20px; border-radius: 15px; text-align: center; background: rgba(255, 255, 255, .94); font-family: 'Editorial', Georgia, serif; font-size: 22px; } }
+.valuesInner { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 55px; padding: 42px min(7.2vw, 103.68px); h2 { font-size: 29px; margin: 16px 0 12px; } p { font-size: 13px; max-width: 290px; } }
+.plans { padding: 70px 7.2%; scroll-margin-top: 30px; }
+.sectionIntro { margin-bottom: 35px; max-width: 720px; h2 { font-size: clamp(36px, 4vw, 51px); margin: 0 0 20px; } }
+.planGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.plan { display: flex; flex-direction: column; padding: 30px; border: 1px solid rgba(var(--tertiary-color), .16); border-radius: var(--border-radius); background: rgba(var(--gray-color), .65); h3 { font-size: 40px; margin: 20px 0 12px; } .planDescription { font-size: 13px; min-height: 49px; } .price { font-family: 'Editorial', Georgia, serif; font-size: 39px; color: rgb(var(--tertiary-color)); margin-top: 22px; span { font-family: Inter, system-ui, sans-serif; font-size: 13px; } } ul { list-style: none; margin: 22px 0 30px; padding: 20px 0 0; border-top: 1px solid rgba(var(--tertiary-color), .13); flex: 1; } li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; line-height: 1.65; margin-bottom: 12px; img { flex-shrink: 0; margin-top: 3px; } } > a, > button { width: 100%; } > button:disabled { opacity: .65; } }
+.available { background: rgba(var(--primary-color), .18); border-color: rgb(var(--secondary-color)); }
+.planTop { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.comingSoon { padding: 7px 10px; border: 1px solid rgba(var(--tertiary-color), .2); border-radius: 20px; font-size: 11px; white-space: nowrap; }
+.invitationInner { display: flex; align-items: center; gap: 25px; padding: 40px min(7.2vw, 103.68px); h2 { font-size: 32px; margin: 0 0 12px; } > svg { flex-shrink: 0; } > a { margin-left: auto; flex-shrink: 0; } }
+.signupPage { max-width: 1240px; margin: auto; padding: 38px 6% 70px; min-height: 70vh; }
+.backLink { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; text-decoration: none; margin-bottom: 42px; svg { transform: rotate(180deg); } }
+.signupLayout { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 9%; }
+.signupIntro { > svg { margin-bottom: 25px; } h1 { font-family: 'Editorial', Georgia, serif; font-size: clamp(45px, 5vw, 68px); font-weight: 200; line-height: 1.1; margin: 0 0 25px; } p { font-size: 15px; line-height: 1.85; font-weight: 400; max-width: 420px; } }
+.signupCard { background: rgba(var(--primary-color), .16); border: 1px solid rgba(var(--tertiary-color), .14); border-radius: var(--border-radius); padding: 35px; h2 { font-size: 37px; font-weight: 200; margin: 0 0 15px; } > p { font-size: 13px; font-weight: 400; line-height: 1.7; } }
+.form { align-items: stretch; gap: 9px; margin-top: 28px; label { font-size: 12px; font-weight: 500; } input { border-color: rgba(var(--tertiary-color), .3); background: #fff; padding: 13px; } input + label { margin-top: 12px; } button { align-self: flex-start; margin-top: 20px; } .formNote { font-size: 12px; font-weight: 400; line-height: 1.7; margin-top: 10px; } }
+.honeypot { position: absolute; left: -5000px; }
+@media (max-width: 900px) { .hero { padding-inline: 5%; gap: 6%; } .heroImage img { height: 510px; } .heroCopy h1 { font-size: 70px; } .valuesInner { gap: 30px; padding-inline: 5%; } .plans { padding-inline: 5%; } .planGrid { gap: 15px; } .plan { padding: 23px; } .planTop { flex-wrap: wrap; } .invitationInner { flex-wrap: wrap; padding-inline: 5%; > a { margin-left: 80px; } } }
+@media (max-width: 640px) { .hero { grid-template-columns: 1fr; padding: 32px 6% 40px; gap: 35px; } .heroCopy { > svg { width: 64px; height: 64px; margin-bottom: 20px; } h1 { font-size: 72px; } > p:first-of-type { font-size: 28px; } } .heroImage { margin-inline: 8px; img { height: 360px; } span { font-size: 19px; left: 15px; right: 15px; bottom: 15px; padding: 14px; } } .valuesInner { grid-template-columns: 1fr; gap: 32px; padding: 35px 6%; h2 { margin-top: 12px; } p { max-width: 100%; } } .plans { padding: 45px 6%; } .planGrid { grid-template-columns: 1fr; gap: 20px; } .plan { padding: 27px; .planDescription { min-height: auto; } } .planTop { flex-wrap: nowrap; } .invitationInner { padding: 32px 6%; gap: 20px; h2 { font-size: 30px; } > a { margin-left: 0; } } .signupPage { padding: 28px 6% 45px; } .backLink { margin-bottom: 30px; } .signupLayout { grid-template-columns: 1fr; gap: 30px; } .signupIntro h1 { font-size: 48px; } .signupCard { padding: 25px; } }
 
-  @include mobile {
-    margin-top: 25px;
-  }
-
-  +section {
-    margin-top: 100px;
-
-    @include mobile {
-      margin-top: 50px;
-    }
-  }
-
-  h3 {
-    font-family: "Editorial";
-    font-size: 56px;
-
-    @include mobile {
-      font-size: 48px;
-    }
-  }
-}
-
-p {
-  font-size: 22px;
-  line-height: 1.3;
-
-  @include mobile {
-    font-size: 18px;
-  }
-}
-
-.signup {
-  text-align: right;
-}
-
-.grid {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0 auto 100px auto;
-  max-width: 1200px;
-
-  @include mobile {
-    grid-template-columns: 1fr;
-    margin: 0 2.5%;
-  }
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px;
-  background-color: rgb(var(--gray-color));
-  border-radius: var(--border-radius);
-
-  h4 {
-    font-family: "Editorial";
-    font-size: 36px;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    img {
-      position: relative;
-      top: -5px;
-    }
-  }
-
-  p {
-    font-size: 18px;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 25px auto;
-  }
-
-  li {
-    padding: 10px;
-    padding-inline-start: 20px;
-    position: relative;
-
-    &:before {
-      content: '';
-      background-image: url("data:image/svg+xml,%0A%3Csvg%20width%3D%2214.35px%22%20height%3D%2214.35px%22%20viewBox%3D%220%200%2014.35%2014.35%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22checkmark--green%22%20transform%3D%22translate(0.675%2C%200.675)%22%20fill%3D%22%232C542F%22%20fill-rule%3D%22nonzero%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6.5%2C-0.675%20C10.4626632%2C-0.675%2013.675%2C2.53734907%2013.675%2C6.5%20C13.675%2C10.462675%2010.462675%2C13.675%206.5%2C13.675%20C2.53734907%2C13.675%20-0.675%2C10.4626632%20-0.675%2C6.5%20C-0.675%2C2.53736089%202.53736089%2C-0.675%206.5%2C-0.675%20Z%20M6.5%2C0.675%20C3.28294531%2C0.675%200.675%2C3.28294531%200.675%2C6.5%20C0.675%2C9.71707762%203.28293233%2C12.325%206.5%2C12.325%20C9.71709059%2C12.325%2012.325%2C9.71709059%2012.325%2C6.5%20C12.325%2C3.28293233%209.71707762%2C0.675%206.5%2C0.675%20Z%20M7.946865%2C4.12179355%20L9.08761776%2C4.84372369%20C6.87002713%2C8.3478337%206.24655738%2C9.22148132%205.60596427%2C9.19001044%20C5.05929362%2C9.16315377%204.6383165%2C8.67406651%203.91329722%2C7.53482062%20L5.05222002%2C6.81000696%20C5.24210528%2C7.10837971%205.40860848%2C7.35133855%205.54946578%2C7.53693243%20L5.60575862%2C7.60875862%20L5.66137492%2C7.5386002%20C5.72119629%2C7.46055229%205.78653136%2C7.37291216%205.85720023%2C7.27585206%20L5.9671814%2C7.12321846%20C6.11210116%2C6.92014717%206.27498746%2C6.68473456%206.45576458%2C6.4170778%20L6.74033894%2C5.9914217%20C7.08797475%2C5.46663763%207.49028533%2C4.84325466%207.946865%2C4.12179355%20Z%22%20id%3D%22Combined-Shape%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      left: 0;
-      top: 11px;
-      display: inline-block;
-      background-size: 95%;
-      background-repeat: no-repeat;;
-    }
-  }
-
-  a {
-    margin-top: 10px;
-    font-size: 18px;
-  }
-
-  .comingSoon {
-    text-transform: uppercase;
-    margin-left: 10px;
-    color: rgb(var(--orange-color));
-    font-weight: 700;
-  }
-}
-
-.cardHidden {
-  position: relative;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    z-index: 9;
-    background-filter: blur(25px);
-    opacity: 0.5;
-  }
-}
-
-.sproutSignup {
-  .grid {
-    grid-template-columns: 0.5fr;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-
-    @include mobile {
-      grid-template-columns: 1fr;
-    }
-  }
-}
+.values, .invitation { grid-column: 1 / -1; min-width: 0; background: rgba(var(--primary-color), .18); }
+.values { border-block: 1px solid rgba(var(--tertiary-color), .12); }
+.valuesInner, .invitationInner { width: 100%; max-width: 1440px; margin-inline: auto; }
+.signupIntro > a { margin-top: 24px; }
