@@ -5,9 +5,11 @@ import styles from './nav.module.scss';
 import Logo from '../../assets/little-herb-places-logo.svg?react';
 import Icon from '../Icons/Icon';
 import { useAuth } from '../../contexts/AuthContext';
+import { useManagement } from '../../contexts/ManagementContext';
 
 export default function Nav({ variant, className = '' }) {
   const { user, signOut } = useAuth();
+  const { is_admin: isAdmin } = useManagement();
   const [open, setOpen] = useState(false);
   const [logoutError, setLogoutError] = useState('');
   const { pathname } = useLocation();
@@ -31,6 +33,8 @@ export default function Nav({ variant, className = '' }) {
         <NavLink to="/about">Our Story</NavLink>
         <NavLink to="/the-little-garden">The Little Garden</NavLink>
         <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>Saved Places</span></NavLink>
+        {user && <NavLink to="/my-places">My Places</NavLink>}
+        {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <button onClick={logout} className={`button ${styles.join}`}>Sign Out</button> : <Link className={`button ${styles.join}`} to="/register">Join the Community <Icon name="arrow" size={15} /></Link>}
         {logoutError && <p role="alert">{logoutError}</p>}
       </div>

@@ -1,0 +1,16 @@
+project_id = "herbplaces"
+
+[functions.place-management]
+# The function validates the user's access token itself, including email confirmation.
+verify_jwt = false
+
+[functions.stripe-webhook]
+# Stripe authenticates with its webhook signature rather than a Supabase JWT.
+verify_jwt = false
+
+[functions.billing-reconcile]
+verify_jwt = false
+
+[functions.admin-users]
+# Confirmed administrator authorization is checked before the Auth admin API call.
+verify_jwt = false

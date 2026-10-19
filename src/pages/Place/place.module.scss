@@ -23,8 +23,12 @@
 .details { display: grid; grid-template-columns: 1.65fr 1fr; gap: 8%; align-items: start; }
 .story { min-width: 0; h2 { font-size: 36px; margin: 0 0 25px; } p { font-size: 15px; font-weight: 400; line-height: 1.95; white-space: pre-line; } p + p { margin-top: 21px; } }
 .visit { position: sticky; top: 25px; padding: 30px; border-radius: var(--border-radius); background: rgba(var(--primary-color), .18); border: 1px solid rgba(var(--tertiary-color), .13); h2 { font-size: 32px; margin: 18px 0; } }
-.address { font-size: 14px; line-height: 1.9; font-weight: 400; }
-.visitActions { display: flex; flex-direction: column; align-items: stretch; gap: 13px; margin-top: 24px; }
+.visitDetails { display: grid; gap: 18px; margin-top: 22px; &:empty { display: none; } }
+.visitRow { display: grid; grid-template-columns: 20px minmax(0, 1fr); align-items: start; gap: 12px; > svg { margin-top: 3px; } }
+.visitLabel { margin: 0 0 5px; font-family: inherit; font-size: 13px; line-height: 1.5; font-weight: 500; color: rgba(var(--tertiary-color), .75); }
+.address, .phone { margin: 0; font-size: 14px; line-height: 1.75; font-weight: 400; white-space: pre-line; overflow-wrap: anywhere; }
+.phone { color: inherit; text-decoration: none; width: fit-content; &:hover { text-decoration: underline; text-underline-offset: 3px; } }
+.visitActions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; svg { flex-shrink: 0; } }
 .related { padding-top: 60px; margin-top: 60px; border-top: 1px solid rgba(var(--tertiary-color), .14); }
 .sectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; h2 { font-size: 43px; margin: 0; } > a { flex-shrink: 0; } }
 .loading { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; h1 { font-size: 45px; } p { font-size: 14px; line-height: 1.8; } }
@@ -32,3 +36,5 @@
 @media (max-width: 600px) { .page { padding: 26px 6% 45px; } .backLink { margin-bottom: 25px; } .heading { flex-direction: column; gap: 22px; margin-bottom: 25px; h1 { font-size: 46px; } } .headingActions { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; padding-top: 0; } .tagline { font-size: 15px; } .previous { left: 11px; } .next { right: 11px; } .galleryNav { width: 38px; height: 38px; } .photos { margin-bottom: 35px; } .details { display: flex; flex-direction: column; gap: 36px; } .visit { position: static; width: 100%; padding: 25px; } .visitActions { align-items: flex-start; } .story h2 { font-size: 33px; } .story p { font-size: 14px; } .related { margin-top: 40px; padding-top: 38px; } .sectionHeading { flex-wrap: wrap; h2 { font-size: 36px; } } }
 
 @media (max-width: 600px) { .photoGallery { max-height: min(360px, 55svh); } .openPhoto { left: 11px; bottom: 11px; font-size: 11px; padding: 9px 12px; } .counter { right: 11px; bottom: 11px; } }
+
+.editAction { &:empty { display: none; } &:has(> :global(.button)) { margin-bottom: 20px; } }
