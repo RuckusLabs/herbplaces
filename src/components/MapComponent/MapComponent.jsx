@@ -46,8 +46,9 @@ export default function MapComponent({ places }) {
   useEffect(() => { if (selectedId && mobile) closePreviewRef.current?.focus({ preventScroll: true }); }, [selectedId, mobile]);
   const closePreview = () => { setSelectedId(null); mapRef.current?.getCanvas().focus({ preventScroll: true }); };
 
-  const updateViewport = () => {
-    const map = mapRef.current;
+  const updateViewport = event => {
+    // Reused maps can fire load before React reconnects the ref.
+    const map = event?.target || mapRef.current;
     if (map) setViewport({ bounds: readBounds(map), zoom: map.getZoom() });
   };
   const select = place => {
@@ -85,7 +86,7 @@ export default function MapComponent({ places }) {
         </div>
       </aside>
       <div className={styles.mapPanel}>
-        {error ? <div className={styles.error} role="status"><h2>A Little Trouble Finding Our Way.</h2><p>The map couldn’t load. You can still explore every place in the results list.</p><button className="button" onClick={() => { setError(false); setReady(false); }}>Try the Map Again</button></div> : <MapCanvas ref={mapRef} initialViewState={initial.current} mapStyle="mapbox://styles/mapbox/light-v11" mapboxAccessToken={MAPBOX_TOKEN} renderWorldCopies={false} cooperativeGestures onLoad={() => { setReady(true); updateViewport(); }} onMoveEnd={updateViewport} onResize={updateViewport} onError={event => { if (!event.target?.isStyleLoaded()) setError(true); }} style={{ width: '100%', height: '100%' }}>
+        {error ? <div className={styles.error} role="status"><h2>A Little Trouble Finding Our Way.</h2><p>The map couldn’t load. You can still explore every place in the results list.</p><button className="button" onClick={() => { setError(false); setReady(false); }}>Try the Map Again</button></div> : <MapCanvas reuseMaps ref={mapRef} initialViewState={initial.current} mapStyle="mapbox://styles/mapbox/light-v11" mapboxAccessToken={MAPBOX_TOKEN} renderWorldCopies={false} cooperativeGestures onLoad={event => { setReady(true); updateViewport(event); }} onMoveEnd={updateViewport} onResize={updateViewport} onError={event => { if (!event.target?.isStyleLoaded()) setError(true); }} style={{ width: '100%', height: '100%' }}>
           <NavigationControl position="top-right" />
           {clusters.map(feature => {
             const [longitude, latitude] = feature.geometry.coordinates;

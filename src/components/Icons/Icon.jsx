@@ -13,8 +13,9 @@ import CommunityIcon from '../../assets/icons/community.svg?react';
 import SparklesIcon from '../../assets/icons/sparkles.svg?react';
 import GardenIcon from '../../assets/icons/garden.svg?react';
 import CraftIcon from '../../assets/icons/craft.svg?react';
+import MapPlaceIcon from '../../assets/icons/map.svg?react';
 
-const brandIcons = { shop: PlaceIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
+const brandIcons = { shop: PlaceIcon, places: MapPlaceIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
 
 const paths = {
   expand: <><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6" /><path d="m3 3 6 6m12-6-6 6M3 21l6-6m12 6-6-6" /></>,

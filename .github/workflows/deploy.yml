@@ -12,6 +12,7 @@ jobs:
     env:
       VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
       VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +27,12 @@ jobs:
         run: npm ci
         
       - name: Build
-        run: npm run build
+        run: |
+          if [ -z "$VITE_MAPBOX_TOKEN" ]; then
+            echo "::error::Add the VITE_MAPBOX_TOKEN repository secret before deploying maps."
+            exit 1
+          fi
+          npm run build
         
       - name: Create 404 Page
         run: cp dist/index.html dist/404.html

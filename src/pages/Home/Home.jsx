@@ -5,6 +5,7 @@ import ListComponent from '../../components/List/List';
 import Icon from '../../components/Icons/Icon';
 import Reveal from '../../components/Reveal/Reveal';
 import HeroMap from '../../components/HeroMap/HeroMap';
+import PlaceSearch from '../../components/PlaceSearch/PlaceSearch';
 import { categories } from '../../utilities/placeFilters';
 import styles from './home.module.scss';
 
@@ -26,12 +27,7 @@ export default function Home() {
           <p className={styles.heroIntro}><Icon name="map" size={22} />Your Guide to Plant-Loving Places</p>
           <h1 id="hero-title">A Little Closer<br />to <em>Nature.</em></h1>
           <p>Follow a little curiosity. Find independent herb shops,<br className={styles.desktopBreak} /> herbalists, gardens, and gatherings that bring<br className={styles.desktopBreak} /> you closer to plants — and each other.</p>
-          <form className={styles.search} onSubmit={search} role="search">
-            <Icon name="pin" size={21} />
-            <label className={styles.srOnly} htmlFor="home-search">Search by city, state, or place</label>
-            <input id="home-search" type="search" placeholder="Your city, state, or a little herb place" value={query} onChange={event => setQuery(event.target.value)} />
-            <button type="submit" className="button">Explore the Map <Icon name="arrow" size={18} /></button>
-          </form>
+          <PlaceSearch id="home-search" className={styles.homeSearch} value={query} onChange={setQuery} onSubmit={search} buttonLabel="Explore the Map" />
           <div className={styles.heroCategories} aria-label="Explore by kind of place">{categories.map(category => <Link key={category.id} to={`/map?view=map&category=${category.id}`}><Icon name={category.icon} size={28} />{category.short}</Link>)}</div>
         </div>
         <HeroMap />
