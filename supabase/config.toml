@@ -14,3 +14,7 @@ verify_jwt = false
 [functions.admin-users]
 # Confirmed administrator authorization is checked before the Auth admin API call.
 verify_jwt = false
+
+[functions.claim-notifications]
+# Database webhooks and the retry scheduler use a dedicated server-side secret.
+verify_jwt = false

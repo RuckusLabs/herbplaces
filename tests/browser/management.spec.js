@@ -7,23 +7,20 @@ const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'mos
   coverPhoto: image, photos: [image], latitude: 39.7, longitude: -104.9, isFeatured: false, isVerified: true,
   is_claimed: false, phone: '', hours: '', social_links: [], category_ids: ['shops'], photo_alt: {}, content_version: 1, geocode_status: 'confirmed' });
 
-async function mockSite(page, { role = 'owner', expired = false, conflict = false } = {}) {
+async function mockSite(page, { role = 'owner', expired = false, conflict = false, confirmed = true } = {}) {
   const state = { place: makePlace(), claims: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
     { user_id: 'user-1', email: 'admin@example.com', is_admin: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [] },
     { user_id: 'manager-1', email: 'owner@example.com', confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: false, pending: false }] },
     { user_id: 'billing-1', email: 'billing@example.com', billing_protected: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: true, pending: false }] },
   ] };
-  const user = { id: 'user-1', email: `${role}@example.com`, email_confirmed_at: '2026-01-01T00:00:00Z', aud: 'authenticated', app_metadata: {}, user_metadata: {} };
-  if (role !== 'guest') {
-    const expiresAt = Math.floor(Date.now() / 1000) + 3600;
-    const token = `${Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: expiresAt, role: 'authenticated' })).toString('base64url')}.local-test-signature`;
-    await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), {
-      access_token: token, refresh_token: 'local-test-refresh', token_type: 'bearer', expires_at: expiresAt, expires_in: 3600, user,
-    });
-  }
+  const user = { id: 'user-1', email: `${role}@example.com`, email_confirmed_at: confirmed ? '2026-01-01T00:00:00Z' : null, aud: 'authenticated', app_metadata: {}, user_metadata: {} };
+  const expiresAt = Math.floor(Date.now() / 1000) + 3600;
+  const token = `${Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: expiresAt, role: 'authenticated' })).toString('base64url')}.local-test-signature`;
+  const session = { access_token: token, refresh_token: 'local-test-refresh', token_type: 'bearer', expires_at: expiresAt, expires_in: 3600, user };
+  if (role !== 'guest') await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), session);
   const subscription = { status: expired ? 'canceled' : 'active', paid_until: new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
   const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired, place: state.place, subscription }] : [], claims: state.claims });
-  await page.route('**/auth/v1/**', route => route.fulfill({ json: user }));
+  await page.route('**/auth/v1/**', route => route.fulfill({ json: route.request().url().includes('/token') ? session : user }));
   await page.route('**/rest/v1/**', async route => {
     const request = route.request();
     const path = new URL(request.url()).pathname;
@@ -47,6 +44,9 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
       return route.fulfill({ json: state.place });
     }
     if (name === 'request_place_claim') {
+      state.claimAttempts ||= []; state.claimAttempts.push(body);
+      if (state.claimError) return route.fulfill({ status: 400, json: { message: state.claimError } });
+      state.claimed = body;
       state.claims.push({ id: 'claim-1', place_id: state.place.id, name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending', review_note: '' });
       return route.fulfill({ json: null });
     }
@@ -74,20 +74,122 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   return state;
 }
 
-test('guests are directed to sign in before claiming a place', async ({ page }) => {
-  await mockSite(page, { role: 'guest' }); await page.goto('/place/moss-apothecary');
-  await page.getByRole('complementary', { name: 'Plan a Little Visit.' }).getByRole('link', { name: 'Claim This Place' }).click();
-  await expect(page).toHaveURL(/login\?next=/); await expect(page.getByLabel('Email', { exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Edit Place', exact: true })).toHaveCount(0);
+async function fillClaim(page) {
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Your full name').fill('Jamie Green');
+  await dialog.getByRole('combobox', { name: 'Your role', exact: true }).selectOption('Owner');
+  await dialog.getByLabel('Business email', { exact: true }).fill('jamie@moss.example');
+  await dialog.getByLabel('Business phone (optional)').fill('303-555-0142');
+  await dialog.getByLabel('Verification link (optional)').fill('https://moss.example/about');
+  await dialog.getByRole('textbox', { name: 'Ownership details', exact: true }).fill('I founded Moss Apothecary. Our team page lists me as the owner, and you can contact me at our business email to confirm.');
+  return dialog;
+}
+
+test('guests add ownership details before sign-in and resume their claim afterward', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' }); await page.goto('/place/moss-apothecary');
+  await page.getByRole('complementary', { name: 'Plan a Little Visit.' }).getByRole('button', { name: 'Claim This Place' }).click();
+  let dialog = await fillClaim(page);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await expect(dialog).toContainText('jamie@moss.example');
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Sign In to Send Claim' }).click();
+  await expect(page).toHaveURL(/login\?next=/);
+  expect(state.claims).toHaveLength(0);
+  await page.getByLabel('Email', { exact: true }).fill('guest@example.com');
+  await page.getByLabel('Password', { exact: true }).fill('password-for-test');
+  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await expect(page).toHaveURL(/moss-apothecary\?claim=1/);
+  dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Your full name')).toHaveValue('Jamie Green');
+  await expect(dialog.getByRole('textbox', { name: 'Ownership details', exact: true })).toHaveValue(/I founded Moss Apothecary/);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await expect(dialog.getByRole('checkbox')).not.toBeChecked();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible();
+  expect(state.claims).toHaveLength(1);
+  expect(await page.evaluate(() => sessionStorage.getItem('little-herb-place-claim:place-1'))).toBeNull();
+  await expect(page).not.toHaveURL(/claim=1/);
 });
 
-test('confirmed users can submit a claim and see its pending status', async ({ page }) => {
+test('confirmed users review and submit ownership evidence for admin review', async ({ page }, testInfo) => {
   const state = await mockSite(page, { role: 'claimant' }); await page.goto('/place/moss-apothecary');
   await page.getByRole('button', { name: 'Claim This Place' }).click();
-  const dialog = page.getByRole('dialog'); await dialog.getByLabel('Your relationship to the business').fill('Owner');
-  await dialog.getByLabel('Information to help us verify your request').fill('Our website confirms my role at this business.');
-  await dialog.getByRole('button', { name: 'Request Access' }).click();
-  await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible(); expect(state.claims).toHaveLength(1);
+  const dialog = await fillClaim(page);
+  await dialog.evaluate(element => { element.scrollTop = 0; });
+  await dialog.screenshot({ path: testInfo.outputPath('claim-details.png'), animations: 'disabled' });
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  expect(state.claims).toHaveLength(0);
+  await expect(dialog).toContainText('Jamie Green · Owner');
+  await dialog.screenshot({ path: testInfo.outputPath('claim-review.png'), animations: 'disabled' });
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  expect(state.claims).toHaveLength(0); // Confirmation is required before sending.
+  await dialog.getByRole('button', { name: 'Edit Details' }).click();
+  await expect(dialog.getByLabel('Your full name')).toHaveValue('Jamie Green');
+  await dialog.getByLabel('Your full name').fill('Jamie Moss');
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Your claim has been sent for review' })).toBeVisible();
+  expect(state.claims).toHaveLength(1);
+  expect(state.claimed.p_relationship).toBe('Owner');
+  expect(state.claimed.p_evidence).toContain('Full name: Jamie Moss');
+  expect(state.claimed.p_evidence).toContain('Business email: jamie@moss.example');
+  expect(state.claimed.p_evidence).toContain('Business phone: 303-555-0142');
+  expect(state.claimed.p_evidence).toContain('Verification link: https://moss.example/about');
+  expect(state.claimed.p_evidence).toContain('I founded Moss Apothecary');
+  expect(state.claimed.p_evidence.length).toBeLessThanOrEqual(3000);
+});
+
+test('claim details are validated and a public verification link is optional', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' }); await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Claim This Place' }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await expect(dialog.getByLabel('Your full name')).toBeVisible();
+  await fillClaim(page);
+  await dialog.getByLabel('Business phone (optional)').fill('');
+  await dialog.getByLabel('Verification link (optional)').fill('javascript:alert(1)');
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  // A browser URL input accepts arbitrary schemes; only web links should proceed.
+  await expect(dialog.getByLabel('Verification link (optional)')).toBeVisible();
+  await dialog.getByLabel('Verification link (optional)').fill('');
+  await dialog.getByRole('textbox', { name: 'Ownership details', exact: true }).fill(' '.repeat(50));
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await expect(dialog.getByRole('alert')).toContainText('at least 40 characters');
+  await dialog.getByRole('textbox', { name: 'Ownership details', exact: true }).fill('Please call our listed business phone and ask for Jamie to confirm that I own this business.');
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible();
+  expect(state.claimed.p_evidence).not.toContain('Verification link:');
+});
+
+test('failed claims retain details and can be retried', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' }); state.claimError = 'Please try again in a moment.';
+  await page.goto('/place/moss-apothecary'); await page.getByRole('button', { name: 'Claim This Place' }).click();
+  const dialog = await fillClaim(page);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(dialog.getByRole('alert')).toContainText('Please try again in a moment.');
+  await expect(dialog).toContainText('Jamie Green');
+  state.claimError = '';
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible();
+  expect(state.claimAttempts).toHaveLength(2);
+});
+
+test('unconfirmed accounts can prepare details but must confirm email before sending', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant', confirmed: false });
+  await page.goto('/place/moss-apothecary'); await page.getByRole('button', { name: 'Claim This Place' }).click();
+  const dialog = await fillClaim(page);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await expect(dialog.getByRole('alert')).toContainText('Confirm your email');
+  await expect(dialog.getByRole('button', { name: 'Submit Claim' })).toBeDisabled();
+  expect(state.claims).toHaveLength(0);
 });
 
 test('owners edit, preview, upload, and publish directly on their place page', async ({ page }, testInfo) => {

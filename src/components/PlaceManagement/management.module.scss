@@ -31,3 +31,22 @@
 @media(max-width: 650px) { .editorBody .form fieldset { padding: 18px 14px; gap: 18px; } .linkCard { padding: 14px; } }
 
 .page, .editorBody { :global(.button):disabled { opacity: .5; cursor: not-allowed; } }
+
+.claimDialog { width: min(700px, calc(100% - 24px)); }
+.claimBody {
+  padding: 36px; text-align: left;
+  .claimStep { margin: 0 34px 12px 0; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .editorHeading { margin: 0 28px 14px 0; line-height: 1.2; outline: none; }
+  > p { line-height: 1.7; margin-bottom: 24px; }
+  .form { gap: 22px; fieldset { display: flex; flex-direction: column; gap: 18px; } label { line-height: 1.5; } p { margin: 0; line-height: 1.7; } }
+  .notice { margin: 0; p { margin-top: 8px; } }
+  .actions { margin: 0; }
+  :global(.button):disabled { opacity: .5; cursor: not-allowed; }
+}
+.claimSummary {
+  display: grid; gap: 16px; margin: 0; padding: 22px; background: #faf9f3; border-radius: 12px; overflow-wrap: anywhere;
+  div { display: grid; gap: 5px; }
+  dt { font-size: 12px; font-weight: 600; }
+  dd { margin: 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap; }
+}
+@media(max-width: 650px) { .claimBody { padding: 32px 20px 24px; .editorHeading { font-size: 28px; } .form fieldset { padding: 16px 14px; } .actions { align-items: stretch; flex-direction: column; } } }
