@@ -6,6 +6,7 @@ import Icon from '../../components/Icons/Icon';
 import Reveal from '../../components/Reveal/Reveal';
 import HeroMap from '../../components/HeroMap/HeroMap';
 import PlaceSearch from '../../components/PlaceSearch/PlaceSearch';
+import NearbyPlaces from '../../components/NearbyPlaces/NearbyPlaces';
 import { categories } from '../../utilities/placeFilters';
 import styles from './home.module.scss';
 
@@ -52,7 +53,7 @@ export default function Home() {
       <Reveal className={styles.featured} aria-labelledby="featured-title">
         <div className={styles.sectionHeading}>
           <div><h2 id="featured-title">Somewhere Worth Finding.</h2></div>
-          <Link to="/map" className={`button ${styles.textLink}`}>View All Places <Icon name="arrow" size={18} /></Link>
+          <div className={styles.featuredActions}><NearbyPlaces /><Link to="/map" className={`button ${styles.textLink}`}>View All Places <Icon name="arrow" size={18} /></Link></div>
         </div>
         <ListComponent limit={3} prioritizeFeatured />
         <p className={styles.saveNote}><Icon name="heart" size={25} /> See a place you love? Save it for a slower day.</p>

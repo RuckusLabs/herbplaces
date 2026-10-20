@@ -2,6 +2,7 @@
 .mapDirectory { max-width: 1440px; }
 .intro { font-size: 13px; font-weight: 400; line-height: 1.8; color: rgba(var(--tertiary-color), .78); }
 .directorySearch { width: 100%; max-width: 650px; margin-top: 30px; }
+.nearbyFilter { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; p { font-size: 13px; font-weight: 400; } button { font-size: 12px; } }
 .filterHeading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 28px 0 12px; min-height: 28px; font-size: 12px; font-weight: 600; }
 .clearFilters { padding: 6px 0 6px 12px; background: transparent; color: rgb(var(--tertiary-color)); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; min-height: 32px; }
 .filters {

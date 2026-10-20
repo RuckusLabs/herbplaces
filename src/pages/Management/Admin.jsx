@@ -60,7 +60,7 @@ export default function Admin() {
     <h1>Little Herb Places Admin</h1>
     {authLoading || (management.loading && !allowed) ? <p role="status">Checking admin access…</p>
       : !user ? <Link className="button" to="/login?next=%2Fadmin">Sign In</Link>
-      : !allowed ? <><p role="alert" className={styles.notice}>{management.error || 'This area is for Little Herb Places administrators.'}</p><Link className="button" to="/my-places">My Places</Link></>
+      : !allowed ? <><p role="alert" className={styles.notice}>{management.error || 'This area is for Little Herb Places administrators.'}</p><Link className="button" to="/favorites">Saved Places</Link></>
       : <>
         <div className={styles.toolbar}><p className={styles.intro}>Review claims, connect people to places, and care for the directory.</p><button className="button" onClick={() => setCreating(true)}>Add Place</button></div>
         <div className={styles.tabs} role="group" aria-label="Admin sections">{sections.map(([id, label]) => <button className="button" key={id} aria-current={section === id ? 'page' : undefined} onClick={() => { setSection(id); setPage(0); setSelected(''); setSort({ key: id === 'users' ? 'email' : id === 'claims' ? 'created_at' : 'name', desc: false }); }}>{label}</button>)}</div>

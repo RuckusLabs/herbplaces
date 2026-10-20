@@ -1,13 +1,8 @@
 import Supercluster from 'supercluster';
+export { getMapBounds } from './mapBounds.js';
 
 export function getMapPlaces(places) {
   return places.filter(place => [place.longitude, place.latitude].every(value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value))) && Math.abs(Number(place.longitude)) <= 180 && Math.abs(Number(place.latitude)) <= 85.051129);
-}
-export function getMapBounds(places) {
-  if (!places.length) return null;
-  const lng = places.map(place => Number(place.longitude));
-  const lat = places.map(place => Number(place.latitude));
-  return [[Math.min(...lng), Math.min(...lat)], [Math.max(...lng), Math.max(...lat)]];
 }
 export function getPlacesInBounds(places, bounds) {
   if (!bounds) return places;

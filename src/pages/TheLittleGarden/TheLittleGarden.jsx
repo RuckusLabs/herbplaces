@@ -37,7 +37,7 @@ export default function TheLittleGarden() {
           <h3>{plan.name}</h3><p className={styles.planDescription}>{plan.description}</p>
           <p className={styles.price}>{plan.price}{plan.name !== 'Sprout' && <span> / month{plan.name === 'Bloom' ? ' per place' : ''}</span>}</p>
           <ul>{plan.features.map(feature => <li key={feature}><img src="/assets/icons/checkmark--green.svg" alt="" width="15" height="15" />{feature}</li>)}</ul>
-          {plan.available ? <Link to={plan.name === 'Bloom' ? '/my-places' : '/the-little-garden/sprout'} className="button">{plan.name === 'Bloom' ? 'Claim Your Place' : 'Get Sprout'} <Icon name="arrow" size={18} /></Link> : <button className="button" disabled>{plan.name} Is Growing</button>}
+          {plan.available ? <Link to={plan.name === 'Bloom' ? '/map' : '/the-little-garden/sprout'} className="button">{plan.name === 'Bloom' ? 'Claim Your Place' : 'Get Sprout'} <Icon name="arrow" size={18} /></Link> : <button className="button" disabled>{plan.name} Is Growing</button>}
         </article>)}
       </div>
     </Reveal>

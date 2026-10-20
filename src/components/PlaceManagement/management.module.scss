@@ -1,5 +1,6 @@
 .page { max-width: 1160px; margin: auto; padding: 40px 5% 80px; min-height: 55vh; h1, h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; } h1 { font-size: clamp(38px, 5vw, 58px); margin: 12px 0 20px; } h2 { font-size: 30px; } p { line-height: 1.7; } }
 .intro { max-width: 650px; margin-bottom: 30px; }
+.savedManagement { margin: 0 0 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(var(--tertiary-color), .18); h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; } > h2 { font-size: 36px; margin: 0 0 15px; } h3 { font-size: 28px; } p { line-height: 1.7; } }
 .toolbar, .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 18px 0; :global(.button) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin: 0; } }
 .toolbar { justify-content: space-between; }
 .card { background: #fff; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: 20px; padding: 25px; margin: 20px 0; overflow-wrap: anywhere; h2, h3 { margin: 0 0 15px; } }

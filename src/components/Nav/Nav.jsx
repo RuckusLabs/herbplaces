@@ -25,7 +25,7 @@ export default function Nav({ variant, className = '' }) {
   };
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
-    <nav className={`${styles.nav} ${variant === 'bleed' ? styles.bleed : ''} ${className}`} aria-label="Main navigation">
+    <nav className={`${styles.nav} ${pathname === '/' ? styles.home : ''} ${variant === 'bleed' ? styles.bleed : ''} ${className}`} aria-label="Main navigation">
       <Link to="/" className={styles.brand} aria-label="Little Herb Places home"><Logo aria-hidden="true" focusable="false" /></Link>
       <button className={styles.menuButton} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'menu'} size={23} /></button>
       <div id="main-navigation" className={`${styles.links} ${open ? styles.open : ''}`}>
@@ -33,7 +33,6 @@ export default function Nav({ variant, className = '' }) {
         <NavLink to="/about">Our Story</NavLink>
         <NavLink to="/the-little-garden">The Little Garden</NavLink>
         <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>Saved Places</span></NavLink>
-        {user && <NavLink to="/my-places">My Places</NavLink>}
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <button onClick={logout} className={`button ${styles.join}`}>Sign Out</button> : <Link className={`button ${styles.join}`} to="/register">Join the Community <Icon name="arrow" size={15} /></Link>}
         {logoutError && <p role="alert">{logoutError}</p>}

@@ -1,8 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getMapPlaces, getMapBounds, getPlacesInBounds, createPlaceIndex } from '../utilities/mapPlaces.js';
+import { readMapBounds } from '../utilities/mapBounds.js';
 
 const places = [{ id: 'a', longitude: -97.74, latitude: 30.26 }, { id: 'b', longitude: '-97.741', latitude: '30.261' }, { id: 'c', longitude: -116, latitude: 34 }];
+test('shared map areas require four ordered coordinates within map limits', () => {
+  assert.deepEqual(readMapBounds('-105,39,-104,40'), [[-105, 39], [-104, 40]]);
+  assert.deepEqual(readMapBounds('0,0,0,0'), [[0, 0], [0, 0]]);
+  for (const value of [null, '', '0,,0,1', '0,0,1', '1,0,0,1', '0,2,1,1', '-181,0,0,1', '0,0,181,1', '0,-90,1,1', '0,0,1,90', '0,0,NaN,1']) assert.equal(readMapBounds(value), null);
+});
 test('only usable map locations enter bounds and clustering', () => {
   assert.deepEqual(getMapPlaces([...places, ...[null, undefined, '', 'bad', 181].map(longitude => ({ longitude, latitude: 30 })), { longitude: 20, latitude: 90 }]), places);
   assert.deepEqual(getMapBounds(places), [[-116, 30.26], [-97.74, 34]]);
