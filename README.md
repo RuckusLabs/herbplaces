@@ -74,13 +74,13 @@ See [setup and verification](docs/place-management-setup.md) before applying the
 
 Install the build browser once with `npx playwright install chromium` (CI installs browser/system dependencies automatically). The Pages workflow and `npm run deploy` use the complete export. Review both webpage and place cards at `/og/preview.html` in the exported site. Missing public credentials, invalid/duplicate slugs, or an empty/failed directory response stop the release rather than silently dropping place pages. No service-role key is used.
 
-GitHub Pages has no request-time rendering. The deployment workflow automatically checks for listing changes every 30 minutes and rebuilds static content, share cards, and the sitemap when needed; the interactive app can show fresh database content sooner. Submit `https://littleherbplaces.com/sitemap.xml` in Google Search Console after deployment. Social networks may retain an older preview until their share cache is refreshed.
+GitHub Pages has no request-time rendering. The deployment workflow automatically checks for listing changes every 24 hours and rebuilds static content, share cards, and the sitemap when needed; the interactive app can show fresh database content sooner. Submit `https://littleherbplaces.com/sitemap.xml` in Google Search Console after deployment. Social networks may retain an older preview until their share cache is refreshed.
 
 For an offline reproducible export after an app build, `node scripts/build-seo.mjs --places /absolute/path/to/public-places.json` accepts a public listing snapshot. Share photos are restricted to the configured Supabase public Storage origin; credentials and management/account records are never embedded in generated pages.
 
 ### Automatic rebuilds: enabled by merging this change
 
-The default flow is **GitHub checks public listings at :17 and :47 each hour → compares them with the last published content → regenerates and deploys only when content changed**. New places, edits, and deletions are all detected. The check and export use the same public snapshot, and failed/empty directory reads stop the run while preserving the deployed site. Pushes to `main` and manual workflow runs always rebuild, including design-only changes.
+The default flow is **GitHub checks public listings once daily at 06:17 UTC → compares them with the last published content → regenerates and deploys only when content changed**. New places, edits, and deletions are all detected. The check and export use the same public snapshot, and failed/empty directory reads stop the run while preserving the deployed site. Pushes to `main` and manual workflow runs always rebuild, including design-only changes.
 
 The repository's existing `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_MAPBOX_TOKEN` secrets were synchronized with the working local configuration on October 20, 2026; Actions is enabled and Pages publishes the `gh-pages` branch at `littleherbplaces.com`. No additional token or Supabase database setup is needed for scheduled checks. To activate:
 
@@ -92,7 +92,7 @@ GitHub can delay scheduled runs. In public repositories, it disables schedules a
 
 ### Optional faster rebuilds through Supabase
 
-For rebuilds within roughly 30–90 seconds instead of waiting for the next scheduled check, the optional prepared flow is: **place added, edited, or deleted → Supabase queue → GitHub Actions → regenerated cards/pages/sitemap → GitHub Pages**. It also covers changes made through the Supabase dashboard or imports. The 30-minute check remains a fallback.
+For rebuilds within roughly 30–90 seconds instead of waiting for the next scheduled check, the optional prepared flow is: **place added, edited, or deleted → Supabase queue → GitHub Actions → regenerated cards/pages/sitemap → GitHub Pages**. It also covers changes made through the Supabase dashboard or imports. The daily check remains a fallback.
 
 1. Put the updated `.github/workflows/deploy.yml` and share-card generation files on `main`, and verify one manual run under **GitHub → Actions → Deploy to GitHub Pages → Run workflow**. The existing `workflow_dispatch` entry is the API trigger. Deployment concurrency keeps overlapping requests from publishing out of order.
 2. Create a **fine-grained GitHub token** for **RuckusLabs/herbplaces only**, with repository **Actions: Read and write**. Save it through **Supabase → Vault** as `site_build_github_token`. Do not put it in a `VITE_` variable, frontend code, a SQL snippet/history, or chat. Rotate it in Vault before it expires.
