@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 import { bloomAvailable, managementAction, openBillingUrl } from '../../utilities/managementApi';
@@ -8,7 +7,7 @@ import { getSubscriptionLabel, subscriptionAllowsEditing } from '../../../supaba
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 export default function MyPlaces() {
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth();
   const management = useManagement();
   const refresh = management.refresh;
   const [params] = useSearchParams();
@@ -33,22 +32,20 @@ export default function MyPlaces() {
     } catch (failure) { setError(failure.message); }
     finally { setBusy(''); }
   };
-  return <main id="main-content" className={styles.page}>
-    <Helmet><title>My Places | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
-    <h1>My Places</h1><p className={styles.intro}>A little home for the places you care for. Manage your subscription here, then edit directly on your place page.</p>
-    {authLoading ? <p role="status">Loading your account…</p> : !user ? <Link className="button" to="/login?next=%2Fmy-places">Sign In to Manage Places</Link> : <>
+  if (!user || (!management.memberships.length && !management.claims.some(claim => ['pending', 'approved'].includes(claim.status)))) return null;
+  return <section id="my-places" aria-labelledby="my-places-title" className={styles.savedManagement}>
+    <h2 id="my-places-title">My Places</h2><p className={styles.intro}>A little home for the places you care for. Manage your subscription here, then edit directly on your place page.</p>
       {management.is_admin && <Link className="button" to="/admin">Open Admin</Link>}
       {management.loading && <p role="status">Refreshing your places…</p>}
       {(management.error || error) && <p role="alert" className={styles.error}>{error || management.error}</p>}
       {notice && <p role="status" className={styles.notice}>{notice}</p>}
       <div className={styles.actions}><button className="button" disabled={management.loading} onClick={management.refresh}>Refresh Access</button></div>
-      {!management.loading && !management.error && !management.memberships.length && <section className={styles.card}><h2>Your next chapter starts here.</h2><p>Find your business in the directory and choose Claim This Place. An admin will review your request.</p><Link className="button" to="/map">Explore Places</Link></section>}
       <div className={styles.grid}>{management.memberships.map(membership => {
         const subscription = membership.subscription;
         const canEdit = management.is_admin || subscriptionAllowsEditing(subscription);
         const activeBilling = subscription && !['none', 'canceled', 'incomplete_expired'].includes(subscription.status);
         return <article className={styles.card} key={membership.place_id}>
-          <h2>{membership.place.name}</h2><span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
+          <h3>{membership.place.name}</h3><span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
           {membership.is_billing_contact && <span className={styles.status}>Billing contact</span>}
           {subscription?.grace_ends_at && <p className={styles.small}>Payment grace period ends {new Date(subscription.grace_ends_at).toLocaleString()}. Published content stays visible.</p>}
           {subscription?.cancel_at_period_end && subscription.paid_until && <p className={styles.small}>Editing remains available through {new Date(subscription.paid_until).toLocaleDateString()}.</p>}
@@ -63,7 +60,6 @@ export default function MyPlaces() {
           {!membership.is_billing_contact && <p className={styles.small}>Your designated billing contact manages payment. Contact Little Herb Places to change managers.</p>}
         </article>;
       })}</div>
-      {!!management.claims.length && <section className={styles.card}><h2>Your Claim Requests</h2><ul className={styles.list}>{management.claims.map(claim => <li key={claim.id}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link> <span className={styles.status}>{claim.status}</span>{claim.review_note && <p>{claim.review_note}</p>}</li>)}</ul></section>}
-    </>}
-  </main>;
+      {!!management.claims.length && <section className={styles.card}><h3>Your Claim Requests</h3><ul className={styles.list}>{management.claims.map(claim => <li key={claim.id}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link> <span className={styles.status}>{claim.status}</span>{claim.review_note && <p>{claim.review_note}</p>}</li>)}</ul></section>}
+  </section>;
 }

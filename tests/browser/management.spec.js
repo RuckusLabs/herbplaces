@@ -24,7 +24,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   await page.route('**/rest/v1/**', async route => {
     const request = route.request();
     const path = new URL(request.url()).pathname;
-    if (!path.includes('/rpc/')) return route.fulfill({ json: path.endsWith('/favorites') ? [] : [state.place] });
+    if (!path.includes('/rpc/')) return route.fulfill({ json: path.endsWith('/favorites') ? (state.favorites || []) : [state.place, ...(state.extraPlaces || [])] });
     const name = path.split('/').at(-1);
     const body = request.postDataJSON() || {};
     if (name === 'activate_place_invitations') return route.fulfill({ json: null });
@@ -226,7 +226,7 @@ test('expired subscriptions retain the listing and send owners to billing', asyn
   await mockSite(page, { expired: true }); await page.goto('/place/moss-apothecary');
   await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Edit Place', exact: true })).toHaveCount(0);
-  await page.getByRole('link', { name: 'Manage Subscription' }).click(); await expect(page).toHaveURL(/my-places/);
+  await page.getByRole('link', { name: 'Manage Subscription' }).click(); await expect(page).toHaveURL(/favorites#my-places/);
   await expect(page.getByText('Editing paused', { exact: true })).toBeVisible();
 });
 
@@ -365,4 +365,254 @@ test('canceling a new place makes no listing', async ({ page }) => {
   const dialog = page.getByRole('dialog'); await dialog.getByLabel('Place name', { exact: true }).fill('Discard this place');
   page.once('dialog', confirmation => confirmation.accept()); await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
   await expect(dialog).not.toBeVisible(); expect(state.created).toBeUndefined();
+});
+
+test('place visit details label address and phone and list different opening days', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.place.phone = '303-555-0142';
+  state.place.hours = 'Monday–Friday: 10am–6pm; Saturday: 11am–5pm; Sunday: closed';
+  await page.goto('/place/moss-apothecary');
+  const visit = page.getByRole('complementary', { name: 'Plan a Little Visit.' });
+  await expect(visit.getByRole('heading', { name: 'Address', exact: true })).toBeVisible();
+  await expect(visit.getByRole('heading', { name: 'Phone', exact: true })).toBeVisible();
+  await expect(visit.getByRole('link', { name: state.place.phone })).toHaveAttribute('href', `tel:${state.place.phone}`);
+  await expect(visit.getByRole('listitem')).toHaveText(['Monday–Friday: 10am–6pm', 'Saturday: 11am–5pm', 'Sunday: closed']);
+});
+
+test('homepage pins open place details directly and leave no place preview card', async ({ page }, testInfo) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/');
+  await expect(page.locator('#hero-place-preview')).toHaveCount(0);
+  await expect(page.getByRole('navigation').first()).toHaveCSS('border-bottom-width', '0px');
+  await expect(page.getByRole('link', { name: 'Open the Full Map' })).toHaveAttribute('href', '/map?view=map');
+  await page.screenshot({ path: testInfo.outputPath('homepage.png'), fullPage: true, animations: 'disabled' });
+  await page.getByRole('button', { name: 'Visit Moss Apothecary' }).click();
+  await expect(page).toHaveURL(/place\/moss-apothecary$/);
+  await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+});
+
+for (const start of ['/', '/map?category=shops&q=Herbal']) {
+  test(`nearby discovery from ${start} explains permission first and filters map and list after consent`, async ({ page, context }, testInfo) => {
+    const state = await mockSite(page, { role: 'guest' });
+    state.extraPlaces = [{ ...makePlace(), id: 'far', name: 'Distant Garden', urlSlug: 'distant-garden', latitude: 30.27, longitude: -97.74 }];
+    await context.setGeolocation({ latitude: 39.7, longitude: -104.9 });
+    await context.grantPermissions(['geolocation']);
+    await page.addInitScript(() => {
+      window.locationRequests = 0;
+      const queryPermission = navigator.permissions.query.bind(navigator.permissions);
+      navigator.permissions.query = descriptor => descriptor.name === 'geolocation' ? Promise.resolve({ state: 'prompt' }) : queryPermission(descriptor);
+      const getPosition = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+      navigator.geolocation.getCurrentPosition = (...args) => { window.locationRequests++; getPosition(...args); };
+    });
+    await page.goto(start);
+    if (start.startsWith('/map')) {
+      const filters = page.getByRole('group', { name: 'Kind of place' }).getByRole('button');
+      await expect(filters.nth(0)).toHaveText('All Places');
+      await expect(filters.nth(1)).toHaveAccessibleName('Places Near Me');
+    }
+    await page.getByRole('button', { name: 'Places Near Me' }).click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toContainText('Your browser will ask to share your location.');
+    await expect(dialog).toContainText('within 50 miles');
+    expect(await page.evaluate(() => window.locationRequests)).toBe(0);
+    await dialog.screenshot({ path: testInfo.outputPath('location-prompt.png'), animations: 'disabled' });
+    await dialog.getByRole('button', { name: 'Use My Location' }).click();
+    await expect(page).toHaveURL(/view=map&lat=39.700&lng=-104.900/);
+    if (start.startsWith('/map')) {
+      const params = new URL(page.url()).searchParams;
+      expect(params.get('category')).toBe('shops');
+      expect(params.get('q')).toBe('Herbal');
+    }
+    await expect(page.getByText('Showing places within 50 miles of your location.')).toBeVisible();
+    await expect(page.getByRole('complementary', { name: 'Map results' }).getByText('Distant Garden', { exact: true })).toHaveCount(0);
+    await page.getByRole('button', { name: 'List', exact: true }).click();
+    await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Distant Garden', exact: true })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Show Places Everywhere' }).click();
+    await expect(page.getByRole('heading', { name: 'Distant Garden', exact: true })).toBeVisible();
+    await expect(page).not.toHaveURL(/lat=/);
+  });
+}
+
+for (const code of [1, 2, 3]) {
+  test(`nearby discovery handles location failure ${code} and offers manual exploration`, async ({ page }) => {
+    await mockSite(page, { role: 'guest' });
+    await page.addInitScript(code => { navigator.geolocation.getCurrentPosition = (_success, failure) => failure({ code }); }, code);
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Places Near Me' }).click();
+    const dialog = page.getByRole('dialog');
+    await dialog.getByRole('button', { name: 'Use My Location' }).click();
+    await expect(dialog.getByRole('alert')).toContainText(code === 1 ? 'wasn’t allowed' : 'couldn’t find');
+    await dialog.getByRole('link', { name: 'Explore the Map' }).click();
+    await expect(page).toHaveURL(/map\?view=map$/);
+  });
+}
+
+test('canceling nearby discovery prevents a late location response from navigating', async ({ page }) => {
+  await mockSite(page, { role: 'guest' });
+  await page.addInitScript(() => { navigator.geolocation.getCurrentPosition = success => { window.finishLocation = success; }; });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Places Near Me' }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'Use My Location' }).click();
+  await page.getByRole('button', { name: 'Keep Browsing', exact: true }).click();
+  await page.evaluate(() => window.finishLocation({ coords: { latitude: 39.7, longitude: -104.9 } }));
+  await expect(page).toHaveURL('/');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('saved places includes management for owners and preserves old billing return links', async ({ page }, testInfo) => {
+  const state = await mockSite(page);
+  state.favorites = [{ item_id: 'place-1' }];
+  await page.goto('/my-places?billing=returned&place=place-1');
+  await expect(page).toHaveURL(/favorites\?billing=returned&place=place-1#my-places/);
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'My Places', exact: true }).getByRole('link', { name: 'View & Edit Place' })).toBeVisible();
+  await expect(page.getByText('Billing status refreshed. Payment confirmation can take a moment.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('saved-and-managed-places.png'), fullPage: true, animations: 'disabled' });
+});
+
+test('saved places shows pending claims but hides management for other visitors', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  state.claims.push({ id: 'claim-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending' });
+  await page.goto('/favorites');
+  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toContainText('pending');
+  state.claims = [];
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toHaveCount(0);
+});
+
+test('guests cannot open a claim modal for an already claimed place', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' }); state.place.is_claimed = true;
+  await page.goto('/place/moss-apothecary?claim=1');
+  await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Claim This Place' })).toHaveCount(0);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+for (const start of ['/', '/map?category=shops']) {
+  test(`existing location permission from ${start} skips the prompt and marks the map`, async ({ page, context }, testInfo) => {
+    await mockSite(page, { role: 'guest' });
+    await context.setGeolocation({ latitude: 39.7, longitude: -104.9 });
+    await context.grantPermissions(['geolocation']);
+    await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
+    await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
+    await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
+    await page.addInitScript(() => {
+      window.locationDialogs = 0;
+      const showModal = HTMLDialogElement.prototype.showModal;
+      HTMLDialogElement.prototype.showModal = function () { window.locationDialogs++; return showModal.call(this); };
+    });
+    await page.goto(start);
+    await expect(page.getByRole('button', { name: 'Places Near Me' })).toHaveAttribute('aria-pressed', 'false');
+    await page.getByRole('button', { name: 'Places Near Me' }).click();
+    await expect(page).toHaveURL(/view=map&lat=39.700&lng=-104.900/);
+    expect(await page.evaluate(() => window.locationDialogs)).toBe(0);
+    await expect(page.getByRole('img', { name: 'Your approximate location' })).toBeVisible();
+    await expect(page.getByText('You are here', { exact: true })).toBeVisible();
+    const nearbyChip = page.getByRole('button', { name: 'Places Near Me' });
+    await expect(nearbyChip).toHaveAttribute('aria-pressed', 'true');
+    await expect(nearbyChip).toHaveCSS('border-color', 'rgb(44, 84, 47)');
+    await page.getByRole('img', { name: 'Your approximate location' }).screenshot({ path: testInfo.outputPath('user-location-pin.png'), animations: 'disabled' });
+    await nearbyChip.click();
+    await expect(nearbyChip).toHaveAttribute('aria-pressed', 'false');
+    await expect(page).not.toHaveURL(/lat=/);
+    await expect(page.getByRole('img', { name: 'Your approximate location' })).toHaveCount(0);
+    if (start.startsWith('/map')) expect(new URL(page.url()).searchParams.get('category')).toBe('shops');
+    await nearbyChip.click();
+    await expect(nearbyChip).toHaveAttribute('aria-pressed', 'true');
+    await page.getByRole('button', { name: 'All Places', exact: true }).click();
+    await expect(nearbyChip).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.getByRole('button', { name: 'All Places', exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page).not.toHaveURL(/lat=|category=/);
+  });
+}
+
+test('previously allowed location failures stay inline without opening the prompt', async ({ page, context }) => {
+  await mockSite(page, { role: 'guest' });
+  await context.grantPermissions(['geolocation']);
+  await page.addInitScript(() => { navigator.geolocation.getCurrentPosition = (_success, failure) => failure({ code: 3 }); });
+  await page.goto('/map');
+  await page.getByRole('button', { name: 'Places Near Me' }).click();
+  await expect(page.getByRole('alert')).toContainText('couldn’t find your location');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Places Near Me' })).toBeEnabled();
+});
+
+test('homepage grouped pins open the map fitted to all places in the group', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.extraPlaces = [
+    { ...makePlace(), id: 'fern', name: 'Fern Garden', urlSlug: 'fern-garden', latitude: 39.72, longitude: -104.88 },
+    { ...makePlace(), id: 'distant', name: 'Distant Garden', urlSlug: 'distant-garden', latitude: 30.27, longitude: -97.74 },
+  ];
+  await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
+  await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
+  await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Explore 2 places in this area' }).click();
+  await expect(page).toHaveURL(/map\?view=map&bounds=/);
+  expect(new URL(page.url()).searchParams.get('bounds')).toBe('-104.9,39.7,-104.88,39.72');
+  const map = page.getByRole('region', { name: 'Explore places on the map' });
+  await expect.poll(() => map.evaluate(element => Math.round(element.getBoundingClientRect().top))).toBe(20);
+  await expect(map.getByRole('button', { name: 'View Moss Apothecary on Map', exact: true })).toBeVisible();
+  await expect(map.getByRole('button', { name: 'View Fern Garden on Map', exact: true })).toBeVisible();
+  await expect(map.getByRole('button', { name: 'View Distant Garden on Map', exact: true })).toHaveCount(0);
+  await expect(page.locator('#discover-place-preview')).toHaveCount(0);
+});
+
+test('directory pagination limits lists and map results to 15 and resets with filters', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.extraPlaces = Array.from({ length: 30 }, (_, index) => ({ ...makePlace(), id: `place-${index + 2}`, name: `Test Place ${String(index + 2).padStart(2, '0')}`, urlSlug: `test-place-${index + 2}` }));
+  await page.goto('/map?category=shops&q=Herbal');
+  const main = page.getByRole('main');
+  const pagination = page.getByRole('navigation', { name: 'Places pagination' });
+  await expect(main.getByRole('article')).toHaveCount(15);
+  await expect(pagination).toContainText('Showing 1–15 of 31 places');
+  await expect(pagination.getByRole('button', { name: 'Previous Page' })).toBeDisabled();
+  await pagination.getByRole('button', { name: 'Next Page' }).click();
+  await expect(page).toHaveURL(/page=2/);
+  await expect(main.getByRole('article')).toHaveCount(15);
+  await expect(pagination).toContainText('Showing 16–30 of 31 places');
+  await page.getByRole('button', { name: 'Map', exact: true }).click();
+  const results = page.getByRole('complementary', { name: 'Map results' });
+  await expect(results).toBeVisible();
+  const browse = results.getByRole('button', { name: /Browse 31 Places/ });
+  if (await browse.isVisible()) await browse.click();
+  await expect(results.getByRole('button', { name: /^Show .* on Map$/ })).toHaveCount(15);
+  await expect(pagination).toContainText('Page 2 of 3');
+  await pagination.getByRole('button', { name: 'Next Page' }).click();
+  await expect(results.getByRole('button', { name: /^Show .* on Map$/ })).toHaveCount(1);
+  await expect(pagination.getByRole('button', { name: 'Next Page' })).toBeDisabled();
+  await results.screenshot({ path: testInfo.outputPath('map-pagination.png'), animations: 'disabled' });
+  await page.getByRole('button', { name: 'List', exact: true }).click();
+  await expect(main.getByRole('article')).toHaveCount(1);
+  await expect(pagination).toContainText('Page 3 of 3');
+  await page.reload();
+  await expect(main.getByRole('article')).toHaveCount(1);
+  await page.getByRole('searchbox').fill('Test Place 03');
+  await expect(main.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Test Place 03', exact: true })).toBeVisible();
+  await expect(page).not.toHaveURL(/page=/);
+  await expect(pagination).toHaveCount(0);
+});
+
+test('map pins select results beyond the current pagination page', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.extraPlaces = Array.from({ length: 30 }, (_, index) => ({ ...makePlace(), id: `place-${index + 2}`, name: `Test Place ${String(index + 2).padStart(2, '0')}`, urlSlug: `test-place-${index + 2}`, longitude: -104.9 + (index + 1) * .03 }));
+  await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
+  await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
+  await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
+  await page.goto('/map?view=map&bounds=-104.005,39.695,-103.995,39.705');
+  await page.getByRole('button', { name: 'View Test Place 31 on Map', exact: true }).click();
+  await expect(page).toHaveURL(/page=3/);
+  const results = page.getByRole('complementary', { name: 'Map results' });
+  await expect(results).toBeVisible();
+  const browse = results.getByRole('button', { name: /Browse 31 Places/ });
+  if (await browse.isVisible()) await browse.click();
+  await expect(results.getByRole('button', { name: /^Show .* on Map$/ })).toHaveCount(1);
+  await expect(results.getByRole('button', { name: 'Show Test Place 31 on Map', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Search This Area', exact: true }).click();
+  await expect(page).not.toHaveURL(/page=/);
 });

@@ -1,7 +1,7 @@
 {
   "name": "herbplaces",
   "private": true,
-  "homepage": "https://www.littleherbplaces.com",
+  "homepage": "https://littleherbplaces.com",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
@@ -12,7 +12,8 @@
     "test": "node --test src/tests/*.test.js",
     "test:ui": "playwright test",
     "preview": "vite preview",
-    "deploy": "vite build && cp ./dist/index.html ./dist/404.html && gh-pages -d dist --cname littleherbplaces.com"
+    "deploy": "npm run build:pages && gh-pages -d dist --cname littleherbplaces.com",
+    "build:pages": "vite build && node scripts/build-seo.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.14",

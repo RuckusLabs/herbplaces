@@ -11,3 +11,10 @@ export function getWebsiteUrl(website) {
     return ['http:', 'https:'].includes(url.protocol) && url.hostname ? url.href : null;
   } catch { return null; }
 }
+
+export function getOpeningHours(hours) {
+  if (typeof hours !== 'string') return [];
+  // Split existing free-text schedules without breaking day ranges or time ranges.
+  return hours.split(/\r?\n|;|\s*[•|]\s*|,\s*(?=(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?:day|sday|nesday|rsday|urday)?\b)|\.\s+(?=(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b)/i)
+    .map(line => line.trim().replace(/^[•*\-]\s+/, '')).filter(Boolean);
+}

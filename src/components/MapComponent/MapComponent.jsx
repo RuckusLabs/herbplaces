@@ -6,7 +6,10 @@ import styles from './map.module.scss';
 import modalStyles from './modal.module.scss';
 import MapPlacePreview from '../MapPlacePreview/MapPlacePreview';
 import MapPlacePin from '../MapPlacePin/MapPlacePin';
+import pinStyles from '../MapPlacePin/mapPlacePin.module.scss';
 import Icon from '../Icons/Icon';
+import Pagination from '../Pagination/Pagination';
+import { paginatePlaces, PLACES_PER_PAGE } from '../../utilities/pagination';
 import { getMapPlaces, getMapBounds, getPlacesInBounds, createPlaceIndex } from '../../utilities/mapPlaces';
 import { MAPBOX_TOKEN } from '../../utilities/mapConfig';
 
@@ -14,7 +17,7 @@ const accessibleMarker = marker => { if (marker) { marker.getElement().setAttrib
 const duration = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650;
 const readBounds = map => { const bounds = map.getBounds(); return [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]; };
 
-export default function MapComponent({ places }) {
+export default function MapComponent({ places, nearby = null, onClearNearby, selectedPlaceId = null, focusBounds = null, pageValue = null, onPageChange }) {
   const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState(false);
   const [ready, setReady] = useState(false);
@@ -23,15 +26,25 @@ export default function MapComponent({ places }) {
   const [area, setArea] = useState(null);
   const [viewport, setViewport] = useState({ bounds: [-180, -85, 180, 85], zoom: 0 });
   const mapRef = useRef(null);
+  const explorerRef = useRef(null);
   const closePreviewRef = useRef(null);
   const listRefs = useRef(new Map());
+  const resultsListRef = useRef(null);
   const coordinates = useMemo(() => getMapPlaces(places), [places]);
-  const initial = useRef({ bounds: getMapBounds(coordinates) || [[-125, 25], [-66, 49]], fitBoundsOptions: { padding: 65, maxZoom: 12 } });
+  const initial = useRef(nearby ? { longitude: nearby.longitude, latitude: Math.max(-85, Math.min(85, nearby.latitude)), zoom: 8 } : { bounds: focusBounds || getMapBounds(coordinates) || [[-125, 25], [-66, 49]], fitBoundsOptions: { padding: 65, maxZoom: 12 } });
   const visible = useMemo(() => getPlacesInBounds(coordinates, area), [coordinates, area]);
+  const pagination = paginatePlaces(visible, pageValue);
   const index = useMemo(() => createPlaceIndex(visible), [visible]);
   const clusters = useMemo(() => index.getClusters(viewport.bounds, Math.floor(viewport.zoom)), [index, viewport]);
   const selected = coordinates.find(place => String(place.id) === selectedId);
   const byId = useMemo(() => new Map(coordinates.map(place => [String(place.id), place])), [coordinates]);
+
+  useEffect(() => {
+    if (!focusBounds) return;
+    // Scroll after route-level scroll restoration and the map section has mounted.
+    const frame = requestAnimationFrame(() => explorerRef.current?.scrollIntoView({ block: 'start', behavior: duration() ? 'smooth' : 'instant' }));
+    return () => cancelAnimationFrame(frame);
+  }, [focusBounds]);
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 760px)');
@@ -42,6 +55,31 @@ export default function MapComponent({ places }) {
   useEffect(() => {
     if (selectedId && !visible.some(place => String(place.id) === selectedId)) setSelectedId(null);
   }, [visible, selectedId]);
+  useEffect(() => { resultsListRef.current?.scrollTo({ top: 0 }); }, [pagination.page, area]);
+  useEffect(() => {
+    const row = listRefs.current.get(selectedId);
+    if (!mobile && row) resultsListRef.current?.scrollTo({ top: row.offsetTop - 8 });
+  }, [selectedId, pagination.page, mobile]);
+
+  useEffect(() => {
+    if (!ready) return;
+    setArea(null);
+    if (nearby) mapRef.current?.flyTo({ center: [nearby.longitude, Math.max(-85, Math.min(85, nearby.latitude))], zoom: 8, duration: duration() });
+    else {
+      const bounds = focusBounds || getMapBounds(coordinates);
+      if (bounds) mapRef.current?.fitBounds(bounds, { padding: 65, maxZoom: 12, duration: duration() });
+    }
+    // Changing text/category filters preserves the camera; changing location resets it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, nearby?.latitude, nearby?.longitude, focusBounds]);
+
+  useEffect(() => {
+    if (!ready || !selectedPlaceId) return;
+    const place = byId.get(String(selectedPlaceId));
+    if (!place) return;
+    setSelectedId(String(place.id));
+    mapRef.current?.flyTo({ center: [Number(place.longitude), Number(place.latitude)], zoom: 12, offset: mobile ? [0, -100] : [0, 110], duration: duration() });
+  }, [ready, selectedPlaceId, byId, mobile]);
 
   useEffect(() => { if (selectedId && mobile) closePreviewRef.current?.focus({ preventScroll: true }); }, [selectedId, mobile]);
   const closePreview = () => { setSelectedId(null); mapRef.current?.getCanvas().focus({ preventScroll: true }); };
@@ -54,15 +92,15 @@ export default function MapComponent({ places }) {
   const select = place => {
     const id = String(place.id);
     setSelectedId(id);
+    const page = Math.floor(visible.findIndex(item => String(item.id) === id) / PLACES_PER_PAGE) + 1;
+    if (page > 0 && page !== pagination.page) onPageChange(page);
     if (mobile) setBrowseOpen(false);
     mapRef.current?.flyTo({ center: [Number(place.longitude), Number(place.latitude)], zoom: Math.max(12, mapRef.current.getZoom()), offset: mobile ? [0, -100] : [0, 110], duration: duration() });
-    if (!mobile && listRefs.current.get(id)) {
-      const row = listRefs.current.get(id);
-      row.parentElement.scrollTo({ top: row.offsetTop - 8, behavior: duration() ? 'smooth' : 'instant' });
-    }
     if (mobile) mapRef.current?.getContainer().scrollIntoView({ block: 'center', behavior: duration() ? 'smooth' : 'instant' });
   };
   const showAll = () => {
+    onPageChange(1);
+    if (nearby) onClearNearby?.();
     setArea(null);
     setSelectedId(null);
     const bounds = getMapBounds(coordinates);
@@ -70,24 +108,28 @@ export default function MapComponent({ places }) {
   };
   const preview = selected && <MapPlacePreview id="discover-place-preview" place={selected} onClose={closePreview} closeButtonRef={closePreviewRef} showSave />;
 
-  return <section className={styles.explorer} aria-label="Explore places on the map">
+  return <section ref={explorerRef} className={styles.explorer} aria-label="Explore places on the map">
     <div className={styles.mapActions}>
-      <div><button className="button" disabled={!ready || error} onClick={() => setArea(readBounds(mapRef.current))}>Search This Area</button><button className="button" disabled={!ready || error} onClick={showAll}>Show All Places</button></div>
+      <div><button className="button" disabled={!ready || error} onClick={() => { setArea(readBounds(mapRef.current)); onPageChange(1); }}>Search This Area</button><button className="button" disabled={!ready || error} onClick={showAll}>Show All Places</button></div>
     </div>
     <div className={styles.mapLayout}>
       <aside className={`${styles.resultsPanel} ${browseOpen ? styles.browseOpen : ''}`} aria-label="Map results">
         <button className={`button ${styles.browseToggle}`} aria-expanded={browseOpen} onClick={() => setBrowseOpen(open => !open)}>{browseOpen ? 'Hide' : 'Browse'} {visible.length} {visible.length === 1 ? 'Place' : 'Places'} <Icon name="grid" size={16} /></button>
-        <div className={styles.resultList}>
+        <div ref={resultsListRef} className={styles.resultList}>
           {!visible.length && <div className={styles.empty}><Icon name="sprout" size={48} /><h2>A Little Further Afield?</h2><p>Try another area or adjust your filters to find more places.</p></div>}
-          {visible.map(place => <div ref={element => { if (element) listRefs.current.set(String(place.id), element); else listRefs.current.delete(String(place.id)); }} key={place.id} className={`${styles.result} ${selectedId === String(place.id) ? styles.selectedResult : ''}`}>
+          {pagination.items.map(place => <div ref={element => { if (element) listRefs.current.set(String(place.id), element); else listRefs.current.delete(String(place.id)); }} key={place.id} className={`${styles.result} ${selectedId === String(place.id) ? styles.selectedResult : ''}`}>
             <button className={`button ${styles.showOnMap}`} aria-pressed={selectedId === String(place.id)} onClick={() => select(place)}>Show {place.name} on Map <Icon name="pin" size={18} /></button>
             <MapPlacePreview place={place} showSave />
           </div>)}
         </div>
+        <div className={styles.resultsPagination}><Pagination {...pagination} onChange={page => { setSelectedId(null); onPageChange(page); }} /></div>
       </aside>
       <div className={styles.mapPanel}>
         {error ? <div className={styles.error} role="status"><h2>A Little Trouble Finding Our Way.</h2><p>The map couldn’t load. You can still explore every place in the results list.</p><button className="button" onClick={() => { setError(false); setReady(false); }}>Try the Map Again</button></div> : <MapCanvas reuseMaps ref={mapRef} initialViewState={initial.current} mapStyle="mapbox://styles/mapbox/light-v11" mapboxAccessToken={MAPBOX_TOKEN} renderWorldCopies={false} cooperativeGestures onLoad={event => { setReady(true); updateViewport(event); }} onMoveEnd={updateViewport} onResize={updateViewport} onError={event => { if (!event.target?.isStyleLoaded()) setError(true); }} style={{ width: '100%', height: '100%' }}>
           <NavigationControl position="top-right" />
+          {nearby && <Marker longitude={nearby.longitude} latitude={Math.max(-85.051129, Math.min(85.051129, nearby.latitude))} anchor="bottom" offset={[0, 7]} style={{ zIndex: 3 }}>
+            <div className={`${pinStyles.pin} ${pinStyles.active} ${styles.userLocation}`} role="img" aria-label="Your approximate location"><span className={pinStyles.pinIcon}><Icon name="nearby" size={43} /></span><span className={pinStyles.pinLabel}>You are here</span></div>
+          </Marker>}
           {clusters.map(feature => {
             const [longitude, latitude] = feature.geometry.coordinates;
             if (feature.properties.cluster) {
@@ -109,4 +151,4 @@ export default function MapComponent({ places }) {
     <p className={styles.mapHint}>Select a pin or a place to take a closer look. Pins with a number reveal more places as you zoom in.</p>
   </section>;
 }
-MapComponent.propTypes = { places: PropTypes.array.isRequired };
+MapComponent.propTypes = { places: PropTypes.array.isRequired, nearby: PropTypes.shape({ latitude: PropTypes.number.isRequired, longitude: PropTypes.number.isRequired }), onClearNearby: PropTypes.func, selectedPlaceId: PropTypes.string, focusBounds: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)), pageValue: PropTypes.string, onPageChange: PropTypes.func.isRequired };

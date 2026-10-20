@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import usePlaces from '../../hooks/usePlaces';
-import { getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
+import { getOpeningHours, getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
 import { getPlaceCategories } from '../../utilities/placeFilters';
 import { relatedPlaces } from '../../utilities/relatedPlaces';
 import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
@@ -12,6 +12,8 @@ import List from '../../components/List/List';
 import Reveal from '../../components/Reveal/Reveal';
 import PhotoLightbox from '../../components/PhotoLightbox/PhotoLightbox';
 import PlaceManagement from '../../components/PlaceManagement/PlaceManagement';
+import Seo from '../../components/Seo/Seo';
+import { getPlaceSeo } from '../../utilities/seo';
 import styles from './place.module.scss';
 
 export default function Place() {
@@ -55,7 +57,7 @@ export default function Place() {
   };
 
   if (loading) return <main id="main-content" className={styles.page}><div className={styles.loading} role="status"><Icon name="sprout" size={60} /><p>Getting to Know This Little Place…</p></div></main>;
-  if (!place) return <main id="main-content" className={styles.page}><div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
+  if (!place) return <main id="main-content" className={styles.page}>{!error && <Helmet><title>Place Not Found | Little Herb Places</title><meta name="robots" content="noindex,follow" /></Helmet>}<div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
 
   const photoRatio = photoRatios[photos[photoIndex]];
   const galleryHeight = galleryWidth && photoRatio ? galleryWidth / photoRatio : undefined;
@@ -64,9 +66,10 @@ export default function Place() {
   const location = [place.city, place.state].filter(Boolean).join(', ');
   const address = [place.address, location, place.zip].filter(Boolean).join(', ');
   const others = relatedPlaces(place, places);
+  const hours = getOpeningHours(place.hours);
 
   return <main id="main-content" className={styles.page}>
-    <Helmet><title>{place.name} in {location} | Little Herb Places</title><meta name="description" content={place.tagline || `Discover ${place.name} in ${location}.`} /></Helmet>
+    <Seo metadata={getPlaceSeo(place)} />
     <Link to="/map" className={styles.backLink}><Icon name="arrow" size={17} />All Places</Link>
     <header className={styles.heading}>
       <div>
@@ -109,15 +112,15 @@ export default function Place() {
         <div className={styles.visitDetails}>
           {address && <div className={styles.visitRow}>
             <Icon name="pin" size={20} />
-            <p className={styles.address}>{place.address && <>{place.address}<br /></>}{location}{place.zip && ` ${place.zip}`}</p>
+            <div><h3 className={styles.visitLabel}>Address</h3><p className={styles.address}>{place.address && <>{place.address}<br /></>}{location}{place.zip && ` ${place.zip}`}</p></div>
           </div>}
-          {place.hours && <div className={styles.visitRow}>
+          {hours.length > 0 && <div className={styles.visitRow}>
             <Icon name="clock" size={20} />
-            <div><h3 className={styles.visitLabel}>Opening hours</h3><p className={styles.address}>{place.hours}</p></div>
+            <div><h3 className={styles.visitLabel}>Opening hours</h3>{hours.length > 1 ? <ul className={styles.hours}>{hours.map((line, index) => <li key={index}>{line}</li>)}</ul> : <p className={styles.address}>{hours[0]}</p>}</div>
           </div>}
           {place.phone && <div className={styles.visitRow}>
             <Icon name="phone" size={20} />
-            <a className={styles.phone} href={`tel:${place.phone}`}>{place.phone}</a>
+            <div><h3 className={styles.visitLabel}>Phone</h3><a className={styles.phone} href={`tel:${place.phone}`}>{place.phone}</a></div>
           </div>}
         </div>
         <div className={styles.visitActions}>

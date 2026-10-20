@@ -14,8 +14,9 @@ import SparklesIcon from '../../assets/icons/sparkles.svg?react';
 import GardenIcon from '../../assets/icons/garden.svg?react';
 import CraftIcon from '../../assets/icons/craft.svg?react';
 import MapPlaceIcon from '../../assets/icons/map.svg?react';
+import NearbyIcon from '../../assets/icons/nearby.svg?react';
 
-const brandIcons = { shop: PlaceIcon, places: MapPlaceIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
+const brandIcons = { shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
 
 const paths = {
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,

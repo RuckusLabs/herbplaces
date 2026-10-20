@@ -44,7 +44,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
         p_place_id: String(place.id), p_relationship: draft.relationship, p_evidence: claimEvidence(draft),
       });
       clearClaimDraft(place.id);
-      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status in My Places.');
+      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status in My Places on your Saved Places page.');
       await management.refresh();
     } catch (failure) { setError(failure.message || 'We couldn’t send your claim. Please try again.'); }
     finally { setBusy(false); }
@@ -85,7 +85,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
           <div><dt>Ownership details</dt><dd>{draft.evidence}</dd></div>
         </dl>
         <label className={styles.check}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} required disabled={busy} />I own this business or am authorized to manage its listing, and these details are accurate.</label>
-        <div className={styles.notice}><strong>What happens next?</strong><p>{user ? 'Send your claim and our team will review your ownership details. You can check the decision and any notes in My Places.' : 'Sign in or create an account to send your claim. Your details will be kept in this tab so you can finish after signing in.'}</p>{bloomAvailable && <p>After approval, Bloom is $19/month per place. No payment is taken with this request.</p>}</div>
+        <div className={styles.notice}><strong>What happens next?</strong><p>{user ? 'Send your claim and our team will review your ownership details. You can check the decision and any notes in My Places on your Saved Places page.' : 'Sign in or create an account to send your claim. Your details will be kept in this tab so you can finish after signing in.'}</p>{bloomAvailable && <p>After approval, Bloom is $19/month per place. No payment is taken with this request.</p>}</div>
         {user && management.error && <div className={styles.error} role="alert"><p>{management.error}</p><button className="button" type="button" onClick={management.refresh} disabled={management.loading}>Check Again</button></div>}
         {error && <p role="alert" className={styles.error}>{error}</p>}
         <div className={styles.actions}>

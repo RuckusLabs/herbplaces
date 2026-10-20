@@ -4,6 +4,15 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: little-herb-places-pages
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -26,19 +35,34 @@ jobs:
           
       - name: Install Dependencies
         run: npm ci
+
+      - name: Check for listing changes
+        id: directory
+        env:
+          SEO_FORCE_BUILD: ${{ github.event_name != 'schedule' }}
+        run: |
+          if [ "$SEO_FORCE_BUILD" != "true" ]; then
+            git fetch --depth=1 origin gh-pages
+            if git cat-file -e FETCH_HEAD:seo-content-hash.txt 2>/dev/null; then
+              git show FETCH_HEAD:seo-content-hash.txt > "$RUNNER_TEMP/previous-seo-hash"
+            fi
+          fi
+          node scripts/check-seo-changes.mjs --snapshot "$RUNNER_TEMP/seo-places.json" --previous "$RUNNER_TEMP/previous-seo-hash"
         
       - name: Build
+        if: steps.directory.outputs.changed == 'true'
+        env:
+          SEO_PLACES_FILE: ${{ runner.temp }}/seo-places.json
         run: |
           if [ -z "$VITE_MAPBOX_TOKEN" ]; then
             echo "::error::Add the VITE_MAPBOX_TOKEN repository secret before deploying maps."
             exit 1
           fi
-          npm run build
-        
-      - name: Create 404 Page
-        run: cp dist/index.html dist/404.html
+          npx playwright install --with-deps chromium
+          npm run build:pages
         
       - name: Deploy to GitHub Pages
+        if: steps.directory.outputs.changed == 'true'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

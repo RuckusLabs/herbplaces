@@ -28,6 +28,7 @@
 .visitLabel { margin: 0 0 5px; font-family: inherit; font-size: 13px; line-height: 1.5; font-weight: 500; color: rgba(var(--tertiary-color), .75); }
 .address, .phone { margin: 0; font-size: 14px; line-height: 1.75; font-weight: 400; white-space: pre-line; overflow-wrap: anywhere; }
 .phone { color: inherit; text-decoration: none; width: fit-content; &:hover { text-decoration: underline; text-underline-offset: 3px; } }
+.hours { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.75; li + li { margin-top: 5px; } }
 .visitActions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; svg { flex-shrink: 0; } }
 .related { padding-top: 60px; margin-top: 60px; border-top: 1px solid rgba(var(--tertiary-color), .14); }
 .sectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; h2 { font-size: 43px; margin: 0; } > a { flex-shrink: 0; } }
