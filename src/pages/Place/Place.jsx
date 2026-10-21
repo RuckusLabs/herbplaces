@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useAuth } from '../../contexts/AuthContext';
 import usePlaces from '../../hooks/usePlaces';
 import { getOpeningHours, getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
 import { getPlaceCategories } from '../../utilities/placeFilters';
@@ -19,7 +20,16 @@ import styles from './place.module.scss';
 export default function Place() {
   const { slug } = useParams();
   const { places, loading, error, retry } = usePlaces();
-  const place = places.find(item => item.urlSlug === slug);
+  const publishedPlace = places.find(item => item.urlSlug === slug);
+  const { user } = useAuth();
+  const userId = user?.id;
+  const placeId = publishedPlace?.id;
+  const previewTargetId = useId();
+  const [previewState, setPreviewState] = useState(null);
+  const draftPreview = previewState && previewState.owner === userId && previewState.placeId === placeId ? previewState.content : null;
+  const showingPreview = !!draftPreview;
+  const place = draftPreview ? { ...publishedPlace, ...draftPreview } : publishedPlace;
+  const onPreview = useCallback(content => { setPreviewState(content ? { owner: userId, placeId, content } : null); }, [userId, placeId]);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [photoRatios, setPhotoRatios] = useState({});
@@ -37,7 +47,7 @@ export default function Place() {
     requestedPhoto.current = null;
     thumbnails.current?.scrollTo({ left: 0, behavior: 'instant' });
     gallery.current?.scrollTo({ left: 0, behavior: 'instant' });
-  }, [slug, place?.content_version]);
+  }, [slug, place?.content_version, showingPreview]);
 
   useEffect(() => {
     const element = gallery.current;
@@ -83,15 +93,16 @@ export default function Place() {
   const website = getWebsiteUrl(place.website);
   const location = [place.city, place.state].filter(Boolean).join(', ');
   const address = [place.address, location, place.zip].filter(Boolean).join(', ');
-  const others = relatedPlaces(place, places);
+  const others = relatedPlaces(publishedPlace, places);
   const hours = getOpeningHours(place.hours);
 
-  return <main id="main-content" className={styles.page}>
-    <Seo metadata={getPlaceSeo(place)} />
+  return <><div id={previewTargetId} className={styles.previewMount} /><main id="main-content" className={styles.page}>
+    <Seo metadata={getPlaceSeo(publishedPlace)} />
+    {draftPreview && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
     <Link to="/map" className={styles.backLink}><Icon name="arrow" size={17} />All Places</Link>
     <header className={styles.heading}>
       <div>
-        <div className={styles.editAction}><PlaceManagement key={place.id} place={place} placement="top" /></div>
+        <div className={styles.editAction}><PlaceManagement key={place.id} place={publishedPlace} placement="top" onPreview={onPreview} previewTargetId={previewTargetId} previewing={!!draftPreview} /></div>
         <p className={styles.location}><Icon name="pin" size={23} />{location}</p>
         <div className={styles.nameLine}><h1>{place.name}</h1><PlaceBadge place={place} /></div>
         {place.tagline && <p className={styles.tagline}>{place.tagline}</p>}
@@ -162,10 +173,10 @@ export default function Place() {
           {address && <a className="button" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
           {website && <a className="button" href={website} target="_blank" rel="noopener noreferrer"><Icon name="globe" size={20} />Visit Their Website <Icon name="arrow" size={17} /></a>}
           {(place.social_links || []).map((link, index) => getWebsiteUrl(link.url) && <a className="button" href={getWebsiteUrl(link.url)} key={index} target="_blank" rel="noopener noreferrer"><Icon name="link" size={20} />{link.label}<Icon name="arrow" size={17} /></a>)}
-          <PlaceManagement key={place.id} place={place} placement="visit" />
+          <PlaceManagement key={place.id} place={publishedPlace} placement="visit" />
         </div>
       </aside>
     </div>
     {others.length > 0 && <Reveal className={styles.related}><div className={styles.sectionHeading}><h2>Keep Wandering.</h2><Link to="/map" className="button">Explore All Places <Icon name="arrow" size={17} /></Link></div><List places={others} /></Reveal>}
-  </main>;
+  </main></>;
 }

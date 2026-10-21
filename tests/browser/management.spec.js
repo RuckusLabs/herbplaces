@@ -233,9 +233,12 @@ test('owners edit, preview, upload, and publish directly on their place page', a
   await dialog.getByLabel('Add photos').setInputFiles({ name: 'photo.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aB3sAAAAASUVORK5CYII=', 'base64') });
   await expect(dialog.getByRole('radio')).toHaveCount(2);
   await dialog.getByRole('button', { name: 'Preview Changes' }).click();
-  await expect(dialog.getByRole('region', { name: 'Place preview' })).toContainText('Newly gathered, just for you.');
+  await expect(dialog).not.toBeVisible();
+  await expect(page.getByRole('region', { name: 'Unpublished preview', exact: true })).toBeVisible();
+  await expect(page.locator('header p').filter({ hasText: 'Newly gathered, just for you.' })).toBeVisible();
+  expect(state.published).toBeNull();
   await page.screenshot({ path: testInfo.outputPath('place-editor.png'), fullPage: true, animations: 'disabled' });
-  await dialog.getByRole('button', { name: 'Publish Changes' }).click();
+  await page.getByRole('region', { name: 'Unpublished preview', exact: true }).getByRole('button', { name: 'Publish Changes', exact: true }).click();
   await expect(dialog).not.toBeVisible(); await expect(page.getByText('Your changes are saved.', { exact: true })).toBeVisible();
   await expect(page.getByText('Monday–Friday: 10 am–6 pm', { exact: true })).toBeVisible();
   expect(state.published.p_expected_version).toBe(1); expect(state.published.p_content.photos).toHaveLength(2);
@@ -1189,8 +1192,12 @@ test('editor section navigation keeps publishing in reach and fits a narrow scre
   await expect(dialog.getByText('Unpublished changes', { exact: true })).toBeVisible();
   await expect(publish).toBeEnabled();
   await dialog.getByRole('button', { name: 'Preview Changes', exact: true }).click();
-  await expect(dialog.getByRole('region', { name: 'Place preview', exact: true })).toBeFocused();
-  await expect(dialog.getByRole('region', { name: 'Place preview', exact: true })).toContainText('A fresh introduction.');
+  await expect(dialog).not.toBeVisible();
+  const banner = page.getByRole('region', { name: 'Unpublished preview', exact: true });
+  await expect(banner.getByText('Unpublished preview', { exact: true })).toBeFocused();
+  await expect(page.getByText('A fresh introduction.', { exact: true })).toBeVisible();
+  await banner.getByRole('button', { name: 'Back to Editor', exact: true }).click();
+  await expect(dialog.getByLabel('Tagline', { exact: true })).toHaveValue('A fresh introduction.');
   await page.setViewportSize({ width: 320, height: 720 });
   await expect.poll(() => dialog.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
   await expect(publish).toBeInViewport();
@@ -1252,4 +1259,56 @@ test('Bloom blocks an eleventh photo before uploading and shows the ten-photo al
   await dialog.getByLabel('Add photos', { exact: true }).setInputFiles({ name: 'extra.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aB3sAAAAASUVORK5CYII=', 'base64') });
   await expect(dialog.getByRole('alert')).toContainText('Use up to 10 photos');
   await expect(dialog.getByRole('radio')).toHaveCount(10);
+});
+
+
+test('page previews show draft fields privately and preserve editing until discard or publish', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const state = await mockSite(page);
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Place name', { exact: true }).fill('Moss & Fern Studio');
+  await dialog.getByRole('textbox', { name: 'Description', exact: true }).fill('A new story waiting to be published.');
+  await dialog.getByLabel('Street address', { exact: true }).fill('42 Garden Street');
+  await dialog.getByRole('button', { name: 'Preview Changes', exact: true }).click();
+  const banner = page.getByRole('region', { name: 'Unpublished preview', exact: true });
+  await expect(banner).toBeVisible();
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('heading', { level: 1, name: 'Moss & Fern Studio', exact: true })).toBeVisible();
+  await expect(page.getByText('A new story waiting to be published.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('complementary')).toContainText('42 Garden Street');
+  expect(state.place.name).toBe('Moss Apothecary');
+  expect(state.published).toBeNull();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
+  const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').last().textContent());
+  expect(JSON.stringify(schema)).not.toContain('Moss & Fern Studio');
+  await page.screenshot({ path: testInfo.outputPath('page-draft-preview.png'), fullPage: true, animations: 'disabled' });
+  await banner.getByRole('button', { name: 'Back to Editor', exact: true }).click();
+  await expect(banner).toHaveCount(0);
+  await expect(dialog.getByLabel('Place name', { exact: true })).toHaveValue('Moss & Fern Studio');
+  await dialog.getByRole('button', { name: 'Preview Changes', exact: true }).click();
+  page.once('dialog', confirmation => confirmation.accept());
+  await banner.getByRole('button', { name: 'Discard Changes', exact: true }).click();
+  await expect(banner).toHaveCount(0);
+  await expect(page.getByRole('heading', { level: 1, name: 'Moss Apothecary', exact: true })).toBeVisible();
+  await expect(page.getByText('A new story waiting to be published.', { exact: true })).toHaveCount(0);
+  expect(state.published).toBeNull();
+});
+
+test('a conflict while publishing page preview retains the draft for recovery', async ({ page }) => {
+  const state = await mockSite(page, { conflict: true });
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Tagline', { exact: true }).fill('Keep this draft.');
+  await dialog.getByRole('button', { name: 'Preview Changes', exact: true }).click();
+  const banner = page.getByRole('region', { name: 'Unpublished preview', exact: true });
+  await banner.getByRole('button', { name: 'Publish Changes', exact: true }).click();
+  await expect(banner.getByRole('alert')).toBeVisible();
+  await expect(banner.getByRole('button', { name: 'Publish Changes', exact: true })).toBeDisabled();
+  await banner.getByRole('button', { name: 'Back to Editor', exact: true }).click();
+  await expect(dialog.getByLabel('Tagline', { exact: true })).toHaveValue('Keep this draft.');
+  await expect(dialog.getByRole('button', { name: 'Reload Latest Version', exact: true })).toBeVisible();
+  expect(state.published).toBeNull();
 });

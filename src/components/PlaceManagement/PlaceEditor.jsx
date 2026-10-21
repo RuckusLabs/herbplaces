@@ -1,4 +1,5 @@
 import { useEffect, useId, useState } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import Icon from '../Icons/Icon';
 import Modal from '../Modal/Modal';
@@ -16,7 +17,7 @@ const fields = [
   ['address', 'Street address', 500], ['city', 'City', 200], ['state', 'State or region', 200], ['zip', 'ZIP or postal code', 100],
 ];
 
-export default function PlaceEditor({ place = null, initialContent = null, onClose, onPublished, onNotice = () => {} }) {
+export default function PlaceEditor({ place = null, initialContent = null, onClose, onPublished, onNotice = () => {}, onPreview, previewTargetId }) {
   const titleId = useId();
   const { user } = useAuth();
   const userId = user?.id;
@@ -67,13 +68,15 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
   }, [dirty, busy]);
   useEffect(() => {
     if (!preview) return;
-    const target = document.getElementById(`${titleId}-preview`);
+    if (onPreview && !creating) window.scrollTo({ top: 0, behavior: 'instant' });
+    const target = document.getElementById(`${titleId}-${onPreview && !creating ? 'preview-title' : 'preview'}`);
     target?.scrollIntoView({ block: 'start' });
     target?.focus({ preventScroll: true });
-  }, [preview, titleId]);
+  }, [preview, titleId, onPreview, creating]);
+  useEffect(() => () => { onPreview?.(null); }, [onPreview]);
   const close = () => {
     if (busy) return;
-    if (!dirty || window.confirm('Discard your unpublished changes?')) { if (!creating) clearEditorDraft(userId, place.id); onClose(); }
+    if (!dirty || window.confirm('Discard your unpublished changes?')) { onPreview?.(null); if (!creating) clearEditorDraft(userId, place.id); onClose(); }
   };
   const update = (field, value) => { if (creating && field === 'name' && !slugTouched) setSlug(placeSlug(value)); setDraft(previous => ({ ...previous, [field]: value })); setPreview(false); };
   const upload = async event => {
@@ -103,6 +106,7 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
         ? await managementRpc('admin_create_place', { p_content: content, p_slug: slug, p_request_id: requestId })
         : await managementRpc('publish_place', { p_place_id: String(place.id), p_content: content, p_expected_version: source.content_version });
       if (!creating) clearEditorDraft(userId, place.id);
+      onPreview?.(null);
       updatePublishedPlace(published);
       // The write has committed. Directory retries and geocoding must not keep
       // the editor open or make a successful save look like a failed publish.
@@ -130,6 +134,14 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
     [photos[index], photos[index + direction]] = [photos[index + direction], photos[index]];
     update('photos', photos);
   };
+  const previewChanges = () => {
+    if (!onPreview || creating) { setPreview(value => !value); return; }
+    try {
+      const content = preparePlaceContent(draft);
+      setError(''); onPreview({ ...source, ...content }); setPreview(true);
+    } catch (failure) { setError(failure.message); }
+  };
+  const editPreview = () => { onPreview?.(null); setPreview(false); };
   const goToSection = section => {
     const target = document.getElementById(`${titleId}-${section}`);
     target?.scrollIntoView({ block: 'start' });
@@ -139,7 +151,14 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
     const [field, label, maxLength] = fields.find(([name]) => name === key);
     return <label key={field}>{label}<input value={draft[field]} onChange={event => update(field, event.target.value)} maxLength={maxLength} required={field === 'name'} type={field === 'phone' ? 'tel' : 'text'} inputMode={field === 'website' ? 'url' : undefined} /></label>;
   };
-  return <Modal open onClose={close} labelledBy={titleId} closeLabel="Close place editor" className={styles.editorDialog} contentClassName={styles.editorBody}>
+  const pagePreview = preview && !creating && !!onPreview;
+  const previewTarget = pagePreview && document.getElementById(previewTargetId);
+  return <>
+    {previewTarget && createPortal(<section className={styles.pagePreviewBar} aria-label="Unpublished preview">
+      <div className={styles.pagePreviewInner}><div className={styles.pagePreviewLabel}><Icon name="leaf" size={28} /><div><strong id={`${titleId}-preview-title`} tabIndex={-1}>Unpublished preview</strong><p>Only you can see these changes. Publish when you’re ready.</p></div></div><div className={styles.pagePreviewActions}><button type="button" className={styles.editorCancel} disabled={busy} onClick={close}>Discard Changes</button><button type="button" className={styles.editorSecondary} disabled={busy} onClick={editPreview}>Back to Editor</button><button type="button" className="button" disabled={busy || !dirty || conflict} onClick={publish}>{busy ? 'Publishing…' : 'Publish Changes'}</button></div></div>
+      {error && <p role="alert" className={styles.pagePreviewError}>{error}{conflict && ' Go back to the editor to reload the latest version.'}</p>}
+    </section>, previewTarget)}
+    <Modal open={!pagePreview} onClose={close} labelledBy={titleId} closeLabel="Close place editor" className={styles.editorDialog} contentClassName={styles.editorBody}>
     <header className={styles.editorHeader}><p className={styles.editorEyebrow}><Icon name="shop" size={24} /> Listing editor</p><h2 id={titleId} className={styles.editorHeading}>{creating ? 'Add Place' : `Edit ${place.name}`}</h2><p>{creating ? 'Start with the essentials. You can add photos once your listing is created.' : 'Make it yours. Your changes go live when you publish.'}</p></header>
     {loading ? <p className={styles.editorLoading} role="status">Loading the latest version…</p> : draft ? <>
       <nav className={styles.editorNav} aria-label="Editor sections">{[['about', 'About'], ['location', 'Visit details'], ['links', 'Links'], ...(!creating ? [['photos', 'Photos']] : [])].map(([id, label]) => <button key={id} type="button" onClick={() => goToSection(id)}>{label}</button>)}</nav>
@@ -175,12 +194,12 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
               <div className={styles.editorPhotoActions}><div><button type="button" className={styles.editorPhotoMove} aria-label={`Move photo ${index + 1} earlier`} disabled={index === 0} onClick={() => movePhoto(index, -1)}>←</button><button type="button" className={styles.editorPhotoMove} aria-label={`Move photo ${index + 1} later`} disabled={index === draft.photos.length - 1} onClick={() => movePhoto(index, 1)}>→</button></div><button type="button" className={styles.editorRemove} onClick={() => removePhoto(photo)}>Remove</button></div>
             </div>)}</div><p className={styles.editorHint}>Up to 10 photos. Reorder with the arrows. Removed photos disappear when you publish.</p>
           </fieldset>}
-          {preview && <section id={`${titleId}-preview`} tabIndex={-1} className={`${styles.preview} ${styles.editorPreview}`} aria-label="Place preview"><p className={styles.editorEyebrow}>Preview · Unpublished</p><h3>{draft.name}</h3>{draft.coverPhoto && <img src={draft.coverPhoto} alt={draft.photo_alt[draft.coverPhoto] || draft.name} />}<p>{draft.tagline}</p><p>{draft.description}</p><p>{[draft.address, draft.city, draft.state, draft.zip].filter(Boolean).join(', ')}</p>{draft.hours && <p>{draft.hours}</p>}{draft.phone && <p>{draft.phone}</p>}{draft.website && <p>{draft.website}</p>}{draft.social_links.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}</section>}
+          {preview && !pagePreview && <section id={`${titleId}-preview`} tabIndex={-1} className={`${styles.preview} ${styles.editorPreview}`} aria-label="Place preview"><p className={styles.editorEyebrow}>Preview · Unpublished</p><h3>{draft.name}</h3>{draft.coverPhoto && <img src={draft.coverPhoto} alt={draft.photo_alt[draft.coverPhoto] || draft.name} />}<p>{draft.tagline}</p><p>{draft.description}</p><p>{[draft.address, draft.city, draft.state, draft.zip].filter(Boolean).join(', ')}</p>{draft.hours && <p>{draft.hours}</p>}{draft.phone && <p>{draft.phone}</p>}{draft.website && <p>{draft.website}</p>}{draft.social_links.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}</section>}
         </div>
         {error && <div className={styles.editorFeedback}><p role="alert" className={styles.error}>{error}</p>{conflict && <button className={styles.editorSecondary} type="button" disabled={busy} onClick={() => { if (window.confirm('Reload the latest version and discard your unpublished changes?')) { clearEditorDraft(userId, place.id); setAttempt(value => value + 1); } }}>Reload Latest Version</button>}</div>}
-        <footer className={styles.editorFooter}><p className={styles.editorSaveStatus}>{uploadProgress ? 'Uploading photos…' : busy ? creating ? 'Creating your place…' : 'Publishing changes…' : dirty ? 'Unpublished changes' : 'No unpublished changes'}</p><div><button type="button" className={styles.editorCancel} disabled={busy} onClick={close}>Cancel</button><button type="button" className={styles.editorSecondary} disabled={busy} onClick={() => setPreview(value => !value)}>{preview ? 'Hide Preview' : 'Preview Changes'}</button><button className={`button ${styles.editorPublish}`} disabled={busy || !dirty || conflict}>{busy && !uploadProgress ? creating ? 'Creating…' : 'Publishing…' : creating ? 'Create Place & Add Photos' : 'Publish Changes'}</button></div></footer>
+        <footer className={styles.editorFooter}><p className={styles.editorSaveStatus}>{uploadProgress ? 'Uploading photos…' : busy ? creating ? 'Creating your place…' : 'Publishing changes…' : dirty ? 'Unpublished changes' : 'No unpublished changes'}</p><div><button type="button" className={styles.editorCancel} disabled={busy} onClick={close}>Cancel</button><button type="button" className={styles.editorSecondary} disabled={busy} onClick={previewChanges}>{preview ? 'Hide Preview' : 'Preview Changes'}</button><button className={`button ${styles.editorPublish}`} disabled={busy || !dirty || conflict}>{busy && !uploadProgress ? creating ? 'Creating…' : 'Publishing…' : creating ? 'Create Place & Add Photos' : 'Publish Changes'}</button></div></footer>
       </form>
     </> : <div className={styles.editorLoading}><p role="alert" className={styles.error}>{error}</p><button className="button" onClick={() => setAttempt(value => value + 1)}>Try Again</button></div>}
-  </Modal>;
+  </Modal></>;
 }
-PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired, onNotice: PropTypes.func };
+PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired, onNotice: PropTypes.func, onPreview: PropTypes.func, previewTargetId: PropTypes.string };

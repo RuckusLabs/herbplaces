@@ -42,3 +42,5 @@
 
 
 .editAction { &:empty { display: none; } &:has(> :global(.button)) { margin-bottom: 20px; } }
+
+.previewMount { position: sticky; top: 0; z-index: 40; &:empty { display: none; } }

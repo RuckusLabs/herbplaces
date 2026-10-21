@@ -144,3 +144,11 @@
 
 @media(max-width:420px) { .editorBody .photoGrid { grid-template-columns: 1fr; } }
 @media(max-width:420px) { .editorFooter > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .editorFooter .editorCancel { grid-column: 1 / -1; grid-row: 2; justify-self: center; margin: 0; padding: 4px; } .editorFooter .editorSecondary, .editorFooter .editorPublish { width: 100%; min-width: 0; white-space: normal; line-height: 1.4; } }
+
+.pagePreviewBar { border-bottom: 1px solid #aabd85; background: #f0f6df; color: #2c4529; padding: 18px max(5%, calc((100vw - 1160px) / 2)); box-shadow: 0 3px 15px #243b1710; }
+.pagePreviewInner { display: flex; align-items: center; justify-content: space-between; gap: 18px 30px; }
+.pagePreviewLabel { display: flex; align-items: center; gap: 12px; strong { display: block; font-size: 15px; font-weight: 600; outline: none; } p { font-size: 12px; line-height: 1.5; margin: 5px 0 0; } > svg { flex-shrink: 0; } }
+.pagePreviewActions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; .editorSecondary, :global(.button) { font-size: 12px; margin: 0; padding: 11px 15px; border-radius: 7px; } button:disabled { opacity: .5; cursor: not-allowed; } }
+.pagePreviewError { font-size: 13px; color: #873c2c; line-height: 1.6; margin: 14px 0 0; }
+@media(max-width:850px) { .pagePreviewInner { flex-wrap: wrap; } .pagePreviewActions { flex-wrap: wrap; } }
+@media(max-width:540px) { .pagePreviewBar { padding: 14px 5%; } .pagePreviewLabel strong { font-size: 14px; } .pagePreviewActions { width: 100%; gap: 8px; .editorCancel { padding: 8px 0; font-size: 11px; } .editorSecondary, :global(.button) { font-size: 11px; padding: 10px; } } }
