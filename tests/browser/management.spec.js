@@ -1198,3 +1198,58 @@ test('editor section navigation keeps publishing in reach and fits a narrow scre
   await navigation.getByRole('button', { name: 'About', exact: true }).click();
   await page.screenshot({ path: testInfo.outputPath('editor-narrow.png'), fullPage: true, animations: 'disabled' });
 });
+
+test('mixed portrait and landscape photos stay whole, keep a stable stage, and synchronize navigation', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const state = await mockSite(page, { role: 'guest' });
+  state.place.photos = Array.from({ length: 10 }, (_, index) => `/gallery-test/photo-${index}.svg`);
+  state.place.coverPhoto = state.place.photos[0];
+  await page.route('**/gallery-test/*.svg', route => {
+    const index = Number(route.request().url().match(/photo-(\d+)/)[1]);
+    const [width, height] = index % 3 === 0 ? [600, 900] : index % 3 === 1 ? [1200, 700] : [1600, 500];
+    return route.fulfill({ contentType: 'image/svg+xml', body: `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${index % 2 ? '#c6cfa9' : '#78906c'}"/><rect x="8" y="8" width="${width - 16}" height="${height - 16}" fill="none" stroke="#f9faed" stroke-width="8"/><text x="50%" y="50%" text-anchor="middle" fill="#fff" font-size="48">Photo ${index + 1}</text></svg>` });
+  });
+  await page.goto('/place/moss-apothecary');
+  const carousel = page.getByRole('region', { name: 'Photos of Moss Apothecary', exact: true });
+  const stage = carousel.getByLabel('Photo gallery. Use the left and right arrow keys to browse.', { exact: true });
+  await expect(carousel.getByRole('button', { name: 'View Photo 1', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => carousel.locator('img').first().evaluate(image => image.naturalHeight)).toBe(900);
+  const height = (await stage.boundingBox()).height;
+  const first = carousel.getByRole('button', { name: 'Open Photo 1 of 10 in Full View', exact: true });
+  await expect.poll(async () => (await first.boundingBox()).width / (await first.boundingBox()).height).toBeCloseTo(600 / 900, 1);
+  await carousel.getByRole('button', { name: 'Next Photo', exact: true }).click();
+  await expect(carousel.getByRole('button', { name: 'View Photo 2', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  expect(Math.abs((await stage.boundingBox()).height - height)).toBeLessThan(1);
+  await expect.poll(() => stage.evaluate(element => { const slide = element.querySelector('[data-photo-index="1"]'); return Math.abs(slide.offsetLeft + slide.clientWidth / 2 - element.scrollLeft - element.clientWidth / 2); })).toBeLessThan(3);
+  await expect(carousel.locator('img').nth(1)).toHaveCSS('object-fit', 'contain');
+  await carousel.getByRole('button', { name: 'View Photo 10', exact: true }).click();
+  await expect(carousel.getByRole('button', { name: 'View Photo 10', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(carousel.getByRole('button', { name: 'View Photo 10', exact: true })).toBeInViewport();
+  await stage.press('ArrowLeft');
+  await expect(carousel.getByRole('button', { name: 'View Photo 9', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await carousel.getByRole('button', { name: 'View Full Image', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Photo 9 of 10');
+  await page.getByRole('button', { name: 'Next Full-Size Photo', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Photo 10 of 10');
+  await page.getByRole('button', { name: 'Close Photo Viewer', exact: true }).click();
+  await carousel.getByRole('button', { name: 'Open Photo 1 of 10 in Full View', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('Photo 1 of 10');
+  await page.getByRole('button', { name: 'Close Photo Viewer', exact: true }).click();
+  await expect(carousel.getByRole('button', { name: 'View Photo 1', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await carousel.screenshot({ path: testInfo.outputPath('mixed-gallery.png'), animations: 'disabled' });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test('Bloom blocks an eleventh photo before uploading and shows the ten-photo allowance', async ({ page }) => {
+  const state = await mockSite(page);
+  state.place.photos = Array.from({ length: 10 }, (_, i) => `/photo-${i}.jpg`);
+  state.place.coverPhoto = state.place.photos[0];
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('navigation', { name: 'Editor sections' }).getByRole('button', { name: 'Photos', exact: true }).click();
+  await expect(dialog.getByRole('group', { name: /^Photos/ })).toContainText('10 / 10');
+  await dialog.getByLabel('Add photos', { exact: true }).setInputFiles({ name: 'extra.png', mimeType: 'image/png', buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aB3sAAAAASUVORK5CYII=', 'base64') });
+  await expect(dialog.getByRole('alert')).toContainText('Use up to 10 photos');
+  await expect(dialog.getByRole('radio')).toHaveCount(10);
+});

@@ -1,5 +1,5 @@
 export const GRACE_MS = 7 * 24 * 60 * 60 * 1000;
-export const PHOTO_LIMIT = 20;
+export const PHOTO_LIMIT = 10;
 export const PHOTO_BYTES = 10 * 1024 * 1024;
 export const PHOTO_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 export const CATEGORY_IDS = ['shops', 'herbalists', 'gardens', 'workshops'];

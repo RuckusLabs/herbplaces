@@ -1,3 +1,4 @@
+import { PHOTO_LIMIT } from '../../supabase/functions/_shared/entitlements.js';
 import { getWebsiteUrl } from './placeDetails.js';
 import { getPlaceCategories } from './placeFilters.js';
 
@@ -28,6 +29,7 @@ export function preparePlaceContent(draft) {
     return { label: link.label.trim(), url };
   });
   content.photos = [...new Set(draft.photos)];
+  if (content.photos.length > PHOTO_LIMIT) throw new Error(`Use up to ${PHOTO_LIMIT} photos. Remove a photo before publishing.`);
   content.coverPhoto = content.photos.includes(draft.coverPhoto) ? draft.coverPhoto : content.photos[0] || '';
   content.photo_alt = Object.fromEntries(content.photos.map(photo => [photo, String(draft.photo_alt[photo] || '').trim().slice(0, 500)]));
   return content;

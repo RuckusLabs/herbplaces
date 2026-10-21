@@ -129,7 +129,7 @@
 .editorBody .editorForm .editorEmpty { font-size: 12px; color: #6b7665; padding: 16px; background: #f6f8f1; border-radius: 7px; }
 .editorBody .editorForm .editorUpload { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 26px 18px; border: 1px dashed #aebf9f; border-radius: 10px; background: #f9fbf2; cursor: pointer; strong { font-size: 13px; } span { font-size: 11px; font-weight: 400; color: #627058; text-align: center; } input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; } &:focus-within { outline: 2px solid #63804d; outline-offset: 2px; } }
 .editorPhotoCount { margin-left: 8px; font-size: 12px; font-weight: 400; color: #687461; }
-.editorBody .editorPhoto { padding: 12px; border-radius: 10px; background: #fff; gap: 12px; img { height: 150px; object-fit: cover; border-radius: 6px; } .check { font-size: 11px; } }
+.editorBody .editorPhoto { padding: 12px; border-radius: 10px; background: #fff; gap: 12px; img { height: 150px; object-fit: contain; border-radius: 6px; } .check { font-size: 11px; } }
 .editorPhotoImage { position: relative; > span { position: absolute; bottom: 9px; left: 8px; padding: 4px 8px; font-size: 10px; border-radius: 5px; background: #fff; } }
 .editorPhotoActions { display: flex; justify-content: space-between; align-items: center; gap: 8px; > div { display: flex; gap: 6px; } }
 .editorPhotoMove { border: 1px solid #d8e0d0; border-radius: 5px; background: #fff; color: inherit; cursor: pointer; &:disabled { opacity: .35; cursor: not-allowed; } }

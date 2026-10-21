@@ -23,44 +23,62 @@ export default function Place() {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [photoRatios, setPhotoRatios] = useState({});
-  const [galleryWidth, setGalleryWidth] = useState(0);
+  const [gallerySize, setGallerySize] = useState({ width: 0, height: 0 });
   const gallery = useRef(null);
   const activePhoto = useRef(0);
+  const thumbnails = useRef(null);
+  const requestedPhoto = useRef(null);
   const photos = getPlacePhotos(place);
 
   useEffect(() => {
     setPhotoIndex(0);
     setLightboxIndex(null);
     activePhoto.current = 0;
+    requestedPhoto.current = null;
+    thumbnails.current?.scrollTo({ left: 0, behavior: 'instant' });
     gallery.current?.scrollTo({ left: 0, behavior: 'instant' });
   }, [slug, place?.content_version]);
 
   useEffect(() => {
     const element = gallery.current;
     if (!element || !('ResizeObserver' in window)) return;
-    let previousWidth = 0;
     const observer = new ResizeObserver(() => {
       const width = element.clientWidth;
-      if (width === previousWidth) return;
-      previousWidth = width;
-      setGalleryWidth(width);
-      element.scrollTo({ left: width * activePhoto.current, behavior: 'instant' });
+      const height = element.clientHeight;
+      setGallerySize(previous => previous.width === width && previous.height === height ? previous : { width, height });
     });
     observer.observe(element);
     return () => observer.disconnect();
   }, [place?.id]);
 
+  useEffect(() => {
+    const element = gallery.current;
+    const slide = element?.querySelector(`[data-photo-index="${activePhoto.current}"]`);
+    if (slide) element.scrollTo({ left: slide.offsetLeft - (element.clientWidth - slide.clientWidth) / 2, behavior: 'instant' });
+  }, [gallerySize, photoRatios]);
+
+  useEffect(() => {
+    const rail = thumbnails.current;
+    const thumb = rail?.children[photoIndex];
+    if (thumb) rail.scrollTo({ left: thumb.offsetLeft - (rail.clientWidth - thumb.clientWidth) / 2, behavior: 'instant' });
+  }, [photoIndex]);
+
   const showPhoto = index => {
     const next = (index + photos.length) % photos.length;
+    const element = gallery.current;
+    const slide = element?.querySelector(`[data-photo-index="${next}"]`);
+    if (!slide) return;
+    requestedPhoto.current = next;
+    activePhoto.current = next;
+    setPhotoIndex(next);
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
-    gallery.current?.scrollTo({ left: gallery.current.clientWidth * next, behavior });
+    element.scrollTo({ left: slide.offsetLeft - (element.clientWidth - slide.clientWidth) / 2, behavior });
   };
+  const photoWidth = photo => gallerySize.width ? Math.min(gallerySize.width, Math.max(140, gallerySize.height * (photoRatios[photo] || 4 / 3))) : undefined;
 
   if (loading) return <main id="main-content" className={styles.page}><div className={styles.loading} role="status"><Icon name="sprout" size={60} /><p>Getting to Know This Little Place…</p></div></main>;
   if (!place) return <main id="main-content" className={styles.page}>{!error && <Helmet><title>Place Not Found | Little Herb Places</title><meta name="robots" content="noindex,follow" /></Helmet>}<div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
 
-  const photoRatio = photoRatios[photos[photoIndex]];
-  const galleryHeight = galleryWidth && photoRatio ? galleryWidth / photoRatio : undefined;
   const tags = getPlaceCategories(place);
   const website = getWebsiteUrl(place.website);
   const location = [place.city, place.state].filter(Boolean).join(', ');
@@ -89,19 +107,36 @@ export default function Place() {
     </header>
     <section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
-        <div ref={gallery} className={styles.photoGallery} style={{ height: galleryHeight || 'min(480px, 60svh)' }} tabIndex={0} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => { const next = Math.max(0, Math.min(photos.length - 1, Math.round(event.currentTarget.scrollLeft / event.currentTarget.clientWidth))); activePhoto.current = next; setPhotoIndex(next); }}>
-          {photos.map((photo, index) => <button type="button" key={`${place.id}-${photo}`} className={styles.gallerySlide} aria-label={`Open Photo ${index + 1} of ${photos.length} in Full View`} onClick={() => setLightboxIndex(index)}><img src={photo} width="1200" height="700" alt={place.photo_alt?.[photo] || `${place.name} — photo ${index + 1} of ${photos.length}`} className={styles.galleryPhoto} onLoad={event => {
+        <div ref={gallery} className={styles.photoGallery} style={{ paddingLeft: gallerySize.width ? (gallerySize.width - photoWidth(photos[0])) / 2 : 0, paddingRight: gallerySize.width ? (gallerySize.width - photoWidth(photos.at(-1))) / 2 : 0 }} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
+          const element = event.currentTarget;
+          const center = element.scrollLeft + element.clientWidth / 2;
+          let next = 0; let distance = Infinity;
+          for (const [index, slide] of [...element.children].entries()) {
+            const delta = Math.abs(slide.offsetLeft + slide.clientWidth / 2 - center);
+            if (delta < distance) { distance = delta; next = index; }
+          }
+          if (requestedPhoto.current !== null) {
+            const target = element.children[requestedPhoto.current];
+            if (!target || Math.abs(target.offsetLeft + target.clientWidth / 2 - center) > 2) return;
+            requestedPhoto.current = null;
+          }
+          activePhoto.current = next; setPhotoIndex(next);
+        }}>
+          {photos.map((photo, index) => <button type="button" key={`${place.id}-${photo}`} data-photo-index={index} style={{ width: photoWidth(photo) || '100%' }} className={styles.gallerySlide} aria-label={`Open Photo ${index + 1} of ${photos.length} in Full View`} onClick={() => { showPhoto(index); setLightboxIndex(index); }}><img src={photo} width="1200" height="700" alt={place.photo_alt?.[photo] || `${place.name} — photo ${index + 1} of ${photos.length}`} className={styles.galleryPhoto} onLoad={event => {
             const { naturalWidth, naturalHeight } = event.currentTarget;
             if (!naturalWidth || !naturalHeight) return;
             const ratio = naturalWidth / naturalHeight;
             setPhotoRatios(previous => previous[photo] === ratio ? previous : { ...previous, [photo]: ratio });
           }} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" onError={event => { if (!event.currentTarget.src.endsWith('/assets/pages/home/hero.jpg')) event.currentTarget.src = '/assets/pages/home/hero.jpg'; }} /></button>)}
         </div>
-        {photos.length > 1 && <><button className={`button ${styles.galleryNav} ${styles.previous}`} aria-label="Previous Photo" onClick={() => showPhoto(photoIndex - 1)}><Icon name="arrow" size={19} /></button><button className={`button ${styles.galleryNav} ${styles.next}`} aria-label="Next Photo" onClick={() => showPhoto(photoIndex + 1)}><Icon name="arrow" size={19} /></button></>}
-        <button className={`button ${styles.openPhoto}`} onClick={() => setLightboxIndex(photoIndex)}><Icon name="expand" size={17} />View Full Image</button>
-        <span className={styles.counter} aria-live="polite">{photoIndex + 1} / {photos.length}</span>
       </div>
-      {photos.length > 1 && <div className={styles.thumbnails} aria-label="Choose a photo">{photos.map((photo, index) => <button key={photo} aria-label={`View Photo ${index + 1}`} aria-pressed={photoIndex === index} className={styles.thumbnail} onClick={() => showPhoto(index)}><img src={photo} width="90" height="65" alt="" loading="lazy" decoding="async" /></button>)}</div>}
+      <div className={styles.galleryTools}><button className={`button ${styles.openPhoto}`} onClick={() => setLightboxIndex(photoIndex)}><Icon name="expand" size={17} />View Full Image</button><div className={styles.galleryPaging}>
+        {photos.length > 1 && <button className={`button ${styles.galleryNav} ${styles.previous}`} aria-label="Previous Photo" onClick={() => showPhoto(photoIndex - 1)}><Icon name="arrow" size={19} /></button>}
+        <span className={styles.counter} aria-live="polite">{photoIndex + 1} / {photos.length}</span>
+        {photos.length > 1 && <button className={`button ${styles.galleryNav} ${styles.next}`} aria-label="Next Photo" onClick={() => showPhoto(photoIndex + 1)}><Icon name="arrow" size={19} /></button>}
+      </div></div>
+      {photos.length > 1 && <div ref={thumbnails} className={styles.thumbnails} aria-label="Choose a photo">{photos.map((photo, index) => <button key={photo} aria-label={`View Photo ${index + 1}`} aria-pressed={photoIndex === index} className={styles.thumbnail} onClick={() => showPhoto(index)}><img src={photo} width="90" height="65" alt="" loading="lazy" decoding="async" /></button>)}</div>}
+
     </section>
     <PhotoLightbox photos={photos} index={lightboxIndex} name={place.name} onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); showPhoto(index); }} />
     <div className={styles.details}>

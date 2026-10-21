@@ -19,6 +19,7 @@ const createMigration = await readFile(new URL('../../supabase/migrations/202610
 const launchMigration = await readFile(new URL('../../supabase/migrations/202610210001_customer_launch.sql', import.meta.url), 'utf8');
 const renewalMigration = await readFile(new URL('../../supabase/migrations/202610210002_renewal_processing.sql', import.meta.url), 'utf8');
 const requestAddressMigration = await readFile(new URL('../../supabase/migrations/202610210003_listing_request_address.sql', import.meta.url), 'utf8');
+const photoLimitMigration = await readFile(new URL('../../supabase/migrations/202610210004_bloom_photo_limit.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -47,6 +48,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(launchMigration);
   await database.exec(renewalMigration);
   await database.exec(requestAddressMigration);
+  await database.exec(photoLimitMigration);
 }
 
 before(async () => {
@@ -148,7 +150,7 @@ test('invalid links, foreign photos, excessive galleries, and malformed content 
   const invalid = [draft({ website: 'javascript:alert(1)' }), draft({ name: '' }), draft({ social_links: [{ label: 'Bad', url: 'data:text/html,test' }] }),
     draft({ social_links: [{ label: { nested: 'Cannot render as text' }, url: 'https://example.com' }] }), draft({ photo_alt: { photo: { invalid: true } } }),
     draft({ photos: ['https://other.example/foreign.jpg'], coverPhoto: 'https://other.example/foreign.jpg' }),
-    draft({ photos: Array(21).fill('https://images.example/old.jpg') }), draft({ category_ids: ['invalid'] }), draft({ photo_alt: [] })];
+    draft({ photos: Array(11).fill('https://images.example/old.jpg') }), draft({ category_ids: ['invalid'] }), draft({ photo_alt: [] })];
   for (const content of invalid) await assert.rejects(asRole('authenticated', ids.owner, () => publish(content)));
 });
 
@@ -710,5 +712,19 @@ test('an approved request address reaches the place and geocoding stores its map
     await db.exec('reset role; set local role authenticated');
     const location = (await db.query('select latitude,longitude,geocode_status from public.public_places where id = $1', [created.id])).rows[0];
     assert.equal(location.geocode_status, 'confirmed'); assert.equal(location.latitude, 40.01); assert.equal(location.longitude, -105.27);
+  });
+});
+
+
+test('Bloom accepts ten gallery photos and rejects eleven at the database boundary', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    const ten = Array.from({ length: 10 }, (_, i) => `https://images.example/limit-${i}.jpg`);
+    // Registered uploads belong to this place; a request cannot bypass gallery validation.
+    await db.exec('reset role');
+    for (const [index, url] of ten.entries()) await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)', [`limit-${index}`, ids.place, url, ids.owner]);
+    await db.exec('set local role authenticated');
+    const published = await publish(draft({ photos: ten, coverPhoto: ten[0] }));
+    assert.equal(published.photos.length, 10);
+    await assert.rejects(publish(draft({ photos: [...ten, ten[0]], coverPhoto: ten[0] }), 2), /up to 10 photos/);
   });
 });

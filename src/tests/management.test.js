@@ -105,3 +105,11 @@ test('renewal processing cannot unlock an unpaid first subscription or extend a 
   assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:grace,cancel_at_period_end:true},now),false);
   assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:paid},now),false);
 });
+
+
+test('Bloom content preparation accepts ten photos and explains an eleventh', () => {
+  const draft = createPlaceDraft({ name: 'Moss', photos: Array.from({ length: 10 }, (_, i) => `https://example.com/${i}.jpg`) });
+  assert.equal(preparePlaceContent(draft).photos.length, 10);
+  draft.photos.push('https://example.com/eleven.jpg');
+  assert.throws(() => preparePlaceContent(draft), /up to 10 photos/);
+});

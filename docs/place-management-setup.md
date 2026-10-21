@@ -247,3 +247,10 @@ At the owner’s request, Makki Home (place 22) was created as a clearly labeled
 The temporary `bloom-owner-checkout` function uses the existing Checkout implementation, but requires the specific requester, place 22, localhost port 5181, and a test-mode Stripe key. It supports only checkout. Public server `BLOOM_ENABLED` and frontend `VITE_BLOOM_ENABLED` remain false. Local `.env.local` enables only `VITE_BLOOM_SANDBOX_CHECKOUT=true`; that override and endpoint routing apply only to Vite development, never production builds. All other actions use the regular authenticated management endpoint. Browser tests explicitly disable the local sandbox override.
 
 The private deployment source and setup receipt are in ignored `supabase/.temp/owner-checkout/`. The temporary endpoint must be removed when owner testing ends, after canceling any sandbox subscription. The test listing should also be removed or replaced with reviewed business content before public launch. The owner’s previously saved session was rejected by Auth because its server-side session no longer existed. After the owner signed in again, the actual browser opened Little Herb Places sandbox Checkout for Bloom at $19/month. No payment details were entered and no subscription was submitted; the open Checkout is left for the owner to test.
+
+
+### Bloom photo allowance (2026-10-21)
+
+Bloom now permits at most 10 photos per published gallery. Migration `202610210004_bloom_photo_limit.sql` is applied and enforces the limit on content writes; client content preparation and upload selection enforce the same allowance. Existing galleries were checked before applying it: none exceeded ten, so no image removal or content rewrite was necessary. Sales-page copy, SEO output, and help text use the same limit. Photo file formats and the 10 MB per-image size limit are unchanged.
+
+Place galleries use a stable-height horizontal rail with natural-width portrait and landscape slides, full-image thumbnails, centered navigation, and a synchronized full-size viewer. Keyboard navigation, touch scrolling, resizing, and reduced motion remain supported.

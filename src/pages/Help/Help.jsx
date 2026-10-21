@@ -10,7 +10,7 @@ const questions = [
   ['How do I recover my account?', <>Use <Link to="/auth/forgot-password">Reset Your Password</Link> or <Link to="/auth/resend-confirmation">Send a Confirmation Email</Link>. Check spam and use the newest email. Confirmation does not submit an unfinished ownership claim.</>],
   ['Can more than one person manage a place?', <>Yes. A place’s subscription covers all approved managers. Only the designated billing contact can open payment details. Contact us to add or change managers or transfer billing responsibility.</>],
   ['What does verified mean?', <>Our team has approved a management relationship or reviewed the listing editorially. Verification is independent of subscription payment. It does not certify medical claims, products, or services. Contact us if ownership or listing details are incorrect.</>],
-  ['What photos can I upload?', <>Bloom supports up to 20 photos per place. Use JPEG, PNG, or WebP files up to 10 MB each, and upload only images you have permission to publish. Add descriptions for accessibility. Preview your changes, then publish.</>],
+  ['What photos can I upload?', <>Bloom supports up to 10 photos per place. Use JPEG, PNG, or WebP files up to 10 MB each, and upload only images you have permission to publish. Add descriptions for accessibility. Preview your changes, then publish.</>],
 ];
 
 export default function Help() {
