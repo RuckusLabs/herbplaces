@@ -41,8 +41,8 @@ test('owner sales pages explain the request-to-claim handoff and work on every s
   await page.goto('/the-little-garden/thrive/');
   await expect(page.getByRole('heading', { name: 'More of your craft. More to discover.', exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://littleherbplaces.com/the-little-garden/thrive/');
-  await expect(page.getByRole('link', { name: 'Ask About the Thrive Pilot', exact: true }).first()).toHaveAttribute('href', /^mailto:/);
+  await expect(page.getByRole('link', { name: 'Ask About Thrive', exact: true }).first()).toHaveAttribute('href', /^mailto:/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.getByText('Can I subscribe to Thrive today?', { exact: true }).click();
-  await expect(page.getByText('Thrive is a planned pilot, not an available subscription.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Thrive is coming soon and is not yet available for purchase.', { exact: false })).toBeVisible();
 });

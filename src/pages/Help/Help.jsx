@@ -26,6 +26,6 @@ export default function Help() {
       <p>Already paid but editing is still locked? Choose Refresh Billing Status in My Places. Please don’t purchase another subscription. If it remains locked, contact us with the listing name and payment date.</p>
       <p>For billing corrections or refund requests, email us with the listing name and invoice reference. Don’t send card details or passwords. See <Link to="/membership-terms">membership terms</Link> and our <Link to="/privacy">privacy information</Link>.</p>
     </section>
-    <section id="thrive" className={styles.card}><h2>What’s happening with Thrive?</h2><p>Thrive is a planned pilot and is not available for purchase. Product and service showcases and promotion options are being developed. We’ll confirm exactly what’s included before accepting payment. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20pilot%20inquiry">Ask us about the pilot</a>.</p></section>
+    <section id="thrive" className={styles.card}><h2>What’s happening with Thrive?</h2><p>Thrive is coming soon at $49/month per place and is not yet available for purchase. Product and service showcases and promotion options are being developed. We’ll confirm exactly what’s included before accepting payment. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20inquiry">Ask us about Thrive</a>.</p></section>
   </main>;
 }

@@ -82,7 +82,7 @@ test('business plan pages are discoverable with full sales content before JavaSc
     assert.match(html, /Claim your listing/);
     assert.match(html, /Listing approval does not automatically approve you as a manager|Adding a listing and approving its managers are separate steps/);
     assert.match(html, /Membership Terms/);
-    assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /proposed pilot price/);
+    assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /Thrive is \$49 USD per month per place/);
     assert.match(html, plan === 'bloom' ? /\$19/ : /\$49/);
   }
 });

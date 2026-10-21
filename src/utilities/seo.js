@@ -10,7 +10,7 @@ export const publicRoutes = [
   { path: '/', title: 'Little Herb Places — Find your connection to nature', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },
   { path: '/map', title: 'Explore Places | Little Herb Places', heading: 'Explore Little Herb Places', description: 'Find independent herb shops, herbalists, gardens, and plant-loving communities. Explore the directory and discover a little place near you.' },
   { path: '/about', title: 'Our Story | Little Herb Places', heading: 'Small Places, Big Heart.', description: 'Meet Little Herb Places: a guide to independent herb shops, herbalists, gardens, and the people who connect us through a love of plants.' },
-  { path: '/the-little-garden', title: 'The Little Garden | Little Herb Places', heading: 'The Little Garden.', description: 'Manage your business listing on Little Herb Places. Learn how free ownership claims, Bloom subscriptions, and the upcoming Thrive pilot work.' },
+  { path: '/the-little-garden', title: 'The Little Garden | Little Herb Places', heading: 'The Little Garden.', description: 'Manage your business listing on Little Herb Places. Learn how free ownership claims, Bloom subscriptions, and the upcoming Thrive plan work.' },
   { path: '/help', title: 'Help & Billing | Little Herb Places', heading: 'A Little Help Along the Way.', description: 'Help with accounts, ownership claims, listing requests, Bloom billing, and cancellation at Little Herb Places.' },
   { path: '/privacy', title: 'Privacy at Little Herb Places', heading: 'Privacy at Little Herb Places', description: 'How Little Herb Places handles account information, ownership details, public listings, and payments.' },
   { path: '/membership-terms', title: 'Membership Terms | Little Herb Places', heading: 'Membership Terms', description: 'Membership, ownership claims, subscription renewal, cancellation, and listing content at Little Herb Places.' },
@@ -27,7 +27,7 @@ export const sitePageCards = [
   { path: '/login', slug: 'sign-in', name: 'Welcome Back.', tagline: 'Your saved places and little discoveries are waiting for you.', button: 'Sign In', photo: '/assets/pages/home/hero.jpg' },
   { path: '/favorites', slug: 'saved-places', name: 'Your Little Discoveries.', tagline: 'Places to come back to, whenever you’re ready.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-2.jpg' },
   { path: '/shop', slug: 'shop', name: 'Good Things Are Growing.', tagline: 'A little more plant-loving goodness is taking root.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-1.jpg' },
-  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, slug: key, name: plan.heading, tagline: plan.description, button: key === 'bloom' ? 'Explore Bloom' : 'Meet the Thrive Pilot', photo: plan.heroPhoto })),
+  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, slug: key, name: plan.heading, tagline: plan.description, button: key === 'bloom' ? 'Explore Bloom' : 'Explore Thrive', photo: plan.heroPhoto })),
 ];
 const cardHash = input => {
   let hash = 2166136261;

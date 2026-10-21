@@ -34,7 +34,7 @@ export default function StartBusiness() {
     <Helmet><title>Get Started with {thrive ? 'Thrive' : 'Bloom'} | Little Herb Places</title></Helmet>
     <Link className={styles.back} to={adding ? `/the-little-garden/start?plan=${plan}` : `/the-little-garden/${plan}`}>← {adding ? 'Find an Existing Place' : `Back to ${thrive ? 'Thrive' : 'Bloom'}`}</Link>
     {!adding && <header className={styles.header}><Icon name={thrive ? 'thrive' : 'sun'} size={48} /><h1>{selected ? 'Your place.' : 'Find your place.'}</h1><p>{selected ? 'A little closer to making it yours.' : 'Search for your business, or add it if it’s missing.'}</p></header>}
-    {thrive && <p className={styles.pilotNote}>Thrive is a planned pilot. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20pilot%20inquiry">Ask about Thrive</a></p>}
+    {thrive && <p className={styles.availabilityNote}>Thrive is coming soon. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20inquiry">Ask about Thrive</a></p>}
     {adding ? <RequestPlace embedded /> : <>
 
       {selected ? <section className={styles.panel} aria-labelledby="selected-title"><h2 id="selected-title">{selected.name}</h2><p>{[selected.city, selected.state].filter(Boolean).join(', ')}</p>

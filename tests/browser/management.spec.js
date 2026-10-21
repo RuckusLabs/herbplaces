@@ -800,7 +800,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden');
   await expect(page.getByText('Claiming is free and ownership approval comes before payment.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Meet the Thrive Pilot', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Explore Thrive', exact: true })).toBeVisible();
   await expect(page.getByText('Verified Place Badge', { exact: true })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('business-plans.png'), fullPage: true });
   await page.goto('/the-little-garden/sprout');
@@ -884,12 +884,12 @@ test('guided start routes pending claims and claimed places to their next step',
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
-test('Thrive starts with a place while keeping pilot availability clear', async ({ page }) => {
+test('Thrive starts with a place while keeping upcoming availability clear', async ({ page }) => {
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/thrive');
   await page.getByRole('link', { name: 'Start with Your Place', exact: true }).first().click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=thrive$/);
-  await expect(page.getByText('Thrive is a planned pilot.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Thrive is coming soon.', { exact: false })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Ask about Thrive', exact: true })).toHaveAttribute('href', /^mailto:/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
