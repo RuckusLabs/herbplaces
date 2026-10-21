@@ -8,7 +8,7 @@ const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'mos
   is_claimed: false, phone: '', hours: '', social_links: [], category_ids: ['shops'], photo_alt: {}, content_version: 1, geocode_status: 'confirmed' });
 
 async function mockSite(page, { role = 'owner', expired = false, conflict = false, confirmed = true } = {}) {
-  const state = { place: makePlace(), claims: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
+  const state = { place: makePlace(), claims: [], listingRequests: [], authRequests: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
     { user_id: 'user-1', email: 'admin@example.com', is_admin: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [] },
     { user_id: 'manager-1', email: 'owner@example.com', confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: false, pending: false }] },
     { user_id: 'billing-1', email: 'billing@example.com', billing_protected: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: true, pending: false }] },
@@ -20,15 +20,34 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   if (role !== 'guest') await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), session);
   const subscription = { status: expired ? 'canceled' : 'active', paid_until: new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
   const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired, place: state.place, subscription }] : [], claims: state.claims });
-  await page.route('**/auth/v1/**', route => route.fulfill({ json: route.request().url().includes('/token') ? session : user }));
+  await page.route('**/auth/v1/**', route => {
+    const request = route.request();
+    state.authRequests.push({ url: request.url(), method: request.method(), body: request.method() === 'POST' || request.method() === 'PUT' ? request.postDataJSON() : null });
+    if (state.authError) return route.fulfill({ status: 429, json: { msg: state.authError } });
+    return route.fulfill({ json: request.url().includes('/token') ? session : request.url().includes('/recover') || request.url().includes('/resend') ? {} : user });
+  });
   await page.route('**/rest/v1/**', async route => {
     const request = route.request();
     const path = new URL(request.url()).pathname;
+    if (!path.includes('/rpc/') && state.published && state.refreshError && !path.endsWith('/favorites')) return route.fulfill({ status: 503, json: { message: 'Directory unavailable' } });
     if (!path.includes('/rpc/')) return route.fulfill({ json: path.endsWith('/favorites') ? (state.favorites || []) : [state.place, ...(state.extraPlaces || [])] });
     const name = path.split('/').at(-1);
     const body = request.postDataJSON() || {};
     if (name === 'activate_place_invitations') return route.fulfill({ json: null });
-    if (name === 'get_management_context') return route.fulfill({ json: context() });
+    if (name === 'get_management_context') return state.managementError ? route.fulfill({ status: 503, json: { message: state.managementError } }) : route.fulfill({ json: context() });
+    if (name === 'get_listing_requests') return route.fulfill({ json: state.listingRequests });
+    if (name === 'request_place_listing') {
+      state.listingAttempts ||= []; state.listingAttempts.push(body);
+      if (state.listingError) return route.fulfill({ status: 400, json: { message: state.listingError } });
+      state.listingRequests.push({ id: body.p_request_id, name: body.p_name, city: body.p_city, website: body.p_website, region: body.p_region, notes: body.p_notes, status: 'pending', created_at: new Date().toISOString() });
+      return route.fulfill({ json: body.p_request_id });
+    }
+    if (name === 'admin_listing_requests') return route.fulfill({ json: { items: state.listingRequests.filter(item => item.status === 'pending'), total: state.listingRequests.filter(item => item.status === 'pending').length } });
+    if (name === 'admin_review_listing_request') {
+      state.reviewedListing = body;
+      state.listingRequests = state.listingRequests.map(item => item.id === body.p_request_id ? { ...item, status: body.p_slug ? 'listed' : 'declined', place_slug: body.p_slug, review_note: body.p_note } : item);
+      return route.fulfill({ json: null });
+    }
     if (name === 'admin_create_place') {
       state.creationAttempts ||= []; state.creationAttempts.push(body);
       if (state.creationError) return route.fulfill({ status: 400, json: { message: state.creationError } });
@@ -467,13 +486,17 @@ test('saved places includes management for owners and preserves old billing retu
   await expect(page).toHaveURL(/favorites\?billing=returned&place=place-1#my-places/);
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'My Places', exact: true }).getByRole('link', { name: 'View & Edit Place' })).toBeVisible();
-  await expect(page.getByText('Billing status refreshed. Payment confirmation can take a moment.')).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Bloom is active for Moss Apothecary.' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Moss Apothecary', exact: true })).toBeVisible();
-  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  const menu = page.getByRole('button', { name: 'Open menu' });
+  const mobileMenu = await menu.isVisible();
+  if (mobileMenu) await menu.click();
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
+  if (mobileMenu) await page.getByRole('button', { name: 'Close menu' }).click();
   await page.screenshot({ path: testInfo.outputPath('saved-and-managed-places.png'), fullPage: true, animations: 'disabled' });
 });
 
-test('saved places shows pending claims but hides management for other visitors', async ({ page }) => {
+test('saved places shows pending claims and a clear starting point for unassigned accounts', async ({ page }) => {
   const state = await mockSite(page, { role: 'claimant' });
   state.claims.push({ id: 'claim-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending' });
   await page.goto('/favorites');
@@ -481,7 +504,7 @@ test('saved places shows pending claims but hides management for other visitors'
   state.claims = [];
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toContainText('Manage a business?');
 });
 
 test('guests cannot open a claim modal for an already claimed place', async ({ page }) => {
@@ -615,4 +638,151 @@ test('map pins select results beyond the current pagination page', async ({ page
   await expect(results.getByRole('button', { name: 'Show Test Place 31 on Map', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Search This Area', exact: true }).click();
   await expect(page).not.toHaveURL(/page=/);
+});
+
+test('account recovery sends safe return links and preserves errors for retry', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/auth/forgot-password');
+  await page.getByLabel('Email', { exact: true }).fill('owner@example.com');
+  state.authError = 'Please wait before requesting another email.';
+  await page.getByRole('button', { name: 'Send Reset Link' }).click();
+  await expect(page.getByRole('alert')).toContainText('Please wait');
+  await expect(page.getByLabel('Email', { exact: true })).toHaveValue('owner@example.com');
+  state.authError = '';
+  await page.getByRole('button', { name: 'Send Reset Link' }).click();
+  await expect(page.getByRole('status')).toContainText('If an account exists');
+  expect(state.authRequests.find(request => request.url.includes('/recover')).url).toContain(encodeURIComponent('/auth/reset-password'));
+  await page.goto('/auth/resend-confirmation?next=%2Fplace%2Fmoss-apothecary%3Fclaim%3D1');
+  await page.getByLabel('Email', { exact: true }).fill('owner@example.com');
+  await page.getByRole('button', { name: 'Send Confirmation Email' }).click();
+  await expect(page.getByRole('status')).toContainText('If this address is waiting');
+  const resend = state.authRequests.find(request => request.url.includes('/resend'));
+  expect(new URL(resend.url).searchParams.get('redirect_to')).toContain('next=%2Fplace%2Fmoss-apothecary%3Fclaim%3D1');
+});
+
+test('password updates require a session and matching new passwords', async ({ page }) => {
+  const state = await mockSite(page);
+  await page.goto('/auth/reset-password');
+  await page.getByLabel('New password', { exact: true }).fill('new-password-123');
+  await page.getByLabel('Confirm new password').fill('different-password');
+  await page.getByRole('button', { name: 'Save New Password' }).click();
+  await expect(page.getByRole('alert')).toContainText('don’t match');
+  expect(state.authRequests.filter(request => request.method === 'PUT')).toHaveLength(0);
+  await page.getByLabel('Confirm new password').fill('new-password-123');
+  await page.getByRole('button', { name: 'Save New Password' }).click();
+  await expect(page.getByRole('status')).toContainText('password has been updated');
+  expect(state.authRequests.find(request => request.method === 'PUT').body.password).toBe('new-password-123');
+});
+
+test('expired password recovery links offer a fresh request', async ({ page }) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/auth/reset-password');
+  await expect(page.getByRole('alert')).toContainText('Open the link');
+  await expect(page.getByRole('link', { name: 'Request a New Link' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Save New Password' })).toHaveCount(0);
+});
+
+test('rejected claims and access failures remain visible with recovery actions', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  state.claims.push({ id: 'rejected-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'rejected', review_note: 'Please use your business email.' });
+  await page.goto('/favorites');
+  const section = page.getByRole('region', { name: 'My Places', exact: true });
+  await expect(section).toContainText('Please use your business email.');
+  await expect(section.getByRole('link', { name: 'return to the listing to submit updated details' })).toBeVisible();
+  state.managementError = 'Unable to load place access.';
+  await section.getByRole('button', { name: 'Refresh Access' }).click();
+  await expect(section.getByRole('alert')).toContainText('Unable to load');
+  await expect(section).toContainText('Please use your business email.');
+  state.managementError = '';
+  await section.getByRole('button', { name: 'Refresh Access' }).click();
+  await expect(section.getByRole('alert')).toHaveCount(0);
+});
+
+test('claim details survive an email confirmation in another browser tab', async ({ page, context }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Claim This Place' }).click();
+  const dialog = await fillClaim(page);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Sign In to Send Claim' }).click();
+  expect(state.claims).toHaveLength(0);
+  const second = await context.newPage();
+  await mockSite(second, { role: 'claimant' });
+  await second.goto('/auth/callback?next=%2Fplace%2Fmoss-apothecary%3Fclaim%3D1');
+  await expect(second).toHaveURL(/moss-apothecary\?claim=1/);
+  await expect(second.getByRole('dialog').getByLabel('Your full name')).toHaveValue('Jamie Green');
+  await second.close();
+});
+
+test('listing requests survive a failed submission and show their saved status', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  await page.goto('/request-place');
+  await page.getByLabel('Place name', { exact: true }).fill('New Herb Shop');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByLabel('Website (optional)').fill('https://example.com');
+  state.listingError = 'Please try again shortly.';
+  await page.getByRole('button', { name: 'Send Listing Request' }).click();
+  await expect(page.getByRole('alert')).toContainText('try again');
+  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('New Herb Shop');
+  state.listingError = '';
+  await page.getByRole('button', { name: 'Send Listing Request' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'listing request is saved' })).toBeVisible();
+  await expect(page.getByRole('list').filter({ hasText: 'New Herb Shop' })).toContainText('pending');
+  expect(state.listingAttempts[0].p_request_id).toBe(state.listingAttempts[1].p_request_id);
+  await page.screenshot({ path: testInfo.outputPath('listing-request.png'), fullPage: true });
+});
+
+test('admins can link a requested listing without approving ownership', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin' });
+  state.listingRequests.push({ id: 'request-1', name: 'Moss Apothecary', city: 'Denver', region: 'CO', email: 'owner@example.com', notes: 'Please add our shop.', status: 'pending', created_at: new Date().toISOString() });
+  await page.goto('/admin');
+  await page.getByRole('button', { name: 'Listing Requests', exact: true }).click();
+  await page.getByLabel('Existing listing URL slug').fill('moss-apothecary');
+  await page.getByLabel('Review note (visible to requester)').fill('Your listing is ready. Please submit your ownership claim.');
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: 'Link Listing & Notify' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Listing request reviewed' })).toBeVisible();
+  expect(state.reviewedListing.p_slug).toBe('moss-apothecary');
+  expect(state.reviewed).toBeUndefined();
+});
+
+test('unpublished editor drafts recover after reload without overwriting newer content', async ({ page }) => {
+  const state = await mockSite(page);
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  await page.getByLabel('Tagline', { exact: true }).fill('Recovered tagline');
+  await page.reload();
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  await expect(page.getByRole('dialog')).toContainText('draft was recovered');
+  await expect(page.getByLabel('Tagline', { exact: true })).toHaveValue('Recovered tagline');
+  state.place.content_version = 2;
+  await page.reload();
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('published listing has changed');
+  await expect(page.getByRole('button', { name: 'Publish Changes' })).toBeDisabled();
+});
+
+test('published edits remain successful when directory refresh fails', async ({ page }) => {
+  const state = await mockSite(page);
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  await page.getByLabel('Tagline', { exact: true }).fill('Saved despite refresh failure');
+  state.refreshError = true;
+  await page.getByRole('button', { name: 'Publish Changes' }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('status').filter({ hasText: 'Your changes are saved.' })).toBeVisible();
+  expect(state.published.p_content.tagline).toBe('Saved despite refresh failure');
+});
+
+test('business plans explain purchase timing and keep newsletter signup distinct', async ({ page }, testInfo) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden');
+  await expect(page.getByText('Claiming is free and ownership approval comes before payment.', { exact: false })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Ask About Thrive', exact: true })).toBeVisible();
+  await expect(page.getByText('Verified Place Badge', { exact: true })).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('business-plans.png'), fullPage: true });
+  await page.goto('/the-little-garden/sprout');
+  await expect(page.getByText('This newsletter signup does not create a website account', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Subscribe to Updates' })).toBeVisible();
 });

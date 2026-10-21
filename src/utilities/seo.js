@@ -8,10 +8,12 @@ export const publicRoutes = [
   { path: '/', title: 'Little Herb Places — Find your connection to nature', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },
   { path: '/map', title: 'Explore Places | Little Herb Places', heading: 'Explore Little Herb Places', description: 'Find independent herb shops, herbalists, gardens, and plant-loving communities. Explore the directory and discover a little place near you.' },
   { path: '/about', title: 'Our Story | Little Herb Places', heading: 'Small Places, Big Heart.', description: 'Meet Little Herb Places: a guide to independent herb shops, herbalists, gardens, and the people who connect us through a love of plants.' },
-  { path: '/the-little-garden', title: 'The Little Garden | Little Herb Places', heading: 'The Little Garden.', description: 'A place for herbalists, growers, and makers to share their craft and connect with a community rooted in plants. Come grow with The Little Garden.' },
-  { path: '/help', title: 'Little Herb Places | Help', heading: 'How can we help you?', description: 'Get in touch with Little Herb Places for help with the directory, your account, or your place listing.' },
+  { path: '/the-little-garden', title: 'The Little Garden | Little Herb Places', heading: 'The Little Garden.', description: 'Manage your business listing on Little Herb Places. Learn how free ownership claims, Bloom subscriptions, and the upcoming Thrive pilot work.' },
+  { path: '/help', title: 'Help & Billing | Little Herb Places', heading: 'A Little Help Along the Way.', description: 'Help with accounts, ownership claims, listing requests, Bloom billing, and cancellation at Little Herb Places.' },
+  { path: '/privacy', title: 'Privacy at Little Herb Places', heading: 'Privacy at Little Herb Places', description: 'How Little Herb Places handles account information, ownership details, public listings, and payments.' },
+  { path: '/membership-terms', title: 'Membership Terms | Little Herb Places', heading: 'Membership Terms', description: 'Membership, ownership claims, subscription renewal, cancellation, and listing content at Little Herb Places.' },
 ];
-export const privateRoutes = ['/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/the-little-garden/sprout', '/shop'];
+export const privateRoutes = ['/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/auth/forgot-password', '/auth/reset-password', '/auth/resend-confirmation', '/request-place', '/the-little-garden/sprout', '/shop'];
 export const sitePageCards = [
   { path: '/', slug: 'home', name: 'Find Your Little Herb Place.', tagline: 'Herb shops, herbalists, gardens, and good company.', button: 'Explore Places', photo: '/assets/pages/home/hero.jpg' },
   { path: '/map', slug: 'explore', name: 'Somewhere Good Is Growing.', tagline: 'Find independent herb shops, plant people, and spaces to put down roots.', button: 'Explore The Map', photo: '/assets/pages/home/herb-image-2.jpg' },

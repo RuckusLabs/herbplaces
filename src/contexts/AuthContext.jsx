@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import supabase from '/src/utilities/supabase';
 import PropTypes from 'prop-types';
+import { getSafeReturnPath } from '../utilities/authNavigation';
 
 const AuthContext = createContext({});
 
@@ -53,12 +54,12 @@ export function AuthProvider({ children }) {
     user,
     loading: loading || creatingAccount,
     signIn: options => supabase ? supabase.auth.signInWithPassword(options) : Promise.resolve({ error: new Error('Sign in is temporarily unavailable.') }),
-    signUp: async ({ email, password }) => {
+    signUp: async ({ email, password, next }) => {
       if (!supabase) return { error: new Error('Registration is temporarily unavailable.') };
       // Wait for profile setup before favorites begin merging into a new account.
       setCreatingAccount(true);
       try {
-        const result = await supabase.auth.signUp({ email, password, options: { data: { email }, emailRedirectTo: `${window.location.origin}/auth/callback` } });
+        const result = await supabase.auth.signUp({ email, password, options: { data: { email }, emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` } });
         if (!result.error && result.data.user && result.data.session) {
           const { error } = await supabase.from('profiles').upsert({ id: result.data.user.id, email: result.data.user.email || email, created_at: new Date().toISOString() }, { onConflict: 'id', ignoreDuplicates: true });
           if (error) console.warn('Profile creation could not be confirmed:', error.message);
@@ -66,6 +67,9 @@ export function AuthProvider({ children }) {
         return result;
       } finally { setCreatingAccount(false); }
     },
+    requestPasswordReset: (email, next) => supabase ? supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/reset-password?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` }) : Promise.resolve({ error: new Error('Account recovery is temporarily unavailable.') }),
+    updatePassword: password => supabase ? supabase.auth.updateUser({ password }) : Promise.resolve({ error: new Error('Account recovery is temporarily unavailable.') }),
+    resendConfirmation: (email, next) => supabase ? supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` } }) : Promise.resolve({ error: new Error('Email confirmation is temporarily unavailable.') }),
     signOut: () => supabase?.auth.signOut(),
     checkEmail: async (email) => {
       try {

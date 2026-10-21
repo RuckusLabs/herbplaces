@@ -16,6 +16,7 @@ const adminMigration = await readFile(new URL('../../supabase/migrations/2026101
 const notificationSetup = await readFile(new URL('../../supabase/setup-claim-notifications.sql', import.meta.url), 'utf8');
 const notificationMigration = await readFile(new URL('../../supabase/migrations/202610190005_claim_notifications.sql', import.meta.url), 'utf8');
 const createMigration = await readFile(new URL('../../supabase/migrations/202610190004_admin_create_place.sql', import.meta.url), 'utf8');
+const launchMigration = await readFile(new URL('../../supabase/migrations/202610210001_customer_launch.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -41,6 +42,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(adminMigration);
   if (includeCreation) await database.exec(createMigration);
   await database.exec(notificationMigration);
+  await database.exec(launchMigration);
 }
 
 before(async () => {
@@ -544,5 +546,104 @@ test('notification setup schedules immediate delivery and preserves claims when 
     await db.query("select set_config('test.dispatch_failure', 'true', true)");
     await db.query('insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,$3,$4)', [ids.otherPlace, ids.teammate, 'Owner', 'A second claim survives an unavailable dispatcher.']);
     assert.equal((await db.query('select count(*) from public.place_claim_notifications')).rows[0].count, 2);
+  } finally { await db.exec('rollback'); }
+});
+
+test('ownership verification survives payment expiry without changing editing entitlement', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    await db.exec('reset role');
+    await db.query("update public.place_subscriptions set status='canceled',paid_until=now()-interval '1 day' where place_id=$1", [ids.place]);
+    await db.exec('set local role authenticated');
+    const place = (await db.query('select "isVerified",is_claimed from public.public_places where id=$1', [ids.place])).rows[0];
+    assert.equal(place.isVerified, true); assert.equal(place.is_claimed, true);
+    await assert.rejects(publish(), /active Bloom subscription/);
+  });
+});
+
+test('listing requests require confirmation, remain private, and safely reuse retries and duplicates', async () => {
+  const requestId = '20000000-0000-0000-0000-000000000001';
+  const args = ['New Herb Shop','https://example.com','Boulder','CO','Please add our shop.',requestId];
+  await assert.rejects(asRole('anon', null, () => rpc('request_place_listing', args)), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.unconfirmed, () => rpc('request_place_listing', args)), /Confirm your email/);
+  await asRole('authenticated', ids.outsider, async () => {
+    assert.equal(await rpc('request_place_listing', args), requestId);
+    assert.equal(await rpc('request_place_listing', args), requestId);
+    assert.equal(await rpc('request_place_listing', [...args.slice(0,5),'20000000-0000-0000-0000-000000000002']), requestId);
+    assert.equal((await rpc('get_listing_requests')).length, 1);
+    await assert.rejects(db.query('select * from public.place_listing_requests'), /permission denied/);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', args);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.teammate]);
+    assert.deepEqual(await rpc('get_listing_requests'), []);
+    await assert.rejects(rpc('request_place_listing', args), /reference is unavailable/);
+  });
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('request_place_listing', ['Bad Website','javascript:alert(1)','Denver','','',requestId])), /valid website/);
+});
+
+test('listing review links existing places without granting management and queues account decisions', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    const requestId = await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await assert.rejects(rpc('admin_listing_requests'), /Administrator/);
+    // A PostgreSQL error aborts this transaction; test the admin path separately.
+    assert.ok(requestId);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    const requestId = await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const queue = await rpc('admin_listing_requests'); assert.equal(queue.total, 1);
+    await rpc('admin_review_listing_request', [requestId,'other-garden','The listing is ready. Please claim it if you manage it.']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.outsider]);
+    const own = await rpc('get_listing_requests'); assert.equal(own[0].status, 'listed'); assert.equal(own[0].place_slug, 'other-garden');
+    assert.equal((await rpc('get_management_context')).memberships.length, 0);
+    await db.exec('reset role; set local role service_role');
+    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 3);
+    assert.deepEqual(new Set(jobs.map(job => job.kind)), new Set(['listing_received','listing_admin','listing_reviewed']));
+  });
+});
+
+test('claim receipts and decisions are private and customer jobs cannot be completed by an expired lease', async () => {
+  for (const role of ['anon','authenticated']) {
+    await assert.rejects(asRole(role, ids.outsider, () => rpc('take_customer_notifications')), /permission denied/);
+    await assert.rejects(asRole(role, ids.outsider, () => db.query('select * from public.place_customer_notifications')), /permission denied/);
+  }
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    const context = await rpc('get_management_context');
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    await rpc('admin_review_claim', [context.claims[0].id,false,'Please provide a business email.']);
+    await db.exec('reset role; set local role service_role');
+    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 2);
+    assert.deepEqual(new Set(jobs.map(job => job.kind)),new Set(['claim_received','claim_rejected']));
+    assert.ok(jobs.every(job => !('evidence' in job.payload)));
+    await rpc('finish_customer_notification',[jobs[0].id,jobs[0].lease_token,'email-1']);
+    assert.deepEqual(await rpc('take_customer_notifications'),[]);
+    await assert.rejects(rpc('finish_customer_notification',[jobs[0].id,jobs[0].lease_token,'email-2']),/no longer valid/);
+  });
+});
+
+test('billing schedule reads Vault secrets, is repeatable, and cannot be invoked by browser roles', async () => {
+  const setup = await readFile(new URL('../../supabase/setup-billing-reconciliation.sql', import.meta.url), 'utf8');
+  await db.exec('begin');
+  try {
+    await db.exec(`create schema vault; create schema net; create schema cron;
+      create table vault.decrypted_secrets(name text primary key,decrypted_secret text);
+      insert into vault.decrypted_secrets values ('billing_reconcile_url','https://test.supabase.co/functions/v1/billing-reconcile'),
+        ('billing_reconcile_secret','a-private-billing-secret-longer-than-thirty-two-characters');
+      create table net.requests(url text,headers jsonb,body jsonb);
+      create function net.http_post(url text,headers jsonb,body jsonb,timeout_milliseconds integer) returns bigint language plpgsql as $$
+        begin insert into net.requests values(url,headers,body); return 1; end $$;
+      create table cron.jobs(name text primary key,schedule text,command text);
+      create function cron.schedule(name text,schedule text,command text) returns bigint language plpgsql as $$
+        begin insert into cron.jobs values(name,schedule,command) on conflict on constraint jobs_pkey do update set schedule=excluded.schedule,command=excluded.command; return 1; end $$;`);
+    const script = setup.replace('\nbegin;', '').replace(/\ncommit;\s*$/, '');
+    await db.exec(script); await db.exec(script);
+    assert.equal((await db.query('select * from cron.jobs')).rows.length, 1);
+    assert.equal((await db.query('select schedule from cron.jobs')).rows[0].schedule, '7 * * * *');
+    await db.exec('select place_management_private.invoke_billing_reconciliation()');
+    const sent = (await db.query('select * from net.requests')).rows[0];
+    assert.match(sent.url, /billing-reconcile$/); assert.deepEqual(sent.body, {});
+    await db.exec('set local role authenticated');
+    await assert.rejects(db.exec('select place_management_private.invoke_billing_reconciliation()'), /permission denied/);
   } finally { await db.exec('rollback'); }
 });

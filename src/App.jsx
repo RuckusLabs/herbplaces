@@ -20,7 +20,10 @@ const SproutSignup = lazy(() => import('./pages/TheLittleGarden/SproutSignup'));
 const AuthCallback = lazy(() => import('./pages/Auth/AuthCallback'));
 const Login = lazy(() => import('./pages/Auth/Login'));
 const Register = lazy(() => import('./pages/Auth/Register'));
+const AccountRecovery = lazy(() => import('./pages/Auth/AccountRecovery'));
 const Admin = lazy(() => import('./pages/Management/Admin'));
+const RequestPlace = lazy(() => import('./pages/Management/RequestPlace'));
+const Policies = lazy(() => import('./pages/Help/Policies'));
 
 function SavedPlacesRedirect() {
   const { search } = useLocation();
@@ -40,8 +43,14 @@ const routes = [
   { path: '/register', element: <Register /> },
   { path: '/favorites', element: <FavoritesList /> },
   { path: '/auth/callback', element: <AuthCallback /> },
+  { path: '/auth/forgot-password', element: <AccountRecovery mode="forgot" /> },
+  { path: '/auth/reset-password', element: <AccountRecovery mode="reset" /> },
+  { path: '/auth/resend-confirmation', element: <AccountRecovery mode="confirm" /> },
   { path: '/my-places', element: <SavedPlacesRedirect /> },
   { path: '/admin', element: <Admin /> },
+  { path: '/request-place', element: <RequestPlace /> },
+  { path: '/privacy', element: <Policies mode="privacy" /> },
+  { path: '/membership-terms', element: <Policies mode="terms" /> },
 ];
 
 function AppContent() {

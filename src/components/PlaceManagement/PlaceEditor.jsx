@@ -4,17 +4,21 @@ import Modal from '../Modal/Modal';
 import { categories } from '../../utilities/placeFilters';
 import { createPlaceDraft, placeSlug, preparePlaceContent } from '../../utilities/placeContent';
 import { geocodePublishedPlace, managementAction, managementRpc } from '../../utilities/managementApi';
-import { refreshPlaces, updatePublishedPlace } from '../../utilities/placesStore';
+import { getPlacesSnapshot, refreshPlaces, updatePublishedPlace } from '../../utilities/placesStore';
 import { PHOTO_LIMIT, validatePhotoFile } from '../../../supabase/functions/_shared/entitlements.js';
 import styles from './management.module.scss';
+import { useAuth } from '../../contexts/AuthContext';
+import { clearEditorDraft, readEditorDraft, saveEditorDraft } from '../../utilities/placeEditorDraft';
 
 const fields = [
   ['name', 'Place name', 200], ['tagline', 'Tagline', 2000], ['website', 'Website', 2000], ['phone', 'Phone', 100],
   ['address', 'Street address', 500], ['city', 'City', 200], ['state', 'State or region', 200], ['zip', 'ZIP or postal code', 100],
 ];
 
-export default function PlaceEditor({ place = null, onClose, onPublished }) {
+export default function PlaceEditor({ place = null, initialContent = null, onClose, onPublished }) {
   const titleId = useId();
+  const { user } = useAuth();
+  const userId = user?.id;
   const creating = !place;
   const [requestId] = useState(() => crypto.randomUUID());
   const [slug, setSlug] = useState('');
@@ -29,22 +33,31 @@ export default function PlaceEditor({ place = null, onClose, onPublished }) {
   const [preview, setPreview] = useState(false);
   const [conflict, setConflict] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const [restored, setRestored] = useState(false);
   const dirty = (draft && JSON.stringify(draft) !== initial) || (creating && slug !== '');
   useEffect(() => {
     let active = true;
     setLoading(true);
     if (creating) {
-      const next = createPlaceDraft({ category_ids: [], photos: [] });
+      const next = createPlaceDraft({ category_ids: [], photos: [], ...initialContent });
+      if (initialContent?.name) setSlug(placeSlug(initialContent.name));
       setDraft(next); setInitial(JSON.stringify(next)); setLoading(false);
       return () => { active = false; };
     }
     managementRpc('get_editable_place', { p_place_id: String(place.id) }).then(fresh => {
       if (!active) return;
       const next = createPlaceDraft(fresh);
-      setSource(fresh); setDraft(next); setInitial(JSON.stringify(next)); setConflict(false); setError('');
+      const saved = attempt === 0 ? readEditorDraft(userId, place.id) : null;
+      const recovered = saved ? createPlaceDraft(saved.draft) : next;
+      const changed = saved && saved.version !== Number(fresh.content_version);
+      setSource(saved ? { ...fresh, content_version: saved.version } : fresh); setDraft(recovered); setInitial(JSON.stringify(next)); setConflict(!!changed); setRestored(!!saved);
+      setError(changed ? 'Your draft was recovered, but the published listing has changed. Copy any details you want to keep before reloading the latest version.' : '');
     }).catch(failure => { if (active) setError(failure.message); }).finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
-  }, [place?.id, creating, attempt]);
+  }, [place?.id, creating, attempt, initialContent, userId]);
+  useEffect(() => {
+    if (!creating && dirty && source && !loading) saveEditorDraft(userId, place.id, draft, source.content_version);
+  }, [creating, dirty, source, loading, userId, place?.id, draft]);
   useEffect(() => {
     if (!dirty && !busy) return;
     const warn = event => { event.preventDefault(); event.returnValue = ''; };
@@ -53,7 +66,7 @@ export default function PlaceEditor({ place = null, onClose, onPublished }) {
   }, [dirty, busy]);
   const close = () => {
     if (busy) return;
-    if (!dirty || window.confirm('Discard your unpublished changes?')) onClose();
+    if (!dirty || window.confirm('Discard your unpublished changes?')) { if (!creating) clearEditorDraft(userId, place.id); onClose(); }
   };
   const update = (field, value) => { if (creating && field === 'name' && !slugTouched) setSlug(placeSlug(value)); setDraft(previous => ({ ...previous, [field]: value })); setPreview(false); };
   const upload = async event => {
@@ -82,10 +95,14 @@ export default function PlaceEditor({ place = null, onClose, onPublished }) {
       const published = creating
         ? await managementRpc('admin_create_place', { p_content: content, p_slug: slug, p_request_id: requestId })
         : await managementRpc('publish_place', { p_place_id: String(place.id), p_content: content, p_expected_version: source.content_version });
+      if (!creating) clearEditorDraft(userId, place.id);
       updatePublishedPlace(published);
       const notice = await geocodePublishedPlace(published);
-      await refreshPlaces();
-      onPublished(notice || (creating ? 'Place created. Add photos or continue editing below.' : 'Your changes are live.'), published);
+      // Publishing has committed; a refresh failure must not imply it failed.
+      let refreshNotice = '';
+      try { await refreshPlaces(); } catch { refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.'; }
+      if (getPlacesSnapshot().error) refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.';
+      onPublished(refreshNotice || notice || (creating ? 'Place created. Add photos or continue editing below.' : 'Your changes are live.'), published);
       onClose();
     } catch (failure) {
       setError(failure.message || 'Unable to publish. Your changes are still here.');
@@ -105,6 +122,7 @@ export default function PlaceEditor({ place = null, onClose, onPublished }) {
   return <Modal open onClose={close} labelledBy={titleId} closeLabel="Close place editor" className={styles.editorDialog} contentClassName={styles.editorBody}>
     <h2 id={titleId} className={styles.editorHeading}>{creating ? 'Add Place' : `Edit ${place.name}`}</h2>
     <p className={styles.small}>{creating ? 'Create a new listing, then add photos on the next screen. The place will be live when you create it.' : 'Preview your changes, then publish them directly to your place.'}</p>
+    {restored && <p role="status" className={styles.notice}>Your unpublished draft was recovered from this tab. It has not been published.</p>}
     {loading ? <p role="status">Loading the latest version…</p> : draft ? <form className={styles.form} onSubmit={publish}>
       {creating && <fieldset disabled={busy}><legend>Public URL</legend><label>URL slug<input value={slug} onChange={event => { setSlugTouched(true); setSlug(event.target.value); }} required pattern="[a-z0-9]+(-[a-z0-9]+)*" maxLength={200} placeholder="the-little-herb-shop" /></label><p className={styles.small}>littleherbplaces.com/place/{slug || 'your-place'}</p></fieldset>}
       <fieldset disabled={busy}>
@@ -130,9 +148,9 @@ export default function PlaceEditor({ place = null, onClose, onPublished }) {
       {uploadProgress && <div role="status"><p>Uploading photo {uploadProgress.completed + 1} of {uploadProgress.total}…</p><progress value={uploadProgress.completed} max={uploadProgress.total} aria-label="Photos uploaded" /></div>}
       {preview && <section className={styles.preview} aria-label="Place preview"><h3>{draft.name}</h3>{draft.coverPhoto && <img src={draft.coverPhoto} alt={draft.photo_alt[draft.coverPhoto] || draft.name} />}<p>{draft.tagline}</p><p>{draft.description}</p><p>{[draft.address, draft.city, draft.state, draft.zip].filter(Boolean).join(', ')}</p>{draft.hours && <p>{draft.hours}</p>}{draft.phone && <p>{draft.phone}</p>}{draft.website && <p>{draft.website}</p>}{draft.social_links.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}</section>}
       {error && <p role="alert" className={styles.error}>{error}</p>}
-      {conflict && <button className="button" type="button" disabled={busy} onClick={() => { if (window.confirm('Reload the latest version and discard your unpublished changes?')) setAttempt(value => value + 1); }}>Reload Latest Version</button>}
+      {conflict && <button className="button" type="button" disabled={busy} onClick={() => { if (window.confirm('Reload the latest version and discard your unpublished changes?')) { clearEditorDraft(userId, place.id); setAttempt(value => value + 1); } }}>Reload Latest Version</button>}
       <div className={styles.actions}><button type="button" className="button" disabled={busy} onClick={() => setPreview(value => !value)}>{preview ? 'Hide Preview' : 'Preview Changes'}</button><button className="button" disabled={busy || !dirty || conflict}>{busy && !uploadProgress ? creating ? 'Creating…' : 'Publishing…' : creating ? 'Create Place & Add Photos' : 'Publish Changes'}</button><button type="button" className="button" disabled={busy} onClick={close}>Cancel</button></div>
     </form> : <><p role="alert" className={styles.error}>{error}</p><button className="button" onClick={() => setAttempt(value => value + 1)}>Try Again</button></>}
   </Modal>;
 }
-PlaceEditor.propTypes = { place: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired };
+PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired };

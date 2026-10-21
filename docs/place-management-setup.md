@@ -2,6 +2,59 @@
 
 Place management stays in the current React site. Supabase runs trusted operations; Stripe processes Bloom subscriptions. Public listings and favorites retain their IDs. Thrive's external-link product store remains a later release.
 
+## October 21 hosted preparation — ready for review
+
+With the user's instruction to continue, the hosted project `qtpepsebztlremlhpxdt` now has migrations `202610190005` and `202610210001`. Updated `place-management`, `stripe-webhook`, `billing-reconcile`, and `claim-notifications` functions are deployed; `admin-users` was preserved. Purchases remain disabled and no email dispatcher or billing schedule has been activated.
+
+Before applying changes, an ignored local backup captured all 12 public tables, the public view and policies, current migration history, deployed function source, authentication return settings, and all 18 objects in the `place-photos` bucket. Its path is recorded in ignored `supabase/.temp/customer-launch-backup-path`. A local PostgreSQL rehearsal using the backed-up listing column types/data retained all 16 listings, the existing claim, and memberships without queuing messages for historical claims.
+
+The canonical Auth site URL was corrected from a bare hostname to `https://littleherbplaces.com`. Exact callback and password-reset paths plus query-return patterns were added for production and controlled local origins. Other hosted Auth, database, and Storage settings were preserved. The local review origin on port 5181 is also allowed by the management function.
+
+The extended `scripts/verify-beta-backend.mjs` passed real hosted confirmation/recovery link generation and consumption, safe return URLs, password update, used-link rejection, listing requests and retry reuse, private access boundaries, admin review, claim rejection/resubmission/approval, independent ownership verification, durable message queues, upload/delivery, publishing/conflicts/restoration, and access revocation. It generated account links directly through the Auth admin API; it did **not** test mailbox delivery or process a Stripe payment. Temporary accounts, listing, requests/messages, and photo were removed. Post-test checks retained 16 listings and the original one claim, with no subscriptions.
+
+**Remaining launch blockers:** Stripe credentials/Price/webhook configuration are absent. Resend sender credentials and dispatch secrets are absent. Account signup currently auto-confirms email; change that only alongside verified custom account-email delivery, then test actual signup and password-recovery emails. `pg_net`, `pg_cron`, Vault dispatcher secrets, and the two schedules still need activation after the providers are configured. Tax/refund settings, real Stripe test lifecycle, actual email delivery, and the frontend release remain unverified.
+
+Run `node scripts/check-launch-readiness.mjs` for a read-only configuration report; exit 2 means configuration remains incomplete. It reports presence/status without printing private keys, and never certifies that real delivery/payment tests have passed. The hosted smoke test refuses to run if real notification dispatch is active; use an isolated project for those fixtures after activating email.
+
+## October 21 customer launch milestone — local review
+
+The customer-journey frontend is implemented locally and has not been published. The October 21 hosted preparation below has applied its database and function changes. Keep both purchase flags disabled until the full Stripe and email release gate passes.
+
+Validation for this local milestone: 126 unit/database tests and 88 desktop/phone browser checks passed. Lint has no errors and retains two existing Fast Refresh warnings. All five server-function checks passed. The complete Pages export generated 16 listing cards, 10 website cards, static entry pages, and the sitemap. These checks do not verify hosted Stripe or email delivery.
+
+Implemented for review:
+
+- Password reset, matching-password update, and resend-confirmation pages. Account emails include a validated return path, so another device can return to the right listing. Add the new recovery URL to Supabase Auth's redirect allowlist and verify callback URLs with their return query parameters.
+- Claim drafts recover in another tab of the same browser for up to 24 hours. Another device can resume at the correct listing but must re-enter unsent details. Shared browser drafts are cleared after submission; existing per-tab drafts remain a compatibility fallback.
+- My Places is visible to signed-in accounts even while access is loading, when a request is rejected, or when access lookup fails. Previously loaded access stays visible on refresh errors; the database still independently enforces permission for every mutation.
+- Missing-place requests have a confirmed-account form, private request history, admin review queue, retry protection, and a five-new-requests-per-day limit. Admins can create a listing from public details, then link it to the request. This does **not** grant management access; the owner must still claim it.
+- Migration `202610210001_customer_launch.sql` makes verification independent of payment and adds listing requests plus a private customer email queue. Existing editorial verification is preserved. Review existing editorial flags as part of launch preparation; they are not reinterpreted as a new ownership check.
+- The existing claim dispatcher now also handles customer receipts and decisions and listing-request notifications. Both queues use independent leases, stable provider idempotency keys, eight attempts, and a 23-hour automatic retry window. No historical messages are backfilled.
+- Billing recovery discovers subscriptions by customer even when the first webhook was lost and the customer never returned. Customer pagination uses a stable place-ID cursor; Stripe discovery traverses all pages. Multiple current subscriptions stop recovery for support review rather than choosing arbitrarily.
+- Website and checkout use shared launch-offer definitions. Only the USD $19 monthly Bloom offer is sellable. `STRIPE_BLOOM_PREVIOUS_PRICE_IDS` optionally lists explicitly approved prior Bloom Price IDs for existing subscriptions; it does not change the price for new checkout. Annual billing, Thrive checkout, automatic price increases, and founding-price expiration are **not enabled** in this milestone.
+- Unpublished listing edits recover within the same tab/account for 24 hours. A newer published version blocks publishing the recovered draft until the owner resolves the conflict. Successful publishing stays successful even if the directory cannot refresh afterward.
+- Business-plan copy, account versus newsletter signup, next-step messages, help/billing FAQs, privacy information, and membership terms are prepared for review. Thrive's promotion scope remains explicitly unconfirmed. No traffic, revenue, or ranking guarantees are advertised.
+
+### Deployment and hosted release gate
+
+1. Review the customer screens, verification meaning, privacy/retention description, and membership terms. Finalize the refund policy and founding-price duration before advertising either; the current copy accepts refund inquiries and makes no founding-price promise.
+2. Back up the database and Storage. Apply any outstanding migrations in order, including `202610190005` and `202610210001`, first to staging. New authenticated request APIs require the latter migration before this frontend is published.
+3. Deploy updated `place-management`, `stripe-webhook`, `billing-reconcile`, and `claim-notifications`. Preserve `admin-users`. Configure Resend and the verified sender as described below. Set Stripe test-mode credentials and the correct Price/webhook signing secret. Keep the new-purchase flags off in production.
+4. Allow the production and tested local origins for `/auth/callback` (including return destinations in its query string) and `/auth/reset-password`. Test signup confirmation in the same tab, a second tab, and another device; test expired links and password recovery. Keep redirect URLs restricted to controlled origins.
+5. Enable `pg_net`/`pg_cron`. Add notification and billing dispatcher URL/secret pairs through Vault. Run `setup-claim-notifications.sql` and `setup-billing-reconciliation.sql`; the latter runs hourly at minute 7 UTC. Check actual scheduled delivery, not just the existence of a job.
+6. Configure Stripe portal payment methods, invoices, period-end cancellation, disabled plan switching, renewal reminders/payment failure emails, and renewal retry behavior matching the seven-day grace period. Verify checkout displays the correct amount and recurring terms. Confirm the business account's tax and refund settings match the reviewed customer terms.
+7. With controlled accounts, verify claim receipt → admin notification → approval/rejection email; listing request → admin creation/linking → customer decision → separate ownership claim. Confirm notifications arrive once and private details are not publicly readable.
+8. Run real Stripe test checkout and lifecycle checks: successful/failed first payment, required card authentication, canceled/expired checkout, duplicate checkout, missed first webhook without a customer return, repeated/out-of-order events, renewal failure, grace expiry/recovery, period-end cancellation, and resubscription. Verify only the billing contact sees payment details and every manager shares editing access.
+9. Monitor Stripe webhook failures, scheduled HTTP responses, function failures, both unsent notification queues, and delivery errors. Investigate exhausted jobs before deliberately retrying outside the provider idempotency window. Treat multiple live subscriptions as a support incident; confirm the intended subscription before changing billing or refunding.
+10. Review the frontend release through a pull request, deploy it with purchases disabled, and verify the real public pages and account links. Only after the test-mode gate passes, configure live-mode counterparts, verify live configuration, enable both purchase flags, rebuild, and complete an authorized pilot purchase. Re-disabling purchase flags pauses new sales while existing billing and editing remain available.
+
+### Remaining review milestones
+
+- **Hosted launch gate:** complete the setup and real-delivery/payment checks above after the local milestone review. No local check proves that live email, portal configuration, or payment processing is ready.
+- **Expanded Bloom:** primary action buttons, events/workshops with timezones and expiration, seasonal announcements, listing completion guidance, owner-excluded interaction analytics, and a concise monthly report. Evaluate $29/month or $290/year only after features and value are validated.
+- **Thrive pilot:** up to 10 product/service links, per-offering activity, trackable offers, assisted onboarding, promotion requests, and an admin fulfillment calendar for 5–10 businesses. Confirm audience and delivery capacity before promising a newsletter/social cadence. Measure fulfillment time and retention before testing $79/month or $790/year.
+- **Pricing and audience:** build regional guides and opt-in digests, measure real visitor actions and customer renewal, add server-approved plan/annual-price catalogs and upgrade/downgrade rules, then implement explicit founding terms and advance renewal notices. Optional $149 setup needs a defined deliverable and measured labor cost. Reviews, messaging, and marketplace checkout remain deferred.
+
 ## Current beta deployment
 
 With the user's approval, migrations `202610190001`, `202610190002`, `202610190003`, and `202610190004` and the four Edge Functions were installed in project `qtpepsebztlremlhpxdt` on October 19, 2026. The nine existing places were retained, and both the legacy `places` endpoint and `public_places` returned HTTP 200 after installation. The existing beta site's public content reads remain compatible; direct browser writes and private table access are denied. The first real administrator was enabled for the verified account designated by the user.
@@ -27,11 +80,11 @@ Migration `202610190004` adds administrator-only place creation. Add Place uses 
 - Keep Wandering recommends the closest places within 50 km first, then matching types/categories. Matching city and region provide a local fallback when map coordinates are missing.
 - Database permissions protect publishing and private records. The public directory uses an explicit projection.
 - Failed renewals allow seven days of editing from the first failure. Retries do not reset the deadline. Cancellation retains access through the paid period. Expiry preserves content, photos, and memberships.
-- Verified appears from approved membership plus an eligible subscription, or from existing editorial verification. Featured remains editorial.
+- In the October 21 migration, Verified appears from approved membership or existing editorial verification, independently of payment. Featured remains editorial.
 
 ## Claim notification email (prepared locally; not yet activated)
 
-Migration `202610190005` queues an email job in the same transaction as each new claim. The `claim-notifications` Edge Function sends the saved place name, account email, relationship, ownership evidence, claim reference, and links to the listing and `/admin` to **verification@littleherbplaces.com** through Resend. The destination is fixed on the server. It does not approve claims or email the claimant; decisions and review notes still appear in My Places. Existing claims are not backfilled.
+Migration `202610190005` queues an email job in the same transaction as each new claim. The `claim-notifications` Edge Function sends the saved place name, account email, relationship, ownership evidence, claim reference, and links to the listing and `/admin` to **verification@littleherbplaces.com** through Resend. The destination is fixed on the server. It does not approve claims. The October 21 migration adds a separate customer queue for receipts and decisions; review notes also remain in My Places. Existing claims are not backfilled.
 
 Activation requires a Resend account, a verified sending domain/address, and these server-only Supabase secrets:
 
@@ -42,7 +95,7 @@ Activation requires a Resend account, a verified sending domain/address, and the
 | `CLAIM_NOTIFICATION_SECRET` | New random secret of at least 32 characters, shared only with the database dispatcher |
 | `SITE_URL` | Public website origin used for review links; already required by management |
 
-Apply migration `202610190005`, deploy `claim-notifications` with `supabase/config.toml`, enable the hosted `pg_net` and `pg_cron` extensions, and add `claim_notification_url` and `claim_notification_secret` through the Supabase Vault dashboard. The URL is the deployed `/functions/v1/claim-notifications` endpoint, and the Vault secret must match `CLAIM_NOTIFICATION_SECRET`. Then run `supabase/setup-claim-notifications.sql`. The setup script installs an immediate asynchronous dispatch trigger and a one-minute retry schedule, reads secrets from Vault, and can be rerun without duplicating the schedule.
+Apply migrations `202610190005` and `202610210001`, deploy `claim-notifications` with `supabase/config.toml`, enable the hosted `pg_net` and `pg_cron` extensions, and add `claim_notification_url` and `claim_notification_secret` through the Supabase Vault dashboard. The URL is the deployed `/functions/v1/claim-notifications` endpoint, and the Vault secret must match `CLAIM_NOTIFICATION_SECRET`. Then run `supabase/setup-claim-notifications.sql`. The setup script installs an immediate asynchronous dispatch trigger and a one-minute retry schedule, reads secrets from Vault, and can be rerun without duplicating the schedule.
 
 Delivery failures preserve the claim and notification. Jobs use five-minute leases, up to eight attempts, and a stable Resend idempotency key per claim. Automatic retries stop 23 hours after the first attempt, within Resend's 24-hour idempotency window. Keep the sender and site URL stable during retries. Missing email configuration returns 503 without consuming attempts. Monitor the scheduler, `net._http_response`, and unsent rows in `public.place_claim_notifications`; exhausted jobs require investigation before a deliberate retry. No API keys, ownership evidence, or provider response bodies are logged. Keep this table private and include it in the same retention policy as claims.
 
@@ -60,7 +113,7 @@ Back up the database and apply all files in `supabase/migrations/` in order to a
 
 The migration removes all browser writes to the base `places` table and grants only an explicit list of public content columns for compatibility with the currently published beta site. Future private columns receive no read grants. The new website uses the narrower `public_places` projection. The migration closes browser writes to the dedicated `place-photos` bucket even if legacy permissive Storage policies exist, and preserves `profiles`, `favorites`, and unrelated Storage policies. Do not restore base-table writes to work around editor errors.
 
-The compatibility grants let the beta backend be installed before publishing the new frontend. The new frontend reads `public_places` and falls back to explicit legacy public columns while that view is missing. Apply migrations through your existing Supabase deployment process. Enable email confirmation in Supabase Auth and allow each tested origin's `/auth/callback` URL.
+The compatibility grants let the beta backend be installed before publishing the new frontend. The new frontend reads `public_places` and falls back to explicit legacy public columns while that view is missing. Apply migrations through your existing Supabase deployment process. Before customer launch, verify custom account email delivery, then enable email confirmation in Supabase Auth. The October 21 preflight found auto-confirmation still enabled. Allow each tested origin’s callback and recovery URLs, including validated return-query patterns.
 
 ## 2. Bootstrap an administrator
 
@@ -114,7 +167,7 @@ Eligibility follows verified webhooks, not browser return URLs. Checkout reserva
 
 ### Reconciliation, maps, and storage
 
-Schedule an hourly POST to `/functions/v1/billing-reconcile` with `Authorization: Bearer YOUR_BILLING_RECONCILE_SECRET` through your scheduler or Supabase Cron. Store the header as a scheduler secret. Monitor its non-200 responses, Stripe webhook failures, and Supabase function logs. Reconciliation catches missed events; database-time checks still enforce paid and grace expiry.
+Use `supabase/setup-billing-reconciliation.sql` with its Vault URL/secret pair, or schedule an hourly POST to `/functions/v1/billing-reconcile` with `Authorization: Bearer YOUR_BILLING_RECONCILE_SECRET` through your scheduler or Supabase Cron. Store the header as a scheduler secret. Monitor its non-200 responses, Stripe webhook failures, and Supabase function logs. Reconciliation catches missed events; database-time checks still enforce paid and grace expiry.
 
 Mapbox lookups use permanent storage mode, accept only high-confidence address matches, and allow one attempt per place per minute. Failed matches publish the address while hiding stale map pins. Admin Location Review supports retry and manual confirmation. A delayed lookup cannot overwrite a newer content version.
 

@@ -7,8 +7,12 @@ export function emptyClaim(email = '') {
 
 export function readClaimDraft(placeId, email = '') {
   try {
-    const draft = JSON.parse(sessionStorage.getItem(draftKey(placeId)));
-    if (!draft || !Number.isFinite(draft.savedAt) || draft.savedAt > Date.now() || Date.now() - draft.savedAt > 86400000) {
+    const candidates = [];
+    try { candidates.push(JSON.parse(localStorage.getItem(draftKey(placeId)))); } catch { /* Try tab storage. */ }
+    try { candidates.push(JSON.parse(sessionStorage.getItem(draftKey(placeId)))); } catch { /* Shared copy may be available. */ }
+    const draft = candidates.filter(item => item && Number.isFinite(item.savedAt) && item.savedAt <= Date.now() && Date.now() - item.savedAt <= 86400000)
+      .sort((a, b) => b.savedAt - a.savedAt)[0];
+    if (!draft) {
       clearClaimDraft(placeId);
       return emptyClaim(email);
     }
@@ -17,11 +21,18 @@ export function readClaimDraft(placeId, email = '') {
 }
 
 export function saveClaimDraft(placeId, draft) {
-  sessionStorage.setItem(draftKey(placeId), JSON.stringify({ ...draft, savedAt: Date.now() }));
+  const saved = JSON.stringify({ ...draft, savedAt: Date.now() });
+  // The shared copy lets an email confirmation opened in another tab resume.
+  // Fall back to this tab when browser privacy settings block shared storage.
+  let stored = false;
+  try { localStorage.setItem(draftKey(placeId), saved); stored = true; } catch { /* Try tab storage. */ }
+  try { sessionStorage.setItem(draftKey(placeId), saved); stored = true; } catch { /* Shared copy may be available. */ }
+  if (!stored) throw new Error('Claim draft storage is unavailable.');
 }
 
 export function clearClaimDraft(placeId) {
   try { sessionStorage.removeItem(draftKey(placeId)); } catch { /* Storage may be unavailable. */ }
+  try { localStorage.removeItem(draftKey(placeId)); } catch { /* Storage may be unavailable. */ }
 }
 
 // Keep the existing private claim API and admin review compatible with older claims.

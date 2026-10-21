@@ -1,5 +1,6 @@
 import type Stripe from 'npm:stripe@18.5.0';
 import { checked, required, serviceClient, stripeClient } from './server.ts';
+import { bloomPriceIds } from './billingCatalog.js';
 
 // Always retrieve current Stripe state rather than trusting an old event payload.
 export async function reconcileSubscription(subscriptionId: string, eventId: string, eventCreated: number, failedAt?: number) {
@@ -11,7 +12,8 @@ export async function reconcileSubscription(subscriptionId: string, eventId: str
   if (!placeId) throw new Error('Missing place metadata.');
   const previous = await checked(await db.from('place_subscriptions').select('paid_until,stripe_customer_id,stripe_subscription_id,status').eq('place_id', placeId).single());
   if (!previous || previous.stripe_customer_id !== customerId) throw new Error('Customer mismatch.');
-  const bloom = subscription.items.data.find(item => item.price.id === required('STRIPE_BLOOM_PRICE_ID'));
+  const approvedPrices = bloomPriceIds(required('STRIPE_BLOOM_PRICE_ID'), Deno.env.get('STRIPE_BLOOM_PREVIOUS_PRICE_IDS'));
+  const bloom = subscription.items.data.find(item => approvedPrices.includes(item.price.id) && item.quantity === 1);
   // Never provision an unrelated Stripe product as Bloom.
   const status = bloom ? subscription.status : 'unsupported';
   const invoice = subscription.latest_invoice as Stripe.Invoice | null;

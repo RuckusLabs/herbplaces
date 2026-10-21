@@ -5,7 +5,6 @@ import usePlaces from '../../hooks/usePlaces';
 import List from '../List/List';
 import Icon from '../Icons/Icon';
 import MyPlaces from '../../pages/Management/MyPlaces';
-import { useManagement } from '../../contexts/ManagementContext';
 import styles from './FavoritesList.module.scss';
 
 export default function FavoritesList() {
@@ -13,8 +12,7 @@ export default function FavoritesList() {
   const { places, loading: placesLoading, error, retry } = usePlaces(favorites.length > 0);
   const ids = new Set(favorites.map(fav => String(typeof fav === 'string' ? fav : fav.item_id)));
   const saved = places.filter(place => ids.has(String(place.id)));
-  const management = useManagement();
-  const hasManagedPlaces = management.memberships.length > 0 || management.claims.some(claim => ['pending', 'approved'].includes(claim.status));
+  const hasManagedPlaces = isLoggedIn;
   return <main id="main-content" className={styles.container}>
     <Helmet><title>Saved Places | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet><h1>Your Saved Places.</h1><p className={styles.intro}>Little discoveries to come back to, whenever you’re ready.</p>
     <MyPlaces />

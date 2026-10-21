@@ -1,5 +1,6 @@
 // Explicit, opt-in hosted smoke test. Creates temporary accounts/listing/photos,
 // exercises real Auth/REST/Storage/Edge Functions, and removes its fixtures.
+// Notification delivery must be inactive: this never sends test mail to customers.
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -46,13 +47,52 @@ async function account(client, role) {
   return user;
 }
 function passed(message) { console.log(`PASS ${message}`); }
+function databaseRows(query) {
+  const output = execFileSync('supabase', ['db', 'query', '--linked', '--project-ref', projectRef, '--output', 'json', query], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  return JSON.parse(output).rows;
+}
+function fixtureId(id) { assert.match(id, /^[0-9a-f-]{36}$/); return id; }
+async function useGeneratedLink(link, expected, client) {
+  const response = await fetch(link, { redirect: 'manual' });
+  assert.ok(response.status >= 300 && response.status < 400, 'The account link must redirect.');
+  const location = new URL(response.headers.get('location'));
+  assert.ok(`${location.origin}${location.pathname}${location.search}` === expected, 'The account link did not preserve its allowed return destination.');
+  const tokens = new URLSearchParams(location.hash.slice(1));
+  assert.ok(tokens.get('access_token') && tokens.get('refresh_token'), 'The account link did not create a valid session.');
+  await value(client.auth.setSession({ access_token: tokens.get('access_token'), refresh_token: tokens.get('refresh_token') }));
+}
 
 try {
+  const dispatch = databaseRows("select count(*) as count from pg_trigger where tgname in ('dispatch_claim_notification','dispatch_customer_notification') and tgenabled <> 'D'")[0];
+  assert.equal(dispatch.count, 0, 'Use an isolated project once real email dispatch is active.');
+  const cron = databaseRows("select to_regclass('cron.job') is not null as installed")[0];
+  if (cron.installed) assert.equal(databaseRows("select count(*) as count from cron.job where active and jobname='claim-notification-retries'")[0].count, 0, 'Use an isolated project once notification scheduling is active.');
+  const accountClient = createClient(url, anonKey, options);
+  const accountEmail = `beta-account-${suffix}@herbplaces.test`;
+  const callback = 'https://littleherbplaces.com/auth/callback?next=%2Frequest-place';
+  const generated = await value(service.auth.admin.generateLink({ type: 'signup', email: accountEmail, password, options: { redirectTo: callback } }));
+  users.push(generated.user.id);
+  await useGeneratedLink(generated.properties.action_link, callback, accountClient);
+  assert.ok((await value(accountClient.auth.getUser())).user.email_confirmed_at);
+  const resetTarget = 'http://127.0.0.1:5181/auth/reset-password?next=%2Ffavorites';
+  const recovery = await value(service.auth.admin.generateLink({ type: 'recovery', email: accountEmail, options: { redirectTo: resetTarget } }));
+  await useGeneratedLink(recovery.properties.action_link, resetTarget, accountClient);
+  const newPassword = `${crypto.randomBytes(24).toString('base64url')}Aa1!`;
+  await value(accountClient.auth.updateUser({ password: newPassword }));
+  await value(accountClient.auth.signOut());
+  await value(accountClient.auth.signInWithPassword({ email: accountEmail, password: newPassword }));
+  const reused = await fetch(recovery.properties.action_link, { redirect: 'manual' });
+  assert.ok(new URL(reused.headers.get('location')).hash.includes('error='), 'A used recovery link must not create another session.');
+  const unsafe = await value(service.auth.admin.generateLink({ type: 'recovery', email: accountEmail, options: { redirectTo: 'https://example.org/unapproved' } }));
+  const rejected = await fetch(unsafe.properties.action_link, { redirect: 'manual' });
+  assert.ok(new URL(rejected.headers.get('location')).origin === 'https://littleherbplaces.com', 'Unapproved return origins must be rejected.');
+  passed('Real confirmation/recovery links, validated return destinations, password update, and used-link rejection (no mailbox delivery)');
+
   const adminUser = await account(administrator, 'admin');
   const managerUser = await account(manager, 'manager');
   await value(service.from('site_admins').insert({ user_id: adminUser.id }));
   const creation = { p_request_id: suffix, p_slug: `beta-verification-${suffix}`, p_content: {
-    name: 'Temporary Beta Verification', tagline: 'Temporary test fixture', description: 'Original verification content',
+    name: `Temporary Beta Verification ${suffix}`, tagline: 'Temporary test fixture', description: 'Original verification content',
     city: 'Denver', state: 'CO', address: '', zip: '', website: '', phone: '', hours: '',
     photos: [], coverPhoto: '', photo_alt: {}, category_ids: [], social_links: [],
   } };
@@ -76,15 +116,43 @@ try {
   assert.ok(deniedAdmin.error, 'An ordinary account must not list users.');
   passed('Confirmed accounts, admin access, and private data boundaries');
 
+  const listingRequest = { p_name: `Temporary Listing Request ${suffix}`, p_website: 'https://example.com/', p_city: 'Denver', p_region: 'CO', p_notes: 'Temporary hosted test; removed after verification.', p_request_id: suffix };
+  assert.ok((await anonymous.rpc('request_place_listing', listingRequest)).error);
+  const requested = await value(manager.rpc('request_place_listing', listingRequest));
+  assert.equal(await value(manager.rpc('request_place_listing', listingRequest)), requested);
+  assert.equal((await value(manager.rpc('get_listing_requests'))).find(item => item.id === requested).status, 'pending');
+  assert.deepEqual(await value(administrator.rpc('get_listing_requests')), []);
+  assert.ok((await manager.rpc('admin_listing_requests')).error);
+  const listingQueue = await value(administrator.rpc('admin_listing_requests', { p_query: suffix }));
+  assert.equal(listingQueue.items.find(item => item.id === requested).email, managerUser.email);
+  await value(administrator.rpc('admin_review_listing_request', { p_request_id: requested, p_slug: created.urlSlug, p_note: 'Temporary listing linked. Ownership must be claimed separately.' }));
+  assert.equal((await value(manager.rpc('get_listing_requests'))).find(item => item.id === requested).status, 'listed');
+  assert.equal((await value(manager.rpc('get_management_context'))).memberships.length, 0);
+  for (const table of ['place_listing_requests', 'place_customer_notifications', 'place_claim_notifications']) {
+    assert.ok((await anonymous.from(table).select('*')).error);
+    assert.ok((await manager.from(table).select('*')).error);
+  }
+  passed('Private listing requests, retry protection, admin review, and independent ownership approval');
+
   await value(manager.rpc('request_place_claim', { p_place_id: String(placeId), p_relationship: 'Test manager', p_evidence: 'Temporary beta verification claim; removed after testing.' }));
   const managerContext = await value(manager.rpc('get_management_context'));
-  const claim = managerContext.claims.find(item => String(item.place_id) === String(placeId));
+  let claim = managerContext.claims.find(item => String(item.place_id) === String(placeId));
   assert.ok(claim);
+  await value(administrator.rpc('admin_review_claim', { p_claim_id: claim.id, p_approve: false, p_note: 'Temporary rejection: please provide updated ownership details.' }));
+  const reviewed = (await value(manager.rpc('get_management_context'))).claims.find(item => item.id === claim.id);
+  assert.equal(reviewed.status, 'rejected'); assert.match(reviewed.review_note, /updated ownership/);
+  await value(manager.rpc('request_place_claim', { p_place_id: String(placeId), p_relationship: 'Test manager', p_evidence: 'Updated temporary verification details; removed after testing.' }));
+  claim = (await value(manager.rpc('get_management_context'))).claims.find(item => String(item.place_id) === String(placeId) && item.status === 'pending');
   await value(administrator.rpc('admin_review_claim', { p_claim_id: claim.id, p_approve: true, p_note: 'Temporary verification.' }));
   const approved = await value(manager.rpc('get_management_context'));
   const membership = approved.memberships.find(item => String(item.place_id) === String(placeId));
   assert.equal(membership.is_billing_contact, true);
   assert.equal(membership.can_edit, false);
+  assert.equal((await value(anonymous.from('public_places').select('isVerified').eq('id', placeId).single())).isVerified, true);
+  const notificationKinds = databaseRows(`select kind,count(*) as count from public.place_customer_notifications where user_id='${fixtureId(managerUser.id)}'::uuid group by kind`);
+  assert.equal(notificationKinds.find(item => item.kind === 'claim_received').count, 2);
+  for (const kind of ['claim_rejected','claim_approved','listing_received','listing_reviewed','listing_admin']) assert.equal(notificationKinds.find(item => item.kind === kind).count, 1);
+  passed('Visible claim rejection/resubmission, free ownership verification, and durable private decision messages');
   assert.ok((await manager.rpc('get_editable_place', { p_place_id: String(placeId) })).error);
   assert.equal((await value(anonymous.from('public_places').select('is_claimed').eq('id', placeId).single())).is_claimed, true);
   assert.ok((await administrator.rpc('request_place_claim', { p_place_id: String(placeId), p_relationship: 'Test manager', p_evidence: 'Already claimed verification.' })).error);
@@ -135,6 +203,8 @@ try {
   assert.equal(invalidWebhook.status, 400);
   const unauthorizedReconcile = await fetch(`${url}/functions/v1/billing-reconcile`, { method: 'POST' });
   assert.equal(unauthorizedReconcile.status, 401);
+  const unconfiguredNotifications = await fetch(`${url}/functions/v1/claim-notifications`, { method: 'POST' });
+  assert.ok([401,503].includes(unconfiguredNotifications.status));
   passed('Revocation, localhost CORS, and protected function endpoints');
 
   await value(administrator.rpc('admin_assign_manager', { p_place_id: String(placeId), p_email: managerUser.email, p_billing: false }));

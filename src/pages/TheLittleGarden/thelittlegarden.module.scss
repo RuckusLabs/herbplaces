@@ -25,3 +25,7 @@
 .values { border-block: 1px solid rgba(var(--tertiary-color), .12); }
 .valuesInner, .invitationInner { width: 100%; max-width: 1440px; margin-inline: auto; }
 .signupIntro > a { margin-top: 24px; }
+
+.planNote { max-width: 780px; margin: 24px auto 0; font-size: 14px; line-height: 1.8; text-align: center; }
+.howItWorks { max-width: 1100px; margin: auto; padding: 40px 6% 65px; h2 { font-family: 'Editorial', Georgia, serif; font-weight: 200; font-size: 40px; } ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 35px; padding-left: 22px; margin: 28px 0; } li { padding-left: 5px; line-height: 1.7; } p { line-height: 1.8; font-size: 14px; } }
+@media(max-width: 650px) { .howItWorks ol { grid-template-columns: 1fr; gap: 15px; } }

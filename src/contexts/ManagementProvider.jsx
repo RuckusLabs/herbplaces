@@ -24,7 +24,7 @@ export default function ManagementProvider({ children }) {
       const data = await managementRpc('get_management_context');
       if (request === generation.current) setState({ owner: userId, data, loading: false, error: '' });
     } catch (error) {
-      if (request === generation.current) setState({ owner: userId, data: empty, loading: false, error: error.message || 'Unable to load place access.' });
+      if (request === generation.current) setState(previous => ({ owner: userId, data: previous.owner === userId ? previous.data : empty, loading: false, error: error.message || 'Unable to load place access.' }));
     }
   }, [userId, confirmedAt]);
   useEffect(() => {

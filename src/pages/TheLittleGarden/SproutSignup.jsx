@@ -11,7 +11,7 @@ export default function SproutSignup() {
     <Reveal as="div" className={styles.signupLayout}>
       <section className={styles.signupIntro}><Icon name="sprout" size={80} /><h1>Every Good Thing Starts With a Little Seed.</h1><p>Join Sprout, our free community plan, and make a little room for connection. For herbalists, growers, makers, and the endlessly plant-curious.</p><p>Keep your favorite places close with a free account, and join the community below for updates.</p><Link to="/register?next=%2Ffavorites" className="button">Create a Free Account <Icon name="arrow" size={18} /></Link></section>
       <section className={styles.signupCard} aria-labelledby="signup-title">
-        <h2 id="signup-title">Join Sprout</h2><p>Free to join. A little place to start growing.</p>
+        <h2 id="signup-title">Community Updates</h2><p>Occasional emails from Little Herb Places. This newsletter signup does not create a website account or start a paid plan.</p>
         <form action="https://littleherbplaces.us11.list-manage.com/subscribe/post?u=ac649b78dd0024f5b2ecd08e5&id=566234165b&f_id=0063c6e3f0" method="POST" target="_blank" rel="noopener noreferrer" className={styles.form}>
           <input type="hidden" name="f_id" value="0063c6e3f0" />
           <label htmlFor="sprout-email">Email (Required)</label><input id="sprout-email" type="email" autoComplete="email" name="EMAIL" placeholder="Your Email" required />
@@ -19,8 +19,8 @@ export default function SproutSignup() {
           <label htmlFor="sprout-last-name">Last Name</label><input id="sprout-last-name" type="text" autoComplete="family-name" name="LNAME" placeholder="Last Name" />
           <label htmlFor="sprout-shop">Shop Name</label><input id="sprout-shop" type="text" autoComplete="organization" name="COMPANY" placeholder="Shop Name (Optional)" />
           <div className={styles.honeypot} aria-hidden="true"><input type="text" name="b_ac649b78dd0024f5b2ecd08e5_566234165b" tabIndex="-1" defaultValue="" /></div>
-          <button type="submit" className="button">Sign Up for Sprout <Icon name="arrow" size={18} /></button>
-          <p className={styles.formNote}>Your signup confirmation opens in a new tab.</p>
+          <button type="submit" className="button">Subscribe to Updates <Icon name="arrow" size={18} /></button>
+          <p className={styles.formNote}>Your newsletter confirmation opens in a new tab. You can unsubscribe using the link in our emails.</p>
         </form>
       </section>
     </Reveal>
