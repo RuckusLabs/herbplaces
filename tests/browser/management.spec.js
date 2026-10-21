@@ -721,6 +721,7 @@ test('listing requests survive a failed submission and show their saved status',
   await page.goto('/request-place');
   await page.getByLabel('Place name', { exact: true }).fill('New Herb Shop');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByText('Add a website or note (optional)', { exact: true }).click();
   await page.getByLabel('Website (optional)').fill('https://example.com');
   state.listingError = 'Please try again shortly.';
   await page.getByRole('button', { name: 'Send Listing Request' }).click();
@@ -834,10 +835,11 @@ test('missing-place flow combines existing-account sign-in and request submissio
   await page.getByRole('button', { name: 'Add My Place', exact: true }).click();
   await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await page.getByRole('button', { name: 'Already have an account? Sign in here', exact: true }).click();
   await page.getByLabel('Account email', { exact: true }).fill('guest@example.com');
   await page.getByLabel('Password', { exact: true }).fill('password-for-test');
-  await page.getByRole('button', { name: 'Sign In & Send Listing Request', exact: true }).click();
+  await page.getByRole('button', { name: 'Sign In & Send Request', exact: true }).click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom&new=1/);
   await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
   expect(state.listingRequests).toHaveLength(1);
@@ -868,8 +870,8 @@ test('Thrive starts with a place while keeping pilot availability clear', async 
   await page.goto('/the-little-garden/thrive');
   await page.getByRole('link', { name: 'Start with Your Place', exact: true }).first().click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=thrive$/);
-  await expect(page.getByText('Thrive is a planned pilot.', { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Ask About the Thrive Pilot', exact: true })).toHaveAttribute('href', /^mailto:/);
+  await expect(page.getByText('Thrive is a planned pilot.', { exact: false })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Ask about Thrive', exact: true })).toHaveAttribute('href', /^mailto:/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
@@ -878,6 +880,7 @@ test('Thrive starts with a place while keeping pilot availability clear', async 
 async function fillListingAndAccount(page) {
   await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await page.getByLabel('Account email', { exact: true }).fill('newfern@example.com');
   await page.getByLabel('Create a password', { exact: true }).fill('private-test-password');
   await page.getByRole('checkbox', { name: 'I agree to the membership terms', exact: false }).check();
@@ -887,7 +890,7 @@ test('new accounts send a listing request from the same form without storing cre
   const state = await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/start?plan=thrive&new=1');
   await fillListingAndAccount(page);
-  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await page.getByRole('button', { name: 'Create Account & Send Request', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
   expect(state.listingRequests).toHaveLength(1);
   expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(1);
@@ -900,7 +903,7 @@ test('email confirmation preserves a listing draft in another tab and requires e
   state.signupNeedsConfirmation = true;
   await page.goto('/the-little-garden/start?plan=bloom&new=1');
   await fillListingAndAccount(page);
-  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await page.getByRole('button', { name: 'Create Account & Send Request', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Your request has not been sent' })).toBeVisible();
   expect(state.listingRequests).toHaveLength(0);
   const saved = await page.evaluate(() => localStorage.getItem('little-herb-listing-request-confirmation'));
@@ -921,12 +924,32 @@ test('a request can retry after account creation without creating another accoun
   state.listingError = 'Please try sending your request again.';
   await page.goto('/the-little-garden/start?plan=bloom&new=1');
   await fillListingAndAccount(page);
-  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await page.getByRole('button', { name: 'Create Account & Send Request', exact: true }).click();
   await expect(page.getByRole('alert').filter({ hasText: 'Please try sending your request again.' })).toBeVisible();
-  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('New Fern Apothecary');
+  await expect(page.getByText('New Fern Apothecary', { exact: true })).toBeVisible();
   state.listingError = '';
   await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
   expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(1);
   expect(state.listingAttempts[0].p_request_id).toBe(state.listingAttempts[1].p_request_id);
+});
+
+
+test('listing signup shows one step at a time and keeps details when going back', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/start?plan=bloom&new=1');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByLabel('Account email', { exact: true })).toHaveCount(0);
+  await expect(page.getByLabel('Anything we should know? (optional)')).not.toBeVisible();
+  await page.getByLabel('Place name', { exact: true }).fill('Quiet Garden');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByLabel('Place name', { exact: true })).toHaveCount(0);
+  await expect(page.getByLabel('Account email', { exact: true })).toBeVisible();
+  await expect(page.getByText('Quiet Garden', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Edit', exact: true }).click();
+  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('Quiet Garden');
+  await expect(page.getByLabel('City', { exact: true })).toHaveValue('Boulder');
+  expect(state.listingRequests).toHaveLength(0);
+  expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(0);
 });

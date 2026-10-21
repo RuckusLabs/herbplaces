@@ -60,10 +60,11 @@ const routes = [
 
 function AppContent() {
   const { pathname } = useLocation();
+  const ownerSetup = pathname.replace(/\/+$/, '') === '/the-little-garden/start';
   const currentRoute = routes.find(route => route.path.includes(':') ? pathname.startsWith(route.path.split(':')[0]) : route.path === pathname);
   return <>
     <Seo />
-    <Nav variant={currentRoute?.navVariant || 'garden'} />
+    <Nav variant={currentRoute?.navVariant || 'garden'} minimal={ownerSetup} />
     <ScrollToTop />
     <Suspense fallback={<div className="route-loading" role="status">Finding your little place…</div>}>
       <Routes>
@@ -71,7 +72,7 @@ function AppContent() {
         <Route path="*" element={<main id="main-content" className="container" style={{ paddingBottom: 80 }}><h1>A little off the beaten path.</h1><p>We couldn’t find that page. <Link to="/">Head back home</Link> or <Link to="/map">explore the directory</Link>.</p></main>} />
       </Routes>
     </Suspense>
-    <Footer />
+    {!ownerSetup && <Footer />}
   </>;
 }
 

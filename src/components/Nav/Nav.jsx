@@ -7,7 +7,7 @@ import Icon from '../Icons/Icon';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 
-export default function Nav({ variant, className = '' }) {
+export default function Nav({ variant, className = '', minimal = false }) {
   const { user, signOut } = useAuth();
   const { is_admin: isAdmin } = useManagement();
   const [open, setOpen] = useState(false);
@@ -23,6 +23,7 @@ export default function Nav({ variant, className = '' }) {
     const result = await signOut();
     if (result?.error) setLogoutError('Unable to sign out. Please try again.');
   };
+  if (minimal) return <><a className="skip-link" href="#main-content">Skip to content</a><nav className={styles.nav} aria-label="Setup navigation"><Link to="/" className={styles.brand} aria-label="Little Herb Places home"><Logo aria-hidden="true" focusable="false" /></Link><Link className={styles.minimalHelp} to="/help">Need a hand?</Link></nav></>;
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <nav className={`${styles.nav} ${pathname === '/' ? styles.home : ''} ${variant === 'bleed' ? styles.bleed : ''} ${className}`} aria-label="Main navigation">
@@ -41,4 +42,4 @@ export default function Nav({ variant, className = '' }) {
     </nav>
   </>;
 }
-Nav.propTypes = { variant: PropTypes.string.isRequired, className: PropTypes.string };
+Nav.propTypes = { variant: PropTypes.string.isRequired, className: PropTypes.string, minimal: PropTypes.bool };
