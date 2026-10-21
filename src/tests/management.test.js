@@ -97,3 +97,19 @@ test('place names generate readable URL slugs without unsafe or oversized charac
   assert.equal(placeSlug(''), '');
   assert.equal(placeSlug('a'.repeat(201)).length, 200);
 });
+
+test('renewal processing cannot unlock an unpaid first subscription or extend a scheduled cancellation', () => {
+  const now=Date.now();const paid=new Date(now-1000).toISOString();const grace=new Date(now+1000).toISOString();
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:grace},now),true);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:null,grace_ends_at:grace},now),false);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:grace,cancel_at_period_end:true},now),false);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:paid},now),false);
+});
+
+
+test('Bloom content preparation accepts ten photos and explains an eleventh', () => {
+  const draft = createPlaceDraft({ name: 'Moss', photos: Array.from({ length: 10 }, (_, i) => `https://example.com/${i}.jpg`) });
+  assert.equal(preparePlaceContent(draft).photos.length, 10);
+  draft.photos.push('https://example.com/eleven.jpg');
+  assert.throws(() => preparePlaceContent(draft), /up to 10 photos/);
+});

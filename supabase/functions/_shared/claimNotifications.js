@@ -1,4 +1,4 @@
-export const verificationEmail = 'verification@littleherbplaces.com';
+export const verificationEmail = 'admin@littleherbplaces.com';
 
 export function claimNotificationEmail(payload, { from, siteUrl }) {
   const origin = new URL(siteUrl);

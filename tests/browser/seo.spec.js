@@ -24,3 +24,25 @@ test('place metadata is unique and updates during client navigation', async ({ p
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
 });
+
+test('owner sales pages explain the request-to-claim handoff and work on every screen', async ({ page }) => {
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }));
+  await page.goto('/the-little-garden');
+  await page.getByRole('link', { name: 'Explore Bloom', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Your place. Your story. In full bloom.', exact: true })).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index,follow');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://littleherbplaces.com/the-little-garden/bloom/');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.getByText('What if my place isn’t in the directory yet?', { exact: true }).click();
+  await expect(page.getByText('Listing approval does not automatically approve you as a manager.', { exact: false })).toBeVisible();
+  await page.getByRole('link', { name: 'Request a Missing Listing', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Add your place.', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeVisible();
+  await page.goto('/the-little-garden/thrive/');
+  await expect(page.getByRole('heading', { name: 'More of your craft. More to discover.', exact: true })).toBeVisible();
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://littleherbplaces.com/the-little-garden/thrive/');
+  await expect(page.getByRole('link', { name: 'Ask About Thrive', exact: true }).first()).toHaveAttribute('href', /^mailto:/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.getByText('Can I subscribe to Thrive today?', { exact: true }).click();
+  await expect(page.getByText('Thrive is coming soon and is not yet available for purchase.', { exact: false })).toBeVisible();
+});

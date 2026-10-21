@@ -7,7 +7,7 @@ import PlaceEditor from './PlaceEditor';
 import PlaceClaim from './PlaceClaim';
 import styles from './management.module.scss';
 
-export default function PlaceManagement({ place, placement = 'top' }) {
+export default function PlaceManagement({ place, placement = 'top', onPreview, previewTargetId, previewing = false }) {
   const management = useManagement();
   const [params, setParams] = useSearchParams();
   const [editing, setEditing] = useState(false);
@@ -27,14 +27,14 @@ export default function PlaceManagement({ place, placement = 'top' }) {
   };
   if ((placement === 'top') !== !!hasAccess) return null;
   return <>
-    {canEdit ? <button className="button" onClick={() => setEditing(true)}>Edit Place</button>
-      : membership ? <Link className="button" to="/favorites#my-places">Manage Subscription</Link>
-      : claim ? <Link className="button" to="/favorites#my-places">Claim Pending</Link>
+    {canEdit ? !previewing && <button className="button" onClick={() => setEditing(true)}>Edit Place</button>
+      : membership ? <Link className="button" to="/my-places">Manage Subscription</Link>
+      : claim ? <Link className="button" to="/my-places">Claim Pending</Link>
       : place.is_claimed !== false ? null
       : <button className="button" disabled={management.loading} onClick={() => setClaiming(true)}>Claim This Place</button>}
-    {notice && <p role="status" className={styles.notice}>{notice}</p>}
-    {editing && <PlaceEditor place={place} onClose={() => setEditing(false)} onPublished={message => { setNotice(message); management.refresh(); }} />}
+    {notice && !previewing && <p role="status" className={styles.notice}>{notice}</p>}
+    {editing && <PlaceEditor place={place} onPreview={onPreview} previewTargetId={previewTargetId} onNotice={setNotice} onClose={() => setEditing(false)} onPublished={message => { setNotice(message); management.refresh(); }} />}
     {claiming && !claim && !hasAccess && place.is_claimed === false && <PlaceClaim place={place} onClose={closeClaim} onSubmitted={message => { closeClaim(); setNotice(message); }} />}
   </>;
 }
-PlaceManagement.propTypes = { place: PropTypes.object.isRequired, placement: PropTypes.oneOf(['top', 'visit']) };
+PlaceManagement.propTypes = { place: PropTypes.object.isRequired, placement: PropTypes.oneOf(['top', 'visit']), onPreview: PropTypes.func, previewTargetId: PropTypes.string, previewing: PropTypes.bool };

@@ -8,3 +8,5 @@
 @media (max-width: 800px) { .nav { padding: 14px 5%; } .menuButton { display: grid; place-items: center; } .links { display: flex; flex-direction: column; visibility: hidden; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; position: absolute; top: 100%; left: 0; right: 0; padding: 25px 6%; background: #fff; border-bottom: 1px solid rgba(var(--tertiary-color), .2); box-shadow: 0 10px 15px rgba(var(--tertiary-color), .04); align-items: stretch; gap: 0; > a:not(.join) { padding: 15px 0; } .saved span { display: inline; } .join { margin-top: 15px; } } .open { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; transition-delay: 0s; } }
 
 @media (max-width: 800px) and (prefers-reduced-motion: reduce) { .links { transition: none; transform: none; } }
+
+.minimalHelp { font-size: 13px; }

@@ -16,15 +16,22 @@ const Map = lazy(() => import('./pages/Map/Map'));
 const Place = lazy(() => import('./pages/Place/Place'));
 const FavoritesList = lazy(() => import('./components/FavoritesList/FavoritesList'));
 const TheLittleGarden = lazy(() => import('./pages/TheLittleGarden/TheLittleGarden'));
+const StartBusiness = lazy(() => import('./pages/TheLittleGarden/StartBusiness'));
+const BusinessPlan = lazy(() => import('./pages/TheLittleGarden/BusinessPlan'));
 const SproutSignup = lazy(() => import('./pages/TheLittleGarden/SproutSignup'));
 const AuthCallback = lazy(() => import('./pages/Auth/AuthCallback'));
 const Login = lazy(() => import('./pages/Auth/Login'));
 const Register = lazy(() => import('./pages/Auth/Register'));
+const AccountRecovery = lazy(() => import('./pages/Auth/AccountRecovery'));
 const Admin = lazy(() => import('./pages/Management/Admin'));
+const MyPlaces = lazy(() => import('./pages/Management/MyPlaces'));
+const RequestPlace = lazy(() => import('./pages/Management/RequestPlace'));
+const Policies = lazy(() => import('./pages/Help/Policies'));
 
-function SavedPlacesRedirect() {
-  const { search } = useLocation();
-  return <Navigate to={`/favorites${search}#my-places`} replace />;
+function SavedPlacesRoute() {
+  const { search, hash } = useLocation();
+  return hash === '#my-places' || new URLSearchParams(search).has('billing')
+    ? <Navigate to={`/my-places${search}`} replace /> : <FavoritesList />;
 }
 
 const routes = [
@@ -34,22 +41,32 @@ const routes = [
   { path: '/about', element: <About /> },
   { path: '/help', element: <Help /> },
   { path: '/the-little-garden', element: <TheLittleGarden /> },
+  { path: '/the-little-garden/start', element: <StartBusiness /> },
+  { path: '/the-little-garden/bloom', element: <BusinessPlan plan="bloom" /> },
+  { path: '/the-little-garden/thrive', element: <BusinessPlan plan="thrive" /> },
   { path: '/the-little-garden/sprout', element: <SproutSignup /> },
   { path: '/place/:slug', element: <Place /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
-  { path: '/favorites', element: <FavoritesList /> },
+  { path: '/favorites', element: <SavedPlacesRoute /> },
   { path: '/auth/callback', element: <AuthCallback /> },
-  { path: '/my-places', element: <SavedPlacesRedirect /> },
+  { path: '/auth/forgot-password', element: <AccountRecovery mode="forgot" /> },
+  { path: '/auth/reset-password', element: <AccountRecovery mode="reset" /> },
+  { path: '/auth/resend-confirmation', element: <AccountRecovery mode="confirm" /> },
+  { path: '/my-places', element: <MyPlaces /> },
   { path: '/admin', element: <Admin /> },
+  { path: '/request-place', element: <RequestPlace /> },
+  { path: '/privacy', element: <Policies mode="privacy" /> },
+  { path: '/membership-terms', element: <Policies mode="terms" /> },
 ];
 
 function AppContent() {
   const { pathname } = useLocation();
+  const ownerSetup = pathname.replace(/\/+$/, '') === '/the-little-garden/start';
   const currentRoute = routes.find(route => route.path.includes(':') ? pathname.startsWith(route.path.split(':')[0]) : route.path === pathname);
   return <>
     <Seo />
-    <Nav variant={currentRoute?.navVariant || 'garden'} />
+    <Nav variant={currentRoute?.navVariant || 'garden'} minimal={ownerSetup} />
     <ScrollToTop />
     <Suspense fallback={<div className="route-loading" role="status">Finding your little place…</div>}>
       <Routes>
@@ -57,7 +74,7 @@ function AppContent() {
         <Route path="*" element={<main id="main-content" className="container" style={{ paddingBottom: 80 }}><h1>A little off the beaten path.</h1><p>We couldn’t find that page. <Link to="/">Head back home</Link> or <Link to="/map">explore the directory</Link>.</p></main>} />
       </Routes>
     </Suspense>
-    <Footer />
+    {!ownerSetup && <Footer />}
   </>;
 }
 

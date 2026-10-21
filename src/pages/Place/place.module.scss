@@ -10,16 +10,18 @@
 .saveButton { white-space: nowrap; }
 .photos { margin-bottom: 48px; }
 .photoFrame { position: relative; }
-.photoGallery { display: flex; align-items: stretch; max-height: min(480px, 60svh); transition: height .25s ease; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: var(--border-radius); background: rgba(var(--primary-color), .15); &::-webkit-scrollbar { display: none; } }
-.gallerySlide { display: block; flex: 0 0 100%; min-width: 0; width: 100%; height: 100%; padding: 0; background: transparent; scroll-snap-align: start; cursor: zoom-in; &:focus-visible { outline-offset: -5px; } }
+.photoGallery { position: relative; display: flex; align-items: center; justify-content: safe center; gap: 14px; height: min(520px, 65svh); overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+.gallerySlide { display: block; flex: 0 0 auto; min-width: 0; height: 100%; padding: 0; background: transparent; border-radius: 10px; overflow: hidden; scroll-snap-align: start; cursor: zoom-in; &:focus-visible { outline-offset: -4px; } }
 .galleryPhoto { display: block; width: 100%; height: 100%; object-fit: contain; }
-.openPhoto { position: absolute; left: 18px; bottom: 18px; font-size: 12px; }
-.galleryNav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; padding: 0; border-radius: 50%; z-index: 1; }
-.previous { left: 18px; svg { transform: rotate(180deg); } }
-.next { right: 18px; }
-.counter { position: absolute; right: 18px; bottom: 18px; padding: 8px 14px; background: rgba(255, 255, 255, .94); border-radius: 20px; font-size: 12px; font-variant-numeric: tabular-nums; }
-.thumbnails { display: flex; align-items: center; gap: 10px; padding: 14px 2px 2px; overflow-x: auto; }
-.thumbnail { width: 84px; height: 64px; flex-shrink: 0; padding: 3px; border: 2px solid transparent; border-radius: 14px; background: transparent; transition: border-color .2s, transform .2s; img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 9px; } &[aria-pressed='true'] { border-color: rgb(var(--secondary-color)); } &:hover { transform: translateY(-2px); } }
+.galleryTools { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+.openPhoto { font-size: 12px; background: transparent; box-shadow: none; padding: 8px 0; }
+.galleryPaging { display: flex; align-items: center; gap: 12px; }
+.galleryNav { width: 38px; height: 38px; padding: 0; border-radius: 50%; background: #f3f6e9; box-shadow: none; }
+.previous svg { transform: rotate(180deg); }
+.counter { min-width: 45px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.thumbnails { position: relative; display: flex; align-items: center; gap: 10px; padding: 12px 2px 2px; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #bfcbb2 transparent; }
+.thumbnail { width: 78px; height: 64px; flex-shrink: 0; padding: 3px; border: 2px solid transparent; border-radius: 9px; background: #f5f6f0; transition: border-color .2s; img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 4px; } &[aria-pressed='true'] { border-color: #63804d; } }
+
 .details { display: grid; grid-template-columns: 1.65fr 1fr; gap: 8%; align-items: start; }
 .story { min-width: 0; h2 { font-size: 36px; margin: 0 0 25px; } p { font-size: 15px; font-weight: 400; line-height: 1.95; white-space: pre-line; } p + p { margin-top: 21px; } }
 .visit { position: sticky; top: 25px; padding: 30px; border-radius: var(--border-radius); background: rgba(var(--primary-color), .18); border: 1px solid rgba(var(--tertiary-color), .13); h2 { font-size: 32px; margin: 18px 0; } }
@@ -34,8 +36,11 @@
 .sectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; h2 { font-size: 43px; margin: 0; } > a { flex-shrink: 0; } }
 .loading { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; h1 { font-size: 45px; } p { font-size: 14px; line-height: 1.8; } }
 @media (max-width: 800px) { .heading { align-items: flex-start; } .headingActions { padding-top: 10px; } .details { gap: 5%; grid-template-columns: 1.35fr 1fr; } .visit { padding: 23px; h2 { font-size: 29px; } } }
-@media (max-width: 600px) { .page { padding: 26px 6% 45px; } .backLink { margin-bottom: 25px; } .heading { flex-direction: column; gap: 22px; margin-bottom: 25px; h1 { font-size: 46px; } } .headingActions { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; padding-top: 0; } .tagline { font-size: 15px; } .previous { left: 11px; } .next { right: 11px; } .galleryNav { width: 38px; height: 38px; } .photos { margin-bottom: 35px; } .details { display: flex; flex-direction: column; gap: 36px; } .visit { position: static; width: 100%; padding: 25px; } .visitActions { align-items: flex-start; } .story h2 { font-size: 33px; } .story p { font-size: 14px; } .related { margin-top: 40px; padding-top: 38px; } .sectionHeading { flex-wrap: wrap; h2 { font-size: 36px; } } }
+@media (max-width: 600px) { .page { padding: 26px 6% 45px; } .backLink { margin-bottom: 25px; } .heading { flex-direction: column; gap: 22px; margin-bottom: 25px; h1 { font-size: 46px; } } .headingActions { flex-direction: row; align-items: center; justify-content: space-between; width: 100%; padding-top: 0; } .tagline { font-size: 15px; } .photos { margin-bottom: 35px; } .details { display: flex; flex-direction: column; gap: 36px; } .visit { position: static; width: 100%; padding: 25px; } .visitActions { align-items: flex-start; } .story h2 { font-size: 33px; } .story p { font-size: 14px; } .related { margin-top: 40px; padding-top: 38px; } .sectionHeading { flex-wrap: wrap; h2 { font-size: 36px; } } }
 
-@media (max-width: 600px) { .photoGallery { max-height: min(360px, 55svh); } .openPhoto { left: 11px; bottom: 11px; font-size: 11px; padding: 9px 12px; } .counter { right: 11px; bottom: 11px; } }
+@media (max-width: 600px) { .photoGallery { height: min(430px, 60svh); gap: 10px; } .galleryTools { gap: 10px; } .galleryPaging { gap: 7px; } .openPhoto { font-size: 11px; } .galleryNav { width: 32px; height: 32px; } .thumbnail { width: 64px; height: 56px; } }
+
 
 .editAction { &:empty { display: none; } &:has(> :global(.button)) { margin-bottom: 20px; } }
+
+.previewMount { position: sticky; top: 0; z-index: 40; &:empty { display: none; } }
