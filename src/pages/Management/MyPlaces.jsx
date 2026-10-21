@@ -5,6 +5,7 @@ import { useManagement } from '../../contexts/ManagementContext';
 import { bloomAvailable, managementAction, openBillingUrl } from '../../utilities/managementApi';
 import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 import { getSubscriptionLabel, subscriptionAllowsEditing } from '../../../supabase/functions/_shared/entitlements.js';
+import Icon from '../../components/Icons/Icon';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 export default function MyPlaces() {
@@ -37,8 +38,8 @@ export default function MyPlaces() {
   const returnedMembership = management.memberships.find(item => String(item.place_id) === returnedPlace);
   const activated = returnedMembership && subscriptionAllowsEditing(returnedMembership.subscription);
   return <section id="my-places" aria-labelledby="my-places-title" className={styles.savedManagement}>
-    <h2 id="my-places-title">My Places</h2><p className={styles.intro}>A little home for the places you care for. Manage your subscription here, then edit directly on your place page.</p>
-      <p><Link to="/request-place">Request a listing or check your listing requests</Link>.</p>
+    <div className={styles.ownerSectionHeading}><h2 id="my-places-title">My Places</h2><Link className="button" to="/request-place">Request a Listing <Icon name="arrow" size={16} /></Link></div><p className={styles.intro}>A little home for the places you care for. Manage your subscription here, then edit directly on your place page.</p>
+      <p className={styles.small}><Link to="/request-place">View Your Listing Requests</Link></p>
       {management.is_admin && <Link className="button" to="/admin">Open Admin</Link>}
       {management.loading && <p role="status">Refreshing your places…</p>}
       {(management.error || error) && <p role="alert" className={styles.error}>{error || management.error}</p>}
@@ -53,8 +54,9 @@ export default function MyPlaces() {
         const subscription = membership.subscription;
         const canEdit = management.is_admin || subscriptionAllowsEditing(subscription);
         const activeBilling = subscription && !['none', 'canceled', 'incomplete_expired'].includes(subscription.status);
-        return <article className={styles.card} key={membership.place_id}>
-          <h3>{membership.place.name}</h3><span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
+        return <article className={`${styles.card} ${styles.managedPlaceCard}`} key={membership.place_id}>
+          <div className={styles.requestCardTop}><Icon name="shop" size={44} /><span className={styles.requestBadge}>Ownership approved</span></div>
+          <h3>{membership.place.name}</h3>{[membership.place.address, membership.place.city, membership.place.state].some(Boolean) && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{[membership.place.address, membership.place.city, membership.place.state].filter(Boolean).join(', ')}</span></p>}<span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
           {membership.is_billing_contact && <span className={styles.status}>Billing contact</span>}
           {subscription?.status === 'past_due' && subscription.grace_ends_at && <p className={styles.small}>Payment grace period ends {new Date(subscription.grace_ends_at).toLocaleString()}. Published content stays visible. Open Manage Billing to resolve your payment.</p>}
           {subscription?.status === 'incomplete' && <p>Payment is incomplete. Open Manage Billing to check your invoice or finish payment, then refresh your billing status.</p>}
@@ -71,6 +73,14 @@ export default function MyPlaces() {
           {!membership.is_billing_contact && <p className={styles.small}>Your designated billing contact manages payment. Contact Little Herb Places to change managers.</p>}
         </article>;
       })}</div>
-      {!!management.claims.length && <section className={styles.card}><h3>Your Claim Requests</h3><ul className={styles.list}>{management.claims.map(claim => <li key={claim.id}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link> <span className={styles.status}>{claim.status}</span>{claim.review_note && <p>{claim.review_note}</p>}{claim.status === 'pending' && <p>Our team is reviewing your connection to this place. No payment is needed during review.</p>}{claim.status === 'rejected' && <p>Read the review note above, then <Link to={`/place/${claim.urlSlug}?claim=1`}>return to the listing to submit updated details</Link>. If the place already has a manager, <a href="mailto:help@littleherbplaces.com">contact us for help</a>.</p>}{claim.status === 'approved' && <p>Your connection has been approved. Use the place card above to manage your subscription and start editing.</p>}</li>)}</ul></section>}
+      {!!management.claims.length && <section className={styles.claimRequests}><h3>Your Claim Requests</h3><ul className={styles.requestCards} role="list">{management.claims.map(claim => <li key={claim.id}><article className={`${styles.requestCard} ${claim.status === 'approved' ? styles.requestListed : claim.status === 'rejected' ? styles.requestDeclined : styles.requestPending}`}>
+        <div className={styles.requestCardTop}><Icon name={claim.status === 'approved' ? 'badge' : claim.status === 'rejected' ? 'leaf' : 'brand-clock'} size={44} /><span className={styles.requestBadge}>{claim.status === 'approved' ? 'Ownership approved' : claim.status === 'rejected' ? 'Needs an update' : 'Pending review'}</span></div>
+        <h4 className={styles.claimCardTitle}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h4>
+        {claim.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{claim.review_note}</p></div>}
+        {claim.status === 'pending' && <p className={styles.requestExplanation}>Your claim is pending review. We’re checking your connection to this place. No payment is needed yet.</p>}
+        {claim.status === 'rejected' && <p className={styles.requestExplanation}>Read the review note above, then <Link to={`/place/${claim.urlSlug}?claim=1`}>return to the listing to submit updated details</Link>. If the place already has a manager, <a href="mailto:help@littleherbplaces.com">contact us for help</a>.</p>}
+        {claim.status === 'approved' && <p className={styles.requestExplanation}>Your connection has been approved. Use the place card above to manage your subscription and start editing.</p>}
+      </article></li>)}</ul></section>}
+
   </section>;
 }

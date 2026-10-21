@@ -731,7 +731,7 @@ test('listing requests survive a failed submission and show their saved status',
   state.listingError = '';
   await page.getByRole('button', { name: 'Send Listing Request' }).click();
   await expect(page.getByRole('status').filter({ hasText: 'listing request is saved' })).toBeVisible();
-  await expect(page.getByRole('list').filter({ hasText: 'New Herb Shop' })).toContainText('pending');
+  await expect(page.getByRole('list').filter({ hasText: 'New Herb Shop' })).toContainText('Pending review');
   expect(state.listingAttempts[0].p_request_id).toBe(state.listingAttempts[1].p_request_id);
   await page.screenshot({ path: testInfo.outputPath('listing-request.png'), fullPage: true });
 });
@@ -1022,4 +1022,37 @@ test('processing a listing request prefills the address and starts server geocod
   await expect.poll(() => state.geocodedPlace).toBe('place-new');
   expect(state.created.p_content.address).toBe('123 Main Street');
   expect(state.created.p_content.zip).toBe('80301');
+});
+
+
+test('signed-in listing requests appear before the form with clear pending and listed actions', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  state.listingRequests = [
+    { id: 'request-pending', name: 'Fern & Field', address: '12 Garden Lane', city: 'Boulder', region: 'CO', status: 'pending', created_at: '2026-10-21T12:00:00Z' },
+    { id: 'request-listed', name: 'Moss Apothecary', address: '123 Main Street', city: 'Denver', region: 'CO', status: 'listed', place_slug: 'moss-apothecary', review_note: 'Your listing is ready. Claim it when you’re ready.', created_at: '2026-10-20T12:00:00Z' },
+  ];
+  await page.goto('/request-place');
+  const requests = page.getByRole('region', { name: 'Your Listing Requests', exact: true });
+  await expect(requests.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('heading', { name: 'Your Listing Requests', exact: true })).toBeFocused();
+  await expect(requests.getByRole('article').filter({ hasText: 'Fern & Field' })).toContainText('Pending review');
+  const listed = requests.getByRole('article').filter({ hasText: 'Moss Apothecary' });
+  await expect(listed).toContainText('Listed');
+  await expect(listed).toContainText('Your listing is ready. Claim it when you’re ready.');
+  await expect(listed.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveAttribute('href', '/place/moss-apothecary?claim=1');
+  await expect(listed.getByRole('link', { name: 'View Listing', exact: true })).toHaveAttribute('href', '/place/moss-apothecary');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  const requestsTop = await requests.evaluate(element => element.getBoundingClientRect().top);
+  const formTop = await page.locator('#new-listing').evaluate(element => element.getBoundingClientRect().top);
+  expect(requestsTop).toBeLessThan(formTop);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await requests.screenshot({ path: testInfo.outputPath('listing-request-cards.png') });
+});
+
+test('listed requests take approved managers to their place without a second claim', async ({ page }) => {
+  const state = await mockSite(page, { role: 'owner' });
+  state.listingRequests = [{ id: 'request-listed', name: 'Moss Apothecary', city: 'Denver', status: 'listed', place_slug: 'moss-apothecary', created_at: new Date().toISOString() }];
+  await page.goto('/request-place');
+  await expect(page.getByRole('link', { name: 'Manage Your Place', exact: true })).toHaveAttribute('href', '/favorites#my-places');
+  await expect(page.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveCount(0);
 });

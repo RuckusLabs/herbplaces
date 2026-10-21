@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
+import Icon from '../../components/Icons/Icon';
+import { useManagement } from '../../contexts/ManagementContext';
 import { getWebsiteUrl } from '../../utilities/placeDetails';
 import { managementRpc } from '../../utilities/managementApi';
 import styles from '../../components/PlaceManagement/management.module.scss';
@@ -30,6 +32,7 @@ export default function RequestPlace({ embedded = false }) {
   const Root = embedded ? 'section' : 'main';
 
   const { user, loading: authLoading, signUp, signIn } = useAuth();
+  const management = useManagement();
   const [accountMode, setAccountMode] = useState('signup');
   const [accountEmail, setAccountEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +40,12 @@ export default function RequestPlace({ embedded = false }) {
   const [stage, setStage] = useState('details');
   const [submittedName, setSubmittedName] = useState('');
   const heading = useRef(null);
-  useLayoutEffect(() => { heading.current?.focus({ preventScroll: true }); }, [stage, confirmation, submittedName]);
+  const requestsHeading = useRef(null);
+  const FormHeading = !embedded && user?.email_confirmed_at ? 'h2' : 'h1';
+  useLayoutEffect(() => {
+    if (!embedded && user?.email_confirmed_at) requestsHeading.current?.focus({ preventScroll: !submittedName });
+    else heading.current?.focus({ preventScroll: true });
+  }, [stage, confirmation, submittedName, embedded, user?.id, user?.email_confirmed_at]);
   const [draft, setDraft] = useState(readDraft);
   const [requests, setRequests] = useState([]);
   const [requestOwner, setRequestOwner] = useState(null);
@@ -98,13 +106,37 @@ export default function RequestPlace({ embedded = false }) {
   const summary = <div className={styles.requestSummary}><div><strong>{draft.name}</strong><span>{[draft.address, draft.city, draft.region, draft.zip].filter(Boolean).join(', ')}</span></div>{!confirmation && <button type="button" disabled={busy} onClick={() => { setStage('details'); setError(''); }}>Edit</button>}</div>;
   return <Root id={embedded ? undefined : 'main-content'} className={embedded ? styles.simpleRequest : `${styles.page} ${styles.simpleRequest}`}>
     {!embedded && <Helmet><title>Request a Listing | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>}
+    {!embedded && user?.email_confirmed_at && <section id="listing-requests" className={styles.requestDashboard} aria-labelledby="listing-requests-title">
+      <div className={styles.requestDashboardHeading}><div><h1 id="listing-requests-title" ref={requestsHeading} tabIndex={-1}>Your Listing Requests</h1><p>See where things stand and take the next step.</p></div><a href="#new-listing" className={styles.newRequestLink}>Request Another Place <Icon name="arrow" size={16} /></a></div>
+      <div className={styles.requestRefresh}><button type="button" disabled={loading} onClick={() => setAttempt(value => value + 1)}>Refresh Requests</button>{loading && <span role="status">Updating…</span>}</div>
+      {listError && <p role="alert" className={styles.error}>{listError}</p>}
+      {!loading && !listError && !visibleRequests.length && <p className={styles.requestEmpty}>No listing requests yet. Add your first place below.</p>}
+      <ul className={styles.requestCards} role="list">{visibleRequests.map(request => {
+        const listed = request.status === 'listed';
+        const declined = request.status === 'declined';
+        const member = management.memberships.find(item => item.place?.urlSlug === request.place_slug);
+        const pendingClaim = management.claims.some(item => item.urlSlug === request.place_slug && item.status === 'pending');
+        const location = [request.address, request.city, request.region, request.zip].filter(Boolean).join(', ');
+        const createdAt = new Date(request.created_at);
+        return <li key={request.id}><article aria-labelledby={`request-${request.id}`} className={`${styles.requestCard} ${listed ? styles.requestListed : declined ? styles.requestDeclined : styles.requestPending}`}>
+          <div className={styles.requestCardTop}><Icon name={listed ? 'shop' : declined ? 'leaf' : 'brand-clock'} size={44} /><span className={styles.requestBadge}>{listed ? 'Listed' : declined ? 'Needs an update' : 'Pending review'}</span></div>
+          <h2 id={`request-${request.id}`}>{request.name}</h2>
+          {location && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{location}</span></p>}
+          <p className={styles.requestExplanation}>{listed ? member ? 'Your listing is ready, and your management access is approved.' : pendingClaim ? 'Your listing is ready. We’re reviewing your ownership claim.' : 'Your place is in the directory. Own or manage it? Claim the listing to make it yours.' : declined ? 'This request needs another look. Read our note below before sending updated details.' : 'We’re checking the details for this place. The decision will appear here.'}</p>
+          {request.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{request.review_note}</p></div>}
+          {listed && request.place_slug && <div className={styles.requestCardActions}>{management.loading ? <span role="status">Checking access…</span> : management.error ? <Link to="/favorites#my-places">Check Management Access</Link> : member || pendingClaim ? <Link className="button" to="/favorites#my-places">{member ? 'Manage Your Place' : 'View Claim Status'} <Icon name="arrow" size={16} /></Link> : <Link className="button" to={claimPath(request.place_slug)}>Start Your Claim <Icon name="arrow" size={16} /></Link>}<Link to={`/place/${request.place_slug}`}>View Listing</Link></div>}
+          {declined && <a className={styles.requestUpdateLink} href="#new-listing">Send Updated Details <Icon name="arrow" size={16} /></a>}
+          {Number.isFinite(createdAt.getTime()) && <p className={styles.requestDate}>Requested <time dateTime={request.created_at}>{createdAt.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</time></p>}
+        </article></li>;
+      })}</ul>
+    </section>}
     {embedded && submittedName ? <div className={styles.flowCard}>
       <h1 ref={heading} tabIndex={-1}>Thanks — we’ve got it.</h1><p role="status" className={styles.notice}>{notice}</p><p>We’ll review {submittedName}. Once the listing is ready, you can submit an ownership claim.</p><Link className="button" to="/request-place">View Request Status</Link>
     </div> : confirmation && !user ? <div className={styles.flowCard}>
       <h1 ref={heading} tabIndex={-1}>Check your inbox.</h1><p role="status">Confirm your email, then return here to send your request. Your request has not been sent.</p>{summary}<p className={styles.small}>Your place details are saved in this browser for 24 hours.</p><button type="button" className="button" onClick={() => { setConfirmation(false); setStage('account'); setAccountMode('signin'); setNotice(''); }}>Sign In to Continue</button><p><Link to={`/auth/resend-confirmation?next=${destination}`}>Send Another Confirmation Email</Link></p>
-    </div> : <div className={styles.flowCard}>
+    </div> : <div id="new-listing" className={styles.flowCard}>
       <p className={styles.small}>{stage === 'account' ? '2 of 2 · Your account' : user ? 'Your place' : '1 of 2 · Your place'}</p>
-      <h1 ref={heading} tabIndex={-1}>{stage === 'account' ? user ? 'Ready to send?' : accountMode === 'signup' ? 'Finish with your account.' : 'Welcome back.' : 'Add your place.'}</h1>
+      <FormHeading ref={heading} tabIndex={-1}>{stage === 'account' ? user ? 'Ready to send?' : accountMode === 'signup' ? 'Finish with your account.' : 'Welcome back.' : 'Add your place.'}</FormHeading>
       <p>{stage === 'account' ? 'Keep your request and its status in one place.' : 'Start with the basics. Requesting a listing is free.'}</p>
       {notice && <p role="status" className={styles.notice}>{notice}</p>}
       <form className={styles.form} onSubmit={submit}>
@@ -126,13 +158,7 @@ export default function RequestPlace({ embedded = false }) {
       </form>
       <p className={styles.small}>We review each request. No payment is taken.</p>
     </div>}
-    {!embedded && user?.email_confirmed_at && <section className={styles.card}><h2>Your Listing Requests</h2>
-      {loading && <p role="status">Loading your requests…</p>}
-      {listError && <p role="alert" className={styles.error}>{listError}</p>}
-      <button className="button" disabled={loading} onClick={() => setAttempt(value => value + 1)}>Refresh Requests</button>
-      {!loading && !listError && !visibleRequests.length && <p>You haven’t requested a listing yet.</p>}
-      <ul className={styles.list}>{visibleRequests.map(request => <li key={request.id}><strong>{request.name}</strong> · {[request.address, request.city, request.region, request.zip].filter(Boolean).join(', ')} <span className={styles.status}>{request.status}</span>{request.review_note && <p>{request.review_note}</p>}{request.place_slug && <p><Link to={`/place/${request.place_slug}`}>View Listing</Link> · <Link to={claimPath(request.place_slug)}>Own or manage this place? Start Your Claim</Link></p>}</li>)}</ul>
-    </section>}
+
   </Root>;
 }
 
