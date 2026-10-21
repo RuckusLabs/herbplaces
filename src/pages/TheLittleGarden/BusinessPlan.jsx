@@ -21,7 +21,7 @@ export default function BusinessPlan({ plan }) {
         <p className={styles.availability}>{thrive ? 'Prepare your listing or ask about the pilot. No payment or commitment.' : bloomAvailable ? 'Free to claim. Ownership approval comes before payment.' : 'Free to claim now. Bloom purchases are coming soon.'}</p>
       </div>
       <aside className={styles.offer} aria-label={`${content.name} plan details`}>
-        <div className={styles.offerImage}><img src="/assets/pages/the-little-garden/garden.webp" alt="A sunlit garden path beneath a leafy archway" width="1000" height="1500" fetchPriority="high" /></div>
+        <div className={styles.offerImage}><img src={content.heroPhoto} alt={content.heroAlt} style={{ objectPosition: content.heroPosition }} width={thrive ? 500 : 900} height={thrive ? 500 : 1350} fetchPriority="high" /></div>
         <div className={styles.offerCopy}><span className={styles.eyebrow}>{thrive ? 'Planned pilot' : 'Your listing, lovingly tended'}</span><h2>{content.name}</h2><p className={styles.price}>${content.price}<span>{content.priceNote}</span></p><p>{thrive ? 'Planned: Bloom + a showcase of up to 10 products or services.' : 'Listing edits, up to 20 photos, and all approved managers.'}</p><a href="#included">Explore the {thrive ? 'planned features' : 'features'} ↓</a></div>
       </aside>
     </section>

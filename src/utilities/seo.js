@@ -27,7 +27,7 @@ export const sitePageCards = [
   { path: '/login', slug: 'sign-in', name: 'Welcome Back.', tagline: 'Your saved places and little discoveries are waiting for you.', button: 'Sign In', photo: '/assets/pages/home/hero.jpg' },
   { path: '/favorites', slug: 'saved-places', name: 'Your Little Discoveries.', tagline: 'Places to come back to, whenever you’re ready.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-2.jpg' },
   { path: '/shop', slug: 'shop', name: 'Good Things Are Growing.', tagline: 'A little more plant-loving goodness is taking root.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-1.jpg' },
-  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, slug: key, name: plan.heading, tagline: plan.description, button: key === 'bloom' ? 'Explore Bloom' : 'Meet the Thrive Pilot', photo: '/assets/pages/the-little-garden/garden.webp' })),
+  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, slug: key, name: plan.heading, tagline: plan.description, button: key === 'bloom' ? 'Explore Bloom' : 'Meet the Thrive Pilot', photo: plan.heroPhoto })),
 ];
 const cardHash = input => {
   let hash = 2166136261;

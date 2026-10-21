@@ -25,7 +25,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
     const request = route.request();
     state.authRequests.push({ url: request.url(), method: request.method(), body: request.method() === 'POST' || request.method() === 'PUT' ? request.postDataJSON() : null });
     if (state.authError) return route.fulfill({ status: 429, json: { msg: state.authError } });
-    return route.fulfill({ json: request.url().includes('/token') ? session : request.url().includes('/recover') || request.url().includes('/resend') ? {} : user });
+    return route.fulfill({ json: request.url().includes('/token') || request.url().includes('/signup') && !state.signupNeedsConfirmation ? session : request.url().includes('/recover') || request.url().includes('/resend') ? {} : user });
   });
   await page.route('**/rest/v1/**', async route => {
     const request = route.request();
@@ -826,7 +826,7 @@ test('Bloom starts an inline claim and resumes in the guided flow after sign-in'
   await expect(page).not.toHaveURL(/claim=1/);
 });
 
-test('missing-place sales flow keeps request details and branch through sign-in', async ({ page }) => {
+test('missing-place flow combines existing-account sign-in and request submission', async ({ page }) => {
   const state = await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/start?plan=bloom');
   await page.getByRole('searchbox', { name: 'Business name or city', exact: true }).fill('New Fern');
@@ -834,18 +834,14 @@ test('missing-place sales flow keeps request details and branch through sign-in'
   await page.getByRole('button', { name: 'Add My Place', exact: true }).click();
   await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
-  const destination = '/the-little-garden/start?plan=bloom&new=1';
-  await expect(page.getByRole('link', { name: 'Create a Free Account', exact: true })).toHaveAttribute('href', `/register?next=${encodeURIComponent(destination)}`);
-  await page.getByRole('link', { name: 'Sign In to Request a Listing', exact: true }).click();
-  await page.getByLabel('Email', { exact: true }).fill('guest@example.com');
+  await page.getByRole('button', { name: 'Already have an account? Sign in here', exact: true }).click();
+  await page.getByLabel('Account email', { exact: true }).fill('guest@example.com');
   await page.getByLabel('Password', { exact: true }).fill('password-for-test');
-  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await page.getByRole('button', { name: 'Sign In & Send Listing Request', exact: true }).click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom&new=1/);
-  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('New Fern Apothecary');
-  expect(state.listingRequests).toHaveLength(0);
-  await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
   expect(state.listingRequests).toHaveLength(1);
+  expect(state.listingRequests[0].name).toBe('New Fern Apothecary');
 });
 
 test('guided start recognizes existing access and avoids duplicate claims', async ({ page }) => {
@@ -876,4 +872,61 @@ test('Thrive starts with a place while keeping pilot availability clear', async 
   await expect(page.getByRole('link', { name: 'Ask About the Thrive Pilot', exact: true })).toHaveAttribute('href', /^mailto:/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+
+async function fillListingAndAccount(page) {
+  await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByLabel('Account email', { exact: true }).fill('newfern@example.com');
+  await page.getByLabel('Create a password', { exact: true }).fill('private-test-password');
+  await page.getByRole('checkbox', { name: 'I agree to the membership terms', exact: false }).check();
+}
+
+test('new accounts send a listing request from the same form without storing credentials', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/start?plan=thrive&new=1');
+  await fillListingAndAccount(page);
+  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  expect(state.listingRequests).toHaveLength(1);
+  expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(1);
+  expect(await page.evaluate(() => JSON.stringify([localStorage.getItem('little-herb-listing-request-confirmation'), sessionStorage.getItem('little-herb-listing-request')]))).not.toContain('private-test-password');
+  await expect(page).toHaveURL(/start\?plan=thrive&new=1/);
+});
+
+test('email confirmation preserves a listing draft in another tab and requires explicit submission', async ({ page, context }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.signupNeedsConfirmation = true;
+  await page.goto('/the-little-garden/start?plan=bloom&new=1');
+  await fillListingAndAccount(page);
+  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your request has not been sent' })).toBeVisible();
+  expect(state.listingRequests).toHaveLength(0);
+  const saved = await page.evaluate(() => localStorage.getItem('little-herb-listing-request-confirmation'));
+  expect(saved).toContain('New Fern Apothecary');
+  expect(saved).not.toContain('private-test-password');
+  const confirmedTab = await context.newPage();
+  const confirmed = await mockSite(confirmedTab, { role: 'claimant' });
+  await confirmedTab.goto('/the-little-garden/start?plan=bloom&new=1');
+  await expect(confirmedTab.getByLabel('Place name', { exact: true })).toHaveValue('New Fern Apothecary');
+  expect(confirmed.listingRequests).toHaveLength(0);
+  await confirmedTab.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+  await expect(confirmedTab.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  expect(await confirmedTab.evaluate(() => localStorage.getItem('little-herb-listing-request-confirmation'))).toBeNull();
+});
+
+test('a request can retry after account creation without creating another account', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  state.listingError = 'Please try sending your request again.';
+  await page.goto('/the-little-garden/start?plan=bloom&new=1');
+  await fillListingAndAccount(page);
+  await page.getByRole('button', { name: 'Create Account & Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('alert').filter({ hasText: 'Please try sending your request again.' })).toBeVisible();
+  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('New Fern Apothecary');
+  state.listingError = '';
+  await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(1);
+  expect(state.listingAttempts[0].p_request_id).toBe(state.listingAttempts[1].p_request_id);
 });

@@ -9,7 +9,7 @@ export const ownerSteps = [
 
 export const planPages = {
   bloom: {
-    name: 'Bloom', icon: 'sun', eyebrow: 'For the people behind the place',
+    name: 'Bloom', icon: 'sun', heroPhoto: '/assets/pages/home/hero.jpg', heroAlt: 'Hands tending fresh herbs in a wooden planting tray', heroPosition: 'center 32%', eyebrow: 'For the people behind the place',
     heading: 'Your place. Your story. In full bloom.',
     title: 'Bloom | Manage Your Herb Business Listing | Little Herb Places',
     description: 'Keep your herb shop, herbal practice, or garden listing current with Bloom. Share photos, hours, and useful links for $19/month per place after ownership approval.',
@@ -35,7 +35,7 @@ export const planPages = {
     ],
   },
   thrive: {
-    name: 'Thrive', icon: 'thrive', eyebrow: 'A little more room to grow · planned pilot',
+    name: 'Thrive', icon: 'thrive', heroPhoto: '/assets/pages/home/herb-image-1.jpg', heroAlt: 'A botanical tea blend surrounded by colorful flowers', heroPosition: 'center center', eyebrow: 'A little more room to grow · planned pilot',
     heading: 'More of your craft. More to discover.',
     title: 'Thrive | Planned Product & Service Showcase | Little Herb Places',
     description: 'Explore the planned Thrive pilot for herb businesses: Bloom listing tools plus a showcase of up to 10 products or services. Proposed at $49/month per place.',

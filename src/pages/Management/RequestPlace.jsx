@@ -7,13 +7,18 @@ import { managementRpc } from '../../utilities/managementApi';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 const storageKey = 'little-herb-listing-request';
+const confirmationDraftKey = 'little-herb-listing-request-confirmation';
 const empty = () => ({ name: '', website: '', city: '', region: '', notes: '', requestId: crypto.randomUUID() });
 function readDraft() {
-  try {
-    const saved = JSON.parse(sessionStorage.getItem(storageKey));
-    if (saved && saved.savedAt <= Date.now() && saved.savedAt > Date.now() - 86400000 && typeof saved.requestId === 'string') return { ...empty(), ...saved };
-  } catch { /* The form also works without browser storage. */ }
-  return empty();
+  const candidates = [];
+  for (const storage of ['sessionStorage', 'localStorage']) {
+    try {
+      const saved = JSON.parse(window[storage].getItem(storage === 'sessionStorage' ? storageKey : confirmationDraftKey));
+      if (saved && saved.savedAt <= Date.now() && saved.savedAt > Date.now() - 86400000 && typeof saved.requestId === 'string'
+        && ['name', 'website', 'city', 'region', 'notes'].every(key => typeof saved[key] === 'string')) candidates.push(saved);
+    } catch { /* The form also works without browser storage. */ }
+  }
+  return candidates.sort((a, b) => b.savedAt - a.savedAt)[0] || empty();
 }
 
 export default function RequestPlace({ embedded = false }) {
@@ -23,7 +28,11 @@ export default function RequestPlace({ embedded = false }) {
   const claimPath = slug => embedded ? `/the-little-garden/start?${new URLSearchParams({ plan, place: slug, claim: '1' })}` : `/place/${slug}?claim=1`;
   const Root = embedded ? 'section' : 'main';
   const Heading = embedded ? 'h2' : 'h1';
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, signUp, signIn } = useAuth();
+  const [accountMode, setAccountMode] = useState('signup');
+  const [accountEmail, setAccountEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmation, setConfirmation] = useState(false);
   const [draft, setDraft] = useState(readDraft);
   const [requests, setRequests] = useState([]);
   const [requestOwner, setRequestOwner] = useState(null);
@@ -49,12 +58,30 @@ export default function RequestPlace({ embedded = false }) {
   const visibleRequests = requestOwner === user?.id ? requests : [];
   const submit = async event => {
     event.preventDefault();
-    if (busy || !user?.email_confirmed_at) return;
+    if (busy || authLoading) return;
     setBusy(true); setError(''); setNotice('');
     try {
+      if (!user) {
+        // Keep only the listing details for confirmation in another tab; never credentials.
+        try { localStorage.setItem(confirmationDraftKey, JSON.stringify({ ...draft, savedAt: Date.now() })); } catch { /* Same-tab recovery remains available. */ }
+        const result = accountMode === 'signup'
+          ? await signUp({ email: accountEmail.trim(), password, next: `${pathname}${search}` })
+          : await signIn({ email: accountEmail.trim(), password });
+        if (result.error) throw result.error;
+        setPassword('');
+        if (!result.data?.session || !result.data.session.user?.email_confirmed_at) {
+          setConfirmation(true);
+          setNotice('Check your inbox to finish setting up your account, then return here to review and send your saved listing request. Your request has not been sent. If you already have an account, sign in below.');
+          return;
+        }
+      } else if (!user.email_confirmed_at) {
+        setError('Confirm your account email before sending your request. Your details are saved here.');
+        return;
+      }
       await managementRpc('request_place_listing', { p_name: draft.name.trim(), p_website: draft.website.trim(), p_city: draft.city.trim(), p_region: draft.region.trim(), p_notes: draft.notes.trim(), p_request_id: draft.requestId });
       setNotice('Your listing request is saved. Our team will review it. Follow its status below; no subscription or management access has been started.');
-      setDraft(empty()); setAttempt(value => value + 1);
+      try { localStorage.removeItem(confirmationDraftKey); } catch { /* Optional cross-tab recovery. */ }
+      setConfirmation(false); setDraft(empty()); setAttempt(value => value + 1);
     } catch (failure) { setError(failure.message || 'We couldn’t send your request. Your details are still here.'); }
     finally { setBusy(false); }
   };
@@ -67,7 +94,7 @@ export default function RequestPlace({ embedded = false }) {
     {notice && <p role="status" className={styles.notice}>{notice}</p>}
     <section className={styles.card}><h2>Place Details</h2>
       <form className={styles.form} onSubmit={submit}>
-        <fieldset disabled={busy}><div className={styles.formRow}>
+        <fieldset className={styles.listingFields} disabled={busy}><div className={styles.formRow}>
           <label>Place name<input required minLength={2} maxLength={200} value={draft.name} onChange={update('name')} /></label>
           <label>Website (optional)<input type="url" pattern="https?://.+" title="Start the website address with https:// or http://." maxLength={2000} value={draft.website} onChange={update('website')} /></label>
           <label>City<input required maxLength={200} value={draft.city} onChange={update('city')} /></label>
@@ -75,9 +102,16 @@ export default function RequestPlace({ embedded = false }) {
         </div><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label></fieldset>
         <p className={styles.small}>These details go to our review team. Please don’t include passwords, payment information, or sensitive personal details.</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
-        {authLoading ? <p role="status">Checking your account…</p> : !user ? <><p>Create a free account or sign in to send your request. Your details stay in this tab; review and submit the form after returning.</p><div className={styles.actions}><Link className="button" to={`/register?next=${destination}`}>Create a Free Account</Link><Link to={`/login?next=${destination}`}>Sign In to Request a Listing</Link></div></>
-          : !user.email_confirmed_at ? <><p>Confirm your account email before sending your request.</p><Link className="button" to={`/auth/resend-confirmation?next=${destination}`}>Send Confirmation Email</Link></>
-          : <button className="button" disabled={busy}>{busy ? 'Sending…' : 'Send Listing Request'}</button>}
+        {!user && !confirmation && <fieldset className={styles.listingFields} disabled={busy}><legend>{accountMode === 'signup' ? 'Create your free account' : 'Sign in to your account'}</legend>
+          <p className={styles.small}>Your account keeps your request and its review status in one place. No subscription starts with this request.</p>
+          <div className={styles.formRow}><label>Account email<input type="email" autoComplete="email" value={accountEmail} onChange={event => setAccountEmail(event.target.value)} required maxLength={254} /></label><label>{accountMode === 'signup' ? 'Create a password' : 'Password'}<input type="password" autoComplete={accountMode === 'signup' ? 'new-password' : 'current-password'} value={password} onChange={event => setPassword(event.target.value)} required minLength={6} /></label></div>
+          {accountMode === 'signup' && <label className={styles.check}><input type="checkbox" required /> <span>I agree to the <Link to="/membership-terms">membership terms</Link> and have read the <Link to="/privacy">privacy policy</Link>.</span></label>}
+          <button className={styles.sortButton} type="button" onClick={() => { setAccountMode(accountMode === 'signup' ? 'signin' : 'signup'); setError(''); }}>{accountMode === 'signup' ? 'Already have an account? Sign in here' : 'New here? Create a free account'}</button>
+        </fieldset>}
+        {confirmation && !user && <div className={styles.notice}><p>Your listing details are saved in this browser for up to 24 hours. Confirm your email, then return here to review and send your request.</p><button type="button" className={styles.sortButton} onClick={() => { setConfirmation(false); setAccountMode('signin'); setNotice(''); }}>I Have an Account — Sign In Here</button><Link to={`/auth/resend-confirmation?next=${destination}`}>Send Another Confirmation Email</Link></div>}
+        {authLoading ? <p role="status">Checking your account…</p> : user && !user.email_confirmed_at ? <><p>Confirm your account email before sending your request.</p><Link className="button" to={`/auth/resend-confirmation?next=${destination}`}>Send Confirmation Email</Link></>
+          : !confirmation || user ? <button className="button" disabled={busy}>{busy ? 'Please Wait…' : user ? 'Send Listing Request' : accountMode === 'signup' ? 'Create Account & Send Listing Request' : 'Sign In & Send Listing Request'}</button> : null}
+
       </form>
     </section>
     {embedded && <p className={styles.small}>Our team will review your listing request. Once the listing is added, return here to open it and start your ownership claim. Listing approval and ownership approval are separate; no payment is taken with this request.</p>}
