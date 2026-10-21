@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../Icons/Icon';
 import Modal from '../Modal/Modal';
 import { categories } from '../../utilities/placeFilters';
 import { createPlaceDraft, placeSlug, preparePlaceContent } from '../../utilities/placeContent';
@@ -64,6 +65,12 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
   }, [dirty, busy]);
+  useEffect(() => {
+    if (!preview) return;
+    const target = document.getElementById(`${titleId}-preview`);
+    target?.scrollIntoView({ block: 'start' });
+    target?.focus({ preventScroll: true });
+  }, [preview, titleId]);
   const close = () => {
     if (busy) return;
     if (!dirty || window.confirm('Discard your unpublished changes?')) { if (!creating) clearEditorDraft(userId, place.id); onClose(); }
@@ -123,38 +130,57 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
     [photos[index], photos[index + direction]] = [photos[index + direction], photos[index]];
     update('photos', photos);
   };
+  const goToSection = section => {
+    const target = document.getElementById(`${titleId}-${section}`);
+    target?.scrollIntoView({ block: 'start' });
+    target?.focus({ preventScroll: true });
+  };
+  const input = key => {
+    const [field, label, maxLength] = fields.find(([name]) => name === key);
+    return <label key={field}>{label}<input value={draft[field]} onChange={event => update(field, event.target.value)} maxLength={maxLength} required={field === 'name'} type={field === 'phone' ? 'tel' : 'text'} inputMode={field === 'website' ? 'url' : undefined} /></label>;
+  };
   return <Modal open onClose={close} labelledBy={titleId} closeLabel="Close place editor" className={styles.editorDialog} contentClassName={styles.editorBody}>
-    <h2 id={titleId} className={styles.editorHeading}>{creating ? 'Add Place' : `Edit ${place.name}`}</h2>
-    <p className={styles.small}>{creating ? 'Create a new listing, then add photos on the next screen. The place will be live when you create it.' : 'Preview your changes, then publish them directly to your place.'}</p>
-    {restored && <p role="status" className={styles.notice}>Your unpublished draft was recovered from this tab. It has not been published.</p>}
-    {loading ? <p role="status">Loading the latest version…</p> : draft ? <form className={styles.form} onSubmit={publish}>
-      {creating && <fieldset disabled={busy}><legend>Public URL</legend><label>URL slug<input value={slug} onChange={event => { setSlugTouched(true); setSlug(event.target.value); }} required pattern="[a-z0-9]+(-[a-z0-9]+)*" maxLength={200} placeholder="the-little-herb-shop" /></label><p className={styles.small}>littleherbplaces.com/place/{slug || 'your-place'}</p></fieldset>}
-      <fieldset disabled={busy}>
-        <legend>About your place</legend>
-        <div className={styles.formRow}>{fields.map(([field, label, maxLength]) => <label key={field}>{label}<input value={draft[field]} onChange={event => update(field, event.target.value)} maxLength={maxLength} required={field === 'name'} type={field === 'phone' ? 'tel' : 'text'} /></label>)}</div>
-        <label>Description<textarea value={draft.description} onChange={event => update('description', event.target.value)} maxLength={20000} rows={7} /></label>
-        <label>Opening hours<textarea value={draft.hours} onChange={event => update('hours', event.target.value)} maxLength={2000} placeholder="Monday–Friday: 10 am–6 pm" /></label>
-      </fieldset>
-      <fieldset disabled={busy}><legend>Categories</legend>{categories.map(category => <label className={styles.check} key={category.id}><input type="checkbox" checked={draft.category_ids.includes(category.id)} onChange={event => update('category_ids', event.target.checked ? [...draft.category_ids, category.id] : draft.category_ids.filter(id => id !== category.id))} />{category.name}</label>)}</fieldset>
-      <fieldset disabled={busy}><legend>Links</legend><p className={styles.small}>Add any website, booking page, menu, or social profile. Choose the text visitors will see.</p>
-        {draft.social_links.map((link, index) => <div className={styles.linkCard} key={index}><div className={styles.formRow}><label>Link text<input value={link.label} maxLength={80} placeholder="Book a consultation" onChange={event => update('social_links', draft.social_links.map((item, i) => i === index ? { ...item, label: event.target.value } : item))} /></label><label>Link URL<input value={link.url} maxLength={2000} onChange={event => update('social_links', draft.social_links.map((item, i) => i === index ? { ...item, url: event.target.value } : item))} /></label></div><button type="button" className="button" onClick={() => update('social_links', draft.social_links.filter((_, i) => i !== index))}>Remove link {index + 1}</button></div>)}
-        {draft.social_links.length < 10 && <button className="button" type="button" onClick={() => update('social_links', [...draft.social_links, { label: '', url: '' }])}>Add Link</button>}
-      </fieldset>
-      {!creating && <fieldset disabled={busy}><legend>Photos</legend><p className={styles.small}>Up to 20 photos. JPEG, PNG, or WebP, no larger than 10 MB each. Removed photos disappear when you publish.</p>
-        <label>Add photos<input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={upload} /></label>
-        <div className={styles.photoGrid}>{draft.photos.map((photo, index) => <div className={styles.photo} key={photo}>
-          <img src={photo} alt={draft.photo_alt[photo] || `Place photo ${index + 1}`} />
-          <label className={styles.check}><input type="radio" name="cover" checked={draft.coverPhoto === photo} onChange={() => update('coverPhoto', photo)} />Cover photo</label>
-          <label>Photo description<input value={draft.photo_alt[photo] || ''} maxLength={500} onChange={event => update('photo_alt', { ...draft.photo_alt, [photo]: event.target.value })} /></label>
-          <div className={styles.actions}><button type="button" className="button" aria-label={`Move photo ${index + 1} earlier`} disabled={index === 0} onClick={() => movePhoto(index, -1)}>←</button><button type="button" className="button" aria-label={`Move photo ${index + 1} later`} disabled={index === draft.photos.length - 1} onClick={() => movePhoto(index, 1)}>→</button><button type="button" className="button" onClick={() => removePhoto(photo)}>Remove</button></div>
-        </div>)}</div>
-      </fieldset>}
-      {uploadProgress && <div role="status"><p>Uploading photo {uploadProgress.completed + 1} of {uploadProgress.total}…</p><progress value={uploadProgress.completed} max={uploadProgress.total} aria-label="Photos uploaded" /></div>}
-      {preview && <section className={styles.preview} aria-label="Place preview"><h3>{draft.name}</h3>{draft.coverPhoto && <img src={draft.coverPhoto} alt={draft.photo_alt[draft.coverPhoto] || draft.name} />}<p>{draft.tagline}</p><p>{draft.description}</p><p>{[draft.address, draft.city, draft.state, draft.zip].filter(Boolean).join(', ')}</p>{draft.hours && <p>{draft.hours}</p>}{draft.phone && <p>{draft.phone}</p>}{draft.website && <p>{draft.website}</p>}{draft.social_links.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}</section>}
-      {error && <p role="alert" className={styles.error}>{error}</p>}
-      {conflict && <button className="button" type="button" disabled={busy} onClick={() => { if (window.confirm('Reload the latest version and discard your unpublished changes?')) { clearEditorDraft(userId, place.id); setAttempt(value => value + 1); } }}>Reload Latest Version</button>}
-      <div className={styles.actions}><button type="button" className="button" disabled={busy} onClick={() => setPreview(value => !value)}>{preview ? 'Hide Preview' : 'Preview Changes'}</button><button className="button" disabled={busy || !dirty || conflict}>{busy && !uploadProgress ? creating ? 'Creating…' : 'Publishing…' : creating ? 'Create Place & Add Photos' : 'Publish Changes'}</button><button type="button" className="button" disabled={busy} onClick={close}>Cancel</button></div>
-    </form> : <><p role="alert" className={styles.error}>{error}</p><button className="button" onClick={() => setAttempt(value => value + 1)}>Try Again</button></>}
+    <header className={styles.editorHeader}><p className={styles.editorEyebrow}><Icon name="shop" size={24} /> Listing editor</p><h2 id={titleId} className={styles.editorHeading}>{creating ? 'Add Place' : `Edit ${place.name}`}</h2><p>{creating ? 'Start with the essentials. You can add photos once your listing is created.' : 'Make it yours. Your changes go live when you publish.'}</p></header>
+    {loading ? <p className={styles.editorLoading} role="status">Loading the latest version…</p> : draft ? <>
+      <nav className={styles.editorNav} aria-label="Editor sections">{[['about', 'About'], ['location', 'Visit details'], ['links', 'Links'], ...(!creating ? [['photos', 'Photos']] : [])].map(([id, label]) => <button key={id} type="button" onClick={() => goToSection(id)}>{label}</button>)}</nav>
+      <form className={`${styles.form} ${styles.editorForm}`} onSubmit={publish}>
+        <div className={styles.editorScroll}>
+          {restored && <p role="status" className={styles.notice}>Your unpublished draft was recovered from this tab. It has not been published.</p>}
+          {creating && <fieldset className={styles.editorSection} disabled={busy}><legend>Public URL</legend><label>URL slug<input value={slug} onChange={event => { setSlugTouched(true); setSlug(event.target.value); }} required pattern="[a-z0-9]+(-[a-z0-9]+)*" maxLength={200} placeholder="the-little-herb-shop" /></label><p className={styles.editorHint}>littleherbplaces.com/place/{slug || 'your-place'}</p></fieldset>}
+          <fieldset className={styles.editorSection} id={`${titleId}-about`} tabIndex={-1} disabled={busy}>
+            <legend>About your place</legend><p className={styles.editorHint}>Introduce your place and what makes it special.</p>
+            <div className={styles.formRow}>{input('name')}{input('tagline')}</div>
+            <label>Description<textarea value={draft.description} onChange={event => update('description', event.target.value)} maxLength={20000} rows={6} placeholder="Tell visitors about your place, your approach, and what they’ll find here." /></label>
+            <div className={styles.editorCategoryGroup} role="group" aria-label="Categories"><h3>Categories</h3><p className={styles.editorHint}>Choose the categories that fit your place.</p><div className={styles.editorCategories}>{categories.map(category => <label key={category.id} className={styles.editorCategory}><input type="checkbox" checked={draft.category_ids.includes(category.id)} onChange={event => update('category_ids', event.target.checked ? [...draft.category_ids, category.id] : draft.category_ids.filter(id => id !== category.id))} /><Icon name={category.icon} size={26} /><span>{category.name}</span></label>)}</div></div>
+          </fieldset>
+          <fieldset className={styles.editorSection} id={`${titleId}-location`} tabIndex={-1} disabled={busy}>
+            <legend>Visit & contact details</legend><p className={styles.editorHint}>Help visitors find you and plan their visit.</p>
+            <div className={styles.formRow}>{input('website')}{input('phone')}</div>
+            {input('address')}
+            <div className={styles.editorLocationRow}>{input('city')}{input('state')}{input('zip')}</div>
+            <label>Opening hours<textarea value={draft.hours} onChange={event => update('hours', event.target.value)} maxLength={2000} rows={3} placeholder="Monday–Friday: 10 am–6 pm" /></label>
+          </fieldset>
+          <fieldset className={styles.editorSection} id={`${titleId}-links`} tabIndex={-1} disabled={busy}><legend>Links</legend><p className={styles.editorHint}>Connect visitors to your booking page, menu, shop, or social profiles.</p>
+            {!draft.social_links.length && <p className={styles.editorEmpty}>No extra links yet. Add one when you’re ready.</p>}
+            {draft.social_links.map((link, index) => <div className={styles.editorLinkCard} key={index}><div className={styles.editorLinkHeading}><span>Link {index + 1}</span><button type="button" className={styles.editorRemove} onClick={() => update('social_links', draft.social_links.filter((_, i) => i !== index))}>Remove link {index + 1}</button></div><div className={styles.formRow}><label>Link text<input value={link.label} maxLength={80} placeholder="Book a consultation" onChange={event => update('social_links', draft.social_links.map((item, i) => i === index ? { ...item, label: event.target.value } : item))} /></label><label>Link URL<input value={link.url} maxLength={2000} inputMode="url" placeholder="yourplace.com/book" onChange={event => update('social_links', draft.social_links.map((item, i) => i === index ? { ...item, url: event.target.value } : item))} /></label></div></div>)}
+            {draft.social_links.length < 10 && <button className={styles.editorSecondary} type="button" onClick={() => update('social_links', [...draft.social_links, { label: '', url: '' }])}><Icon name="link" size={16} /> Add Link</button>}
+          </fieldset>
+          {!creating && <fieldset className={styles.editorSection} id={`${titleId}-photos`} tabIndex={-1} disabled={busy}><legend>Photos <span className={styles.editorPhotoCount}>{draft.photos.length} / {Math.max(PHOTO_LIMIT, source?.photos?.length || 0)}</span></legend><p className={styles.editorHint}>Choose a welcoming cover photo, then show visitors around your space.</p>
+            <label className={styles.editorUpload}><Icon name="polaroid" size={42} /><strong>Add photos</strong><span>Choose JPEG, PNG, or WebP images · Up to 10 MB each</span><input aria-label="Add photos" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={upload} /></label>
+            {uploadProgress && <div role="status" className={styles.editorUploadProgress}><p>Uploading photo {uploadProgress.completed + 1} of {uploadProgress.total}…</p><progress value={uploadProgress.completed} max={uploadProgress.total} aria-label="Photos uploaded" /></div>}
+            <div className={styles.photoGrid}>{draft.photos.map((photo, index) => <div className={`${styles.photo} ${styles.editorPhoto}`} key={photo}>
+              <div className={styles.editorPhotoImage}><img src={photo} alt={draft.photo_alt[photo] || `Place photo ${index + 1}`} />{draft.coverPhoto === photo && <span>Cover photo</span>}</div>
+              <label className={styles.check}><input type="radio" name="cover" checked={draft.coverPhoto === photo} onChange={() => update('coverPhoto', photo)} />Use as cover photo</label>
+              <label>Photo description<input value={draft.photo_alt[photo] || ''} maxLength={500} placeholder="Describe what’s in this photo" onChange={event => update('photo_alt', { ...draft.photo_alt, [photo]: event.target.value })} /></label>
+              <div className={styles.editorPhotoActions}><div><button type="button" className={styles.editorPhotoMove} aria-label={`Move photo ${index + 1} earlier`} disabled={index === 0} onClick={() => movePhoto(index, -1)}>←</button><button type="button" className={styles.editorPhotoMove} aria-label={`Move photo ${index + 1} later`} disabled={index === draft.photos.length - 1} onClick={() => movePhoto(index, 1)}>→</button></div><button type="button" className={styles.editorRemove} onClick={() => removePhoto(photo)}>Remove</button></div>
+            </div>)}</div><p className={styles.editorHint}>Up to 20 photos. Reorder with the arrows. Removed photos disappear when you publish.</p>
+          </fieldset>}
+          {preview && <section id={`${titleId}-preview`} tabIndex={-1} className={`${styles.preview} ${styles.editorPreview}`} aria-label="Place preview"><p className={styles.editorEyebrow}>Preview · Unpublished</p><h3>{draft.name}</h3>{draft.coverPhoto && <img src={draft.coverPhoto} alt={draft.photo_alt[draft.coverPhoto] || draft.name} />}<p>{draft.tagline}</p><p>{draft.description}</p><p>{[draft.address, draft.city, draft.state, draft.zip].filter(Boolean).join(', ')}</p>{draft.hours && <p>{draft.hours}</p>}{draft.phone && <p>{draft.phone}</p>}{draft.website && <p>{draft.website}</p>}{draft.social_links.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}</section>}
+        </div>
+        {error && <div className={styles.editorFeedback}><p role="alert" className={styles.error}>{error}</p>{conflict && <button className={styles.editorSecondary} type="button" disabled={busy} onClick={() => { if (window.confirm('Reload the latest version and discard your unpublished changes?')) { clearEditorDraft(userId, place.id); setAttempt(value => value + 1); } }}>Reload Latest Version</button>}</div>}
+        <footer className={styles.editorFooter}><p className={styles.editorSaveStatus}>{uploadProgress ? 'Uploading photos…' : busy ? creating ? 'Creating your place…' : 'Publishing changes…' : dirty ? 'Unpublished changes' : 'No unpublished changes'}</p><div><button type="button" className={styles.editorCancel} disabled={busy} onClick={close}>Cancel</button><button type="button" className={styles.editorSecondary} disabled={busy} onClick={() => setPreview(value => !value)}>{preview ? 'Hide Preview' : 'Preview Changes'}</button><button className={`button ${styles.editorPublish}`} disabled={busy || !dirty || conflict}>{busy && !uploadProgress ? creating ? 'Creating…' : 'Publishing…' : creating ? 'Create Place & Add Photos' : 'Publish Changes'}</button></div></footer>
+      </form>
+    </> : <div className={styles.editorLoading}><p role="alert" className={styles.error}>{error}</p><button className="button" onClick={() => setAttempt(value => value + 1)}>Try Again</button></div>}
   </Modal>;
 }
 PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired, onNotice: PropTypes.func };

@@ -1168,3 +1168,33 @@ test('an unpaid owner sees the checkout step first and can dismiss a canceled ch
   await expect(main.getByText('Checkout wasn’t completed.', { exact: false })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('simple-unpaid-my-places.png'), fullPage: true, animations: 'disabled' });
 });
+
+test('editor section navigation keeps publishing in reach and fits a narrow screen', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await mockSite(page);
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button', { name: 'Edit Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Tagline', { exact: true })).toBeVisible();
+  const navigation = dialog.getByRole('navigation', { name: 'Editor sections', exact: true });
+  const publish = dialog.getByRole('button', { name: 'Publish Changes', exact: true });
+  const initialPosition = await publish.boundingBox();
+  await navigation.getByRole('button', { name: 'Photos', exact: true }).click();
+  await expect(dialog.getByRole('group', { name: /^Photos/ })).toBeFocused();
+  await expect(dialog.getByLabel('Add photos', { exact: true })).toBeAttached();
+  const photosPosition = await publish.boundingBox();
+  expect(Math.abs(photosPosition.y - initialPosition.y)).toBeLessThan(2);
+  await navigation.getByRole('button', { name: 'About', exact: true }).click();
+  await dialog.getByLabel('Tagline', { exact: true }).fill('A fresh introduction.');
+  await expect(dialog.getByText('Unpublished changes', { exact: true })).toBeVisible();
+  await expect(publish).toBeEnabled();
+  await dialog.getByRole('button', { name: 'Preview Changes', exact: true }).click();
+  await expect(dialog.getByRole('region', { name: 'Place preview', exact: true })).toBeFocused();
+  await expect(dialog.getByRole('region', { name: 'Place preview', exact: true })).toContainText('A fresh introduction.');
+  await page.setViewportSize({ width: 320, height: 720 });
+  await expect.poll(() => dialog.evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await expect(publish).toBeInViewport();
+  expect(await dialog.getByRole('group', { name: /^Photos/ }).evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await navigation.getByRole('button', { name: 'About', exact: true }).click();
+  await page.screenshot({ path: testInfo.outputPath('editor-narrow.png'), fullPage: true, animations: 'disabled' });
+});
