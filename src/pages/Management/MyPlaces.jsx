@@ -7,6 +7,7 @@ import { bloomAvailable, managementAction, openBillingUrl } from '../../utilitie
 import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 import { getSubscriptionLabel, subscriptionAllowsEditing } from '../../../supabase/functions/_shared/entitlements.js';
 import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
+import { getMyPlacesView } from '../../utilities/myPlaces';
 import Icon from '../../components/Icons/Icon';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
@@ -15,7 +16,7 @@ export default function MyPlaces() {
   const management = useManagement();
   const refresh = management.refresh;
   const listingRequests = management.listingRequests;
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const [busy, setBusy] = useState('');
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
@@ -42,55 +43,58 @@ export default function MyPlaces() {
   if (!management.loading && !listingRequests.loading && !management.error && !listingRequests.error && !management.hasOwnerActivity) return <Navigate to="/favorites" replace />;
   const returnedMembership = management.memberships.find(item => String(item.place_id) === returnedPlace);
   const activated = returnedMembership && subscriptionAllowsEditing(returnedMembership.subscription);
+  const { pendingClaims, activeRequests, pastClaims, pastRequests } = getMyPlacesView(management.memberships, management.claims, listingRequests.requests);
+  const historyCount = pastClaims.length + pastRequests.length;
+  const hasPlaces = !!management.memberships.length;
+  const claimsList = (claims, history = false) => <ul className={styles.requestCards} role="list">{claims.map(claim => <li key={claim.id}><article className={`${styles.requestCard} ${history ? styles.requestDeclined : styles.requestPending}`}>
+    <div className={styles.requestCardTop}><Icon name={history ? 'leaf' : 'brand-clock'} size={32} /><span className={styles.requestBadge}>{history ? claim.status === 'approved' ? 'Previously approved' : 'Not approved' : 'Pending review'}</span></div>
+    <h3 className={styles.claimCardTitle}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h3>
+    {claim.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{claim.review_note}</p></div>}
+    {!history && <p className={styles.requestExplanation}>We’re reviewing your connection to this place. No payment is needed yet.</p>}
+    {claim.status === 'rejected' && <p className={styles.requestExplanation}>You can <Link to={`/place/${claim.urlSlug}?claim=1`}>return to the listing to submit updated details</Link>, or <a href="mailto:help@littleherbplaces.com">contact us for help</a>.</p>}
+    {history && claim.status === 'approved' && <p className={styles.requestExplanation}>This claim was previously approved. <a href="mailto:help@littleherbplaces.com">Contact us</a> if you need management access again.</p>}
+  </article></li>)}</ul>;
   return <main id="main-content" aria-labelledby="my-places-title" className={`${styles.page} ${styles.ownerPage}`}>
     <Helmet><title>My Places | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
-    <div className={styles.ownerSectionHeading}><h1 id="my-places-title">My Places</h1><Link className="button" to="/request-place">Request a Listing <Icon name="arrow" size={16} /></Link></div><p className={styles.intro}>A little home for the places you care for. Follow your requests, manage your subscription, and edit your approved places here.</p>
-      <p className={styles.small}><Link to="/request-place">View Your Listing Requests</Link></p>
-      {management.is_admin && <Link className="button" to="/admin">Open Admin</Link>}
-      {management.loading && <p role="status">Refreshing your places…</p>}
-      {(management.error || error) && <p role="alert" className={styles.error}>{error || management.error}</p>}
-      {activated ? <p role="status" className={styles.notice}>Bloom is active for {returnedMembership.place.name}. You’re ready to update your listing. <Link to={`/place/${returnedMembership.place.urlSlug}`}>Edit Your Place</Link></p>
+    <header className={styles.ownerHeader}><div><h1 id="my-places-title">My Places</h1><p>{hasPlaces ? 'A little home for the place you care for.' : 'Your place, and what comes next.'}</p></div><button className={styles.ownerTextButton} disabled={management.loading || listingRequests.loading} onClick={() => { management.refresh(); listingRequests.refresh(); }}>Refresh Access</button></header>
+    {management.loading && <p role="status">Refreshing your places…</p>}
+    {(management.error || error) && <p role="alert" className={styles.error}>{error || management.error}</p>}
+    {listingRequests.error && <p role="alert" className={styles.error}>{listingRequests.error} Use Refresh Access to try again.</p>}
+    {activated ? <p role="status" className={styles.notice}>Bloom is active for {returnedMembership.place.name}. You’re ready to update your listing. <Link to={`/place/${returnedMembership.place.urlSlug}`}>Edit Your Place</Link></p>
+      : returnedPlace && !error ? <p role="status" className={styles.notice}>We’re checking your payment. If it hasn’t updated yet, open Membership Details below and refresh your billing status. You don’t need to pay again.</p>
         : notice && <p role="status" className={styles.notice}>{notice}</p>}
-      {params.get('billing') === 'canceled' && <p role="status" className={styles.notice}>You left checkout. If you haven’t paid, you can continue when you’re ready. If you completed payment in another tab, refresh your billing status.</p>}
-      {returnedPlace && !activated && !error && <p role="status">We’re checking your payment. If access hasn’t updated yet, choose Refresh Billing Status below. You don’t need to pay again.</p>}
-      <div className={styles.actions}><button className="button" disabled={management.loading || listingRequests.loading} onClick={() => { management.refresh(); listingRequests.refresh(); }}>Refresh Access</button></div>
-      {!management.loading && !management.error && !management.memberships.length && !management.claims.length && !listingRequests.requests.length && !listingRequests.loading && !listingRequests.error && <p>Manage a business? <Link to="/map">Find your place to claim it</Link>, or <Link to="/request-place">request a listing</Link> if it isn’t here yet.</p>}
-      {!user.email_confirmed_at && <p><Link to="/auth/resend-confirmation?next=%2Fmy-places">Send a Confirmation Email</Link></p>}
-      {listingRequests.loading && <p role="status">Refreshing your listing requests…</p>}
-      {listingRequests.error && <p role="alert" className={styles.error}>{listingRequests.error} Use Refresh Access to try again.</p>}
-      {!!listingRequests.requests.length && <section className={styles.claimRequests} aria-labelledby="my-listing-requests-title"><h2 id="my-listing-requests-title">Your Listing Requests</h2><ListingRequestCards requests={listingRequests.requests} management={management} headingLevel="h3" /></section>}
-      {!!management.claims.length && <section className={styles.claimRequests}><h2>Your Claim Requests</h2><ul className={styles.requestCards} role="list">{[...management.claims].sort((a, b) => Number(b.status === 'pending') - Number(a.status === 'pending')).map(claim => <li key={claim.id}><article className={`${styles.requestCard} ${claim.status === 'approved' ? styles.requestListed : claim.status === 'rejected' ? styles.requestDeclined : styles.requestPending}`}>
-        <div className={styles.requestCardTop}><Icon name={claim.status === 'approved' ? 'badge' : claim.status === 'rejected' ? 'leaf' : 'brand-clock'} size={44} /><span className={styles.requestBadge}>{claim.status === 'approved' ? 'Ownership approved' : claim.status === 'rejected' ? 'Needs an update' : 'Pending review'}</span></div>
-        <h3 className={styles.claimCardTitle}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h3>
-        {claim.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{claim.review_note}</p></div>}
-        {claim.status === 'pending' && <p className={styles.requestExplanation}>Your claim is pending review. We’re checking your connection to this place. No payment is needed yet.</p>}
-        {claim.status === 'rejected' && <p className={styles.requestExplanation}>Read the review note above, then <Link to={`/place/${claim.urlSlug}?claim=1`}>return to the listing to submit updated details</Link>. If the place already has a manager, <a href="mailto:help@littleherbplaces.com">contact us for help</a>.</p>}
-        {claim.status === 'approved' && <p className={styles.requestExplanation}>Your connection has been approved. Use the place card below to manage your subscription and start editing.</p>}
-      </article></li>)}</ul></section>}
-      <div className={styles.grid}>{management.memberships.map(membership => {
-        const subscription = membership.subscription;
-        const canEdit = management.is_admin || subscriptionAllowsEditing(subscription);
-        const activeBilling = subscription && !['none', 'canceled', 'incomplete_expired'].includes(subscription.status);
-        return <article className={`${styles.card} ${styles.managedPlaceCard}`} key={membership.place_id}>
-          <div className={styles.requestCardTop}><Icon name="shop" size={44} /><span className={styles.requestBadge}>Ownership approved</span></div>
-          <h2>{membership.place.name}</h2>{[membership.place.address, membership.place.city, membership.place.state].some(Boolean) && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{[membership.place.address, membership.place.city, membership.place.state].filter(Boolean).join(', ')}</span></p>}<span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
-          {membership.is_billing_contact && <span className={styles.status}>Billing contact</span>}
-          {subscription?.status === 'past_due' && subscription.grace_ends_at && <p className={styles.small}>Payment grace period ends {new Date(subscription.grace_ends_at).toLocaleString()}. Published content stays visible. Open Manage Billing to resolve your payment.</p>}
-          {subscription?.status === 'incomplete' && <p>Payment is incomplete. Open Manage Billing to check your invoice or finish payment, then refresh your billing status.</p>}
-          {subscription?.cancel_at_period_end && subscription.paid_until && <p className={styles.small}>Editing remains available through {new Date(subscription.paid_until).toLocaleDateString()}.</p>}
-          {!canEdit && <p>Your published listing stays visible. An active Bloom subscription enables editing and photo uploads for all assigned managers.</p>}
-          <div className={styles.actions}><Link className="button" to={`/place/${membership.place.urlSlug}`}>{canEdit ? 'View & Edit Place' : 'View Place'}</Link>
-            {membership.is_billing_contact && <>
-              {!activeBilling && <button className="button" disabled={!!busy || !bloomAvailable} onClick={() => billing('checkout', membership.place_id)}>{busy === String(membership.place_id) ? 'Please Wait…' : bloomAvailable ? `Subscribe to Bloom · $${bloomOffer.amount / 100}/month` : 'Bloom Is Growing'}</button>}
-              {subscription && subscription.status !== 'none' && <button className="button" disabled={!!busy} onClick={() => billing('portal', membership.place_id)}>Manage Billing</button>}
-              <button className="button" disabled={!!busy} onClick={() => billing('sync-billing', membership.place_id)}>Refresh Billing Status</button>
-            </>}
-          </div>
-          {membership.is_billing_contact && <p className={styles.small}>By subscribing, you agree to the membership terms. Monthly renewal per place; cancel future renewals in Manage Billing. <Link to="/membership-terms">Membership terms</Link>.</p>}
-          {!membership.is_billing_contact && <p className={styles.small}>Your designated billing contact manages payment. Contact Little Herb Places to change managers.</p>}
-        </article>;
-      })}</div>
-
-
+    {params.get('billing') === 'canceled' && management.memberships.some(item => item.is_billing_contact && !subscriptionAllowsEditing(item.subscription)) && <div role="status" className={`${styles.notice} ${styles.ownerCheckoutNotice}`}><span>Checkout wasn’t completed. You can continue below when you’re ready.</span><button className={styles.ownerTextButton} onClick={() => { const next = new URLSearchParams(params); next.delete('billing'); setParams(next, { replace: true }); }}>Dismiss</button></div>}
+    <div className={`${styles.ownerPlaces} ${management.memberships.length === 1 ? styles.singlePlace : ''}`}>{management.memberships.map(membership => {
+      const subscription = membership.subscription;
+      const canEdit = management.is_admin || subscriptionAllowsEditing(subscription);
+      const activeBilling = subscription && !['none', 'canceled', 'incomplete_expired'].includes(subscription.status);
+      const canSubscribe = membership.is_billing_contact && !activeBilling;
+      return <article aria-labelledby={`managed-place-${membership.place_id}`} className={styles.ownerPlaceCard} key={membership.place_id}>
+        <div className={styles.ownerPlaceTop}><span className={styles.ownerApproved}><Icon name="shop" size={30} /> Ownership approved</span><span className={styles.status}>{(!subscription || subscription.status === 'none') && !canEdit ? 'Ready for Bloom' : getSubscriptionLabel(subscription)}</span></div>
+        <h2 id={`managed-place-${membership.place_id}`}>{membership.place.name}</h2>
+        {[membership.place.address, membership.place.city, membership.place.state].some(Boolean) && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{[membership.place.address, membership.place.city, membership.place.state].filter(Boolean).join(', ')}</span></p>}
+        <p className={styles.ownerNextStep}>{canEdit ? 'Keep your story, photos, and place details up to date.' : canSubscribe ? 'Your place is approved. Add Bloom to edit your story, photos, and place details.' : membership.is_billing_contact ? 'Your listing stays visible. Open Manage Billing to restore editing.' : 'Your listing is visible. Your billing contact can manage membership and editing access.'}</p>
+        {subscription?.status === 'past_due' && subscription.grace_ends_at && <p className={styles.small}>Payment grace period ends {new Date(subscription.grace_ends_at).toLocaleString()}. Open Manage Billing to resolve your payment.</p>}
+        {subscription?.status === 'incomplete' && <p>Payment is incomplete. Open Manage Billing to check your invoice or finish payment, then refresh your billing status.</p>}
+        {subscription?.cancel_at_period_end && subscription.paid_until && <p className={styles.small}>Editing remains available through {new Date(subscription.paid_until).toLocaleDateString()}.</p>}
+        <div className={styles.ownerPrimaryActions}>
+          {canSubscribe && <button className="button" disabled={!!busy || !bloomAvailable} onClick={() => billing('checkout', membership.place_id)}>{busy === String(membership.place_id) ? 'Please Wait…' : bloomAvailable ? `Subscribe to Bloom · $${bloomOffer.amount / 100}/month` : 'Bloom Is Growing'}</button>}
+          {canEdit && <Link className="button" to={`/place/${membership.place.urlSlug}`}>View & Edit Place <Icon name="arrow" size={16} /></Link>}
+          {!canEdit && activeBilling && membership.is_billing_contact && <button className="button" disabled={!!busy} onClick={() => billing('portal', membership.place_id)}>Manage Billing</button>}
+          {!canEdit && <Link to={`/place/${membership.place.urlSlug}`}>View Place <Icon name="arrow" size={16} /></Link>}
+          {membership.is_billing_contact && subscription && subscription.status !== 'none' && (canEdit || !activeBilling) && <button className={styles.ownerTextButton} disabled={!!busy} onClick={() => billing('portal', membership.place_id)}>Manage Billing</button>}
+        </div>
+        <details className={styles.ownerMembership}><summary>Membership Details</summary><div>
+          <p>Bloom is {bloomOffer.label} per place. It covers editing and photo uploads for all assigned managers. Published content stays visible when editing pauses.</p>
+          {membership.is_billing_contact ? <><p>You manage billing for this place. Monthly renewal; cancel future renewals in Manage Billing. By subscribing, you agree to the <Link to="/membership-terms">membership terms</Link>.</p><button className={styles.ownerTextButton} disabled={!!busy} onClick={() => billing('sync-billing', membership.place_id)}>Refresh Billing Status</button></> : <p>Your designated billing contact manages payment. Contact Little Herb Places to change managers.</p>}
+        </div></details>
+      </article>;
+    })}</div>
+    {!!activeRequests.length && <section className={styles.ownerPending} aria-labelledby="my-listing-requests-title"><h2 id="my-listing-requests-title">{hasPlaces ? 'Other places in progress' : 'Your Listing Requests'}</h2><ListingRequestCards requests={activeRequests} management={management} headingLevel="h3" /></section>}
+    {!!pendingClaims.length && <section className={styles.ownerPending} aria-labelledby="my-claims-title"><h2 id="my-claims-title">{hasPlaces ? 'Ownership reviews in progress' : 'Your Claim Requests'}</h2>{claimsList(pendingClaims)}</section>}
+    {!management.loading && !listingRequests.loading && !hasPlaces && !activeRequests.length && !pendingClaims.length && !management.error && !listingRequests.error && <p className={styles.ownerEmpty}>No places to manage yet. <Link to="/the-little-garden/start?plan=bloom">Find your place to get started</Link>.{historyCount > 0 && ' Your earlier decisions are saved in Past requests below.'}</p>}
+    {!!historyCount && <details className={styles.ownerHistory}><summary>Past requests <span>{historyCount}</span></summary><p>Earlier decisions stay here for reference. They don’t affect your current place.</p>{claimsList(pastClaims, true)}{!!pastRequests.length && <ListingRequestCards requests={pastRequests} management={management} headingLevel="h3" />}</details>}
+    {!user.email_confirmed_at && <p><Link to="/auth/resend-confirmation?next=%2Fmy-places">Send a Confirmation Email</Link></p>}
+    <footer className={styles.ownerFooter}><Link to="/request-place">Request a Listing</Link><Link to="/request-place#listing-requests">All Listing Requests</Link><Link to="/help">Need a Hand?</Link>{management.is_admin && <Link to="/admin">Open Admin</Link>}</footer>
   </main>;
 }

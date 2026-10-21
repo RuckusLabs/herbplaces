@@ -7,7 +7,7 @@ const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'mos
   coverPhoto: image, photos: [image], latitude: 39.7, longitude: -104.9, isFeatured: false, isVerified: true,
   is_claimed: false, phone: '', hours: '', social_links: [], category_ids: ['shops'], photo_alt: {}, content_version: 1, geocode_status: 'confirmed' });
 
-async function mockSite(page, { role = 'owner', expired = false, conflict = false, confirmed = true, renewalProcessing = false } = {}) {
+async function mockSite(page, { role = 'owner', expired = false, unpaid = false, conflict = false, confirmed = true, renewalProcessing = false } = {}) {
   const state = { place: makePlace(), claims: [], listingRequests: [], authRequests: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
     { user_id: 'user-1', email: 'admin@example.com', is_admin: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [] },
     { user_id: 'manager-1', email: 'owner@example.com', confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: false, pending: false }] },
@@ -18,7 +18,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   const token = `${Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: expiresAt, role: 'authenticated' })).toString('base64url')}.local-test-signature`;
   const session = { access_token: token, refresh_token: 'local-test-refresh', token_type: 'bearer', expires_at: expiresAt, expires_in: 3600, user };
   if (role !== 'guest') await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), session);
-  const subscription = { status: expired ? 'canceled' : 'active', paid_until: new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
+  const subscription = { status: unpaid ? 'none' : expired ? 'canceled' : 'active', paid_until: unpaid ? null : new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
   if (renewalProcessing) { subscription.paid_until = new Date(Date.now()-3600000).toISOString(); subscription.grace_ends_at = new Date(Date.now()+3600000).toISOString(); }
   const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired, place: state.place, subscription }] : [], claims: state.claims });
   await page.route('**/auth/v1/**', route => {
@@ -512,7 +512,7 @@ test('pending claimants get My Places while people only saving places do not', a
   const menu = page.getByRole('button', { name: 'Open menu' });
   if (await menu.isVisible()) await menu.click();
   await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
-  await expect(page.getByRole('main', { name: 'My Places', exact: true })).toContainText('pending');
+  await expect(page.getByRole('main', { name: 'My Places', exact: true })).toContainText('Pending review');
   state.claims = [];
   await page.reload();
   await expect(page).toHaveURL(/favorites$/);
@@ -702,6 +702,8 @@ test('rejected claims and access failures remain visible with recovery actions',
   state.claims.push({ id: 'rejected-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'rejected', review_note: 'Please use your business email.' });
   await page.goto('/my-places');
   const section = page.getByRole('main', { name: 'My Places', exact: true });
+  await expect(section.getByText('Please use your business email.', { exact: true })).not.toBeVisible();
+  await section.locator('summary').filter({ hasText: 'Past requests' }).click();
   await expect(section).toContainText('Please use your business email.');
   await expect(section.getByRole('link', { name: 'return to the listing to submit updated details' })).toBeVisible();
   state.managementError = 'Unable to load place access.';
@@ -1071,7 +1073,7 @@ test('listed requests take approved managers to their place without a second cla
 });
 
 
-test('My Places shows listing requests above approved places and refreshes new submissions on return', async ({ page }, testInfo) => {
+test('My Places prioritizes the managed place, removes approved duplicates, and refreshes new requests', async ({ page }, testInfo) => {
   const state = await mockSite(page, { role: 'owner' });
   state.listingRequests = [
     { id: 'listed', name: 'Moss Apothecary', city: 'Denver', status: 'listed', place_slug: 'moss-apothecary', created_at: '2026-10-20T12:00:00Z' },
@@ -1079,14 +1081,15 @@ test('My Places shows listing requests above approved places and refreshes new s
   ];
   await page.goto('/my-places');
   const places = page.getByRole('main', { name: 'My Places', exact: true });
-  const requests = places.getByRole('region', { name: 'Your Listing Requests', exact: true });
-  await expect(requests.getByRole('article')).toHaveCount(2);
+  const requests = places.getByRole('region', { name: 'Other places in progress', exact: true });
+  await expect(requests.getByRole('article')).toHaveCount(1);
   await expect(requests.getByRole('article').first()).toContainText('Fern & Field');
   await expect(requests.getByRole('article').first()).toContainText('Pending review');
   await expect(requests.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveCount(0);
   const requestTop = await requests.evaluate(element => element.getBoundingClientRect().top);
   const approvedTop = await places.getByRole('article').filter({ hasText: 'Ownership approved' }).evaluate(element => element.getBoundingClientRect().top);
-  expect(requestTop).toBeLessThan(approvedTop);
+  expect(approvedTop).toBeLessThan(requestTop);
+  await expect(places.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toHaveCount(1);
   await places.screenshot({ path: testInfo.outputPath('my-places-requests.png') });
   await places.getByRole('link', { name: 'Request a Listing', exact: true }).click();
   await page.getByRole('textbox', { name: 'Place name', exact: true }).fill('New Garden Shop');
@@ -1125,4 +1128,43 @@ test('a first listing request adds My Places to navigation without adding manage
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'My Places', exact: true })).toHaveCount(0);
   await expect(page.getByRole('main')).not.toContainText('Fern & Field');
+});
+
+
+test('a single owner gets one place card with older decisions tucked into history', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'owner' });
+  state.listingRequests = [{ id: 'listed', name: state.place.name, status: 'listed', place_slug: state.place.urlSlug }];
+  state.claims = [
+    { id: 'approved', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'approved' },
+    { id: 'old-rejected', place_id: 'place-old', name: 'Earlier Place', urlSlug: 'earlier-place', status: 'rejected', review_note: 'Please send a business email.' },
+  ];
+  await page.goto('/my-places?billing=canceled');
+  const main = page.getByRole('main', { name: 'My Places', exact: true });
+  await expect(main.getByRole('heading', { name: state.place.name, exact: true })).toHaveCount(1);
+  await expect(main.getByRole('heading', { name: 'Your Listing Requests', exact: true })).toHaveCount(0);
+  await expect(main.getByText('Earlier Place', { exact: true })).not.toBeVisible();
+  await expect(main.getByText('Checkout wasn’t completed.', { exact: false })).toHaveCount(0);
+  await expect(main.getByRole('link', { name: 'View & Edit Place', exact: true })).toBeVisible();
+  await expect(main.getByRole('button', { name: 'Refresh Billing Status', exact: true })).not.toBeVisible();
+  await expect(main.getByRole('link', { name: 'Manage Your Place', exact: true })).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('simple-my-places.png'), fullPage: true, animations: 'disabled' });
+  await main.locator('summary').filter({ hasText: 'Past requests' }).click();
+  await expect(main.getByText('Please send a business email.', { exact: true })).toBeVisible();
+  await expect(main.getByRole('link', { name: 'return to the listing to submit updated details' })).toBeVisible();
+  await main.locator('summary').filter({ hasText: 'Membership Details' }).click();
+  await expect(main.getByRole('button', { name: 'Refresh Billing Status', exact: true })).toBeVisible();
+});
+
+test('an unpaid owner sees the checkout step first and can dismiss a canceled checkout notice', async ({ page }, testInfo) => {
+  await mockSite(page, { unpaid: true });
+  await page.goto('/my-places?billing=canceled');
+  const main = page.getByRole('main', { name: 'My Places', exact: true });
+  await expect(main.getByText('Ready for Bloom', { exact: true })).toBeVisible();
+  await expect(main.getByRole('button', { name: 'Subscribe to Bloom · $19/month', exact: true })).toBeVisible();
+  await expect(main.getByRole('button', { name: 'Refresh Billing Status', exact: true })).not.toBeVisible();
+  await expect(main.getByText('Checkout wasn’t completed.', { exact: false })).toBeVisible();
+  await main.getByRole('button', { name: 'Dismiss', exact: true }).click();
+  await expect(page).toHaveURL(/my-places$/);
+  await expect(main.getByText('Checkout wasn’t completed.', { exact: false })).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('simple-unpaid-my-places.png'), fullPage: true, animations: 'disabled' });
 });
