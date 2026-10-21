@@ -1,3 +1,4 @@
+import { planPages } from './planPages.js';
 import { getPlaceCategories } from './placeFilters.js';
 import { getPlacePhotos, getWebsiteUrl } from './placeDetails.js';
 
@@ -5,6 +6,7 @@ export const SITE_ORIGIN = 'https://littleherbplaces.com';
 export const SITE_NAME = 'Little Herb Places';
 export const DEFAULT_DESCRIPTION = 'Discover independent herb shops, apothecaries, herbalists, and gardens. Find your next little herb place and connect with a community rooted in nature.';
 export const publicRoutes = [
+  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, title: plan.title, heading: plan.heading, description: plan.description })),
   { path: '/', title: 'Little Herb Places — Find your connection to nature', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },
   { path: '/map', title: 'Explore Places | Little Herb Places', heading: 'Explore Little Herb Places', description: 'Find independent herb shops, herbalists, gardens, and plant-loving communities. Explore the directory and discover a little place near you.' },
   { path: '/about', title: 'Our Story | Little Herb Places', heading: 'Small Places, Big Heart.', description: 'Meet Little Herb Places: a guide to independent herb shops, herbalists, gardens, and the people who connect us through a love of plants.' },
@@ -25,6 +27,7 @@ export const sitePageCards = [
   { path: '/login', slug: 'sign-in', name: 'Welcome Back.', tagline: 'Your saved places and little discoveries are waiting for you.', button: 'Sign In', photo: '/assets/pages/home/hero.jpg' },
   { path: '/favorites', slug: 'saved-places', name: 'Your Little Discoveries.', tagline: 'Places to come back to, whenever you’re ready.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-2.jpg' },
   { path: '/shop', slug: 'shop', name: 'Good Things Are Growing.', tagline: 'A little more plant-loving goodness is taking root.', button: 'Explore Places', photo: '/assets/pages/home/herb-image-1.jpg' },
+  ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, slug: key, name: plan.heading, tagline: plan.description, button: key === 'bloom' ? 'Explore Bloom' : 'Meet the Thrive Pilot', photo: '/assets/pages/the-little-garden/garden.webp' })),
 ];
 const cardHash = input => {
   let hash = 2166136261;

@@ -780,7 +780,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden');
   await expect(page.getByText('Claiming is free and ownership approval comes before payment.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Ask About Thrive', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Meet the Thrive Pilot', exact: true })).toBeVisible();
   await expect(page.getByText('Verified Place Badge', { exact: true })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('business-plans.png'), fullPage: true });
   await page.goto('/the-little-garden/sprout');

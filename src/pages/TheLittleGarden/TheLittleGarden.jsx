@@ -9,7 +9,7 @@ import { bloomOffer, thriveOffer } from '../../../supabase/functions/_shared/bil
 const plans = [
   { name: 'Sprout', icon: 'sprout', description: 'For curious people collecting places they love.', price: 'Free', features: ['Create a Free Account', 'Save Your Favorite Places', 'Keep Saves Across Your Devices'], available: true },
   { name: 'Bloom', icon: 'sun', description: 'For owners ready to keep their place up to date.', price: `$${bloomOffer.amount / 100}`, features: ['Edit Your Approved Place Listing', 'Add and Arrange up to 20 Photos', 'Share Hours, Contact Details, and Links', 'Include All Approved Managers'], available: bloomAvailable },
-  { name: 'Thrive', icon: 'thrive', description: 'A planned pilot for sharing more of what you offer.', price: `$${thriveOffer.amount / 100}`, features: ['Planned: Everything in Bloom', 'Planned: Showcase up to 10 Products or Services', 'Promotion Details to Be Confirmed Before Launch'], available: false },
+  { name: 'Thrive', icon: 'thrive', description: 'A planned pilot for sharing more of what you offer.', price: `Proposed $${thriveOffer.amount / 100}`, features: ['Planned: Everything in Bloom', 'Planned: Showcase up to 10 Products or Services', 'Promotion Details to Be Confirmed Before Launch'], available: false },
 ];
 
 export default function TheLittleGarden() {
@@ -38,7 +38,7 @@ export default function TheLittleGarden() {
           <h3>{plan.name}</h3><p className={styles.planDescription}>{plan.description}</p>
           <p className={styles.price}>{plan.price}{plan.name !== 'Sprout' && <span> / month per place</span>}</p>
           <ul>{plan.features.map(feature => <li key={feature}><img src="/assets/icons/checkmark--green.svg" alt="" width="15" height="15" />{feature}</li>)}</ul>
-          {plan.name === 'Thrive' ? <a className="button" href="mailto:help@littleherbplaces.com?subject=Thrive%20pilot%20inquiry">Ask About Thrive</a> : <Link to={plan.name === 'Bloom' ? '/map' : '/register?next=%2Ffavorites'} className="button">{plan.name === 'Bloom' ? 'Find & Claim Your Place' : 'Create a Free Account'} <Icon name="arrow" size={18} /></Link>}
+          <Link to={`/the-little-garden/${plan.name.toLowerCase()}`} className="button">{plan.name === 'Bloom' ? 'Explore Bloom' : plan.name === 'Thrive' ? 'Meet the Thrive Pilot' : 'Explore Sprout'} <Icon name="arrow" size={18} /></Link>
         </article>)}
       </div>
       <p className={styles.planNote}>Bloom renews monthly until canceled. Cancel in Manage Billing to stop the next renewal; editing continues through the paid period. Published listings stay visible after editing access ends. Thrive is not available for purchase.</p>
