@@ -45,7 +45,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) 
         p_place_id: String(place.id), p_relationship: draft.relationship, p_evidence: claimEvidence(draft),
       });
       clearClaimDraft(place.id);
-      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status in My Places on your Saved Places page.');
+      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status on your My Places page.');
       await management.refresh();
     } catch (failure) { setError(failure.message || 'We couldn’t send your claim. Please try again.'); }
     finally { setBusy(false); }

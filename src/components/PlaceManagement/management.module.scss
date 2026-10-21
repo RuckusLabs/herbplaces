@@ -69,7 +69,7 @@
 .newRequestLink { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; }
 .requestRefresh { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; font-size: 12px; button { padding: 0; color: inherit; font: inherit; background: transparent; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; } button:disabled { opacity: .5; cursor: wait; } }
 .requestCards { display: grid; gap: 20px; list-style: none; padding: 0; margin: 0; }
-.requestCard { padding: 26px; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: 20px; overflow-wrap: anywhere; h2, h4 { font-family: 'Editorial', Georgia, serif; font-size: 32px; font-weight: 200; line-height: 1.15; margin: 20px 0 12px; } }
+.requestCard { padding: 26px; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: 20px; overflow-wrap: anywhere; h2, h3, h4 { font-family: 'Editorial', Georgia, serif; font-size: 32px; font-weight: 200; line-height: 1.15; margin: 20px 0 12px; } }
 .requestPending { background: #fbfbf5; }
 .requestListed { background: rgba(var(--primary-color), .13); border-color: rgba(var(--secondary-color), .7); }
 .requestDeclined { background: #fffaf4; }
@@ -89,3 +89,5 @@
 .managedPlaceCard { background: rgba(var(--primary-color), .1); .requestCardTop { margin-bottom: 22px; } .requestBadge { background: rgba(var(--primary-color), .5); } .requestLocation { display: flex; align-items: flex-start; gap: 8px; margin: 12px 0 20px; font-size: 12px; svg { flex-shrink: 0; } } }
 .claimRequests { margin-top: 30px; > h3 { margin-bottom: 20px; } .requestExplanation { margin-top: 20px; font-size: 13px; line-height: 1.8; } }
 .claimCardTitle { font-family: 'Editorial', Georgia, serif; font-size: 29px; font-weight: 200; line-height: 1.2; margin: 20px 0 0; a { text-decoration: none; } }
+
+.ownerPage { .ownerSectionHeading h1 { margin: 0; } .claimRequests { margin-bottom: 30px; > h2 { margin-bottom: 20px; } } }

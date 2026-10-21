@@ -24,12 +24,14 @@ const Login = lazy(() => import('./pages/Auth/Login'));
 const Register = lazy(() => import('./pages/Auth/Register'));
 const AccountRecovery = lazy(() => import('./pages/Auth/AccountRecovery'));
 const Admin = lazy(() => import('./pages/Management/Admin'));
+const MyPlaces = lazy(() => import('./pages/Management/MyPlaces'));
 const RequestPlace = lazy(() => import('./pages/Management/RequestPlace'));
 const Policies = lazy(() => import('./pages/Help/Policies'));
 
-function SavedPlacesRedirect() {
-  const { search } = useLocation();
-  return <Navigate to={`/favorites${search}#my-places`} replace />;
+function SavedPlacesRoute() {
+  const { search, hash } = useLocation();
+  return hash === '#my-places' || new URLSearchParams(search).has('billing')
+    ? <Navigate to={`/my-places${search}`} replace /> : <FavoritesList />;
 }
 
 const routes = [
@@ -46,12 +48,12 @@ const routes = [
   { path: '/place/:slug', element: <Place /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
-  { path: '/favorites', element: <FavoritesList /> },
+  { path: '/favorites', element: <SavedPlacesRoute /> },
   { path: '/auth/callback', element: <AuthCallback /> },
   { path: '/auth/forgot-password', element: <AccountRecovery mode="forgot" /> },
   { path: '/auth/reset-password', element: <AccountRecovery mode="reset" /> },
   { path: '/auth/resend-confirmation', element: <AccountRecovery mode="confirm" /> },
-  { path: '/my-places', element: <SavedPlacesRedirect /> },
+  { path: '/my-places', element: <MyPlaces /> },
   { path: '/admin', element: <Admin /> },
   { path: '/request-place', element: <RequestPlace /> },
   { path: '/privacy', element: <Policies mode="privacy" /> },

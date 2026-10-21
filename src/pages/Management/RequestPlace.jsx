@@ -7,7 +7,6 @@ import Icon from '../../components/Icons/Icon';
 import { useManagement } from '../../contexts/ManagementContext';
 import { getWebsiteUrl } from '../../utilities/placeDetails';
 import { managementRpc } from '../../utilities/managementApi';
-import useListingRequests from '../../hooks/useListingRequests';
 import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
@@ -49,7 +48,7 @@ export default function RequestPlace({ embedded = false }) {
     else heading.current?.focus({ preventScroll: true });
   }, [stage, confirmation, submittedName, embedded, user?.id, user?.email_confirmed_at]);
   const [draft, setDraft] = useState(readDraft);
-  const { requests: visibleRequests, loading, error: listError, refresh: refreshRequests } = useListingRequests();
+  const { requests: visibleRequests, loading, error: listError, refresh: refreshRequests } = management.listingRequests;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');

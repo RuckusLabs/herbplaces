@@ -46,7 +46,7 @@ export default function TheLittleGarden() {
     </Reveal>
     <section className={styles.howItWorks} aria-labelledby="business-steps"><h2 id="business-steps">From Your Place to Your People.</h2>
       <ol><li><strong>Find your place.</strong><p>Search the directory, or <Link to="/request-place">request a listing</Link> if it’s missing.</p></li><li><strong>Confirm your connection.</strong><p>Create a free account and send your ownership details for our team to review. No payment is taken with a claim.</p></li><li><strong>Make it your own.</strong><p>After approval, subscribe when Bloom is available, then update your listing and photos.</p></li></ol>
-      <p>Already approved? <Link to="/favorites#my-places">Open My Places</Link>. Just exploring? <Link to="/the-little-garden/sprout">Subscribe to Community Updates</Link>.</p>
+      <p>Already approved? <Link to="/my-places">Open My Places</Link>. Just exploring? <Link to="/the-little-garden/sprout">Subscribe to Community Updates</Link>.</p>
     </section>
     <Reveal className={styles.invitation}><div className={styles.invitationInner}><Icon name="community" size={56} /><div><h2>Good Company Makes All the Difference.</h2><p>Meet the little places and plant people at the heart of our community.</p></div><Link to="/map" className="button">Explore Places <Icon name="arrow" size={18} /></Link></div></Reveal>
   </main>;

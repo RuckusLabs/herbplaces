@@ -247,7 +247,7 @@ test('expired subscriptions retain the listing and send owners to billing', asyn
   await mockSite(page, { expired: true }); await page.goto('/place/moss-apothecary');
   await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Edit Place', exact: true })).toHaveCount(0);
-  await page.getByRole('link', { name: 'Manage Subscription' }).click(); await expect(page).toHaveURL(/favorites#my-places/);
+  await page.getByRole('link', { name: 'Manage Subscription' }).click(); await expect(page).toHaveURL(/my-places/);
   await expect(page.getByText('Editing paused', { exact: true })).toBeVisible();
 });
 
@@ -481,32 +481,45 @@ test('canceling nearby discovery prevents a late location response from navigati
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
-test('saved places includes management for owners and preserves old billing return links', async ({ page }, testInfo) => {
+test('My Places is separate from saved places and preserves old billing return links', async ({ page }, testInfo) => {
   const state = await mockSite(page);
   state.favorites = [{ item_id: 'place-1' }];
-  await page.goto('/my-places?billing=returned&place=place-1');
-  await expect(page).toHaveURL(/favorites\?billing=returned&place=place-1#my-places/);
-  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'My Places', exact: true }).getByRole('link', { name: 'View & Edit Place' })).toBeVisible();
+  await page.goto('/favorites?billing=returned&place=place-1#my-places');
+  await expect(page).toHaveURL(/my-places\?billing=returned&place=place-1/);
+  await expect(page.getByRole('heading', { name: 'My Places', exact: true, level: 1 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toHaveCount(0);
+  await expect(page.getByRole('main', { name: 'My Places', exact: true }).getByRole('link', { name: 'View & Edit Place' })).toBeVisible();
   await expect(page.getByRole('status').filter({ hasText: 'Bloom is active for Moss Apothecary.' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
   const menu = page.getByRole('button', { name: 'Open menu' });
   const mobileMenu = await menu.isVisible();
   if (mobileMenu) await menu.click();
   await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
   if (mobileMenu) await page.getByRole('button', { name: 'Close menu' }).click();
-  await page.screenshot({ path: testInfo.outputPath('saved-and-managed-places.png'), fullPage: true, animations: 'disabled' });
+  await page.screenshot({ path: testInfo.outputPath('my-places-page.png'), fullPage: true, animations: 'disabled' });
+  await page.goto('/favorites');
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Moss Apothecary', exact: true })).toBeVisible();
+  await expect(page.getByRole('main', { name: 'My Places', exact: true })).toHaveCount(0);
 });
 
-test('saved places shows pending claims and a clear starting point for unassigned accounts', async ({ page }) => {
+test('pending claimants get My Places while people only saving places do not', async ({ page }, testInfo) => {
   const state = await mockSite(page, { role: 'claimant' });
   state.claims.push({ id: 'claim-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending' });
   await page.goto('/favorites');
-  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toContainText('pending');
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
+  await expect(page.getByRole('main', { name: 'My Places', exact: true })).toHaveCount(0);
+  const menu = page.getByRole('button', { name: 'Open menu' });
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
+  await expect(page.getByRole('main', { name: 'My Places', exact: true })).toContainText('pending');
   state.claims = [];
   await page.reload();
+  await expect(page).toHaveURL(/favorites$/);
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'My Places', exact: true })).toContainText('Manage a business?');
+  await expect(page.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Request a Listing', exact: true }).and(page.locator('main a'))).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('saved-places-only.png'), fullPage: true, animations: 'disabled' });
 });
 
 test('guests cannot open a claim modal for an already claimed place', async ({ page }) => {
@@ -687,8 +700,8 @@ test('expired password recovery links offer a fresh request', async ({ page }) =
 test('rejected claims and access failures remain visible with recovery actions', async ({ page }) => {
   const state = await mockSite(page, { role: 'claimant' });
   state.claims.push({ id: 'rejected-1', place_id: 'place-1', name: state.place.name, urlSlug: state.place.urlSlug, status: 'rejected', review_note: 'Please use your business email.' });
-  await page.goto('/favorites');
-  const section = page.getByRole('region', { name: 'My Places', exact: true });
+  await page.goto('/my-places');
+  const section = page.getByRole('main', { name: 'My Places', exact: true });
   await expect(section).toContainText('Please use your business email.');
   await expect(section.getByRole('link', { name: 'return to the listing to submit updated details' })).toBeVisible();
   state.managementError = 'Unable to load place access.';
@@ -792,7 +805,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
 
 test('renewing owners keep editing while their cycle invoice processes', async ({ page }) => {
   await mockSite(page,{renewalProcessing:true});
-  await page.goto('/favorites');
+  await page.goto('/my-places');
   await expect(page.getByText('Renewal processing',{exact:true})).toBeVisible();
   await page.goto('/place/moss-apothecary');
   await page.getByRole('button',{name:'Edit Place',exact:true}).click();
@@ -1053,7 +1066,7 @@ test('listed requests take approved managers to their place without a second cla
   const state = await mockSite(page, { role: 'owner' });
   state.listingRequests = [{ id: 'request-listed', name: 'Moss Apothecary', city: 'Denver', status: 'listed', place_slug: 'moss-apothecary', created_at: new Date().toISOString() }];
   await page.goto('/request-place');
-  await expect(page.getByRole('link', { name: 'Manage Your Place', exact: true })).toHaveAttribute('href', '/favorites#my-places');
+  await expect(page.getByRole('link', { name: 'Manage Your Place', exact: true })).toHaveAttribute('href', '/my-places');
   await expect(page.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveCount(0);
 });
 
@@ -1064,8 +1077,8 @@ test('My Places shows listing requests above approved places and refreshes new s
     { id: 'listed', name: 'Moss Apothecary', city: 'Denver', status: 'listed', place_slug: 'moss-apothecary', created_at: '2026-10-20T12:00:00Z' },
     { id: 'pending', name: 'Fern & Field', city: 'Boulder', status: 'pending', created_at: '2026-10-21T12:00:00Z' },
   ];
-  await page.goto('/favorites#my-places');
-  const places = page.getByRole('region', { name: 'My Places', exact: true });
+  await page.goto('/my-places');
+  const places = page.getByRole('main', { name: 'My Places', exact: true });
   const requests = places.getByRole('region', { name: 'Your Listing Requests', exact: true });
   await expect(requests.getByRole('article')).toHaveCount(2);
   await expect(requests.getByRole('article').first()).toContainText('Fern & Field');
@@ -1089,4 +1102,27 @@ test('My Places shows listing requests above approved places and refreshes new s
   await places.getByRole('button', { name: 'Refresh Access', exact: true }).click();
   await expect(places.getByRole('article').filter({ hasText: 'Another Herb Place' })).toContainText('Pending review');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+
+test('a first listing request adds My Places to navigation without adding management to saved places', async ({ page }) => {
+  await mockSite(page, { role: 'claimant' });
+  await page.goto('/request-place');
+  await expect(page.getByRole('heading', { name: 'Your Listing Requests', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  await page.getByRole('textbox', { name: 'Place name', exact: true }).fill('Fern & Field');
+  await page.getByRole('textbox', { name: 'City', exact: true }).fill('Boulder');
+  await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  const menu = page.getByRole('button', { name: 'Open menu' });
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
+  await expect(page).toHaveURL(/my-places$/);
+  await expect(page.getByRole('heading', { name: 'My Places', level: 1, exact: true })).toBeVisible();
+  await expect(page.getByRole('main')).toContainText('Fern & Field');
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().getByRole('link', { name: 'Saved Places', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'My Places', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('main')).not.toContainText('Fern & Field');
 });

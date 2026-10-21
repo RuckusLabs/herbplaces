@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { managementRpc } from '../utilities/managementApi';
 
 export default function useListingRequests() {
   const { user } = useAuth();
+  const { pathname } = useLocation();
   const userId = user?.id;
   const confirmedAt = user?.email_confirmed_at;
   const generation = useRef(0);
@@ -28,7 +30,7 @@ export default function useListingRequests() {
     const focus = () => { if (document.visibilityState !== 'hidden') refresh(); };
     window.addEventListener('focus', focus);
     return () => { counter.current++; window.removeEventListener('focus', focus); };
-  }, [refresh]);
+  }, [refresh, pathname]);
   const current = state.owner === (userId || null);
   return { requests: current ? state.requests : [], loading: !current || state.loading, error: current ? state.error : '', refresh };
 }

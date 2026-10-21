@@ -28,8 +28,8 @@ export default function PlaceManagement({ place, placement = 'top' }) {
   if ((placement === 'top') !== !!hasAccess) return null;
   return <>
     {canEdit ? <button className="button" onClick={() => setEditing(true)}>Edit Place</button>
-      : membership ? <Link className="button" to="/favorites#my-places">Manage Subscription</Link>
-      : claim ? <Link className="button" to="/favorites#my-places">Claim Pending</Link>
+      : membership ? <Link className="button" to="/my-places">Manage Subscription</Link>
+      : claim ? <Link className="button" to="/my-places">Claim Pending</Link>
       : place.is_claimed !== false ? null
       : <button className="button" disabled={management.loading} onClick={() => setClaiming(true)}>Claim This Place</button>}
     {notice && <p role="status" className={styles.notice}>{notice}</p>}

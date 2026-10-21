@@ -39,8 +39,8 @@ export default function StartBusiness() {
 
       {selected ? <section className={styles.panel} aria-labelledby="selected-title"><h2 id="selected-title">{selected.name}</h2><p>{[selected.city, selected.state].filter(Boolean).join(', ')}</p>
         {management.loading ? <p role="status">Checking your access…</p> : management.error ? <div role="alert"><p>{management.error}</p><button className="button" onClick={management.refresh}>Check Again</button>{user && !user.email_confirmed_at && <Link to={`/auth/resend-confirmation?next=${encodeURIComponent(returnPath)}`}>Confirm your account email</Link>}</div>
-          : membership ? <><p>Your ownership is approved. Continue in My Places to {bloomAvailable ? 'manage your Bloom subscription and editing access' : 'see your access; Bloom purchases are coming soon'}.</p><Link className="button" to="/favorites#my-places">Continue to My Places</Link></>
-            : pending || statusNotice ? <><p>Your claim is with our review team. No payment is needed while we review it.</p><Link className="button" to="/favorites#my-places">View Claim Status</Link></>
+          : membership ? <><p>Your ownership is approved. Continue in My Places to {bloomAvailable ? 'manage your Bloom subscription and editing access' : 'see your access; Bloom purchases are coming soon'}.</p><Link className="button" to="/my-places">Continue to My Places</Link></>
+            : pending || statusNotice ? <><p>Your claim is with our review team. No payment is needed while we review it.</p><Link className="button" to="/my-places">View Claim Status</Link></>
               : selected.is_claimed !== false ? <><p>This place already has a manager. Contact us to confirm access or join the existing team.</p><a className="button" href={`mailto:help@littleherbplaces.com?subject=${encodeURIComponent(`Manager access for ${selected.name}`)}`}>Get Help with Access</a></>
                 : <><p>Tell us how you’re connected to this place. Claiming is free.</p><button className="button" onClick={() => setParams({ plan, place: selectedSlug, claim: '1' })}>Continue to Ownership Details <Icon name="arrow" size={18} /></button></>}
         <button className={styles.textButton} onClick={() => { setNotice(null); setParams({ plan }); }}>Choose a Different Place</button>
@@ -52,7 +52,7 @@ export default function StartBusiness() {
       </section>}
       {selectedSlug && !selected && !loading && !error && <p role="status">That listing is no longer available. Search again or request a listing.</p>}
     </>}
-    {!adding && <p className={styles.small}>Already approved? <Link to="/favorites#my-places">Open My Places</Link>.</p>}
+    {!adding && <p className={styles.small}>Already approved? <Link to="/my-places">Open My Places</Link>.</p>}
     {selected && params.get('claim') === '1' && !management.loading && !management.error && !membership && !pending && !statusNotice && selected.is_claimed === false && <PlaceClaim key={selected.id} place={selected} returnPath={returnPath} onClose={closeClaim} onSubmitted={message => { setNotice({ slug: selectedSlug, message }); closeClaim(); }} />}
   </main>;
 }

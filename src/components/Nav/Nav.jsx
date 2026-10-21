@@ -9,7 +9,7 @@ import { useManagement } from '../../contexts/ManagementContext';
 
 export default function Nav({ variant, className = '', minimal = false }) {
   const { user, signOut } = useAuth();
-  const { is_admin: isAdmin } = useManagement();
+  const { is_admin: isAdmin, hasOwnerActivity } = useManagement();
   const [open, setOpen] = useState(false);
   const [logoutError, setLogoutError] = useState('');
   const { pathname } = useLocation();
@@ -33,7 +33,7 @@ export default function Nav({ variant, className = '', minimal = false }) {
         <NavLink to="/map">Explore Places</NavLink>
         <NavLink to="/about">Our Story</NavLink>
         <NavLink to="/the-little-garden">For Business Owners</NavLink>
-        {user && <NavLink to="/favorites#my-places">My Places</NavLink>}
+        {user && hasOwnerActivity && <NavLink to="/my-places">My Places</NavLink>}
         <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>Saved Places</span></NavLink>
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <button onClick={logout} className={`button ${styles.join}`}>Sign Out</button> : <Link className={`button ${styles.join}`} to="/register">Join the Community <Icon name="arrow" size={15} /></Link>}

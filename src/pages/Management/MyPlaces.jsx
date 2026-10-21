@@ -1,21 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 import { bloomAvailable, managementAction, openBillingUrl } from '../../utilities/managementApi';
 import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 import { getSubscriptionLabel, subscriptionAllowsEditing } from '../../../supabase/functions/_shared/entitlements.js';
-import useListingRequests from '../../hooks/useListingRequests';
 import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
 import Icon from '../../components/Icons/Icon';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 export default function MyPlaces() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const management = useManagement();
   const refresh = management.refresh;
-  const listingRequests = useListingRequests();
-  useEffect(() => { refresh(); }, [refresh]);
+  const listingRequests = management.listingRequests;
   const [params] = useSearchParams();
   const [busy, setBusy] = useState('');
   const [error, setError] = useState('');
@@ -38,11 +37,14 @@ export default function MyPlaces() {
     } catch (failure) { setError(failure.message); }
     finally { setBusy(''); }
   };
-  if (!user) return null;
+  if (authLoading) return <main id="main-content" className={styles.page}><p role="status">Gathering your places…</p></main>;
+  if (!user) return <Navigate to={`/login?next=${encodeURIComponent(`/my-places${params.size ? `?${params}` : ''}`)}`} replace />;
+  if (!management.loading && !listingRequests.loading && !management.error && !listingRequests.error && !management.hasOwnerActivity) return <Navigate to="/favorites" replace />;
   const returnedMembership = management.memberships.find(item => String(item.place_id) === returnedPlace);
   const activated = returnedMembership && subscriptionAllowsEditing(returnedMembership.subscription);
-  return <section id="my-places" aria-labelledby="my-places-title" className={styles.savedManagement}>
-    <div className={styles.ownerSectionHeading}><h2 id="my-places-title">My Places</h2><Link className="button" to="/request-place">Request a Listing <Icon name="arrow" size={16} /></Link></div><p className={styles.intro}>A little home for the places you care for. Follow your requests, manage your subscription, and edit your approved places here.</p>
+  return <main id="main-content" aria-labelledby="my-places-title" className={`${styles.page} ${styles.ownerPage}`}>
+    <Helmet><title>My Places | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
+    <div className={styles.ownerSectionHeading}><h1 id="my-places-title">My Places</h1><Link className="button" to="/request-place">Request a Listing <Icon name="arrow" size={16} /></Link></div><p className={styles.intro}>A little home for the places you care for. Follow your requests, manage your subscription, and edit your approved places here.</p>
       <p className={styles.small}><Link to="/request-place">View Your Listing Requests</Link></p>
       {management.is_admin && <Link className="button" to="/admin">Open Admin</Link>}
       {management.loading && <p role="status">Refreshing your places…</p>}
@@ -53,13 +55,13 @@ export default function MyPlaces() {
       {returnedPlace && !activated && !error && <p role="status">We’re checking your payment. If access hasn’t updated yet, choose Refresh Billing Status below. You don’t need to pay again.</p>}
       <div className={styles.actions}><button className="button" disabled={management.loading || listingRequests.loading} onClick={() => { management.refresh(); listingRequests.refresh(); }}>Refresh Access</button></div>
       {!management.loading && !management.error && !management.memberships.length && !management.claims.length && !listingRequests.requests.length && !listingRequests.loading && !listingRequests.error && <p>Manage a business? <Link to="/map">Find your place to claim it</Link>, or <Link to="/request-place">request a listing</Link> if it isn’t here yet.</p>}
-      {!user.email_confirmed_at && <p><Link to="/auth/resend-confirmation?next=%2Ffavorites">Send a Confirmation Email</Link></p>}
+      {!user.email_confirmed_at && <p><Link to="/auth/resend-confirmation?next=%2Fmy-places">Send a Confirmation Email</Link></p>}
       {listingRequests.loading && <p role="status">Refreshing your listing requests…</p>}
       {listingRequests.error && <p role="alert" className={styles.error}>{listingRequests.error} Use Refresh Access to try again.</p>}
-      {!!listingRequests.requests.length && <section className={styles.claimRequests} aria-labelledby="my-listing-requests-title"><h3 id="my-listing-requests-title">Your Listing Requests</h3><ListingRequestCards requests={listingRequests.requests} management={management} /></section>}
-      {!!management.claims.length && <section className={styles.claimRequests}><h3>Your Claim Requests</h3><ul className={styles.requestCards} role="list">{[...management.claims].sort((a, b) => Number(b.status === 'pending') - Number(a.status === 'pending')).map(claim => <li key={claim.id}><article className={`${styles.requestCard} ${claim.status === 'approved' ? styles.requestListed : claim.status === 'rejected' ? styles.requestDeclined : styles.requestPending}`}>
+      {!!listingRequests.requests.length && <section className={styles.claimRequests} aria-labelledby="my-listing-requests-title"><h2 id="my-listing-requests-title">Your Listing Requests</h2><ListingRequestCards requests={listingRequests.requests} management={management} headingLevel="h3" /></section>}
+      {!!management.claims.length && <section className={styles.claimRequests}><h2>Your Claim Requests</h2><ul className={styles.requestCards} role="list">{[...management.claims].sort((a, b) => Number(b.status === 'pending') - Number(a.status === 'pending')).map(claim => <li key={claim.id}><article className={`${styles.requestCard} ${claim.status === 'approved' ? styles.requestListed : claim.status === 'rejected' ? styles.requestDeclined : styles.requestPending}`}>
         <div className={styles.requestCardTop}><Icon name={claim.status === 'approved' ? 'badge' : claim.status === 'rejected' ? 'leaf' : 'brand-clock'} size={44} /><span className={styles.requestBadge}>{claim.status === 'approved' ? 'Ownership approved' : claim.status === 'rejected' ? 'Needs an update' : 'Pending review'}</span></div>
-        <h4 className={styles.claimCardTitle}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h4>
+        <h3 className={styles.claimCardTitle}><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h3>
         {claim.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{claim.review_note}</p></div>}
         {claim.status === 'pending' && <p className={styles.requestExplanation}>Your claim is pending review. We’re checking your connection to this place. No payment is needed yet.</p>}
         {claim.status === 'rejected' && <p className={styles.requestExplanation}>Read the review note above, then <Link to={`/place/${claim.urlSlug}?claim=1`}>return to the listing to submit updated details</Link>. If the place already has a manager, <a href="mailto:help@littleherbplaces.com">contact us for help</a>.</p>}
@@ -71,7 +73,7 @@ export default function MyPlaces() {
         const activeBilling = subscription && !['none', 'canceled', 'incomplete_expired'].includes(subscription.status);
         return <article className={`${styles.card} ${styles.managedPlaceCard}`} key={membership.place_id}>
           <div className={styles.requestCardTop}><Icon name="shop" size={44} /><span className={styles.requestBadge}>Ownership approved</span></div>
-          <h3>{membership.place.name}</h3>{[membership.place.address, membership.place.city, membership.place.state].some(Boolean) && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{[membership.place.address, membership.place.city, membership.place.state].filter(Boolean).join(', ')}</span></p>}<span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
+          <h2>{membership.place.name}</h2>{[membership.place.address, membership.place.city, membership.place.state].some(Boolean) && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{[membership.place.address, membership.place.city, membership.place.state].filter(Boolean).join(', ')}</span></p>}<span className={styles.status}>{getSubscriptionLabel(subscription)}</span>
           {membership.is_billing_contact && <span className={styles.status}>Billing contact</span>}
           {subscription?.status === 'past_due' && subscription.grace_ends_at && <p className={styles.small}>Payment grace period ends {new Date(subscription.grace_ends_at).toLocaleString()}. Published content stays visible. Open Manage Billing to resolve your payment.</p>}
           {subscription?.status === 'incomplete' && <p>Payment is incomplete. Open Manage Billing to check your invoice or finish payment, then refresh your billing status.</p>}
@@ -90,5 +92,5 @@ export default function MyPlaces() {
       })}</div>
 
 
-  </section>;
+  </main>;
 }
