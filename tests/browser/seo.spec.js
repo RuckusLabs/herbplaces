@@ -36,8 +36,8 @@ test('owner sales pages explain the request-to-claim handoff and work on every s
   await page.getByText('What if my place isn’t in the directory yet?', { exact: true }).click();
   await expect(page.getByText('Listing approval does not automatically approve you as a manager.', { exact: false })).toBeVisible();
   await page.getByRole('link', { name: 'Request a Missing Listing', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'What Happens Next?', exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Sign In to Request a Listing', exact: true })).toHaveAttribute('href', '/login?next=%2Frequest-place');
+  await expect(page.getByRole('heading', { name: 'Tell Us About Your Place.', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign In to Request a Listing', exact: true })).toHaveAttribute('href', `/login?next=${encodeURIComponent('/the-little-garden/start?plan=bloom&new=1')}`);
   await page.goto('/the-little-garden/thrive/');
   await expect(page.getByRole('heading', { name: 'More of your craft. More to discover.', exact: true })).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://littleherbplaces.com/the-little-garden/thrive/');

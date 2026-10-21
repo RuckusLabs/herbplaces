@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { managementRpc } from '../../utilities/managementApi';
@@ -15,7 +16,13 @@ function readDraft() {
   return empty();
 }
 
-export default function RequestPlace() {
+export default function RequestPlace({ embedded = false }) {
+  const { pathname, search } = useLocation();
+  const destination = encodeURIComponent(`${pathname}${search}`);
+  const plan = new URLSearchParams(search).get('plan') === 'thrive' ? 'thrive' : 'bloom';
+  const claimPath = slug => embedded ? `/the-little-garden/start?${new URLSearchParams({ plan, place: slug, claim: '1' })}` : `/place/${slug}?claim=1`;
+  const Root = embedded ? 'section' : 'main';
+  const Heading = embedded ? 'h2' : 'h1';
   const { user, loading: authLoading } = useAuth();
   const [draft, setDraft] = useState(readDraft);
   const [requests, setRequests] = useState([]);
@@ -51,12 +58,12 @@ export default function RequestPlace() {
     } catch (failure) { setError(failure.message || 'We couldn’t send your request. Your details are still here.'); }
     finally { setBusy(false); }
   };
-  return <main id="main-content" className={styles.page}>
-    <Helmet><title>Request a Listing | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
-    <h1>Make Room for Your Little Place.</h1>
+  return <Root id={embedded ? undefined : "main-content"} className={embedded ? undefined : styles.page}>
+    {!embedded && <Helmet><title>Request a Listing | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>}
+    <Heading>{embedded ? "Tell Us About Your Place." : "Make Room for Your Little Place."}</Heading>
     <p className={styles.intro}>Can’t find a place in the directory? Suggest an independent herb shop, herbalist, garden, or workshop space. Our team reviews each request before adding a listing.</p>
-    <p><Link to="/map">Check the directory first</Link> to avoid a duplicate. Requesting a listing is free. Owners can claim it after it has been added.</p>
-    <section className={styles.card} aria-labelledby="request-next-title"><h2 id="request-next-title">What Happens Next?</h2><ol><li>We review your suggestion and add a listing or link an existing one. Check Your Listing Requests below for the decision.</li><li>If you own or manage the place, open the approved listing and choose Claim This Place. We review ownership separately; a listing request does not grant editing access.</li><li>After your claim is approved, open My Places. When Bloom purchases are available, your billing contact can subscribe to enable editing for the place’s approved managers.</li></ol><p>Just recommending a favorite place? Your request is all you need to send. <Link to="/the-little-garden/bloom">Learn about Bloom for business owners</Link>.</p></section>
+    <p><Link to={embedded ? `/the-little-garden/start?plan=${plan}` : "/the-little-garden/start"}>Search existing listings first</Link> to avoid a duplicate. Requesting a listing is free. Owners can claim it after it has been added.</p>
+    {!embedded && <section className={styles.card} aria-labelledby="request-next-title"><h2 id="request-next-title">What Happens Next?</h2><ol><li>We review your suggestion and add a listing or link an existing one. Check Your Listing Requests below for the decision.</li><li>If you own or manage the place, open the approved listing and choose Claim This Place. We review ownership separately; a listing request does not grant editing access.</li><li>After your claim is approved, open My Places. When Bloom purchases are available, your billing contact can subscribe to enable editing for the place’s approved managers.</li></ol><p>Just recommending a favorite place? Your request is all you need to send. <Link to="/the-little-garden/bloom">Learn about Bloom for business owners</Link>.</p></section>}
     {notice && <p role="status" className={styles.notice}>{notice}</p>}
     <section className={styles.card}><h2>Place Details</h2>
       <form className={styles.form} onSubmit={submit}>
@@ -68,17 +75,20 @@ export default function RequestPlace() {
         </div><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label></fieldset>
         <p className={styles.small}>These details go to our review team. Please don’t include passwords, payment information, or sensitive personal details.</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
-        {authLoading ? <p role="status">Checking your account…</p> : !user ? <><p>Your details stay in this tab while you sign in. Review and submit this form after returning.</p><Link className="button" to="/login?next=%2Frequest-place">Sign In to Request a Listing</Link></>
-          : !user.email_confirmed_at ? <><p>Confirm your account email before sending your request.</p><Link className="button" to="/auth/resend-confirmation?next=%2Frequest-place">Send Confirmation Email</Link></>
+        {authLoading ? <p role="status">Checking your account…</p> : !user ? <><p>Create a free account or sign in to send your request. Your details stay in this tab; review and submit the form after returning.</p><div className={styles.actions}><Link className="button" to={`/register?next=${destination}`}>Create a Free Account</Link><Link to={`/login?next=${destination}`}>Sign In to Request a Listing</Link></div></>
+          : !user.email_confirmed_at ? <><p>Confirm your account email before sending your request.</p><Link className="button" to={`/auth/resend-confirmation?next=${destination}`}>Send Confirmation Email</Link></>
           : <button className="button" disabled={busy}>{busy ? 'Sending…' : 'Send Listing Request'}</button>}
       </form>
     </section>
+    {embedded && <p className={styles.small}>Our team will review your listing request. Once the listing is added, return here to open it and start your ownership claim. Listing approval and ownership approval are separate; no payment is taken with this request.</p>}
     {user?.email_confirmed_at && <section className={styles.card}><h2>Your Listing Requests</h2>
       {loading && <p role="status">Loading your requests…</p>}
       {listError && <p role="alert" className={styles.error}>{listError}</p>}
       <button className="button" disabled={loading} onClick={() => setAttempt(value => value + 1)}>Refresh Requests</button>
       {!loading && !listError && !visibleRequests.length && <p>You haven’t requested a listing yet.</p>}
-      <ul className={styles.list}>{visibleRequests.map(request => <li key={request.id}><strong>{request.name}</strong> · {request.city} <span className={styles.status}>{request.status}</span>{request.review_note && <p>{request.review_note}</p>}{request.place_slug && <p><Link to={`/place/${request.place_slug}`}>View Listing</Link> · <Link to={`/place/${request.place_slug}?claim=1`}>Own or manage this place? Start Your Claim</Link></p>}</li>)}</ul>
+      <ul className={styles.list}>{visibleRequests.map(request => <li key={request.id}><strong>{request.name}</strong> · {request.city} <span className={styles.status}>{request.status}</span>{request.review_note && <p>{request.review_note}</p>}{request.place_slug && <p><Link to={`/place/${request.place_slug}`}>View Listing</Link> · <Link to={claimPath(request.place_slug)}>Own or manage this place? Start Your Claim</Link></p>}</li>)}</ul>
     </section>}
-  </main>;
+  </Root>;
 }
+
+RequestPlace.propTypes = { embedded: PropTypes.bool };

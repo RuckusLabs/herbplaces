@@ -1,5 +1,5 @@
 import { useId, useLayoutEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
@@ -9,7 +9,7 @@ import { claimEvidence, clearClaimDraft, readClaimDraft, saveClaimDraft } from '
 import Modal from '../Modal/Modal';
 import styles from './management.module.scss';
 
-export default function PlaceClaim({ place, onClose, onSubmitted }) {
+export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) {
   const { user } = useAuth();
   const management = useManagement();
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
     if (!user) {
       try { saveClaimDraft(place.id, draft); }
       catch { setError('Your browser couldn’t keep this draft for sign-in. Allow this site to save data, then try again.'); return; }
-      navigate(`/login?next=${encodeURIComponent(`/place/${place.urlSlug}?claim=1`)}`);
+      navigate(`/login?next=${encodeURIComponent(returnPath || `/place/${place.urlSlug}?claim=1`)}`);
       return;
     }
     if (busy || management.loading || management.error || !user.email_confirmed_at || !confirmed) return;
@@ -87,6 +87,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
         </dl>
         <label className={styles.check}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} required disabled={busy} />I own this business or am authorized to manage its listing, and these details are accurate.</label>
         <div className={styles.notice}><strong>What happens next?</strong><p>{user ? 'Send your claim and our team will review your ownership details. You can check the decision and any notes in My Places.' : 'Sign in or create a free account, then review and submit your claim. Your details will be kept in this browser for up to 24 hours.'}</p><p>Claiming is free. After approval, an active Bloom subscription enables editing and photo uploads. {bloomAvailable ? `Bloom is ${bloomOffer.label}. ` : 'Bloom purchases are not available yet. '}No payment is taken with this request.</p></div>
+        {user && !user.email_confirmed_at && <p><Link to={`/auth/resend-confirmation?next=${encodeURIComponent(returnPath || `/place/${place.urlSlug}?claim=1`)}`}>Confirm Your Email to Continue</Link></p>}
         {user && management.error && <div className={styles.error} role="alert"><p>{management.error}</p><button className="button" type="button" onClick={management.refresh} disabled={management.loading}>Check Again</button></div>}
         {error && <p role="alert" className={styles.error}>{error}</p>}
         <div className={styles.actions}>
@@ -97,4 +98,4 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
     </form>
   </Modal>;
 }
-PlaceClaim.propTypes = { place: PropTypes.object.isRequired, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };
+PlaceClaim.propTypes = { place: PropTypes.object.isRequired, returnPath: PropTypes.string, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };

@@ -796,3 +796,84 @@ test('renewing owners keep editing while their cycle invoice processes', async (
   await page.getByRole('button',{name:'Edit Place',exact:true}).click();
   await expect(page.getByRole('dialog')).toBeVisible();
 });
+
+
+test('Bloom starts an inline claim and resumes in the guided flow after sign-in', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/bloom');
+  await page.getByRole('link', { name: 'Get Started with Bloom', exact: true }).first().click();
+  await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom$/);
+  await page.getByRole('searchbox', { name: 'Business name or city', exact: true }).fill('Moss');
+  await page.getByRole('button', { name: 'Continue with Moss Apothecary', exact: true }).click();
+  let dialog = await fillClaim(page);
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Sign In to Send Claim' }).click();
+  const destination = new URL(page.url()).searchParams.get('next');
+  expect(destination).toBe('/the-little-garden/start?plan=bloom&place=moss-apothecary&claim=1');
+  await page.getByLabel('Email', { exact: true }).fill('guest@example.com');
+  await page.getByLabel('Password', { exact: true }).fill('password-for-test');
+  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom&place=moss-apothecary&claim=1/);
+  dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Your full name')).toHaveValue('Jamie Green');
+  await dialog.getByRole('button', { name: 'Review Claim' }).click();
+  await dialog.getByRole('checkbox').check();
+  await dialog.getByRole('button', { name: 'Submit Claim' }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'View Claim Status', exact: true })).toBeVisible();
+  expect(state.claims).toHaveLength(1);
+  await expect(page).not.toHaveURL(/claim=1/);
+});
+
+test('missing-place sales flow keeps request details and branch through sign-in', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/start?plan=bloom');
+  await page.getByRole('searchbox', { name: 'Business name or city', exact: true }).fill('New Fern');
+  await expect(page.getByText('No matching listings. You can request yours below.')).toBeVisible();
+  await page.getByRole('button', { name: 'Add My Place', exact: true }).click();
+  await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  const destination = '/the-little-garden/start?plan=bloom&new=1';
+  await expect(page.getByRole('link', { name: 'Create a Free Account', exact: true })).toHaveAttribute('href', `/register?next=${encodeURIComponent(destination)}`);
+  await page.getByRole('link', { name: 'Sign In to Request a Listing', exact: true }).click();
+  await page.getByLabel('Email', { exact: true }).fill('guest@example.com');
+  await page.getByLabel('Password', { exact: true }).fill('password-for-test');
+  await page.getByRole('button', { name: 'Sign In', exact: true }).click();
+  await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom&new=1/);
+  await expect(page.getByLabel('Place name', { exact: true })).toHaveValue('New Fern Apothecary');
+  expect(state.listingRequests).toHaveLength(0);
+  await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  expect(state.listingRequests).toHaveLength(1);
+});
+
+test('guided start recognizes existing access and avoids duplicate claims', async ({ page }) => {
+  await mockSite(page, { role: 'owner' });
+  await page.goto('/the-little-garden/start?plan=bloom&place=moss-apothecary&claim=1');
+  await expect(page.getByRole('link', { name: 'Continue to My Places', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('guided start routes pending claims and claimed places to their next step', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  state.claims.push({ id: 'claim-1', place_id: 'place-1', status: 'pending' });
+  await page.goto('/the-little-garden/start?plan=bloom&place=moss-apothecary&claim=1');
+  await expect(page.getByRole('link', { name: 'View Claim Status', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  state.claims = []; state.place.is_claimed = true;
+  await page.reload();
+  await expect(page.getByRole('link', { name: 'Get Help with Access', exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('Thrive starts with a place while keeping pilot availability clear', async ({ page }) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/thrive');
+  await page.getByRole('link', { name: 'Start with Your Place', exact: true }).first().click();
+  await expect(page).toHaveURL(/the-little-garden\/start\?plan=thrive$/);
+  await expect(page.getByText('Thrive is a planned pilot.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Ask About the Thrive Pilot', exact: true })).toHaveAttribute('href', /^mailto:/);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});

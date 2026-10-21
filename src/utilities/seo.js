@@ -15,7 +15,7 @@ export const publicRoutes = [
   { path: '/privacy', title: 'Privacy at Little Herb Places', heading: 'Privacy at Little Herb Places', description: 'How Little Herb Places handles account information, ownership details, public listings, and payments.' },
   { path: '/membership-terms', title: 'Membership Terms | Little Herb Places', heading: 'Membership Terms', description: 'Membership, ownership claims, subscription renewal, cancellation, and listing content at Little Herb Places.' },
 ];
-export const privateRoutes = ['/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/auth/forgot-password', '/auth/reset-password', '/auth/resend-confirmation', '/request-place', '/the-little-garden/sprout', '/shop'];
+export const privateRoutes = ['/the-little-garden/start', '/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/auth/forgot-password', '/auth/reset-password', '/auth/resend-confirmation', '/request-place', '/the-little-garden/sprout', '/shop'];
 export const sitePageCards = [
   { path: '/', slug: 'home', name: 'Find Your Little Herb Place.', tagline: 'Herb shops, herbalists, gardens, and good company.', button: 'Explore Places', photo: '/assets/pages/home/hero.jpg' },
   { path: '/map', slug: 'explore', name: 'Somewhere Good Is Growing.', tagline: 'Find independent herb shops, plant people, and spaces to put down roots.', button: 'Explore The Map', photo: '/assets/pages/home/herb-image-2.jpg' },

@@ -16,6 +16,7 @@ const Map = lazy(() => import('./pages/Map/Map'));
 const Place = lazy(() => import('./pages/Place/Place'));
 const FavoritesList = lazy(() => import('./components/FavoritesList/FavoritesList'));
 const TheLittleGarden = lazy(() => import('./pages/TheLittleGarden/TheLittleGarden'));
+const StartBusiness = lazy(() => import('./pages/TheLittleGarden/StartBusiness'));
 const BusinessPlan = lazy(() => import('./pages/TheLittleGarden/BusinessPlan'));
 const SproutSignup = lazy(() => import('./pages/TheLittleGarden/SproutSignup'));
 const AuthCallback = lazy(() => import('./pages/Auth/AuthCallback'));
@@ -38,6 +39,7 @@ const routes = [
   { path: '/about', element: <About /> },
   { path: '/help', element: <Help /> },
   { path: '/the-little-garden', element: <TheLittleGarden /> },
+  { path: '/the-little-garden/start', element: <StartBusiness /> },
   { path: '/the-little-garden/bloom', element: <BusinessPlan plan="bloom" /> },
   { path: '/the-little-garden/thrive', element: <BusinessPlan plan="thrive" /> },
   { path: '/the-little-garden/sprout', element: <SproutSignup /> },

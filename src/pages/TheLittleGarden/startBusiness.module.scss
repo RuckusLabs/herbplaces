@@ -1,0 +1,16 @@
+.page { max-width: 1000px; margin: auto; padding: 35px 6% 65px; h1, h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; line-height: 1.15; } h1 { font-size: clamp(40px, 5vw, 60px); margin: 15px 0 20px; } h2 { font-size: 34px; margin: 0 0 15px; } h3 { font-size: 27px; margin-bottom: 12px; } p { font-size: 14px; line-height: 1.8; font-weight: 400; } :global(.button) { display: inline-flex; align-items: center; justify-content: center; gap: 12px; text-align: center; white-space: normal; } }
+.back { display: inline-block; margin-bottom: 35px; font-size: 13px; }
+.header { max-width: 690px; > svg { margin-bottom: 18px; } }
+.eyebrow { font-size: 11px !important; text-transform: uppercase; letter-spacing: .08em; }
+.progress { display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; padding: 0; margin: 30px 0; gap: 16px; font-size: 12px; line-height: 1.6; li { padding: 12px 0; border-top: 2px solid rgba(var(--tertiary-color), .18); } li[aria-current] { border-color: rgb(var(--secondary-color)); font-weight: 600; } }
+.panel { border: 1px solid rgba(var(--tertiary-color), .18); padding: 32px; border-radius: 20px; > p { margin-bottom: 20px; } }
+.search { display: flex; flex-direction: column; gap: 10px; font-size: 13px; margin: 22px 0 15px; input { width: 100%; border: 1px solid rgba(var(--tertiary-color), .4); border-radius: 8px; padding: 15px; font: inherit; font-size: 16px; color: inherit; background: #fff; } }
+.results { list-style: none; padding: 0; margin: 15px 0; li { display: flex; gap: 20px; justify-content: space-between; align-items: center; border-top: 1px solid rgba(var(--tertiary-color), .15); padding: 18px 0; } strong { font-size: 15px; line-height: 1.7; } span { display: block; margin-top: 6px; font-size: 12px; } button { flex-shrink: 0; } }
+.missing { background: rgba(var(--primary-color), .17); padding: 22px; border-radius: 14px; margin-top: 25px; h3 { margin-top: 0; } p { margin-bottom: 18px; } }
+.small { font-size: 12px !important; line-height: 1.7; margin-top: 15px; }
+.note { background: rgba(var(--primary-color), .2); border-radius: 14px; padding: 22px; margin-bottom: 25px; p { margin-block: 10px; } a { font-size: 13px; } }
+.textButton, .branchHeading button { background: transparent; padding: 0; text-decoration: underline; text-underline-offset: 3px; font: inherit; font-size: 13px; color: inherit; cursor: pointer; }
+.textButton { display: block; margin-top: 25px; }
+.branchHeading { padding-block: 10px; p { margin-top: 20px; } }
+.reassurance { margin-top: 25px; }
+@media(max-width: 640px) { .page { padding-top: 25px; } .back { margin-bottom: 25px; } .progress { grid-template-columns: 1fr 1fr; gap: 10px 20px; } .panel { padding: 22px; } .results li { flex-direction: column; align-items: stretch; gap: 15px; } .missing { padding: 20px; } }
