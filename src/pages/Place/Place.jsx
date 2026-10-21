@@ -17,6 +17,8 @@ import Seo from '../../components/Seo/Seo';
 import { getPlaceSeo } from '../../utilities/seo';
 import styles from './place.module.scss';
 
+const slideScrollLeft = (rail, slide) => Math.max(0, Math.min(slide.offsetLeft, rail.scrollWidth - rail.clientWidth));
+
 export default function Place() {
   const { slug } = useParams();
   const { places, loading, error, retry } = usePlaces();
@@ -64,7 +66,7 @@ export default function Place() {
   useEffect(() => {
     const element = gallery.current;
     const slide = element?.querySelector(`[data-photo-index="${activePhoto.current}"]`);
-    if (slide) element.scrollTo({ left: slide.offsetLeft - (element.clientWidth - slide.clientWidth) / 2, behavior: 'instant' });
+    if (slide) element.scrollTo({ left: slideScrollLeft(element, slide), behavior: 'instant' });
   }, [gallerySize, photoRatios]);
 
   useEffect(() => {
@@ -82,7 +84,7 @@ export default function Place() {
     activePhoto.current = next;
     setPhotoIndex(next);
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
-    element.scrollTo({ left: slide.offsetLeft - (element.clientWidth - slide.clientWidth) / 2, behavior });
+    element.scrollTo({ left: slideScrollLeft(element, slide), behavior });
   };
   const photoWidth = photo => gallerySize.width ? Math.min(gallerySize.width, Math.max(140, gallerySize.height * (photoRatios[photo] || 4 / 3))) : undefined;
 
@@ -118,18 +120,21 @@ export default function Place() {
     </header>
     <section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
-        <div ref={gallery} className={styles.photoGallery} style={{ paddingLeft: gallerySize.width ? (gallerySize.width - photoWidth(photos[0])) / 2 : 0, paddingRight: gallerySize.width ? (gallerySize.width - photoWidth(photos.at(-1))) / 2 : 0 }} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
+        <div ref={gallery} className={styles.photoGallery} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
           const element = event.currentTarget;
-          const center = element.scrollLeft + element.clientWidth / 2;
+          const left = element.scrollLeft;
           let next = 0; let distance = Infinity;
           for (const [index, slide] of [...element.children].entries()) {
-            const delta = Math.abs(slide.offsetLeft + slide.clientWidth / 2 - center);
+            const delta = Math.abs(slide.offsetLeft - left);
             if (delta < distance) { distance = delta; next = index; }
           }
           if (requestedPhoto.current !== null) {
             const target = element.children[requestedPhoto.current];
-            if (!target || Math.abs(target.offsetLeft + target.clientWidth / 2 - center) > 2) return;
+            if (!target || Math.abs(slideScrollLeft(element, target) - left) > 2) return;
+            next = requestedPhoto.current;
             requestedPhoto.current = null;
+          } else if (element.scrollWidth > element.clientWidth && left >= element.scrollWidth - element.clientWidth - 2) {
+            next = photos.length - 1;
           }
           activePhoto.current = next; setPhotoIndex(next);
         }}>

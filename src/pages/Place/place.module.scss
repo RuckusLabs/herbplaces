@@ -10,8 +10,8 @@
 .saveButton { white-space: nowrap; }
 .photos { margin-bottom: 48px; }
 .photoFrame { position: relative; }
-.photoGallery { position: relative; display: flex; align-items: center; gap: 14px; height: min(520px, 65svh); overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 14px; background: #f5f6f0; &::-webkit-scrollbar { display: none; } }
-.gallerySlide { display: block; flex: 0 0 auto; min-width: 0; height: 100%; padding: 0; background: transparent; border-radius: 10px; overflow: hidden; scroll-snap-align: center; cursor: zoom-in; &:focus-visible { outline-offset: -4px; } }
+.photoGallery { position: relative; display: flex; align-items: center; justify-content: safe center; gap: 14px; height: min(520px, 65svh); overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+.gallerySlide { display: block; flex: 0 0 auto; min-width: 0; height: 100%; padding: 0; background: transparent; border-radius: 10px; overflow: hidden; scroll-snap-align: start; cursor: zoom-in; &:focus-visible { outline-offset: -4px; } }
 .galleryPhoto { display: block; width: 100%; height: 100%; object-fit: contain; }
 .galleryTools { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
 .openPhoto { font-size: 12px; background: transparent; box-shadow: none; padding: 8px 0; }

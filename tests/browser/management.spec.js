@@ -1221,13 +1221,15 @@ test('mixed portrait and landscape photos stay whole, keep a stable stage, and s
   const stage = carousel.getByLabel('Photo gallery. Use the left and right arrow keys to browse.', { exact: true });
   await expect(carousel.getByRole('button', { name: 'View Photo 1', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(() => carousel.locator('img').first().evaluate(image => image.naturalHeight)).toBe(900);
+  await expect(stage).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect.poll(() => stage.evaluate(element => element.children[0].offsetLeft)).toBe(0);
   const height = (await stage.boundingBox()).height;
   const first = carousel.getByRole('button', { name: 'Open Photo 1 of 10 in Full View', exact: true });
   await expect.poll(async () => (await first.boundingBox()).width / (await first.boundingBox()).height).toBeCloseTo(600 / 900, 1);
   await carousel.getByRole('button', { name: 'Next Photo', exact: true }).click();
   await expect(carousel.getByRole('button', { name: 'View Photo 2', exact: true })).toHaveAttribute('aria-pressed', 'true');
   expect(Math.abs((await stage.boundingBox()).height - height)).toBeLessThan(1);
-  await expect.poll(() => stage.evaluate(element => { const slide = element.querySelector('[data-photo-index="1"]'); return Math.abs(slide.offsetLeft + slide.clientWidth / 2 - element.scrollLeft - element.clientWidth / 2); })).toBeLessThan(3);
+  await expect.poll(() => stage.evaluate(element => { const slide = element.querySelector('[data-photo-index="1"]'); return Math.abs(Math.min(slide.offsetLeft, element.scrollWidth - element.clientWidth) - element.scrollLeft); })).toBeLessThan(3);
   await expect(carousel.locator('img').nth(1)).toHaveCSS('object-fit', 'contain');
   await carousel.getByRole('button', { name: 'View Photo 10', exact: true }).click();
   await expect(carousel.getByRole('button', { name: 'View Photo 10', exact: true })).toHaveAttribute('aria-pressed', 'true');
