@@ -1,5 +1,5 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.118.0';
-import Stripe from 'npm:stripe@18.5.0';
+import Stripe from 'npm:stripe@23.0.0';
 
 export function required(name: string) {
   const value = Deno.env.get(name);
@@ -12,7 +12,7 @@ export function serviceClient() {
 }
 
 export function stripeClient() {
-  return new Stripe(required('STRIPE_SECRET_KEY'), { httpClient: Stripe.createFetchHttpClient() });
+  return new Stripe(required('STRIPE_SECRET_KEY'), { apiVersion: '2026-09-30.endive', httpClient: Stripe.createFetchHttpClient() });
 }
 
 export function allowedOrigin(req: Request) {

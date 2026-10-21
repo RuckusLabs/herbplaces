@@ -3,7 +3,8 @@
   "specifiers": {
     "npm:@supabase/supabase-js@2.118.0": "2.118.0",
     "npm:@supabase/supabase-js@2.47.14": "2.47.14",
-    "npm:stripe@18.5.0": "18.5.0"
+    "npm:stripe@18.5.0": "18.5.0",
+    "npm:stripe@23.0.0": "23.0.0"
   },
   "npm": {
     "@supabase/auth-js@2.118.0": {
@@ -245,6 +246,9 @@
         "qs"
       ]
     },
+    "stripe@23.0.0": {
+      "integrity": "sha512-MDE2A5ZVVluYURORaZEVghSmnLJc3w6aHAlZSxDQMsOjOb3V0O6ro/CiaeFlJS4N7uIVmsg98ocRsPmUK6YfyA=="
+    },
     "tr46@0.0.3": {
       "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="
     },
@@ -274,7 +278,7 @@
         "npm:@electric-sql/pglite@~0.5.10",
         "npm:@eslint/js@^9.15.0",
         "npm:@playwright/test@^1.64.1",
-        "npm:@supabase/supabase-js@^2.47.14",
+        "npm:@supabase/supabase-js@^2.118.0",
         "npm:@types/react-dom@^18.3.1",
         "npm:@types/react@^18.3.12",
         "npm:@vitejs/plugin-react@^4.3.4",

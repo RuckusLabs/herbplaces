@@ -63,7 +63,7 @@ The photo bucket accepts JPEG, PNG, and WebP up to 10 MB. Server configuration a
 
 An ignored local backup of listing data and original permissions is saved under `supabase/.temp/backups/`. Deployment credentials are kept out of Git. Frontend releases are reviewed through a GitHub pull request before merging to main.
 
-Remaining setup: add Stripe credentials/Price/webhook configuration and schedule reconciliation when billing is enabled. `BLOOM_ENABLED=false`; subscriptions have not been enabled. Public endpoint, CORS, and access-denial checks passed against the hosted functions. After explicit approval, the authenticated hosted test in `scripts/verify-beta-backend.mjs` also passed real sign-in, claim approval, subscription enforcement, photo upload/delivery, publishing, conflict handling, history restoration, and access revocation. Its temporary accounts, listing, and photo were removed. The admin extension additionally passed hosted ownership checks, sorted user/place associations, self-removal and billing-contact protections, and real temporary-account removal with immediate access denial while preserving the listing. The final local suite contains 87 unit/database tests and 32 browser checks across desktop and phone layouts.
+Remaining setup: add Stripe credentials/Price/webhook configuration and schedule reconciliation when billing is enabled. `BLOOM_ENABLED=false`; subscriptions have not been enabled. Public endpoint, CORS, and access-denial checks passed against the hosted functions. After explicit approval, the authenticated hosted test in `scripts/verify-beta-backend.mjs` also passed real sign-in, claim approval, subscription enforcement, photo upload/delivery, publishing, conflict handling, history restoration, and access revocation. Its temporary accounts, listing, and photo were removed. The admin extension additionally passed hosted ownership checks, sorted user/place associations, self-removal and billing-contact protections, and real temporary-account removal with immediate access denial while preserving the listing. The current local suite contains 129 unit/database tests and 88 browser checks across desktop and phone layouts.
 
 The live test identified a hosted PostgREST retry issue when a version conflict used SQLSTATE `40001`. Follow-up migration `202610190002` returns `PT409`/HTTP 409 instead, and the editor shows the reload prompt while retaining the draft. Fresh installations must apply all migrations in order. Database tests cover the corrected response; desktop and phone browser conflict checks passed after the fix.
 
@@ -141,7 +141,7 @@ Set these Supabase project secrets. Never use `VITE_` prefixes for private crede
 | --- | --- |
 | `SITE_URL` | Canonical origin, e.g. `https://littleherbplaces.com` |
 | `ALLOWED_ORIGINS` | Comma-separated exact allowed origins; include canonical and `www` origins as appropriate |
-| `STRIPE_SECRET_KEY` | Stripe test key for verification, live key for production |
+| `STRIPE_SECRET_KEY` | Restricted sandbox API key (`rk_test_…`) for verification; live restricted key only after launch review |
 | `STRIPE_BLOOM_PRICE_ID` | USD $19/month recurring Price ID in the same Stripe mode |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for the deployed Stripe destination |
 | `MAPBOX_GEOCODING_TOKEN` | Server token for an account eligible for permanent geocoding |
@@ -152,7 +152,7 @@ Supabase supplies `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to deployed fun
 
 Deploy `place-management`, `stripe-webhook`, `billing-reconcile`, and `admin-users` with `supabase/config.toml`. Platform JWT checks are disabled intentionally: management validates the token with Supabase Auth and checks current database permissions, the webhook verifies Stripe signatures, reconciliation checks its scheduler secret, and user removal validates the confirmed administrator against current database roles before using the Auth admin API.
 
-Stripe SDK 18.5.0 is pinned. Configure the webhook destination to the SDK's default API version, `2025-08-27.basil`; update code and tests together when upgrading. Invoice subscription references and subscription-item billing periods use this API's shapes.
+Stripe SDK 23.0.0 and API version `2026-09-30.endive` are explicitly pinned together. The sandbox webhook uses that version; update code, endpoint configuration, and tests together when upgrading. Invoice subscription references and subscription-item billing periods use this API's shapes.
 
 ### Stripe settings
 
@@ -160,6 +160,7 @@ Create a Bloom product with one USD $19/month recurring price and no trial. Conf
 
 Register `/functions/v1/stripe-webhook` on your Supabase project for:
 
+- `checkout.session.completed`, `checkout.session.async_payment_succeeded` (only paid sessions are reconciled)
 - `customer.subscription.created`, `.updated`, `.deleted`, `.paused`, `.resumed`
 - `invoice.paid`, `invoice.payment_failed`, `invoice.payment_action_required`, `invoice.finalization_failed`
 
@@ -197,6 +198,23 @@ To pause new subscriptions, turn both flags off and rebuild. Existing paid editi
 
 ## October 21 provider handoff
 
-The owner confirmed `admin@littleherbplaces.com` for both the transactional sender and private claim/listing review inbox. The fixed review recipient is deployed; sending remains unconfigured until Resend verifies `littleherbplaces.com`. Configure Supabase custom SMTP as well as the notification API, verify actual receipt in both directions, and then enable email confirmation. The existing Stripe connection exposes the live “Out There And” account; the owner requested a separate Little Herb Places account. Do not configure or rename the existing account. Reconnect the new account and verify its test/sandbox context before creating Bloom billing objects.
+The owner confirmed `admin@littleherbplaces.com` for both the transactional sender and private claim/listing review inbox. The fixed review recipient is deployed; sending remains unconfigured until Resend verifies `littleherbplaces.com`. Configure Supabase custom SMTP as well as the notification API, verify actual receipt in both directions, and then enable email confirmation. The owner connected the separate Little Herb Places account and its isolated sandbox. All Bloom configuration in this checkpoint targets the sandbox; the existing Out There And account remains outside this setup.
 
 Dependency maintenance removed unused Swiper, updated compatible packages, and pinned the manual deployment helper to the audited version 6.1.1. Supabase SDK 2.118.0 is used in browser and server code; CI/builds require Node.js 22 or later. The dependency audit reports zero known vulnerabilities as of this verification; deprecated transitive deployment packages still warrant future replacement. Publishing now confirms the committed save before background directory retries finish.
+
+### Stripe sandbox checkpoint
+
+The Little Herb Places account is connected, along with its separate sandbox. Resend setup is paused at the owner's request. These objects exist only in **Little Herb Places sandbox** (`acct_1UT1vP6cqRdXwH7O`):
+
+| Object | Value |
+| --- | --- |
+| Bloom product | `prod_VU02O5KvcPuKrF` |
+| USD $19/month recurring price | `price_1UT22P6cqRdXwH7O9UTp0b47` |
+| Price lookup key | `bloom_monthly_usd_v1` |
+| Default billing portal | `bpc_1UT22a6cqRdXwH7OtLPSFub8` |
+| Webhook | `we_1UT24c6cqRdXwH7OKYZVP8Oa` |
+| API version | `2026-09-30.endive` |
+
+The portal permits invoice history, payment-method updates, customer detail updates, and period-end cancellation; plan switching and public email login are off. The product descriptor is `LITTLE HERB PLACES`; live public business details and actual statement display still require verification. Privacy/terms URLs are not set in the sandbox portal until those frontend pages are published. The Price ID and webhook signing secret have been securely saved to Supabase. Purchases remain off. No test payment or full subscription lifecycle has been verified yet.
+
+The remaining server credential is a restricted **sandbox** API key stored as `STRIPE_SECRET_KEY`. Grant Customers, Checkout Sessions, and Customer portal Write permissions, and Prices, Products, Subscriptions, and Invoices Read permissions. Keep all other permissions off unless a concrete API error demonstrates a further requirement. Do not put the key in chat, frontend variables, or source control. After it is saved, verify real sandbox checkout, webhook provisioning, invoices, cancellation, renewal, failed-payment recovery, and reconciliation before enabling new purchases.

@@ -111,6 +111,7 @@ Deno.serve(async req => {
         return json({ url: session.url }, 200, headers);
       }
       const session = await stripe.checkout.sessions.create({
+        integration_identifier: 'littleherbplaces_bloom_mbuchtuv',
         mode: 'subscription', customer: customerId, line_items: [{ price: required('STRIPE_BLOOM_PRICE_ID'), quantity: 1 }],
         metadata: { place_id: placeId }, subscription_data: { metadata: { place_id: placeId } },
         expires_at: Math.floor(Date.parse(reservation.checkout_expires_at) / 1000),

@@ -1,4 +1,4 @@
-import type Stripe from 'npm:stripe@18.5.0';
+import type Stripe from 'npm:stripe@23.0.0';
 import { checked, required, serviceClient, stripeClient } from './server.ts';
 import { bloomPriceIds } from './billingCatalog.js';
 
