@@ -953,3 +953,36 @@ test('listing signup shows one step at a time and keeps details when going back'
   expect(state.listingRequests).toHaveLength(0);
   expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(0);
 });
+
+
+test('listing websites accept bare and international domains and store complete web URLs', async ({ page }) => {
+  const state = await mockSite(page, { role: 'claimant' });
+  for (const [entered, stored] of [['shop.example.herbal', 'https://shop.example.herbal/'], ['例え.テスト/path', 'https://xn--r8jz45g.xn--zckzah/path'], ['shop.example:8443', 'https://shop.example:8443/']]) {
+    await page.goto('/request-place');
+    await page.getByLabel('Place name', { exact: true }).fill('Quiet Garden');
+    await page.getByLabel('City', { exact: true }).fill('Boulder');
+    await page.getByText('Add a website or note (optional)', { exact: true }).click();
+    await page.getByLabel('Website (optional)', { exact: true }).fill(entered);
+    await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+    await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+    expect(state.listingAttempts.at(-1).p_website).toBe(stored);
+  }
+});
+
+test('invalid websites are explained before signup and can be corrected or omitted', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/start?plan=bloom&new=1');
+  await page.getByLabel('Place name', { exact: true }).fill('Quiet Garden');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByText('Add a website or note (optional)', { exact: true }).click();
+  await page.getByLabel('Website (optional)', { exact: true }).fill('javascript:alert(1)');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Enter a website');
+  expect(state.authRequests.filter(request => request.url.includes('/signup'))).toHaveLength(0);
+  await page.getByLabel('Website (optional)', { exact: true }).fill('shop.example.herbal');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByLabel('Account email', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Edit', exact: true }).click();
+  await page.getByText('Add a website or note (optional)', { exact: true }).click();
+  await expect(page.getByLabel('Website (optional)', { exact: true })).toHaveValue('https://shop.example.herbal/');
+});

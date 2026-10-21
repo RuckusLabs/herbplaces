@@ -14,6 +14,10 @@ test('website links accept existing HTTP URLs and normalize bare domains', () =>
   assert.equal(getWebsiteUrl('https://example.com/shop'), 'https://example.com/shop');
   assert.equal(getWebsiteUrl('www.example.com'), 'https://www.example.com/');
   assert.equal(getWebsiteUrl(' http://example.com '), 'http://example.com/');
+  assert.equal(getWebsiteUrl('shop.example.herbal/path'), 'https://shop.example.herbal/path');
+  assert.equal(getWebsiteUrl('例え.テスト'), 'https://xn--r8jz45g.xn--zckzah/');
+  assert.equal(getWebsiteUrl('shop.example:8443/path'), 'https://shop.example:8443/path');
+  assert.equal(getWebsiteUrl('[::1]:8080/path'), 'https://[::1]:8080/path');
 });
 test('invalid and non-web website links are excluded', () => {
   for (const value of [undefined, '', 'not a URL', 'javascript:alert(1)', 'data:text/html,example', 'mailto:test@example.com']) assert.equal(getWebsiteUrl(value), null);

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
+import { getWebsiteUrl } from '../../utilities/placeDetails';
 import { managementRpc } from '../../utilities/managementApi';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
@@ -63,7 +64,10 @@ export default function RequestPlace({ embedded = false }) {
   const submit = async event => {
     event.preventDefault();
     if (busy || authLoading) return;
-    if (stage === 'details' && !user) { setError(''); setStage('account'); return; }
+    const website = draft.website.trim() ? getWebsiteUrl(draft.website) : '';
+    if (draft.website.trim() && !website) { setError('Enter a website such as yourplace.com, or leave it blank.'); return; }
+    if (website.length > 2000) { setError('Please use a shorter website address.'); return; }
+    if (stage === 'details' && !user) { setDraft(previous => ({ ...previous, website })); setError(''); setStage('account'); return; }
     setBusy(true); setError(''); setNotice('');
     try {
       if (!user) {
@@ -83,7 +87,7 @@ export default function RequestPlace({ embedded = false }) {
         setError('Confirm your account email before sending your request. Your details are saved here.');
         return;
       }
-      await managementRpc('request_place_listing', { p_name: draft.name.trim(), p_website: draft.website.trim(), p_city: draft.city.trim(), p_region: draft.region.trim(), p_notes: draft.notes.trim(), p_request_id: draft.requestId });
+      await managementRpc('request_place_listing', { p_name: draft.name.trim(), p_website: website, p_city: draft.city.trim(), p_region: draft.region.trim(), p_notes: draft.notes.trim(), p_request_id: draft.requestId });
       setNotice('Your listing request is saved. Our team will review it.');
       setSubmittedName(draft.name.trim());
       try { localStorage.removeItem(confirmationDraftKey); } catch { /* Optional cross-tab recovery. */ }
@@ -107,7 +111,7 @@ export default function RequestPlace({ embedded = false }) {
         {stage === 'details' ? <fieldset className={styles.flowFields} disabled={busy}>
           <label>Place name<input required minLength={2} maxLength={200} value={draft.name} onChange={update('name')} autoComplete="organization" /></label>
           <div className={styles.formRow}><label>City<input required maxLength={200} value={draft.city} onChange={update('city')} autoComplete="address-level2" /></label><label>State or region<input maxLength={200} value={draft.region} onChange={update('region')} autoComplete="address-level1" /></label></div>
-          <details className={styles.optionalDetails}><summary>Add a website or note (optional)</summary><div className={styles.optionalFields}><label>Website (optional)<input type="url" pattern="https?://.+" title="Start the website address with https:// or http://." maxLength={2000} value={draft.website} onChange={update('website')} /></label><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label><p className={styles.small}>Please leave out passwords, payment details, and sensitive information.</p></div></details>
+          <details className={styles.optionalDetails}><summary>Add a website or note (optional)</summary><div className={styles.optionalFields}><label>Website (optional)<input type="text" inputMode="url" autoComplete="url" autoCapitalize="none" spellCheck={false} placeholder="yourplace.com" maxLength={2000} value={draft.website} onChange={update('website')} /></label><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label><p className={styles.small}>Please leave out passwords, payment details, and sensitive information.</p></div></details>
         </fieldset> : summary}
         {stage === 'account' && !user && <fieldset className={styles.flowFields} disabled={busy} aria-label="Your account">
           <label>Account email<input type="email" autoComplete="email" value={accountEmail} onChange={event => setAccountEmail(event.target.value)} required maxLength={254} /></label>
