@@ -84,14 +84,14 @@ Migration `202610190004` adds administrator-only place creation. Add Place uses 
 
 ## Claim notification email (prepared locally; not yet activated)
 
-Migration `202610190005` queues an email job in the same transaction as each new claim. The `claim-notifications` Edge Function sends the saved place name, account email, relationship, ownership evidence, claim reference, and links to the listing and `/admin` to **verification@littleherbplaces.com** through Resend. The destination is fixed on the server. It does not approve claims. The October 21 migration adds a separate customer queue for receipts and decisions; review notes also remain in My Places. Existing claims are not backfilled.
+Migration `202610190005` queues an email job in the same transaction as each new claim. The `claim-notifications` Edge Function sends the saved place name, account email, relationship, ownership evidence, claim reference, and links to the listing and `/admin` to **admin@littleherbplaces.com** through Resend. The destination is fixed on the server. It does not approve claims. The October 21 migration adds a separate customer queue for receipts and decisions; review notes also remain in My Places. Existing claims are not backfilled.
 
 Activation requires a Resend account, a verified sending domain/address, and these server-only Supabase secrets:
 
 | Secret | Value |
 | --- | --- |
 | `RESEND_API_KEY` | Resend key with permission to send from the verified domain |
-| `CLAIM_EMAIL_FROM` | Verified sender, optionally `Little Herb Places <YOUR_VERIFIED_ADDRESS>` |
+| `CLAIM_EMAIL_FROM` | `Little Herb Places <admin@littleherbplaces.com>` after Resend verifies the domain |
 | `CLAIM_NOTIFICATION_SECRET` | New random secret of at least 32 characters, shared only with the database dispatcher |
 | `SITE_URL` | Public website origin used for review links; already required by management |
 
@@ -99,7 +99,7 @@ Apply migrations `202610190005` and `202610210001`, deploy `claim-notifications`
 
 Delivery failures preserve the claim and notification. Jobs use five-minute leases, up to eight attempts, and a stable Resend idempotency key per claim. Automatic retries stop 23 hours after the first attempt, within Resend's 24-hour idempotency window. Keep the sender and site URL stable during retries. Missing email configuration returns 503 without consuming attempts. Monitor the scheduler, `net._http_response`, and unsent rows in `public.place_claim_notifications`; exhausted jobs require investigation before a deliberate retry. No API keys, ownership evidence, or provider response bodies are logged. Keep this table private and include it in the same retention policy as claims.
 
-Verify with a claim from an account you control, confirm the email arrives once at verification@littleherbplaces.com, and confirm `/admin` still requires administrator access. Local tests cover the durable queue, private grants, overlapping leases, retries, limits, recipient, email contents, authentication, and provider failures using mocks. Real provider delivery and hosted scheduling remain unverified until activation.
+Verify with a claim from an account you control, confirm the email arrives once at admin@littleherbplaces.com, and confirm `/admin` still requires administrator access. Local tests cover the durable queue, private grants, overlapping leases, retries, limits, recipient, email contents, authentication, and provider failures using mocks. Real provider delivery and hosted scheduling remain unverified until activation.
 
 References: [Resend sending API](https://resend.com/docs/api-reference/emails/send-email), [Resend idempotency](https://resend.com/docs/dashboard/emails/idempotency-keys), and [Supabase scheduling](https://supabase.com/docs/guides/functions/schedule-functions).
 
@@ -194,3 +194,9 @@ In staging, verify real confirmed accounts can claim, receive approval, and subs
 After verifying the migration, functions, and Stripe lifecycle, set server `BLOOM_ENABLED=true` and frontend `VITE_BLOOM_ENABLED=true`, then rebuild. GitHub Pages reads the frontend flag from repository variable `VITE_BLOOM_ENABLED` and public keys from the existing secrets. The workflow now passes `VITE_MAPBOX_TOKEN` as well.
 
 To pause new subscriptions, turn both flags off and rebuild. Existing paid editing and portal access continue. Existing beta builds retain read access to known public listing columns, allowing a frontend rollback without reopening writes. Preserve memberships, subscriptions, revisions, and Storage objects when reverting application code.
+
+## October 21 provider handoff
+
+The owner confirmed `admin@littleherbplaces.com` for both the transactional sender and private claim/listing review inbox. The fixed review recipient is deployed; sending remains unconfigured until Resend verifies `littleherbplaces.com`. Configure Supabase custom SMTP as well as the notification API, verify actual receipt in both directions, and then enable email confirmation. The existing Stripe connection exposes the live “Out There And” account; the owner requested a separate Little Herb Places account. Do not configure or rename the existing account. Reconnect the new account and verify its test/sandbox context before creating Bloom billing objects.
+
+Dependency maintenance removed unused Swiper, updated compatible packages, and pinned the manual deployment helper to the audited version 6.1.1. Supabase SDK 2.118.0 is used in browser and server code; CI/builds require Node.js 22 or later. The dependency audit reports zero known vulnerabilities as of this verification; deprecated transitive deployment packages still warrant future replacement. Publishing now confirms the committed save before background directory retries finish.

@@ -4,7 +4,7 @@ A React and Vite directory for independent herb shops, herbalists, gardens, and 
 
 ## Local development
 
-Install dependencies with `npm ci`, then run `npm run dev`.
+Use Node.js 22 or later. Install dependencies with `npm ci`, then run `npm run dev`.
 
 Create a local `.env` file (never commit credentials):
 

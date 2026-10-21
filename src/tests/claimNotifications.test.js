@@ -15,7 +15,7 @@ function database() {
 
 test('verification email includes ownership evidence and review links with a fixed recipient', () => {
   const email = claimNotificationEmail(payload, config);
-  assert.deepEqual(email.to, ['verification@littleherbplaces.com']);
+  assert.deepEqual(email.to, ['admin@littleherbplaces.com']);
   for (const detail of ['Moss Apothecary', 'owner@example.com', 'Jamie Green', 'jamie@moss.example', 'Our team page', 'https://littleherbplaces.com/admin', '/place/moss-apothecary']) assert.ok(email.text.includes(detail));
   assert.equal(email.html, undefined); // User-provided evidence remains plain text.
   assert.equal(claimNotificationEmail({ ...payload, place_name: 'A\r\nB' }, config).subject, 'New place claim: A  B');
@@ -29,7 +29,7 @@ test('successful delivery uses a stable idempotency key and records the provider
   assert.deepEqual(result, { sent: 1, failed: 0 });
   assert.equal(delivered.url, 'https://api.resend.com/emails');
   assert.equal(delivered.request.headers['Idempotency-Key'], 'place-claim/claim-1');
-  assert.deepEqual(JSON.parse(delivered.request.body).to, ['verification@littleherbplaces.com']);
+  assert.deepEqual(JSON.parse(delivered.request.body).to, ['admin@littleherbplaces.com']);
   assert.equal(db.calls[1].parameters.p_email_id, 'email-1');
 });
 

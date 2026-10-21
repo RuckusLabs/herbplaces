@@ -33,7 +33,7 @@ export default function PlaceManagement({ place, placement = 'top' }) {
       : place.is_claimed !== false ? null
       : <button className="button" disabled={management.loading} onClick={() => setClaiming(true)}>Claim This Place</button>}
     {notice && <p role="status" className={styles.notice}>{notice}</p>}
-    {editing && <PlaceEditor place={place} onClose={() => setEditing(false)} onPublished={message => { setNotice(message); management.refresh(); }} />}
+    {editing && <PlaceEditor place={place} onNotice={setNotice} onClose={() => setEditing(false)} onPublished={message => { setNotice(message); management.refresh(); }} />}
     {claiming && !claim && !hasAccess && place.is_claimed === false && <PlaceClaim place={place} onClose={closeClaim} onSubmitted={message => { closeClaim(); setNotice(message); }} />}
   </>;
 }

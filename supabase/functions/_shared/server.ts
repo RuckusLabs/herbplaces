@@ -1,4 +1,4 @@
-import { createClient } from 'npm:@supabase/supabase-js@2.47.14';
+import { createClient } from 'npm:@supabase/supabase-js@2.118.0';
 import Stripe from 'npm:stripe@18.5.0';
 
 export function required(name: string) {

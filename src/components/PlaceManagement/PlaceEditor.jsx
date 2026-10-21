@@ -15,7 +15,7 @@ const fields = [
   ['address', 'Street address', 500], ['city', 'City', 200], ['state', 'State or region', 200], ['zip', 'ZIP or postal code', 100],
 ];
 
-export default function PlaceEditor({ place = null, initialContent = null, onClose, onPublished }) {
+export default function PlaceEditor({ place = null, initialContent = null, onClose, onPublished, onNotice = () => {} }) {
   const titleId = useId();
   const { user } = useAuth();
   const userId = user?.id;
@@ -97,13 +97,17 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
         : await managementRpc('publish_place', { p_place_id: String(place.id), p_content: content, p_expected_version: source.content_version });
       if (!creating) clearEditorDraft(userId, place.id);
       updatePublishedPlace(published);
-      const notice = await geocodePublishedPlace(published);
-      // Publishing has committed; a refresh failure must not imply it failed.
-      let refreshNotice = '';
-      try { await refreshPlaces(); } catch { refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.'; }
-      if (getPlacesSnapshot().error) refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.';
-      onPublished(refreshNotice || notice || (creating ? 'Place created. Add photos or continue editing below.' : 'Your changes are live.'), published);
+      // The write has committed. Directory retries and geocoding must not keep
+      // the editor open or make a successful save look like a failed publish.
+      onPublished(creating ? 'Place created. Add photos or continue editing below.' : 'Your changes are saved.', published);
       onClose();
+      void (async () => {
+        const notice = await geocodePublishedPlace(published);
+        let refreshNotice = '';
+        try { await refreshPlaces(); } catch { refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.'; }
+        if (getPlacesSnapshot().error) refreshNotice = 'Your changes are saved. The directory could not refresh; reload the page to check the latest listing.';
+        if (refreshNotice || notice) onNotice(refreshNotice || notice);
+      })();
     } catch (failure) {
       setError(failure.message || 'Unable to publish. Your changes are still here.');
       setConflict(failure.code === 'PT409');
@@ -153,4 +157,4 @@ export default function PlaceEditor({ place = null, initialContent = null, onClo
     </form> : <><p role="alert" className={styles.error}>{error}</p><button className="button" onClick={() => setAttempt(value => value + 1)}>Try Again</button></>}
   </Modal>;
 }
-PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired };
+PlaceEditor.propTypes = { place: PropTypes.object, initialContent: PropTypes.object, onClose: PropTypes.func.isRequired, onPublished: PropTypes.func.isRequired, onNotice: PropTypes.func };

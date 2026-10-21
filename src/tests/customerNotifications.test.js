@@ -16,7 +16,7 @@ test('listing messages distinguish public listing creation from approved ownersh
   const customer = customerNotificationEmail({ kind: 'listing_reviewed', payload: { ...payload, status: 'listed' } }, config);
   assert.match(customer.text, /submit an ownership claim/);
   const admin = customerNotificationEmail({ kind: 'listing_admin', payload: { ...payload, to: 'untrusted@example.com' } }, config);
-  assert.deepEqual(admin.to, ['verification@littleherbplaces.com']); assert.match(admin.text, /admin/);
+  assert.deepEqual(admin.to, ['admin@littleherbplaces.com']); assert.match(admin.text, /admin/);
   assert.throws(() => customerNotificationEmail({ kind: 'unknown', payload }, config), /Unknown/);
   assert.throws(() => customerNotificationEmail({ kind: 'claim_received', payload: { ...payload, account_email: 'bad\r\nBcc:other@example.com' } }, config));
 });

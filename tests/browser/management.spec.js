@@ -234,7 +234,7 @@ test('owners edit, preview, upload, and publish directly on their place page', a
   await expect(dialog.getByRole('region', { name: 'Place preview' })).toContainText('Newly gathered, just for you.');
   await page.screenshot({ path: testInfo.outputPath('place-editor.png'), fullPage: true, animations: 'disabled' });
   await dialog.getByRole('button', { name: 'Publish Changes' }).click();
-  await expect(dialog).not.toBeVisible(); await expect(page.getByText('Your changes are live.', { exact: true })).toBeVisible();
+  await expect(dialog).not.toBeVisible(); await expect(page.getByText('Your changes are saved.', { exact: true })).toBeVisible();
   await expect(page.getByText('Monday–Friday: 10 am–6 pm', { exact: true })).toBeVisible();
   expect(state.published.p_expected_version).toBe(1); expect(state.published.p_content.photos).toHaveLength(2);
   await expect(page.getByRole('link', { name: 'Book a consultation' })).toHaveAttribute('href', 'https://example.com/book');
