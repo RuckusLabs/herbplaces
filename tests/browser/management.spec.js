@@ -40,7 +40,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
     if (name === 'request_place_listing') {
       state.listingAttempts ||= []; state.listingAttempts.push(body);
       if (state.listingError) return route.fulfill({ status: 400, json: { message: state.listingError } });
-      state.listingRequests.push({ id: body.p_request_id, name: body.p_name, city: body.p_city, website: body.p_website, region: body.p_region, notes: body.p_notes, status: 'pending', created_at: new Date().toISOString() });
+      state.listingRequests.push({ id: body.p_request_id, name: body.p_name, city: body.p_city, address: body.p_address, zip: body.p_zip, website: body.p_website, region: body.p_region, notes: body.p_notes, status: 'pending', created_at: new Date().toISOString() });
       return route.fulfill({ json: body.p_request_id });
     }
     if (name === 'admin_listing_requests') return route.fulfill({ json: { items: state.listingRequests.filter(item => item.status === 'pending'), total: state.listingRequests.filter(item => item.status === 'pending').length } });
@@ -53,7 +53,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
       state.creationAttempts ||= []; state.creationAttempts.push(body);
       if (state.creationError) return route.fulfill({ status: 400, json: { message: state.creationError } });
       state.created = body;
-      state.place = { ...makePlace(), ...body.p_content, id: 'place-new', urlSlug: body.p_slug, isVerified: false, latitude: null, longitude: null, geocode_status: 'review' };
+      state.place = { ...makePlace(), ...body.p_content, id: 'place-new', urlSlug: body.p_slug, isVerified: false, latitude: null, longitude: null, geocode_status: body.p_content.address ? 'pending' : 'review' };
       return route.fulfill({ json: state.place });
     }
     if (name === 'get_editable_place') return route.fulfill({ json: state.place });
@@ -83,6 +83,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   await page.route('**/functions/v1/place-management', async route => {
     if (route.request().headers()['content-type']?.startsWith('multipart/form-data')) return route.fulfill({ json: { url: '/assets/pages/the-little-garden/garden.webp' } });
     const body = route.request().postDataJSON();
+    if (body.action === 'geocode') { state.geocodedPlace = body.place_id; return route.fulfill({ json: { status: 'confirmed' } }); }
     return route.fulfill({ json: body.action === 'checkout' ? { url: 'https://checkout.stripe.com/c/pay/local-test' } : { synced: true } });
   });
   await page.route('**/functions/v1/admin-users', async route => {
@@ -721,7 +722,7 @@ test('listing requests survive a failed submission and show their saved status',
   await page.goto('/request-place');
   await page.getByLabel('Place name', { exact: true }).fill('New Herb Shop');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
-  await page.getByText('Add a website or note (optional)', { exact: true }).click();
+  await page.getByText('More details (optional)', { exact: true }).click();
   await page.getByLabel('Website (optional)').fill('https://example.com');
   state.listingError = 'Please try again shortly.';
   await page.getByRole('button', { name: 'Send Listing Request' }).click();
@@ -961,7 +962,7 @@ test('listing websites accept bare and international domains and store complete 
     await page.goto('/request-place');
     await page.getByLabel('Place name', { exact: true }).fill('Quiet Garden');
     await page.getByLabel('City', { exact: true }).fill('Boulder');
-    await page.getByText('Add a website or note (optional)', { exact: true }).click();
+    await page.getByText('More details (optional)', { exact: true }).click();
     await page.getByLabel('Website (optional)', { exact: true }).fill(entered);
     await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
     await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
@@ -974,7 +975,7 @@ test('invalid websites are explained before signup and can be corrected or omitt
   await page.goto('/the-little-garden/start?plan=bloom&new=1');
   await page.getByLabel('Place name', { exact: true }).fill('Quiet Garden');
   await page.getByLabel('City', { exact: true }).fill('Boulder');
-  await page.getByText('Add a website or note (optional)', { exact: true }).click();
+  await page.getByText('More details (optional)', { exact: true }).click();
   await page.getByLabel('Website (optional)', { exact: true }).fill('javascript:alert(1)');
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Enter a website');
@@ -983,6 +984,42 @@ test('invalid websites are explained before signup and can be corrected or omitt
   await page.getByRole('button', { name: 'Continue', exact: true }).click();
   await expect(page.getByLabel('Account email', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Edit', exact: true }).click();
-  await page.getByText('Add a website or note (optional)', { exact: true }).click();
+  await page.getByText('More details (optional)', { exact: true }).click();
   await expect(page.getByLabel('Website (optional)', { exact: true })).toHaveValue('https://shop.example.herbal/');
+});
+
+test('a listing request keeps its street address and postal code through signup', async ({ page }) => {
+  const state = await mockSite(page, { role: 'guest' });
+  await page.goto('/the-little-garden/start?plan=bloom&new=1');
+  await page.getByLabel('Place name', { exact: true }).fill('New Fern Apothecary');
+  await page.getByLabel('Street address (optional)', { exact: true }).fill('123 Main Street');
+  await page.getByLabel('City', { exact: true }).fill('Boulder');
+  await page.getByLabel('State or region', { exact: true }).fill('CO');
+  await page.getByText('More details (optional)', { exact: true }).click();
+  await page.getByLabel('Postal code (optional)', { exact: true }).fill('80301');
+  await page.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(page.getByText('123 Main Street, Boulder, CO, 80301', { exact: true })).toBeVisible();
+  await page.getByLabel('Account email', { exact: true }).fill('newfern@example.com');
+  await page.getByLabel('Create a password', { exact: true }).fill('private-test-password');
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Create Account & Send Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  expect(state.listingAttempts[0].p_address).toBe('123 Main Street');
+  expect(state.listingAttempts[0].p_zip).toBe('80301');
+});
+
+test('processing a listing request prefills the address and starts server geocoding', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin' });
+  state.listingRequests.push({ id: 'request-1', name: 'New Fern Apothecary', address: '123 Main Street', city: 'Boulder', region: 'CO', zip: '80301', website: '', notes: '', email: 'owner@example.com', status: 'pending', created_at: new Date().toISOString() });
+  await page.goto('/admin');
+  await page.getByRole('button', { name: 'Listing Requests', exact: true }).click();
+  await expect(page.getByText('123 Main Street, Boulder, CO, 80301 · owner@example.com', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Create Listing', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Street address', { exact: true })).toHaveValue('123 Main Street');
+  await expect(dialog.getByLabel('ZIP or postal code', { exact: true })).toHaveValue('80301');
+  await dialog.getByRole('button', { name: 'Create Place & Add Photos', exact: true }).click();
+  await expect.poll(() => state.geocodedPlace).toBe('place-new');
+  expect(state.created.p_content.address).toBe('123 Main Street');
+  expect(state.created.p_content.zip).toBe('80301');
 });

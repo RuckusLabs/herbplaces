@@ -84,14 +84,14 @@ export default function Admin() {
         {loading ? <p role="status">Loading…</p> : <>
           <p className={styles.small} role="status">{data.total} {['claims', 'listing-requests'].includes(section) ? 'pending requests' : 'results'}</p>
           {section === 'listing-requests' ? data.items.map(request => <article className={styles.card} key={request.id}>
-            <h2>{request.name}</h2><p>{request.city}, {request.region} · {request.email}</p>
+            <h2>{request.name}</h2><p>{[request.address, request.city, request.region, request.zip].filter(Boolean).join(', ')} · {request.email}</p>
             {request.website && <p>{request.website}</p>}<p style={{ whiteSpace: 'pre-line' }}>{request.notes}</p>
             <p className={styles.small}>Requested {new Date(request.created_at).toLocaleString()}. Check for an existing listing before creating another. Adding a listing does not approve ownership.</p>
             <div className={styles.form}>
               <label>Existing listing URL slug<input value={listingSlugs[request.id] || ''} maxLength={200} placeholder="moss-apothecary" onChange={event => { const value = event.target.value; setListingSlugs(previous => ({ ...previous, [request.id]: value })); }} disabled={busy} /></label>
               <label>Review note (visible to requester)<textarea value={notes[request.id] || ''} maxLength={3000} onChange={event => { const value = event.target.value; setNotes(previous => ({ ...previous, [request.id]: value })); }} disabled={busy} /></label>
             </div>
-            <div className={styles.actions}><button className="button" disabled={busy} onClick={() => { setCreationRequest(request.id); setCreationDraft({ name: request.name, website: request.website, city: request.city, state: request.region }); setCreating(true); }}>Create Listing</button><button className="button" disabled={busy || !listingSlugs[request.id]?.trim()} onClick={() => reviewListing(request, true)}>Link Listing & Notify</button><button className="button" disabled={busy || (notes[request.id] || '').trim().length < 10} onClick={() => reviewListing(request, false)}>Decline Request</button></div>
+            <div className={styles.actions}><button className="button" disabled={busy} onClick={() => { setCreationRequest(request.id); setCreationDraft({ name: request.name, website: request.website, address: request.address || '', zip: request.zip || '', city: request.city, state: request.region }); setCreating(true); }}>Create Listing</button><button className="button" disabled={busy || !listingSlugs[request.id]?.trim()} onClick={() => reviewListing(request, true)}>Link Listing & Notify</button><button className="button" disabled={busy || (notes[request.id] || '').trim().length < 10} onClick={() => reviewListing(request, false)}>Decline Request</button></div>
           </article>) : section === 'claims' ? data.items.map(claim => <article className={styles.card} key={claim.id}>
             <h2><Link to={`/place/${claim.urlSlug}`}>{claim.name}</Link></h2><p><strong>{claim.email}</strong> · {claim.relationship}</p><p style={{ whiteSpace: 'pre-line' }}>{claim.evidence}</p>
             <p className={styles.small}>Requested {new Date(claim.created_at).toLocaleString()}. Verify the business connection before approving.</p>

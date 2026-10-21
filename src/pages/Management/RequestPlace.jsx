@@ -9,14 +9,14 @@ import styles from '../../components/PlaceManagement/management.module.scss';
 
 const storageKey = 'little-herb-listing-request';
 const confirmationDraftKey = 'little-herb-listing-request-confirmation';
-const empty = () => ({ name: '', website: '', city: '', region: '', notes: '', requestId: crypto.randomUUID() });
+const empty = () => ({ name: '', address: '', zip: '', website: '', city: '', region: '', notes: '', requestId: crypto.randomUUID() });
 function readDraft() {
   const candidates = [];
   for (const storage of ['sessionStorage', 'localStorage']) {
     try {
       const saved = JSON.parse(window[storage].getItem(storage === 'sessionStorage' ? storageKey : confirmationDraftKey));
       if (saved && saved.savedAt <= Date.now() && saved.savedAt > Date.now() - 86400000 && typeof saved.requestId === 'string'
-        && ['name', 'website', 'city', 'region', 'notes'].every(key => typeof saved[key] === 'string')) candidates.push(saved);
+        && ['name', 'website', 'city', 'region', 'notes'].every(key => typeof saved[key] === 'string')) candidates.push({ ...saved, address: typeof saved.address === 'string' ? saved.address : '', zip: typeof saved.zip === 'string' ? saved.zip : '' });
     } catch { /* The form also works without browser storage. */ }
   }
   return candidates.sort((a, b) => b.savedAt - a.savedAt)[0] || empty();
@@ -87,7 +87,7 @@ export default function RequestPlace({ embedded = false }) {
         setError('Confirm your account email before sending your request. Your details are saved here.');
         return;
       }
-      await managementRpc('request_place_listing', { p_name: draft.name.trim(), p_website: website, p_city: draft.city.trim(), p_region: draft.region.trim(), p_notes: draft.notes.trim(), p_request_id: draft.requestId });
+      await managementRpc('request_place_listing', { p_name: draft.name.trim(), p_website: website, p_city: draft.city.trim(), p_region: draft.region.trim(), p_notes: draft.notes.trim(), p_address: draft.address.trim(), p_zip: draft.zip.trim(), p_request_id: draft.requestId });
       setNotice('Your listing request is saved. Our team will review it.');
       setSubmittedName(draft.name.trim());
       try { localStorage.removeItem(confirmationDraftKey); } catch { /* Optional cross-tab recovery. */ }
@@ -95,7 +95,7 @@ export default function RequestPlace({ embedded = false }) {
     } catch (failure) { setError(failure.message || 'We couldn’t send your request. Your details are still here.'); }
     finally { setBusy(false); }
   };
-  const summary = <div className={styles.requestSummary}><div><strong>{draft.name}</strong><span>{[draft.city, draft.region].filter(Boolean).join(', ')}</span></div>{!confirmation && <button type="button" disabled={busy} onClick={() => { setStage('details'); setError(''); }}>Edit</button>}</div>;
+  const summary = <div className={styles.requestSummary}><div><strong>{draft.name}</strong><span>{[draft.address, draft.city, draft.region, draft.zip].filter(Boolean).join(', ')}</span></div>{!confirmation && <button type="button" disabled={busy} onClick={() => { setStage('details'); setError(''); }}>Edit</button>}</div>;
   return <Root id={embedded ? undefined : 'main-content'} className={embedded ? styles.simpleRequest : `${styles.page} ${styles.simpleRequest}`}>
     {!embedded && <Helmet><title>Request a Listing | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>}
     {embedded && submittedName ? <div className={styles.flowCard}>
@@ -110,8 +110,9 @@ export default function RequestPlace({ embedded = false }) {
       <form className={styles.form} onSubmit={submit}>
         {stage === 'details' ? <fieldset className={styles.flowFields} disabled={busy}>
           <label>Place name<input required minLength={2} maxLength={200} value={draft.name} onChange={update('name')} autoComplete="organization" /></label>
+          <label>Street address (optional)<input maxLength={500} value={draft.address} onChange={update('address')} autoComplete="street-address" placeholder="Business location" /></label>
           <div className={styles.formRow}><label>City<input required maxLength={200} value={draft.city} onChange={update('city')} autoComplete="address-level2" /></label><label>State or region<input maxLength={200} value={draft.region} onChange={update('region')} autoComplete="address-level1" /></label></div>
-          <details className={styles.optionalDetails}><summary>Add a website or note (optional)</summary><div className={styles.optionalFields}><label>Website (optional)<input type="text" inputMode="url" autoComplete="url" autoCapitalize="none" spellCheck={false} placeholder="yourplace.com" maxLength={2000} value={draft.website} onChange={update('website')} /></label><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label><p className={styles.small}>Please leave out passwords, payment details, and sensitive information.</p></div></details>
+          <details className={styles.optionalDetails}><summary>More details (optional)</summary><div className={styles.optionalFields}><label>Postal code (optional)<input maxLength={100} value={draft.zip} onChange={update('zip')} autoComplete="postal-code" /></label><label>Website (optional)<input type="text" inputMode="url" autoComplete="url" autoCapitalize="none" spellCheck={false} placeholder="yourplace.com" maxLength={2000} value={draft.website} onChange={update('website')} /></label><label>Anything we should know? (optional)<textarea value={draft.notes} onChange={update('notes')} maxLength={2000} /></label><p className={styles.small}>Please leave out passwords, payment details, and sensitive information.</p></div></details>
         </fieldset> : summary}
         {stage === 'account' && !user && <fieldset className={styles.flowFields} disabled={busy} aria-label="Your account">
           <label>Account email<input type="email" autoComplete="email" value={accountEmail} onChange={event => setAccountEmail(event.target.value)} required maxLength={254} /></label>
@@ -130,7 +131,7 @@ export default function RequestPlace({ embedded = false }) {
       {listError && <p role="alert" className={styles.error}>{listError}</p>}
       <button className="button" disabled={loading} onClick={() => setAttempt(value => value + 1)}>Refresh Requests</button>
       {!loading && !listError && !visibleRequests.length && <p>You haven’t requested a listing yet.</p>}
-      <ul className={styles.list}>{visibleRequests.map(request => <li key={request.id}><strong>{request.name}</strong> · {request.city} <span className={styles.status}>{request.status}</span>{request.review_note && <p>{request.review_note}</p>}{request.place_slug && <p><Link to={`/place/${request.place_slug}`}>View Listing</Link> · <Link to={claimPath(request.place_slug)}>Own or manage this place? Start Your Claim</Link></p>}</li>)}</ul>
+      <ul className={styles.list}>{visibleRequests.map(request => <li key={request.id}><strong>{request.name}</strong> · {[request.address, request.city, request.region, request.zip].filter(Boolean).join(', ')} <span className={styles.status}>{request.status}</span>{request.review_note && <p>{request.review_note}</p>}{request.place_slug && <p><Link to={`/place/${request.place_slug}`}>View Listing</Link> · <Link to={claimPath(request.place_slug)}>Own or manage this place? Start Your Claim</Link></p>}</li>)}</ul>
     </section>}
   </Root>;
 }

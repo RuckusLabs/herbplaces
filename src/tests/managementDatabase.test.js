@@ -18,6 +18,7 @@ const notificationMigration = await readFile(new URL('../../supabase/migrations/
 const createMigration = await readFile(new URL('../../supabase/migrations/202610190004_admin_create_place.sql', import.meta.url), 'utf8');
 const launchMigration = await readFile(new URL('../../supabase/migrations/202610210001_customer_launch.sql', import.meta.url), 'utf8');
 const renewalMigration = await readFile(new URL('../../supabase/migrations/202610210002_renewal_processing.sql', import.meta.url), 'utf8');
+const requestAddressMigration = await readFile(new URL('../../supabase/migrations/202610210003_listing_request_address.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -45,6 +46,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(notificationMigration);
   await database.exec(launchMigration);
   await database.exec(renewalMigration);
+  await database.exec(requestAddressMigration);
 }
 
 before(async () => {
@@ -667,5 +669,46 @@ test('renewal processing is bounded, does not unlock a first invoice, and preser
     await db.query("update public.place_subscriptions set grace_ends_at=now()-interval '1 second' where place_id=$1",[ids.place]);assert.equal(await eligible(),false);
     await event('evt_recovered',105,'active',new Date(Date.now()+86400000).toISOString(),null);
     assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at,null);assert.equal(await eligible(),true);
+  });
+});
+
+
+test('listing addresses are private, bounded, and retained for admin creation', async () => {
+  const args = ['Branch Herb Shop', '', 'Boulder', 'CO', '', '30000000-0000-0000-0000-000000000001', ' 123 Main Street ', ' 80301 '];
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', args);
+    const own = await rpc('get_listing_requests');
+    assert.equal(own[0].address, '123 Main Street'); assert.equal(own[0].zip, '80301');
+    assert.equal(await rpc('request_place_listing', args), args[5]);
+    const otherBranch = [...args]; otherBranch[5] = '30000000-0000-0000-0000-000000000002'; otherBranch[6] = '456 Main Street';
+    await rpc('request_place_listing', otherBranch);
+    assert.equal((await rpc('get_listing_requests')).length, 2);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const queue = await rpc('admin_listing_requests');
+    const request = queue.items.find(item => item.id === args[5]);
+    assert.equal(request.address, '123 Main Street'); assert.equal(request.zip, '80301');
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.teammate]);
+    assert.deepEqual(await rpc('get_listing_requests'), []);
+  });
+  const tooLong = [...args]; tooLong[6] = 'x'.repeat(501);
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('request_place_listing', tooLong)), /Add a place name/);
+});
+
+
+test('an approved request address reaches the place and geocoding stores its map coordinates', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', ['Located Herb Shop', '', 'Boulder', 'CO', '', '40000000-0000-0000-0000-000000000001', '123 Main Street', '80301']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const request = (await rpc('admin_listing_requests')).items[0];
+    const created = await createPlace(newContent({ name: request.name, address: request.address, city: request.city, state: request.region, zip: request.zip }), 'located-herb-shop');
+    assert.equal(created.address, '123 Main Street'); assert.equal(created.zip, '80301');
+    assert.equal(created.geocode_status, 'pending'); assert.equal(created.latitude, null);
+    await db.exec('reset role; set local role service_role');
+    const reserved = await rpc('reserve_place_geocode', [String(created.id), ids.admin]);
+    assert.equal(reserved.address, '123 Main Street');
+    await rpc('apply_place_geocode', [String(created.id), created.content_version, 40.01, -105.27]);
+    await db.exec('reset role; set local role authenticated');
+    const location = (await db.query('select latitude,longitude,geocode_status from public.public_places where id = $1', [created.id])).rows[0];
+    assert.equal(location.geocode_status, 'confirmed'); assert.equal(location.latitude, 40.01); assert.equal(location.longitude, -105.27);
   });
 });
