@@ -7,6 +7,8 @@ import Icon from '../../components/Icons/Icon';
 import { useManagement } from '../../contexts/ManagementContext';
 import { getWebsiteUrl } from '../../utilities/placeDetails';
 import { managementRpc } from '../../utilities/managementApi';
+import useListingRequests from '../../hooks/useListingRequests';
+import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 const storageKey = 'little-herb-listing-request';
@@ -47,28 +49,14 @@ export default function RequestPlace({ embedded = false }) {
     else heading.current?.focus({ preventScroll: true });
   }, [stage, confirmation, submittedName, embedded, user?.id, user?.email_confirmed_at]);
   const [draft, setDraft] = useState(readDraft);
-  const [requests, setRequests] = useState([]);
-  const [requestOwner, setRequestOwner] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { requests: visibleRequests, loading, error: listError, refresh: refreshRequests } = useListingRequests();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const [listError, setListError] = useState('');
   const [notice, setNotice] = useState('');
-  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     try { sessionStorage.setItem(storageKey, JSON.stringify({ ...draft, savedAt: Date.now() })); } catch { /* Optional draft recovery. */ }
   }, [draft]);
-  useEffect(() => {
-    setRequestOwner(user?.id || null);
-    if (!user?.email_confirmed_at) { setRequests([]); return; }
-    let active = true;
-    setLoading(true); setListError(''); setRequests([]);
-    managementRpc('get_listing_requests').then(result => { if (active) setRequests(result || []); })
-      .catch(failure => { if (active) setListError(failure.message); }).finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
-  }, [user?.id, user?.email_confirmed_at, attempt]);
   const update = field => event => { const value = event.target.value; setDraft(previous => ({ ...previous, [field]: value })); };
-  const visibleRequests = requestOwner === user?.id ? requests : [];
   const submit = async event => {
     event.preventDefault();
     if (busy || authLoading) return;
@@ -99,7 +87,7 @@ export default function RequestPlace({ embedded = false }) {
       setNotice('Your listing request is saved. Our team will review it.');
       setSubmittedName(draft.name.trim());
       try { localStorage.removeItem(confirmationDraftKey); } catch { /* Optional cross-tab recovery. */ }
-      setConfirmation(false); setStage('details'); setDraft(empty()); setAttempt(value => value + 1);
+      setConfirmation(false); setStage('details'); setDraft(empty()); refreshRequests();
     } catch (failure) { setError(failure.message || 'We couldn’t send your request. Your details are still here.'); }
     finally { setBusy(false); }
   };
@@ -108,27 +96,10 @@ export default function RequestPlace({ embedded = false }) {
     {!embedded && <Helmet><title>Request a Listing | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>}
     {!embedded && user?.email_confirmed_at && <section id="listing-requests" className={styles.requestDashboard} aria-labelledby="listing-requests-title">
       <div className={styles.requestDashboardHeading}><div><h1 id="listing-requests-title" ref={requestsHeading} tabIndex={-1}>Your Listing Requests</h1><p>See where things stand and take the next step.</p></div><a href="#new-listing" className={styles.newRequestLink}>Request Another Place <Icon name="arrow" size={16} /></a></div>
-      <div className={styles.requestRefresh}><button type="button" disabled={loading} onClick={() => setAttempt(value => value + 1)}>Refresh Requests</button>{loading && <span role="status">Updating…</span>}</div>
+      <div className={styles.requestRefresh}><button type="button" disabled={loading} onClick={refreshRequests}>Refresh Requests</button>{loading && <span role="status">Updating…</span>}</div>
       {listError && <p role="alert" className={styles.error}>{listError}</p>}
       {!loading && !listError && !visibleRequests.length && <p className={styles.requestEmpty}>No listing requests yet. Add your first place below.</p>}
-      <ul className={styles.requestCards} role="list">{visibleRequests.map(request => {
-        const listed = request.status === 'listed';
-        const declined = request.status === 'declined';
-        const member = management.memberships.find(item => item.place?.urlSlug === request.place_slug);
-        const pendingClaim = management.claims.some(item => item.urlSlug === request.place_slug && item.status === 'pending');
-        const location = [request.address, request.city, request.region, request.zip].filter(Boolean).join(', ');
-        const createdAt = new Date(request.created_at);
-        return <li key={request.id}><article aria-labelledby={`request-${request.id}`} className={`${styles.requestCard} ${listed ? styles.requestListed : declined ? styles.requestDeclined : styles.requestPending}`}>
-          <div className={styles.requestCardTop}><Icon name={listed ? 'shop' : declined ? 'leaf' : 'brand-clock'} size={44} /><span className={styles.requestBadge}>{listed ? 'Listed' : declined ? 'Needs an update' : 'Pending review'}</span></div>
-          <h2 id={`request-${request.id}`}>{request.name}</h2>
-          {location && <p className={styles.requestLocation}><Icon name="pin" size={17} /><span>{location}</span></p>}
-          <p className={styles.requestExplanation}>{listed ? member ? 'Your listing is ready, and your management access is approved.' : pendingClaim ? 'Your listing is ready. We’re reviewing your ownership claim.' : 'Your place is in the directory. Own or manage it? Claim the listing to make it yours.' : declined ? 'This request needs another look. Read our note below before sending updated details.' : 'We’re checking the details for this place. The decision will appear here.'}</p>
-          {request.review_note && <div className={styles.requestReviewNote}><strong>From our team</strong><p>{request.review_note}</p></div>}
-          {listed && request.place_slug && <div className={styles.requestCardActions}>{management.loading ? <span role="status">Checking access…</span> : management.error ? <Link to="/favorites#my-places">Check Management Access</Link> : member || pendingClaim ? <Link className="button" to="/favorites#my-places">{member ? 'Manage Your Place' : 'View Claim Status'} <Icon name="arrow" size={16} /></Link> : <Link className="button" to={claimPath(request.place_slug)}>Start Your Claim <Icon name="arrow" size={16} /></Link>}<Link to={`/place/${request.place_slug}`}>View Listing</Link></div>}
-          {declined && <a className={styles.requestUpdateLink} href="#new-listing">Send Updated Details <Icon name="arrow" size={16} /></a>}
-          {Number.isFinite(createdAt.getTime()) && <p className={styles.requestDate}>Requested <time dateTime={request.created_at}>{createdAt.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</time></p>}
-        </article></li>;
-      })}</ul>
+      <ListingRequestCards requests={visibleRequests} management={management} claimPath={claimPath} updatePath="#new-listing" headingLevel="h2" />
     </section>}
     {embedded && submittedName ? <div className={styles.flowCard}>
       <h1 ref={heading} tabIndex={-1}>Thanks — we’ve got it.</h1><p role="status" className={styles.notice}>{notice}</p><p>We’ll review {submittedName}. Once the listing is ready, you can submit an ownership claim.</p><Link className="button" to="/request-place">View Request Status</Link>

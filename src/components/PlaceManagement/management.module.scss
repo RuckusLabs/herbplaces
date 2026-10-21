@@ -69,18 +69,18 @@
 .newRequestLink { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; }
 .requestRefresh { display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; font-size: 12px; button { padding: 0; color: inherit; font: inherit; background: transparent; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; } button:disabled { opacity: .5; cursor: wait; } }
 .requestCards { display: grid; gap: 20px; list-style: none; padding: 0; margin: 0; }
-.requestCard { padding: 26px; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: 20px; overflow-wrap: anywhere; h2 { font-family: 'Editorial', Georgia, serif; font-size: 32px; font-weight: 200; line-height: 1.15; margin: 20px 0 12px; } }
+.requestCard { padding: 26px; border: 1px solid rgba(var(--tertiary-color), .18); border-radius: 20px; overflow-wrap: anywhere; h2, h4 { font-family: 'Editorial', Georgia, serif; font-size: 32px; font-weight: 200; line-height: 1.15; margin: 20px 0 12px; } }
 .requestPending { background: #fbfbf5; }
 .requestListed { background: rgba(var(--primary-color), .13); border-color: rgba(var(--secondary-color), .7); }
 .requestDeclined { background: #fffaf4; }
 .requestCardTop { display: flex; justify-content: space-between; gap: 18px; align-items: center; }
 .requestBadge { display: inline-block; border: 1px solid rgba(var(--tertiary-color), .2); border-radius: 24px; padding: 7px 11px; font-size: 11px; line-height: 1.4; .requestListed & { background: rgba(var(--primary-color), .6); } }
-.simpleRequest .requestLocation { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.7; margin-bottom: 18px; svg { flex-shrink: 0; margin-top: 2px; } }
-.simpleRequest .requestExplanation { font-size: 13px; line-height: 1.8; margin: 0; }
+.requestLocation { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.7; margin-bottom: 18px; svg { flex-shrink: 0; margin-top: 2px; } }
+.requestExplanation { font-size: 13px; line-height: 1.8; margin: 0; }
 .requestReviewNote { margin-top: 20px; padding: 15px 17px; border-radius: 10px; background: rgba(255, 255, 255, .8); font-size: 12px; strong { font-weight: 500; } p { font-size: 13px; line-height: 1.7; margin: 7px 0 0; white-space: pre-line; } }
 .requestCardActions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; margin-top: 22px; > a:not(:global(.button)) { font-size: 12px; } }
 .requestUpdateLink { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: 13px; }
-.simpleRequest .requestDate { padding-top: 18px; border-top: 1px solid rgba(var(--tertiary-color), .12); margin: 22px 0 0; font-size: 11px; }
+.requestDate { padding-top: 18px; border-top: 1px solid rgba(var(--tertiary-color), .12); margin: 22px 0 0; font-size: 11px; }
 .requestEmpty { background: rgba(var(--primary-color), .12); padding: 20px; border-radius: 12px; }
 .flowCard { scroll-margin-top: 25px; > h2 { font-family: 'Editorial', Georgia, serif; font-size: 32px; font-weight: 200; line-height: 1.15; margin: 12px 0 18px; outline: none; } }
 @media(max-width: 650px) { .requestCard { padding: 23px; } .requestCardActions { align-items: stretch; flex-direction: column; } }

@@ -1056,3 +1056,37 @@ test('listed requests take approved managers to their place without a second cla
   await expect(page.getByRole('link', { name: 'Manage Your Place', exact: true })).toHaveAttribute('href', '/favorites#my-places');
   await expect(page.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveCount(0);
 });
+
+
+test('My Places shows listing requests above approved places and refreshes new submissions on return', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'owner' });
+  state.listingRequests = [
+    { id: 'listed', name: 'Moss Apothecary', city: 'Denver', status: 'listed', place_slug: 'moss-apothecary', created_at: '2026-10-20T12:00:00Z' },
+    { id: 'pending', name: 'Fern & Field', city: 'Boulder', status: 'pending', created_at: '2026-10-21T12:00:00Z' },
+  ];
+  await page.goto('/favorites#my-places');
+  const places = page.getByRole('region', { name: 'My Places', exact: true });
+  const requests = places.getByRole('region', { name: 'Your Listing Requests', exact: true });
+  await expect(requests.getByRole('article')).toHaveCount(2);
+  await expect(requests.getByRole('article').first()).toContainText('Fern & Field');
+  await expect(requests.getByRole('article').first()).toContainText('Pending review');
+  await expect(requests.getByRole('link', { name: 'Start Your Claim', exact: true })).toHaveCount(0);
+  const requestTop = await requests.evaluate(element => element.getBoundingClientRect().top);
+  const approvedTop = await places.getByRole('article').filter({ hasText: 'Ownership approved' }).evaluate(element => element.getBoundingClientRect().top);
+  expect(requestTop).toBeLessThan(approvedTop);
+  await places.screenshot({ path: testInfo.outputPath('my-places-requests.png') });
+  await places.getByRole('link', { name: 'Request a Listing', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Place name', exact: true }).fill('New Garden Shop');
+  await page.getByRole('textbox', { name: 'City', exact: true }).fill('Boulder');
+  await page.getByRole('button', { name: 'Send Listing Request', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
+  // Return through the app without reloading the management provider.
+  const menu = page.getByRole('button', { name: 'Open menu' });
+  if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
+  await expect(places.getByRole('article').filter({ hasText: 'New Garden Shop' })).toContainText('Pending review');
+  state.claims.push({ id: 'new-claim', place_id: 'place-2', name: 'Another Herb Place', urlSlug: 'another-herb-place', status: 'pending' });
+  await places.getByRole('button', { name: 'Refresh Access', exact: true }).click();
+  await expect(places.getByRole('article').filter({ hasText: 'Another Herb Place' })).toContainText('Pending review');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
