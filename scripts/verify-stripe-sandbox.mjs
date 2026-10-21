@@ -34,7 +34,7 @@ async function customer() {
 }
 async function action(name) {
   const client = await customer();
-  const response = await client.functions.invoke(functionName,{body:{action:name,place_id:String(state.placeId)}});
+  const response = await client.functions.invoke(['checkout','probe'].includes(name)?functionName:'place-management',{body:{action:name,place_id:String(state.placeId)}});
   if (response.error) { let detail=''; try {detail=(await response.error.context.json()).error||'';} catch {} throw Error(detail||response.error.message); }
   const result = response.data;
   state.session = (await value(client.auth.getSession())).session; save(state);
@@ -93,7 +93,7 @@ try {
     state.checkoutUrl=first.url;save(state);
     console.log(JSON.stringify({pass:'Sandbox key, price validation, customer creation, checkout creation and retry reuse',checkout_url:first.url}));
   } else if(step==='status') {
-    const record=await value(service.from('place_subscriptions').select('status,paid_until,grace_until,cancel_at_period_end,stripe_customer_id,stripe_subscription_id,checkout_session_id').eq('place_id',state.placeId).single());
+    const record=await value(service.from('place_subscriptions').select('status,paid_until,grace_ends_at,cancel_at_period_end,stripe_customer_id,stripe_subscription_id,checkout_session_id').eq('place_id',state.placeId).single());
     state.billing=record;save(state);
     console.log(JSON.stringify(record));
   } else if(step==='publish') {
@@ -109,6 +109,29 @@ try {
     const result=await action('portal');state.portalUrl=result.url;save(state);console.log(JSON.stringify({portal_url:result.url}));
   } else if(step==='sync') {
     console.log(JSON.stringify(await action('sync-billing')));
+  } else if(step==='duplicate-denied') {
+    await assert.rejects(()=>action('checkout'),/Manage the existing subscription|A subscription already exists|Payment is processing/);
+    console.log('PASS Existing subscription blocks another purchase');
+  } else if(step==='expire-grace') {
+    const record=await value(service.from('place_subscriptions').select('status,grace_ends_at').eq('place_id',state.placeId).single());
+    assert.equal(record.status,'past_due');assert.ok(record.grace_ends_at);
+    await value(service.from('place_subscriptions').update({grace_ends_at:new Date(Date.now()-1000).toISOString()}).eq('place_id',state.placeId));
+    const client=await customer();assert.ok((await client.rpc('get_editable_place',{p_place_id:String(state.placeId)})).error);
+    console.log('PASS Expired failed-payment grace is enforced by the hosted database (fixture deadline advanced explicitly)');
+  } else if(step==='missed-webhook') {
+    const original=await value(service.from('place_subscriptions').select('status,paid_until,grace_ends_at,stripe_subscription_id,cancel_at_period_end').eq('place_id',state.placeId).single());
+    assert.equal(original.status,'active');assert.ok(original.paid_until);
+    const settings=fs.readFileSync('supabase/.temp/beta-secrets.env','utf8');
+    const secret=settings.match(/^BILLING_RECONCILE_SECRET=['"]?([^\s'"]+)/m)?.[1];
+    assert.ok(secret,'The local scheduler secret is required to verify the hosted worker.');
+    try {
+      await value(service.from('place_subscriptions').update({status:'none',paid_until:null,grace_ends_at:null,stripe_subscription_id:null}).eq('place_id',state.placeId));
+      const response=await fetch(`${url}/functions/v1/billing-reconcile`,{method:'POST',headers:{Authorization:`Bearer ${secret}`,'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(45000)});
+      assert.equal(response.status,200);assert.equal((await response.json()).failures,0);
+      const recovered=await value(service.from('place_subscriptions').select('status,stripe_subscription_id,paid_until').eq('place_id',state.placeId).single());
+      assert.equal(recovered.status,'active');assert.equal(recovered.stripe_subscription_id,original.stripe_subscription_id);assert.equal(recovered.paid_until,original.paid_until);
+      console.log('PASS Hosted reconciliation recovers a missing initial subscription/webhook using its saved customer');
+    } catch(error) { await value(service.from('place_subscriptions').update(original).eq('place_id',state.placeId));throw error; }
   } else if(step==='cleanup') {
     assert.ok(state);
     const record=state.placeId?await value(service.from('place_subscriptions').select('status,stripe_subscription_id').eq('place_id',state.placeId).maybeSingle()):null;
@@ -121,7 +144,7 @@ try {
     // Retain IDs as a cleanup receipt, without account tokens or Checkout URLs.
     fs.writeFileSync(`${base}/completed-${state.suffix}.json`,JSON.stringify({place_id:state.placeId,users_removed:state.users.length,subscription_id:record?.stripe_subscription_id,completed_at:new Date().toISOString()}));
     console.log('PASS Temporary function, listing, claims, queued messages, and accounts removed');
-  } else throw Error('Use setup, probe, checkout, status, publish, deny-edit, portal, sync, or cleanup.');
+  } else throw Error('Use setup, probe, checkout, status, publish, deny-edit, portal, sync, duplicate-denied, expire-grace, missed-webhook, or cleanup.');
 } catch(error) {
   console.error('Sandbox verification stopped:',error instanceof assert.AssertionError?error.message:(error.message||'Unknown failure'));
   if(state?.placeId) console.error('Fixture retained for retry/cleanup:',state.placeId);

@@ -55,7 +55,7 @@ try {
   const report = { project: projectRef, checked_at: new Date().toISOString(), purchases_enabled: purchasesEnabled,
     configuration_ready: blockers.length === 0, missing_server_secrets: missingSecrets, email_confirmation_required: auth.mailer_autoconfirm === false,
     places: schema.places, subscriptions: schema.subscriptions, notification_queue: queue, blockers,
-    still_requires_live_verification: ['Verified sender and actual confirmation/decision email delivery', 'Stripe test checkout and full subscription lifecycle', 'Portal, payment retries, and tax/refund settings', 'Reviewed frontend deployment with purchases initially disabled'] };
+    still_requires_live_verification: ['Verified sender and actual confirmation/decision email delivery', 'Review sandbox lifecycle evidence; repeat after billing changes', 'Portal, payment retries, and tax/refund settings', 'Reviewed frontend deployment with purchases initially disabled'] };
   console.log(JSON.stringify(report, null, 2));
   // Configuration presence alone never certifies a launch. Read the remaining
   // verification requirements even when this command eventually exits zero.

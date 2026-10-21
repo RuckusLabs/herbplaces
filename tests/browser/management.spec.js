@@ -7,7 +7,7 @@ const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'mos
   coverPhoto: image, photos: [image], latitude: 39.7, longitude: -104.9, isFeatured: false, isVerified: true,
   is_claimed: false, phone: '', hours: '', social_links: [], category_ids: ['shops'], photo_alt: {}, content_version: 1, geocode_status: 'confirmed' });
 
-async function mockSite(page, { role = 'owner', expired = false, conflict = false, confirmed = true } = {}) {
+async function mockSite(page, { role = 'owner', expired = false, conflict = false, confirmed = true, renewalProcessing = false } = {}) {
   const state = { place: makePlace(), claims: [], listingRequests: [], authRequests: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
     { user_id: 'user-1', email: 'admin@example.com', is_admin: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [] },
     { user_id: 'manager-1', email: 'owner@example.com', confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: false, pending: false }] },
@@ -19,6 +19,7 @@ async function mockSite(page, { role = 'owner', expired = false, conflict = fals
   const session = { access_token: token, refresh_token: 'local-test-refresh', token_type: 'bearer', expires_at: expiresAt, expires_in: 3600, user };
   if (role !== 'guest') await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), session);
   const subscription = { status: expired ? 'canceled' : 'active', paid_until: new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
+  if (renewalProcessing) { subscription.paid_until = new Date(Date.now()-3600000).toISOString(); subscription.grace_ends_at = new Date(Date.now()+3600000).toISOString(); }
   const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired, place: state.place, subscription }] : [], claims: state.claims });
   await page.route('**/auth/v1/**', route => {
     const request = route.request();
@@ -785,4 +786,13 @@ test('business plans explain purchase timing and keep newsletter signup distinct
   await page.goto('/the-little-garden/sprout');
   await expect(page.getByText('This newsletter signup does not create a website account', { exact: false })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Subscribe to Updates' })).toBeVisible();
+});
+
+test('renewing owners keep editing while their cycle invoice processes', async ({ page }) => {
+  await mockSite(page,{renewalProcessing:true});
+  await page.goto('/favorites');
+  await expect(page.getByText('Renewal processing',{exact:true})).toBeVisible();
+  await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Place',exact:true}).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
 });

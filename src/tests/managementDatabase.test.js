@@ -17,6 +17,7 @@ const notificationSetup = await readFile(new URL('../../supabase/setup-claim-not
 const notificationMigration = await readFile(new URL('../../supabase/migrations/202610190005_claim_notifications.sql', import.meta.url), 'utf8');
 const createMigration = await readFile(new URL('../../supabase/migrations/202610190004_admin_create_place.sql', import.meta.url), 'utf8');
 const launchMigration = await readFile(new URL('../../supabase/migrations/202610210001_customer_launch.sql', import.meta.url), 'utf8');
+const renewalMigration = await readFile(new URL('../../supabase/migrations/202610210002_renewal_processing.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -43,6 +44,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   if (includeCreation) await database.exec(createMigration);
   await database.exec(notificationMigration);
   await database.exec(launchMigration);
+  await database.exec(renewalMigration);
 }
 
 before(async () => {
@@ -646,4 +648,24 @@ test('billing schedule reads Vault secrets, is repeatable, and cannot be invoked
     await db.exec('set local role authenticated');
     await assert.rejects(db.exec('select place_management_private.invoke_billing_reconciliation()'), /permission denied/);
   } finally { await db.exec('rollback'); }
+});
+
+test('renewal processing is bounded, does not unlock a first invoice, and preserves the full failed-payment grace', async () => {
+  await asRole('service_role',null,async()=>{
+    const start=new Date(Date.now()-3600000).toISOString();
+    const event=(id,created,status,paid,failed=start,cancel=false)=>rpc('apply_billing_event',[id,created,ids.place,'cus_place','sub_place',status,paid,failed,cancel]);
+    const eligible=async()=>{await db.query("select set_config('request.jwt.claim.sub',$1,true)",[ids.owner]);await db.exec('set local role authenticated');const context=await rpc('get_management_context');await db.exec('set local role service_role');return context.memberships.find(item=>item.place_id===ids.place).can_edit;};
+    await event('evt_first_unpaid',100,'active',null);assert.equal(await eligible(),false);
+    await event('evt_processing',101,'active',start);
+    const first=(await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at;
+    assert.equal(first.toISOString(),new Date(Date.parse(start)+86400000).toISOString());assert.equal(await eligible(),true);
+    await event('evt_processing_retry',102,'active',start);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at.toISOString(),first.toISOString());
+    await event('evt_processing_canceled',103,'active',start,start,true);assert.equal(await eligible(),false);
+    await event('evt_payment_failure',104,'past_due',start);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at.toISOString(),new Date(Date.parse(start)+7*86400000).toISOString());
+    await db.query("update public.place_subscriptions set grace_ends_at=now()-interval '1 second' where place_id=$1",[ids.place]);assert.equal(await eligible(),false);
+    await event('evt_recovered',105,'active',new Date(Date.now()+86400000).toISOString(),null);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at,null);assert.equal(await eligible(),true);
+  });
 });

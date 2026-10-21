@@ -97,3 +97,11 @@ test('place names generate readable URL slugs without unsafe or oversized charac
   assert.equal(placeSlug(''), '');
   assert.equal(placeSlug('a'.repeat(201)).length, 200);
 });
+
+test('renewal processing cannot unlock an unpaid first subscription or extend a scheduled cancellation', () => {
+  const now=Date.now();const paid=new Date(now-1000).toISOString();const grace=new Date(now+1000).toISOString();
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:grace},now),true);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:null,grace_ends_at:grace},now),false);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:grace,cancel_at_period_end:true},now),false);
+  assert.equal(subscriptionAllowsEditing({status:'active',paid_until:paid,grace_ends_at:paid},now),false);
+});

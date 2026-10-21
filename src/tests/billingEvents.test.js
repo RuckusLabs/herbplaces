@@ -25,3 +25,26 @@ test('subscription and invoice lifecycle events retain their subscription refere
   }
   assert.equal(billingEventSubscriptionId(event('invoice.paid', { parent: null })), undefined);
 });
+
+test('scheduled portal cancellation is recognized even when the legacy flag is false', async () => {
+  const { hasScheduledCancellation } = await import('../../supabase/functions/_shared/billingEvents.js');
+  assert.equal(hasScheduledCancellation({ status: 'active', cancel_at_period_end: false, cancel_at: 1795278208, canceled_at: 1792599911 }), true);
+  assert.equal(hasScheduledCancellation({ status: 'active', cancel_at_period_end: true, cancel_at: null }), true);
+  assert.equal(hasScheduledCancellation({ status: 'active', cancel_at_period_end: false, cancel_at: null, canceled_at: 1792599911 }), false);
+  assert.equal(hasScheduledCancellation({ status: 'canceled', cancel_at_period_end: false, cancel_at: 1795278208 }), false);
+  for (const cancel_at of [0, -1, NaN, Infinity, '1795278208']) assert.equal(hasScheduledCancellation({status:'active',cancel_at}), false);
+});
+
+test('only a previously paid cycle invoice gets a fixed renewal-processing start', async () => {
+  const { renewalProcessingStart } = await import('../../supabase/functions/_shared/billingEvents.js');
+  const start = 1795278208;
+  const paid = new Date(start * 1000).toISOString();
+  const invoice = {status:'draft',billing_reason:'subscription_cycle',period_start:start-30*86400};
+  assert.equal(renewalProcessingStart({status:'active'},invoice,paid,start),start);
+  assert.equal(renewalProcessingStart({status:'active'},{...invoice,status:'open'},paid,start),start);
+  for (const previous of [null,undefined,'invalid',new Date((start+1)*1000).toISOString()]) assert.equal(renewalProcessingStart({status:'active'},invoice,previous,start),undefined);
+  for (const status of ['past_due','canceled','incomplete']) assert.equal(renewalProcessingStart({status},invoice,paid,start),undefined);
+  assert.equal(renewalProcessingStart({status:'active',cancel_at:start},invoice,paid,start),undefined);
+  assert.equal(renewalProcessingStart({status:'active'},{...invoice,billing_reason:'subscription_create'},paid,start),undefined);
+  assert.equal(renewalProcessingStart({status:'active'},{...invoice,status:'paid'},paid,start),undefined);
+});
