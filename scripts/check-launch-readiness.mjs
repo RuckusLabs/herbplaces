@@ -41,9 +41,10 @@ try {
   const auth = await settingsResponse.json();
   const queue = query(`select jsonb_build_object(
     'claim_unsent',(select count(*) from public.place_claim_notifications where sent_at is null),
-    'customer_unsent',(select count(*) from public.place_customer_notifications where sent_at is null),
+    'customer_unsent',(select count(*) from public.place_customer_notifications where sent_at is null and suppressed_at is null and kind <> 'listing_admin'),
+    'customer_suppressed',(select count(*) from public.place_customer_notifications where suppressed_at is not null),
     'exhausted',(select count(*) from public.place_claim_notifications where sent_at is null and (attempts>=8 or first_attempt_at<=now()-interval '23 hours'))
-      +(select count(*) from public.place_customer_notifications where sent_at is null and (attempts>=8 or first_attempt_at<=now()-interval '23 hours'))
+      +(select count(*) from public.place_customer_notifications where sent_at is null and suppressed_at is null and kind <> 'listing_admin' and (attempts>=8 or first_attempt_at<=now()-interval '23 hours'))
   ) as state`)[0].state;
   const adminQueue = schema.admin_notifications ? query("select jsonb_build_object('sent',count(*) filter(where sent_at is not null),'unsent',count(*) filter(where sent_at is null),'exhausted',count(*) filter(where sent_at is null and (attempts>=8 or first_attempt_at<=now()-interval '23 hours'))) as state from public.place_admin_notifications")[0].state : null;
   const blockers = [];
@@ -59,7 +60,7 @@ try {
   const report = { project: projectRef, checked_at: new Date().toISOString(), purchases_enabled: purchasesEnabled,
     configuration_ready: blockers.length === 0, missing_server_secrets: missingSecrets, email_confirmation_required: auth.mailer_autoconfirm === false,
     places: schema.places, subscriptions: schema.subscriptions, notification_queue: queue, admin_notification_queue: adminQueue, blockers,
-    still_requires_live_verification: ['Verified sender and actual confirmation/decision email delivery', 'Review sandbox lifecycle evidence; repeat after billing changes', 'Portal, payment retries, and tax/refund settings', 'Reviewed frontend deployment with purchases initially disabled'] };
+    still_requires_live_verification: ['Repeat real email delivery verification after changing email configuration or templates', 'Review sandbox lifecycle evidence; repeat after billing changes', 'Portal, payment retries, and tax/refund settings', 'Reviewed frontend deployment with purchases initially disabled'] };
   console.log(JSON.stringify(report, null, 2));
   // Configuration presence alone never certifies a launch. Read the remaining
   // verification requirements even when this command eventually exits zero.

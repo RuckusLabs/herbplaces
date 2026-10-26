@@ -23,6 +23,7 @@ const photoLimitMigration = await readFile(new URL('../../supabase/migrations/20
 const attentionMigration = await readFile(new URL('../../supabase/migrations/202610260001_admin_attention.sql', import.meta.url), 'utf8');
 const adminHandoffMigration = await readFile(new URL('../../supabase/migrations/202610260002_customer_admin_alert_handoff.sql', import.meta.url), 'utf8');
 const placeDeletionMigration = await readFile(new URL('../../supabase/migrations/202610260003_place_deletion.sql', import.meta.url), 'utf8');
+const customerCutoverMigration = await readFile(new URL('../../supabase/migrations/202610260004_customer_email_cutover.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -55,6 +56,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(attentionMigration);
   await database.exec(adminHandoffMigration);
   await database.exec(placeDeletionMigration);
+  await database.exec(customerCutoverMigration);
 }
 
 before(async () => {
@@ -554,6 +556,7 @@ test('notification setup schedules immediate delivery and preserves claims when 
     const request = (await db.query('select * from net.requests')).rows[0];
     assert.equal(request.url, 'https://test.supabase.co/functions/v1/claim-notifications');
     assert.deepEqual(request.body, {}); // Ownership evidence stays out of the webhook body.
+    assert.equal((await db.query('select count(*) from net.requests')).rows[0].count, 1); // Only the customer queue wakes this endpoint.
     assert.ok(request.headers.Authorization.startsWith('Bearer '));
     await db.query("select set_config('test.dispatch_failure', 'true', true)");
     await db.query('insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,$3,$4)', [ids.otherPlace, ids.teammate, 'Owner', 'A second claim survives an unavailable dispatcher.']);
@@ -846,4 +849,41 @@ test('changed content or billing invalidates a deletion plan before records are 
       await assert.rejects(rpc('delete_place_records',[ids.admin,ids.place,plan.place.slug,plan.place.version,plan.subscription,[]],['','','','','::jsonb','::jsonb']),field==='content'?/Place changed/:/Billing changed/);
     } finally { await db.exec('rollback'); }
   }
+});
+
+
+test('customer cutover skips suppressed jobs and uses the current confirmed account email', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    await db.exec('reset role');
+    const job = (await db.query('select id from public.place_customer_notifications')).rows[0];
+    await db.query("update auth.users set email='changed@example.com' where id=$1", [ids.outsider]);
+    await db.exec('set local role service_role');
+    const [leased] = await rpc('take_customer_notifications');
+    assert.equal(leased.payload.account_email, 'changed@example.com');
+    await db.exec('reset role');
+    await db.query("update public.place_customer_notifications set suppressed_at=now(),suppression_reason='Disposable setup fixture',lease_token=null where id=$1", [job.id]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_customer_notifications'), []);
+    await assert.rejects(rpc('finish_customer_notification',[job.id,leased.lease_token,'late-email']),/no longer valid/);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    await db.exec('reset role');
+    await db.query('update auth.users set email_confirmed_at=null where id=$1', [ids.outsider]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_customer_notifications'), []);
+    await db.exec('reset role');
+    assert.equal((await db.query('select attempts from public.place_customer_notifications')).rows[0].attempts, 0);
+  });
+});
+
+test('listing requests no longer create retired admin customer jobs', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await db.exec('reset role');
+    const rows = (await db.query('select kind from public.place_customer_notifications')).rows;
+    assert.deepEqual(rows.map(row => row.kind), ['listing_received']);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 1);
+  });
 });
