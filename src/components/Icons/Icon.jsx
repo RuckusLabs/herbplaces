@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import SettingsIcon from '../../assets/icons/settings.svg?react';
+import SignOutIcon from '../../assets/icons/sign-out.svg?react';
 import BookIcon from '../../assets/icons/book.svg?react';
 import PolaroidIcon from '../../assets/icons/polaroid.svg?react';
 import BrandClockIcon from '../../assets/icons/brand-clock.svg?react';
@@ -19,7 +21,7 @@ import CraftIcon from '../../assets/icons/craft.svg?react';
 import MapPlaceIcon from '../../assets/icons/map.svg?react';
 import NearbyIcon from '../../assets/icons/nearby.svg?react';
 
-const brandIcons = { book: BookIcon, polaroid: PolaroidIcon, 'brand-clock': BrandClockIcon, shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
+const brandIcons = { settings: SettingsIcon, 'sign-out': SignOutIcon, book: BookIcon, polaroid: PolaroidIcon, 'brand-clock': BrandClockIcon, shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
 
 const paths = {
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
