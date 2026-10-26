@@ -1,5 +1,6 @@
-import Stripe from 'npm:stripe@18.5.0';
+import Stripe from 'npm:stripe@23.0.0';
 import { json, required, stripeClient } from '../_shared/server.ts';
+import { billingEventSubscriptionId } from '../_shared/billingEvents.js';
 import { reconcileSubscription } from '../_shared/billing.ts';
 
 Deno.serve(async req => {
@@ -12,14 +13,7 @@ Deno.serve(async req => {
       undefined, Stripe.createSubtleCryptoProvider());
   } catch { return json({ error: 'Invalid signature.' }, 400); }
   try {
-    let subscriptionId: string | undefined;
-    if (['customer.subscription.created', 'customer.subscription.updated', 'customer.subscription.deleted', 'customer.subscription.paused', 'customer.subscription.resumed'].includes(event.type)) {
-      subscriptionId = (event.data.object as Stripe.Subscription).id;
-    } else if (['invoice.paid', 'invoice.payment_failed', 'invoice.payment_action_required', 'invoice.finalization_failed'].includes(event.type)) {
-      const invoice = event.data.object as Stripe.Invoice;
-      const subscription = invoice.parent?.subscription_details?.subscription;
-      subscriptionId = typeof subscription === 'string' ? subscription : subscription?.id;
-    }
+    const subscriptionId = billingEventSubscriptionId(event);
     if (subscriptionId) {
       const subscription = await stripeClient().subscriptions.retrieve(subscriptionId);
       // This Stripe account can also contain unrelated products.

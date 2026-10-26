@@ -1,5 +1,7 @@
 import { authenticated, checked, corsHeaders, allowedOrigin, json, required, serviceClient, stripeClient } from '../_shared/server.ts';
 import { reconcileSubscription } from '../_shared/billing.ts';
+import { validateCheckoutPrice } from '../_shared/billingCatalog.js';
+import { findPlaceSubscription } from '../_shared/billingRecovery.js';
 import { coordinatesFromGeocode, hasImageSignature, PHOTO_BYTES, validatePhotoFile } from '../_shared/entitlements.js';
 
 Deno.serve(async req => {
@@ -79,11 +81,7 @@ Deno.serve(async req => {
     const stripe = stripeClient();
     const siteUrl = (allowedOrigin(req) || required('SITE_URL')).replace(/\/$/, '');
     if (action === 'sync-billing') {
-      let subscriptionId = access.subscription?.stripe_subscription_id;
-      if (access.subscription?.stripe_customer_id) {
-        const subscriptions = await stripe.subscriptions.list({ customer: access.subscription.stripe_customer_id, status: 'all', limit: 100 });
-        subscriptionId = subscriptions.data.find(item => item.metadata.place_id === placeId && !['canceled', 'incomplete_expired'].includes(item.status))?.id || subscriptionId;
-      }
+      const subscriptionId = await findPlaceSubscription(stripe, { ...access.subscription, place_id: placeId });
       if (subscriptionId) await reconcileSubscription(subscriptionId, `sync-${crypto.randomUUID()}`, Math.floor(Date.now() / 1000));
       return json({ synced: true }, 200, headers);
     }
@@ -95,10 +93,7 @@ Deno.serve(async req => {
     }
     if (action === 'checkout') {
       if (Deno.env.get('BLOOM_ENABLED') !== 'true') throw new Error('Payment signup is not available yet. Please check back soon.');
-      const price = await stripe.prices.retrieve(required('STRIPE_BLOOM_PRICE_ID'));
-      if (!price.active || price.currency !== 'usd' || price.unit_amount !== 1900 || price.recurring?.interval !== 'month' || price.recurring.interval_count !== 1) {
-        throw new Error('Bloom price configuration must be an active USD $19 monthly price.');
-      }
+      validateCheckoutPrice(await stripe.prices.retrieve(required('STRIPE_BLOOM_PRICE_ID')));
       const reservation = await checked(await db.rpc('reserve_place_checkout', { p_place_id: placeId, p_user_id: user.id }));
       let customerId = reservation.stripe_customer_id;
       if (!customerId) {
@@ -107,9 +102,8 @@ Deno.serve(async req => {
         await checked(await db.from('place_subscriptions').update({ stripe_customer_id: customerId }).eq('place_id', placeId).eq('checkout_nonce', reservation.checkout_nonce).select('place_id').single());
       }
       // A completed Checkout may precede its webhook; never create a second subscription.
-      const existing = await stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 100 });
-      if (existing.data.some(subscription => !['canceled', 'incomplete_expired'].includes(subscription.status))) {
-        throw new Error('A subscription already exists. Refresh billing status or open billing.');
+      for await (const subscription of stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 100 })) {
+        if (!['canceled', 'incomplete_expired'].includes(subscription.status)) throw new Error('A subscription already exists. Refresh billing status or open billing.');
       }
       if (reservation.checkout_session_id) {
         const session = await stripe.checkout.sessions.retrieve(reservation.checkout_session_id);
@@ -117,6 +111,7 @@ Deno.serve(async req => {
         return json({ url: session.url }, 200, headers);
       }
       const session = await stripe.checkout.sessions.create({
+        integration_identifier: 'littleherbplaces_bloom_mbuchtuv',
         mode: 'subscription', customer: customerId, line_items: [{ price: required('STRIPE_BLOOM_PRICE_ID'), quantity: 1 }],
         metadata: { place_id: placeId }, subscription_data: { metadata: { place_id: placeId } },
         expires_at: Math.floor(Date.parse(reservation.checkout_expires_at) / 1000),

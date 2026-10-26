@@ -1,5 +1,5 @@
 export const GRACE_MS = 7 * 24 * 60 * 60 * 1000;
-export const PHOTO_LIMIT = 20;
+export const PHOTO_LIMIT = 10;
 export const PHOTO_BYTES = 10 * 1024 * 1024;
 export const PHOTO_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 export const CATEGORY_IDS = ['shops', 'herbalists', 'gardens', 'workshops'];
@@ -7,13 +7,14 @@ export const CATEGORY_IDS = ['shops', 'herbalists', 'gardens', 'workshops'];
 export function subscriptionAllowsEditing(subscription, now = Date.now()) {
   if (!subscription) return false;
   const paidUntil = Date.parse(subscription.paid_until || '');
-  if (subscription.status === 'active') return paidUntil > now;
+  if (subscription.status === 'active') return paidUntil > now || (Number.isFinite(paidUntil) && !subscription.cancel_at_period_end && Date.parse(subscription.grace_ends_at || '') > now);
   return subscription.status === 'past_due' && Date.parse(subscription.grace_ends_at || '') > now;
 }
 
 export function getSubscriptionLabel(subscription, now = Date.now()) {
   if (!subscription) return 'Subscription needed';
   if (subscription.status === 'past_due' && subscriptionAllowsEditing(subscription, now)) return 'Payment overdue · grace period';
+  if (subscription.status === 'active' && Date.parse(subscription.paid_until || '') <= now && subscriptionAllowsEditing(subscription, now)) return 'Renewal processing';
   if (subscriptionAllowsEditing(subscription, now)) return subscription.cancel_at_period_end ? 'Active · ends after this billing period' : 'Bloom active';
   if (subscription.status === 'incomplete') return 'Payment pending';
   return 'Editing paused';

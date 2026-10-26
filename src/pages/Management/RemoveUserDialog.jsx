@@ -17,7 +17,7 @@ export default function RemoveUserDialog({ account, onClose, onRemoved }) {
     } catch (failure) { setError(failure.message); }
     finally { setBusy(false); }
   };
-  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close user removal" contentClassName={styles.editorBody}>
+  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close user removal" className={`${styles.adminDialog} ${styles.adminRemovalDialog}`} contentClassName={`${styles.editorBody} ${styles.adminBody}`}>
     <h2 id={titleId} className={styles.editorHeading}>Remove User</h2>
     <p><strong>{account.email}</strong></p>
     <p>This permanently removes their sign-in account and access to places. Published places and photos stay live.</p>

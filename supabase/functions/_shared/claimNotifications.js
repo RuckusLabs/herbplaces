@@ -1,9 +1,11 @@
-export const verificationEmail = 'verification@littleherbplaces.com';
+import { textEmailHtml } from './emailBranding.js';
+
+export const verificationEmail = 'lhp@ruckuslabs.co';
 
 export function claimNotificationEmail(payload, { from, siteUrl }) {
   const origin = new URL(siteUrl);
   if (!['https:', 'http:'].includes(origin.protocol)) throw new Error('Invalid site URL.');
-  return {
+  const email = {
     from, to: [verificationEmail],
     subject: `New place claim: ${payload.place_name}`.replace(/[\r\n]/g, ' ').slice(0, 200),
     text: [
@@ -19,6 +21,7 @@ export function claimNotificationEmail(payload, { from, siteUrl }) {
       'Sign in as an administrator to approve or reject the claim. Verify the business connection before approving.',
     ].join('\n\n'),
   };
+  return { ...email, html: textEmailHtml('A new ownership claim.', email.text) };
 }
 
 export async function dispatchClaimNotifications({ database, apiKey, from, siteUrl, fetchImpl = fetch }) {

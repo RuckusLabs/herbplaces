@@ -1,14 +1,15 @@
 import { useId, useLayoutEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 import { bloomAvailable, managementRpc } from '../../utilities/managementApi';
+import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 import { claimEvidence, clearClaimDraft, readClaimDraft, saveClaimDraft } from '../../utilities/placeClaim';
 import Modal from '../Modal/Modal';
 import styles from './management.module.scss';
 
-export default function PlaceClaim({ place, onClose, onSubmitted }) {
+export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) {
   const { user } = useAuth();
   const management = useManagement();
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
     if (!user) {
       try { saveClaimDraft(place.id, draft); }
       catch { setError('Your browser couldn’t keep this draft for sign-in. Allow this site to save data, then try again.'); return; }
-      navigate(`/login?next=${encodeURIComponent(`/place/${place.urlSlug}?claim=1`)}`);
+      navigate(`/login?next=${encodeURIComponent(returnPath || `/place/${place.urlSlug}?claim=1`)}`);
       return;
     }
     if (busy || management.loading || management.error || !user.email_confirmed_at || !confirmed) return;
@@ -44,7 +45,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
         p_place_id: String(place.id), p_relationship: draft.relationship, p_evidence: claimEvidence(draft),
       });
       clearClaimDraft(place.id);
-      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status in My Places on your Saved Places page.');
+      onSubmitted('Your claim has been sent for review. We’ll check your ownership details. You can follow its status on your My Places page.');
       await management.refresh();
     } catch (failure) { setError(failure.message || 'We couldn’t send your claim. Please try again.'); }
     finally { setBusy(false); }
@@ -72,7 +73,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
           <label>Ownership details<textarea value={draft.evidence} onChange={update('evidence')} required minLength={40} maxLength={1600} aria-describedby={`${id}-evidence-help`} placeholder="Tell us how you’re connected to the business and how we can confirm it." /></label>
           <p id={`${id}-evidence-help`} className={styles.small}>For example, tell us where you’re named as an owner, how your business email matches the website, or who at the business can confirm your role. No public link? Explain another way we can verify you. Please don’t include passwords, ID numbers, or payment details.</p>
         </fieldset>
-        <p className={styles.small}>These details go to the Little Herb Places review team and won’t appear on your public listing.</p>
+        <p className={styles.small}>These details go to the Little Herb Places review team and won’t appear on your public listing. When you continue to sign in, a draft is saved on this browser for up to 24 hours. On another device, return to this listing to enter your details again.</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
         <div className={styles.actions}><button className="button" type="submit">Review Claim</button><button className="button" type="button" onClick={onClose}>Cancel</button></div>
       </> : <>
@@ -85,7 +86,8 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
           <div><dt>Ownership details</dt><dd>{draft.evidence}</dd></div>
         </dl>
         <label className={styles.check}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} required disabled={busy} />I own this business or am authorized to manage its listing, and these details are accurate.</label>
-        <div className={styles.notice}><strong>What happens next?</strong><p>{user ? 'Send your claim and our team will review your ownership details. You can check the decision and any notes in My Places on your Saved Places page.' : 'Sign in or create an account to send your claim. Your details will be kept in this tab so you can finish after signing in.'}</p>{bloomAvailable && <p>After approval, Bloom is $19/month per place. No payment is taken with this request.</p>}</div>
+        <div className={styles.notice}><strong>What happens next?</strong><p>{user ? 'Send your claim and our team will review your ownership details. You can check the decision and any notes in My Places.' : 'Sign in or create a free account, then review and submit your claim. Your details will be kept in this browser for up to 24 hours.'}</p><p>Claiming is free. After approval, an active Bloom subscription enables editing and photo uploads. {bloomAvailable ? `Bloom is ${bloomOffer.label}. ` : 'Bloom purchases are not available yet. '}No payment is taken with this request.</p></div>
+        {user && !user.email_confirmed_at && <p><Link to={`/auth/resend-confirmation?next=${encodeURIComponent(returnPath || `/place/${place.urlSlug}?claim=1`)}`}>Confirm Your Email to Continue</Link></p>}
         {user && management.error && <div className={styles.error} role="alert"><p>{management.error}</p><button className="button" type="button" onClick={management.refresh} disabled={management.loading}>Check Again</button></div>}
         {error && <p role="alert" className={styles.error}>{error}</p>}
         <div className={styles.actions}>
@@ -96,4 +98,4 @@ export default function PlaceClaim({ place, onClose, onSubmitted }) {
     </form>
   </Modal>;
 }
-PlaceClaim.propTypes = { place: PropTypes.object.isRequired, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };
+PlaceClaim.propTypes = { place: PropTypes.object.isRequired, returnPath: PropTypes.string, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };

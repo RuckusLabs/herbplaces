@@ -114,3 +114,22 @@ test('post-auth redirects only accept paths within this app', () => {
   assert.equal(getSafeReturnPath('/place/earth-commons?q=herbs'), '/place/earth-commons?q=herbs');
   for (const unsafe of ['https://example.com', '//example.com', '/\\example.com', 'javascript:alert(1)', null]) assert.equal(getSafeReturnPath(unsafe), '/map');
 });
+
+test('a deleted guest favorite is pruned only after an authoritative directory check', async () => {
+  const inserted=[]; let attempts=0;
+  const client={from:table=>table==='public_places'?{select:async()=>({data:[{id:'kept'}],error:null})}:{
+    select:()=>({eq:()=>({order:async()=>({data:[],error:null})})}),
+    insert:rows=>({select:async()=>{attempts++;if(attempts===1)return {error:new Error('This place is no longer available.')};inserted.push(...rows);return {data:rows,error:null};}}),
+  }};
+  const result=await createAccountFavoritesLoader(client,()=>['deleted','kept'])('member');
+  assert.deepEqual(result.favorites.map(item=>item.item_id),['kept']);
+  assert.deepEqual(result.syncedIds,['deleted','kept']);
+  assert.deepEqual(inserted.map(item=>item.item_id),['kept']);
+});
+test('directory failures while checking deleted saves retain the local merge for retry', async () => {
+  const client={from:table=>table==='public_places'?{select:async()=>({error:new Error('offline')})}:{
+    select:()=>({eq:()=>({order:async()=>({data:[],error:null})})}),
+    insert:()=>({select:async()=>({error:new Error('This place is no longer available.')})}),
+  }};
+  await assert.rejects(createAccountFavoritesLoader(client,()=>['deleted'])('member'),/offline/);
+});

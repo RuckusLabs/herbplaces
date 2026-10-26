@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { absoluteImage, canonicalUrl, getPlaceSeo, getRouteSeo, serializeJson, shareImagePath, sitePageCards, siteShareImagePath, validSlug } from '../utilities/seo.js';
-import { renderPage, renderPlaceContent, renderSeoHead, renderSitemap, robotsText } from '../../scripts/seo/render.mjs';
+import { absoluteImage, canonicalUrl, publicRoutes, getPlaceSeo, getRouteSeo, serializeJson, shareImagePath, sitePageCards, siteShareImagePath, validSlug } from '../utilities/seo.js';
+import { renderPage, renderPlaceContent, renderRouteContent, renderSeoHead, renderSitemap, robotsText } from '../../scripts/seo/render.mjs';
 
 const place = { id: 1, name: 'Moss & Fern', urlSlug: 'moss-and-fern', tagline: 'A little care, rooted in plants.', city: 'Denver', state: 'CO', address: '123 Main Street', zip: '80201', phone: '303-555-0142', website: 'https://example.com', description: 'Teas and community workshops.', photos: ['/assets/pages/home/hero.jpg'], coverPhoto: '/assets/pages/home/hero.jpg', category_ids: ['shops'], latitude: 39.7, longitude: -104.9, updated_at: '2026-10-19T12:00:00Z' };
 const template = '<html><head><!-- seo:start --><!-- seo:end --></head><body><div id="root"></div><script src="/app.js"></script></body></html>';
@@ -16,8 +16,8 @@ test('place metadata uses its own title, description, absolute share image, and 
   assert.equal(getPlaceSeo({ ...place, city: '', state: '' }).title, 'Moss & Fern | Little Herb Places');
 });
 test('website pages have their own share cards, including non-indexable account pages', () => {
-  assert.equal(sitePageCards.length, 10);
-  assert.equal(new Set(sitePageCards.map(siteShareImagePath)).size, 10);
+  assert.equal(sitePageCards.length, 12);
+  assert.equal(new Set(sitePageCards.map(siteShareImagePath)).size, 12);
   for (const page of sitePageCards) assert.equal(getRouteSeo(`${page.path}/`).image, `https://littleherbplaces.com${siteShareImagePath(page)}`);
   assert.notEqual(getRouteSeo('/about').image, getRouteSeo('/map').image);
   assert.equal(getRouteSeo('/login').robots, 'noindex,follow');
@@ -68,4 +68,39 @@ test('sitemaps list canonical public URLs and real modification dates only', () 
   assert.ok(!sitemap.includes('/admin'));
   assert.ok(!renderSitemap([{ ...place, updated_at: 'bad' }]).includes('<lastmod>'));
   assert.match(robotsText, /Sitemap: https:\/\/littleherbplaces.com\/sitemap.xml/);
+});
+
+test('business plan pages are discoverable with full sales content before JavaScript loads', () => {
+  const sitemap = renderSitemap([]);
+  for (const plan of ['bloom', 'thrive']) {
+    const path = `/the-little-garden/${plan}`;
+    const route = publicRoutes.find(item => item.path === path);
+    const seo = getRouteSeo(path);
+    assert.equal(seo.robots, 'index,follow');
+    assert.match(sitemap, new RegExp(`${path}/`));
+    const html = renderPage(template, seo, renderRouteContent(route, []));
+    assert.match(html, /Claim your listing/);
+    assert.match(html, /Listing approval does not automatically approve you as a manager|Adding a listing and approving its managers are separate steps/);
+    assert.match(html, /Membership Terms/);
+    assert.match(html, /href="\/my-places\/"/);
+    assert.ok(!html.includes('/favorites/#my-places'));
+    assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /Thrive is \$49 USD per month per place/);
+    assert.match(html, plan === 'bloom' ? /\$19/ : /\$49/);
+  }
+});
+
+
+test('privacy and membership HTML includes usable full disclosures without JavaScript', () => {
+  const privacy = renderRouteContent(publicRoutes.find(route => route.path === '/privacy'), []);
+  assert.match(privacy, /email-code sign-in/);
+  assert.match(privacy, /Request receipts and review decisions are sent through Resend/);
+  assert.match(privacy, /Removing an account does not automatically remove its public listings/);
+  assert.match(privacy, /href="mailto:help@littleherbplaces.com"/);
+  assert.match(privacy, /href="https:\/\/www.simpleanalytics.com\/privacy-policy"/);
+  const terms = renderRouteContent(publicRoutes.find(route => route.path === '/membership-terms'), []);
+  assert.match(terms, /\$19\/month/);
+  assert.match(terms, /Subscriptions renew monthly until canceled/);
+  assert.match(terms, /seven days of editing from the first failure/);
+  assert.match(terms, /refund requests/);
+  assert.match(terms, /Thrive is not available for purchase/);
 });

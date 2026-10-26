@@ -1,4 +1,9 @@
 import PropTypes from 'prop-types';
+import SettingsIcon from '../../assets/icons/settings.svg?react';
+import SignOutIcon from '../../assets/icons/sign-out.svg?react';
+import BookIcon from '../../assets/icons/book.svg?react';
+import PolaroidIcon from '../../assets/icons/polaroid.svg?react';
+import BrandClockIcon from '../../assets/icons/brand-clock.svg?react';
 import PlaceIcon from '../../assets/icons/place.svg?react';
 import ThriveIcon from '../../assets/icons/thrive.svg?react';
 import LeafIcon from '../../assets/icons/leaf.svg?react';
@@ -16,9 +21,11 @@ import CraftIcon from '../../assets/icons/craft.svg?react';
 import MapPlaceIcon from '../../assets/icons/map.svg?react';
 import NearbyIcon from '../../assets/icons/nearby.svg?react';
 
-const brandIcons = { shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
+const brandIcons = { settings: SettingsIcon, 'sign-out': SignOutIcon, book: BookIcon, polaroid: PolaroidIcon, 'brand-clock': BrandClockIcon, shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
 
 const paths = {
+  'sidebar-collapse': <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M9 4v16m7-12-4 4 4 4" /></>,
+  'sidebar-expand': <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M9 4v16m4-12 4 4-4 4" /></>,
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
   phone: <path d="m7 3 3 5-2 2a15 15 0 0 0 6 6l2-2 5 3v3a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3Z" />,
   link: <><path d="m10 13 4-4m-6 6-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 2 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(1 1)" /></>,

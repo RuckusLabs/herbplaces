@@ -16,6 +16,14 @@ const adminMigration = await readFile(new URL('../../supabase/migrations/2026101
 const notificationSetup = await readFile(new URL('../../supabase/setup-claim-notifications.sql', import.meta.url), 'utf8');
 const notificationMigration = await readFile(new URL('../../supabase/migrations/202610190005_claim_notifications.sql', import.meta.url), 'utf8');
 const createMigration = await readFile(new URL('../../supabase/migrations/202610190004_admin_create_place.sql', import.meta.url), 'utf8');
+const launchMigration = await readFile(new URL('../../supabase/migrations/202610210001_customer_launch.sql', import.meta.url), 'utf8');
+const renewalMigration = await readFile(new URL('../../supabase/migrations/202610210002_renewal_processing.sql', import.meta.url), 'utf8');
+const requestAddressMigration = await readFile(new URL('../../supabase/migrations/202610210003_listing_request_address.sql', import.meta.url), 'utf8');
+const photoLimitMigration = await readFile(new URL('../../supabase/migrations/202610210004_bloom_photo_limit.sql', import.meta.url), 'utf8');
+const attentionMigration = await readFile(new URL('../../supabase/migrations/202610260001_admin_attention.sql', import.meta.url), 'utf8');
+const adminHandoffMigration = await readFile(new URL('../../supabase/migrations/202610260002_customer_admin_alert_handoff.sql', import.meta.url), 'utf8');
+const placeDeletionMigration = await readFile(new URL('../../supabase/migrations/202610260003_place_deletion.sql', import.meta.url), 'utf8');
+const customerCutoverMigration = await readFile(new URL('../../supabase/migrations/202610260004_customer_email_cutover.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -41,6 +49,14 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(adminMigration);
   if (includeCreation) await database.exec(createMigration);
   await database.exec(notificationMigration);
+  await database.exec(launchMigration);
+  await database.exec(renewalMigration);
+  await database.exec(requestAddressMigration);
+  await database.exec(photoLimitMigration);
+  await database.exec(attentionMigration);
+  await database.exec(adminHandoffMigration);
+  await database.exec(placeDeletionMigration);
+  await database.exec(customerCutoverMigration);
 }
 
 before(async () => {
@@ -142,7 +158,7 @@ test('invalid links, foreign photos, excessive galleries, and malformed content 
   const invalid = [draft({ website: 'javascript:alert(1)' }), draft({ name: '' }), draft({ social_links: [{ label: 'Bad', url: 'data:text/html,test' }] }),
     draft({ social_links: [{ label: { nested: 'Cannot render as text' }, url: 'https://example.com' }] }), draft({ photo_alt: { photo: { invalid: true } } }),
     draft({ photos: ['https://other.example/foreign.jpg'], coverPhoto: 'https://other.example/foreign.jpg' }),
-    draft({ photos: Array(21).fill('https://images.example/old.jpg') }), draft({ category_ids: ['invalid'] }), draft({ photo_alt: [] })];
+    draft({ photos: Array(11).fill('https://images.example/old.jpg') }), draft({ category_ids: ['invalid'] }), draft({ photo_alt: [] })];
   for (const content of invalid) await assert.rejects(asRole('authenticated', ids.owner, () => publish(content)));
 });
 
@@ -540,9 +556,334 @@ test('notification setup schedules immediate delivery and preserves claims when 
     const request = (await db.query('select * from net.requests')).rows[0];
     assert.equal(request.url, 'https://test.supabase.co/functions/v1/claim-notifications');
     assert.deepEqual(request.body, {}); // Ownership evidence stays out of the webhook body.
+    assert.equal((await db.query('select count(*) from net.requests')).rows[0].count, 1); // Only the customer queue wakes this endpoint.
     assert.ok(request.headers.Authorization.startsWith('Bearer '));
     await db.query("select set_config('test.dispatch_failure', 'true', true)");
     await db.query('insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,$3,$4)', [ids.otherPlace, ids.teammate, 'Owner', 'A second claim survives an unavailable dispatcher.']);
     assert.equal((await db.query('select count(*) from public.place_claim_notifications')).rows[0].count, 2);
   } finally { await db.exec('rollback'); }
+});
+
+test('ownership verification survives payment expiry without changing editing entitlement', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    await db.exec('reset role');
+    await db.query("update public.place_subscriptions set status='canceled',paid_until=now()-interval '1 day' where place_id=$1", [ids.place]);
+    await db.exec('set local role authenticated');
+    const place = (await db.query('select "isVerified",is_claimed from public.public_places where id=$1', [ids.place])).rows[0];
+    assert.equal(place.isVerified, true); assert.equal(place.is_claimed, true);
+    await assert.rejects(publish(), /active Bloom subscription/);
+  });
+});
+
+test('listing requests require confirmation, remain private, and safely reuse retries and duplicates', async () => {
+  const requestId = '20000000-0000-0000-0000-000000000001';
+  const args = ['New Herb Shop','https://example.com','Boulder','CO','Please add our shop.',requestId];
+  await assert.rejects(asRole('anon', null, () => rpc('request_place_listing', args)), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.unconfirmed, () => rpc('request_place_listing', args)), /Confirm your email/);
+  await asRole('authenticated', ids.outsider, async () => {
+    assert.equal(await rpc('request_place_listing', args), requestId);
+    assert.equal(await rpc('request_place_listing', args), requestId);
+    assert.equal(await rpc('request_place_listing', [...args.slice(0,5),'20000000-0000-0000-0000-000000000002']), requestId);
+    assert.equal((await rpc('get_listing_requests')).length, 1);
+    await assert.rejects(db.query('select * from public.place_listing_requests'), /permission denied/);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', args);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.teammate]);
+    assert.deepEqual(await rpc('get_listing_requests'), []);
+    await assert.rejects(rpc('request_place_listing', args), /reference is unavailable/);
+  });
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('request_place_listing', ['Bad Website','javascript:alert(1)','Denver','','',requestId])), /valid website/);
+});
+
+test('listing review links existing places without granting management and queues account decisions', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    const requestId = await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await assert.rejects(rpc('admin_listing_requests'), /Administrator/);
+    // A PostgreSQL error aborts this transaction; test the admin path separately.
+    assert.ok(requestId);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    const requestId = await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const queue = await rpc('admin_listing_requests'); assert.equal(queue.total, 1);
+    await rpc('admin_review_listing_request', [requestId,'other-garden','The listing is ready. Please claim it if you manage it.']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.outsider]);
+    const own = await rpc('get_listing_requests'); assert.equal(own[0].status, 'listed'); assert.equal(own[0].place_slug, 'other-garden');
+    assert.equal((await rpc('get_management_context')).memberships.length, 0);
+    await db.exec('reset role; set local role service_role');
+    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 2);
+    assert.deepEqual(new Set(jobs.map(job => job.kind)), new Set(['listing_received','listing_reviewed']));
+  });
+});
+
+test('claim receipts and decisions are private and customer jobs cannot be completed by an expired lease', async () => {
+  for (const role of ['anon','authenticated']) {
+    await assert.rejects(asRole(role, ids.outsider, () => rpc('take_customer_notifications')), /permission denied/);
+    await assert.rejects(asRole(role, ids.outsider, () => db.query('select * from public.place_customer_notifications')), /permission denied/);
+  }
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    const context = await rpc('get_management_context');
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    await rpc('admin_review_claim', [context.claims[0].id,false,'Please provide a business email.']);
+    await db.exec('reset role; set local role service_role');
+    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 2);
+    assert.deepEqual(new Set(jobs.map(job => job.kind)),new Set(['claim_received','claim_rejected']));
+    assert.ok(jobs.every(job => !('evidence' in job.payload)));
+    await rpc('finish_customer_notification',[jobs[0].id,jobs[0].lease_token,'email-1']);
+    assert.deepEqual(await rpc('take_customer_notifications'),[]);
+    await assert.rejects(rpc('finish_customer_notification',[jobs[0].id,jobs[0].lease_token,'email-2']),/no longer valid/);
+  });
+});
+
+test('billing schedule reads Vault secrets, is repeatable, and cannot be invoked by browser roles', async () => {
+  const setup = await readFile(new URL('../../supabase/setup-billing-reconciliation.sql', import.meta.url), 'utf8');
+  await db.exec('begin');
+  try {
+    await db.exec(`create schema vault; create schema net; create schema cron;
+      create table vault.decrypted_secrets(name text primary key,decrypted_secret text);
+      insert into vault.decrypted_secrets values ('billing_reconcile_url','https://test.supabase.co/functions/v1/billing-reconcile'),
+        ('billing_reconcile_secret','a-private-billing-secret-longer-than-thirty-two-characters');
+      create table net.requests(url text,headers jsonb,body jsonb);
+      create function net.http_post(url text,headers jsonb,body jsonb,timeout_milliseconds integer) returns bigint language plpgsql as $$
+        begin insert into net.requests values(url,headers,body); return 1; end $$;
+      create table cron.jobs(name text primary key,schedule text,command text);
+      create function cron.schedule(name text,schedule text,command text) returns bigint language plpgsql as $$
+        begin insert into cron.jobs values(name,schedule,command) on conflict on constraint jobs_pkey do update set schedule=excluded.schedule,command=excluded.command; return 1; end $$;`);
+    const script = setup.replace('\nbegin;', '').replace(/\ncommit;\s*$/, '');
+    await db.exec(script); await db.exec(script);
+    assert.equal((await db.query('select * from cron.jobs')).rows.length, 1);
+    assert.equal((await db.query('select schedule from cron.jobs')).rows[0].schedule, '7 * * * *');
+    await db.exec('select place_management_private.invoke_billing_reconciliation()');
+    const sent = (await db.query('select * from net.requests')).rows[0];
+    assert.match(sent.url, /billing-reconcile$/); assert.deepEqual(sent.body, {});
+    await db.exec('set local role authenticated');
+    await assert.rejects(db.exec('select place_management_private.invoke_billing_reconciliation()'), /permission denied/);
+  } finally { await db.exec('rollback'); }
+});
+
+test('renewal processing is bounded, does not unlock a first invoice, and preserves the full failed-payment grace', async () => {
+  await asRole('service_role',null,async()=>{
+    const start=new Date(Date.now()-3600000).toISOString();
+    const event=(id,created,status,paid,failed=start,cancel=false)=>rpc('apply_billing_event',[id,created,ids.place,'cus_place','sub_place',status,paid,failed,cancel]);
+    const eligible=async()=>{await db.query("select set_config('request.jwt.claim.sub',$1,true)",[ids.owner]);await db.exec('set local role authenticated');const context=await rpc('get_management_context');await db.exec('set local role service_role');return context.memberships.find(item=>item.place_id===ids.place).can_edit;};
+    await event('evt_first_unpaid',100,'active',null);assert.equal(await eligible(),false);
+    await event('evt_processing',101,'active',start);
+    const first=(await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at;
+    assert.equal(first.toISOString(),new Date(Date.parse(start)+86400000).toISOString());assert.equal(await eligible(),true);
+    await event('evt_processing_retry',102,'active',start);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at.toISOString(),first.toISOString());
+    await event('evt_processing_canceled',103,'active',start,start,true);assert.equal(await eligible(),false);
+    await event('evt_payment_failure',104,'past_due',start);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at.toISOString(),new Date(Date.parse(start)+7*86400000).toISOString());
+    await db.query("update public.place_subscriptions set grace_ends_at=now()-interval '1 second' where place_id=$1",[ids.place]);assert.equal(await eligible(),false);
+    await event('evt_recovered',105,'active',new Date(Date.now()+86400000).toISOString(),null);
+    assert.equal((await db.query('select grace_ends_at from public.place_subscriptions where place_id=$1',[ids.place])).rows[0].grace_ends_at,null);assert.equal(await eligible(),true);
+  });
+});
+
+
+test('listing addresses are private, bounded, and retained for admin creation', async () => {
+  const args = ['Branch Herb Shop', '', 'Boulder', 'CO', '', '30000000-0000-0000-0000-000000000001', ' 123 Main Street ', ' 80301 '];
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', args);
+    const own = await rpc('get_listing_requests');
+    assert.equal(own[0].address, '123 Main Street'); assert.equal(own[0].zip, '80301');
+    assert.equal(await rpc('request_place_listing', args), args[5]);
+    const otherBranch = [...args]; otherBranch[5] = '30000000-0000-0000-0000-000000000002'; otherBranch[6] = '456 Main Street';
+    await rpc('request_place_listing', otherBranch);
+    assert.equal((await rpc('get_listing_requests')).length, 2);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const queue = await rpc('admin_listing_requests');
+    const request = queue.items.find(item => item.id === args[5]);
+    assert.equal(request.address, '123 Main Street'); assert.equal(request.zip, '80301');
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.teammate]);
+    assert.deepEqual(await rpc('get_listing_requests'), []);
+  });
+  const tooLong = [...args]; tooLong[6] = 'x'.repeat(501);
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('request_place_listing', tooLong)), /Add a place name/);
+});
+
+
+test('an approved request address reaches the place and geocoding stores its map coordinates', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', ['Located Herb Shop', '', 'Boulder', 'CO', '', '40000000-0000-0000-0000-000000000001', '123 Main Street', '80301']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    const request = (await rpc('admin_listing_requests')).items[0];
+    const created = await createPlace(newContent({ name: request.name, address: request.address, city: request.city, state: request.region, zip: request.zip }), 'located-herb-shop');
+    assert.equal(created.address, '123 Main Street'); assert.equal(created.zip, '80301');
+    assert.equal(created.geocode_status, 'pending'); assert.equal(created.latitude, null);
+    await db.exec('reset role; set local role service_role');
+    const reserved = await rpc('reserve_place_geocode', [String(created.id), ids.admin]);
+    assert.equal(reserved.address, '123 Main Street');
+    await rpc('apply_place_geocode', [String(created.id), created.content_version, 40.01, -105.27]);
+    await db.exec('reset role; set local role authenticated');
+    const location = (await db.query('select latitude,longitude,geocode_status from public.public_places where id = $1', [created.id])).rows[0];
+    assert.equal(location.geocode_status, 'confirmed'); assert.equal(location.latitude, 40.01); assert.equal(location.longitude, -105.27);
+  });
+});
+
+
+test('Bloom accepts ten gallery photos and rejects eleven at the database boundary', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    const ten = Array.from({ length: 10 }, (_, i) => `https://images.example/limit-${i}.jpg`);
+    // Registered uploads belong to this place; a request cannot bypass gallery validation.
+    await db.exec('reset role');
+    for (const [index, url] of ten.entries()) await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)', [`limit-${index}`, ids.place, url, ids.owner]);
+    await db.exec('set local role authenticated');
+    const published = await publish(draft({ photos: ten, coverPhoto: ten[0] }));
+    assert.equal(published.photos.length, 10);
+    await assert.rejects(publish(draft({ photos: [...ten, ten[0]], coverPhoto: ten[0] }), 2), /up to 10 photos/);
+  });
+});
+
+
+test('admin counts and alert queue enforce separate administrator and service boundaries', async () => {
+  await assert.rejects(asRole('anon', null, () => rpc('admin_attention_counts')), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_attention_counts')), /Administrator access required/);
+  await asRole('authenticated', ids.admin, async () => {
+    const counts = await rpc('admin_attention_counts');
+    assert.equal(typeof counts.claims, 'number');
+    assert.equal(typeof counts['listing-requests'], 'number');
+    assert.equal(typeof counts.locations, 'number');
+  });
+  await assert.rejects(asRole('authenticated', ids.admin, () => rpc('take_admin_notifications')), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.admin, () => db.query('select * from public.place_admin_notifications')), /permission denied/);
+});
+
+test('new pending items queue admin alerts once, skip resolved items, and require the current lease', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec('delete from public.place_admin_notifications');
+    const userId = ids.outsider;
+    const requestId = '90000000-0000-0000-0000-000000000001';
+    await db.query("insert into public.place_listing_requests(id,user_id,name,city) values($1,$2,'New Alert Place','Boulder')", [requestId, userId]);
+    await db.query("update public.places set geocode_status='confirmed' where id=$1", [ids.place]);
+    await db.query("update public.places set geocode_status='pending', content_version=content_version+1 where id=$1", [ids.place]);
+    await db.query("update public.places set geocode_status='review', content_version=content_version+1 where id=$1", [ids.place]);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 2);
+    await db.query("update public.places set geocode_status='confirmed' where id=$1", [ids.place]);
+    const jobs = await rpc('take_admin_notifications');
+    assert.equal(jobs.length, 1); assert.equal(jobs[0].kind, 'listing-requests');
+    assert.deepEqual(await rpc('take_admin_notifications'), []);
+    await db.exec('savepoint invalid_lease');
+    await assert.rejects(rpc('finish_admin_notification', [jobs[0].id, '00000000-0000-0000-0000-000000000000', 'email-1']), /lease is no longer valid/);
+    await db.exec('rollback to savepoint invalid_lease');
+    await rpc('finish_admin_notification', [jobs[0].id, jobs[0].lease_token, 'email-1']);
+    assert.ok((await db.query('select sent_at from public.place_admin_notifications where id=$1', [jobs[0].id])).rows[0].sent_at);
+  } finally { await db.exec('rollback'); }
+});
+
+test('installing admin alerts never backfills historical pending requests or locations', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec(`drop trigger queue_admin_claim on public.place_claims;
+      drop trigger queue_admin_listing on public.place_listing_requests;
+      drop trigger queue_admin_location on public.places;
+      drop function place_management_private.queue_admin_attention();
+      drop function public.take_admin_notifications(integer);
+      drop function public.finish_admin_notification(uuid,uuid,text);
+      drop function public.admin_attention_counts();
+      drop table public.place_admin_notifications;`);
+    await db.query("insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,'Owner','Historical claim for the rollout test')", [ids.otherPlace, ids.outsider]);
+    await db.query("insert into public.place_listing_requests(user_id,name,city) values($1,'Historical Request','Boulder')", [ids.outsider]);
+    await db.exec(attentionMigration.replace(/^begin;/, '').replace(/commit;\s*$/, ''));
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 0);
+  } finally { await db.exec('rollback'); }
+});
+
+
+test('place deletion is service-only, requires a confirmed admin and exact slug, and blocks billing', async () => {
+  await assert.rejects(asRole('authenticated', ids.admin, () => rpc('plan_place_deletion', [ids.admin, ids.place])), /permission denied/);
+  await assert.rejects(asRole('service_role', null, () => rpc('plan_place_deletion', [ids.owner, ids.place])), /Administrator access required/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_place_cleanup_jobs')), /Administrator access required/);
+  for (const [slug, expected] of [['wrong-slug', /confirmation/], ['moss-apothecary', /Resolve the subscription/]]) {
+    await asRole('service_role', null, async () => {
+      const plan = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+      await assert.rejects(rpc('delete_place_records', [ids.admin, ids.place, slug, plan.place.version, plan.subscription, []], ['', '', '', '', '::jsonb', '::jsonb']), expected);
+    });
+  }
+});
+
+test('place removal clears content and relationships, preserves other places and shared data, and retains retryable image cleanup', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec("create table public.favorites(id uuid default gen_random_uuid(),user_id uuid,item_id text,item_type text); create trigger require_favorite_place before insert or update of item_id,item_type on public.favorites for each row execute function place_management_private.require_favorite_place()");
+    await db.query("insert into public.favorites(user_id,item_id,item_type) values($1,$2,'place'),($1,$3,'place')", [ids.owner, ids.place, ids.otherPlace]);
+    await db.query("update public.place_subscriptions set status='canceled',checkout_expires_at=null where place_id=$1", [ids.place]);
+    await db.query("insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,'Owner','Delete this evidence')", [ids.place, ids.outsider]);
+    await db.query("insert into public.place_listing_requests(user_id,name,city,status,place_slug) values($1,'Delete this request','Boulder','listed','moss-apothecary')", [ids.outsider]);
+    await db.query("insert into public.place_revisions(place_id,version,content) values($1,0,'{\"name\":\"Old content\",\"photos\":[]}'::jsonb)", [ids.place]);
+    await db.query("insert into public.place_uploads(path,place_id,url) values('owned/old.jpg',$1,'https://test.supabase.co/storage/v1/object/public/place-photos/owned/old.jpg')", [ids.place]);
+    await db.query("insert into storage.objects(bucket_id,name) values('place-photos',$1)", [ids.place+'/unpublished.jpg']);
+    const plan = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+    const job = await rpc('delete_place_records', [ids.admin, ids.place, plan.place.slug, plan.place.version, plan.subscription, [{ bucket:'place-photos',path:'owned/old.jpg' }]], ['', '', '', '', '::jsonb', '::jsonb']);
+    for (const table of ['places','place_memberships','place_invitations','place_claims','place_subscriptions','place_revisions','place_uploads']) {
+      assert.equal((await db.query(`select count(*) from public.${table} where ${table==='places'?'id':'place_id'}::text=$1`, [ids.place])).rows[0].count, 0);
+    }
+    assert.equal((await db.query('select count(*) from public.place_listing_requests')).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.place_customer_notifications')).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications where reference=$1', [ids.place])).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.places where id=$1', [ids.otherPlace])).rows[0].count, 1);
+    assert.equal((await db.query('select count(*) from public.favorites')).rows[0].count, 1);
+    await db.exec('savepoint invalid_favorite');
+    await assert.rejects(db.query("insert into public.favorites(user_id,item_id,item_type) values($1,$2,'place')", [ids.owner, ids.place]), /no longer available/);
+    await db.exec('rollback to savepoint invalid_favorite');
+    assert.equal(job.assets.length, 2); // Includes a file uploaded after preview.
+    const retry = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+    assert.equal(retry.cleanup_pending, true); assert.equal(retry.job.token, job.token);
+    await rpc('finish_place_deletion', [ids.place, job.token]);
+    assert.deepEqual(await rpc('plan_place_deletion', [ids.admin, ids.place]), { already_removed: true });
+  } finally { await db.exec('rollback'); }
+});
+
+test('changed content or billing invalidates a deletion plan before records are removed', async () => {
+  for (const field of ['content','billing']) {
+    await db.exec('begin');
+    try {
+      await db.query("update public.place_subscriptions set status='none',checkout_expires_at=null where place_id=$1", [ids.place]);
+      const plan=await rpc('plan_place_deletion',[ids.admin,ids.place]);
+      if(field==='content')await db.query('update public.places set content_version=content_version+1 where id=$1',[ids.place]);
+      else await db.query("update public.place_subscriptions set status='active' where place_id=$1",[ids.place]);
+      await assert.rejects(rpc('delete_place_records',[ids.admin,ids.place,plan.place.slug,plan.place.version,plan.subscription,[]],['','','','','::jsonb','::jsonb']),field==='content'?/Place changed/:/Billing changed/);
+    } finally { await db.exec('rollback'); }
+  }
+});
+
+
+test('customer cutover skips suppressed jobs and uses the current confirmed account email', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    await db.exec('reset role');
+    const job = (await db.query('select id from public.place_customer_notifications')).rows[0];
+    await db.query("update auth.users set email='changed@example.com' where id=$1", [ids.outsider]);
+    await db.exec('set local role service_role');
+    const [leased] = await rpc('take_customer_notifications');
+    assert.equal(leased.payload.account_email, 'changed@example.com');
+    await db.exec('reset role');
+    await db.query("update public.place_customer_notifications set suppressed_at=now(),suppression_reason='Disposable setup fixture',lease_token=null where id=$1", [job.id]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_customer_notifications'), []);
+    await assert.rejects(rpc('finish_customer_notification',[job.id,leased.lease_token,'late-email']),/no longer valid/);
+  });
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_claim', [ids.otherPlace,'Owner','Our team page identifies me as the business owner.']);
+    await db.exec('reset role');
+    await db.query('update auth.users set email_confirmed_at=null where id=$1', [ids.outsider]);
+    await db.exec('set local role service_role');
+    assert.deepEqual(await rpc('take_customer_notifications'), []);
+    await db.exec('reset role');
+    assert.equal((await db.query('select attempts from public.place_customer_notifications')).rows[0].attempts, 0);
+  });
+});
+
+test('listing requests no longer create retired admin customer jobs', async () => {
+  await asRole('authenticated', ids.outsider, async () => {
+    await rpc('request_place_listing', ['Other Garden','','Denver','CO','Please add this garden.','20000000-0000-0000-0000-000000000001']);
+    await db.exec('reset role');
+    const rows = (await db.query('select kind from public.place_customer_notifications')).rows;
+    assert.deepEqual(rows.map(row => row.kind), ['listing_received']);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 1);
+  });
 });

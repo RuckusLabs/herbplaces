@@ -1,13 +1,14 @@
 import { useEffect, useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import DeletePlaceDialog from './DeletePlaceDialog';
 import Modal from '../../components/Modal/Modal';
 import { useManagement } from '../../contexts/ManagementContext';
 import { geocodePublishedPlace, managementAction, managementRpc } from '../../utilities/managementApi';
 import { refreshPlaces, updatePublishedPlace } from '../../utilities/placesStore';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
-export default function AdminPlaceDetail({ placeId, onClose }) {
+export default function AdminPlaceDetail({ placeId, onClose, onDeleted }) {
   const titleId = useId();
   const management = useManagement();
   const [detail, setDetail] = useState(null);
@@ -19,6 +20,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
   const [busy, setBusy] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [revision, setRevision] = useState(null);
+  const [deleting, setDeleting] = useState(false);
   useEffect(() => {
     let active = true;
     managementRpc('admin_place_detail', { p_place_id: String(placeId) }).then(result => {
@@ -63,10 +65,11 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
       updatePublishedPlace(place); await geocodePublishedPlace(place); setRevision(null);
     }, 'Earlier content restored.');
   };
-  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.editorDialog} contentClassName={styles.editorBody}>
+  if (deleting) return <DeletePlaceDialog placeId={String(placeId)} onClose={wasRemoved => { if (wasRemoved) onDeleted(); else setDeleting(false); }} />;
+  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.adminDialog} contentClassName={`${styles.editorBody} ${styles.adminBody}`}>
     <h2 id={titleId} className={styles.editorHeading}>{detail?.place.name || 'Manage Place'}</h2>
     {error && <p role="alert" className={styles.error}>{error}</p>}{notice && <p role="status" className={styles.notice}>{notice}</p>}
-    {!detail ? <p role="status">Loading place details…</p> : <>
+    {!detail ? error ? <button className="button" onClick={() => { setError(''); setAttempt(value => value + 1); }}>Retry Loading Place</button> : <p role="status">Loading place details…</p> : <>
       <div className={styles.actions}><Link className="button" to={`/place/${detail.place.urlSlug}`} onClick={onClose}>View & Edit Place</Link><span className={styles.status}>{detail.subscription?.status || 'No subscription'}</span></div>
       <section className={styles.card}><h3>Managers</h3>
         {detail.members.map(member => <div className={styles.member} key={member.user_id}><span>{member.email}{member.is_billing_contact && <span className={styles.status}>Billing contact</span>}</span><div className={styles.actions}>
@@ -81,7 +84,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
         <label>Public URL slug<input value={settings.slug} onChange={event => setSettings(previous => ({ ...previous, slug: event.target.value }))} required pattern="[a-z0-9]+(-[a-z0-9]+)*" disabled={busy} /></label>
         <label className={styles.check}><input type="checkbox" checked={settings.verified} onChange={event => setSettings(previous => ({ ...previous, verified: event.target.checked }))} disabled={busy} />Editorial Verified badge</label>
         <label className={styles.check}><input type="checkbox" checked={settings.featured} onChange={event => setSettings(previous => ({ ...previous, featured: event.target.checked }))} disabled={busy} />Featured place</label>
-        <p className={styles.small}>Bloom verification also appears automatically while an approved place has editing access.</p>
+        <p className={styles.small}>Approved manager access also verifies ownership independently of subscription status. Editorial verification remains a separate team decision.</p>
         <div className={styles.formRow}><label>Latitude<input type="number" step="any" min="-85.051129" max="85.051129" value={settings.latitude} onChange={event => setSettings(previous => ({ ...previous, latitude: event.target.value }))} disabled={busy} /></label><label>Longitude<input type="number" step="any" min="-180" max="180" value={settings.longitude} onChange={event => setSettings(previous => ({ ...previous, longitude: event.target.value }))} disabled={busy} /></label></div>
         <p className={styles.small}>Map status: {detail.place.geocode_status}. Enter both coordinates to confirm a location, or retry automatic lookup.</p>
         <div className={styles.actions}><button className="button" disabled={busy}>Save Settings</button>{detail.place.geocode_status !== 'confirmed' && <button className="button" type="button" disabled={busy} onClick={() => run(() => managementAction('geocode', placeId), 'Map lookup completed. Check the location status.')}>Retry Address Lookup</button>}</div>
@@ -90,7 +93,8 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
         {revision && <section className={styles.preview} aria-label="Revision content"><h3>Version {revision.version}: {revision.content.name}</h3><p>{revision.content.tagline}</p><p>{revision.content.description}</p><p>{[revision.content.address, revision.content.city, revision.content.state, revision.content.zip].filter(Boolean).join(', ')}</p><p>{revision.content.website}</p><p>{revision.content.phone}</p><p>{revision.content.hours}</p>{revision.content.social_links?.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}<p>Categories: {revision.content.category_ids?.join(', ') || 'Inferred from listing'}</p><div className={styles.photoGrid}>{revision.content.photos?.map(photo => <img key={photo} src={photo} alt={revision.content.photo_alt?.[photo] || 'Photo in this revision'} />)}</div><button className="button" disabled={busy} onClick={restore}>Restore This Version</button></section>}
       </section>
       <section className={styles.card}><h3>Recent Activity</h3><ul className={styles.list}>{detail.audit.map((event, index) => <li key={index}>{event.action.replaceAll('_', ' ')} · {new Date(event.created_at).toLocaleString()}{event.details?.email && <span> · {event.details.email}</span>}</li>)}</ul></section>
+      <section className={styles.card}><h3>Permanent deletion</h3><p>Remove this place and its associated database content and stored images. Review the details before confirming.</p><button className={`button ${styles.danger}`} disabled={busy} onClick={() => setDeleting(true)}>Delete Place</button></section>
     </>}
   </Modal>;
 }
-AdminPlaceDetail.propTypes = { placeId: PropTypes.string.isRequired, onClose: PropTypes.func.isRequired };
+AdminPlaceDetail.propTypes = { placeId: PropTypes.string.isRequired, onClose: PropTypes.func.isRequired, onDeleted: PropTypes.func.isRequired };

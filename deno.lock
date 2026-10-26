@@ -1,14 +1,28 @@
 {
   "version": "5",
   "specifiers": {
+    "npm:@supabase/supabase-js@2.118.0": "2.118.0",
     "npm:@supabase/supabase-js@2.47.14": "2.47.14",
-    "npm:stripe@18.5.0": "18.5.0"
+    "npm:stripe@18.5.0": "18.5.0",
+    "npm:stripe@23.0.0": "23.0.0"
   },
   "npm": {
+    "@supabase/auth-js@2.118.0": {
+      "integrity": "sha512-xWfPXyhS2KDSfAneMtI6p/tBnbdiz/5vaRKXEqUfzfC9WCniKr2Ds5o5G7RIGig0bom4z6wUY9zaV07WDVTfnQ==",
+      "dependencies": [
+        "tslib"
+      ]
+    },
     "@supabase/auth-js@2.67.3": {
       "integrity": "sha512-NJDaW8yXs49xMvWVOkSIr8j46jf+tYHV0wHhrwOaLLMZSFO4g6kKAf+MfzQ2RaD06OCUkUHIzctLAxjTgEVpzw==",
       "dependencies": [
         "@supabase/node-fetch"
+      ]
+    },
+    "@supabase/functions-js@2.118.0": {
+      "integrity": "sha512-4ofletPa/noKAU6KHeqsd3FztGzRPUEJRey1MKY0o+PIHaVePqRPShIXtl37gcVyIWaFM+zNg6r9zh0uUSFOSA==",
+      "dependencies": [
+        "tslib"
       ]
     },
     "@supabase/functions-js@2.4.4": {
@@ -23,10 +37,19 @@
         "whatwg-url"
       ]
     },
+    "@supabase/phoenix@0.4.5": {
+      "integrity": "sha512-aAn9H9ovVyeApKy11OWOrrOGq8DV68yWeH4ud2lN9fzn4aO8Zb5GLL9m1pUg9nLqIcT+ZDfAcsZe0E/nqdv2lw=="
+    },
     "@supabase/postgrest-js@1.17.11": {
       "integrity": "sha512-AOqqgQEhLVqzOMmA8Q0bxQFMfbozbjjQ1Tt4kprkstIKdRl4yZRaMdoVxFkCpU8ivmAe2xNfAVkNK+l16a9P0A==",
       "dependencies": [
         "@supabase/node-fetch"
+      ]
+    },
+    "@supabase/postgrest-js@2.118.0": {
+      "integrity": "sha512-JXy+37KPApHsyotaQACovv/Jy9E22rfiWLRuT+2UjoEAcAIelDFIrsF/FY47Dy19mO7lI0Tq+zDCX8oJ2Ozfiw==",
+      "dependencies": [
+        "tslib"
       ]
     },
     "@supabase/realtime-js@2.11.2": {
@@ -38,21 +61,45 @@
         "ws"
       ]
     },
+    "@supabase/realtime-js@2.118.0": {
+      "integrity": "sha512-pzCIEWjqD5/xqEZQerpt+q9rsgYkcrkgCJgf0W2ULqC4fYUeB/p9CFa3t9vn+IVh6dMN9r4ZCE262lZvUC+Bfw==",
+      "dependencies": [
+        "@supabase/phoenix",
+        "tslib"
+      ]
+    },
+    "@supabase/storage-js@2.118.0": {
+      "integrity": "sha512-5MNkKt2Moy7Jud/sPX7/28BwdDxZMCVHGJT00b8op3KRa9LKSjOAYU5IcfGWIstaasAqY8GkbA6oI3IRDgB1YQ==",
+      "dependencies": [
+        "iceberg-js",
+        "tslib"
+      ]
+    },
     "@supabase/storage-js@2.7.1": {
       "integrity": "sha512-asYHcyDR1fKqrMpytAS1zjyEfvxuOIp1CIXX7ji4lHHcJKqyk+sLl/Vxgm4sN6u8zvuUtae9e4kDxQP2qrwWBA==",
       "dependencies": [
         "@supabase/node-fetch"
       ]
     },
+    "@supabase/supabase-js@2.118.0": {
+      "integrity": "sha512-FxI8UXMVC2UG7IkeiI8fuQZqq2oI3JeSuN8MPIC2RLVaoEAxKS0nqE6kii9Ewpq8f9gNPM6git1Y8f0vN/QLFw==",
+      "dependencies": [
+        "@supabase/auth-js@2.118.0",
+        "@supabase/functions-js@2.118.0",
+        "@supabase/postgrest-js@2.118.0",
+        "@supabase/realtime-js@2.118.0",
+        "@supabase/storage-js@2.118.0"
+      ]
+    },
     "@supabase/supabase-js@2.47.14": {
       "integrity": "sha512-Jmm9fN+16KwC2s7GEudiEnVpz5+Bc0DEMrjI3CKPWoRArTEZPUiOm7y1IbAJ3zSpvwsdk9i/c/k7wqCbwlBj9A==",
       "dependencies": [
-        "@supabase/auth-js",
-        "@supabase/functions-js",
+        "@supabase/auth-js@2.67.3",
+        "@supabase/functions-js@2.4.4",
         "@supabase/node-fetch",
-        "@supabase/postgrest-js",
-        "@supabase/realtime-js",
-        "@supabase/storage-js"
+        "@supabase/postgrest-js@1.17.11",
+        "@supabase/realtime-js@2.11.2",
+        "@supabase/storage-js@2.7.1"
       ]
     },
     "@types/node@26.6.5": {
@@ -141,6 +188,9 @@
         "function-bind"
       ]
     },
+    "iceberg-js@0.8.1": {
+      "integrity": "sha512-1dhVQZXhcHje7798IVM+xoo/1ZdVfzOMIc8/rgVSijRK38EDqOJoGula9N/8ZI5RD8QTxNQtK/Gozpr+qUqRRA=="
+    },
     "math-intrinsics@1.1.0": {
       "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="
     },
@@ -196,8 +246,14 @@
         "qs"
       ]
     },
+    "stripe@23.0.0": {
+      "integrity": "sha512-MDE2A5ZVVluYURORaZEVghSmnLJc3w6aHAlZSxDQMsOjOb3V0O6ro/CiaeFlJS4N7uIVmsg98ocRsPmUK6YfyA=="
+    },
     "tr46@0.0.3": {
       "integrity": "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="
+    },
+    "tslib@2.8.1": {
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
     },
     "undici-types@8.9.0": {
       "integrity": "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="
@@ -222,7 +278,7 @@
         "npm:@electric-sql/pglite@~0.5.10",
         "npm:@eslint/js@^9.15.0",
         "npm:@playwright/test@^1.64.1",
-        "npm:@supabase/supabase-js@^2.47.14",
+        "npm:@supabase/supabase-js@^2.118.0",
         "npm:@types/react-dom@^18.3.1",
         "npm:@types/react@^18.3.12",
         "npm:@vitejs/plugin-react@^4.3.4",
@@ -231,7 +287,7 @@
         "npm:eslint-plugin-react-refresh@~0.4.14",
         "npm:eslint-plugin-react@^7.37.2",
         "npm:eslint@^9.15.0",
-        "npm:gh-pages@^6.2.0",
+        "npm:gh-pages@6.1.1",
         "npm:globals@^15.12.0",
         "npm:mapbox-gl@^3.8.0",
         "npm:react-dom@^18.3.1",
@@ -243,7 +299,6 @@
         "npm:sass@^1.83.4",
         "npm:slick-carousel@^1.8.1",
         "npm:supercluster@^8.0.1",
-        "npm:swiper@^11.1.15",
         "npm:vite-plugin-svgr@^4.3.0",
         "npm:vite@^6.0.1"
       ]
