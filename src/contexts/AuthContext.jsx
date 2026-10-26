@@ -67,6 +67,8 @@ export function AuthProvider({ children }) {
         return result;
       } finally { setCreatingAccount(false); }
     },
+    updateProfile: data => supabase ? supabase.auth.updateUser({ data }) : Promise.resolve({ error: new Error('Account settings are temporarily unavailable.') }),
+    changeEmail: email => supabase ? supabase.auth.updateUser({ email }, { emailRedirectTo: `${window.location.origin}/auth/callback?next=%2Fsettings` }) : Promise.resolve({ error: new Error('Account settings are temporarily unavailable.') }),
     requestPasswordReset: (email, next) => supabase ? supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/reset-password?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` }) : Promise.resolve({ error: new Error('Account recovery is temporarily unavailable.') }),
     updatePassword: password => supabase ? supabase.auth.updateUser({ password }) : Promise.resolve({ error: new Error('Account recovery is temporarily unavailable.') }),
     resendConfirmation: (email, next) => supabase ? supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` } }) : Promise.resolve({ error: new Error('Email confirmation is temporarily unavailable.') }),

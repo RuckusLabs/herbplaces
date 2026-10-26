@@ -254,3 +254,10 @@ The private deployment source and setup receipt are in ignored `supabase/.temp/o
 Bloom now permits at most 10 photos per published gallery. Migration `202610210004_bloom_photo_limit.sql` is applied and enforces the limit on content writes; client content preparation and upload selection enforce the same allowance. Existing galleries were checked before applying it: none exceeded ten, so no image removal or content rewrite was necessary. Sales-page copy, SEO output, and help text use the same limit. Photo file formats and the 10 MB per-image size limit are unchanged.
 
 Place galleries use a stable-height horizontal rail with natural-width portrait and landscape slides, full-image thumbnails, centered navigation, and a synchronized full-size viewer. Keyboard navigation, touch scrolling, resizing, and reduced motion remain supported.
+
+
+### Account settings (October 26, 2026)
+
+All signed-in accounts, including browsing-only accounts and approved managers, can open `/settings` from the account dropdown. Names and the default directory view are stored in the current Auth user's metadata through `updateUser`; metadata does not grant management privileges. An explicit directory view in a URL overrides the saved preference. Settings is excluded from search indexing and signed-out visitors return through login.
+
+Email changes use Auth's email-update API and the existing controlled `/auth/callback?next=%2Fsettings` destination. The UI distinguishes an immediate completed change from a pending `new_email`, keeps the current sign-in address visible, and reports provider errors without replacing it. Do not update management-directory email or billing authorization from editable metadata; the existing Auth trigger handles confirmed email changes. Verify secure email-change confirmations from both inboxes and expired links once custom SMTP is configured. Real email delivery is still a launch gate. The existing password-recovery route remains available until the separate passwordless milestone. No new database migration or hosted configuration change is needed for this page.

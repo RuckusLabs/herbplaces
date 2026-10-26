@@ -25,6 +25,13 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
     const request = route.request();
     state.authRequests.push({ url: request.url(), method: request.method(), body: request.method() === 'POST' || request.method() === 'PUT' ? request.postDataJSON() : null });
     if (state.authError) return route.fulfill({ status: 429, json: { msg: state.authError } });
+    if (request.method() === 'PUT' && new URL(request.url()).pathname.endsWith('/user')) {
+      if (state.authUpdateError) return route.fulfill({ status: 422, json: { msg: state.authUpdateError } });
+      const body = request.postDataJSON();
+      if (body.data) user.user_metadata = { ...user.user_metadata, ...body.data };
+      if (body.email) user.new_email = body.email;
+      return route.fulfill({ json: user });
+    }
     return route.fulfill({ json: request.url().includes('/token') || request.url().includes('/signup') && !state.signupNeedsConfirmation ? session : request.url().includes('/recover') || request.url().includes('/resend') ? {} : user });
   });
   await page.route('**/rest/v1/**', async route => {
@@ -1339,4 +1346,61 @@ test('account dropdown identifies the user and supports dismissal and sign out',
   if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
   await expect(navigation.getByRole('link', { name: 'Join the Community' })).toBeVisible();
   expect(state.authRequests.some(request => request.url.includes('/logout'))).toBe(true);
+});
+
+
+for (const role of ['member', 'owner', 'admin']) test(`account settings work for ${role} accounts`, async ({ page, isMobile }, testInfo) => {
+  const state = await mockSite(page, { role });
+  await page.goto('/favorites');
+  if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  const navigation = page.getByRole('navigation', { name: 'Main navigation' });
+  await navigation.getByRole('button', { name: role, exact: true }).click();
+  await navigation.getByRole('link', { name: 'Account Settings', exact: true }).click();
+  await expect(page).toHaveURL(/\/settings$/);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
+  await expect(page.getByRole('heading', { name: 'Your Account.', exact: true })).toBeVisible();
+  await page.getByLabel('Your name', { exact: true }).fill('Jamie Green');
+  await page.getByRole('button', { name: 'Save Name', exact: true }).click();
+  await expect(page.getByRole('status')).toContainText('Your name has been saved.');
+  if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  await expect(navigation.getByRole('button', { name: 'Jamie Green', exact: true })).toBeVisible();
+  if (isMobile) await page.getByRole('button', { name: 'Close menu', exact: true }).click();
+  await page.getByLabel('New email address', { exact: true }).fill('new@example.com');
+  await page.getByRole('button', { name: 'Update Email', exact: true }).click();
+  await expect(page.getByText('Awaiting confirmation:', { exact: false })).toContainText('new@example.com');
+  await expect(page.getByText('Your current sign-in email is', { exact: false })).toContainText(`${role}@example.com`);
+  const emailRequest = state.authRequests.find(request => request.body?.email === 'new@example.com');
+  expect(emailRequest.url).toContain(encodeURIComponent('/auth/callback?next=%2Fsettings'));
+  await page.getByRole('radio', { name: 'Map See where places are located.', exact: true }).check();
+  await page.getByRole('button', { name: 'Save Preferences', exact: true }).click();
+  await expect(page.getByText('Your browsing preference has been saved.', { exact: true })).toBeVisible();
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: testInfo.outputPath('account-settings.png'), fullPage: true, animations: 'disabled' });
+  if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  await navigation.getByRole('link', { name: 'Explore Places', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Map', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'List', exact: true }).click();
+  await expect(page).toHaveURL(/view=list/);
+  await expect(page.getByRole('button', { name: 'List', exact: true })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('settings require sign in and preserve their return destination', async ({ page }) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/settings');
+  await expect(page).toHaveURL(/\/login\?next=%2Fsettings$/);
+  await expect(page.getByRole('heading', { name: 'Welcome Back', exact: true })).toBeVisible();
+});
+
+test('failed account updates keep entered details and allow retry', async ({ page }) => {
+  const state = await mockSite(page, { role: 'member' });
+  await page.goto('/settings');
+  state.authUpdateError = 'Unable to update this account.';
+  await page.getByLabel('Your name', { exact: true }).fill('Jamie Green');
+  await page.getByRole('button', { name: 'Save Name', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Unable to update this account.');
+  await expect(page.getByLabel('Your name', { exact: true })).toHaveValue('Jamie Green');
+  state.authUpdateError = null;
+  await page.getByRole('button', { name: 'Save Name', exact: true }).click();
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await expect(page.getByRole('status')).toContainText('Your name has been saved.');
 });

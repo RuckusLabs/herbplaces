@@ -9,6 +9,7 @@ import { FavoritesProvider } from './hooks/useFavorites';
 import ManagementProvider from './contexts/ManagementProvider';
 import Seo from './components/Seo/Seo';
 
+const Settings = lazy(() => import('./pages/Settings/Settings'));
 const About = lazy(() => import('./pages/About/About'));
 const Help = lazy(() => import('./pages/Help/Help'));
 const Shop = lazy(() => import('./pages/Shop/Shop'));
@@ -48,6 +49,7 @@ const routes = [
   { path: '/place/:slug', element: <Place /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/settings', element: <Settings /> },
   { path: '/favorites', element: <SavedPlacesRoute /> },
   { path: '/auth/callback', element: <AuthCallback /> },
   { path: '/auth/forgot-password', element: <AccountRecovery mode="forgot" /> },
