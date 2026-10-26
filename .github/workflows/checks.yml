@@ -25,4 +25,5 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - run: npm run test:ui
+      - run: npm run test:passwordless
       - run: npm run build:pages
