@@ -6,12 +6,14 @@ async function setup(page) {
   const user = { id: 'otp-user', email: 'owner@example.com', email_confirmed_at: '2026-01-01T00:00:00Z', aud: 'authenticated', app_metadata: {}, user_metadata: {} };
   const token = `${Buffer.from('{"alg":"HS256"}').toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: Math.floor(Date.now()/1000)+3600, role: 'authenticated' })).toString('base64url')}.test`;
   const session = { access_token: token, refresh_token: 'test-refresh', token_type: 'bearer', expires_in: 3600, user };
-  await page.route('**/auth/v1/**', route => {
+  await page.route('**/auth/v1/**', async route => {
     const request = route.request(); const path = new URL(request.url()).pathname;
     const body = request.method() === 'POST' ? request.postDataJSON() : null;
     state.auth.push({ path, body });
     if (path.endsWith('/otp') && state.sendError) return route.fulfill({ status: 429, json: { msg: 'Please wait before requesting another code.' } });
     if (path.endsWith('/otp')) return route.fulfill({ json: {} });
+    if (path.endsWith('/verify') && state.verifyGate) await state.verifyGate;
+    if (path.endsWith('/verify') && state.verifyUnavailable) return route.fulfill({ status: 503, json: { msg: 'Temporarily unavailable' } });
     if (path.endsWith('/verify') && body.token !== '123456') return route.fulfill({ status: 403, json: { msg: 'Token expired', error_code: 'otp_expired' } });
     return route.fulfill({ json: path.endsWith('/verify') ? session : user });
   });
@@ -47,11 +49,10 @@ test('existing account verifies a code and returns to a safe destination', async
   expect(state.auth.find(item => item.path.endsWith('/otp')).body.create_user).toBe(false);
   await expect(page.getByRole('button', { name: /Resend in/ })).toBeDisabled();
   await page.getByLabel('Email code', { exact: true }).fill('000000');
-  await page.getByRole('button', { name: 'Verify & Continue' }).click();
   await expect(page.getByRole('alert')).toContainText('invalid or has expired');
+  await expect(page.getByLabel('Email code', { exact: true })).toBeFocused();
   await page.getByLabel('Email code', { exact: true }).fill('123 456');
-  await expect(page.getByLabel('Email code', { exact: true })).toHaveValue('123456');
-  await page.getByRole('button', { name: 'Verify & Continue' }).click();
+  await expect.poll(() => state.auth.filter(item => item.path.endsWith('/verify')).at(-1)?.body.token).toBe('123456');
   await expect(page).toHaveURL('/settings');
   await expect(page.getByText('Sign in with a code sent to your email.')).toBeVisible();
 });
@@ -76,7 +77,6 @@ test('registration requires consent and supports changing email and resending', 
   await page.getByRole('button', { name: 'Send a New Code', exact: true }).click();
   expect(state.auth.filter(item => item.path.endsWith('/otp'))).toHaveLength(3);
   await page.getByLabel('Email code', { exact: true }).fill('123456');
-  await page.getByRole('button', { name: 'Verify & Continue' }).click();
   await expect(page).toHaveURL('/map');
 });
 
@@ -137,7 +137,6 @@ test('ownership details survive email-code sign-in and still require explicit cl
   await dialog.getByRole('button', { name: 'Sign In to Send Claim' }).click();
   await sendCode(page);
   await page.getByLabel('Email code', { exact: true }).fill('123456');
-  await page.getByRole('button', { name: 'Verify & Continue' }).click();
   await expect(page).toHaveURL(/moss-apothecary\?claim=1/);
   dialog = page.getByRole('dialog');
   await expect(dialog.getByLabel('Your full name')).toHaveValue('Jamie Green');
@@ -159,3 +158,38 @@ for (const path of ['forgot-password', 'reset-password', 'resend-confirmation'])
     await expect(page.locator('input[type="password"]')).toHaveCount(0);
   });
 }
+
+
+test('native AutoFill events verify a full code once and ignore incomplete input', async ({ page }) => {
+  const state = await setup(page);
+  let release; state.verifyGate = new Promise(resolve => { release = resolve; });
+  await page.goto('/login?next=%2Fsettings'); await sendCode(page);
+  const input = page.getByLabel('Email code', { exact: true });
+  await expect(input).toHaveAttribute('autocomplete', 'one-time-code');
+  await expect(input).toHaveAttribute('inputmode', 'numeric');
+  await expect(page.getByRole('link', { name: 'Create an Account', exact: true })).toHaveCount(0);
+  await input.fill('12345');
+  expect(state.auth.filter(item => item.path.endsWith('/verify'))).toHaveLength(0);
+  await input.evaluate(element => {
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(element, '123456');
+    element.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertReplacementText', data: '123456' }));
+    element.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await expect(input).toBeDisabled();
+  await expect(page.getByText('Signing you in…', { exact: true })).toBeVisible();
+  await expect.poll(() => state.auth.filter(item => item.path.endsWith('/verify')).length).toBe(1);
+  release(); await expect(page).toHaveURL('/settings');
+  expect(state.auth.filter(item => item.path.endsWith('/verify'))).toHaveLength(1);
+});
+
+test('a failed automatic verification offers an explicit retry without looping', async ({ page }) => {
+  const state = await setup(page); state.verifyUnavailable = true;
+  await page.goto('/login?next=%2Fsettings'); await sendCode(page);
+  await page.getByLabel('Email code', { exact: true }).fill('123456');
+  await expect(page.getByRole('alert')).toContainText('We couldn’t check your code');
+  expect(state.auth.filter(item => item.path.endsWith('/verify'))).toHaveLength(1);
+  state.verifyUnavailable = false;
+  await page.getByRole('button', { name: 'Try Again', exact: true }).click();
+  await expect(page).toHaveURL('/settings');
+  expect(state.auth.filter(item => item.path.endsWith('/verify'))).toHaveLength(2);
+});
