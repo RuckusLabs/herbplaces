@@ -7,13 +7,13 @@ const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'mos
   coverPhoto: image, photos: [image], latitude: 39.7, longitude: -104.9, isFeatured: false, isVerified: true,
   is_claimed: false, phone: '', hours: '', social_links: [], category_ids: ['shops'], photo_alt: {}, content_version: 1, geocode_status: 'confirmed' });
 
-async function mockSite(page, { role = 'owner', expired = false, unpaid = false, conflict = false, confirmed = true, renewalProcessing = false } = {}) {
+async function mockSite(page, { role = 'owner', expired = false, unpaid = false, conflict = false, confirmed = true, renewalProcessing = false, displayName = '' } = {}) {
   const state = { place: makePlace(), claims: [], listingRequests: [], authRequests: [], assigned: [], published: null, directoryRequests: [], removed: null, users: [
     { user_id: 'user-1', email: 'admin@example.com', is_admin: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [] },
     { user_id: 'manager-1', email: 'owner@example.com', confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: false, pending: false }] },
     { user_id: 'billing-1', email: 'billing@example.com', billing_protected: true, confirmed_at: '2026-01-01', created_at: '2026-01-01', places: [{ id: 'place-1', name: 'Moss Apothecary', is_billing_contact: true, pending: false }] },
   ] };
-  const user = { id: 'user-1', email: `${role}@example.com`, email_confirmed_at: confirmed ? '2026-01-01T00:00:00Z' : null, aud: 'authenticated', app_metadata: {}, user_metadata: {} };
+  const user = { id: 'user-1', email: `${role}@example.com`, email_confirmed_at: confirmed ? '2026-01-01T00:00:00Z' : null, aud: 'authenticated', app_metadata: {}, user_metadata: { full_name: displayName } };
   const expiresAt = Math.floor(Date.now() / 1000) + 3600;
   const token = `${Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: expiresAt, role: 'authenticated' })).toString('base64url')}.local-test-signature`;
   const session = { access_token: token, refresh_token: 'local-test-refresh', token_type: 'bearer', expires_at: expiresAt, expires_in: 3600, user };
@@ -1313,4 +1313,30 @@ test('a conflict while publishing page preview retains the draft for recovery', 
   await expect(dialog.getByLabel('Tagline', { exact: true })).toHaveValue('Keep this draft.');
   await expect(dialog.getByRole('button', { name: 'Reload Latest Version', exact: true })).toBeVisible();
   expect(state.published).toBeNull();
+});
+
+test('account dropdown identifies the user and supports dismissal and sign out', async ({ page, isMobile }, testInfo) => {
+  const displayName = isMobile ? '' : 'Jamie Green';
+  const state = await mockSite(page, { displayName });
+  await page.goto('/favorites');
+  if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  const navigation = page.getByRole('navigation', { name: 'Main navigation' });
+  const account = navigation.getByRole('button', { name: displayName || 'owner', exact: true });
+  await expect(account).toBeVisible();
+  await account.click();
+  await expect(navigation.getByText('owner@example.com', { exact: true })).toBeVisible();
+  await expect(account).toHaveAttribute('aria-expanded', 'true');
+  await page.screenshot({ path: testInfo.outputPath('account-menu.png'), animations: 'disabled' });
+  await account.press('Escape');
+  await expect(account).toBeFocused();
+  await expect(navigation.getByRole('button', { name: 'Sign Out', exact: true })).toHaveCount(0);
+  await account.click();
+  await page.mouse.click(5, 5);
+  await expect(account).toHaveAttribute('aria-expanded', 'false');
+  await account.click();
+  await navigation.getByRole('button', { name: 'Sign Out', exact: true }).click();
+  await expect(account).toHaveCount(0);
+  if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
+  await expect(navigation.getByRole('link', { name: 'Join the Community' })).toBeVisible();
+  expect(state.authRequests.some(request => request.url.includes('/logout'))).toBe(true);
 });
