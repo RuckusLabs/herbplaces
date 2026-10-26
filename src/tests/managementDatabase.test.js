@@ -20,6 +20,8 @@ const launchMigration = await readFile(new URL('../../supabase/migrations/202610
 const renewalMigration = await readFile(new URL('../../supabase/migrations/202610210002_renewal_processing.sql', import.meta.url), 'utf8');
 const requestAddressMigration = await readFile(new URL('../../supabase/migrations/202610210003_listing_request_address.sql', import.meta.url), 'utf8');
 const photoLimitMigration = await readFile(new URL('../../supabase/migrations/202610210004_bloom_photo_limit.sql', import.meta.url), 'utf8');
+const attentionMigration = await readFile(new URL('../../supabase/migrations/202610260001_admin_attention.sql', import.meta.url), 'utf8');
+const adminHandoffMigration = await readFile(new URL('../../supabase/migrations/202610260002_customer_admin_alert_handoff.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -49,6 +51,8 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(renewalMigration);
   await database.exec(requestAddressMigration);
   await database.exec(photoLimitMigration);
+  await database.exec(attentionMigration);
+  await database.exec(adminHandoffMigration);
 }
 
 before(async () => {
@@ -603,8 +607,8 @@ test('listing review links existing places without granting management and queue
     const own = await rpc('get_listing_requests'); assert.equal(own[0].status, 'listed'); assert.equal(own[0].place_slug, 'other-garden');
     assert.equal((await rpc('get_management_context')).memberships.length, 0);
     await db.exec('reset role; set local role service_role');
-    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 3);
-    assert.deepEqual(new Set(jobs.map(job => job.kind)), new Set(['listing_received','listing_admin','listing_reviewed']));
+    const jobs = await rpc('take_customer_notifications'); assert.equal(jobs.length, 2);
+    assert.deepEqual(new Set(jobs.map(job => job.kind)), new Set(['listing_received','listing_reviewed']));
   });
 });
 
@@ -727,4 +731,59 @@ test('Bloom accepts ten gallery photos and rejects eleven at the database bounda
     assert.equal(published.photos.length, 10);
     await assert.rejects(publish(draft({ photos: [...ten, ten[0]], coverPhoto: ten[0] }), 2), /up to 10 photos/);
   });
+});
+
+
+test('admin counts and alert queue enforce separate administrator and service boundaries', async () => {
+  await assert.rejects(asRole('anon', null, () => rpc('admin_attention_counts')), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_attention_counts')), /Administrator access required/);
+  await asRole('authenticated', ids.admin, async () => {
+    const counts = await rpc('admin_attention_counts');
+    assert.equal(typeof counts.claims, 'number');
+    assert.equal(typeof counts['listing-requests'], 'number');
+    assert.equal(typeof counts.locations, 'number');
+  });
+  await assert.rejects(asRole('authenticated', ids.admin, () => rpc('take_admin_notifications')), /permission denied/);
+  await assert.rejects(asRole('authenticated', ids.admin, () => db.query('select * from public.place_admin_notifications')), /permission denied/);
+});
+
+test('new pending items queue admin alerts once, skip resolved items, and require the current lease', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec('delete from public.place_admin_notifications');
+    const userId = ids.outsider;
+    const requestId = '90000000-0000-0000-0000-000000000001';
+    await db.query("insert into public.place_listing_requests(id,user_id,name,city) values($1,$2,'New Alert Place','Boulder')", [requestId, userId]);
+    await db.query("update public.places set geocode_status='confirmed' where id=$1", [ids.place]);
+    await db.query("update public.places set geocode_status='pending', content_version=content_version+1 where id=$1", [ids.place]);
+    await db.query("update public.places set geocode_status='review', content_version=content_version+1 where id=$1", [ids.place]);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 2);
+    await db.query("update public.places set geocode_status='confirmed' where id=$1", [ids.place]);
+    const jobs = await rpc('take_admin_notifications');
+    assert.equal(jobs.length, 1); assert.equal(jobs[0].kind, 'listing-requests');
+    assert.deepEqual(await rpc('take_admin_notifications'), []);
+    await db.exec('savepoint invalid_lease');
+    await assert.rejects(rpc('finish_admin_notification', [jobs[0].id, '00000000-0000-0000-0000-000000000000', 'email-1']), /lease is no longer valid/);
+    await db.exec('rollback to savepoint invalid_lease');
+    await rpc('finish_admin_notification', [jobs[0].id, jobs[0].lease_token, 'email-1']);
+    assert.ok((await db.query('select sent_at from public.place_admin_notifications where id=$1', [jobs[0].id])).rows[0].sent_at);
+  } finally { await db.exec('rollback'); }
+});
+
+test('installing admin alerts never backfills historical pending requests or locations', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec(`drop trigger queue_admin_claim on public.place_claims;
+      drop trigger queue_admin_listing on public.place_listing_requests;
+      drop trigger queue_admin_location on public.places;
+      drop function place_management_private.queue_admin_attention();
+      drop function public.take_admin_notifications(integer);
+      drop function public.finish_admin_notification(uuid,uuid,text);
+      drop function public.admin_attention_counts();
+      drop table public.place_admin_notifications;`);
+    await db.query("insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,'Owner','Historical claim for the rollout test')", [ids.otherPlace, ids.outsider]);
+    await db.query("insert into public.place_listing_requests(user_id,name,city) values($1,'Historical Request','Boulder')", [ids.outsider]);
+    await db.exec(attentionMigration.replace(/^begin;/, '').replace(/commit;\s*$/, ''));
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 0);
+  } finally { await db.exec('rollback'); }
 });

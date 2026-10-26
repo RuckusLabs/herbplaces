@@ -42,6 +42,7 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
     const name = path.split('/').at(-1);
     const body = request.postDataJSON() || {};
     if (name === 'activate_place_invitations') return route.fulfill({ json: null });
+    if (name === 'admin_attention_counts') return state.attentionError ? route.fulfill({ status: 503, json: { message: 'Counts unavailable' } }) : route.fulfill({ json: state.attentionCounts || { claims: 1, 'listing-requests': state.listingRequests.filter(item => item.status === 'pending').length, locations: 0 } });
     if (name === 'get_management_context') return state.managementError ? route.fulfill({ status: 503, json: { message: state.managementError } }) : route.fulfill({ json: context() });
     if (name === 'get_listing_requests') return route.fulfill({ json: state.listingRequests });
     if (name === 'request_place_listing') {
@@ -1465,4 +1466,31 @@ test('admin failures offer recovery without showing an empty queue as success', 
   state.detailError = '';
   await dialog.getByRole('button', { name: 'Retry Loading Place', exact: true }).click();
   await expect(dialog.getByRole('heading', { name: 'Managers', exact: true })).toBeVisible();
+});
+
+
+test('admin badges show global pending counts, hide zeroes, and refresh after a decision', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'admin' });
+  state.attentionCounts = { claims: 12, 'listing-requests': 4, locations: 1 };
+  await page.goto('/admin');
+  const sections = page.getByRole('group', { name: 'Admin sections' });
+  await expect(sections.getByRole('button', { name: 'Claim Requests', exact: true })).toContainText('12');
+  await expect(sections.getByRole('button', { name: 'Listing Requests', exact: true })).toContainText('4');
+  await expect(sections.getByRole('button', { name: 'Location Review', exact: true })).toContainText('1');
+  await expect(sections.getByRole('button', { name: 'Users', exact: true })).toHaveText('Users');
+  await page.screenshot({ path: testInfo.outputPath('admin-pending-badges.png'), fullPage: true, animations: 'disabled' });
+  state.attentionCounts.claims = 0;
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('button', { name: 'Approve Claim', exact: true }).click();
+  await expect(sections.getByRole('button', { name: 'Claim Requests', exact: true }).locator('span[aria-hidden="true"]')).toHaveCount(0);
+  state.attentionError = true;
+  await page.getByRole('button', { name: 'Refresh', exact: true }).click();
+  await expect(page.getByText('Review counts couldn’t refresh.')).toBeVisible();
+  await expect(sections.getByRole('button', { name: 'Listing Requests', exact: true })).toContainText('4');
+});
+
+test('admin email review links preserve their section through sign-in', async ({ page }) => {
+  await mockSite(page, { role: 'guest' });
+  await page.goto('/admin?section=listing-requests');
+  await expect(page.getByRole('link', { name: 'Sign In', exact: true })).toHaveAttribute('href', '/login?next=%2Fadmin%3Fsection%3Dlisting-requests');
 });

@@ -1,6 +1,6 @@
 import { textEmailHtml } from './emailBranding.js';
 
-export const verificationEmail = 'admin@littleherbplaces.com';
+export const verificationEmail = 'lhp@ruckuslabs.co';
 
 export function claimNotificationEmail(payload, { from, siteUrl }) {
   const origin = new URL(siteUrl);

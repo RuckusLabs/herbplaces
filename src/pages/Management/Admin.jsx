@@ -54,6 +54,19 @@ export default function Admin() {
   const [listingSlugs, setListingSlugs] = useState({});
   const [creationDraft, setCreationDraft] = useState(null);
   const [creationRequest, setCreationRequest] = useState(null);
+  const [attention, setAttention] = useState(null);
+  const [attentionError, setAttentionError] = useState(false);
+  useEffect(() => {
+    if (!management.is_admin) { setAttention(null); return; }
+    let active = true;
+    const refresh = () => managementRpc('admin_attention_counts').then(counts => {
+      if (active) { setAttention(counts); setAttentionError(false); }
+    }).catch(() => { if (active) setAttentionError(true); });
+    void refresh();
+    window.addEventListener('focus', refresh);
+    const timer = window.setInterval(refresh, 60000);
+    return () => { active = false; window.removeEventListener('focus', refresh); window.clearInterval(timer); };
+  }, [management.is_admin, attempt]);
   const directory = usePlaces(management.is_admin && section === 'listing-requests');
   useEffect(() => { setQuery(search); }, [search]);
   useEffect(() => { setSelected(''); }, [section]);
@@ -94,11 +107,11 @@ export default function Admin() {
     <Helmet><title>Admin | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
     <header className={adminStyles.header}><div><p className={adminStyles.eyebrow}>Directory workspace</p><h1>Little Herb Places Admin</h1><p>Connect people to places. Keep the directory growing with care.</p></div>{allowed && <button className="button" onClick={() => { setCreationDraft(null); setCreationRequest(null); setCreating(true); }}><Icon name="sprout" size={24} />Add Place</button>}</header>
     {authLoading || (management.loading && !allowed) ? <p role="status">Checking admin access…</p>
-      : !user ? <Link className="button" to="/login?next=%2Fadmin">Sign In</Link>
+      : !user ? <Link className="button" to={`/login?next=${encodeURIComponent(`/admin${params.size ? `?${params}` : ''}`)}`}>Sign In</Link>
       : !allowed ? <><p role="alert" className={styles.notice}>{management.error || 'This area is for Little Herb Places administrators.'}</p><Link className="button" to="/favorites">Saved Places</Link></>
       : <>
         <div className={adminStyles.workspace}>
-        <div className={adminStyles.sections} role="group" aria-label="Admin sections">{sections.map(([id, label]) => <button key={id} aria-current={section === id ? 'page' : undefined} onClick={() => { if (section === id) return; setData({ items: [], total: 0 }); setLoading(true); setNotice(''); updateLocation({ section: id, q: '', page: '', sort: '', order: '' }); }}><Icon name={sectionDetails[id][0]} size={28} />{label}</button>)}</div>
+        <div className={adminStyles.sections} role="group" aria-label="Admin sections">{sections.map(([id, label]) => <button key={id} aria-label={label} title={attention?.[id] > 0 ? `${attention[id]} awaiting review` : undefined} aria-current={section === id ? 'page' : undefined} onClick={() => { if (section === id) return; setData({ items: [], total: 0 }); setLoading(true); setNotice(''); updateLocation({ section: id, q: '', page: '', sort: '', order: '' }); }}><Icon name={sectionDetails[id][0]} size={28} /><span>{label}</span>{attention?.[id] > 0 && <span className={adminStyles.count} aria-hidden="true">{attention[id] > 99 ? '99+' : attention[id]}</span>}</button>)}{attentionError && <p className={styles.small} role="status">Review counts couldn’t refresh.</p>}</div>
         <section className={adminStyles.content} aria-label={sections.find(([id]) => id === section)[1]}>
         <div className={adminStyles.sectionHeading}><div><h2>{sections.find(([id]) => id === section)[1]}</h2><p>{sectionDetails[section][1]}</p></div><button className={styles.ownerTextButton} disabled={loading || busy} onClick={() => setAttempt(value => value + 1)}>Refresh</button></div>
         <form className={`${styles.form} ${adminStyles.search}`} onSubmit={event => { event.preventDefault(); updateLocation({ q: query.trim(), page: '' }); setAttempt(value => value + 1); }}>

@@ -44,3 +44,7 @@ verify_jwt = false
 [functions.claim-notifications]
 # Database webhooks and the retry scheduler use a dedicated server-side secret.
 verify_jwt = false
+
+[functions.admin-notifications]
+# Dedicated scheduler secret; this endpoint only delivers new admin review alerts.
+verify_jwt = false
