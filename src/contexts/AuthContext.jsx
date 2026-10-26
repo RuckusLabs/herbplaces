@@ -67,6 +67,20 @@ export function AuthProvider({ children }) {
         return result;
       } finally { setCreatingAccount(false); }
     },
+    sendEmailCode: ({ email, registering, next }) => supabase ? supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: registering, emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next))}` } }) : Promise.resolve({ error: new Error('Email sign-in is temporarily unavailable.') }),
+    verifyEmailCode: async ({ email, token }) => {
+      if (!supabase) return { error: new Error('Email sign-in is temporarily unavailable.') };
+      setCreatingAccount(true);
+      try {
+        const result = await supabase.auth.verifyOtp({ email, token, type: 'email' });
+        if (!result.error && result.data?.session) {
+          const account = result.data.session.user;
+          const { error } = await supabase.from('profiles').upsert({ id: account.id, email: account.email, created_at: new Date().toISOString() }, { onConflict: 'id', ignoreDuplicates: true });
+          if (error) console.warn('Profile creation could not be confirmed:', error.message);
+        }
+        return result;
+      } finally { setCreatingAccount(false); }
+    },
     updateProfile: data => supabase ? supabase.auth.updateUser({ data }) : Promise.resolve({ error: new Error('Account settings are temporarily unavailable.') }),
     changeEmail: email => supabase ? supabase.auth.updateUser({ email }, { emailRedirectTo: `${window.location.origin}/auth/callback?next=%2Fsettings` }) : Promise.resolve({ error: new Error('Account settings are temporarily unavailable.') }),
     requestPasswordReset: (email, next) => supabase ? supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/auth/reset-password?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` }) : Promise.resolve({ error: new Error('Account recovery is temporarily unavailable.') }),

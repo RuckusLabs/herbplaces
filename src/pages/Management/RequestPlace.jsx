@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
+import EmailCodeForm from '../../components/EmailCodeForm';
+import { passwordlessEnabled } from '../../utilities/authFeatures';
 import Icon from '../../components/Icons/Icon';
 import { useManagement } from '../../contexts/ManagementContext';
 import { getWebsiteUrl } from '../../utilities/placeDetails';
@@ -56,16 +58,16 @@ export default function RequestPlace({ embedded = false }) {
     try { sessionStorage.setItem(storageKey, JSON.stringify({ ...draft, savedAt: Date.now() })); } catch { /* Optional draft recovery. */ }
   }, [draft]);
   const update = field => event => { const value = event.target.value; setDraft(previous => ({ ...previous, [field]: value })); };
-  const submit = async event => {
-    event.preventDefault();
-    if (busy || authLoading) return;
+  const submit = async (event, verified = false) => {
+    event?.preventDefault();
+    if (!verified && (busy || authLoading)) return;
     const website = draft.website.trim() ? getWebsiteUrl(draft.website) : '';
     if (draft.website.trim() && !website) { setError('Enter a website such as yourplace.com, or leave it blank.'); return; }
     if (website.length > 2000) { setError('Please use a shorter website address.'); return; }
-    if (stage === 'details' && !user) { setDraft(previous => ({ ...previous, website })); setError(''); setStage('account'); return; }
+    if (stage === 'details' && !user) { setDraft(previous => ({ ...previous, website })); setError(''); try { localStorage.setItem(confirmationDraftKey, JSON.stringify({ ...draft, website, savedAt: Date.now() })); } catch { /* Optional draft recovery. */ } setStage('account'); return; }
     setBusy(true); setError(''); setNotice('');
     try {
-      if (!user) {
+      if (!user && !verified) {
         // Keep only the listing details for confirmation in another tab; never credentials.
         try { localStorage.setItem(confirmationDraftKey, JSON.stringify({ ...draft, savedAt: Date.now() })); } catch { /* Same-tab recovery remains available. */ }
         const result = accountMode === 'signup'
@@ -78,7 +80,7 @@ export default function RequestPlace({ embedded = false }) {
           setNotice('Check your inbox to finish setting up your account, then return here to review and send your saved listing request. Your request has not been sent. If you already have an account, sign in below.');
           return;
         }
-      } else if (!user.email_confirmed_at) {
+      } else if (user && !user.email_confirmed_at && !verified) {
         setError('Confirm your account email before sending your request. Your details are saved here.');
         return;
       }
@@ -109,7 +111,11 @@ export default function RequestPlace({ embedded = false }) {
       <FormHeading ref={heading} tabIndex={-1}>{stage === 'account' ? user ? 'Ready to send?' : accountMode === 'signup' ? 'Finish with your account.' : 'Welcome back.' : 'Add your place.'}</FormHeading>
       <p>{stage === 'account' ? 'Keep your request and its status in one place.' : 'Start with the basics. Requesting a listing is free.'}</p>
       {notice && <p role="status" className={styles.notice}>{notice}</p>}
-      <form className={styles.form} onSubmit={submit}>
+      {passwordlessEnabled && stage === 'account' && !user ? <>
+        {summary}
+        <EmailCodeForm key={accountMode} registering={accountMode === 'signup'} destination={`${pathname}${search}`} verifyLabel="Verify & Send Request" onBusyChange={setBusy} onVerified={() => submit(null, true)} />
+        <button className={styles.accountSwitch} type="button" disabled={busy} onClick={() => setAccountMode(accountMode === 'signup' ? 'signin' : 'signup')}>{accountMode === 'signup' ? 'Already have an account? Sign in here' : 'New here? Create a free account'}</button>
+      </> : <form className={styles.form} onSubmit={submit}>
         {stage === 'details' ? <fieldset className={styles.flowFields} disabled={busy}>
           <label>Place name<input required minLength={2} maxLength={200} value={draft.name} onChange={update('name')} autoComplete="organization" /></label>
           <label>Street address (optional)<input maxLength={500} value={draft.address} onChange={update('address')} autoComplete="street-address" placeholder="Business location" /></label>
@@ -125,7 +131,7 @@ export default function RequestPlace({ embedded = false }) {
         {authLoading ? <p role="status">Checking your account…</p> : user && !user.email_confirmed_at ? <><p>Confirm your email to send your request.</p><Link className="button" to={`/auth/resend-confirmation?next=${destination}`}>Send Confirmation Email</Link></>
           : <button className="button" disabled={busy}>{busy ? 'Please Wait…' : user ? 'Send Listing Request' : stage === 'details' ? 'Continue' : accountMode === 'signup' ? 'Create Account & Send Request' : 'Sign In & Send Request'}</button>}
         {stage === 'account' && !user && <button className={styles.accountSwitch} type="button" disabled={busy} onClick={() => { setAccountMode(accountMode === 'signup' ? 'signin' : 'signup'); setError(''); }}>{accountMode === 'signup' ? 'Already have an account? Sign in here' : 'New here? Create a free account'}</button>}
-      </form>
+      </form>}
       <p className={styles.small}>We review each request. No payment is taken.</p>
     </div>}
 

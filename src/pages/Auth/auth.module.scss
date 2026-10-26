@@ -7,3 +7,5 @@
 .secondary { background: rgba(var(--primary-color), .35); box-shadow: none; }
 @media (max-width: 540px) { .authSection { padding: 30px 6% 45px; } .card { padding: 27px; h1 { font-size: 40px; } } }
 .formNote { font-size: 12px !important; line-height: 1.7; }
+.consent { display: flex; align-items: flex-start; gap: 10px; line-height: 1.7; input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 2px; } }
+.codeActions { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 10px; button { border: 0; background: transparent; padding: 4px 0; color: rgb(var(--tertiary-color)); text-decoration: underline; font: inherit; font-size: 13px; cursor: pointer; &:disabled { opacity: .6; cursor: default; text-decoration: none; } } }
