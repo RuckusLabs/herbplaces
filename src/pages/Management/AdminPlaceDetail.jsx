@@ -66,7 +66,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
   return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.editorDialog} contentClassName={styles.editorBody}>
     <h2 id={titleId} className={styles.editorHeading}>{detail?.place.name || 'Manage Place'}</h2>
     {error && <p role="alert" className={styles.error}>{error}</p>}{notice && <p role="status" className={styles.notice}>{notice}</p>}
-    {!detail ? <p role="status">Loading place details…</p> : <>
+    {!detail ? error ? <button className="button" onClick={() => { setError(''); setAttempt(value => value + 1); }}>Retry Loading Place</button> : <p role="status">Loading place details…</p> : <>
       <div className={styles.actions}><Link className="button" to={`/place/${detail.place.urlSlug}`} onClick={onClose}>View & Edit Place</Link><span className={styles.status}>{detail.subscription?.status || 'No subscription'}</span></div>
       <section className={styles.card}><h3>Managers</h3>
         {detail.members.map(member => <div className={styles.member} key={member.user_id}><span>{member.email}{member.is_billing_contact && <span className={styles.status}>Billing contact</span>}</span><div className={styles.actions}>

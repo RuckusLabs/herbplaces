@@ -77,10 +77,11 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
       state.claims.push({ id: 'claim-1', place_id: state.place.id, name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending', review_note: '' });
       return route.fulfill({ json: null });
     }
-    if (name === 'admin_directory') { state.directoryRequests.push(body); return route.fulfill({ json: body.p_section === 'claims'
+    if (name === 'admin_directory') { state.directoryRequests.push(body); if (state.directoryError) return route.fulfill({ status: 503, json: { message: state.directoryError } }); return route.fulfill({ json: body.p_section === 'claims'
       ? { total: 1, items: [{ id: 'claim-1', place_id: state.place.id, name: state.place.name, urlSlug: state.place.urlSlug, email: 'claimant@example.com', relationship: 'Owner', evidence: 'Please verify our business website.', created_at: new Date().toISOString() }] }
       : body.p_section === 'users' ? { total: state.users.length, items: state.users }
         : { total: 1, items: [{ ...state.place, subscription_status: 'active' }] } }); }
+    if (name === 'admin_place_detail' && state.detailError) return route.fulfill({ status: 503, json: { message: state.detailError } });
     if (name === 'admin_place_detail') return route.fulfill({ json: { place: state.place, subscription,
       members: [{ user_id: user.id, email: 'owner@example.com', is_billing_contact: true }, ...state.assigned], invitations: [], revisions: [], audit: [] } });
     if (name === 'admin_assign_manager') { state.assigned.push({ user_id: body.p_email, email: body.p_email, is_billing_contact: body.p_billing }); return route.fulfill({ json: null }); }
@@ -770,7 +771,7 @@ test('admins can link a requested listing without approving ownership', async ({
   state.listingRequests.push({ id: 'request-1', name: 'Moss Apothecary', city: 'Denver', region: 'CO', email: 'owner@example.com', notes: 'Please add our shop.', status: 'pending', created_at: new Date().toISOString() });
   await page.goto('/admin');
   await page.getByRole('button', { name: 'Listing Requests', exact: true }).click();
-  await page.getByLabel('Existing listing URL slug').fill('moss-apothecary');
+  await page.getByLabel('Choose an existing place').selectOption('moss-apothecary');
   await page.getByLabel('Review note (visible to requester)').fill('Your listing is ready. Please submit your ownership claim.');
   page.once('dialog', dialog => dialog.accept());
   await page.getByRole('button', { name: 'Link Listing & Notify' }).click();
@@ -1140,7 +1141,7 @@ test('a first listing request adds My Places to navigation without adding manage
   await expect(page.getByRole('heading', { name: 'My Places', level: 1, exact: true })).toBeVisible();
   await expect(page.getByRole('main')).toContainText('Fern & Field');
   if (await menu.isVisible()) await menu.click();
-  await page.getByRole('navigation').first().getByRole('link', { name: 'Saved Places', exact: true }).click();
+  await page.getByRole('navigation').first().getByRole('link', { name: 'Liked Places', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Your Saved Places.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'My Places', exact: true })).toHaveCount(0);
   await expect(page.getByRole('main')).not.toContainText('Fern & Field');
@@ -1335,6 +1336,9 @@ test('account dropdown identifies the user and supports dismissal and sign out',
   await page.goto('/favorites');
   if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
   const navigation = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(navigation.getByRole('link', { name: 'Explore Places', exact: true })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Liked Places', exact: true })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Our Story', exact: true })).toHaveCount(0);
   const account = navigation.getByRole('button', { name: displayName || 'owner', exact: true });
   await expect(account).toBeVisible();
   await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
@@ -1364,6 +1368,8 @@ for (const role of ['member', 'owner', 'admin']) test(`account settings work for
   await page.goto('/favorites');
   if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
   const navigation = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(navigation.getByRole('link', { name: 'Liked Places', exact: true })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Our Story', exact: true })).toHaveCount(0);
   await expect(navigation.getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(role === 'member' ? 1 : 0);
   await navigation.getByRole('button', { name: role, exact: true }).click();
   await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(role === 'member' ? 0 : 1);
@@ -1415,4 +1421,48 @@ test('failed account updates keep entered details and allow retry', async ({ pag
   await page.getByRole('button', { name: 'Save Name', exact: true }).click();
   await expect(page.getByRole('alert')).toHaveCount(0);
   await expect(page.getByRole('status')).toContainText('Your name has been saved.');
+});
+
+test('admin sections and searches survive reload and browser Back', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'admin' });
+  await page.goto('/admin?section=users&q=owner&page=2');
+  await expect(page.getByRole('heading', { name: 'Users', exact: true })).toBeVisible();
+  await expect(page.getByRole('searchbox')).toHaveValue('owner');
+  await expect.poll(() => state.directoryRequests.at(-1)?.p_page).toBe(1);
+  await page.getByRole('button', { name: 'Clear Search', exact: true }).click();
+  await expect.poll(() => state.directoryRequests.at(-1)?.p_query).toBe('');
+  await expect.poll(() => state.directoryRequests.at(-1)?.p_page).toBe(0);
+  await page.getByRole('button', { name: 'Listing Requests', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'No listing requests to review', exact: true })).toBeVisible();
+  await page.getByRole('searchbox').fill('Fern');
+  await page.getByRole('button', { name: 'Search', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'No matching results', exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('searchbox')).toHaveValue('Fern');
+  await expect(page.getByRole('heading', { name: 'Listing Requests', exact: true })).toBeVisible();
+  await page.goBack();
+  await expect(page.getByRole('searchbox')).toHaveValue('');
+  await page.getByRole('button', { name: 'Users', exact: true }).click();
+  await expect(page.getByRole('table', { name: 'Users', exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: testInfo.outputPath('admin-workspace.png'), fullPage: true, animations: 'disabled' });
+});
+
+test('admin failures offer recovery without showing an empty queue as success', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin' }); state.directoryError = 'Directory unavailable';
+  await page.goto('/admin');
+  await expect(page.getByRole('alert')).toContainText('Directory unavailable');
+  await expect(page.getByRole('heading', { name: 'No claims to review', exact: true })).toHaveCount(0);
+  state.directoryError = '';
+  await page.getByRole('button', { name: 'Refresh', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Manage Place', exact: true })).toBeVisible();
+  state.detailError = 'Place lookup unavailable';
+  await page.getByRole('button', { name: 'Manage Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByRole('alert')).toContainText('Place lookup unavailable');
+  await expect(dialog.getByText('Loading place details…', { exact: true })).toHaveCount(0);
+  state.detailError = '';
+  await dialog.getByRole('button', { name: 'Retry Loading Place', exact: true }).click();
+  await expect(dialog.getByRole('heading', { name: 'Managers', exact: true })).toBeVisible();
 });
