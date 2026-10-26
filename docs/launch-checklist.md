@@ -1,6 +1,6 @@
 # Little Herb Places launch checklist
 
-Current checkpoint: October 26, 2026. Hosted email delivery is active; the updated frontend is on the launch branch and has not been published. Public Bloom purchases are disabled. A configuration-ready audit does not mean sales are live.
+Current checkpoint: October 26, 2026. Hosted email delivery is active. PR #11 was merged and the updated frontend is published at https://littleherbplaces.com. Public Bloom purchases are disabled. A configuration-ready audit does not mean sales are live.
 
 ## Completed
 
@@ -12,19 +12,19 @@ Current checkpoint: October 26, 2026. Hosted email delivery is active; the updat
 - Owner onboarding, listing requests, private editing/preview, 10-photo Bloom gallery, account settings, and separate Liked Places/My Places prepared.
 - Admin review badges, map review, collapsible navigation, scrolling dialogs, bulk user removal, and permanent listing/image removal prepared and tested.
 
-## Next milestone: publish the reviewed frontend with purchases off
+## Completed milestone: published frontend with purchases off
 
 Production repository variables are explicitly set to `VITE_PASSWORDLESS_ENABLED=true` and `VITE_BLOOM_ENABLED=false`; the deployed server purchase flag remains off. The release build verifies the disabled owner checkout on desktop and phone. The confirmed support inbox is `help@littleherbplaces.com`.
 
 Review the local owner/basic-user navigation, sign-in, listing request, My Places, editing/preview, and admin workflows. Review Bloom/Thrive copy, support contact details, membership terms, privacy copy, and the refund wording. Bloom is the implemented $19/month offer; Thrive advertises $49/month per place as an upcoming offering and must not imply its checkout or promotion fulfillment is available.
 
-After approval, merge the launch PR and publish with `VITE_BLOOM_ENABLED=false` and server `BLOOM_ENABLED=false`. Passwordless should use its production default; do not set the legacy password override. This release is a priority because the original password hashes were already removed at the user's request. Check production email-code sign-in, redirects, saved places, owner access, admin permissions, SEO output, and published support/legal links. Keep the disabled-purchase message clear.
+The approved release was merged as `cf3b0205ee1189b2cc3a6cfed0530257520d0a1b` and published through the normal Pages workflow with `VITE_BLOOM_ENABLED=false` and server `BLOOM_ENABLED=false`. Live read-only desktop/mobile checks verified the email-code sign-in screen, owner sales entry, protected My Places redirect, Bloom purchase-disabled messaging, and unavailable Thrive plan. Full policy HTML, robots.txt, and sitemap.xml are served. Actual account verification and saved-place continuity were previously tested against the same hosted backend; the release smoke check did not send another email or submit customer data.
 
-## Following milestone: live Stripe configuration and final sales review
+## Current milestone: live Stripe configuration and final sales review
 
-Use the Little Herb Places live account, not the old Out There And account. Verify account activation, business/public details, statement descriptor, branding, payout readiness, and the intended recurring offer. Prepare the live product/price, restricted server key, webhook signing secret and subscribed events, portal, allowed return URLs, payment emails/retries, cancellation behavior, and tax configuration. Review the refund policy and seven-day payment-failure grace wording together. Configure each environment coherently; do not mix sandbox prices, keys, webhook secrets, or the remaining sandbox subscription with live billing.
+Use the Little Herb Places live account `acct_1UT1v28pv7NMGO0i`, not the old Out There And account. The October 26 read-only check found payments/payouts disabled and business onboarding incomplete. Live catalog prices, portal configurations, and webhook endpoints were empty. Branding already contains the logo/icon, `#2c542f` primary color, and `#eaff82` accent. Tax Settings are pending a head-office address and there are no recorded tax registrations. A live product creation attempt was rejected because the connector requires renewed write authorization; do not assume that product exists. Account activation and renewed connector access have been requested from the owner. Verify account activation, business/public details, statement descriptor, branding, payout readiness, and the intended recurring offer. Prepare the live product/price, restricted server key, webhook signing secret and subscribed events, portal, allowed return URLs, payment emails/retries, cancellation behavior, and tax configuration. Review the refund policy and seven-day payment-failure grace wording together. Configure each environment coherently; do not mix sandbox prices, keys, webhook secrets, or the remaining sandbox subscription with live billing.
 
-Preserve the sandbox evidence and inventory temporary billing endpoints/test records before switching. Remove the temporary owner-checkout endpoint when it is no longer needed. Review the Makki Home sandbox subscription/listing with the owner before cleanup; do not delete owner edits or start/cancel a live subscription as an automated test.
+Preserve the sandbox evidence and inventory temporary billing endpoints/test records before switching. The temporary `bloom-owner-checkout` endpoint has been removed. The client bypass is retired in the follow-up branch, and the launch audit now refuses any remaining known temporary billing endpoint. Review the Makki Home sandbox subscription/listing with the owner before cleanup; do not delete owner edits or start/cancel a live subscription as an automated test.
 
 After final approval, configure live counterparts and enable both purchase flags together with the matching frontend build. Complete an expressly approved first live purchase and verify the signed webhook, membership state, editing, portal, cancellation terms, and receipt. Do not charge an account merely to finish a checklist.
 
