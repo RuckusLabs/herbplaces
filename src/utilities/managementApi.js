@@ -52,3 +52,14 @@ export function openBillingUrl(url) {
   if (!['checkout.stripe.com', 'billing.stripe.com'].includes(target.hostname) || target.protocol !== 'https:') throw new Error('Unable to open billing. Please try again.');
   window.location.assign(target.href);
 }
+
+export async function placeDeletionAction(action, placeId, slug) {
+  if (!supabase) throw new Error('Place administration is temporarily unavailable.');
+  const { data, error } = await supabase.functions.invoke('admin-places', { body: { action, place_id: String(placeId), ...(slug === undefined ? {} : { slug }) } });
+  if (error) {
+    let message = 'Unable to complete place deletion. Please try again.';
+    try { message = (await error.context.json()).error || message; } catch { /* Preserve a safe fallback. */ }
+    throw new Error(message);
+  }
+  return data;
+}

@@ -38,10 +38,11 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
     const request = route.request();
     const path = new URL(request.url()).pathname;
     if (!path.includes('/rpc/') && state.published && state.refreshError && !path.endsWith('/favorites')) return route.fulfill({ status: 503, json: { message: 'Directory unavailable' } });
-    if (!path.includes('/rpc/')) return route.fulfill({ json: path.endsWith('/favorites') ? (state.favorites || []) : [state.place, ...(state.extraPlaces || [])] });
+    if (!path.includes('/rpc/')) return route.fulfill({ json: path.endsWith('/favorites') ? (state.favorites || []) : [...(state.placeDeleted ? [] : [state.place]), ...(state.extraPlaces || [])] });
     const name = path.split('/').at(-1);
     const body = request.postDataJSON() || {};
     if (name === 'activate_place_invitations') return route.fulfill({ json: null });
+    if (name === 'admin_place_cleanup_jobs') return route.fulfill({ json: state.cleanupJobs || [] });
     if (name === 'admin_attention_counts') return state.attentionError ? route.fulfill({ status: 503, json: { message: 'Counts unavailable' } }) : route.fulfill({ json: state.attentionCounts || { claims: 1, 'listing-requests': state.listingRequests.filter(item => item.status === 'pending').length, locations: 0 } });
     if (name === 'get_management_context') return state.managementError ? route.fulfill({ status: 503, json: { message: state.managementError } }) : route.fulfill({ json: context() });
     if (name === 'get_listing_requests') return route.fulfill({ json: state.listingRequests });
@@ -78,10 +79,10 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
       state.claims.push({ id: 'claim-1', place_id: state.place.id, name: state.place.name, urlSlug: state.place.urlSlug, status: 'pending', review_note: '' });
       return route.fulfill({ json: null });
     }
-    if (name === 'admin_directory') { state.directoryRequests.push(body); if (state.directoryError) return route.fulfill({ status: 503, json: { message: state.directoryError } }); return route.fulfill({ json: body.p_section === 'claims'
+    if (name === 'admin_directory') { state.directoryRequests.push(body); if (state.placeDeleted && ['places','locations'].includes(body.p_section)) return route.fulfill({ json: { items: [], total: 0 } }); if (state.directoryError) return route.fulfill({ status: 503, json: { message: state.directoryError } }); return route.fulfill({ json: body.p_section === 'claims'
       ? { total: 1, items: [{ id: 'claim-1', place_id: state.place.id, name: state.place.name, urlSlug: state.place.urlSlug, email: 'claimant@example.com', relationship: 'Owner', evidence: 'Please verify our business website.', created_at: new Date().toISOString() }] }
       : body.p_section === 'users' ? { total: state.users.length, items: state.users }
-        : { total: 1, items: [{ ...state.place, subscription_status: 'active' }] } }); }
+        : { total: 1, items: [{ ...state.place, subscription_status: subscription.status }] } }); }
     if (name === 'admin_place_detail' && state.detailError) return route.fulfill({ status: 503, json: { message: state.detailError } });
     if (name === 'admin_place_detail') return route.fulfill({ json: { place: state.place, subscription,
       members: [{ user_id: user.id, email: 'owner@example.com', is_billing_contact: true }, ...state.assigned], invitations: [], revisions: [], audit: [] } });
@@ -94,6 +95,16 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
     const body = route.request().postDataJSON();
     if (body.action === 'geocode') { state.geocodedPlace = body.place_id; return route.fulfill({ json: { status: 'confirmed' } }); }
     return route.fulfill({ json: body.action === 'checkout' ? { url: 'https://checkout.stripe.com/c/pay/local-test' } : { synced: true } });
+  });
+  await page.route('**/functions/v1/admin-places', async route => {
+    const body = route.request().postDataJSON();
+    if (body.action === 'preview') return route.fulfill({ json: { slug: state.place.urlSlug, name: state.place.name, image_count: 3, shared_images: 1, managers: 1, revisions: 2, cleanup_pending: !!state.cleanupJobs?.length, billing_blocked: !state.placeDeleted && !unpaid && !expired } });
+    state.placeDeletionAttempts ||= []; state.placeDeletionAttempts.push(body);
+    if (state.placeDeletionError) return route.fulfill({ status: 400, json: { error: state.placeDeletionError } });
+    state.placeDeleted = true;
+    if (state.partialStorageError) { state.cleanupJobs = [{ id: state.place.id, slug: state.place.urlSlug }]; return route.fulfill({ json: { removed: false, content_removed: true, cleanup_pending: true, error: 'The listing and its content are deleted. Stored image cleanup needs retrying.' } }); }
+    state.cleanupJobs = [];
+    return route.fulfill({ json: { removed: true, content_removed: true } });
   });
   await page.route('**/functions/v1/admin-users', async route => {
     const body = route.request().postDataJSON();
@@ -1615,4 +1626,74 @@ test('bulk user selection resets on search, sorting, refresh, and section change
   await page.getByRole('group', { name: 'Admin sections', exact: true }).getByRole('button', { name: 'Places', exact: true }).click();
   await page.getByRole('button', { name: 'Users', exact: true }).click();
   await expect(select).not.toBeChecked();
+});
+
+
+test('admins review permanent place deletion and confirm its exact slug', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'admin', unpaid: true });
+  await page.goto('/admin?section=places');
+  await page.getByRole('button', { name: 'Manage', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('3 stored images');
+  await expect(dialog).toContainText('Images also used by another place');
+  const remove = dialog.getByRole('button', { name: 'Permanently Delete Place', exact: true });
+  await expect(remove).toBeDisabled();
+  const confirmation = dialog.getByLabel('Type moss-apothecary to confirm', { exact: true });
+  await confirmation.fill('wrong-place'); await expect(remove).toBeDisabled();
+  expect(state.placeDeletionAttempts || []).toHaveLength(0);
+  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await expect(dialog.getByRole('heading', { name: 'Managers', exact: true })).toBeVisible();
+  await dialog.getByRole('button', { name: 'Delete Place', exact: true }).click();
+  await confirmation.fill('moss-apothecary');
+  await page.screenshot({ path: testInfo.outputPath('delete-place-review.png'), animations: 'disabled' });
+  await remove.click();
+  await expect(dialog.getByRole('heading', { name: 'Place deleted.', exact: true })).toBeVisible();
+  expect(state.placeDeletionAttempts).toEqual([{ action: 'delete', place_id: 'place-1', slug: 'moss-apothecary' }]);
+  await dialog.getByRole('button', { name: 'Done', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'No places found', exact: true })).toBeVisible();
+});
+
+test('place deletion refuses unresolved billing and retains the listing on a failed delete', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin' });
+  await page.goto('/admin?section=places'); await page.getByRole('button', { name: 'Manage', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.getByRole('alert')).toContainText('subscription in Stripe');
+  await expect(dialog.getByRole('button', { name: 'Permanently Delete Place', exact: true })).toBeDisabled();
+  expect(state.placeDeletionAttempts || []).toHaveLength(0);
+});
+
+test('unfinished image cleanup survives reload and can be retried from Places', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin', unpaid: true }); state.partialStorageError = true;
+  await page.goto('/admin?section=places'); await page.getByRole('button', { name: 'Manage', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete Place', exact: true }).click();
+  let dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Type moss-apothecary to confirm', { exact: true }).fill('moss-apothecary');
+  await dialog.getByRole('button', { name: 'Permanently Delete Place', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('cleanup needs retrying');
+  await dialog.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.reload();
+  await expect(page.getByRole('complementary', { name: 'Unfinished image cleanup', exact: true })).toContainText('moss-apothecary');
+  await page.getByRole('button', { name: 'Finish Image Cleanup', exact: true }).click();
+  dialog = page.getByRole('dialog'); state.partialStorageError = false;
+  await dialog.getByLabel('Type moss-apothecary to confirm', { exact: true }).fill('moss-apothecary');
+  await dialog.getByRole('button', { name: 'Retry Image Cleanup', exact: true }).click();
+  await expect(dialog.getByRole('heading', { name: 'Place deleted.', exact: true })).toBeVisible();
+  await dialog.getByRole('button', { name: 'Done', exact: true }).click();
+  await expect(page.getByRole('complementary', { name: 'Unfinished image cleanup', exact: true })).toHaveCount(0);
+});
+
+test('a refused place deletion keeps its content and allows review again', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin', unpaid: true }); state.placeDeletionError = 'Place changed. Refresh and review deletion again.';
+  await page.goto('/admin?section=places'); await page.getByRole('button', { name: 'Manage', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete Place', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Type moss-apothecary to confirm', { exact: true }).fill('moss-apothecary');
+  await dialog.getByRole('button', { name: 'Permanently Delete Place', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('Place changed');
+  expect(state.placeDeleted).not.toBe(true);
+  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Close place administration', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Manage', exact: true })).toBeVisible();
 });

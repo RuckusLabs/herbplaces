@@ -22,6 +22,7 @@ const requestAddressMigration = await readFile(new URL('../../supabase/migration
 const photoLimitMigration = await readFile(new URL('../../supabase/migrations/202610210004_bloom_photo_limit.sql', import.meta.url), 'utf8');
 const attentionMigration = await readFile(new URL('../../supabase/migrations/202610260001_admin_attention.sql', import.meta.url), 'utf8');
 const adminHandoffMigration = await readFile(new URL('../../supabase/migrations/202610260002_customer_admin_alert_handoff.sql', import.meta.url), 'utf8');
+const placeDeletionMigration = await readFile(new URL('../../supabase/migrations/202610260003_place_deletion.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -53,6 +54,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(photoLimitMigration);
   await database.exec(attentionMigration);
   await database.exec(adminHandoffMigration);
+  await database.exec(placeDeletionMigration);
 }
 
 before(async () => {
@@ -786,4 +788,62 @@ test('installing admin alerts never backfills historical pending requests or loc
     await db.exec(attentionMigration.replace(/^begin;/, '').replace(/commit;\s*$/, ''));
     assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 0);
   } finally { await db.exec('rollback'); }
+});
+
+
+test('place deletion is service-only, requires a confirmed admin and exact slug, and blocks billing', async () => {
+  await assert.rejects(asRole('authenticated', ids.admin, () => rpc('plan_place_deletion', [ids.admin, ids.place])), /permission denied/);
+  await assert.rejects(asRole('service_role', null, () => rpc('plan_place_deletion', [ids.owner, ids.place])), /Administrator access required/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_place_cleanup_jobs')), /Administrator access required/);
+  for (const [slug, expected] of [['wrong-slug', /confirmation/], ['moss-apothecary', /Resolve the subscription/]]) {
+    await asRole('service_role', null, async () => {
+      const plan = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+      await assert.rejects(rpc('delete_place_records', [ids.admin, ids.place, slug, plan.place.version, plan.subscription, []], ['', '', '', '', '::jsonb', '::jsonb']), expected);
+    });
+  }
+});
+
+test('place removal clears content and relationships, preserves other places and shared data, and retains retryable image cleanup', async () => {
+  await db.exec('begin');
+  try {
+    await db.exec("create table public.favorites(id uuid default gen_random_uuid(),user_id uuid,item_id text,item_type text); create trigger require_favorite_place before insert or update of item_id,item_type on public.favorites for each row execute function place_management_private.require_favorite_place()");
+    await db.query("insert into public.favorites(user_id,item_id,item_type) values($1,$2,'place'),($1,$3,'place')", [ids.owner, ids.place, ids.otherPlace]);
+    await db.query("update public.place_subscriptions set status='canceled',checkout_expires_at=null where place_id=$1", [ids.place]);
+    await db.query("insert into public.place_claims(place_id,user_id,relationship,evidence) values($1,$2,'Owner','Delete this evidence')", [ids.place, ids.outsider]);
+    await db.query("insert into public.place_listing_requests(user_id,name,city,status,place_slug) values($1,'Delete this request','Boulder','listed','moss-apothecary')", [ids.outsider]);
+    await db.query("insert into public.place_revisions(place_id,version,content) values($1,0,'{\"name\":\"Old content\",\"photos\":[]}'::jsonb)", [ids.place]);
+    await db.query("insert into public.place_uploads(path,place_id,url) values('owned/old.jpg',$1,'https://test.supabase.co/storage/v1/object/public/place-photos/owned/old.jpg')", [ids.place]);
+    await db.query("insert into storage.objects(bucket_id,name) values('place-photos',$1)", [ids.place+'/unpublished.jpg']);
+    const plan = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+    const job = await rpc('delete_place_records', [ids.admin, ids.place, plan.place.slug, plan.place.version, plan.subscription, [{ bucket:'place-photos',path:'owned/old.jpg' }]], ['', '', '', '', '::jsonb', '::jsonb']);
+    for (const table of ['places','place_memberships','place_invitations','place_claims','place_subscriptions','place_revisions','place_uploads']) {
+      assert.equal((await db.query(`select count(*) from public.${table} where ${table==='places'?'id':'place_id'}::text=$1`, [ids.place])).rows[0].count, 0);
+    }
+    assert.equal((await db.query('select count(*) from public.place_listing_requests')).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.place_customer_notifications')).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.place_admin_notifications where reference=$1', [ids.place])).rows[0].count, 0);
+    assert.equal((await db.query('select count(*) from public.places where id=$1', [ids.otherPlace])).rows[0].count, 1);
+    assert.equal((await db.query('select count(*) from public.favorites')).rows[0].count, 1);
+    await db.exec('savepoint invalid_favorite');
+    await assert.rejects(db.query("insert into public.favorites(user_id,item_id,item_type) values($1,$2,'place')", [ids.owner, ids.place]), /no longer available/);
+    await db.exec('rollback to savepoint invalid_favorite');
+    assert.equal(job.assets.length, 2); // Includes a file uploaded after preview.
+    const retry = await rpc('plan_place_deletion', [ids.admin, ids.place]);
+    assert.equal(retry.cleanup_pending, true); assert.equal(retry.job.token, job.token);
+    await rpc('finish_place_deletion', [ids.place, job.token]);
+    assert.deepEqual(await rpc('plan_place_deletion', [ids.admin, ids.place]), { already_removed: true });
+  } finally { await db.exec('rollback'); }
+});
+
+test('changed content or billing invalidates a deletion plan before records are removed', async () => {
+  for (const field of ['content','billing']) {
+    await db.exec('begin');
+    try {
+      await db.query("update public.place_subscriptions set status='none',checkout_expires_at=null where place_id=$1", [ids.place]);
+      const plan=await rpc('plan_place_deletion',[ids.admin,ids.place]);
+      if(field==='content')await db.query('update public.places set content_version=content_version+1 where id=$1',[ids.place]);
+      else await db.query("update public.place_subscriptions set status='active' where place_id=$1",[ids.place]);
+      await assert.rejects(rpc('delete_place_records',[ids.admin,ids.place,plan.place.slug,plan.place.version,plan.subscription,[]],['','','','','::jsonb','::jsonb']),field==='content'?/Place changed/:/Billing changed/);
+    } finally { await db.exec('rollback'); }
+  }
 });

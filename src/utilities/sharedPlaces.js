@@ -12,6 +12,9 @@ export function createSharedPlaces(load) {
     state = { places: [...state.places.filter(item => String(item.id) !== String(place.id)), place].sort((a, b) => String(a.city || '').localeCompare(String(b.city || ''))), loading: false, error: '' };
     emit();
   };
+  const remove = id => {
+    generation++; state = { ...state, places: state.places.filter(place => String(place.id) !== String(id)) }; emit();
+  };
   function refresh({ force = true } = {}) {
     if (pending) return pending;
     const request = generation;
@@ -27,5 +30,5 @@ export function createSharedPlaces(load) {
     });
     return pending;
   }
-  return { subscribe, snapshot, publish, refresh };
+  return { subscribe, snapshot, publish, remove, refresh };
 }

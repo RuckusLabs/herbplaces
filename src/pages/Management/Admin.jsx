@@ -7,6 +7,7 @@ import { managementRpc } from '../../utilities/managementApi';
 import AdminPlaceDetail from './AdminPlaceDetail';
 import PlaceEditor from '../../components/PlaceManagement/PlaceEditor';
 import RemoveUserDialog from './RemoveUserDialog';
+import DeletePlaceDialog from './DeletePlaceDialog';
 import BulkRemoveUsersDialog from './BulkRemoveUsersDialog';
 import { refreshPlaces } from '../../utilities/placesStore';
 import styles from '../../components/PlaceManagement/management.module.scss';
@@ -67,6 +68,9 @@ export default function Admin() {
   const [listingSlugs, setListingSlugs] = useState({});
   const [creationDraft, setCreationDraft] = useState(null);
   const [creationRequest, setCreationRequest] = useState(null);
+  const [cleanupJobs, setCleanupJobs] = useState([]);
+  const [cleanupError, setCleanupError] = useState(false);
+  const [cleanupTarget, setCleanupTarget] = useState(null);
   const [attention, setAttention] = useState(null);
   const [attentionError, setAttentionError] = useState(false);
   useEffect(() => {
@@ -79,6 +83,12 @@ export default function Admin() {
     window.addEventListener('focus', refresh);
     const timer = window.setInterval(refresh, 60000);
     return () => { active = false; window.removeEventListener('focus', refresh); window.clearInterval(timer); };
+  }, [management.is_admin, attempt]);
+  useEffect(() => {
+    if (!management.is_admin) { setCleanupJobs([]); return; }
+    let active = true;
+    managementRpc('admin_place_cleanup_jobs').then(jobs => { if (active) { setCleanupJobs(Array.isArray(jobs) ? jobs : []); setCleanupError(false); } }).catch(() => { if (active) setCleanupError(true); });
+    return () => { active = false; };
   }, [management.is_admin, attempt]);
   const directory = usePlaces(management.is_admin && section === 'listing-requests');
   useEffect(() => { setQuery(search); }, [search]);
@@ -136,6 +146,8 @@ export default function Admin() {
         <form className={`${styles.form} ${adminStyles.search}`} onSubmit={event => { event.preventDefault(); updateLocation({ q: query.trim(), page: '' }); setAttempt(value => value + 1); }}>
           <label>Search {section === 'users' ? 'by email' : section === 'claims' ? 'by place or email' : 'by place name'}<input type="search" value={query} maxLength={200} placeholder={section === 'users' ? 'Email address' : 'Find a place…'} onChange={event => setQuery(event.target.value)} /></label><div className={styles.actions}><button className="button" disabled={loading}>Search</button>{(search || query) && <button className={styles.ownerTextButton} type="button" disabled={loading} onClick={() => { setQuery(''); updateLocation({ q: '', page: '' }); }}>Clear Search</button>}</div>
         </form>
+        {section === 'places' && cleanupError && <p role="alert" className={styles.error}>Image cleanup tasks couldn’t load. Refresh to try again.</p>}
+        {section === 'places' && cleanupJobs.length > 0 && <aside className={styles.notice} aria-label="Unfinished image cleanup"><h3>Finish deleting stored images</h3><p>These listings are deleted. Their image cleanup needs another attempt.</p>{cleanupJobs.map(job => <div className={styles.member} key={job.id}><span>{job.slug}</span><button className="button" onClick={() => setCleanupTarget(String(job.id))}>Finish Image Cleanup</button></div>)}</aside>}
         {notice && <p role="status" className={styles.notice}>{notice}{newPlace && <> <Link to={`/place/${newPlace.urlSlug}`}>View {newPlace.name}</Link></>}</p>}
         {error && <p role="alert" className={styles.error}>{error}</p>}
         {loading ? <p role="status">Loading…</p> : error ? <button className="button" onClick={() => setAttempt(value => value + 1)}>Retry Loading Results</button> : <>
@@ -176,7 +188,8 @@ export default function Admin() {
         {editingNew && newPlace && <PlaceEditor onNotice={setNotice} key={newPlace.id} place={newPlace} onClose={() => setEditingNew(false)} onPublished={(message, place) => { setNotice(message); setNewPlace(place); setAttempt(value => value + 1); }} />}
         {removing && <RemoveUserDialog account={removing} onClose={() => setRemoving(null)} onRemoved={() => { setNotice(`${removing.email} was removed.`); setRemoving(null); setPage(0); setAttempt(value => value + 1); management.refresh(); refreshPlaces(); }} />}
         {bulkRemoving && <BulkRemoveUsersDialog accounts={bulkRemoving} onRemoved={(ids, totalRemoved) => { setSelectedUsers(previous => previous.filter(id => !ids.includes(id))); setData(previous => ({ ...previous, items: previous.items.filter(account => !ids.includes(account.user_id)), total: Math.max(0, previous.total - ids.length) })); setNotice(`${totalRemoved} ${totalRemoved === 1 ? 'user removed' : 'users removed'}.`); }} onClose={didAttempt => { setBulkRemoving(null); if (didAttempt) { setAttempt(value => value + 1); void management.refresh(); void refreshPlaces(); } }} />}
-        {selected && <AdminPlaceDetail key={selected} placeId={selected} onClose={() => { setSelected(''); setAttempt(value => value + 1); }} />}
+        {cleanupTarget && <DeletePlaceDialog placeId={cleanupTarget} onClose={wasRemoved => { setCleanupTarget(null); if (wasRemoved) { setAttempt(value => value + 1); void management.refresh(); void refreshPlaces(); } }} />}
+        {selected && <AdminPlaceDetail key={selected} placeId={selected} onDeleted={() => { setSelected(''); setNotice('Place content removed. Any unfinished image cleanup is listed in Places.'); updateLocation({ section: 'places', q: '', page: '' }); setAttempt(value => value + 1); void management.refresh(); void refreshPlaces(); }} onClose={() => { setSelected(''); setAttempt(value => value + 1); }} />}
       </>}
   </main>;
 }

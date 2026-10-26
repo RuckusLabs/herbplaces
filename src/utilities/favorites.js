@@ -39,10 +39,19 @@ export function createAccountFavoritesLoader(client, readGuest = getGuestFavorit
       if (error) throw error;
       const existing = data || [];
       const existingIds = new Set(existing.map(favorite => String(favorite.item_id)));
-      const missing = guestIds.filter(id => !existingIds.has(id));
+      let missing = guestIds.filter(id => !existingIds.has(id));
       let added = [];
       if (missing.length) {
-        const result = await client.from('favorites').insert(missing.map(id => ({ user_id: userId, item_id: id, item_type: 'place' }))).select();
+        let result = await client.from('favorites').insert(missing.map(id => ({ user_id: userId, item_id: id, item_type: 'place' }))).select();
+        if (result.error?.message === 'This place is no longer available.') {
+          // A saved guest ID may refer to a place an admin has permanently deleted.
+          // Only discard that ID after a successful authoritative directory read.
+          const directory = await client.from('public_places').select('id');
+          if (directory.error) throw directory.error;
+          const available = new Set((directory.data || []).map(place => String(place.id)));
+          missing = missing.filter(id => available.has(id));
+          result = missing.length ? await client.from('favorites').insert(missing.map(id => ({ user_id: userId, item_id: id, item_type: 'place' }))).select() : { data: [], error: null };
+        }
         if (result.error) throw result.error;
         added = result.data || [];
         const addedIds = new Set(added.map(favorite => String(favorite.item_id)));

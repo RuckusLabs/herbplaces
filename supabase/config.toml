@@ -48,3 +48,7 @@ verify_jwt = false
 [functions.admin-notifications]
 # Dedicated scheduler secret; this endpoint only delivers new admin review alerts.
 verify_jwt = false
+
+[functions.admin-places]
+# Confirmed administrator status is checked against the database per request.
+verify_jwt = false

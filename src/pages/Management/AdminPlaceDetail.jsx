@@ -1,13 +1,14 @@
 import { useEffect, useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import DeletePlaceDialog from './DeletePlaceDialog';
 import Modal from '../../components/Modal/Modal';
 import { useManagement } from '../../contexts/ManagementContext';
 import { geocodePublishedPlace, managementAction, managementRpc } from '../../utilities/managementApi';
 import { refreshPlaces, updatePublishedPlace } from '../../utilities/placesStore';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
-export default function AdminPlaceDetail({ placeId, onClose }) {
+export default function AdminPlaceDetail({ placeId, onClose, onDeleted }) {
   const titleId = useId();
   const management = useManagement();
   const [detail, setDetail] = useState(null);
@@ -19,6 +20,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
   const [busy, setBusy] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [revision, setRevision] = useState(null);
+  const [deleting, setDeleting] = useState(false);
   useEffect(() => {
     let active = true;
     managementRpc('admin_place_detail', { p_place_id: String(placeId) }).then(result => {
@@ -63,6 +65,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
       updatePublishedPlace(place); await geocodePublishedPlace(place); setRevision(null);
     }, 'Earlier content restored.');
   };
+  if (deleting) return <DeletePlaceDialog placeId={String(placeId)} onClose={wasRemoved => { if (wasRemoved) onDeleted(); else setDeleting(false); }} />;
   return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.adminDialog} contentClassName={`${styles.editorBody} ${styles.adminBody}`}>
     <h2 id={titleId} className={styles.editorHeading}>{detail?.place.name || 'Manage Place'}</h2>
     {error && <p role="alert" className={styles.error}>{error}</p>}{notice && <p role="status" className={styles.notice}>{notice}</p>}
@@ -90,7 +93,8 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
         {revision && <section className={styles.preview} aria-label="Revision content"><h3>Version {revision.version}: {revision.content.name}</h3><p>{revision.content.tagline}</p><p>{revision.content.description}</p><p>{[revision.content.address, revision.content.city, revision.content.state, revision.content.zip].filter(Boolean).join(', ')}</p><p>{revision.content.website}</p><p>{revision.content.phone}</p><p>{revision.content.hours}</p>{revision.content.social_links?.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}<p>Categories: {revision.content.category_ids?.join(', ') || 'Inferred from listing'}</p><div className={styles.photoGrid}>{revision.content.photos?.map(photo => <img key={photo} src={photo} alt={revision.content.photo_alt?.[photo] || 'Photo in this revision'} />)}</div><button className="button" disabled={busy} onClick={restore}>Restore This Version</button></section>}
       </section>
       <section className={styles.card}><h3>Recent Activity</h3><ul className={styles.list}>{detail.audit.map((event, index) => <li key={index}>{event.action.replaceAll('_', ' ')} · {new Date(event.created_at).toLocaleString()}{event.details?.email && <span> · {event.details.email}</span>}</li>)}</ul></section>
+      <section className={styles.card}><h3>Permanent deletion</h3><p>Remove this place and its associated database content and stored images. Review the details before confirming.</p><button className={`button ${styles.danger}`} disabled={busy} onClick={() => setDeleting(true)}>Delete Place</button></section>
     </>}
   </Modal>;
 }
-AdminPlaceDetail.propTypes = { placeId: PropTypes.string.isRequired, onClose: PropTypes.func.isRequired };
+AdminPlaceDetail.propTypes = { placeId: PropTypes.string.isRequired, onClose: PropTypes.func.isRequired, onDeleted: PropTypes.func.isRequired };
