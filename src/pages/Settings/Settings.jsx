@@ -1,5 +1,5 @@
 import { passwordlessEnabled } from '../../utilities/authFeatures';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -16,6 +16,7 @@ function AccountSettings({ user }) {
   const [view, setView] = useState(user.user_metadata?.directory_view === 'map' ? 'map' : 'list');
   const [busy, setBusy] = useState('');
   const [feedback, setFeedback] = useState({});
+  useEffect(() => { setEmail(user.new_email || user.email || ''); }, [user.email, user.new_email]);
   const save = async (section, action, success) => {
     setBusy(section); setFeedback(previous => ({ ...previous, [section]: null }));
     try {
@@ -47,7 +48,13 @@ function AccountSettings({ user }) {
 AccountSettings.propTypes = { user: PropTypes.object.isRequired };
 
 export default function Settings() {
-  const { user, loading } = useAuth();
+  const { user, loading, refreshUser } = useAuth();
+  useEffect(() => {
+    const refresh = () => { void refreshUser().catch(() => {}); };
+    refresh();
+    window.addEventListener('focus', refresh);
+    return () => window.removeEventListener('focus', refresh);
+  }, [refreshUser]);
   if (loading) return <main id="main-content" className={styles.page}><p role="status">Loading your account…</p></main>;
   if (!user) return <Navigate to="/login?next=%2Fsettings" replace />;
   return <AccountSettings key={user.id} user={user} />;

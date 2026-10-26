@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useCallback, useEffect, useState } from 'react';
 import supabase from '/src/utilities/supabase';
 import PropTypes from 'prop-types';
 import { getSafeReturnPath } from '../utilities/authNavigation';
@@ -9,6 +9,11 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [creatingAccount, setCreatingAccount] = useState(false);
+  const refreshUser = useCallback(async () => {
+    if (!supabase) return;
+    const { data, error } = await supabase.auth.getUser();
+    if (!error && data?.user) setUser(data.user);
+  }, []);
 
   useEffect(() => {
     if (!supabase) {
@@ -52,6 +57,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
+    refreshUser,
     loading: loading || creatingAccount,
     signIn: options => supabase ? supabase.auth.signInWithPassword(options) : Promise.resolve({ error: new Error('Sign in is temporarily unavailable.') }),
     signUp: async ({ email, password, next }) => {

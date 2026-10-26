@@ -6,6 +6,7 @@ async function setup(page) {
   const user = { id: 'otp-user', email: 'owner@example.com', email_confirmed_at: '2026-01-01T00:00:00Z', aud: 'authenticated', app_metadata: {}, user_metadata: {} };
   const token = `${Buffer.from('{"alg":"HS256"}').toString('base64url')}.${Buffer.from(JSON.stringify({ sub: user.id, exp: Math.floor(Date.now()/1000)+3600, role: 'authenticated' })).toString('base64url')}.test`;
   const session = { access_token: token, refresh_token: 'test-refresh', token_type: 'bearer', expires_in: 3600, user };
+  state.user = user;
   await page.route('**/auth/v1/**', async route => {
     const request = route.request(); const path = new URL(request.url()).pathname;
     const body = request.method() === 'POST' ? request.postDataJSON() : null;
@@ -15,7 +16,7 @@ async function setup(page) {
     if (path.endsWith('/verify') && state.verifyGate) await state.verifyGate;
     if (path.endsWith('/verify') && state.verifyUnavailable) return route.fulfill({ status: 503, json: { msg: 'Temporarily unavailable' } });
     if (path.endsWith('/verify') && body.token !== '123456') return route.fulfill({ status: 403, json: { msg: 'Token expired', error_code: 'otp_expired' } });
-    return route.fulfill({ json: path.endsWith('/verify') ? session : user });
+    return route.fulfill({ json: path.endsWith('/verify') ? session : state.user });
   });
   await page.route('**/rest/v1/**', route => {
     const path = new URL(route.request().url()).pathname;
@@ -39,6 +40,34 @@ async function sendCode(page, registering = false) {
   await page.getByRole('button', { name: 'Send Email Code', exact: true }).click();
   await expect(page.getByLabel('Email code', { exact: true })).toBeFocused();
 }
+
+test('settings refreshes a confirmed email change without losing the account', async ({ page }) => {
+  const state = await setup(page); await page.goto('/login?next=%2Fsettings');
+  await sendCode(page); await page.getByLabel('Email code', { exact: true }).fill('123456');
+  await expect(page).toHaveURL('/settings');
+  await expect(page.getByText('Your current sign-in email is')).toContainText('owner@example.com');
+  state.user = { ...state.user, email: 'changed@example.com' };
+  await page.reload();
+  await expect(page.getByText('Your current sign-in email is')).toContainText('changed@example.com');
+  await expect(page.getByLabel('New email address', { exact: true })).toHaveValue('changed@example.com');
+});
+
+test('email confirmation notices stay visible even with an existing session', async ({ page }, testInfo) => {
+  await setup(page); await page.goto('/login?next=%2Fsettings');
+  await sendCode(page); await page.getByLabel('Email code', { exact: true }).fill('123456');
+  await expect(page).toHaveURL('/settings');
+  await page.goto('/auth/callback?next=%2Fsettings#message=Confirmation%20link%20accepted.%20Please%20proceed%20to%20confirm%20link%20sent%20to%20the%20other%20email');
+  await expect(page.getByRole('heading', { name: 'One More Confirmation.' })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('both are confirmed');
+  await page.screenshot({ path: testInfo.outputPath('email-confirmation.png'), fullPage: true });
+  await page.getByRole('link', { name: 'Return to Account Settings' }).click();
+  await expect(page).toHaveURL('/settings#email');
+  for (const indicator of ['?next=%2Fsettings&error=access_denied', '?next=%2Fsettings#error=access_denied&error_code=otp_expired']) {
+    await page.goto(`/auth/callback${indicator}`);
+    await expect(page.getByRole('alert')).toContainText('may have expired or already been used');
+    await expect(page).toHaveURL(/auth\/callback/);
+  }
+});
 
 test('existing account verifies a code and returns to a safe destination', async ({ page }, testInfo) => {
   const state = await setup(page); await page.goto('/login?next=%2Fsettings');
