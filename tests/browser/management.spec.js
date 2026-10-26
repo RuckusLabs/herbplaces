@@ -258,7 +258,7 @@ test('expired subscriptions retain the listing and send owners to billing', asyn
   await expect(page.getByRole('heading', { name: 'Moss Apothecary', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Edit Place', exact: true })).toHaveCount(0);
   await page.getByRole('link', { name: 'Manage Subscription' }).click(); await expect(page).toHaveURL(/my-places/);
-  await expect(page.getByText('Editing paused', { exact: true })).toBeVisible();
+  await expect(page.getByText('Editing paused', { exact: true }).filter({ visible: true })).toBeVisible();
 });
 
 test('conflicting edits keep the draft and require reloading before publishing', async ({ page }) => {
@@ -822,7 +822,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
 test('renewing owners keep editing while their cycle invoice processes', async ({ page }) => {
   await mockSite(page,{renewalProcessing:true});
   await page.goto('/my-places');
-  await expect(page.getByText('Renewal processing',{exact:true})).toBeVisible();
+  await expect(page.getByText('Renewal processing',{exact:true}).filter({ visible: true })).toBeVisible();
   await page.goto('/place/moss-apothecary');
   await page.getByRole('button',{name:'Edit Place',exact:true}).click();
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -1169,6 +1169,7 @@ test('a single owner gets one place card with older decisions tucked into histor
   await expect(main.getByRole('link', { name: 'return to the listing to submit updated details' })).toBeVisible();
   await main.locator('summary').filter({ hasText: 'Membership Details' }).click();
   await expect(main.getByRole('button', { name: 'Refresh Billing Status', exact: true })).toBeVisible();
+  await main.locator('details').filter({ has: page.locator('summary').filter({ hasText: 'Membership Details' }) }).screenshot({ path: testInfo.outputPath('membership-details.png'), animations: 'disabled' });
 });
 
 test('an unpaid owner sees the checkout step first and can dismiss a canceled checkout notice', async ({ page }, testInfo) => {
