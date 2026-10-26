@@ -25,3 +25,8 @@
   .count { position: absolute; top: 2px; right: 0; min-width: 19px; height: 19px; padding: 0 4px; font-size: 10px; }
 }
 @media(max-width:900px) { .sidebar { position: static; } .sidebarToggle { width: auto; margin-bottom: 10px; } .collapsed { grid-template-columns: minmax(0, 1fr); gap: 16px; .sidebarToggle { width: 48px; } .sections { gap: 8px; button { width: 52px; } } } }
+
+.bulkToolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 14px 16px; border: 1px solid #d8e2c6; border-radius: 12px; background: #f0f5e6; margin-bottom: 18px; p { font-size: 12px; margin: 0; span { color: #62735b; } } > div { display: flex; align-items: center; gap: 16px; :global(.button) { margin: 0; font-size: 12px; } } }
+.selectionCell { width: 40px; input { width: 18px; height: 18px; margin: 3px 0; accent-color: #2c542f; cursor: pointer; &:disabled { cursor: not-allowed; opacity: .4; } } }
+.bulkAccounts { list-style: none; padding: 0; margin: 24px 0; li { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; gap: 12px; padding: 16px 0; border-bottom: 1px solid #e0e6d9; overflow-wrap: anywhere; > div { flex: 1; min-width: 180px; } strong { font-size: 14px; } p { font-size: 12px; line-height: 1.6; margin: 6px 0 0; } } }
+.bulkToolbar > div { flex-wrap: wrap; }

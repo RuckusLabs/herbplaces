@@ -97,6 +97,8 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
   });
   await page.route('**/functions/v1/admin-users', async route => {
     const body = route.request().postDataJSON();
+    state.removalAttempts ||= []; state.removalAttempts.push(body);
+    if (state.removalErrors?.[body.user_id]) return route.fulfill({ status: 400, json: { error: state.removalErrors[body.user_id] } });
     if (state.removalError) return route.fulfill({ status: 400, json: { error: state.removalError } });
     state.removed = body; state.users = state.users.filter(account => account.user_id !== body.user_id);
     return route.fulfill({ json: { removed: true } });
@@ -1546,4 +1548,71 @@ test('admin overlays have padding and scroll to their final controls on short sc
   await expect(dialog.getByRole('button', { name: 'Add Link', exact: true })).toBeInViewport();
   await expect(dialog.getByRole('button', { name: 'Create Place & Add Photos', exact: true })).toBeInViewport();
   await dialog.getByRole('button', { name: 'Close place editor', exact: true }).click();
+});
+
+
+test('bulk removal protects accounts and requires explicit review before removing selected users', async ({ page }, testInfo) => {
+  const state = await mockSite(page, { role: 'admin' });
+  state.users.push({ user_id: 'regular-2', email: 'second@example.com', created_at: '2026-01-01', places: [] });
+  await page.goto('/admin?section=users');
+  const table = page.getByRole('table', { name: 'Users', exact: true });
+  await expect(table.getByRole('checkbox', { name: 'Select admin@example.com', exact: true })).toBeDisabled();
+  await expect(table.getByRole('checkbox', { name: 'Select billing@example.com', exact: true })).toBeDisabled();
+  await table.getByRole('checkbox', { name: 'Select eligible users on this page', exact: true }).check();
+  await expect(table.getByRole('checkbox', { name: 'Select owner@example.com', exact: true })).toBeChecked();
+  await expect(table.getByRole('checkbox', { name: 'Select second@example.com', exact: true })).toBeChecked();
+  await page.getByRole('button', { name: 'Remove Selected (2)', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toContainText('owner@example.com'); await expect(dialog).toContainText('second@example.com');
+  await expect(dialog).toContainText('Moss Apothecary');
+  const remove = dialog.getByRole('button', { name: 'Permanently Remove Selected Users', exact: true });
+  await expect(remove).toBeDisabled();
+  await dialog.getByLabel('Type REMOVE 2 USERS to confirm', { exact: true }).fill('REMOVE ALL USERS');
+  await expect(remove).toBeDisabled(); expect(state.removalAttempts || []).toHaveLength(0);
+  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  expect(state.removalAttempts || []).toHaveLength(0);
+  await page.getByRole('button', { name: 'Remove Selected (2)', exact: true }).click();
+  await dialog.getByLabel('Type REMOVE 2 USERS to confirm', { exact: true }).fill('REMOVE 2 USERS');
+  await page.screenshot({ path: testInfo.outputPath('bulk-removal-review.png'), fullPage: false, animations: 'disabled' });
+  await remove.click();
+  await expect(dialog.getByRole('status').filter({ hasText: '2 of 2 users removed.' })).toBeVisible();
+  expect(state.removalAttempts.map(item => item.user_id)).toEqual(['manager-1', 'regular-2']);
+  await dialog.getByRole('button', { name: 'Done', exact: true }).click();
+  await expect(table.getByRole('row').filter({ hasText: 'owner@example.com' })).toHaveCount(0);
+  await expect(table.getByRole('row').filter({ hasText: 'admin@example.com' })).toBeVisible();
+});
+
+test('bulk removal reports partial failures and retries only failed accounts', async ({ page }) => {
+  const state = await mockSite(page, { role: 'admin' });
+  state.users.push({ user_id: 'regular-2', email: 'second@example.com', created_at: '2026-01-01', places: [] });
+  state.removalErrors = { 'regular-2': 'Reassign this user’s billing contact before removing the account.' };
+  await page.goto('/admin?section=users');
+  await page.getByRole('checkbox', { name: 'Select eligible users on this page', exact: true }).check();
+  await page.getByRole('button', { name: 'Remove Selected (2)', exact: true }).click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByLabel('Type REMOVE 2 USERS to confirm', { exact: true }).fill('REMOVE 2 USERS');
+  await dialog.getByRole('button', { name: 'Permanently Remove Selected Users', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('Reassign');
+  await expect(dialog.getByRole('status').filter({ hasText: '1 of 2 users removed.' })).toBeVisible();
+  state.removalErrors = {};
+  await dialog.getByRole('button', { name: 'Retry Failed Removals', exact: true }).click();
+  await expect(dialog.getByRole('status').filter({ hasText: '2 of 2 users removed.' })).toBeVisible();
+  expect(state.removalAttempts.map(item => item.user_id)).toEqual(['manager-1', 'regular-2', 'regular-2']);
+  await dialog.getByRole('button', { name: 'Done', exact: true }).click();
+  await expect(page.getByRole('status').filter({ hasText: '2 users removed.' })).toBeVisible();
+});
+
+test('bulk user selection resets on search, sorting, refresh, and section changes', async ({ page }) => {
+  await mockSite(page, { role: 'admin' }); await page.goto('/admin?section=users');
+  const select = page.getByRole('checkbox', { name: 'Select owner@example.com', exact: true });
+  await select.check();
+  await page.getByRole('searchbox').fill('owner'); await page.getByRole('button', { name: 'Search', exact: true }).click();
+  await expect(select).not.toBeChecked(); await select.check();
+  await page.getByRole('button', { name: 'Email', exact: true }).click();
+  await expect(select).not.toBeChecked(); await select.check();
+  await page.getByRole('button', { name: 'Refresh', exact: true }).click();
+  await expect(select).not.toBeChecked(); await select.check();
+  await page.getByRole('group', { name: 'Admin sections', exact: true }).getByRole('button', { name: 'Places', exact: true }).click();
+  await page.getByRole('button', { name: 'Users', exact: true }).click();
+  await expect(select).not.toBeChecked();
 });

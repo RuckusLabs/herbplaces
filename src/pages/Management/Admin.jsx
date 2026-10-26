@@ -7,6 +7,7 @@ import { managementRpc } from '../../utilities/managementApi';
 import AdminPlaceDetail from './AdminPlaceDetail';
 import PlaceEditor from '../../components/PlaceManagement/PlaceEditor';
 import RemoveUserDialog from './RemoveUserDialog';
+import BulkRemoveUsersDialog from './BulkRemoveUsersDialog';
 import { refreshPlaces } from '../../utilities/placesStore';
 import styles from '../../components/PlaceManagement/management.module.scss';
 import adminStyles from './admin.module.scss';
@@ -55,6 +56,10 @@ export default function Admin() {
   const sortKey = sortKeys.includes(params.get('sort')) ? params.get('sort') : sortKeys[0];
   const descending = params.get('order') === 'desc';
   const [removing, setRemoving] = useState(null);
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [bulkRemoving, setBulkRemoving] = useState(null);
+  useEffect(() => { setSelectedUsers([]); }, [section, search, page, sortKey, descending, attempt, user?.id]);
+  useEffect(() => { setBulkRemoving(null); }, [user?.id, management.is_admin]);
   const [notice, setNotice] = useState('');
   const [creating, setCreating] = useState(false);
   const [newPlace, setNewPlace] = useState(null);
@@ -110,6 +115,9 @@ export default function Admin() {
   };
   const removalReason = account => account.user_id === user?.id ? 'Your account' : account.is_admin ? 'Administrator account'
     : account.billing_protected ? 'Reassign billing contact first' : account.removal_pending ? 'Removal in progress' : '';
+  const eligibleUsers = section === 'users' ? data.items.filter(account => !removalReason(account)) : [];
+  const chosenUsers = eligibleUsers.filter(account => selectedUsers.includes(account.user_id));
+  const allUsersSelected = eligibleUsers.length > 0 && chosenUsers.length === eligibleUsers.length;
   const allowed = !!user && management.is_admin;
   return <main id="main-content" className={`${styles.page} ${adminStyles.page}`}>
     <Helmet><title>Admin | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
@@ -132,6 +140,7 @@ export default function Admin() {
         {error && <p role="alert" className={styles.error}>{error}</p>}
         {loading ? <p role="status">Loading…</p> : error ? <button className="button" onClick={() => setAttempt(value => value + 1)}>Retry Loading Results</button> : <>
           <p className={adminStyles.resultCount} role="status">{data.total} {['claims', 'listing-requests'].includes(section) ? 'pending requests' : 'results'}{search && <> matching “{search}”</>}</p>
+          {section === 'users' && <div className={adminStyles.bulkToolbar}><p>{chosenUsers.length} selected <span>· Selection applies to this page</span></p><div><button className={styles.ownerTextButton} disabled={!chosenUsers.length} onClick={() => setSelectedUsers([])}>Clear Selection</button><button className={`button ${styles.danger}`} disabled={!chosenUsers.length} onClick={() => setBulkRemoving(chosenUsers)}>Remove Selected ({chosenUsers.length})</button></div></div>}
           {section === 'listing-requests' ? data.items.map(request => <article className={styles.card} key={request.id}>
             <p className={adminStyles.requestType}><Icon name="sprout" size={22} />New listing · Awaiting review</p>
             <h2>{request.name}</h2><p>{[request.address, request.city, request.region, request.zip].filter(Boolean).join(', ')} · {request.email}</p>
@@ -151,8 +160,9 @@ export default function Admin() {
             <div className={styles.form}><label>Review note (visible to the requester)<textarea value={notes[claim.id] || ''} maxLength={3000} onChange={event => { const value = event.target.value; setNotes(previous => ({ ...previous, [claim.id]: value })); }} disabled={busy} /></label></div>
             <div className={styles.actions}><button className="button" disabled={busy} onClick={() => review(claim, true)}>Approve Claim</button><button className="button" disabled={busy} onClick={() => review(claim, false)}>Reject Claim</button><button className="button" onClick={() => setSelected(String(claim.place_id))}>Manage Place</button></div>
           </article>) : <div className={styles.tableWrap}><table aria-label={section === 'users' ? 'Users' : section === 'locations' ? 'Locations' : 'Places'}><thead><tr>{section === 'users' ? <>
-            {heading('email', 'Email')}{heading('confirmed_at', 'Account status')}{heading('place_count', 'Places')}{heading('created_at', 'Joined')}<th scope="col">Actions</th>
+            <th scope="col" className={adminStyles.selectionCell}><input type="checkbox" aria-label="Select eligible users on this page" checked={allUsersSelected} disabled={!eligibleUsers.length} ref={node => { if (node) node.indeterminate = chosenUsers.length > 0 && !allUsersSelected; }} onChange={event => setSelectedUsers(event.target.checked ? eligibleUsers.map(account => account.user_id) : [])} /></th>{heading('email', 'Email')}{heading('confirmed_at', 'Account status')}{heading('place_count', 'Places')}{heading('created_at', 'Joined')}<th scope="col">Actions</th>
           </> : <>{heading('name', 'Place')}{heading('city', 'City')}{heading('subscription_status', 'Subscription')}{heading('geocode_status', 'Location')}<th scope="col">Manage</th></>}</tr></thead><tbody>{data.items.map(item => section === 'users' ? <tr key={item.user_id}>
+            <td className={adminStyles.selectionCell}><input type="checkbox" aria-label={`Select ${item.email}`} title={removalReason(item) || `Select ${item.email}`} disabled={!!removalReason(item)} checked={chosenUsers.some(account => account.user_id === item.user_id)} onChange={event => setSelectedUsers(previous => event.target.checked ? [...previous, item.user_id] : previous.filter(id => id !== item.user_id))} /></td>
             <td>{item.email}{item.is_admin && <small className={styles.status}>Admin</small>}</td><td>{item.confirmed_at ? 'Email confirmed' : 'Awaiting confirmation'}</td>
             <td>{item.places?.length ? <ul className={styles.placeLinks}>{item.places.map(place => <li key={place.id}><button onClick={() => setSelected(place.id)} title={`Manage ${place.name}`}>{place.name}</button><small>{place.pending ? 'Invitation pending' : 'Manager'}{place.is_billing_contact ? ' · Billing contact' : ''}</small></li>)}</ul> : 'No assigned places'}</td>
             <td>{new Date(item.created_at).toLocaleDateString()}</td><td><button className={`button ${styles.danger}`} disabled={!!removalReason(item)} onClick={() => setRemoving(item)}>Remove User</button>{removalReason(item) && <p className={styles.small}>{removalReason(item)}</p>}</td>
@@ -165,6 +175,7 @@ export default function Admin() {
         {creating && <PlaceEditor onNotice={setNotice} initialContent={creationDraft} onClose={() => setCreating(false)} onPublished={(message, place) => { setNotice(`${message} URL slug: ${place.urlSlug}`); setNewPlace(place); setEditingNew(true); if (creationRequest) setListingSlugs(previous => ({ ...previous, [creationRequest]: place.urlSlug })); updateLocation({ section: section === 'listing-requests' ? section : 'places', q: '', page: '', sort: '', order: '' }); setQuery(''); setAttempt(value => value + 1); }} />}
         {editingNew && newPlace && <PlaceEditor onNotice={setNotice} key={newPlace.id} place={newPlace} onClose={() => setEditingNew(false)} onPublished={(message, place) => { setNotice(message); setNewPlace(place); setAttempt(value => value + 1); }} />}
         {removing && <RemoveUserDialog account={removing} onClose={() => setRemoving(null)} onRemoved={() => { setNotice(`${removing.email} was removed.`); setRemoving(null); setPage(0); setAttempt(value => value + 1); management.refresh(); refreshPlaces(); }} />}
+        {bulkRemoving && <BulkRemoveUsersDialog accounts={bulkRemoving} onRemoved={(ids, totalRemoved) => { setSelectedUsers(previous => previous.filter(id => !ids.includes(id))); setData(previous => ({ ...previous, items: previous.items.filter(account => !ids.includes(account.user_id)), total: Math.max(0, previous.total - ids.length) })); setNotice(`${totalRemoved} ${totalRemoved === 1 ? 'user removed' : 'users removed'}.`); }} onClose={didAttempt => { setBulkRemoving(null); if (didAttempt) { setAttempt(value => value + 1); void management.refresh(); void refreshPlaces(); } }} />}
         {selected && <AdminPlaceDetail key={selected} placeId={selected} onClose={() => { setSelected(''); setAttempt(value => value + 1); }} />}
       </>}
   </main>;
