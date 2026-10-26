@@ -8,9 +8,11 @@ test('claim decision emails address the account and link to the next action with
   const received = customerNotificationEmail({ kind: 'claim_received', payload }, config);
   assert.deepEqual(received.to, ['owner@example.com']); assert.match(received.text, /No payment has been taken/);
   const approved = customerNotificationEmail({ kind: 'claim_approved', payload }, config);
-  assert.match(approved.text, /No subscription has been started/); assert.match(approved.text, /favorites#my-places/);
+  assert.match(approved.text, /No subscription has been started/); assert.match(approved.text, /my-places/);
   const rejected = customerNotificationEmail({ kind: 'claim_rejected', payload }, config);
-  assert.match(rejected.text, /provide a link/); assert.equal(rejected.html, undefined);
+  assert.match(rejected.text, /provide a link/); assert.ok(rejected.html.includes('little-herb-places-logo-v1.png'));
+  const unsafe = customerNotificationEmail({ kind: 'claim_rejected', payload: { ...payload, place_name: '<script>bad()</script>', review_note: '<img src=x>' } }, config);
+  assert.ok(!unsafe.html.includes('<script>')); assert.ok(unsafe.html.includes('&lt;img src=x&gt;'));
 });
 test('listing messages distinguish public listing creation from approved ownership', () => {
   const customer = customerNotificationEmail({ kind: 'listing_reviewed', payload: { ...payload, status: 'listed' } }, config);

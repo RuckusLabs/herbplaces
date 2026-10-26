@@ -14,7 +14,8 @@
     "preview": "vite preview",
     "deploy": "npm run build:pages && gh-pages -d dist --cname littleherbplaces.com",
     "build:pages": "vite build && node scripts/build-seo.mjs",
-    "test:passwordless": "playwright test --config playwright.passwordless.config.js"
+    "test:passwordless": "playwright test --config playwright.passwordless.config.js",
+    "build:emails": "node scripts/build-auth-email-templates.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",

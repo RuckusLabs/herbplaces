@@ -1,10 +1,11 @@
+import { textEmailHtml } from './emailBranding.js';
 import { verificationEmail } from './claimNotifications.js';
 
 export function customerNotificationEmail(job, { from, siteUrl }) {
   const origin = new URL(siteUrl);
   if (!['https:', 'http:'].includes(origin.protocol)) throw new Error('Invalid site URL.');
   const details = job.payload;
-  const account = new URL('/favorites#my-places', origin.origin).href;
+  const account = new URL('/my-places', origin.origin).href;
   const requests = new URL('/request-place', origin.origin).href;
   const listing = details.place_slug ? new URL(`/place/${encodeURIComponent(details.place_slug)}`, origin.origin).href : '';
   const messages = {
@@ -18,11 +19,12 @@ export function customerNotificationEmail(job, { from, siteUrl }) {
   const message = messages[job.kind];
   if (!message) throw new Error('Unknown notification kind.');
   if (job.kind !== 'listing_admin' && (typeof details.account_email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(details.account_email))) throw new Error('Invalid notification recipient.');
-  return {
+  const email = {
     from, to: [job.kind === 'listing_admin' ? verificationEmail : details.account_email],
     subject: `${message[0]}: ${details.place_name}`.replace(/[\r\n]/g, ' ').slice(0, 200),
     text: [message[1], details.review_note && `Review note:\n${details.review_note}`, message[2], listing && `Place: ${listing}`, 'Questions? Email help@littleherbplaces.com.'].filter(Boolean).join('\n\n'),
   };
+  return { ...email, html: textEmailHtml(message[0], email.text) };
 }
 
 export async function dispatchCustomerNotifications({ database, apiKey, from, siteUrl, fetchImpl = fetch }) {

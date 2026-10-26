@@ -17,7 +17,10 @@ test('verification email includes ownership evidence and review links with a fix
   const email = claimNotificationEmail(payload, config);
   assert.deepEqual(email.to, ['admin@littleherbplaces.com']);
   for (const detail of ['Moss Apothecary', 'owner@example.com', 'Jamie Green', 'jamie@moss.example', 'Our team page', 'https://littleherbplaces.com/admin', '/place/moss-apothecary']) assert.ok(email.text.includes(detail));
-  assert.equal(email.html, undefined); // User-provided evidence remains plain text.
+  assert.ok(email.html.includes('little-herb-places-logo-v1.png'));
+  const unsafe = claimNotificationEmail({ ...payload, evidence: '<img src=x onerror=alert(1)>' }, config);
+  assert.ok(unsafe.html.includes('&lt;img src=x onerror=alert(1)&gt;'));
+  assert.ok(!unsafe.html.includes('<img src=x'));
   assert.equal(claimNotificationEmail({ ...payload, place_name: 'A\r\nB' }, config).subject, 'New place claim: A  B');
 });
 

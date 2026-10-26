@@ -2,6 +2,10 @@
 
 Place management stays in the current React site. Supabase runs trusted operations; Stripe processes Bloom subscriptions. Public listings and favorites retain their IDs. Thrive's external-link product store remains a later release.
 
+## Current email status — October 26, 2026
+
+Resend and Supabase SMTP are configured, real existing-owner code sign-in is verified, and email confirmation is required. Signup, sign-in, invitations, email-change confirmation, recovery, and reauthentication templates are branded and saved in hosted Auth. Claim/listing HTML branding is deployed with escaped user content and a plain-text fallback; dispatch remains paused. New-account mailbox confirmation and real two-inbox email changes still require testing. Public purchases and frontend publication remain separate review gates. The dated sections below retain earlier checkpoints.
+
 ## October 21 hosted preparation — ready for review
 
 With the user's instruction to continue, the hosted project `qtpepsebztlremlhpxdt` now has migrations `202610190005`, `202610210001`, and `202610210002`. Updated `place-management`, `stripe-webhook`, `billing-reconcile`, and `claim-notifications` functions are deployed; `admin-users` was preserved. Purchases remain disabled. Hourly billing reconciliation is active and its HTTP invocation returned 200 with no failures. Email dispatch remains off.
@@ -304,3 +308,14 @@ The owner received the Supabase code at the selected existing-account inbox and 
 Old password/recovery forms remain available only with an explicit `VITE_PASSWORDLESS_ENABLED=false` compatibility override; public passwordless routes no longer offer password creation. Supabase's underlying password APIs have not been disabled by this UI change. The dedicated passwordless browser suite now builds and serves the production bundle to verify the released flow rather than relying on the development server.
 
 Final verification: 141 unit/database tests, 152 existing browser regressions, and 18 production-built passwordless desktop/mobile checks pass. Targeted lint and the complete Pages export pass (17 place cards, 12 site cards). Hosted readiness confirms email confirmation is required, purchases remain off, and the same three customer test notifications remain unsent. An independent Auth query confirms all 14 accounts remain, zero password hashes were recreated, and the signed-in test owner still has the original owner UUID and one management membership.
+
+
+### Email logo and theme (October 26, 2026)
+
+Account emails now share the actual script logo, dark green `#2C542F`, lime `#EAFF82`, and soft green `#C0D16B`, with a serif heading, clear code panel or action button, and the site's tagline. The six hosted Auth templates (signup, sign-in, invite, email change, recovery, reauthentication) are saved with the shared design and preserve their required token/link variables. Disabled optional security-notification templates were not enabled. No test or queued email was sent by this branding change.
+
+The email-safe PNG is versioned at `public/assets/branding/little-herb-places-logo.png` and hosted publicly at `https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/brand-assets/little-herb-places-logo-v1.png`, avoiding a dependency on the unpublished frontend. An unauthenticated fetch returned HTTP 200, PNG content, and bytes matching the source. `supabase/setup-email-branding.sql` creates the image-only public bucket with a 256 KiB file limit and a restrictive policy denying browser writes. Only the public logo is stored there; no account data is uploaded.
+
+`npm run build:emails` regenerates the checked-in Auth templates from the shared `emailBranding.js` wrapper. Updating these source files does not automatically update hosted Auth: paste the generated HTML into the matching template, save, and confirm the preview. Claim and listing notification renderers use the same wrapper with HTML-escaped request/review text and retain their plain-text versions. The notification function is deployed, but no dispatch trigger or scheduler was enabled. Claim emails now link directly to `/my-places`.
+
+Validation: all 141 unit/database tests and targeted lint pass. Notification tests cover escaped HTML in ownership evidence, place names, and review notes, fixed recipients, idempotency, and retries. Hosted Auth previews were checked for the saved logo, colors, code/link placeholders, and copy. Existing authentication and billing settings were not changed by this branding update.
