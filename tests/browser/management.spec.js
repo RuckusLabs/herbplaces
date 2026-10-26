@@ -1494,3 +1494,56 @@ test('admin email review links preserve their section through sign-in', async ({
   await page.goto('/admin?section=listing-requests');
   await expect(page.getByRole('link', { name: 'Sign In', exact: true })).toHaveAttribute('href', '/login?next=%2Fadmin%3Fsection%3Dlisting-requests');
 });
+
+test('admin sidebar collapses to icons, retains badges, and remembers its width', async ({ page, isMobile }, testInfo) => {
+  const state = await mockSite(page, { role: 'admin' }); state.attentionCounts = { claims: 3, 'listing-requests': 2, locations: 1 };
+  await page.goto('/admin');
+  const sidebar = page.getByRole('complementary', { name: 'Admin sidebar', exact: true });
+  const content = page.getByRole('region', { name: 'Claim Requests', exact: true });
+  const expandedWidth = await content.evaluate(element => element.getBoundingClientRect().width);
+  await sidebar.getByRole('button', { name: 'Collapse sidebar', exact: true }).click();
+  await expect(sidebar.getByRole('button', { name: 'Expand sidebar', exact: true })).toHaveAttribute('aria-expanded', 'false');
+  await expect(sidebar.getByRole('button', { name: 'Claim Requests', exact: true })).toHaveAttribute('title', 'Claim Requests · 3 awaiting review');
+  await expect(sidebar.getByRole('button', { name: 'Claim Requests', exact: true }).locator('span').first()).not.toBeVisible();
+  await expect(sidebar.getByRole('button', { name: 'Claim Requests', exact: true }).locator('span[aria-hidden="true"]')).toBeVisible();
+  await expect(sidebar.getByRole('button', { name: 'Location Review', exact: true }).locator('[data-icon="nearby"]')).toBeVisible();
+  if (!isMobile) expect(await content.evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(expandedWidth + 100);
+  await page.reload();
+  await expect(sidebar.getByRole('button', { name: 'Expand sidebar', exact: true })).toBeVisible();
+  await sidebar.getByRole('button', { name: 'Users', exact: true }).click();
+  await expect(page.getByRole('table', { name: 'Users', exact: true })).toBeVisible();
+  await page.screenshot({ path: testInfo.outputPath('admin-sidebar-collapsed.png'), fullPage: true, animations: 'disabled' });
+  await sidebar.getByRole('button', { name: 'Expand sidebar', exact: true }).click();
+  await expect(sidebar.getByRole('button', { name: 'Users', exact: true }).locator('span').first()).toBeVisible();
+});
+
+test('admin overlays have padding and scroll to their final controls on short screens', async ({ page, isMobile }, testInfo) => {
+  await page.setViewportSize({ width: isMobile ? 390 : 1280, height: 600 });
+  const state = await mockSite(page, { role: 'admin' });
+  await page.goto('/admin?section=places');
+  await page.getByRole('button', { name: 'Manage', exact: true }).click();
+  let dialog = page.getByRole('dialog');
+  await expect(dialog.getByRole('heading', { name: 'Managers', exact: true })).toBeVisible();
+  expect(await dialog.locator(':scope > div').evaluate(element => parseFloat(getComputedStyle(element).paddingLeft))).toBeGreaterThanOrEqual(22);
+  expect(await dialog.evaluate(element => element.scrollHeight > element.clientHeight)).toBe(true);
+  await dialog.hover(); await page.mouse.wheel(0, 5000);
+  await expect.poll(() => dialog.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+  await expect(dialog.getByRole('heading', { name: 'Recent Activity', exact: true })).toBeInViewport();
+  expect(await dialog.evaluate(element => element.getBoundingClientRect().height <= window.innerHeight - 16)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath('admin-overlay-scrolled.png'), animations: 'disabled' });
+  await page.keyboard.press('Escape');
+  state.users[1].places = Array.from({ length: 25 }, (_, index) => ({ id: `place-${index}`, name: `Managed Place ${index}` }));
+  await page.getByRole('button', { name: 'Users', exact: true }).click();
+  await page.getByRole('row').filter({ hasText: 'owner@example.com' }).getByRole('button', { name: 'Remove User', exact: true }).click();
+  dialog = page.getByRole('dialog');
+  expect(await dialog.locator(':scope > div').evaluate(element => parseFloat(getComputedStyle(element).paddingLeft))).toBeGreaterThanOrEqual(22);
+  await dialog.hover(); await page.mouse.wheel(0, 5000);
+  await expect(dialog.getByRole('button', { name: 'Cancel', exact: true })).toBeInViewport();
+  await dialog.getByRole('button', { name: 'Cancel', exact: true }).click();
+  await page.getByRole('button', { name: 'Add Place', exact: true }).click();
+  dialog = page.getByRole('dialog');
+  await dialog.getByRole('navigation', { name: 'Editor sections', exact: true }).getByRole('button', { name: 'Links', exact: true }).click();
+  await expect(dialog.getByRole('button', { name: 'Add Link', exact: true })).toBeInViewport();
+  await expect(dialog.getByRole('button', { name: 'Create Place & Add Photos', exact: true })).toBeInViewport();
+  await dialog.getByRole('button', { name: 'Close place editor', exact: true }).click();
+});

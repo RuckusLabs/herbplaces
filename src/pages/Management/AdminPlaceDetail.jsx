@@ -63,7 +63,7 @@ export default function AdminPlaceDetail({ placeId, onClose }) {
       updatePublishedPlace(place); await geocodePublishedPlace(place); setRevision(null);
     }, 'Earlier content restored.');
   };
-  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.editorDialog} contentClassName={styles.editorBody}>
+  return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={titleId} closeLabel="Close place administration" className={styles.adminDialog} contentClassName={`${styles.editorBody} ${styles.adminBody}`}>
     <h2 id={titleId} className={styles.editorHeading}>{detail?.place.name || 'Manage Place'}</h2>
     {error && <p role="alert" className={styles.error}>{error}</p>}{notice && <p role="status" className={styles.notice}>{notice}</p>}
     {!detail ? error ? <button className="button" onClick={() => { setError(''); setAttempt(value => value + 1); }}>Retry Loading Place</button> : <p role="status">Loading place details…</p> : <>

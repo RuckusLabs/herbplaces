@@ -160,3 +160,11 @@
 .pagePreviewError { font-size: 13px; color: #873c2c; line-height: 1.6; margin: 14px 0 0; }
 @media(max-width:850px) { .pagePreviewInner { flex-wrap: wrap; } .pagePreviewActions { flex-wrap: wrap; } }
 @media(max-width:540px) { .pagePreviewBar { padding: 14px 5%; } .pagePreviewLabel strong { font-size: 14px; } .pagePreviewActions { width: 100%; gap: 8px; .editorCancel { padding: 8px 0; font-size: 11px; } .editorSecondary, :global(.button) { font-size: 11px; padding: 10px; } } }
+
+// Administration uses a scrolling document, separate from the editor's fixed
+// header/footer and internal form scroller.
+.adminDialog { width: min(960px, calc(100% - 32px)); height: auto; max-height: calc(100dvh - 40px); overflow-y: auto; overscroll-behavior: contain; scroll-padding: 24px; }
+.adminDialog .adminBody { padding: 36px; text-align: left; .editorHeading { margin-top: 0; } }
+@media(max-width:650px) { .adminDialog { width: calc(100% - 20px); max-height: calc(100dvh - 20px); } .adminDialog .adminBody { padding: 32px 22px 24px; } }
+
+.adminRemovalDialog { width: min(540px, calc(100% - 20px)); }

@@ -19,7 +19,7 @@ const sectionDetails = {
   'listing-requests': ['sprout', 'Check for an existing place, then create or link a listing. Ownership is reviewed separately.', 'No listing requests to review', 'New suggestions for the directory will appear here.'],
   places: ['shop', 'Find a listing to edit its content, manage access, or review its history.', 'No places found', 'Try a different search or add a place to the directory.'],
   users: ['group', 'See account status, assigned places, and billing responsibilities.', 'No accounts found', 'Try searching with a different email address.'],
-  locations: ['pin', 'Resolve addresses that need attention so places appear in the right spot on the map.', 'No locations to review', 'Places that need location attention will appear here.'],
+  locations: ['nearby', 'Resolve addresses that need attention so places appear in the right spot on the map.', 'No locations to review', 'Places that need location attention will appear here.'],
 };
 
 export default function Admin() {
@@ -30,6 +30,14 @@ export default function Admin() {
   const search = (params.get('q') || '').slice(0, 200);
   const page = /^\d{1,6}$/.test(params.get('page') || '') ? Math.max(0, Number(params.get('page')) - 1) : 0;
   const [query, setQuery] = useState(search);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    try { return localStorage.getItem('lhp-admin-sidebar-collapsed') === 'true'; } catch { return false; }
+  });
+  const toggleSidebar = () => setSidebarCollapsed(previous => {
+    const next = !previous;
+    try { localStorage.setItem('lhp-admin-sidebar-collapsed', String(next)); } catch { /* The current view still works without storage. */ }
+    return next;
+  });
   const updateLocation = changes => setParams(previous => {
     const next = new URLSearchParams(previous);
     for (const [key, value] of Object.entries(changes)) { if (value) next.set(key, String(value)); else next.delete(key); }
@@ -110,8 +118,11 @@ export default function Admin() {
       : !user ? <Link className="button" to={`/login?next=${encodeURIComponent(`/admin${params.size ? `?${params}` : ''}`)}`}>Sign In</Link>
       : !allowed ? <><p role="alert" className={styles.notice}>{management.error || 'This area is for Little Herb Places administrators.'}</p><Link className="button" to="/favorites">Saved Places</Link></>
       : <>
-        <div className={adminStyles.workspace}>
-        <div className={adminStyles.sections} role="group" aria-label="Admin sections">{sections.map(([id, label]) => <button key={id} aria-label={label} title={attention?.[id] > 0 ? `${attention[id]} awaiting review` : undefined} aria-current={section === id ? 'page' : undefined} onClick={() => { if (section === id) return; setData({ items: [], total: 0 }); setLoading(true); setNotice(''); updateLocation({ section: id, q: '', page: '', sort: '', order: '' }); }}><Icon name={sectionDetails[id][0]} size={28} /><span>{label}</span>{attention?.[id] > 0 && <span className={adminStyles.count} aria-hidden="true">{attention[id] > 99 ? '99+' : attention[id]}</span>}</button>)}{attentionError && <p className={styles.small} role="status">Review counts couldn’t refresh.</p>}</div>
+        <div className={`${adminStyles.workspace} ${sidebarCollapsed ? adminStyles.collapsed : ''}`}>
+        <aside className={adminStyles.sidebar} aria-label="Admin sidebar">
+        <button className={adminStyles.sidebarToggle} type="button" aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'} title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'} aria-expanded={!sidebarCollapsed} aria-controls="admin-section-links" onClick={toggleSidebar}><Icon name={sidebarCollapsed ? 'sidebar-expand' : 'sidebar-collapse'} size={22} /><span>Collapse sidebar</span></button>
+        <div id="admin-section-links" className={adminStyles.sections} role="group" aria-label="Admin sections">{sections.map(([id, label]) => <button key={id} aria-label={label} title={`${label}${attention?.[id] > 0 ? ` · ${attention[id]} awaiting review` : ''}`} aria-current={section === id ? 'page' : undefined} onClick={() => { if (section === id) return; setData({ items: [], total: 0 }); setLoading(true); setNotice(''); updateLocation({ section: id, q: '', page: '', sort: '', order: '' }); }}><Icon name={sectionDetails[id][0]} size={28} /><span className={adminStyles.sectionLabel}>{label}</span>{attention?.[id] > 0 && <span className={adminStyles.count} aria-hidden="true">{attention[id] > 99 ? '99+' : attention[id]}</span>}</button>)}{attentionError && <p className={styles.small} role="status">Review counts couldn’t refresh.</p>}</div>
+        </aside>
         <section className={adminStyles.content} aria-label={sections.find(([id]) => id === section)[1]}>
         <div className={adminStyles.sectionHeading}><div><h2>{sections.find(([id]) => id === section)[1]}</h2><p>{sectionDetails[section][1]}</p></div><button className={styles.ownerTextButton} disabled={loading || busy} onClick={() => setAttempt(value => value + 1)}>Refresh</button></div>
         <form className={`${styles.form} ${adminStyles.search}`} onSubmit={event => { event.preventDefault(); updateLocation({ q: query.trim(), page: '' }); setAttempt(value => value + 1); }}>
