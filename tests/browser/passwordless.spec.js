@@ -43,9 +43,9 @@ async function sendCode(page, registering = false) {
 test('existing account verifies a code and returns to a safe destination', async ({ page }, testInfo) => {
   const state = await setup(page); await page.goto('/login?next=%2Fsettings');
   await expect(page.getByLabel('Password', { exact: true })).toHaveCount(0);
-  await page.screenshot({ path: `/private/tmp/herbplaces-passwordless-${testInfo.project.name}-email.png`, fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('email-entry.png'), fullPage: true });
   await sendCode(page);
-  await page.screenshot({ path: `/private/tmp/herbplaces-passwordless-${testInfo.project.name}-code.png`, fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('code-entry.png'), fullPage: true });
   expect(state.auth.find(item => item.path.endsWith('/otp')).body.create_user).toBe(false);
   await expect(page.getByRole('button', { name: /Resend in/ })).toBeDisabled();
   await page.getByLabel('Email code', { exact: true }).fill('000000');

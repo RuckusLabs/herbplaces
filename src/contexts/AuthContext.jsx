@@ -56,15 +56,10 @@ export function AuthProvider({ children }) {
     signIn: options => supabase ? supabase.auth.signInWithPassword(options) : Promise.resolve({ error: new Error('Sign in is temporarily unavailable.') }),
     signUp: async ({ email, password, next }) => {
       if (!supabase) return { error: new Error('Registration is temporarily unavailable.') };
-      // Wait for profile setup before favorites begin merging into a new account.
+      // Favorites reference auth.users directly; no separate profile row is required.
       setCreatingAccount(true);
       try {
-        const result = await supabase.auth.signUp({ email, password, options: { data: { email }, emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` } });
-        if (!result.error && result.data.user && result.data.session) {
-          const { error } = await supabase.from('profiles').upsert({ id: result.data.user.id, email: result.data.user.email || email, created_at: new Date().toISOString() }, { onConflict: 'id', ignoreDuplicates: true });
-          if (error) console.warn('Profile creation could not be confirmed:', error.message);
-        }
-        return result;
+        return await supabase.auth.signUp({ email, password, options: { data: { email }, emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next, '/favorites'))}` } });
       } finally { setCreatingAccount(false); }
     },
     sendEmailCode: ({ email, registering, next }) => supabase ? supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: registering, emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(getSafeReturnPath(next))}` } }) : Promise.resolve({ error: new Error('Email sign-in is temporarily unavailable.') }),
@@ -72,13 +67,7 @@ export function AuthProvider({ children }) {
       if (!supabase) return { error: new Error('Email sign-in is temporarily unavailable.') };
       setCreatingAccount(true);
       try {
-        const result = await supabase.auth.verifyOtp({ email, token, type: 'email' });
-        if (!result.error && result.data?.session) {
-          const account = result.data.session.user;
-          const { error } = await supabase.from('profiles').upsert({ id: account.id, email: account.email, created_at: new Date().toISOString() }, { onConflict: 'id', ignoreDuplicates: true });
-          if (error) console.warn('Profile creation could not be confirmed:', error.message);
-        }
-        return result;
+        return await supabase.auth.verifyOtp({ email, token, type: 'email' });
       } finally { setCreatingAccount(false); }
     },
     updateProfile: data => supabase ? supabase.auth.updateUser({ data }) : Promise.resolve({ error: new Error('Account settings are temporarily unavailable.') }),
