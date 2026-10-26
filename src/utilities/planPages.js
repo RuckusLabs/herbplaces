@@ -30,7 +30,7 @@ export const planPages = {
       { question: 'Does my place need Bloom to be listed?', answer: 'No. Requesting a listing and claiming ownership are free. Bloom is the subscription that enables approved managers to edit the listing and upload photos.' },
       { question: 'What if my place isn’t in the directory yet?', answer: 'Send a free listing request first. After our team adds or links the listing, open it and submit an ownership claim. Listing approval does not automatically approve you as a manager.' },
       { question: 'When do I pay?', answer: 'Only after your ownership claim has been approved and you choose to subscribe when purchases are available. There is no charge to send a listing request or ownership claim.' },
-      { question: 'Can I cancel?', answer: 'Yes. Cancel future renewals in Manage Billing from My Places. Editing continues through the paid period, and your published listing stays visible after editing access ends.' },
+      { question: 'Can I cancel?', answer: 'Yes. Cancel future renewals in Manage Billing with Stripe from My Places. Editing continues through the paid period, and your published listing stays visible after editing access ends.' },
       { question: 'Is the price per manager or per place?', answer: 'Bloom is $19 USD per month per place. All approved managers of that place are included; a separate place needs its own subscription.' },
     ],
   },

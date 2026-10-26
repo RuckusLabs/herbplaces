@@ -21,8 +21,8 @@ export default function Help() {
     {questions.map(([question, answer]) => <section className={styles.card} key={question}><h2>{question}</h2><p>{answer}</p></section>)}
     <section id="billing" className={styles.card}><h2>Billing & Cancellation</h2>
       <p>Bloom’s launch offer is {bloomOffer.label}, billed in USD. Claim approval comes before payment. Purchases remain unavailable until billing is enabled; no subscription starts when you create an account or submit a claim.</p>
-      <p>Bloom renews monthly until canceled. The billing contact can open My Places → Manage Billing to update payment details, view invoices, and cancel future renewals. Editing continues through the paid period when cancellation is scheduled for period end. Published content remains visible afterward.</p>
-      <p>If a renewal fails, eligible subscriptions have a seven-day editing grace period from the first failure. Resolve the payment in Manage Billing, then refresh billing status. Renewed payment attempts do not restart that window.</p>
+      <p>Bloom renews monthly until canceled. The billing contact can open My Places → Manage Billing with Stripe to update payment details, view invoices, and cancel future renewals. Editing continues through the paid period when cancellation is scheduled for period end. Published content remains visible afterward.</p>
+      <p>If a renewal fails, eligible subscriptions have a seven-day editing grace period from the first failure. Resolve the payment in Manage Billing with Stripe, then refresh billing status. Renewed payment attempts do not restart that window.</p>
       <p>Already paid but editing is still locked? Choose Refresh Billing Status in My Places. Please don’t purchase another subscription. If it remains locked, contact us with the listing name and payment date.</p>
       <p>For billing corrections or refund requests, email us with the listing name and invoice reference. Don’t send card details or passwords. See <Link to="/membership-terms">membership terms</Link> and our <Link to="/privacy">privacy information</Link>.</p>
     </section>
