@@ -504,6 +504,9 @@ test('My Places is separate from saved places and preserves old billing return l
   const menu = page.getByRole('button', { name: 'Open menu' });
   const mobileMenu = await menu.isVisible();
   if (mobileMenu) await menu.click();
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(0);
+  await page.getByRole('navigation').first().locator('button[aria-controls]:not([aria-controls="main-navigation"])').click();
   await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
   if (mobileMenu) await page.getByRole('button', { name: 'Close menu' }).click();
   await page.screenshot({ path: testInfo.outputPath('my-places-page.png'), fullPage: true, animations: 'disabled' });
@@ -521,6 +524,7 @@ test('pending claimants get My Places while people only saving places do not', a
   await expect(page.getByRole('main', { name: 'My Places', exact: true })).toHaveCount(0);
   const menu = page.getByRole('button', { name: 'Open menu' });
   if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().locator('button[aria-controls]:not([aria-controls="main-navigation"])').click();
   await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
   await expect(page.getByRole('main', { name: 'My Places', exact: true })).toContainText('Pending review');
   state.claims = [];
@@ -1109,6 +1113,7 @@ test('My Places prioritizes the managed place, removes approved duplicates, and 
   // Return through the app without reloading the management provider.
   const menu = page.getByRole('button', { name: 'Open menu' });
   if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().locator('button[aria-controls]:not([aria-controls="main-navigation"])').click();
   await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
   await expect(places.getByRole('article').filter({ hasText: 'New Garden Shop' })).toContainText('Pending review');
   state.claims.push({ id: 'new-claim', place_id: 'place-2', name: 'Another Herb Place', urlSlug: 'another-herb-place', status: 'pending' });
@@ -1129,6 +1134,7 @@ test('a first listing request adds My Places to navigation without adding manage
   await expect(page.getByRole('status').filter({ hasText: 'Your listing request is saved' })).toBeVisible();
   const menu = page.getByRole('button', { name: 'Open menu' });
   if (await menu.isVisible()) await menu.click();
+  await page.getByRole('navigation').first().locator('button[aria-controls]:not([aria-controls="main-navigation"])').click();
   await page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true }).click();
   await expect(page).toHaveURL(/my-places$/);
   await expect(page.getByRole('heading', { name: 'My Places', level: 1, exact: true })).toBeVisible();
@@ -1330,7 +1336,10 @@ test('account dropdown identifies the user and supports dismissal and sign out',
   const navigation = page.getByRole('navigation', { name: 'Main navigation' });
   const account = navigation.getByRole('button', { name: displayName || 'owner', exact: true });
   await expect(account).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
+  await expect(navigation.getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(0);
   await account.click();
+  await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
   await expect(navigation.getByText('owner@example.com', { exact: true })).toBeVisible();
   await expect(account).toHaveAttribute('aria-expanded', 'true');
   await page.screenshot({ path: testInfo.outputPath('account-menu.png'), animations: 'disabled' });
@@ -1354,7 +1363,9 @@ for (const role of ['member', 'owner', 'admin']) test(`account settings work for
   await page.goto('/favorites');
   if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
   const navigation = page.getByRole('navigation', { name: 'Main navigation' });
+  await expect(navigation.getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(role === 'member' ? 1 : 0);
   await navigation.getByRole('button', { name: role, exact: true }).click();
+  await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(role === 'member' ? 0 : 1);
   await navigation.getByRole('link', { name: 'Account Settings', exact: true }).click();
   await expect(page).toHaveURL(/\/settings$/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');

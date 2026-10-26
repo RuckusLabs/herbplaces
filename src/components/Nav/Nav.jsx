@@ -49,13 +49,12 @@ export default function Nav({ variant, className = '', minimal = false }) {
       <div id="main-navigation" className={`${styles.links} ${open ? styles.open : ''}`}>
         <NavLink to="/map">Explore Places</NavLink>
         <NavLink to="/about">Our Story</NavLink>
-        <NavLink to="/the-little-garden">For Business Owners</NavLink>
-        {user && hasOwnerActivity && <NavLink to="/my-places">My Places</NavLink>}
+        {!(user && hasOwnerActivity) && <NavLink to="/the-little-garden">For Business Owners</NavLink>}
         <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>Saved Places</span></NavLink>
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <div className={styles.account} ref={account} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false); }}>
           <button ref={accountButton} type="button" className={styles.accountToggle} aria-expanded={accountOpen} aria-controls={accountId} onClick={() => setAccountOpen(value => !value)}><span className={styles.avatar} aria-hidden="true">{accountName.slice(0, 1).toUpperCase()}</span><span className={styles.accountName}>{accountName}</span><svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
-          {accountOpen && <div id={accountId} className={styles.accountDropdown}><p>Signed in as<strong>{accountName}</strong><span>{user.email}</span></p><Link className={styles.accountSettings} to="/settings">Account Settings<Icon name="arrow" size={16} /></Link><button type="button" onClick={logout} disabled={signingOut}>{signingOut ? 'Signing Out…' : 'Sign Out'}<Icon name="arrow" size={16} /></button>{logoutError && <p role="alert" className={styles.logoutError}>{logoutError}</p>}</div>}
+          {accountOpen && <div id={accountId} className={styles.accountDropdown}><p>Signed in as<strong>{accountName}</strong><span>{user.email}</span></p>{hasOwnerActivity && <NavLink className={styles.accountSettings} to="/my-places">My Places<Icon name="shop" size={18} /></NavLink>}<Link className={styles.accountSettings} to="/settings">Account Settings<Icon name="arrow" size={16} /></Link><button type="button" onClick={logout} disabled={signingOut}>{signingOut ? 'Signing Out…' : 'Sign Out'}<Icon name="arrow" size={16} /></button>{logoutError && <p role="alert" className={styles.logoutError}>{logoutError}</p>}</div>}
         </div> : <Link className={`button ${styles.join}`} to="/register">Join the Community <Icon name="arrow" size={15} /></Link>}
       </div>
     </nav>
