@@ -82,7 +82,25 @@ test('business plan pages are discoverable with full sales content before JavaSc
     assert.match(html, /Claim your listing/);
     assert.match(html, /Listing approval does not automatically approve you as a manager|Adding a listing and approving its managers are separate steps/);
     assert.match(html, /Membership Terms/);
+    assert.match(html, /href="\/my-places\/"/);
+    assert.ok(!html.includes('/favorites/#my-places'));
     assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /Thrive is \$49 USD per month per place/);
     assert.match(html, plan === 'bloom' ? /\$19/ : /\$49/);
   }
+});
+
+
+test('privacy and membership HTML includes usable full disclosures without JavaScript', () => {
+  const privacy = renderRouteContent(publicRoutes.find(route => route.path === '/privacy'), []);
+  assert.match(privacy, /email-code sign-in/);
+  assert.match(privacy, /Request receipts and review decisions are sent through Resend/);
+  assert.match(privacy, /Removing an account does not automatically remove its public listings/);
+  assert.match(privacy, /href="mailto:help@littleherbplaces.com"/);
+  assert.match(privacy, /href="https:\/\/www.simpleanalytics.com\/privacy-policy"/);
+  const terms = renderRouteContent(publicRoutes.find(route => route.path === '/membership-terms'), []);
+  assert.match(terms, /\$19\/month/);
+  assert.match(terms, /Subscriptions renew monthly until canceled/);
+  assert.match(terms, /seven days of editing from the first failure/);
+  assert.match(terms, /refund requests/);
+  assert.match(terms, /Thrive is not available for purchase/);
 });

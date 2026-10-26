@@ -14,6 +14,8 @@ Current checkpoint: October 26, 2026. Hosted email delivery is active; the updat
 
 ## Next milestone: publish the reviewed frontend with purchases off
 
+Production repository variables are explicitly set to `VITE_PASSWORDLESS_ENABLED=true` and `VITE_BLOOM_ENABLED=false`; the deployed server purchase flag remains off. The release build verifies the disabled owner checkout on desktop and phone. The confirmed support inbox is `help@littleherbplaces.com`.
+
 Review the local owner/basic-user navigation, sign-in, listing request, My Places, editing/preview, and admin workflows. Review Bloom/Thrive copy, support contact details, membership terms, privacy copy, and the refund wording. Bloom is the implemented $19/month offer; Thrive advertises $49/month per place as an upcoming offering and must not imply its checkout or promotion fulfillment is available.
 
 After approval, merge the launch PR and publish with `VITE_BLOOM_ENABLED=false` and server `BLOOM_ENABLED=false`. Passwordless should use its production default; do not set the legacy password override. This release is a priority because the original password hashes were already removed at the user's request. Check production email-code sign-in, redirects, saved places, owner access, admin permissions, SEO output, and published support/legal links. Keep the disabled-purchase message clear.
@@ -29,7 +31,7 @@ After final approval, configure live counterparts and enable both purchase flags
 ## Operational follow-through
 
 - Confirm permanent geocoding entitlement before enabling real stored Mapbox lookups. Until then, keep uncertain locations in admin review and use the existing manual confirmation workflow.
-- Confirm the public support inboxes advertised in the site/emails receive mail and finalize refund handling.
+- Support inbox receipt was confirmed by the owner on October 26. Finalize refund handling before live sales; current copy invites refund inquiries and makes no automatic refund promise.
 - Confirm recoverable database and Storage backups before release; database backups alone do not preserve image objects.
 - Check delivery failures, exhausted queues, webhook failures, reconciliation errors, pending map reviews, and unfinished image cleanup after launch. `node scripts/check-launch-readiness.mjs` checks configuration and backlog without printing credentials; investigate exhausted jobs before resetting their retry window.
 - Repeat real delivery checks after sender/template changes and sandbox lifecycle checks after billing changes. Disposable billing scripts intentionally refuse to create mail-producing fixtures while delivery triggers are active; adapt fixture isolation before reusing them.

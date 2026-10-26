@@ -20,7 +20,7 @@ async function setup(page) {
   });
   await page.route('**/rest/v1/**', route => {
     const path = new URL(route.request().url()).pathname;
-    if (path.endsWith('/get_management_context')) return route.fulfill({ json: { is_admin: false, memberships: [], claims: state.claims } });
+    if (path.endsWith('/get_management_context')) return route.fulfill({ json: { is_admin: false, memberships: state.memberships || [], claims: state.claims } });
     if (path.endsWith('/get_listing_requests')) return route.fulfill({ json: state.requests });
     if (path.endsWith('/request_place_listing')) {
       const body = route.request().postDataJSON(); state.attempts.push(body);
@@ -221,4 +221,28 @@ test('a failed automatic verification offers an explicit retry without looping',
   await page.getByRole('button', { name: 'Try Again', exact: true }).click();
   await expect(page).toHaveURL('/settings');
   expect(state.auth.filter(item => item.path.endsWith('/verify'))).toHaveLength(2);
+});
+
+
+test('release help explains email codes and sales stay disabled for an approved owner', async ({ page }, testInfo) => {
+  const state = await setup(page);
+  await page.goto('/help');
+  await expect(page.getByRole('link', { name: 'Sign In with Email', exact: true })).toBeVisible();
+  await expect(page.getByText('you don’t need a password', { exact: false })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Reset Your Password' })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Sign In with Email', exact: true }).click();
+  state.memberships = [{ place_id: 'place-1', is_billing_contact: true, place: { name: 'Moss Apothecary', urlSlug: 'moss-apothecary', city: 'Boulder', state: 'CO' }, subscription: { status: 'none' } }];
+  await sendCode(page); await page.getByLabel('Email code', { exact: true }).fill('123456');
+  await page.goto('/my-places');
+  await expect(page.getByRole('heading', { name: 'Moss Apothecary' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Bloom Coming Soon', exact: true })).toBeDisabled();
+  await expect(page.getByText('No payment is needed now.', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Subscribe to Bloom/ })).toHaveCount(0);
+  await page.screenshot({ path: testInfo.outputPath('release-my-places.png'), fullPage: true });
+  await page.goto('/privacy');
+  await expect(page.getByText('email-code sign-in', { exact: false })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Access, corrections, and deletion' })).toBeVisible();
+  await page.goto('/membership-terms');
+  await expect(page.getByText('Subscriptions renew monthly until canceled.', { exact: false })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'help@littleherbplaces.com', exact: true })).toHaveAttribute('href', 'mailto:help@littleherbplaces.com');
 });
