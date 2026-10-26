@@ -149,3 +149,13 @@ test('ownership details survive email-code sign-in and still require explicit cl
   await expect(page.getByRole('link', { name: 'Claim Pending' })).toBeVisible();
   expect(state.claims).toHaveLength(1);
 });
+
+
+for (const path of ['forgot-password', 'reset-password', 'resend-confirmation']) {
+  test(`old ${path} links lead to code sign-in without creating a password`, async ({ page }) => {
+    await setup(page); await page.goto(`/auth/${path}?next=%2Fmy-places`);
+    await expect(page).toHaveURL('/login?next=%2Fmy-places');
+    await expect(page.getByRole('button', { name: 'Send Email Code', exact: true })).toBeVisible();
+    await expect(page.locator('input[type="password"]')).toHaveCount(0);
+  });
+}

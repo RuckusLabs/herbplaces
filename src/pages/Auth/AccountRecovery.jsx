@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../contexts/AuthContext';
 import { getSafeReturnPath } from '../../utilities/authNavigation';
+import { passwordlessEnabled } from '../../utilities/authFeatures';
 import styles from './auth.module.scss';
 
 export default function AccountRecovery({ mode }) {
@@ -18,6 +19,8 @@ export default function AccountRecovery({ mode }) {
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  // Old recovery/confirmation URLs now return to email-code sign-in instead of recreating a password.
+  if (passwordlessEnabled && !loading) return <Navigate to={user ? destination : `/login?next=${encodeURIComponent(destination)}`} replace />;
   const title = resetting ? 'Choose a New Password' : confirming ? 'Confirm Your Email' : 'Reset Your Password';
   const submit = async event => {
     event.preventDefault();
