@@ -62,6 +62,10 @@ Deno.serve(async req => {
 
     if (action === 'geocode') {
       if (access.place.geocode_status === 'confirmed') return json({ status: 'confirmed' }, 200, headers);
+      if (Deno.env.get('AUTOMATIC_GEOCODING_ENABLED') !== 'true') {
+        await checked(await db.rpc('apply_place_geocode', { p_place_id: placeId, p_address_version: access.place.content_version, p_latitude: null, p_longitude: null }));
+        return json({ status: 'review' }, 200, headers);
+      }
       const place = await checked(await db.rpc('reserve_place_geocode', { p_place_id: placeId, p_user_id: user.id }));
       if (!place) return json({ status: 'review' }, 200, headers);
       let coordinates = null;
