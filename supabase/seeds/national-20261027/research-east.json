@@ -1,0 +1,1016 @@
+[
+  {
+    "inputIndex": 43,
+    "name": "Herbiary Asheville",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.herbiary.com/",
+    "address": "29 North Market Street",
+    "city": "Asheville",
+    "state": "North Carolina",
+    "zip": "28801",
+    "phone": "828-552-3334",
+    "hours": null,
+    "tagline": "Botanical goods near downtown Asheville",
+    "description": "Herbiary’s Asheville shop brings together herbs, loose teas, essential oils, tinctures, botanical body care, books, and supplies for home preparations. Located on North Market Street near downtown, the shop is part of a two-location business now under new ownership. Its botanical selection includes products from local growers and makers.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.herbiary.com/",
+      "https://www.exploreasheville.com/asheville/listing/shopping/herbiary"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://api.exploreasheville.com/sites/default/files/listing_images/asheville-2014-10-09-19.05.05_65213642-5056-a36a-0a854ef429c06831.jpg",
+        "sourcePage": "https://www.exploreasheville.com/asheville/listing/shopping/herbiary",
+        "alt": "Herbiary Asheville shop",
+        "localFile": "docs/listing-images/national-20261027/herbiary-asheville.webp",
+        "sha256": "40205b67a474523d8b24724a24d3bd2eb5f90f0ce2771f7994efcdf9b93ecf17",
+        "width": 640,
+        "height": 480,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 44,
+    "name": "Musa Moon",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.musamoon.com/",
+    "address": "604 West Morehead Street, Suite 5",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "zip": "28208",
+    "phone": "704-659-5443",
+    "hours": "Wednesday 10am–2pm; Thursday–Saturday 1–6pm; Sunday noon–4pm",
+    "tagline": "Bulk herbs and custom tea blends in Charlotte",
+    "description": "Musa Moon is a bulk herb shop on West Morehead Street in Charlotte. Its selection includes loose herbs, custom tea blends, tinctures, essential oils, sea moss products, and tea accessories. Visitors can browse the shop’s botanical offerings or book a consultation, with current shopping hours published on its website.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.musamoon.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/abe240_40d40202a7554d8889853652a0c34f01~mv2.png",
+        "sourcePage": "https://www.musamoon.com/",
+        "alt": "A community gathering at Musa Moon in Charlotte",
+        "localFile": "docs/listing-images/national-20261027/musa-moon.webp",
+        "sha256": "184affcc7f43aa18f7404be4fa48e5bc0e8b54c6e5733590d24034eec86f2feb",
+        "width": 1800,
+        "height": 1350,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 45,
+    "name": "Simply Vibes Apothecary",
+    "status": "hold",
+    "reason": "Physical shop at 3550 North Davidson Street was real, but current operation remains unresolved. An April 4, 2025 event corroborates visitor access before the owner July 21, 2025 rent-arrears fundraiser. Newly located Eventbrite category results show tea classes but their snapshots date from 2025 and do not establish current events or 2026 access. BLK in Bloom recap dates its shop event to July 27, 2024. The former domain currently redirects to unrelated gambling content; this is not treated as proof of shop closure. No reliable newer owner announcement, current visitor record, or new address found.",
+    "website": null,
+    "address": "3550 North Davidson Street",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "zip": "28205",
+    "phone": "704-968-3311",
+    "hours": null,
+    "tagline": "Charlotte apothecary awaiting current verification",
+    "description": "Simply Vibes Apothecary has offered handmade teas, oils, candles, and spiritual goods in Charlotte’s NoDa neighborhood. The owner described financial difficulties in a July 2025 fundraiser. Its former website currently serves unrelated content, so the storefront’s continued operation and present location need direct confirmation before a public listing is created.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/",
+      "https://blkinbloomclt.com/partner/"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/"
+    ]
+  },
+  {
+    "inputIndex": 46,
+    "name": "Casablanca Herbal Shop",
+    "status": "ready",
+    "reason": "",
+    "website": null,
+    "address": "3035 Fayetteville Street, Unit A",
+    "city": "Durham",
+    "state": "North Carolina",
+    "zip": "27707",
+    "phone": "919-931-2433",
+    "hours": null,
+    "tagline": "Herbs, teas, and botanical body care in Durham.",
+    "description": "Casablanca Herbal Shop is a neighborhood source for herbal goods on Fayetteville Street in Durham. Visitors can browse its botanical selection and ask the staff about available products. Whipped Cream Body identifies the shop as a local pickup location for its Chebe scalp oil, connecting the store with a local botanical body care maker.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://whippedcreambody.com/pages/shop-in-store",
+      "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn5.localdatacdn.com/nc/durham/7529463/original/Cvxm3c9xJE.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Labeled bulk herb jars beneath a Casablanca Herbal Shop sign",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-1.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "33f413401dd7b73a9693a0e17633f2a386ccc5ae61f5fb53f35710d9bc5639d8",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/LXZcGxOnbj.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Bracelets and bulk herb shelves at Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-2.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "34849a7a03ef0d71f59a98145fe12c3859ae4dcca9eb2fd6d49100d3aa881770",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/exu0s5VpfH.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Herbal product display and jars inside Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-3.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa88e358670144df1213f7605ed546710d231e4deded7f61e786cacdd93fe2ea",
+        "inspected": true
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Botanical product maker Whipped Cream Body explicitly offers Chebe scalp oil pickup at Casablanca Herbs, 3035 Fayetteville St A. That primary retail relationship and address are corroborated by April 2026 customer visits in the linked directory. The contradictory 3109 address appears in generic coupon-site FAQ only and is not relied upon. Hours omitted because directory has a suspicious 12AM Tuesday entry."
+  },
+  {
+    "inputIndex": 47,
+    "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+    "status": "ready",
+    "reason": "Official website now branded Healing House Herbs; retained supplied name with rebrand explained.",
+    "website": "https://healinghouseherbsnc.com/",
+    "address": "627 S US Highway 64",
+    "city": "Manteo",
+    "state": "North Carolina",
+    "zip": "27954",
+    "phone": "252-305-6668",
+    "hours": "Shopping by appointment; text ahead. Someone is generally available Monday–Friday 10:30am–4:30pm and Saturday 10:30am–3pm.",
+    "tagline": "Small-batch botanicals with shopping by arrangement",
+    "description": "Natural Selection Apothecary’s website now presents the business as Healing House Herbs. Its Manteo location offers small-batch tinctures, teas, syrups, salves, and botanical skin care, with herbs grown or prepared in North Carolina. The upstairs space operates by arrangement rather than fixed retail hours; text the owner to plan an in-person shopping visit.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://healinghouseherbsnc.com/",
+      "https://healinghouseherbsnc.com/pages/location-hours",
+      "https://healinghouseherbsnc.com/pages/contact-us",
+      "https://maps.darecountync.gov/searchData.php?term=627+US",
+      "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://healinghouseherbsnc.com/cdn/shop/files/078bc8ace895133fab9d802fff238ab6839ceb1d53043e340c5fa832507f86d1_jpeg_d48d5ec2-83a2-4594-9db6-8676fbf69532.webp?v=1767015827&width=600",
+        "sourcePage": "https://healinghouseherbsnc.com/",
+        "alt": "Healing House Herbs botanical products",
+        "localFile": "docs/listing-images/national-20261027/natural-selection-apothecary.webp",
+        "sha256": "911b585198b377382e4217a9795b0d2d30eaa0dbbf8190e849d49436b4e9c4a7",
+        "width": 600,
+        "height": 600,
+        "visuallyVerified": true
+      }
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 47,
+      "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+      "address": "627 S US Highway 64",
+      "city": "Manteo",
+      "state_code": "NC",
+      "zip": "27954",
+      "latitude": 35.89690715,
+      "longitude": -75.66728735,
+      "matchedAddress": "627 S US 64 HWY, Manteo, NC 27954",
+      "sourceType": "local-government-address-point",
+      "sources": [
+        "https://healinghouseherbsnc.com/pages/contact-us",
+        "https://maps.darecountync.gov/searchData.php?term=627+US",
+        "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
+      ],
+      "note": "Official contact page confirms 627 US Highway 64, Manteo NC 27954, upstairs above Manteo Cyclery and next to the Scuba Diving Shop. Dare County search returns parcel 025723000 / PIN 978907678983 at 627 S US 64 HWY, Manteo NC 27954. The county address_points layer has exactly one point for that parcel, address_points.33293, house 627, direction S, street US 64 HWY, Manteo ZIP 27954. Coordinates come from this authoritative address point (not a guessed location or city centroid). Normalize missing S directional in the submitted address; floor is upstairs, unit unconfirmed. This point identifies the shared address/building, not an independently surveyed upstairs unit entrance."
+    }
+  },
+  {
+    "inputIndex": 48,
+    "name": "Simply Herbal Organics",
+    "status": "ready",
+    "reason": "Corrected East to West Passaic from official contact and services pages.",
+    "website": "https://simplyherbalorganics.com/",
+    "address": "35 West Passaic Street",
+    "city": "Peachland",
+    "state": "North Carolina",
+    "zip": "28133",
+    "phone": "704-272-0890",
+    "hours": "Contact the shop for current retail hours.",
+    "tagline": "Handcrafted herbal products in Peachland",
+    "description": "Simply Herbal Organics combines a Peachland retail shop with an online apothecary. Its shelves include handcrafted herbal blends, essential oils, personal care products, and selected local or specialty foods. The business also offers custom preparations, individual herbal consultations, and classes or demonstrations for groups interested in making and using herbal preparations.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://simplyherbalorganics.com/",
+      "https://simplyherbalorganics.com/contact/",
+      "https://simplyherbalorganics.com/services/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://simplyherbalorganics.com/wp-content/uploads/2016/02/IMG_3570-e1516813373776.jpg",
+        "sourcePage": "https://simplyherbalorganics.com/shop/",
+        "alt": "Simply Herbal Organics handcrafted lotion",
+        "localFile": "docs/listing-images/national-20261027/simply-herbal-organics.webp",
+        "sha256": "0ed1c31454eca60516b55412e3d7b78f1c91ed875fa5ea55e3d30b3b11f227f4",
+        "width": 1350,
+        "height": 1800,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 49,
+    "name": "Remedy Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.remedyapothecary.com/",
+    "address": "4725 Yadkinville Road",
+    "city": "Pfafftown",
+    "state": "North Carolina",
+    "zip": "27040",
+    "phone": "336-354-9222",
+    "hours": "Thursday–Friday 11am–4pm; Saturday 10am–4pm. Check directly for additional hours.",
+    "tagline": "Handmade body care, bulk herbs, and tea",
+    "description": "Remedy Apothecary is a woman-owned botanical shop in Pfafftown, northwest of Winston-Salem. Its offerings include handmade bath and body care, soaps, essential oils, loose teas, and bulk herbs. Many products are made in small batches, with candles, oils, and other self-care goods rounding out the shop’s selection.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.remedyapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.remedyapothecary.com/uploads/b/dc93dd9ceb7b02837760826247e76a27fa7c9c057b388afd9a018b71360b72f8/IMG_4017_1676701334.jpg",
+        "sourcePage": "https://www.remedyapothecary.com/",
+        "alt": "Remedy Apothecary products",
+        "localFile": "docs/listing-images/national-20261027/remedy-apothecary.webp",
+        "sha256": "65b8474d569f61c9c95d6a928eaa11e5e3c674411d2e9bd0b0654eac8d174966",
+        "width": 1284,
+        "height": 1278,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 50,
+    "name": "Native Ceuticals Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.nativeceuticalsapothecary.com/",
+    "address": "118A West Broad Street",
+    "city": "Statesville",
+    "state": "North Carolina",
+    "zip": "28677",
+    "phone": "704-380-3737",
+    "hours": "Tuesday–Wednesday 11am–5pm; Thursday–Friday 11am–6pm; Saturday 11am–4pm",
+    "tagline": "Teas and botanical goods in downtown Statesville",
+    "description": "Native Ceuticals Apothecary is a family-run shop on West Broad Street in downtown Statesville. Its range includes loose teas, herbal extracts and tinctures, mushroom products, topicals, soaps, supplements, and hemp-based goods. The business also hosts community events and invites visitors to browse its varied botanical and personal care selection.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.nativeceuticalsapothecary.com/",
+      "https://www.downtownstatesville.com/connections/33486-native-ceuticals-apothecary/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/be3c81_d9390bb0b85a4d0381831c5aa2fb2792~mv2.jpg",
+        "sourcePage": "https://www.nativeceuticalsapothecary.com/",
+        "alt": "Inside Native Ceuticals Apothecary",
+        "localFile": "docs/listing-images/national-20261027/native-ceuticals-apothecary.webp",
+        "sha256": "d5b92302961d9c54516241a0d4ce5c652239db7cfdf9fdea7e56e622d3c0915a",
+        "width": 1200,
+        "height": 1800,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 51,
+    "name": "Chandra Botanicals",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.chandrabotanicals.com/",
+    "address": "211-5 Atlantic Beach Causeway",
+    "city": "Atlantic Beach",
+    "state": "North Carolina",
+    "zip": "28512",
+    "phone": "252-285-5467",
+    "hours": "Tuesday–Saturday 11am–5pm; private shopping and consultations by appointment.",
+    "tagline": "Coastal herbal workshops and private shopping",
+    "description": "Chandra Botanicals connects herbal education, plant-based food, and handmade botanical cosmetics. Its services include herbal workshops, individual consultations, private shopping appointments, and chef services. Workshop topics range from infused oils and lotion making to seasonal foods. The town’s shopping directory locates the business on Atlantic Beach Causeway; contact ahead to arrange a visit.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.chandrabotanicals.com/",
+      "https://atlanticbeach-nc.com/shop/",
+      "https://www.chandrabotanicals.com/services.html"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.chandrabotanicals.com/uploads/1/1/8/2/118232888/background-images/1573486049.jpg",
+        "sourcePage": "https://www.chandrabotanicals.com/",
+        "alt": "Mushrooms photographed for Chandra Botanicals",
+        "localFile": "docs/listing-images/national-20261027/chandra-botanicals.webp",
+        "sha256": "f5ba9549a6650b04c82659a85b5fd74bf0700f2726d407f702818bb209cd8ba4",
+        "width": 1125,
+        "height": 1500,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 52,
+    "name": "Modern Herbal Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://modernherbalshop.com/",
+    "address": "6412 South MacDill Avenue",
+    "city": "Tampa",
+    "state": "Florida",
+    "zip": "33611",
+    "phone": "813-421-0243",
+    "hours": "Tuesday–Friday noon–6pm; Saturday 11am–5pm",
+    "tagline": "A South Tampa apothecary rooted in herbal craft",
+    "description": "Modern Herbal Apothecary combines a bulk herb shop, herbalist practice, and micro-farm in South Tampa. Visitors can browse teas, seasonings, tinctures, infused honeys, salves, and plant-based body care. The business offers custom blends, herbal consultations, and educational programs, including hands-on plant science and herbal traditions workshops.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://modernherbalshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://modernherbalshop.com/cdn/shop/files/Modern_Herbal_Apothecary_Shop_Home_2x_8171fabc-9345-4e5e-9d28-98dcf89f4d29_800x.png?v=1613416700",
+        "sourcePage": "https://modernherbalshop.com/",
+        "alt": "Modern Herbal Apothecary shop",
+        "localFile": "docs/listing-images/national-20261027/modern-herbal-apothecary.webp",
+        "sha256": "10ca9681b53c93d8702b83c1be75ae4be424161de644826ed2d8666f8b4a95e1",
+        "width": 800,
+        "height": 981,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 53,
+    "name": "Earth Commons",
+    "status": "duplicate",
+    "reason": "Already present in directory; preserve existing profile.",
+    "website": null,
+    "address": "641 Tillery Street, Suite 105",
+    "city": "Austin",
+    "state": "Texas",
+    "zip": "78702",
+    "phone": null,
+    "hours": null,
+    "tagline": "",
+    "description": "",
+    "category_ids": [],
+    "sources": [],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 54,
+    "name": "The Herbal Haberdashery",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.theherbalhaberdashery.com/",
+    "address": "5221 14th Street West",
+    "city": "Bradenton",
+    "state": "Florida",
+    "zip": "34207",
+    "phone": "941-201-6693",
+    "hours": "Tuesday–Saturday 10am–5pm; Sunday–Monday closed",
+    "tagline": "Herbs and loose teas on Bradenton’s 14th Street",
+    "description": "The Herbal Haberdashery is a Bradenton storefront offering herbs, herbal teas, CBD products, and kratom. The shop publishes its address and regular Tuesday through Saturday hours on its website. Visitors can browse a selection of botanical goods in person or contact the store with questions before making the trip.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.theherbalhaberdashery.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/9f2100_986695ee751f468992ca5617c80a692d~mv2.jpg",
+        "sourcePage": "https://www.theherbalhaberdashery.com/",
+        "alt": "Packaged botanical products at The Herbal Haberdashery",
+        "localFile": "docs/listing-images/national-20261027/the-herbal-haberdashery.webp",
+        "sha256": "56f433aed82111f81ee1c200a183c66b48330142dc556d8086fa6dce60a17d37",
+        "width": 640,
+        "height": 481,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 55,
+    "name": "Railyard Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.railyardapothecary.com/",
+    "address": "28 Howard Street, Suite 101-A",
+    "city": "Burlington",
+    "state": "Vermont",
+    "zip": "05401",
+    "phone": "802-540-0595",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–4pm. Masks required on Mondays.",
+    "tagline": "Worker-owned herbs, classes, and consultations",
+    "description": "Railyard Apothecary is a worker-owned herbal co-op in Burlington’s South End. Its shop sources herbs from local farms and forests as well as organic distributors, and offers bulk botanicals, preparations, classes, and private herbal consultations. The Howard Street space welcomes in-person shoppers, with Monday masking hours designed to support greater access.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.railyardapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.railyardapothecary.com/uploads/9/4/8/5/94853024/howard-st-space-march-2025-2_orig.jpeg",
+        "sourcePage": "https://www.railyardapothecary.com/",
+        "alt": "Railyard Apothecary interior",
+        "localFile": "docs/listing-images/national-20261027/railyard-apothecary.webp",
+        "sha256": "1513fd4d9a3fc8483e788dc27f6c97be58f8ff052077b2f402902ff10d42bfea",
+        "width": 800,
+        "height": 1067,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 56,
+    "name": "Wild Soul River",
+    "status": "ready",
+    "reason": "",
+    "website": "https://wildsoulriver.com/",
+    "address": "248 Cole Avenue",
+    "city": "Williamstown",
+    "state": "Massachusetts",
+    "zip": "01267",
+    "phone": "413-597-1172",
+    "hours": "Tuesday–Friday 10am–6pm; Saturday–Sunday 10am–3pm",
+    "tagline": "Herbal tea and community gathering in Williamstown",
+    "description": "Wild Soul River is a small herbal shop and gathering space on Cole Avenue in Williamstown. Visitors can explore bulk herbs, house-made tea blends and tinctures, books, crystals, and other botanical goods, or stop for tea and coffee. On-site herbalists also offer individual consultations, workshops, and other appointments.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://wildsoulriver.com/",
+      "https://wildsoulriver.com/pages/about-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://wildsoulriver.com/cdn/shop/files/873B1683-1BF2-4BB5-80A8-03189628B285.jpg?height=1365&v=1773256939",
+        "sourcePage": "https://wildsoulriver.com/",
+        "alt": "An outdoor community gathering with Wild Soul River",
+        "localFile": "docs/listing-images/national-20261027/wild-soul-river.webp",
+        "sha256": "f52827aa4957076d452c7859645d75e1141dcd02776a8ca2e289acd4a6316286",
+        "width": 1800,
+        "height": 1200,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 57,
+    "name": "2 Wolves Herbal Apothecary - Augusta",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.2wolvesherbalapothecary.com/",
+    "address": "469 Highland Avenue",
+    "city": "Augusta",
+    "state": "Georgia",
+    "zip": "30909",
+    "phone": "706-969-1651",
+    "hours": "Monday–Friday 10am–5pm; Saturday–Sunday closed",
+    "tagline": "Herbal tinctures and botanical goods in Augusta",
+    "description": "2 Wolves Herbal Apothecary’s Augusta location offers herbal tinctures, teas, and other botanical products. The business serves retail and wholesale customers and emphasizes approachable in-store education. Visitors can ask general product questions while browsing. Its current website publishes weekday hours and notes that in-depth consultations are no longer offered.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.2wolvesherbalapothecary.com/",
+      "https://www.2wolvesherbalapothecary.com/locations",
+      "https://georgiagrown.com/member/2-wolves-herbal-apothecary/",
+      "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+      "https://www.surreycenter.com/cucumber-mint"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://irp.cdn-website.com/949e1039/dms3rep/multi/opt/612640626_1401265585343822_426537722004382390_n-1920w.jpg",
+        "sourcePage": "https://www.2wolvesherbalapothecary.com/",
+        "alt": "2 Wolves Herbal Apothecary packaged tea",
+        "localFile": "docs/listing-images/national-20261027/2-wolves-herbal-apothecary-augusta.webp",
+        "sha256": "6689634087c9d9ca084f63bbd907ce80aaee3b021b0037706f2dcc647c88f6fc",
+        "width": 831,
+        "height": 1800,
+        "visuallyVerified": true
+      }
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 57,
+      "name": "2 Wolves Herbal Apothecary - Augusta",
+      "address": "469 Highland Avenue",
+      "city": "Augusta",
+      "state_code": "GA",
+      "zip": "30909",
+      "latitude": 33.484385651992,
+      "longitude": -82.029937823617,
+      "matchedAddress": "469 HIGHLAND AVE, AUGUSTA, GA, 30909",
+      "sourceType": "us-census-street-interpolation",
+      "sources": [
+        "https://georgiagrown.com/member/2-wolves-herbal-apothecary/",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+        "https://www.surreycenter.com/cucumber-mint"
+      ],
+      "note": "Correct ZIP 30904 to 30909: state Georgia Grown member listing and official Surrey Center tenant directory corroborate Census exact street/house-number match. Census point is interpolated along the street segment, not a surveyed entrance."
+    }
+  },
+  {
+    "inputIndex": 58,
+    "name": "2 Wolves Herbal Apothecary - Helen",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.2wolvesherbalapothecary.com/",
+    "address": "8065 South Main Street",
+    "city": "Helen",
+    "state": "Georgia",
+    "zip": "30545",
+    "phone": "706-892-2958",
+    "hours": "Monday–Friday 10am–5pm; Saturday–Sunday closed",
+    "tagline": "Herbal tinctures and botanical goods in Helen",
+    "description": "2 Wolves Herbal Apothecary’s Helen location offers herbal tinctures, teas, and other botanical products. The business serves retail and wholesale customers and emphasizes approachable in-store education. Visitors can ask general product questions while browsing. Its current website publishes weekday hours and notes that in-depth consultations are no longer offered.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.2wolvesherbalapothecary.com/",
+      "https://www.2wolvesherbalapothecary.com/locations"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://irp.cdn-website.com/949e1039/dms3rep/multi/opt/612270503_1401265658677148_5562361022014177742_n-1920w.jpg",
+        "sourcePage": "https://www.2wolvesherbalapothecary.com/",
+        "alt": "2 Wolves Herbal Apothecary tincture",
+        "localFile": "docs/listing-images/national-20261027/2-wolves-herbal-apothecary-helen.webp",
+        "sha256": "66af6d62e582818be83c6e92f9dc3519188e80f5204890c3e9a686123d9621dd",
+        "width": 1350,
+        "height": 1800,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 59,
+    "name": "Dande-Lion Herb Shop",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.dande-lionherbshop.com/",
+    "address": "604 Crain Highway South",
+    "city": "Glen Burnie",
+    "state": "Maryland",
+    "zip": "21061",
+    "phone": "410-768-8144",
+    "hours": "Tuesday–Wednesday 9am–6pm; Thursday–Friday 11am–7:30pm; Saturday 10am–6pm; Sunday–Monday closed",
+    "tagline": "Bulk herbs and specialty teas in Glen Burnie",
+    "description": "Dande-Lion Herb Shop is a long-running Glen Burnie store carrying raw herbs, specialty herbal teas, vitamins, and nutritional supplements. Its bulk botanicals are available for home tea blending and other preparations. Visitors can browse the inventory and ask staff about the products, with regular Tuesday through Saturday shopping hours listed online.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.dande-lionherbshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.dande-lionherbshop.com/wp-content/uploads/2024/10/cinnamon.jpg",
+        "sourcePage": "https://www.dande-lionherbshop.com/",
+        "alt": "Cinnamon offered by Dande-Lion Herb Shop",
+        "localFile": "docs/listing-images/national-20261027/dande-lion-herb-shop.webp",
+        "sha256": "5b168e922db6d82df26f7bcd03a49dd18504453df9f68a5a7eb62b7d770e2bee",
+        "width": 350,
+        "height": 350,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 60,
+    "name": "Wild Roots Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.wildrootsapothecary.com/",
+    "address": "4 River Lane",
+    "city": "Sperryville",
+    "state": "Virginia",
+    "zip": "22740",
+    "phone": "540-617-9002",
+    "hours": "Monday–Friday 10am–5pm; Saturday–Sunday 10am–6pm",
+    "tagline": "Botanical goods and gardens in Sperryville",
+    "description": "Wild Roots Apothecary brings a botanical shop, classes, and gardens to Sperryville’s River District. Shelves feature herbal teas, syrups, tinctures, culinary goods, body care, books, and locally made gifts. Founded by herbalist Colleen O’Bryant, the business also hosts workshops and seasonal gatherings and invites visitors to explore its botanical gardens.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "gardens",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.wildrootsapothecary.com/",
+      "https://www.wildrootsapothecary.com/pages/contact-2026"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.wildrootsapothecary.com/cdn/shop/files/Stop_by_the_Apothecary_and_stay_warm_with_us_this_week_We_re_Open_Daily_11-00am_-_5-00pm_a_1.jpg?v=1770314850&width=1048",
+        "sourcePage": "https://www.wildrootsapothecary.com/pages/contact-2026",
+        "alt": "Wild Roots Apothecary shop",
+        "localFile": "docs/listing-images/national-20261027/wild-roots-apothecary.webp",
+        "sha256": "f9053e8b89bf88f4d04b9e25c80f6e05b1c011f970fc3b4c2ad133bf95dba99f",
+        "width": 1048,
+        "height": 1310,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 61,
+    "name": "Dope Botanicals",
+    "status": "ready",
+    "reason": "",
+    "website": "https://mydopebotanicals.com/",
+    "address": "257 South 20th Street",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "zip": "19103",
+    "phone": null,
+    "hours": "Wednesday–Saturday 10am–5pm; Sunday 11am–4pm; Monday–Tuesday closed",
+    "tagline": "A plant-focused apothecary and herbal bar",
+    "description": "Founded by sisters Nakia and Taahirah Stith, Dope Botanicals is a Philadelphia herbal apothecary and bar near Rittenhouse Square. The shop offers herbal teas, tinctures, powders, tonics, and elixirs in a contemporary setting. Its program also includes interactive workshops, classes, consultations, and group coaching, with current opportunities listed on its website.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://mydopebotanicals.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://mydopebotanicals.com/cdn/shop/files/dopebotanicals_269836229_1100418484065277_9113559979143351624_n_480x480@2x.jpg?v=1661400378",
+        "sourcePage": "https://mydopebotanicals.com/",
+        "alt": "Dope Botanicals herbal preparations",
+        "localFile": "docs/listing-images/national-20261027/dope-botanicals.webp",
+        "sha256": "12f1cda931383f1b5d7f75e14b167637c8501804271b6e35b6932f72ef2287cb",
+        "width": 768,
+        "height": 960,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 62,
+    "name": "Herbiary Philadelphia",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.herbiary.com/",
+    "address": "1136 Arch Street, Reading Terminal Market",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "zip": "19107",
+    "phone": "215-238-9938",
+    "hours": "Daily 8am–6pm",
+    "tagline": "An urban apothecary inside Reading Terminal Market",
+    "description": "Herbiary’s Philadelphia location sits inside Reading Terminal Market, offering bulk teas, essential oils, tinctures, soaps, incense, and botanical body care. Shoppers can also browse books on herbs, foraging, and gardening. This market stall is one of the business’s two locations and publishes daily shopping hours through the market and its own website.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.herbiary.com/",
+      "https://readingterminalmarket.org/merchant/herbiary/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://readingterminalmarket.org/wp-content/uploads/2022/06/herbiary-reading-terminal-market.jpg",
+        "sourcePage": "https://readingterminalmarket.org/merchant/herbiary/",
+        "alt": "Herbiary at Reading Terminal Market",
+        "localFile": "docs/listing-images/national-20261027/herbiary-philadelphia.webp",
+        "sha256": "178394942b33d5a48d1a88656b0ae2a75086211d9f51c67c508fad8119c98566",
+        "width": 1000,
+        "height": 600,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 63,
+    "name": "Smile Herb Shop",
+    "status": "ready",
+    "reason": "",
+    "website": "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
+    "address": "4908 Berwyn Road",
+    "city": "College Park",
+    "state": "Maryland",
+    "zip": "20740",
+    "phone": "301-474-8791",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–5pm; Sunday 12pm–5pm. Confirm before visiting.",
+    "tagline": "Bulk herbs, teas, and botanical supplies in College Park.",
+    "description": "Smile Herb Shop is a long-running College Park herb store housed in a historic home on Berwyn Road. The shop stocks bulk herbs and spices, teas, essential oils, tinctures, supplements, and body care products. Visitors can also browse books, gifts, and supplies, with classes and a garden adding to the neighborhood setting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
+      "https://www.smileherb.com/",
+      "https://streetcarsuburbs.news/34302/college-park/smile-herb-shop-a-cornerstone-of-the-community/",
+      "https://www.trolleytrailday.org/activityhubs/CollegePark",
+      "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/IMG_7351-1200x900.jpg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop house and hand-painted sign on Berwyn Road",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 900,
+        "originalWidth": 1200,
+        "originalHeight": 900,
+        "sha256": "9b84ce39f1a52909f343a4d00ac200fd3fb258d28e23b592014f533e4f6f28cf",
+        "credit": "Eva Sanchez / Streetcar Suburbs Publishing"
+      },
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/SmileHerb43-1200x800.jpeg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop manager preparing an order among shelves of bulk herb jars",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-2.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 800,
+        "originalWidth": 1200,
+        "originalHeight": 800,
+        "sha256": "816800aa5f39865994d14d111aee211c133983bb54ee6b77f9b25c867e094ff0",
+        "credit": "Kyle Heflinger / Streetcar Suburbs Publishing"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "College Park visitor site identifies current retail business at 4908 Berwyn Rd with hours and September 2026 customer visits. Trolley Trail Day organizer names Smile as a participating local business. Current own-site raw HTML still contains Square template location; these template fields are not used.",
+    "websiteNote": "Use the official city visitor listing rather than the business domain with inconsistent placeholder contact content."
+  },
+  {
+    "inputIndex": 64,
+    "name": "Of the Earth Apothecary",
+    "status": "ready",
+    "reason": "Official location page lists Wednesday/Thursday closed but footer says open every day; do not publish unqualified hours.",
+    "website": "https://www.oftheearthapothecary.com/",
+    "address": "408 Main Street",
+    "city": "Avon-by-the-Sea",
+    "state": "New Jersey",
+    "zip": "07717",
+    "phone": "732-361-5616",
+    "hours": "Hours conflict on official page; call to confirm.",
+    "tagline": "Bulk herbs and handmade botanicals by the Jersey Shore",
+    "description": "Of the Earth Apothecary is a botanical shop on Main Street in Avon-by-the-Sea. Its retail selection includes organic bulk herbs, herbal preparations, books, and handmade botanical products. The business also offers classes and workshops for everyday herbal projects, with a focus on bringing plant knowledge into daily routines.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.oftheearthapothecary.com/",
+      "https://www.oftheearthapothecary.com/our-location"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/63739478a3ab272b4213cf23/1a8756d9-3e0b-4ea1-be91-fca1ef38a6cc/bulk+herbs.jpg",
+        "sourcePage": "https://www.oftheearthapothecary.com/",
+        "alt": "Of the Earth bulk herb selection",
+        "localFile": "docs/listing-images/national-20261027/of-the-earth-apothecary.webp",
+        "sha256": "5fdb96e17bd15e0108bec65a6386f89f026f00b6ef75b568cdb1f586f022a9c1",
+        "width": 1800,
+        "height": 1207,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 65,
+    "name": "Synergy Herbal Works - Sparta",
+    "status": "ready",
+    "reason": "Homepage lists 14 Liberty Square; shipping policy inconsistently says 11. Homepage and current directory agree on 14.",
+    "website": "https://synergyherbalworks.com/",
+    "address": "14 Liberty Square",
+    "city": "Sparta",
+    "state": "Tennessee",
+    "zip": "38583",
+    "phone": "931-510-5201",
+    "hours": "Monday–Saturday 9am–5pm",
+    "tagline": "A Tennessee apothecary with a deep herb shelf",
+    "description": "Synergy Herbal Works’ Sparta shop offers a broad selection of organic and wildcrafted botanicals, loose-leaf teas, tinctures, spices, and handmade body care. Founded by registered herbalist Sherri Stickler, the business combines Tennessee-made products with herbal classes and educational resources in a downtown storefront on Liberty Square.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://synergyherbalworks.com/",
+      "https://synergyherbalworks.com/pages/contact",
+      "https://www.picktnproducts.org/content/picktn/picktn-producers/picktn-listing.27842.html",
+      "https://business.spartatnchamber.com/active-member-directory/Details/synergy-herbal-works-4535794",
+      "https://tnmap.maps.arcgis.com/home/item.html?id=f76e2673388e4c6f803bc51e3ae04b14",
+      "https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_NG911_Address_Points/FeatureServer/0/query?f=json&where=Add_Number+%3D+14+AND+UPPER%28St_Name%29+%3D+%27LIBERTY%27+AND+UPPER%28County%29+LIKE+%27%25WHITE%25%27&outFields=%2A&returnGeometry=true&outSR=4326",
+      "https://reviews.birdeye.com/synergy-herbal-works-176952648580716"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://synergyherbalworks.com/cdn/shop/files/rn-image_picker_lib_temp_fb9c3303-ecf8-4661-9efb-4cfaefc97047.jpg?v=1790215009&width=1080",
+        "sourcePage": "https://synergyherbalworks.com/",
+        "alt": "Synergy Herbal Works bottled fire cider",
+        "localFile": "docs/listing-images/national-20261027/synergy-herbal-works-sparta.webp",
+        "sha256": "7df39962c5f40df977c536af70ffc0cf38d8c85f39b26031b5dc1775c1f27049",
+        "width": 1080,
+        "height": 1390,
+        "visuallyVerified": true
+      }
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 65,
+      "name": "Synergy Herbal Works - Sparta",
+      "address": "14 Liberty Square",
+      "city": "Sparta",
+      "state_code": "TN",
+      "zip": "38583",
+      "latitude": 35.92521661564504,
+      "longitude": -85.46386790851963,
+      "matchedAddress": "14 LIBERTY SQ, SPARTA, TN 38583",
+      "sourceType": "state-government-address-point",
+      "sources": [
+        "https://synergyherbalworks.com/pages/contact",
+        "https://www.picktnproducts.org/content/picktn/picktn-producers/picktn-listing.27842.html",
+        "https://business.spartatnchamber.com/active-member-directory/Details/synergy-herbal-works-4535794",
+        "https://tnmap.maps.arcgis.com/home/item.html?id=f76e2673388e4c6f803bc51e3ae04b14",
+        "https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_NG911_Address_Points/FeatureServer/0/query?f=json&where=Add_Number+%3D+14+AND+UPPER%28St_Name%29+%3D+%27LIBERTY%27+AND+UPPER%28County%29+LIKE+%27%25WHITE%25%27&outFields=%2A&returnGeometry=true&outSR=4326",
+        "https://reviews.birdeye.com/synergy-herbal-works-176952648580716"
+      ],
+      "note": "Confirmed current storefront address on operator contact page, state producer listing, and local chamber. Exact building address point resolved in Tennessee NG911 layer; use WGS84 geometry, not a city centroid. Shipping policy still says 11 but the explicit visitor contact page and other current sources consistently say 14."
+    }
+  },
+  {
+    "inputIndex": 66,
+    "name": "Erin’s Meadow Herb Farm",
+    "status": "ready",
+    "reason": "Corrected supplied 37767 zip to official 37716. Current official seasonal 2026 schedule verified.",
+    "website": "https://www.erinsmeadowherbfarm.com/",
+    "address": "132 England Lane",
+    "city": "Clinton",
+    "state": "Tennessee",
+    "zip": "37716",
+    "phone": "865-435-1452",
+    "hours": "2026: March–June Tuesday–Saturday 10am–5pm and Sunday noon–5pm; July 1–December 19 Wednesday–Saturday 10am–5pm. Closed November 25–28. Winter schedule varies.",
+    "tagline": "Herb gardens, greenhouses, and a hands-on classroom",
+    "description": "Erin’s Meadow Herb Farm is a twelve-acre destination near Clinton with herb gardens, greenhouses, a shop, and a kitchen classroom. Visitors can find herb plants, bulk dried botanicals, tea blends, essential oils, books, and preparation supplies. Seasonal classes cover growing herbs, cooking, crafts, and herbal preparations; opening days vary throughout the year.",
+    "category_ids": [
+      "shops",
+      "gardens",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.erinsmeadowherbfarm.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1215383/herb_shop_november_2016_bgjpgg.jpg",
+        "sourcePage": "https://www.erinsmeadowherbfarm.com/",
+        "alt": "Erin’s Meadow Herb Farm shop",
+        "localFile": "docs/listing-images/national-20261027/erin-s-meadow-herb-farm.webp",
+        "sha256": "0056dcbe5b1373af904953880f31c90954c0c9e19c64d0a90ae3769d69ce332c",
+        "width": 720,
+        "height": 960,
+        "visuallyVerified": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 67,
+    "name": "Little House of Healing Herbs Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.zenandalchemy.com/our-merchants",
+    "address": "229 Earl Garrett Street, inside Zen & Alchemy",
+    "city": "Kerrville",
+    "state": "Texas",
+    "zip": "78028",
+    "phone": "830-315-7744",
+    "hours": "Host shop Zen & Alchemy: Tuesday–Friday 10am–5:30pm; Saturday 10am–6pm; Sunday–Monday closed. Call ahead for apothecary availability.",
+    "tagline": "Herbal goods inside downtown Kerrville’s Zen & Alchemy.",
+    "description": "Little House of Healing Herbs Apothecary is an independent merchant inside Zen & Alchemy in downtown Kerrville. Its display includes jars of loose herbal blends, packaged botanical goods, sprays, and bottled preparations. Visitors can browse the apothecary alongside the host shop’s other merchants offering handmade items, gifts, artwork, and wellness products.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.zenandalchemy.com/our-merchants",
+      "https://www.zenandalchemy.com/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/c8cd71_709cb98c34da40ce8bfeca665d685067~mv2.jpg",
+        "sourcePage": "https://www.zenandalchemy.com/our-merchants",
+        "alt": "Little House of Healing Herbs display inside Zen & Alchemy, with jars of herbal blends, packaged herbs, and bottled preparations",
+        "localFile": "docs/listing-images/national-20261027/little-house-healing-herbs-second-pass.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "f38bcaa3012050bcbfc3eeb7aaea5994577cbc32623b794c80b35f9252a5e15b"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Host business current Our Merchants page explicitly identifies Little House of Healing Herbs Apothecary and supplies multiple photos including a clearly labeled herbal display. Host Contact Us page confirms 229 Earl Garrett St, Kerrville TX78028, phone and opening hours. Use current shorter merchant name; supplied Nanny’s prefix is not on current host listing."
+  },
+  {
+    "inputIndex": 68,
+    "name": "Village Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": null,
+    "address": "12220 Highway N14, Suite N4",
+    "city": "Cedar Crest",
+    "state": "New Mexico",
+    "zip": "87008",
+    "phone": "505-286-5794",
+    "hours": null,
+    "tagline": "Herbs, supplements, and local botanical products in Cedar Crest.",
+    "description": "Village Apothecary is a small herbal and supplement shop in Cedar Crest’s East Mountains community. Founded in 2000, the shop carries local Lotus Tree Herbal blends and other botanical products. Its Highway N14 storefront offers a place to browse herbal goods and ask about the selection; call the shop for current visiting hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.lotustreeherbal.com/retail-locations-1",
+      "https://researchherbals.com/",
+      "https://reviews.birdeye.com/village-apothecary-168234477031988",
+      "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nm/cedar-crest/2479484/original/A5pmA150AJ.jpg",
+        "sourcePage": "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/",
+        "alt": "Village Apothecary storefront in Cedar Crest with its named sign over the entrance",
+        "localFile": "docs/listing-images/national-20261027/village-apothecary-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 900,
+        "originalWidth": 2000,
+        "originalHeight": 1125,
+        "sha256": "652799093d60a2a24ea2407305c2b88bd446f75439c097032fbd30d0226df7c1"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Local producer Lotus Tree Herbal explicitly directs customers to visit Melody at Village Apothecary and gives the full Suite N4 address. Founder Diana Roach independently states Village Apothecary remains in operation, although sold many years ago. These primary sources establish a physical retail location; unverified directory hours omitted."
+  }
+]

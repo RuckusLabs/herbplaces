@@ -1,0 +1,270 @@
+[
+  {
+    "inputIndex": 7,
+    "name": "Great Cape Herbs",
+    "status": "hold",
+    "reason": "A newly located January 29, 2025 Cape Cod Chronicle report explicitly confirms Great Cape Herbs permanently closed, while discussing the sale of the Great Cape Tiny Village property. This corroborates the operator September 10, 2022 closure announcement; copied farm-guide listings and other tenants at the property do not establish that this shop reopened. No active replacement herb-shop location found.",
+    "website": "",
+    "address": "2624 Main Street",
+    "city": "Brewster",
+    "state": "Massachusetts",
+    "zip": "02631",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.capecodchronicle.com/articles/2265/view/great-cape-tiny-village-finds-new-owner-after-52-years",
+      "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://www.capecodchronicle.com/articles/3089/view/snowy-owl-coffee-moving-but-staying-in-brewster",
+      "https://capecodchronicle.com/articles/718/view",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2022/05/2022-BFBLCC-Guide-to-Farms-and-Food-website.pdf"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "confirmed_closed",
+    "thirdPassSources": [
+      "https://www.capecodchronicle.com/articles/2265/view/great-cape-tiny-village-finds-new-owner-after-52-years",
+      "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://www.capecodchronicle.com/articles/3089/view/snowy-owl-coffee-moving-but-staying-in-brewster"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://www.capecodchronicle.com/articles/2265/view/great-cape-tiny-village-finds-new-owner-after-52-years",
+        "date": "2025-01-29",
+        "finding": "Local reporting specifically names Great Cape Herbs as permanently closed, alongside Fare and Just Kitchen. Property purchaser is Mountain to Sea Management LLC; proposed new cultural center and other businesses are distinct from the herb shop."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  },
+  {
+    "inputIndex": 12,
+    "name": "Found Herbal Apothecary",
+    "status": "hold",
+    "reason": "The current official SERVICES page explicitly says All Sessions Virtual, and explains herbs are filled and shipped by outside herbal dispensaries rather than supplied by Found Herbal. This resolves the address gap: the active Austin clinical practice currently advertises virtual service, not a replacement public Austin storefront or in-person consultation site. Do not reuse the former Bronxville address.",
+    "website": "https://foundherbal.com/",
+    "address": "118 Kraft Avenue",
+    "city": "Bronxville",
+    "state": "New York",
+    "zip": "10708",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://foundherbal.com/pages/pages-herbal-consultation-womens-health",
+      "https://foundherbal.com/",
+      "https://foundherbal.com/pages/about-page"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "virtual_only",
+    "thirdPassSources": [
+      "https://foundherbal.com/pages/pages-herbal-consultation-womens-health",
+      "https://foundherbal.com/",
+      "https://foundherbal.com/pages/about-page"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://foundherbal.com/pages/pages-herbal-consultation-womens-health",
+        "finding": "Official services page lists virtual sessions; not merely an absence of an address. Search index crawled three days before this audit; direct page fetch was unavailable."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  },
+  {
+    "inputIndex": 13,
+    "name": "Briar Patch Herbs",
+    "status": "hold",
+    "reason": "The current official homepage now explicitly says Briar Patch Herbs has closed permanently and will not reopen under new ownership. This supersedes its older cached announcement of new owners and a September reopening. There is no successor herb shop to list at 4480 SW Garden Home Road.",
+    "website": "https://briarpatchherbs.com/",
+    "address": "4480 SW Garden Home Road",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97219",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://briarpatchherbs.com/",
+      "https://vitalforceherbs.com/events",
+      "https://www.hoteleastlund.com/events/portland/plant-meditation-talk-and-tea-time-12327157"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "confirmed_closed",
+    "thirdPassSources": [
+      "https://briarpatchherbs.com/"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://briarpatchherbs.com/",
+        "finding": "Direct page open on 2026-10-27 says the shop has closed permanently and will not be re-opening under new ownership. Search-result snippets still show the stale reopening announcement; current page is controlling."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  },
+  {
+    "inputIndex": 38,
+    "name": "OmChi Herbs",
+    "status": "hold",
+    "reason": "Active online business confirmed, but public pickup or walk-in shopping remains unverified. Current official contact page gives PO Box 5352; older corporate/trademark records and herb-industry directory locate the business at 85833 Highway 99 South (historical trademark correction adds unit 5), without stating visitor access. Cylex updated July 30, 2026 still mixes the highway address and PO box and describes online sales, so it is not sufficient evidence of a public store. No claim of closure.",
+    "website": "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+    "address": "85833 Highway 99 South",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.omchiherbs.com/store/",
+      "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html",
+      "https://trademarks.justia.com/759/40/cognitol-75940304.html",
+      "https://www.bbb.org/us/or/eugene/profile/herbs/omchi-herbs-llc-1296-22595702/addressId/186894"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://www.omchiherbs.com/store/",
+      "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html",
+      "https://trademarks.justia.com/759/40/cognitol-75940304.html"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html",
+        "finding": "Displays last updated 2026-07-30 but contains both street address and mailing box; does not confirm customer pickup at a specified site."
+      },
+      {
+        "source": "https://trademarks.justia.com/759/40/cognitol-75940304.html",
+        "finding": "Historical trademark correction corroborates corporate address 85833 Hwy 99s #5, not current retail access; it should not be treated as a map pin for public shopping."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  },
+  {
+    "inputIndex": 40,
+    "name": "Essential Elements Apothecary Shop",
+    "status": "hold",
+    "reason": "No current operator-confirmed Portland retail location found. Allbiz marks the old shop closed; BBB retains 7704 SE 13th Avenue but does not verify current shop operations. A commercial landlord flyer dated October 30, 2024 and property marketing show leasing activity at the address, which does not identify this shop as an operating tenant or prove its closure. Other indexed tenants and an unrelated nearby Wilderness Maven listing do not establish a successor. Keep held; definitive closure is not asserted.",
+    "website": "https://essentialelementshhc.com/",
+    "address": "7704 SE 13th Avenue",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97202",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://w.barnardcommercial.com/uploads/3/4/0/1/34010144/7704se13thaveflyer10302024.pdf",
+      "https://www.loopnet.com/Listing/7704-SE-13th-Ave-Portland-OR/33741459/",
+      "https://www.cylex.us.com/portland/complementary-alternative-medicine/?dst=westmoreland",
+      "https://mapcarta.com/W367895953",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.facebook.com/EssentialElementsHHC/",
+      "https://essentialelementshhc.com/"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://w.barnardcommercial.com/uploads/3/4/0/1/34010144/7704se13thaveflyer10302024.pdf",
+      "https://www.loopnet.com/Listing/7704-SE-13th-Ave-Portland-OR/33741459/",
+      "https://www.cylex.us.com/portland/complementary-alternative-medicine/?dst=westmoreland"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://www.loopnet.com/Listing/7704-SE-13th-Ave-Portland-OR/33741459/",
+        "finding": "Address marketed from November 4, 2024, now no longer advertised. This confirms property identity and turnover possibility, not business identity or public retail access."
+      },
+      {
+        "source": "https://www.cylex.us.com/portland/complementary-alternative-medicine/?dst=westmoreland",
+        "finding": "Full result separates Wilderness Maven at 6032 SE Milwaukie from Essential Elements at 7704 SE 13th; adjacent search snippets must not be conflated into a successor relationship."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  },
+  {
+    "inputIndex": 45,
+    "name": "Simply Vibes Apothecary",
+    "status": "hold",
+    "reason": "Physical shop at 3550 North Davidson Street was real, but current operation remains unresolved. An April 4, 2025 event corroborates visitor access before the owner July 21, 2025 rent-arrears fundraiser. Newly located Eventbrite category results show tea classes but their snapshots date from 2025 and do not establish current events or 2026 access. BLK in Bloom recap dates its shop event to July 27, 2024. The former domain currently redirects to unrelated gambling content; this is not treated as proof of shop closure. No reliable newer owner announcement, current visitor record, or new address found.",
+    "website": null,
+    "address": "3550 North Davidson Street",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "zip": "28205",
+    "phone": "704-968-3311",
+    "hours": null,
+    "tagline": "Charlotte apothecary awaiting current verification",
+    "description": "Simply Vibes Apothecary has offered handmade teas, oils, candles, and spiritual goods in Charlotte\u2019s NoDa neighborhood. The owner described financial difficulties in a July 2025 fundraiser. Its former website currently serves unrelated content, so the storefront\u2019s continued operation and present location need direct confirmation before a public listing is created.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/",
+      "https://blkinbloomclt.com/partner/"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/"
+    ],
+    "thirdPassEvidence": [
+      {
+        "source": "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+        "date": "2025-04-04",
+        "finding": "Ended event at precise submitted address, preceding the later financial-distress report."
+      },
+      {
+        "source": "https://blkinbloomclt.com/blog/",
+        "date": "2024-07-27",
+        "finding": "Dated blog resolves otherwise undated partner testimonial to a historical event, not current storefront verification."
+      }
+    ],
+    "photoUnavailableReason": "No public profile is being created because this business is closed, virtual-only, or current physical visitor access remains unverified."
+  }
+]

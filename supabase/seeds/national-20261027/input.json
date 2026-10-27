@@ -1,0 +1,570 @@
+[
+  {
+    "name": "Humboldt Herbals",
+    "street_address": "300 2nd Street",
+    "city": "Eureka",
+    "state": "California",
+    "state_code": "CA",
+    "postal_code": "95501",
+    "country": "US"
+  },
+  {
+    "name": "Balanced Root Apothecary",
+    "street_address": "1405 N Ogden Street",
+    "city": "Denver",
+    "state": "Colorado",
+    "state_code": "CO",
+    "postal_code": "80218",
+    "country": "US"
+  },
+  {
+    "name": "Bridget’s Botanicals",
+    "street_address": "5733 S Prince Street",
+    "city": "Littleton",
+    "state": "Colorado",
+    "state_code": "CO",
+    "postal_code": "80120",
+    "country": "US"
+  },
+  {
+    "name": "Little Herbal Apothecary",
+    "street_address": "210 S Public Road",
+    "city": "Lafayette",
+    "state": "Colorado",
+    "state_code": "CO",
+    "postal_code": "80026",
+    "country": "US"
+  },
+  {
+    "name": "Orion’s Apothecary",
+    "street_address": "270 E 29th Street",
+    "city": "Loveland",
+    "state": "Colorado",
+    "state_code": "CO",
+    "postal_code": "80538",
+    "country": "US"
+  },
+  {
+    "name": "Sacred Vibes Apothecary",
+    "street_address": "717 Coney Island Avenue",
+    "city": "Brooklyn",
+    "state": "New York",
+    "state_code": "NY",
+    "postal_code": "11218",
+    "country": "US"
+  },
+  {
+    "name": "Moonrise Herbs",
+    "street_address": "826 G Street",
+    "city": "Arcata",
+    "state": "California",
+    "state_code": "CA",
+    "postal_code": "95521",
+    "country": "US"
+  },
+  {
+    "name": "Great Cape Herbs",
+    "street_address": "2624 Main Street",
+    "city": "Brewster",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "postal_code": "02631",
+    "country": "US"
+  },
+  {
+    "name": "MXED GREENS",
+    "street_address": "150 Pleasant Street, Suite 213",
+    "city": "Easthampton",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "postal_code": "01027",
+    "country": "US"
+  },
+  {
+    "name": "Soulful Body & Mind Apothecary",
+    "street_address": "12 Elm Street",
+    "city": "Baldwinville",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "postal_code": "01468",
+    "country": "US"
+  },
+  {
+    "name": "Thyme Herbal Apothecary",
+    "street_address": "277 Shrewsbury Street",
+    "city": "Worcester",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "postal_code": "01604",
+    "country": "US"
+  },
+  {
+    "name": "Wild Heart Herb House",
+    "street_address": "777 Shawmut Avenue",
+    "city": "New Bedford",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "postal_code": "02746",
+    "country": "US"
+  },
+  {
+    "name": "Found Herbal Apothecary",
+    "street_address": "118 Kraft Avenue",
+    "city": "Bronxville",
+    "state": "New York",
+    "state_code": "NY",
+    "postal_code": "10708",
+    "country": "US"
+  },
+  {
+    "name": "Briar Patch Herbs",
+    "street_address": "4480 SW Garden Home Road",
+    "city": "Portland",
+    "state": "Oregon",
+    "state_code": "OR",
+    "postal_code": "97219",
+    "country": "US"
+  },
+  {
+    "name": "Dragon Herbarium",
+    "street_address": "4368 SW Beaverton-Hillsdale Highway",
+    "city": "Portland",
+    "state": "Oregon",
+    "state_code": "OR",
+    "postal_code": "97221",
+    "country": "US"
+  },
+  {
+    "name": "The Herb Shop",
+    "street_address": "247 SW G Street",
+    "city": "Grants Pass",
+    "state": "Oregon",
+    "state_code": "OR",
+    "postal_code": "97526",
+    "country": "US"
+  },
+  {
+    "name": "Clover Apothecary",
+    "street_address": "10 Elm Street",
+    "city": "Woodstock",
+    "state": "Vermont",
+    "state_code": "VT",
+    "postal_code": "05091",
+    "country": "US"
+  },
+  {
+    "name": "Herban Wellness",
+    "street_address": "103 Lake Street S",
+    "city": "Kirkland",
+    "state": "Washington",
+    "state_code": "WA",
+    "postal_code": "98033",
+    "country": "US"
+  },
+  {
+    "name": "Wonderland Tea & Spice",
+    "street_address": "1305 Railroad Avenue",
+    "city": "Bellingham",
+    "state": "Washington",
+    "state_code": "WA",
+    "postal_code": "98225",
+    "country": "US"
+  },
+  {
+    "name": "Battleground Healing Arts",
+    "street_address": "408 East Main Street",
+    "city": "Battle Ground",
+    "state_code": "WA",
+    "postal_code": "98604",
+    "verification_note": "Older directory listing; confirm current herbal retail availability and address."
+  },
+  {
+    "name": "Living Earth Herbs",
+    "street_address": "1411 Cornwall Avenue",
+    "city": "Bellingham",
+    "state_code": "WA",
+    "postal_code": "98225",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Moddejonge’s Herbals",
+    "street_address": "1905 1/2 Hewitt Avenue",
+    "city": "Everett",
+    "state_code": "WA",
+    "postal_code": "98201",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Northsea Apothecary",
+    "street_address": "135A Lopez Road",
+    "city": "Lopez Island",
+    "state_code": "WA",
+    "postal_code": "98261",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Radiance Herbs",
+    "street_address": "113 5th Avenue SE",
+    "city": "Olympia",
+    "state_code": "WA",
+    "postal_code": "98501",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Mountain Spirit Herbals",
+    "street_address": "3110 3rd Street",
+    "city": "Port Townsend",
+    "state_code": "WA",
+    "postal_code": "98368",
+    "verification_note": "Directory describes in-shop purchases; confirm current access, hours, and address."
+  },
+  {
+    "name": "SugarPill Apothecary",
+    "street_address": "900 East Pine Street",
+    "city": "Seattle",
+    "state_code": "WA",
+    "postal_code": "98122",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Tenzing Momo",
+    "street_address": "93 Pike Street",
+    "city": "Seattle",
+    "state_code": "WA",
+    "postal_code": "98101",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Dandelion Botanical Co.",
+    "street_address": "4681 Sequim Dungeness Way",
+    "city": "Sequim",
+    "state_code": "WA",
+    "postal_code": "98382",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Salt Creek Apothecary",
+    "street_address": "28 North Wenatchee Avenue",
+    "city": "Wenatchee",
+    "state_code": "WA",
+    "postal_code": "98801",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Starlight Herb & Spice Company",
+    "street_address": "208 East 37th Street, Suite 6",
+    "city": "Garden City",
+    "state_code": "ID",
+    "postal_code": "83714",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Red Clover Herbs and Market",
+    "street_address": "1655 South Woodruff Avenue",
+    "city": "Idaho Falls",
+    "state_code": "ID",
+    "postal_code": "83404",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Tendril Herbal Apothecary and Healing Center",
+    "street_address": "532 Main Street",
+    "city": "Sandpoint",
+    "state_code": "ID",
+    "postal_code": "83864",
+    "verification_note": "Directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Jade Forest Wellness",
+    "street_address": "223 North 29th Street",
+    "city": "Billings",
+    "state_code": "MT",
+    "postal_code": "59101",
+    "verification_note": "Formerly Billings Herbal Center; confirm current public retail availability and address."
+  },
+  {
+    "name": "Butterfly Herbs",
+    "street_address": "232 North Higgins Avenue",
+    "city": "Missoula",
+    "state_code": "MT",
+    "postal_code": "59802",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Meadowsweet",
+    "street_address": "180 South 3rd Street West",
+    "city": "Missoula",
+    "state_code": "MT",
+    "postal_code": "59801",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Herbal Junction Elixirs",
+    "street_address": "50 East 25th Avenue",
+    "city": "Eugene",
+    "state_code": "OR",
+    "postal_code": "97405",
+    "verification_note": "Directory lists teas and herbal tonics rather than bulk herbs; confirm current storefront and address."
+  },
+  {
+    "name": "Mountain Rose Herbs",
+    "street_address": "152 West 5th Avenue, Suite 3",
+    "city": "Eugene",
+    "state_code": "OR",
+    "postal_code": "97401",
+    "verification_note": "Historical retail address from directory; confirm current retail location."
+  },
+  {
+    "name": "Mrs. Thompsons Herbs, Gifts & Folklore",
+    "street_address": "347 West 5th Avenue",
+    "city": "Eugene",
+    "state_code": "OR",
+    "postal_code": "97401",
+    "verification_note": "Older directory listing; confirm current storefront, business name, and address."
+  },
+  {
+    "name": "OmChi Herbs",
+    "street_address": "85833 Highway 99 South",
+    "city": "Eugene",
+    "state_code": "OR",
+    "postal_code": "97405",
+    "verification_note": "Older herb-store directory listing; confirm public walk-in retail availability and address."
+  },
+  {
+    "name": "Clary Sage Herbarium",
+    "street_address": "2901 NE Alberta Street",
+    "city": "Portland",
+    "state_code": "OR",
+    "postal_code": "97211",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Essential Elements Apothecary Shop",
+    "street_address": "7704 SE 13th Avenue",
+    "city": "Portland",
+    "state_code": "OR",
+    "postal_code": "97202",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "The Herb Shoppe",
+    "street_address": "3912 North Mississippi Avenue",
+    "city": "Portland",
+    "state_code": "OR",
+    "postal_code": "97227",
+    "verification_note": "Older directory listing; confirm current storefront and address."
+  },
+  {
+    "name": "Vibrance Ayurveda",
+    "street_address": "8083 SE 13th Avenue, Suite 5",
+    "city": "Portland",
+    "state_code": "OR",
+    "postal_code": "97202",
+    "verification_note": "Older herb-store directory listing; confirm current retail availability and address."
+  },
+  {
+    "name": "Herbiary Asheville",
+    "street_address": "29 North Market Street",
+    "city": "Asheville",
+    "state_code": "NC",
+    "postal_code": "28801",
+    "verification_note": "Third-party directory address; confirm directly."
+  },
+  {
+    "name": "Musa Moon",
+    "street_address": "604 West Morehead Street, Suite 5",
+    "city": "Charlotte",
+    "state_code": "NC",
+    "postal_code": "28208",
+    "verification_note": "Directory describes a bulk herb shop; confirm current storefront and address."
+  },
+  {
+    "name": "Simply Vibes Apothecary",
+    "street_address": "3550 North Davidson Street",
+    "city": "Charlotte",
+    "state_code": "NC",
+    "postal_code": "28205",
+    "verification_note": "Directory provides limited business details; confirm herbal retail scope and current storefront."
+  },
+  {
+    "name": "Casablanca Herbal Shop",
+    "street_address": "3035 Fayetteville Street, Unit A",
+    "city": "Durham",
+    "state_code": "NC",
+    "postal_code": "27707",
+    "verification_note": "Directory describes in-store herbal retail; confirm current address."
+  },
+  {
+    "name": "Natural Selection Apothecary",
+    "street_address": "627 US Highway 64",
+    "city": "Manteo",
+    "state_code": "NC",
+    "postal_code": "27954",
+    "verification_note": "Source describes in-person shopping by appointment; confirm appointment and address."
+  },
+  {
+    "name": "Simply Herbal Organics",
+    "street_address": "35 East Passaic Street",
+    "city": "Peachland",
+    "state_code": "NC",
+    "postal_code": "28133",
+    "verification_note": "Third-party listing; confirm public retail access and current address."
+  },
+  {
+    "name": "Remedy Apothecary",
+    "street_address": "4725 Yadkinville Road",
+    "city": "Pfafftown",
+    "state_code": "NC",
+    "postal_code": "27040",
+    "verification_note": "Directory provides limited business details; confirm herbal retail scope and current storefront."
+  },
+  {
+    "name": "Native Ceuticals Apothecary",
+    "street_address": "118A West Broad Street",
+    "city": "Statesville",
+    "state_code": "NC",
+    "postal_code": "28677",
+    "verification_note": "Directory lists teas, extracts, mushrooms, and hemp products; confirm current storefront and address."
+  },
+  {
+    "name": "Chandra Botanicals",
+    "street_address": "211 Atlantic Beach Causeway",
+    "city": "Atlantic Beach",
+    "state_code": "NC",
+    "postal_code": "28512",
+    "verification_note": "Source describes private shopping by appointment; confirm appointment and address."
+  },
+  {
+    "name": "Modern Herbal Apothecary",
+    "street_address": "6412 South MacDill Avenue",
+    "city": "Tampa",
+    "state_code": "FL",
+    "postal_code": "33611",
+    "verification_note": "Business website publishes a shop address and retail hours; confirm hours before visiting."
+  },
+  {
+    "name": "Earth Commons",
+    "street_address": "641 Tillery Street, Suite 105",
+    "city": "Austin",
+    "state_code": "TX",
+    "postal_code": "78702",
+    "verification_note": "Third-party directory describes an herb and wellness shop; confirm current address."
+  },
+  {
+    "name": "The Herbal Haberdashery",
+    "street_address": "5221 14th Street West",
+    "city": "Bradenton",
+    "state_code": "FL",
+    "postal_code": "34207",
+    "verification_note": "Directory describes a physical storefront selling herbs, teas, kratom, and CBD; confirm current address."
+  },
+  {
+    "name": "Railyard Apothecary",
+    "street_address": "28 Howard Street, Suite 101-A",
+    "city": "Burlington",
+    "state_code": "VT",
+    "postal_code": "05401",
+    "verification_note": "Business website identifies this as its new location and advertises in-person shopping."
+  },
+  {
+    "name": "Wild Soul River",
+    "street_address": "248 Cole Avenue",
+    "city": "Williamstown",
+    "state_code": "MA",
+    "verification_note": "Business website publishes the street address and retail hours; postal code not verified."
+  },
+  {
+    "name": "2 Wolves Herbal Apothecary - Augusta",
+    "street_address": "469 Highland Avenue",
+    "city": "Augusta",
+    "state_code": "GA",
+    "postal_code": "30904",
+    "verification_note": "Business website publishes this retail location and hours."
+  },
+  {
+    "name": "2 Wolves Herbal Apothecary - Helen",
+    "street_address": "8065 South Main Street",
+    "city": "Helen",
+    "state_code": "GA",
+    "postal_code": "30545",
+    "verification_note": "Business website publishes this retail location and hours; same business as the Augusta entry, separate storefront."
+  },
+  {
+    "name": "Dande-Lion Herb Shop",
+    "street_address": "604 Crain Highway South",
+    "city": "Glen Burnie",
+    "state_code": "MD",
+    "postal_code": "21061",
+    "verification_note": "Third-party listing describes an in-person herb and supplement store; confirm current address."
+  },
+  {
+    "name": "Wild Roots Apothecary",
+    "street_address": "4 River Lane",
+    "city": "Sperryville",
+    "state_code": "VA",
+    "postal_code": "22740",
+    "verification_note": "Third-party visitor listing; confirm current storefront and address."
+  },
+  {
+    "name": "Dope Botanicals",
+    "street_address": "257 South 20th Street",
+    "city": "Philadelphia",
+    "state_code": "PA",
+    "postal_code": "19103",
+    "verification_note": "Business website publishes a herbal shop address and retail hours."
+  },
+  {
+    "name": "Herbiary Philadelphia",
+    "street_address": "1136 Arch Street, Reading Terminal Market",
+    "city": "Philadelphia",
+    "state_code": "PA",
+    "postal_code": "19107",
+    "verification_note": "Business website publishes this market location; separate storefront from Herbiary Asheville."
+  },
+  {
+    "name": "Smile Herb Shop",
+    "street_address": "4908 Berwyn Road",
+    "city": "College Park",
+    "state_code": "MD",
+    "postal_code": "20740",
+    "verification_note": "Third-party address listing; confirm current walk-in operations before visiting."
+  },
+  {
+    "name": "Of the Earth Apothecary",
+    "street_address": "408 Main Street",
+    "city": "Avon-by-the-Sea",
+    "state_code": "NJ",
+    "postal_code": "07717",
+    "verification_note": "Third-party retail listing; confirm current storefront and address."
+  },
+  {
+    "name": "Synergy Herbal Works - Sparta",
+    "street_address": "14 Liberty Square",
+    "city": "Sparta",
+    "state_code": "TN",
+    "postal_code": "38583",
+    "verification_note": "Business website publishes this address and describes an in-person herbal apothecary."
+  },
+  {
+    "name": "Erin’s Meadow Herb Farm",
+    "street_address": "132 England Lane",
+    "city": "Clinton",
+    "state_code": "TN",
+    "postal_code": "37716",
+    "verification_note": "Business website advertises a physical herb shop with seasonal hours."
+  },
+  {
+    "name": "Nanny’s Little House of Healing Herbs Apothecary",
+    "street_address": "229 Earl Garrett Street, inside Zen & Alchemy",
+    "city": "Kerrville",
+    "state_code": "TX",
+    "verification_note": "Older third-party listing describes an apothecary inside another business; confirm continued operation and public access. Postal code not verified."
+  },
+  {
+    "name": "Village Apothecary",
+    "street_address": "12220 Highway N14, Suite N4",
+    "city": "Cedar Crest",
+    "state_code": "NM",
+    "postal_code": "87008"
+  }
+]

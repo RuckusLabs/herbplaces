@@ -1,0 +1,82 @@
+[
+  {
+    "inputIndex": 9,
+    "name": "Soulful Body & Mind Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/ntbCFDwCef.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Plants and labeled herb jars inside Soulful Body & Mind Apothecary",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-1.webp",
+        "width": 1600,
+        "height": 1574,
+        "sha256": "1c51ffc7960c70a1e414c0dc47ce62fe38cf2513a0b76bfc49a08ea62791838e",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/2LAiQIbJfs.jpeg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind Apothecary’s labeled Chocolate Immuni-Tea Kit",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-2.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "8e45377f076ec3ef4dddead7ee8013535e8cb29f055568515524ffa25a74e7cb",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn6.localdatacdn.com/ma/baldwinville/6880016/original/UD2s5EaEoc.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind branded herbal tea and honey tea products",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-3.webp",
+        "width": 960,
+        "height": 960,
+        "sha256": "9f15d306f2bb43cfbeecb948484ce67f698e09f576afc40188cc12fe00df701a",
+        "inspected": true
+      }
+    ],
+    "sources": [
+      "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/"
+    ],
+    "reason": "Retrieved genuine business-gallery photographs from the current-address Loc8NearMe listing; inspected individually. Business labels and coherent shop fixtures identify the shop. Capture dates are not published, so no claim is made that these were taken in 2026. Generic stock imagery and product-menu screenshots were excluded. An interior image showing an enclosed shopping-mall corridor was rejected because it may depict the former Fitchburg location. Included product photos show the business branding, rather than implying a specific present shelf layout."
+  },
+  {
+    "inputIndex": 46,
+    "name": "Casablanca Herbal Shop",
+    "photoCandidates": [
+      {
+        "url": "https://cdn5.localdatacdn.com/nc/durham/7529463/original/Cvxm3c9xJE.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Labeled bulk herb jars beneath a Casablanca Herbal Shop sign",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-1.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "33f413401dd7b73a9693a0e17633f2a386ccc5ae61f5fb53f35710d9bc5639d8",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/LXZcGxOnbj.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Bracelets and bulk herb shelves at Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-2.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "34849a7a03ef0d71f59a98145fe12c3859ae4dcca9eb2fd6d49100d3aa881770",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/exu0s5VpfH.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Herbal product display and jars inside Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-3.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa88e358670144df1213f7605ed546710d231e4deded7f61e786cacdd93fe2ea",
+        "inspected": true
+      }
+    ],
+    "sources": [
+      "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/"
+    ],
+    "reason": "Retrieved genuine business-gallery photographs from the current-address Loc8NearMe listing; inspected individually. Business labels and coherent shop fixtures identify the shop. Capture dates are not published, so no claim is made that these were taken in 2026. Generic stock imagery and product-menu screenshots were excluded."
+  }
+]

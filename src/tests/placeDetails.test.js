@@ -8,7 +8,9 @@ test('photos preserve their order while excluding invalid entries and duplicates
 test('a cover photo is shown when a gallery is missing or empty', () => {
   assert.deepEqual(getPlacePhotos({ coverPhoto: 'cover.jpg' }), ['cover.jpg']);
   assert.deepEqual(getPlacePhotos({ photos: [], coverPhoto: 'cover.jpg' }), ['cover.jpg']);
-  assert.deepEqual(getPlacePhotos(null), ['/assets/pages/home/hero.jpg']);
+  assert.deepEqual(getPlacePhotos(null), []);
+  assert.deepEqual(getPlacePhotos({ photos: [null, '', '  '], coverPhoto: ' ' }), []);
+  assert.deepEqual(getPlacePhotos({ photos: [], coverPhoto: ' cover.jpg ' }), ['cover.jpg']);
 });
 test('website links accept existing HTTP URLs and normalize bare domains', () => {
   assert.equal(getWebsiteUrl('https://example.com/shop'), 'https://example.com/shop');

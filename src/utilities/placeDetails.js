@@ -1,6 +1,7 @@
 export function getPlacePhotos(place) {
-  const photos = Array.isArray(place?.photos) ? place.photos.filter(photo => typeof photo === 'string' && photo.trim()) : [];
-  return [...new Set(photos.length ? photos : [place?.coverPhoto || '/assets/pages/home/hero.jpg'])];
+  const photos = Array.isArray(place?.photos) ? place.photos.filter(photo => typeof photo === 'string' && photo.trim()).map(photo => photo.trim()) : [];
+  const cover = typeof place?.coverPhoto === 'string' ? place.coverPhoto.trim() : '';
+  return [...new Set(photos.length ? photos : cover ? [cover] : [])];
 }
 
 export function getWebsiteUrl(website) {

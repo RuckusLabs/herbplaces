@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Mountain Spirit Herbals",
+    "status": "verified",
+    "street_address": "3110 3rd Street",
+    "city": "Port Townsend",
+    "state": "WA",
+    "zip_code": "98368",
+    "latitude": 48.10259309793728,
+    "longitude": -122.81453902083217,
+    "matched_address": "3110 3RD ST, Port Townsend, WA 98368",
+    "source_type": "local-government-address-point",
+    "confidence": "high",
+    "geocode_status": "verified",
+    "evidence_urls": [
+      "https://www.mountainspiritherbals.com/pages/contact-us",
+      "https://gisweb.jeffcowa.us/server/rest/services/LandRecords/MapServer/3/query?where=OBJECTID+%3D+22695&outFields=%2A&outSR=4326&f=json"
+    ],
+    "verification_note": "Official contact page confirms 3110 3rd Street, Port Townsend WA 98368 and shopping by appointment. Jefferson County site-address point OBJECTID 22695 exactly matches house number, street, municipality, and ZIP; parcel 001093006, ESiteID 177160. Coordinates are the county point geometry returned in EPSG:4326, not a city centroid. No address change needed."
+  },
+  {
+    "name": "Tendril Herbal Apothecary and Healing Center",
+    "status": "verified",
+    "street_address": "532 Main Street",
+    "city": "Sandpoint",
+    "state": "ID",
+    "zip_code": "83864",
+    "latitude": 48.27628901862797,
+    "longitude": -116.5550669414668,
+    "matched_address": "532 Main Street, Sandpoint, ID 83864",
+    "source_type": "local-government-structure-address-point",
+    "confidence": "high",
+    "geocode_status": "verified",
+    "evidence_urls": [
+      "https://tendrilapothecary.com/contact/",
+      "https://cloudgis.bonnercountyid.gov/server/rest/services/Map_Services/Addressing_Public/MapServer/0/query?where=objectid+%3D+22668&outFields=%2A&outSR=4326&f=json"
+    ],
+    "verification_note": "Official contact page confirms 532 Main St, Sandpoint ID 83864 and embeds this address in its Google map. Bonner County Addressing Public Structure point objectid 22668 exactly matches fulladdr 532 Main Street, municipality Sandpoint, msag Sandpoint, old address 532 Main St. Coordinates are the county structure point geometry in EPSG:4326. No location move found; Street is expanded from St."
+  },
+  {
+    "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+    "status": "verified",
+    "street_address": "627 S US Highway 64",
+    "city": "Manteo",
+    "state": "NC",
+    "zip_code": "27954",
+    "latitude": 35.89690715,
+    "longitude": -75.66728735,
+    "matched_address": "627 S US 64 HWY, Manteo, NC 27954",
+    "source_type": "local-government-address-point",
+    "confidence": "high",
+    "geocode_status": "verified",
+    "evidence_urls": [
+      "https://healinghouseherbsnc.com/pages/contact-us",
+      "https://maps.darecountync.gov/searchData.php?term=627+US",
+      "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
+    ],
+    "verification_note": "Official contact page confirms 627 US Highway 64, Manteo NC 27954, upstairs above Manteo Cyclery and next to the Scuba Diving Shop. Dare County search returns parcel 025723000 / PIN 978907678983 at 627 S US 64 HWY, Manteo NC 27954. The county address_points layer has exactly one point for that parcel, address_points.33293, house 627, direction S, street US 64 HWY, Manteo ZIP 27954. Coordinates come from this authoritative address point (not a guessed location or city centroid). Normalize missing S directional in the submitted address; floor is upstairs, unit unconfirmed. This point identifies the shared address/building, not an independently surveyed upstairs unit entrance."
+  }
+]
