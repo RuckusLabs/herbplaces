@@ -61,7 +61,6 @@ for (const plan of pending) {
   const saved = await value(db.from('places').update(next).eq('id', plan.previous.id).eq('content_version', plan.previous.content_version).select('*').single());
   for (const [field, content] of Object.entries(plan.previous)) if (!Object.hasOwn(next, field)) assert.deepEqual(saved[field], content, `Unrelated field changed: ${field}`);
   for (const [field, content] of Object.entries(next)) assert.ok(equal(field, saved[field], content), `Saved mismatch: ${field}`);
-
 }
 const after = await value(db.from('places').select('*').order('id'));
 assert.equal(after.length, before.length);
@@ -76,7 +75,7 @@ for (const plan of plans.filter(plan => !audited.some(row => String(row.place_id
 }
 const unresolved = after.filter(row => identities.some(identity => identity.id === row.id) && row.geocode_status !== 'confirmed').map(row => row.name);
 assert.deepEqual(unresolved, []);
-const receipt = { projectRef, appliedAt: new Date().toISOString(), updated: pending.length, totalListings: after.length, profiles: publiclyListed, remainingMapReview: unresolved, checks: ['Exact government address evidence for all five pins', 'Version-conditional updates', 'Non-location fields including photos unchanged except version/timestamp', 'Other profiles unchanged', 'Anonymous public address and coordinates verified'] };
+const receipt = { projectRef, appliedAt: new Date().toISOString(), updatedThisInvocation: pending.length, confirmedLocations: publiclyListed.length, totalListings: after.length, profiles: publiclyListed, remainingMapReview: unresolved, checks: ['Exact government address evidence for all five pins', 'Version-conditional updates', 'Non-location fields including photos unchanged except version/timestamp', 'Other profiles unchanged', 'Anonymous public address and coordinates verified'] };
 const filename = path.join(directory, 'third-pass-location-receipt.json');
 if (!fs.existsSync(filename) || pending.length) fs.writeFileSync(filename, JSON.stringify(receipt, null, 2) + '\n');
 console.log(`Verified ${pending.length} location corrections; ${unresolved.length} imported locations remain unconfirmed.`);

@@ -1,7 +1,6 @@
 {
   "projectRef": "qtpepsebztlremlhpxdt",
   "appliedAt": "2026-10-27T19:19:13.627Z",
-  "updated": 3,
   "totalListings": 71,
   "profiles": [
     {
@@ -72,5 +71,7 @@
     "Non-location fields including photos unchanged except version/timestamp",
     "Other profiles unchanged",
     "Anonymous public address and coordinates verified"
-  ]
+  ],
+  "updatedThisInvocation": 3,
+  "confirmedLocations": 5
 }
