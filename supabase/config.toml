@@ -1,5 +1,17 @@
 project_id = "herbplaces"
 
+[functions.place-activity]
+# Public, origin-restricted action collection; database writes use service-only RPCs.
+verify_jwt = false
+
+[functions.activity-reports]
+# Dedicated scheduler secret; no request-provided recipients or payloads are used.
+verify_jwt = false
+
+[functions.activity-report-unsubscribe]
+# Opaque per-manager report token. GET is read-only; POST changes the preference.
+verify_jwt = false
+
 [auth]
 site_url = "https://littleherbplaces.com"
 additional_redirect_urls = [

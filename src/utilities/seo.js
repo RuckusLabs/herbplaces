@@ -1,13 +1,15 @@
 import { planPages } from './planPages.js';
 import { getPlaceCategories } from './placeFilters.js';
 import { getPlacePhotos, getWebsiteUrl } from './placeDetails.js';
+import { openingHoursSchema } from './openingHoursSchema.js';
 
 export const SITE_ORIGIN = 'https://littleherbplaces.com';
 export const SITE_NAME = 'Little Herb Places';
 export const DEFAULT_DESCRIPTION = 'Discover independent herb shops, apothecaries, herbalists, and gardens. Find your next little herb place and connect with a community rooted in nature.';
 export const publicRoutes = [
   ...Object.entries(planPages).map(([key, plan]) => ({ path: `/the-little-garden/${key}`, title: plan.title, heading: plan.heading, description: plan.description })),
-  { path: '/', title: 'Little Herb Places — Find your connection to nature', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },
+  { path: '/', title: 'Find Herb Shops, Apothecaries & Herbalists | Little Herb Places', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },
+  { path: '/browse', title: 'Herb Shops, Herbalists & Gardens by City | Little Herb Places', heading: 'Find herb shops, herbalists & gardens by city', description: 'Browse independent herb shops, apothecaries, herbalists, gardens, and classes. Explore local collections or discover every place in the directory.' },
   { path: '/map', title: 'Explore Places | Little Herb Places', heading: 'Explore Little Herb Places', description: 'Find independent herb shops, herbalists, gardens, and plant-loving communities. Explore the directory and discover a little place near you.' },
   { path: '/about', title: 'Our Story | Little Herb Places', heading: 'Small Places, Big Heart.', description: 'Meet Little Herb Places: a guide to independent herb shops, herbalists, gardens, and the people who connect us through a love of plants.' },
   { path: '/the-little-garden', title: 'The Little Garden | Little Herb Places', heading: 'The Little Garden.', description: 'Manage your business listing on Little Herb Places. Learn how free ownership claims, Bloom subscriptions, and the upcoming Thrive plan work.' },
@@ -15,7 +17,7 @@ export const publicRoutes = [
   { path: '/privacy', title: 'Privacy at Little Herb Places', heading: 'Privacy at Little Herb Places', description: 'How Little Herb Places handles account information, ownership details, public listings, and payments.' },
   { path: '/membership-terms', title: 'Membership Terms | Little Herb Places', heading: 'Membership Terms', description: 'Membership, ownership claims, subscription renewal, cancellation, and listing content at Little Herb Places.' },
 ];
-export const privateRoutes = ['/settings', '/the-little-garden/start', '/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/auth/forgot-password', '/auth/reset-password', '/auth/resend-confirmation', '/request-place', '/the-little-garden/sprout', '/shop'];
+export const privateRoutes = ['/reports/unsubscribe', '/settings', '/the-little-garden/start', '/login', '/register', '/favorites', '/my-places', '/admin', '/auth/callback', '/auth/forgot-password', '/auth/reset-password', '/auth/resend-confirmation', '/request-place', '/the-little-garden/sprout', '/shop'];
 export const sitePageCards = [
   { path: '/', slug: 'home', name: 'Find Your Little Herb Place.', tagline: 'Herb shops, herbalists, gardens, and good company.', button: 'Explore Places', photo: '/assets/pages/home/hero.jpg' },
   { path: '/map', slug: 'explore', name: 'Somewhere Good Is Growing.', tagline: 'Find independent herb shops, plant people, and spaces to put down roots.', button: 'Explore The Map', photo: '/assets/pages/home/herb-image-2.jpg' },
@@ -74,6 +76,8 @@ export function getPlaceSeo(place) {
   const entity = { '@type': business ? 'LocalBusiness' : 'Place', '@id': `${canonical}#place`, name: place.name, description, url: getWebsiteUrl(place.website) || canonical, image: images, mainEntityOfPage: { '@id': canonical } };
   if (place.address || place.city) entity.address = { '@type': 'PostalAddress', ...(place.address && { streetAddress: place.address }), ...(place.city && { addressLocality: place.city }), ...(place.state && { addressRegion: place.state }), ...(place.zip && { postalCode: place.zip }) };
   if (place.phone) entity.telephone = place.phone;
+  const openingHours = openingHoursSchema(place.hours);
+  if (business && openingHours.length) entity.openingHoursSpecification = openingHours;
   if ([place.latitude, place.longitude].every(value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value))) && Math.abs(Number(place.latitude)) <= 90 && Math.abs(Number(place.longitude)) <= 180) entity.geo = { '@type': 'GeoCoordinates', latitude: Number(place.latitude), longitude: Number(place.longitude) };
   const sameAs = (place.social_links || []).map(link => getWebsiteUrl(link.url)).filter(Boolean);
   if (sameAs.length) entity.sameAs = sameAs;
@@ -86,4 +90,17 @@ export function getPlaceSeo(place) {
         { '@type': 'ListItem', position: 3, name: place.name, item: canonical },
       ] },
     ] } };
+}
+
+export function getDiscoverySeo(item) {
+  const canonical = canonicalUrl(item.path);
+  const entity = { '@type': item.event ? 'Event' : item.kind === 'service' ? 'Service' : 'Product', name: item.title,
+    description: item.description, url: canonical, ...(item.image ? { image: absoluteImage(item.image) } : {}) };
+  if (item.event) {
+    entity.startDate = item.starts_at; entity.endDate = item.ends_at;
+    entity.organizer = { '@type': 'Organization', name: item.place.name, url: canonicalUrl(`/place/${item.place.urlSlug}`) };
+    if (item.location) entity.location = { '@type': 'Place', name: item.location };
+  } else entity[item.kind === 'service' ? 'provider' : 'brand'] = { '@type': 'Organization', name: item.place.name };
+  return { ...getRouteSeo(item.path), title: `${item.title} at ${item.place.name} | ${SITE_NAME}`, description: item.description || `Explore ${item.title} from ${item.place.name}.`, canonical,
+    robots: 'index,follow', structuredData: { '@context': 'https://schema.org', '@graph': [entity, { '@type': 'WebPage', '@id': canonical, name: item.title, url: canonical, about: entity }] } };
 }

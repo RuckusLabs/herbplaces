@@ -19,8 +19,10 @@ export const policyPages = {
       ] },
       { heading: 'Website usage, maps, and community emails', paragraphs: [
         ['The site loads Simple Analytics to measure website usage. See ', { text: 'Simple Analytics privacy information', href: 'https://www.simpleanalytics.com/privacy-policy' }, '.'],
+        ['When business activity reporting is enabled, we count profile views and clicks on website, phone, directions, offering, event, and announcement links. We store the action type, listing and item references, timestamp, random event reference, and a daily-changing keyed hash of the request IP to limit repeat actions and abuse. Raw IP addresses and full destination URLs are not stored in these activity records. Records are retained for up to 90 days, and approved managers can view aggregate reports for their own listings. Activity collection honors the browser Do Not Track setting. Our infrastructure providers may separately process standard request logs.'],
         ['Maps use Mapbox. When you choose Places Near Me, your browser asks for location permission and uses your location to show nearby results. Location coordinates can appear in the resulting page URL; take care when sharing it.'],
         ['Community newsletter signup is separate from your website account and is handled through Mailchimp. You can unsubscribe using the link in newsletter emails. External booking, shopping, and social links have their own privacy practices.'],
+        ['Optional monthly business activity reports are sent through Resend only after an approved manager opts in for a place. Reports go to that manager’s confirmed account email and include aggregate activity for the completed calendar month. Report delivery snapshots and history are cleared by scheduled cleanup after 13 months; raw activity records have their separate retention period. You can turn reports off in Business Tools or use the unsubscribe link in a report email. Subscription and community newsletter preferences are separate.'],
       ] },
       { heading: 'Access, corrections, and deletion', paragraphs: [
         ['Email ', support, ' to ask about your information, correct a listing, or request account deletion. We may need to verify your identity or transfer billing responsibility first. Removing an account does not automatically remove its public listings, published photos, or revision history. Contact us separately about removing listing content. Browser drafts expire when read after their retention period and are cleared when a claim is submitted; you can also clear this site’s browser storage.'],
@@ -43,9 +45,10 @@ export const policyPages = {
       ] },
       { heading: 'Your listing content', paragraphs: [
         ['Publish accurate information and only text, photos, and links you have permission to share publicly. Our team may correct or remove inappropriate or inaccurate content and review management access. Published revisions and photos are retained for restoration until the listing is removed.'],
+        ['Approved managers can correct essential visit and contact information without subscribing when Essential Details tools are enabled, or ask our team for a free correction. Business announcements and events expire according to their published dates. Customers follow external links to shop, book, or register directly with each business. Activity reports count recorded actions and do not establish unique visitors, completed bookings, calls, or sales.'],
       ] },
       { heading: 'Upcoming offers and billing questions', paragraphs: [
-        ['Thrive is not available for purchase. Its planned features and promotional deliverables will be confirmed before launch. A request for information does not reserve a paid placement or start a subscription.'],
+        ['Thrive is not available for purchase. Invitation-only pilot access is time-limited and agreed individually; it creates no Thrive subscription or payment. Paid pricing is planned at $49 USD per month per place, with features and terms confirmed before checkout opens. Newsletter coverage, sponsored spotlights, reach, and sales are not guaranteed pilot deliverables. A request for information does not reserve a paid placement or start a subscription.'],
         ['Contact ', support, ' about billing errors, refund requests, or account changes. Include your listing name and invoice reference, never sign-in codes, passwords, or card details.'],
       ] },
     ],

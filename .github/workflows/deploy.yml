@@ -24,6 +24,8 @@ jobs:
       VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       VITE_PASSWORDLESS_ENABLED: ${{ vars.VITE_PASSWORDLESS_ENABLED || 'true' }}
       VITE_BLOOM_ENABLED: ${{ vars.VITE_BLOOM_ENABLED }}
+      VITE_GROWTH_ENABLED: ${{ vars.VITE_GROWTH_ENABLED }}
+      VITE_ACTIVITY_REPORTS_ENABLED: ${{ vars.VITE_ACTIVITY_REPORTS_ENABLED }}
       
     steps:
       - uses: actions/checkout@v4

@@ -19,7 +19,7 @@ export default function Home() {
   };
   return <>
     <Helmet>
-      <title>Little Herb Places — Find your connection to nature</title>
+      <title>Find Herb Shops, Apothecaries & Herbalists | Little Herb Places</title>
       <meta name="description" content="A thoughtful guide to independent herb shops, apothecaries, herbalists, and gardens. Discover a little herb place near you." />
     </Helmet>
     <main id="main-content" className={styles.home}>

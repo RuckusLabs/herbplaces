@@ -2,6 +2,7 @@ import { useEffect, useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DeletePlaceDialog from './DeletePlaceDialog';
+import AdminPilotControls from '../../components/BusinessTools/AdminPilotControls';
 import Modal from '../../components/Modal/Modal';
 import { useManagement } from '../../contexts/ManagementContext';
 import { geocodePublishedPlace, managementAction, managementRpc } from '../../utilities/managementApi';
@@ -71,6 +72,7 @@ export default function AdminPlaceDetail({ placeId, onClose, onDeleted }) {
     {error && <p role="alert" className={styles.error}>{error}</p>}{notice && <p role="status" className={styles.notice}>{notice}</p>}
     {!detail ? error ? <button className="button" onClick={() => { setError(''); setAttempt(value => value + 1); }}>Retry Loading Place</button> : <p role="status">Loading place details…</p> : <>
       <div className={styles.actions}><Link className="button" to={`/place/${detail.place.urlSlug}`} onClick={onClose}>View & Edit Place</Link><span className={styles.status}>{detail.subscription?.status || 'No subscription'}</span></div>
+      <AdminPilotControls placeId={String(placeId)} onChanged={management.refresh} />
       <section className={styles.card}><h3>Managers</h3>
         {detail.members.map(member => <div className={styles.member} key={member.user_id}><span>{member.email}{member.is_billing_contact && <span className={styles.status}>Billing contact</span>}</span><div className={styles.actions}>
           {!member.is_billing_contact && <button className="button" disabled={busy} onClick={() => run(() => managementRpc('admin_assign_manager', { p_place_id: String(placeId), p_email: member.email, p_billing: true }), 'Billing contact changed.')}>Make Billing Contact</button>}

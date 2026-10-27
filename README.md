@@ -110,3 +110,7 @@ from site_build_private.queue;
 To disable automatic requests, unschedule `little-herb-places-rebuild` in Supabase Cron and remove the `queue_site_rebuild` trigger from `public.places`. Manual and push-triggered builds continue to work.
 
 References: [GitHub workflow dispatch API](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event), [Supabase pg_net](https://supabase.com/docs/guides/database/extensions/pg_net), [Supabase Vault](https://supabase.com/docs/guides/database/vault).
+
+## Business growth tools
+
+See [Business growth rollout](docs/business-growth-rollout.md) for database/function deployment order, feature flags, privacy and retention, the Thrive pilot, and verification. Paid Thrive checkout remains closed.
