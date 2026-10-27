@@ -1,1 +1,0 @@
-import{j as o}from"./index-BflK5ayr.js";import{A as r}from"./AuthForm-DOi3Ib6Y.js";import"./EmailCodeForm-D360bNHj.js";import"./auth.module-wVugQgi9.js";function p(){return o.jsx(r,{mode:"login"})}export{p as default};
