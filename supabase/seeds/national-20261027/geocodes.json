@@ -961,7 +961,134 @@
   "68": {
     "query": "12220 Highway N14, Cedar Crest, New Mexico 87008",
     "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+Highway+N14%2C+Cedar+Crest%2C+New+Mexico+87008&benchmark=Public_AR_Current&format=json",
-    "matches": []
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "206729180"
+        },
+        "coordinates": {
+          "x": -106.364349488331,
+          "y": 35.13831312315
+        },
+        "addressComponents": {
+          "zip": "87008",
+          "streetName": "14",
+          "preType": "STATE HWY",
+          "city": "CEDAR CREST",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "12200",
+          "state": "NM",
+          "suffixType": "",
+          "toAddress": "12298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "12220 STATE HWY 14, CEDAR CREST, NM, 87008"
+      }
+    ],
+    "alternateLookups": [
+      {
+        "query": "12220 NM 14, Cedar Crest NM 87008",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+NM+14%2C+Cedar+Crest+NM+87008&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      },
+      {
+        "query": "12220 State Highway 14 N, Cedar Crest NM 87008",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+State+Highway+14+N%2C+Cedar+Crest+NM+87008&benchmark=Public_AR_Current&format=json",
+        "matches": [
+          {
+            "tigerLine": {
+              "side": "R",
+              "tigerLineId": "206729180"
+            },
+            "coordinates": {
+              "x": -106.364349488331,
+              "y": 35.13831312315
+            },
+            "addressComponents": {
+              "zip": "87008",
+              "streetName": "14",
+              "preType": "STATE HWY",
+              "city": "CEDAR CREST",
+              "preDirection": "",
+              "suffixDirection": "",
+              "fromAddress": "12200",
+              "state": "NM",
+              "suffixType": "",
+              "toAddress": "12298",
+              "suffixQualifier": "",
+              "preQualifier": ""
+            },
+            "matchedAddress": "12220 STATE HWY 14, CEDAR CREST, NM, 87008"
+          }
+        ]
+      },
+      {
+        "query": "12220 Highway 14 N, Cedar Crest NM 87008",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+Highway+14+N%2C+Cedar+Crest+NM+87008&benchmark=Public_AR_Current&format=json",
+        "matches": [
+          {
+            "tigerLine": {
+              "side": "R",
+              "tigerLineId": "206729180"
+            },
+            "coordinates": {
+              "x": -106.364349488331,
+              "y": 35.13831312315
+            },
+            "addressComponents": {
+              "zip": "87008",
+              "streetName": "14",
+              "preType": "STATE HWY",
+              "city": "CEDAR CREST",
+              "preDirection": "",
+              "suffixDirection": "",
+              "fromAddress": "12200",
+              "state": "NM",
+              "suffixType": "",
+              "toAddress": "12298",
+              "suffixQualifier": "",
+              "preQualifier": ""
+            },
+            "matchedAddress": "12220 STATE HWY 14, CEDAR CREST, NM, 87008"
+          }
+        ]
+      },
+      {
+        "query": "12220 North Highway 14, Cedar Crest NM 87008",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+North+Highway+14%2C+Cedar+Crest+NM+87008&benchmark=Public_AR_Current&format=json",
+        "matches": [
+          {
+            "tigerLine": {
+              "side": "R",
+              "tigerLineId": "206729180"
+            },
+            "coordinates": {
+              "x": -106.364349488331,
+              "y": 35.13831312315
+            },
+            "addressComponents": {
+              "zip": "87008",
+              "streetName": "14",
+              "preType": "STATE HWY",
+              "city": "CEDAR CREST",
+              "preDirection": "",
+              "suffixDirection": "",
+              "fromAddress": "12200",
+              "state": "NM",
+              "suffixType": "",
+              "toAddress": "12298",
+              "suffixQualifier": "",
+              "preQualifier": ""
+            },
+            "matchedAddress": "12220 STATE HWY 14, CEDAR CREST, NM, 87008"
+          }
+        ]
+      }
+    ],
+    "matchedSource": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+State+Highway+14+N%2C+Cedar+Crest+NM+87008&benchmark=Public_AR_Current&format=json"
   },
   "19": {
     "query": "408 East Main Street, Battle Ground, Washington 98604",
@@ -1474,6 +1601,161 @@
           "preQualifier": ""
         },
         "matchedAddress": "232 N HIGGINS AVE, MISSOULA, MT, 59802"
+      }
+    ]
+  },
+  "35": {
+    "query": "50 East 25th Avenue, Eugene, Oregon 97405",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=50+East+25th+Avenue%2C+Eugene%2C+Oregon+97405&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "605393061"
+        },
+        "coordinates": {
+          "x": -123.090170666687,
+          "y": 44.031224704998
+        },
+        "addressComponents": {
+          "zip": "97405",
+          "streetName": "25TH",
+          "preType": "",
+          "city": "EUGENE",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "OR",
+          "suffixType": "AVE",
+          "toAddress": "50",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "50 E 25TH AVE, EUGENE, OR, 97405"
+      }
+    ]
+  },
+  "46": {
+    "query": "3035 Fayetteville Street, Durham, North Carolina 27707",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3035+Fayetteville+Street%2C+Durham%2C+North+Carolina+27707&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "71740984"
+        },
+        "coordinates": {
+          "x": -78.907695953935,
+          "y": 35.963195466517
+        },
+        "addressComponents": {
+          "zip": "27707",
+          "streetName": "FAYETTEVILLE",
+          "preType": "",
+          "city": "DURHAM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3011",
+          "state": "NC",
+          "suffixType": "RD",
+          "toAddress": "3101",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3035 FAYETTEVILLE RD, DURHAM, NC, 27707"
+      }
+    ]
+  },
+  "63": {
+    "query": "4908 Berwyn Road, College Park, Maryland 20740",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4908+Berwyn+Road%2C+College+Park%2C+Maryland+20740&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "76305383"
+        },
+        "coordinates": {
+          "x": -76.927417050355,
+          "y": 38.995080789615
+        },
+        "addressComponents": {
+          "zip": "20740",
+          "streetName": "BERWYN",
+          "preType": "",
+          "city": "COLLEGE PARK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "4906",
+          "state": "MD",
+          "suffixType": "RD",
+          "toAddress": "4998",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4908 BERWYN RD, COLLEGE PARK, MD, 20740"
+      }
+    ]
+  },
+  "67": {
+    "query": "229 Earl Garrett Street, Kerrville, Texas 78028",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=229+Earl+Garrett+Street%2C+Kerrville%2C+Texas+78028&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "176887726"
+        },
+        "coordinates": {
+          "x": -99.140165963554,
+          "y": 30.045810549119
+        },
+        "addressComponents": {
+          "zip": "78028",
+          "streetName": "EARL GARRETT",
+          "preType": "",
+          "city": "KERRVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "201",
+          "state": "TX",
+          "suffixType": "ST",
+          "toAddress": "299",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "229 EARL GARRETT ST, KERRVILLE, TX, 78028"
+      }
+    ]
+  },
+  "9": {
+    "query": "12 Elm Street, Baldwinville, Massachusetts 01436",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12+Elm+Street%2C+Baldwinville%2C+Massachusetts+01436&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "39991338"
+        },
+        "coordinates": {
+          "x": -72.075065534437,
+          "y": 42.607533785676
+        },
+        "addressComponents": {
+          "zip": "01436",
+          "streetName": "ELM",
+          "preType": "",
+          "city": "BALDWINVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "MA",
+          "suffixType": "ST",
+          "toAddress": "14",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "12 ELM ST, BALDWINVILLE, MA, 01436"
       }
     ]
   }

@@ -9,11 +9,12 @@ DATA = ROOT / 'supabase/seeds/national-20261027'
 OUT = ROOT / 'docs/listing-images/national-20261027/review.html'
 rows = sorted([row for file in DATA.glob('research-*.json') for row in json.loads(file.read_text())], key=lambda row: row['inputIndex'])
 receipt = json.loads((DATA / 'receipt.json').read_text()) if (DATA / 'receipt.json').exists() else {}
-published = {row['name']: row for row in receipt.get('places', [])}
+followup = json.loads((DATA / 'second-pass-receipt.json').read_text()) if (DATA / 'second-pass-receipt.json').exists() else {}
+published = {row['name']: row for row in receipt.get('places', []) + followup.get('places', [])}
 e = lambda value: html.escape(str(value or ''), quote=True)
 counts = collections.Counter(row['status'] for row in rows)
 parts = ['<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New place profiles · Little Herb Places</title><style>body{font:17px/1.6 system-ui;background:#f6f3e9;color:#233d2d;max-width:1050px;margin:40px auto;padding:0 24px}h1{line-height:1.15}article{background:#fff;border:1px solid #d1d9c9;border-radius:18px;margin:24px 0;padding:24px}h2{margin:0 0 8px}a{color:#226249}.photos{display:flex;flex-wrap:wrap;gap:12px}figure{margin:12px 0;max-width:460px}img{width:100%;height:260px;object-fit:cover;border-radius:10px}figcaption,small{font-size:13px}strong{font-weight:650}.status{font-size:13px;text-transform:uppercase;letter-spacing:.08em}li{overflow-wrap:anywhere}.hold,.closed{border-left:7px solid #a56b30}</style><header><p>Little Herb Places · Editorial additions · October 27, 2026</p><h1>New place profiles and research outcomes</h1>']
-parts.append('<p>' + ' · '.join(f'{e(status)}: {count}' for status, count in sorted(counts.items())) + '</p><p>Sources and photo provenance are recorded below. Uncertain or closed storefronts are held for review. Existing profiles are preserved. Photos were retrieved at the user’s request; source attribution is not a claim of copyright ownership or a reuse license.</p></header>')
+parts.append('<p>' + ' · '.join(f'{e(status)}: {count}' for status, count in sorted(counts.items())) + '</p><p>Sources and photo provenance are recorded below. Uncertain or closed storefronts are held for review. Original profiles are preserved; the second pass adds verified places and fills the documented photo gaps. Photos were retrieved at the user’s request; source attribution is not a claim of copyright ownership or a reuse license.</p></header>')
 for row in rows:
     parts.append(f'<article class="{e(row["status"])}"><p class="status">{row["inputIndex"]+1} · {e(row["status"])}</p><h2>{e(row["name"])}</h2>')
     if row.get('reason'): parts.append(f'<p><strong>{e(row["reason"])}</strong></p>')

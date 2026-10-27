@@ -198,7 +198,7 @@
     "inputIndex": 7,
     "name": "Great Cape Herbs",
     "status": "hold",
-    "reason": "2022 operator notice closed storefront/gardens; 2025 farm guide conflicts; original domain now parked. Current walk-in access unconfirmed.",
+    "reason": "Still unconfirmed: operator closure notice September 10, 2022 has not been superseded by a verified reopening. March 20, 2024 local reporting says the co-op abandoned the property purchase after two years of zoning/conservation enforcement disputes. The 2025 farm guide repeats the same gardens/cafe description found in the 2022 pre-closure guide, so it does not establish restored public access.",
     "website": "",
     "address": "2624 Main Street",
     "city": "Brewster",
@@ -213,10 +213,13 @@
     ],
     "sources": [
       "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
-      "https://greatcape.com/",
-      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf"
+      "https://capecodchronicle.com/articles/718/view",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2022/05/2022-BFBLCC-Guide-to-Farms-and-Food-website.pdf"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
   },
   {
     "inputIndex": 8,
@@ -244,25 +247,63 @@
   {
     "inputIndex": 9,
     "name": "Soulful Body & Mind Apothecary",
-    "status": "hold",
-    "reason": "Historical official contact and 2025 local tour confirm shop, but original domain now redirects to unrelated adult content. Current official website, storefront status, and usable photos require confirmation. Do not link repurposed domain.",
-    "website": "",
+    "status": "ready",
+    "reason": "",
+    "website": null,
     "address": "12 Elm Street",
     "city": "Baldwinville",
     "state": "Massachusetts",
-    "zip": "01468",
-    "phone": "",
-    "hours": "",
-    "tagline": "",
-    "description": "",
+    "zip": "01436",
+    "phone": "978-245-7322",
+    "hours": "Country Roads holiday tour, November 7–December 6, 2026: Thursday–Friday noon–4pm; Saturday 11am–4pm; Sunday 10am–3pm. Call to confirm hours outside the tour.",
+    "tagline": "Bulk herbs, teas, plants, and local gifts in Baldwinville.",
+    "description": "Soulful Body & Mind Apothecary is a plant and lifestyle gift shop on Elm Street in Baldwinville. The shop carries bulk herbs and flowers, teas, bath and body products, and goods from local makers. Its selection also includes plants, crystals, art, and gifts. The shop participates in the 2026 Country Roads holiday shopping tour.",
     "category_ids": [
       "shops"
     ],
     "sources": [
       "https://www.countryroadschristmas.com/",
-      "https://www.soulful-body-mind.com/contact"
+      "https://www.thevice.biz/the-coffee-espresso",
+      "https://www.templetonma.gov/board-of-assessors/files/fy2025-preliminary-personal-property-assessed-values-by-business",
+      "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+      "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12+Elm+Street%2C+Baldwinville%2C+Massachusetts+01468&benchmark=Public_AR_Current&format=json"
     ],
-    "photoCandidates": []
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/ntbCFDwCef.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Plants and labeled herb jars inside Soulful Body & Mind Apothecary",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-1.webp",
+        "width": 1600,
+        "height": 1574,
+        "sha256": "1c51ffc7960c70a1e414c0dc47ce62fe38cf2513a0b76bfc49a08ea62791838e",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/2LAiQIbJfs.jpeg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind Apothecary’s labeled Chocolate Immuni-Tea Kit",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-2.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "8e45377f076ec3ef4dddead7ee8013535e8cb29f055568515524ffa25a74e7cb",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn6.localdatacdn.com/ma/baldwinville/6880016/original/UD2s5EaEoc.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind branded herbal tea and honey tea products",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-3.webp",
+        "width": 960,
+        "height": 960,
+        "sha256": "9f15d306f2bb43cfbeecb948484ce67f698e09f576afc40188cc12fe00df701a",
+        "inspected": true
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Live organizer homepage names the November 7–December 6, 2026 tour and lists Soulful at 12 Elm Street with current phone and tour hours. Local cafe The Vice independently identifies its hand-crafted teas as supplied by the Baldwinville business. The repurposed former website is omitted.",
+    "zipCorrectionNote": "Corrected submitted 01468 to 01436 using the US Census exact 12 Elm St, Baldwinville address match."
   },
   {
     "inputIndex": 10,
@@ -360,7 +401,7 @@
     "inputIndex": 12,
     "name": "Found Herbal Apothecary",
     "status": "hold",
-    "reason": "Current official website identifies an Austin clinical practice; does not confirm the historical Bronxville storefront. Do not publish the outdated New York address.",
+    "reason": "Current operator explicitly advertises an active Austin clinical herbal practice and information calls, but publishes no verifiable Austin consultation storefront address or public shopping access. The original Bronxville address cannot be carried forward. Keep held as a physical place, without implying business closure.",
     "website": "https://foundherbal.com/",
     "address": "118 Kraft Avenue",
     "city": "Bronxville",
@@ -374,15 +415,18 @@
       "shops"
     ],
     "sources": [
-      "https://foundherbal.com/"
+      "https://foundherbal.com/",
+      "https://foundherbal.com/pages/about-page"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
   },
   {
     "inputIndex": 13,
     "name": "Briar Patch Herbs",
     "status": "hold",
-    "reason": "Official site announces new owners/name and reopening; September 2026 partner events still use Briarpatch name. Need current business identity and hours before publishing.",
+    "reason": "Current own site announces new owners, new name, and reopening in early September, but gives neither successor name nor confirmation reopening occurred. Partner Vital Force Herbs confirms June 2026 in-person classes at submitted address; a September 9 event also appears in a hotel calendar. Those confirm recent activity but do not resolve present successor identity and access after ownership transfer. Existing hours omitted rather than carried forward.",
     "website": "https://briarpatchherbs.com/",
     "address": "4480 SW Garden Home Road",
     "city": "Portland",
@@ -397,9 +441,12 @@
     ],
     "sources": [
       "https://briarpatchherbs.com/",
-      "https://vitalforceherbs.com/events"
+      "https://vitalforceherbs.com/events",
+      "https://www.hoteleastlund.com/events/portland/plant-meditation-talk-and-tea-time-12327157"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
   },
   {
     "inputIndex": 14,

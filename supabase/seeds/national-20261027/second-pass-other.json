@@ -1,0 +1,357 @@
+[
+  {
+    "inputIndex": 7,
+    "name": "Great Cape Herbs",
+    "status": "hold",
+    "reason": "Still unconfirmed: operator closure notice September 10, 2022 has not been superseded by a verified reopening. March 20, 2024 local reporting says the co-op abandoned the property purchase after two years of zoning/conservation enforcement disputes. The 2025 farm guide repeats the same gardens/cafe description found in the 2022 pre-closure guide, so it does not establish restored public access.",
+    "website": "",
+    "address": "2624 Main Street",
+    "city": "Brewster",
+    "state": "Massachusetts",
+    "zip": "02631",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://capecodchronicle.com/articles/718/view",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2022/05/2022-BFBLCC-Guide-to-Farms-and-Food-website.pdf"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+  },
+  {
+    "inputIndex": 9,
+    "name": "Soulful Body & Mind Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": null,
+    "address": "12 Elm Street",
+    "city": "Baldwinville",
+    "state": "Massachusetts",
+    "zip": "01436",
+    "phone": "978-245-7322",
+    "hours": "Country Roads holiday tour, November 7–December 6, 2026: Thursday–Friday noon–4pm; Saturday 11am–4pm; Sunday 10am–3pm. Call to confirm hours outside the tour.",
+    "tagline": "Bulk herbs, teas, plants, and local gifts in Baldwinville.",
+    "description": "Soulful Body & Mind Apothecary is a plant and lifestyle gift shop on Elm Street in Baldwinville. The shop carries bulk herbs and flowers, teas, bath and body products, and goods from local makers. Its selection also includes plants, crystals, art, and gifts. The shop participates in the 2026 Country Roads holiday shopping tour.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.countryroadschristmas.com/",
+      "https://www.thevice.biz/the-coffee-espresso",
+      "https://www.templetonma.gov/board-of-assessors/files/fy2025-preliminary-personal-property-assessed-values-by-business",
+      "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+      "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12+Elm+Street%2C+Baldwinville%2C+Massachusetts+01468&benchmark=Public_AR_Current&format=json"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/ntbCFDwCef.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Plants and labeled herb jars inside Soulful Body & Mind Apothecary",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-1.webp",
+        "width": 1600,
+        "height": 1574,
+        "sha256": "1c51ffc7960c70a1e414c0dc47ce62fe38cf2513a0b76bfc49a08ea62791838e",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/ma/baldwinville/6880016/original/2LAiQIbJfs.jpeg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind Apothecary’s labeled Chocolate Immuni-Tea Kit",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-2.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "8e45377f076ec3ef4dddead7ee8013535e8cb29f055568515524ffa25a74e7cb",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn6.localdatacdn.com/ma/baldwinville/6880016/original/UD2s5EaEoc.jpg",
+        "sourcePage": "https://www.loc8nearme.com/massachusetts/leominster/soulful-body-and-mind-apothecary/6880016/",
+        "alt": "Soulful Body & Mind branded herbal tea and honey tea products",
+        "localFile": "docs/listing-images/national-20261027/soulful-body-mind-apothecary-second-pass-extra-3.webp",
+        "width": 960,
+        "height": 960,
+        "sha256": "9f15d306f2bb43cfbeecb948484ce67f698e09f576afc40188cc12fe00df701a",
+        "inspected": true
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Live organizer homepage names the November 7–December 6, 2026 tour and lists Soulful at 12 Elm Street with current phone and tour hours. Local cafe The Vice independently identifies its hand-crafted teas as supplied by the Baldwinville business. The repurposed former website is omitted.",
+    "zipCorrectionNote": "Corrected submitted 01468 to 01436 using the US Census exact 12 Elm St, Baldwinville address match."
+  },
+  {
+    "inputIndex": 12,
+    "name": "Found Herbal Apothecary",
+    "status": "hold",
+    "reason": "Current operator explicitly advertises an active Austin clinical herbal practice and information calls, but publishes no verifiable Austin consultation storefront address or public shopping access. The original Bronxville address cannot be carried forward. Keep held as a physical place, without implying business closure.",
+    "website": "https://foundherbal.com/",
+    "address": "118 Kraft Avenue",
+    "city": "Bronxville",
+    "state": "New York",
+    "zip": "10708",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://foundherbal.com/",
+      "https://foundherbal.com/pages/about-page"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+  },
+  {
+    "inputIndex": 13,
+    "name": "Briar Patch Herbs",
+    "status": "hold",
+    "reason": "Current own site announces new owners, new name, and reopening in early September, but gives neither successor name nor confirmation reopening occurred. Partner Vital Force Herbs confirms June 2026 in-person classes at submitted address; a September 9 event also appears in a hotel calendar. Those confirm recent activity but do not resolve present successor identity and access after ownership transfer. Existing hours omitted rather than carried forward.",
+    "website": "https://briarpatchherbs.com/",
+    "address": "4480 SW Garden Home Road",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97219",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://briarpatchherbs.com/",
+      "https://vitalforceherbs.com/events",
+      "https://www.hoteleastlund.com/events/portland/plant-meditation-talk-and-tea-time-12327157"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+  },
+  {
+    "inputIndex": 45,
+    "name": "Simply Vibes Apothecary",
+    "status": "hold",
+    "reason": "Owner July 21, 2025 fundraiser confirms a real store but reports rent arrears and risk of closure. Newly found BLK in Bloom partner case study quotes owner and historical store event, without event date or current address/hours; no sufficiently recent public-access confirmation found. Former domain unrelated, so omitted. Business not marked definitively closed.",
+    "website": null,
+    "address": "3550 North Davidson Street",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "zip": "28205",
+    "phone": "704-968-3311",
+    "hours": null,
+    "tagline": "Charlotte apothecary awaiting current verification",
+    "description": "Simply Vibes Apothecary has offered handmade teas, oils, candles, and spiritual goods in Charlotte’s NoDa neighborhood. The owner described financial difficulties in a July 2025 fundraiser. Its former website currently serves unrelated content, so the storefront’s continued operation and present location need direct confirmation before a public listing is created.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://blkinbloomclt.com/partner/"
+    ],
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+  },
+  {
+    "inputIndex": 46,
+    "name": "Casablanca Herbal Shop",
+    "status": "ready",
+    "reason": "",
+    "website": null,
+    "address": "3035 Fayetteville Street, Unit A",
+    "city": "Durham",
+    "state": "North Carolina",
+    "zip": "27707",
+    "phone": "919-931-2433",
+    "hours": null,
+    "tagline": "Herbs, teas, and botanical body care in Durham.",
+    "description": "Casablanca Herbal Shop is a neighborhood source for herbal goods on Fayetteville Street in Durham. Visitors can browse its botanical selection and ask the staff about available products. Whipped Cream Body identifies the shop as a local pickup location for its Chebe scalp oil, connecting the store with a local botanical body care maker.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://whippedcreambody.com/pages/shop-in-store",
+      "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn5.localdatacdn.com/nc/durham/7529463/original/Cvxm3c9xJE.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Labeled bulk herb jars beneath a Casablanca Herbal Shop sign",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-1.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "33f413401dd7b73a9693a0e17633f2a386ccc5ae61f5fb53f35710d9bc5639d8",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/LXZcGxOnbj.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Bracelets and bulk herb shelves at Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-2.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "34849a7a03ef0d71f59a98145fe12c3859ae4dcca9eb2fd6d49100d3aa881770",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/exu0s5VpfH.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Herbal product display and jars inside Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-3.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa88e358670144df1213f7605ed546710d231e4deded7f61e786cacdd93fe2ea",
+        "inspected": true
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Botanical product maker Whipped Cream Body explicitly offers Chebe scalp oil pickup at Casablanca Herbs, 3035 Fayetteville St A. That primary retail relationship and address are corroborated by April 2026 customer visits in the linked directory. The contradictory 3109 address appears in generic coupon-site FAQ only and is not relied upon. Hours omitted because directory has a suspicious 12AM Tuesday entry."
+  },
+  {
+    "inputIndex": 63,
+    "name": "Smile Herb Shop",
+    "status": "ready",
+    "reason": "",
+    "website": "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
+    "address": "4908 Berwyn Road",
+    "city": "College Park",
+    "state": "Maryland",
+    "zip": "20740",
+    "phone": "301-474-8791",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–5pm; Sunday 12pm–5pm. Confirm before visiting.",
+    "tagline": "Bulk herbs, teas, and botanical supplies in College Park.",
+    "description": "Smile Herb Shop is a long-running College Park herb store housed in a historic home on Berwyn Road. The shop stocks bulk herbs and spices, teas, essential oils, tinctures, supplements, and body care products. Visitors can also browse books, gifts, and supplies, with classes and a garden adding to the neighborhood setting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
+      "https://www.smileherb.com/",
+      "https://streetcarsuburbs.news/34302/college-park/smile-herb-shop-a-cornerstone-of-the-community/",
+      "https://www.trolleytrailday.org/activityhubs/CollegePark",
+      "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/IMG_7351-1200x900.jpg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop house and hand-painted sign on Berwyn Road",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 900,
+        "originalWidth": 1200,
+        "originalHeight": 900,
+        "sha256": "9b84ce39f1a52909f343a4d00ac200fd3fb258d28e23b592014f533e4f6f28cf",
+        "credit": "Eva Sanchez / Streetcar Suburbs Publishing"
+      },
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/SmileHerb43-1200x800.jpeg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop manager preparing an order among shelves of bulk herb jars",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-2.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 800,
+        "originalWidth": 1200,
+        "originalHeight": 800,
+        "sha256": "816800aa5f39865994d14d111aee211c133983bb54ee6b77f9b25c867e094ff0",
+        "credit": "Kyle Heflinger / Streetcar Suburbs Publishing"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "College Park visitor site identifies current retail business at 4908 Berwyn Rd with hours and September 2026 customer visits. Trolley Trail Day organizer names Smile as a participating local business. Current own-site raw HTML still contains Square template location; these template fields are not used.",
+    "websiteNote": "Use the official city visitor listing rather than the business domain with inconsistent placeholder contact content."
+  },
+  {
+    "inputIndex": 67,
+    "name": "Little House of Healing Herbs Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.zenandalchemy.com/our-merchants",
+    "address": "229 Earl Garrett Street, inside Zen & Alchemy",
+    "city": "Kerrville",
+    "state": "Texas",
+    "zip": "78028",
+    "phone": "830-315-7744",
+    "hours": "Host shop Zen & Alchemy: Tuesday–Friday 10am–5:30pm; Saturday 10am–6pm; Sunday–Monday closed. Call ahead for apothecary availability.",
+    "tagline": "Herbal goods inside downtown Kerrville’s Zen & Alchemy.",
+    "description": "Little House of Healing Herbs Apothecary is an independent merchant inside Zen & Alchemy in downtown Kerrville. Its display includes jars of loose herbal blends, packaged botanical goods, sprays, and bottled preparations. Visitors can browse the apothecary alongside the host shop’s other merchants offering handmade items, gifts, artwork, and wellness products.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.zenandalchemy.com/our-merchants",
+      "https://www.zenandalchemy.com/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/c8cd71_709cb98c34da40ce8bfeca665d685067~mv2.jpg",
+        "sourcePage": "https://www.zenandalchemy.com/our-merchants",
+        "alt": "Little House of Healing Herbs display inside Zen & Alchemy, with jars of herbal blends, packaged herbs, and bottled preparations",
+        "localFile": "docs/listing-images/national-20261027/little-house-healing-herbs-second-pass.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "f38bcaa3012050bcbfc3eeb7aaea5994577cbc32623b794c80b35f9252a5e15b"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Host business current Our Merchants page explicitly identifies Little House of Healing Herbs Apothecary and supplies multiple photos including a clearly labeled herbal display. Host Contact Us page confirms 229 Earl Garrett St, Kerrville TX78028, phone and opening hours. Use current shorter merchant name; supplied Nanny’s prefix is not on current host listing."
+  },
+  {
+    "inputIndex": 68,
+    "name": "Village Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": null,
+    "address": "12220 Highway N14, Suite N4",
+    "city": "Cedar Crest",
+    "state": "New Mexico",
+    "zip": "87008",
+    "phone": "505-286-5794",
+    "hours": null,
+    "tagline": "Herbs, supplements, and local botanical products in Cedar Crest.",
+    "description": "Village Apothecary is a small herbal and supplement shop in Cedar Crest’s East Mountains community. Founded in 2000, the shop carries local Lotus Tree Herbal blends and other botanical products. Its Highway N14 storefront offers a place to browse herbal goods and ask about the selection; call the shop for current visiting hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.lotustreeherbal.com/retail-locations-1",
+      "https://researchherbals.com/",
+      "https://reviews.birdeye.com/village-apothecary-168234477031988",
+      "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nm/cedar-crest/2479484/original/A5pmA150AJ.jpg",
+        "sourcePage": "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/",
+        "alt": "Village Apothecary storefront in Cedar Crest with its named sign over the entrance",
+        "localFile": "docs/listing-images/national-20261027/village-apothecary-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 900,
+        "originalWidth": 2000,
+        "originalHeight": 1125,
+        "sha256": "652799093d60a2a24ea2407305c2b88bd446f75439c097032fbd30d0226df7c1"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Local producer Lotus Tree Herbal explicitly directs customers to visit Melody at Village Apothecary and gives the full Suite N4 address. Founder Diana Roach independently states Village Apothecary remains in operation, although sold many years ago. These primary sources establish a physical retail location; unverified directory hours omitted."
+  }
+]

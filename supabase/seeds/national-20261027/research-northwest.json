@@ -3,7 +3,7 @@
     "inputIndex": 19,
     "name": "Battleground Healing Arts",
     "status": "ready",
-    "reason": "Original clinic and Healing Arts Apothecary verified at 408 E Main; do not confuse with separately named retailer at 715 W Main. No suitable shop photo found; official homepage imagery mostly stock or practitioner portraits.",
+    "reason": "Official history page photograph verifies the clinic and apothecary building at 408 E Main; the same page confirms the January 2025 handover to Dr. Nicole Lewis.",
     "website": "https://battlegroundhealingarts.com/apothecary",
     "address": "408 East Main Street",
     "city": "Battle Ground",
@@ -21,10 +21,23 @@
     "sources": [
       "https://battlegroundhealingarts.com/apothecary",
       "https://battlegroundhealingarts.com/contact",
-      "https://battlegroundhealingarts.com/"
+      "https://battlegroundhealingarts.com/",
+      "https://battlegroundhealingarts.com/about"
     ],
-    "photoCandidates": [],
-    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://battlegroundhealingarts.com/apothecary, https://battlegroundhealingarts.com/contact, https://battlegroundhealingarts.com/"
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/2160dbab-3b7b-4c0f-984a-ea399b1e6b25/Screenshot%202025-04-06%20at%203.37.03%E2%80%AFPM.jpg",
+        "sourcePage": "https://battlegroundhealingarts.com/about",
+        "alt": "Battle Ground Healing Arts clinic and apothecary at 408 East Main Street",
+        "localFile": "docs/listing-images/national-20261027/battleground-healing-arts-second-pass-1.webp",
+        "inspected": true,
+        "width": 1166,
+        "height": 628,
+        "originalWidth": 1166,
+        "originalHeight": 628,
+        "sha256": "3b4c73215fb2adafe0e54d7623d465ab557874adddaf3eb50ce85b331984b287"
+      }
+    ]
   },
   {
     "inputIndex": 20,
@@ -65,7 +78,7 @@
     "inputIndex": 21,
     "name": "Moddejonge’s Herbals",
     "status": "hold",
-    "reason": "Only historical owner/profile and news references found; no current primary-source storefront/hours verified. Do not infer current operations from older directories.",
+    "reason": "Second pass found October 2025 customer reviews and an October 29, 2025 directory update, but Loc8NearMe now explicitly marks the Hewitt Avenue location closed. July 2026 regional herb directory retains it; owner Facebook is inaccessible and the old domain does not resolve. Current public access remains conflicting, rather than a confirmed closure.",
     "website": "https://www.facebook.com/magickandmore/",
     "address": "1905 1/2 Hewitt Avenue",
     "city": "Everett",
@@ -77,10 +90,14 @@
     "description": null,
     "category_ids": [],
     "sources": [
-      "https://www.linkedin.com/in/lynnmoddejonge",
-      "https://tulalipnews.com/2017/07/07/local-apothecary-focuses-on-traditional-healing/"
+      "https://maps.roadtrippers.com/us/everett-wa/shopping/moddejonges-herbals-everett",
+      "https://www.cylex.us.com/company/moddejonge%27s-herbals-27655665.html",
+      "https://www.loc8nearme.com/washington/everett/moddejonges-herbals/5278056/",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.facebook.com/magickandmore/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 22,
@@ -291,7 +308,7 @@
     "inputIndex": 28,
     "name": "Salt Creek Apothecary",
     "status": "hold",
-    "reason": "Official domain unavailable. Third-party records conflict: downtown directory retains listing while Wanderlog marks permanently closed. Hold pending direct current confirmation.",
+    "reason": "Second pass confirms the downtown association and a maker stockist list still retain Salt Creek, while Wanderlog explicitly marks it permanently closed. The linked current becomeyourmission.org site belongs to owner Dr. Kristen Acesta but describes her practice without confirming an operating Salt Creek storefront or retail hours. No dated current shop confirmation resolves the conflict.",
     "website": "https://saltcreekapothecary.com/",
     "address": "28 North Wenatchee Avenue",
     "city": "Wenatchee",
@@ -304,9 +321,12 @@
     "category_ids": [],
     "sources": [
       "https://downtownwenatchee.org/explore",
-      "https://wanderlog.com/place/details/4165156/salt-creek-apothecary"
+      "https://ollycostello.com/stockists",
+      "https://wanderlog.com/place/details/4165156/salt-creek-apothecary",
+      "https://www.becomeyourmission.org/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 29,
@@ -347,7 +367,7 @@
     "inputIndex": 30,
     "name": "Red Clover Herbs and Market",
     "status": "ready",
-    "reason": "Current official hours/location page verifies storefront. Official site uses generic stock hero photos and supplier logos; no suitable genuine shop photo found.",
+    "reason": "Genuine named storefront from the business Google-photo gallery mirrored by WorldOrgs; official location page confirms the same 1655 S Woodruff Avenue business. Added genuine house tea product photography from the official online store as a second image.",
     "website": "https://redcloverherbs.com/pages/physical-store",
     "address": "1655 South Woodruff Avenue",
     "city": "Idaho Falls",
@@ -361,10 +381,36 @@
       "shops"
     ],
     "sources": [
-      "https://redcloverherbs.com/pages/physical-store"
+      "https://redcloverherbs.com/pages/physical-store",
+      "https://usa-stores.worldorgs.com/catalog/idaho-falls/consignment-shop/red-clover-herbs-market",
+      "https://redcloverherbs.com/products/harmonyblend"
     ],
-    "photoCandidates": [],
-    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://redcloverherbs.com/pages/physical-store"
+    "photoCandidates": [
+      {
+        "url": "https://lh5.googleusercontent.com/p/AF1QipMUa1eF9ruVW9P78bUxM8CKSo9HHqSO8BMInBi2=w640-k-no",
+        "sourcePage": "https://usa-stores.worldorgs.com/catalog/idaho-falls/consignment-shop/red-clover-herbs-market",
+        "alt": "Red Clover Herbs & Market storefront in Idaho Falls",
+        "localFile": "docs/listing-images/national-20261027/red-clover-herbs-and-market-second-pass-1.webp",
+        "inspected": true,
+        "width": 640,
+        "height": 466,
+        "originalWidth": 640,
+        "originalHeight": 466,
+        "sha256": "0acb383e726df79bc0a66090723c1cf575fc9586ee256f63c1eb4ec77b9a0edd"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1392/0485/products/Harmonyallsizes_3.png?v=1664219686",
+        "sourcePage": "https://redcloverherbs.com/products/harmonyblend",
+        "alt": "Red Clover Harmony Blend herbal tea packages and a prepared cup",
+        "localFile": "docs/listing-images/national-20261027/red-clover-herbs-and-market-second-pass-2.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 1149,
+        "originalWidth": 4859,
+        "originalHeight": 3489,
+        "sha256": "8b90bb41d88ffcb3fd6677bdb3ca92c3f9553339eb74e609847bb3c0e1c47b57"
+      }
+    ]
   },
   {
     "inputIndex": 31,
@@ -407,7 +453,7 @@
     "inputIndex": 32,
     "name": "Jade Forest Wellness",
     "status": "hold",
-    "reason": "Official domain could not be retrieved and current public retail address could not be verified. Registry/directory addresses differ; do not publish historical address.",
+    "reason": "Second pass found an owner-authored 2023 article naming Jim and Stephanie Nymeyer’s Jade Forest Healing Arts, but it supplies no current visitor location. The submitted address is Barjon’s Books, while a business registry mirror gives Terry Avenue; neither establishes a current Jade Forest shop. The former domain does not resolve. Hold until the owner’s present public location is confirmed.",
     "website": "https://jadeforestwellness.com/",
     "address": "223 North 29th Street",
     "city": "Billings",
@@ -419,15 +465,19 @@
     "description": null,
     "category_ids": [],
     "sources": [
+      "https://barjonsbooks.com/blog/discovering-the-five-chinese-elements/",
+      "https://barjonsbooks.com/wp-content/uploads/2023/08/08-2023-Newsletter.pdf",
+      "https://www.city-data.com/business-entities/Billings-MT-J.html",
       "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 33,
     "name": "Butterfly Herbs",
     "status": "ready",
-    "reason": "Current Destination Missoula visitor bureau directory lists storefront and phone; July 2026 consumer reviews corroborate activity. Own domain is parked and precise hours conflict, so require call before visit.",
+    "reason": "Genuine shop interior from the Butterfly Herbs coffee directory photo gallery, visually cross-checked against the firsthand Epic7Travel storefront report and the local reporting description of the wooden shelves and tin ceiling. Firsthand exterior photo is watermarked and was excluded.",
     "website": "https://destinationmissoula.org/restaurants",
     "address": "232 North Higgins Avenue",
     "city": "Missoula",
@@ -443,10 +493,24 @@
     "sources": [
       "https://destinationmissoula.org/restaurants",
       "https://www.restaurantji.com/mt/missoula/butterfly-herbs-/",
-      "https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403"
+      "https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403",
+      "https://joe.coffee/locations/mt/missoula/butterfly-herbs-missoula/",
+      "https://epic7travel.com/missoula-montana-shopping/"
     ],
-    "photoCandidates": [],
-    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://destinationmissoula.org/restaurants, https://www.restaurantji.com/mt/missoula/butterfly-herbs-/, https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403"
+    "photoCandidates": [
+      {
+        "url": "https://pub-ba1a74be17d7442a9f2541946eb9510e.r2.dev/shops/68143b4a-f078-4eb9-9bfc-973e000c5571/2.jpg",
+        "sourcePage": "https://joe.coffee/locations/mt/missoula/butterfly-herbs-missoula/",
+        "alt": "Bulk tea and herb jars lining the wooden shelves inside Butterfly Herbs",
+        "localFile": "docs/listing-images/national-20261027/butterfly-herbs-second-pass-1.webp",
+        "inspected": true,
+        "width": 800,
+        "height": 1067,
+        "originalWidth": 800,
+        "originalHeight": 1067,
+        "sha256": "b7342206c2d344b7eb2976800e5ff4c6d815bd4cbd4541845edd186ae8218018"
+      }
+    ]
   },
   {
     "inputIndex": 34,
@@ -486,22 +550,49 @@
   {
     "inputIndex": 35,
     "name": "Herbal Junction Elixirs",
-    "status": "hold",
-    "reason": "Official Square website exists but returns a JavaScript shell; current public storefront at historical manufacturing address not verified. 2025 fair participation confirms business activity only.",
+    "status": "ready",
+    "reason": "Second pass retrieved the official Square page’s embedded public content: full street address, weekday shop hours, phone, product categories and genuine product photographs. September 3, 2026 inspection of Herbal Junction Elixir Bar Cafe at the same address, reported by the Eugene Register-Guard September 20, independently confirms current public food-service activity.",
     "website": "https://www.herbaljunctionelixirs.com/",
     "address": "50 East 25th Avenue",
     "city": "Eugene",
     "state": "Oregon",
     "zip": "97405",
-    "phone": null,
-    "hours": null,
-    "tagline": null,
-    "description": null,
-    "category_ids": [],
-    "sources": [
-      "https://www.oregoncountryfair.org/wp-content/uploads/2025/06/2025-OCF-Peach-Pit-Program-Guide.pdf"
+    "phone": "541-334-5025",
+    "hours": "Mon–Fri 10am–5pm; Sat–Sun closed",
+    "tagline": "Handcrafted herbal elixirs, teas, and tonics in South Eugene",
+    "description": "Herbal Junction is a South Eugene maker and elixir bar offering handcrafted herbal drinks and botanical preparations. Its range includes herbal enzyme elixirs, power tonics, tinctures, chai, and blended herbal teas, with recipes drawing on plants from several traditions. Visit the East 25th Avenue location during its published weekday hours to explore its distinctive bottled blends.",
+    "category_ids": [
+      "shops"
     ],
-    "photoCandidates": []
+    "sources": [
+      "https://www.herbaljunctionelixirs.com/",
+      "https://www.aol.com/articles/see-eugene-restaurant-scored-51-130054000.html",
+      "https://www.yellowpages.com/eugene-or/mip/herbal-junction-13394349"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.herbaljunctionelixirs.com/uploads/b/fce5d110-6a5f-11ea-ac16-77f31394c45d/576649_10151830223312178_1941500054_n.jpg",
+        "sourcePage": "https://www.herbaljunctionelixirs.com/",
+        "alt": "Herbal Junction bottled herbal enzyme elixirs arranged on a wooden counter",
+        "localFile": "docs/listing-images/national-20261027/herbal-junction-bottles-second-pass.webp",
+        "inspected": true,
+        "width": 540,
+        "height": 720,
+        "sha256": "42602eaa44db82aa62a8275468860bba8d9fd30f83baf34cfe74343cdccd074c"
+      },
+      {
+        "url": "https://www.herbaljunctionelixirs.com/uploads/b/f436efe77faf3f4c8c46d23c408ea54ec6c4b8d4f4d37750dd7ec2ca98c2a0d7/image-2_1595765397.png",
+        "sourcePage": "https://www.herbaljunctionelixirs.com/",
+        "alt": "Herbal Junction’s labeled bottles of handcrafted herbal elixirs",
+        "localFile": "docs/listing-images/national-20261027/herbal-junction-product-range-second-pass.webp",
+        "inspected": true,
+        "width": 400,
+        "height": 355,
+        "sha256": "78de1c3ab6688d0e29341883958aeff613ab53adb580b99a748cdeebccc0d841"
+      }
+    ],
+    "photoNote": "Genuine photographs of the business’s bottled products, published on its own current site; no current interior or exterior photo was verified.",
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 36,
@@ -574,7 +665,7 @@
     "inputIndex": 38,
     "name": "OmChi Herbs",
     "status": "hold",
-    "reason": "Official current contact page lists PO Box 5352 only; walk-in retail availability at historical Highway 99 address is unverified.",
+    "reason": "Second pass confirms OmChi is an active online herb seller, but both its current official contact page and BBB profile publish PO Box 5352. Cylex retains a Highway 99 address and hours alongside the PO box in the same entry, without dated owner confirmation of shopping or pickup there. Physical visitor access remains unverified; no closure is asserted.",
     "website": "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
     "address": "85833 Highway 99 South",
     "city": "Eugene",
@@ -586,9 +677,13 @@
     "description": null,
     "category_ids": [],
     "sources": [
-      "https://www.omchiherbs.com/store/index.php?information_id=4&route=information%2Finformation"
+      "https://www.omchiherbs.com/store/",
+      "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+      "https://www.bbb.org/us/or/eugene/profile/herbs/omchi-herbs-llc-1296-22595702/addressId/186894",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 39,
@@ -629,7 +724,7 @@
     "inputIndex": 40,
     "name": "Essential Elements Apothecary Shop",
     "status": "hold",
-    "reason": "Official website unavailable; third-party record marks business closed. No current primary confirmation of storefront or closure; hold.",
+    "reason": "Second pass found BBB, OpenStreetMap-derived and regional herb-directory records retaining the Sellwood address, while Allbiz explicitly marks the business closed. The old domain returns HTTP 410 Gone and owner Facebook could not be read. No recent owner post, visitor report or operating-shop announcement resolves these conflicting records; hold rather than assert closure.",
     "website": "https://essentialelementshhc.com/",
     "address": "7704 SE 13th Avenue",
     "city": "Portland",
@@ -641,9 +736,15 @@
     "description": null,
     "category_ids": [],
     "sources": [
-      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831"
+      "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://mapcarta.com/W367895953",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://www.facebook.com/EssentialElementsHHC/",
+      "https://essentialelementshhc.com/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
   },
   {
     "inputIndex": 41,

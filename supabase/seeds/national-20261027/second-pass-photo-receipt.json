@@ -1,0 +1,56 @@
+{
+  "projectRef": "qtpepsebztlremlhpxdt",
+  "appliedAt": "2026-10-27T16:42:45.490Z",
+  "updated": 3,
+  "photosAdded": 4,
+  "totalListings": 65,
+  "profiles": [
+    {
+      "id": 37,
+      "name": "Battleground Healing Arts",
+      "urlSlug": "battleground-healing-arts",
+      "photos": [
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/battleground-healing-arts/3b4c73215fb2adaf.webp"
+      ],
+      "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/battleground-healing-arts/3b4c73215fb2adaf.webp",
+      "photo_alt": {
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/battleground-healing-arts/3b4c73215fb2adaf.webp": "Battle Ground Healing Arts clinic and apothecary at 408 East Main Street"
+      }
+    },
+    {
+      "id": 46,
+      "name": "Red Clover Herbs and Market",
+      "urlSlug": "red-clover-herbs-and-market",
+      "photos": [
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/0acb383e726df79b.webp",
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/8b90bb41d88ffcb3.webp"
+      ],
+      "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/0acb383e726df79b.webp",
+      "photo_alt": {
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/0acb383e726df79b.webp": "Red Clover Herbs & Market storefront in Idaho Falls",
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/8b90bb41d88ffcb3.webp": "Red Clover Harmony Blend herbal tea packages and a prepared cup"
+      }
+    },
+    {
+      "id": 48,
+      "name": "Butterfly Herbs",
+      "urlSlug": "butterfly-herbs",
+      "photos": [
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/butterfly-herbs/b7342206c2d344b7.webp"
+      ],
+      "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/butterfly-herbs/b7342206c2d344b7.webp",
+      "photo_alt": {
+        "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/butterfly-herbs/b7342206c2d344b7.webp": "Bulk tea and herb jars lining the wooden shelves inside Butterfly Herbs"
+      }
+    }
+  ],
+  "missingPhotos": [],
+  "checks": [
+    "Photo bytes delivered with matching checksums",
+    "Existing photo/cover content preserved",
+    "Version-conditional updates",
+    "All non-photo fields unchanged except version/timestamp",
+    "Other profiles unchanged",
+    "New public photos/alt text match"
+  ]
+}

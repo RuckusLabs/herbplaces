@@ -1,0 +1,63 @@
+[
+  {
+    "inputIndex": 63,
+    "name": "Smile Herb Shop",
+    "photoCandidates": [
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/IMG_7351-1200x900.jpg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop house and hand-painted sign on Berwyn Road",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 900,
+        "originalWidth": 1200,
+        "originalHeight": 900,
+        "sha256": "9b84ce39f1a52909f343a4d00ac200fd3fb258d28e23b592014f533e4f6f28cf",
+        "credit": "Eva Sanchez / Streetcar Suburbs Publishing"
+      },
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/SmileHerb43-1200x800.jpeg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop manager preparing an order among shelves of bulk herb jars",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-2.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 800,
+        "originalWidth": 1200,
+        "originalHeight": 800,
+        "sha256": "816800aa5f39865994d14d111aee211c133983bb54ee6b77f9b25c867e094ff0",
+        "credit": "Kyle Heflinger / Streetcar Suburbs Publishing"
+      }
+    ],
+    "sources": [
+      "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+      "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/"
+    ],
+    "reason": "Verified genuine storefront and interior photographs from named local reporting."
+  },
+  {
+    "inputIndex": 68,
+    "name": "Village Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nm/cedar-crest/2479484/original/A5pmA150AJ.jpg",
+        "sourcePage": "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/",
+        "alt": "Village Apothecary storefront in Cedar Crest with its named sign over the entrance",
+        "localFile": "docs/listing-images/national-20261027/village-apothecary-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 900,
+        "originalWidth": 2000,
+        "originalHeight": 1125,
+        "sha256": "652799093d60a2a24ea2407305c2b88bd446f75439c097032fbd30d0226df7c1"
+      }
+    ],
+    "sources": [
+      "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/",
+      "https://www.lotustreeherbal.com/retail-locations-1",
+      "https://researchherbals.com/"
+    ],
+    "reason": "Genuine named storefront photograph from the location-specific business gallery. The gallery identifies the same 12220 Highway N14, Suite N4 address; founder and supplier sources corroborate the store."
+  }
+]

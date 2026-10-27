@@ -71,7 +71,7 @@
     "inputIndex": 45,
     "name": "Simply Vibes Apothecary",
     "status": "hold",
-    "reason": "Former official website serves unrelated content; current storefront not confirmed; owner fundraiser raised closure risk in July 2025.",
+    "reason": "Owner July 21, 2025 fundraiser confirms a real store but reports rent arrears and risk of closure. Newly found BLK in Bloom partner case study quotes owner and historical store event, without event date or current address/hours; no sufficiently recent public-access confirmation found. Former domain unrelated, so omitted. Business not marked definitively closed.",
     "website": null,
     "address": "3550 North Davidson Street",
     "city": "Charlotte",
@@ -86,32 +86,68 @@
     ],
     "sources": [
       "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
-      "https://www.simplyvibesapothecary.com/"
+      "https://blkinbloomclt.com/partner/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
   },
   {
     "inputIndex": 46,
     "name": "Casablanca Herbal Shop",
-    "status": "hold",
-    "reason": "Official domain does not resolve; conflicting 3035 and 3109 Fayetteville Street addresses need direct verification.",
+    "status": "ready",
+    "reason": "",
     "website": null,
     "address": "3035 Fayetteville Street, Unit A",
     "city": "Durham",
     "state": "North Carolina",
     "zip": "27707",
-    "phone": null,
+    "phone": "919-931-2433",
     "hours": null,
-    "tagline": "Durham herb shop awaiting address confirmation",
-    "description": "Casablanca Herbal Shop is described by a current stockist as a retail location for its botanical body care. Other listings associate the business with herbs and teas in Durham. A working official website and a current firsthand confirmation of the shop’s address and hours could not be established during this research.",
+    "tagline": "Herbs, teas, and botanical body care in Durham.",
+    "description": "Casablanca Herbal Shop is a neighborhood source for herbal goods on Fayetteville Street in Durham. Visitors can browse its botanical selection and ask the staff about available products. Whipped Cream Body identifies the shop as a local pickup location for its Chebe scalp oil, connecting the store with a local botanical body care maker.",
     "category_ids": [
       "shops"
     ],
     "sources": [
       "https://whippedcreambody.com/pages/shop-in-store",
-      "https://casablancaherbs.com/"
+      "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [
+      {
+        "url": "https://cdn5.localdatacdn.com/nc/durham/7529463/original/Cvxm3c9xJE.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Labeled bulk herb jars beneath a Casablanca Herbal Shop sign",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-1.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "33f413401dd7b73a9693a0e17633f2a386ccc5ae61f5fb53f35710d9bc5639d8",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/LXZcGxOnbj.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Bracelets and bulk herb shelves at Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-2.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "34849a7a03ef0d71f59a98145fe12c3859ae4dcca9eb2fd6d49100d3aa881770",
+        "inspected": true
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/durham/7529463/original/exu0s5VpfH.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/durham/casablanca-herbal-shop/7529463/",
+        "alt": "Herbal product display and jars inside Casablanca Herbal Shop",
+        "localFile": "docs/listing-images/national-20261027/casablanca-herbal-shop-second-pass-extra-3.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa88e358670144df1213f7605ed546710d231e4deded7f61e786cacdd93fe2ea",
+        "inspected": true
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Botanical product maker Whipped Cream Body explicitly offers Chebe scalp oil pickup at Casablanca Herbs, 3035 Fayetteville St A. That primary retail relationship and address are corroborated by April 2026 customer visits in the linked directory. The contradictory 3109 address appears in generic coupon-site FAQ only and is not relied upon. Hours omitted because directory has a suspicious 12AM Tuesday entry."
   },
   {
     "inputIndex": 47,
@@ -656,24 +692,59 @@
   {
     "inputIndex": 63,
     "name": "Smile Herb Shop",
-    "status": "hold",
-    "reason": "Official website rebuilt with placeholder San Francisco address and hours; no current primary walk-in confirmation.",
-    "website": "https://www.smileherb.com/",
+    "status": "ready",
+    "reason": "",
+    "website": "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
     "address": "4908 Berwyn Road",
     "city": "College Park",
     "state": "Maryland",
     "zip": "20740",
     "phone": "301-474-8791",
-    "hours": null,
-    "tagline": "College Park herbs and teas awaiting current confirmation",
-    "description": "Smile Herb Shop has long been associated with bulk herbs, spices, teas, supplements, and herbal education at its Berwyn Road location in College Park. Its newly rebuilt official website currently contains generic location placeholders rather than a verifiable address or schedule. Direct confirmation of current walk-in operations is needed before publication.",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–5pm; Sunday 12pm–5pm. Confirm before visiting.",
+    "tagline": "Bulk herbs, teas, and botanical supplies in College Park.",
+    "description": "Smile Herb Shop is a long-running College Park herb store housed in a historic home on Berwyn Road. The shop stocks bulk herbs and spices, teas, essential oils, tinctures, supplements, and body care products. Visitors can also browse books, gifts, and supplies, with classes and a garden adding to the neighborhood setting.",
     "category_ids": [
       "shops"
     ],
     "sources": [
-      "https://www.smileherb.com/"
+      "https://visit.collegepark.life/stay-eat-play/p/smile-herb-shop-69d508c660e8033e32797a37/",
+      "https://www.smileherb.com/",
+      "https://streetcarsuburbs.news/34302/college-park/smile-herb-shop-a-cornerstone-of-the-community/",
+      "https://www.trolleytrailday.org/activityhubs/CollegePark",
+      "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/IMG_7351-1200x900.jpg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop house and hand-painted sign on Berwyn Road",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 900,
+        "originalWidth": 1200,
+        "originalHeight": 900,
+        "sha256": "9b84ce39f1a52909f343a4d00ac200fd3fb258d28e23b592014f533e4f6f28cf",
+        "credit": "Eva Sanchez / Streetcar Suburbs Publishing"
+      },
+      {
+        "url": "https://streetcarsuburbs.news/wp-content/uploads/2021/12/SmileHerb43-1200x800.jpeg",
+        "sourcePage": "https://streetcarsuburbs.news/smile-herb-shop-a-cornerstone-of-the-community/",
+        "alt": "Smile Herb Shop manager preparing an order among shelves of bulk herb jars",
+        "localFile": "docs/listing-images/national-20261027/smile-herb-shop-second-pass-extra-2.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 800,
+        "originalWidth": 1200,
+        "originalHeight": 800,
+        "sha256": "816800aa5f39865994d14d111aee211c133983bb54ee6b77f9b25c867e094ff0",
+        "credit": "Kyle Heflinger / Streetcar Suburbs Publishing"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "College Park visitor site identifies current retail business at 4908 Berwyn Rd with hours and September 2026 customer visits. Trolley Trail Day organizer names Smile as a participating local business. Current own-site raw HTML still contains Square template location; these template fields are not used.",
+    "websiteNote": "Use the official city visitor listing rather than the business domain with inconsistent placeholder contact content."
   },
   {
     "inputIndex": 64,
@@ -782,29 +853,45 @@
   },
   {
     "inputIndex": 67,
-    "name": "Nanny’s Little House of Healing Herbs Apothecary",
-    "status": "hold",
-    "reason": "No verifiable current official presence or continued operation inside host business found.",
-    "website": null,
+    "name": "Little House of Healing Herbs Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.zenandalchemy.com/our-merchants",
     "address": "229 Earl Garrett Street, inside Zen & Alchemy",
     "city": "Kerrville",
     "state": "Texas",
-    "zip": null,
-    "phone": null,
-    "hours": null,
-    "tagline": "Kerrville apothecary awaiting verification",
-    "description": "The supplied listing describes Nanny’s Little House of Healing Herbs Apothecary inside Zen & Alchemy in Kerrville. Current firsthand confirmation of that arrangement, public shopping access, business contact details, and operating hours could not be located. This record should remain unpublished until the business or host confirms its current location and offerings.",
+    "zip": "78028",
+    "phone": "830-315-7744",
+    "hours": "Host shop Zen & Alchemy: Tuesday–Friday 10am–5:30pm; Saturday 10am–6pm; Sunday–Monday closed. Call ahead for apothecary availability.",
+    "tagline": "Herbal goods inside downtown Kerrville’s Zen & Alchemy.",
+    "description": "Little House of Healing Herbs Apothecary is an independent merchant inside Zen & Alchemy in downtown Kerrville. Its display includes jars of loose herbal blends, packaged botanical goods, sprays, and bottled preparations. Visitors can browse the apothecary alongside the host shop’s other merchants offering handmade items, gifts, artwork, and wellness products.",
     "category_ids": [
       "shops"
     ],
-    "sources": [],
-    "photoCandidates": []
+    "sources": [
+      "https://www.zenandalchemy.com/our-merchants",
+      "https://www.zenandalchemy.com/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/c8cd71_709cb98c34da40ce8bfeca665d685067~mv2.jpg",
+        "sourcePage": "https://www.zenandalchemy.com/our-merchants",
+        "alt": "Little House of Healing Herbs display inside Zen & Alchemy, with jars of herbal blends, packaged herbs, and bottled preparations",
+        "localFile": "docs/listing-images/national-20261027/little-house-healing-herbs-second-pass.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "f38bcaa3012050bcbfc3eeb7aaea5994577cbc32623b794c80b35f9252a5e15b"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Host business current Our Merchants page explicitly identifies Little House of Healing Herbs Apothecary and supplies multiple photos including a clearly labeled herbal display. Host Contact Us page confirms 229 Earl Garrett St, Kerrville TX78028, phone and opening hours. Use current shorter merchant name; supplied Nanny’s prefix is not on current host listing."
   },
   {
     "inputIndex": 68,
     "name": "Village Apothecary",
-    "status": "hold",
-    "reason": "Primary producer stockist confirms location, but no current direct shop website, operating schedule, or genuine shop photo could be verified. Profile incomplete.",
+    "status": "ready",
+    "reason": "",
     "website": null,
     "address": "12220 Highway N14, Suite N4",
     "city": "Cedar Crest",
@@ -812,15 +899,33 @@
     "zip": "87008",
     "phone": "505-286-5794",
     "hours": null,
-    "tagline": "Herbal goods in the East Mountains",
-    "description": "Village Apothecary is a Cedar Crest shop listed by local producer Lotus Tree Herbal as a stockist for its botanical products. The producer identifies the Highway N14 storefront and describes its herbal product selection and personal guidance. Contact the shop directly for current opening times and availability before visiting the East Mountains location.",
+    "tagline": "Herbs, supplements, and local botanical products in Cedar Crest.",
+    "description": "Village Apothecary is a small herbal and supplement shop in Cedar Crest’s East Mountains community. Founded in 2000, the shop carries local Lotus Tree Herbal blends and other botanical products. Its Highway N14 storefront offers a place to browse herbal goods and ask about the selection; call the shop for current visiting hours.",
     "category_ids": [
       "shops"
     ],
     "sources": [
       "https://www.lotustreeherbal.com/retail-locations-1",
-      "https://researchherbals.com/"
+      "https://researchherbals.com/",
+      "https://reviews.birdeye.com/village-apothecary-168234477031988",
+      "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/"
     ],
-    "photoCandidates": []
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nm/cedar-crest/2479484/original/A5pmA150AJ.jpg",
+        "sourcePage": "https://www.bestprosintown.com/nm/cedar-crest/village-apothecary-/photos/",
+        "alt": "Village Apothecary storefront in Cedar Crest with its named sign over the entrance",
+        "localFile": "docs/listing-images/national-20261027/village-apothecary-second-pass-extra-1.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 900,
+        "originalWidth": 2000,
+        "originalHeight": 1125,
+        "sha256": "652799093d60a2a24ea2407305c2b88bd446f75439c097032fbd30d0226df7c1"
+      }
+    ],
+    "secondPassVerifiedAt": "2026-10-27",
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "verificationEvidence": "Local producer Lotus Tree Herbal explicitly directs customers to visit Melody at Village Apothecary and gives the full Suite N4 address. Founder Diana Roach independently states Village Apothecary remains in operation, although sold many years ago. These primary sources establish a physical retail location; unverified directory hours omitted."
   }
 ]

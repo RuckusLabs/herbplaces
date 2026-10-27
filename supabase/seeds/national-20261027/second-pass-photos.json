@@ -1,0 +1,83 @@
+[
+  {
+    "inputIndex": 19,
+    "name": "Battleground Healing Arts",
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/2160dbab-3b7b-4c0f-984a-ea399b1e6b25/Screenshot%202025-04-06%20at%203.37.03%E2%80%AFPM.jpg",
+        "sourcePage": "https://battlegroundhealingarts.com/about",
+        "alt": "Battle Ground Healing Arts clinic and apothecary at 408 East Main Street",
+        "localFile": "docs/listing-images/national-20261027/battleground-healing-arts-second-pass-1.webp",
+        "inspected": true,
+        "width": 1166,
+        "height": 628,
+        "originalWidth": 1166,
+        "originalHeight": 628,
+        "sha256": "3b4c73215fb2adafe0e54d7623d465ab557874adddaf3eb50ce85b331984b287"
+      }
+    ],
+    "reason": "Official history page photograph verifies the clinic and apothecary building at 408 E Main; the same page confirms the January 2025 handover to Dr. Nicole Lewis.",
+    "sources": [
+      "https://battlegroundhealingarts.com/about"
+    ]
+  },
+  {
+    "inputIndex": 30,
+    "name": "Red Clover Herbs and Market",
+    "photoCandidates": [
+      {
+        "url": "https://lh5.googleusercontent.com/p/AF1QipMUa1eF9ruVW9P78bUxM8CKSo9HHqSO8BMInBi2=w640-k-no",
+        "sourcePage": "https://usa-stores.worldorgs.com/catalog/idaho-falls/consignment-shop/red-clover-herbs-market",
+        "alt": "Red Clover Herbs & Market storefront in Idaho Falls",
+        "localFile": "docs/listing-images/national-20261027/red-clover-herbs-and-market-second-pass-1.webp",
+        "inspected": true,
+        "width": 640,
+        "height": 466,
+        "originalWidth": 640,
+        "originalHeight": 466,
+        "sha256": "0acb383e726df79bc0a66090723c1cf575fc9586ee256f63c1eb4ec77b9a0edd"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1392/0485/products/Harmonyallsizes_3.png?v=1664219686",
+        "sourcePage": "https://redcloverherbs.com/products/harmonyblend",
+        "alt": "Red Clover Harmony Blend herbal tea packages and a prepared cup",
+        "localFile": "docs/listing-images/national-20261027/red-clover-herbs-and-market-second-pass-2.webp",
+        "inspected": true,
+        "width": 1600,
+        "height": 1149,
+        "originalWidth": 4859,
+        "originalHeight": 3489,
+        "sha256": "8b90bb41d88ffcb3fd6677bdb3ca92c3f9553339eb74e609847bb3c0e1c47b57"
+      }
+    ],
+    "reason": "Genuine named storefront from the business Google-photo gallery mirrored by WorldOrgs; official location page confirms the same 1655 S Woodruff Avenue business. Added genuine house tea product photography from the official online store as a second image.",
+    "sources": [
+      "https://usa-stores.worldorgs.com/catalog/idaho-falls/consignment-shop/red-clover-herbs-market",
+      "https://redcloverherbs.com/products/harmonyblend",
+      "https://redcloverherbs.com/pages/physical-store"
+    ]
+  },
+  {
+    "inputIndex": 33,
+    "name": "Butterfly Herbs",
+    "photoCandidates": [
+      {
+        "url": "https://pub-ba1a74be17d7442a9f2541946eb9510e.r2.dev/shops/68143b4a-f078-4eb9-9bfc-973e000c5571/2.jpg",
+        "sourcePage": "https://joe.coffee/locations/mt/missoula/butterfly-herbs-missoula/",
+        "alt": "Bulk tea and herb jars lining the wooden shelves inside Butterfly Herbs",
+        "localFile": "docs/listing-images/national-20261027/butterfly-herbs-second-pass-1.webp",
+        "inspected": true,
+        "width": 800,
+        "height": 1067,
+        "originalWidth": 800,
+        "originalHeight": 1067,
+        "sha256": "b7342206c2d344b7eb2976800e5ff4c6d815bd4cbd4541845edd186ae8218018"
+      }
+    ],
+    "reason": "Genuine shop interior from the Butterfly Herbs coffee directory photo gallery, visually cross-checked against the firsthand Epic7Travel storefront report and the local reporting description of the wooden shelves and tin ceiling. Firsthand exterior photo is watermarked and was excluded.",
+    "sources": [
+      "https://joe.coffee/locations/mt/missoula/butterfly-herbs-missoula/",
+      "https://epic7travel.com/missoula-montana-shopping/"
+    ]
+  }
+]

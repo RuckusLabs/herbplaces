@@ -1,0 +1,172 @@
+[
+  {
+    "inputIndex": 21,
+    "name": "Moddejonge’s Herbals",
+    "status": "hold",
+    "reason": "Second pass found October 2025 customer reviews and an October 29, 2025 directory update, but Loc8NearMe now explicitly marks the Hewitt Avenue location closed. July 2026 regional herb directory retains it; owner Facebook is inaccessible and the old domain does not resolve. Current public access remains conflicting, rather than a confirmed closure.",
+    "website": "https://www.facebook.com/magickandmore/",
+    "address": "1905 1/2 Hewitt Avenue",
+    "city": "Everett",
+    "state": "Washington",
+    "zip": "98201",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://maps.roadtrippers.com/us/everett-wa/shopping/moddejonges-herbals-everett",
+      "https://www.cylex.us.com/company/moddejonge%27s-herbals-27655665.html",
+      "https://www.loc8nearme.com/washington/everett/moddejonges-herbals/5278056/",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.facebook.com/magickandmore/"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
+  },
+  {
+    "inputIndex": 28,
+    "name": "Salt Creek Apothecary",
+    "status": "hold",
+    "reason": "Second pass confirms the downtown association and a maker stockist list still retain Salt Creek, while Wanderlog explicitly marks it permanently closed. The linked current becomeyourmission.org site belongs to owner Dr. Kristen Acesta but describes her practice without confirming an operating Salt Creek storefront or retail hours. No dated current shop confirmation resolves the conflict.",
+    "website": "https://saltcreekapothecary.com/",
+    "address": "28 North Wenatchee Avenue",
+    "city": "Wenatchee",
+    "state": "Washington",
+    "zip": "98801",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://downtownwenatchee.org/explore",
+      "https://ollycostello.com/stockists",
+      "https://wanderlog.com/place/details/4165156/salt-creek-apothecary",
+      "https://www.becomeyourmission.org/"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
+  },
+  {
+    "inputIndex": 32,
+    "name": "Jade Forest Wellness",
+    "status": "hold",
+    "reason": "Second pass found an owner-authored 2023 article naming Jim and Stephanie Nymeyer’s Jade Forest Healing Arts, but it supplies no current visitor location. The submitted address is Barjon’s Books, while a business registry mirror gives Terry Avenue; neither establishes a current Jade Forest shop. The former domain does not resolve. Hold until the owner’s present public location is confirmed.",
+    "website": "https://jadeforestwellness.com/",
+    "address": "223 North 29th Street",
+    "city": "Billings",
+    "state": "Montana",
+    "zip": "59101",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://barjonsbooks.com/blog/discovering-the-five-chinese-elements/",
+      "https://barjonsbooks.com/wp-content/uploads/2023/08/08-2023-Newsletter.pdf",
+      "https://www.city-data.com/business-entities/Billings-MT-J.html",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
+  },
+  {
+    "inputIndex": 35,
+    "name": "Herbal Junction Elixirs",
+    "status": "ready",
+    "reason": "Second pass retrieved the official Square page’s embedded public content: full street address, weekday shop hours, phone, product categories and genuine product photographs. September 3, 2026 inspection of Herbal Junction Elixir Bar Cafe at the same address, reported by the Eugene Register-Guard September 20, independently confirms current public food-service activity.",
+    "website": "https://www.herbaljunctionelixirs.com/",
+    "address": "50 East 25th Avenue",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "phone": "541-334-5025",
+    "hours": "Mon–Fri 10am–5pm; Sat–Sun closed",
+    "tagline": "Handcrafted herbal elixirs, teas, and tonics in South Eugene",
+    "description": "Herbal Junction is a South Eugene maker and elixir bar offering handcrafted herbal drinks and botanical preparations. Its range includes herbal enzyme elixirs, power tonics, tinctures, chai, and blended herbal teas, with recipes drawing on plants from several traditions. Visit the East 25th Avenue location during its published weekday hours to explore its distinctive bottled blends.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.herbaljunctionelixirs.com/",
+      "https://www.aol.com/articles/see-eugene-restaurant-scored-51-130054000.html",
+      "https://www.yellowpages.com/eugene-or/mip/herbal-junction-13394349"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.herbaljunctionelixirs.com/uploads/b/fce5d110-6a5f-11ea-ac16-77f31394c45d/576649_10151830223312178_1941500054_n.jpg",
+        "sourcePage": "https://www.herbaljunctionelixirs.com/",
+        "alt": "Herbal Junction bottled herbal enzyme elixirs arranged on a wooden counter",
+        "localFile": "docs/listing-images/national-20261027/herbal-junction-bottles-second-pass.webp",
+        "inspected": true,
+        "width": 540,
+        "height": 720,
+        "sha256": "42602eaa44db82aa62a8275468860bba8d9fd30f83baf34cfe74343cdccd074c"
+      },
+      {
+        "url": "https://www.herbaljunctionelixirs.com/uploads/b/f436efe77faf3f4c8c46d23c408ea54ec6c4b8d4f4d37750dd7ec2ca98c2a0d7/image-2_1595765397.png",
+        "sourcePage": "https://www.herbaljunctionelixirs.com/",
+        "alt": "Herbal Junction’s labeled bottles of handcrafted herbal elixirs",
+        "localFile": "docs/listing-images/national-20261027/herbal-junction-product-range-second-pass.webp",
+        "inspected": true,
+        "width": 400,
+        "height": 355,
+        "sha256": "78de1c3ab6688d0e29341883958aeff613ab53adb580b99a748cdeebccc0d841"
+      }
+    ],
+    "photoNote": "Genuine photographs of the business’s bottled products, published on its own current site; no current interior or exterior photo was verified.",
+    "secondPassCheckedAt": "2026-10-27"
+  },
+  {
+    "inputIndex": 38,
+    "name": "OmChi Herbs",
+    "status": "hold",
+    "reason": "Second pass confirms OmChi is an active online herb seller, but both its current official contact page and BBB profile publish PO Box 5352. Cylex retains a Highway 99 address and hours alongside the PO box in the same entry, without dated owner confirmation of shopping or pickup there. Physical visitor access remains unverified; no closure is asserted.",
+    "website": "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+    "address": "85833 Highway 99 South",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.omchiherbs.com/store/",
+      "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+      "https://www.bbb.org/us/or/eugene/profile/herbs/omchi-herbs-llc-1296-22595702/addressId/186894",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
+  },
+  {
+    "inputIndex": 40,
+    "name": "Essential Elements Apothecary Shop",
+    "status": "hold",
+    "reason": "Second pass found BBB, OpenStreetMap-derived and regional herb-directory records retaining the Sellwood address, while Allbiz explicitly marks the business closed. The old domain returns HTTP 410 Gone and owner Facebook could not be read. No recent owner post, visitor report or operating-shop announcement resolves these conflicting records; hold rather than assert closure.",
+    "website": "https://essentialelementshhc.com/",
+    "address": "7704 SE 13th Avenue",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97202",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://mapcarta.com/W367895953",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://www.facebook.com/EssentialElementsHHC/",
+      "https://essentialelementshhc.com/"
+    ],
+    "photoCandidates": [],
+    "secondPassCheckedAt": "2026-10-27"
+  }
+]

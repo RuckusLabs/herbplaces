@@ -25,6 +25,7 @@ const seedId = 'national-20261027';
 const url = env.VITE_SUPABASE_URL;
 assert.equal(new URL(url).hostname, `${projectRef}.supabase.co`);
 const apply = process.argv.includes('--apply');
+const followup = process.argv.includes('--followup');
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const normalize = value => String(value || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');
 const photos = [];
@@ -145,7 +146,9 @@ const after = await value(db.from('places').select('*').order('id'));
 assert.equal(after.length, before.length + pending.length);
 for (const original of before) assert.deepEqual(after.find(row => row.id === original.id), original, `Existing listing changed: ${original.name}`);
 const receipt = { seedId, projectRef, seededAt: new Date().toISOString(), inserted: pending.length, totalListings: after.length,
-  photos: uploads.length, unchangedExisting: before.length,
+  photos: publicRows.reduce((total, place) => total + (place.photos?.length || 0), 0),
+  photosAdded: photos.filter(photo => pending.some(place => place.urlSlug === photo.slug)).length,
+  photoStorageRegistrations: uploads.length, unchangedExisting: before.length,
   missingPhotos: ready.filter(row => !row.photoCandidates?.length).map(({ name, photoUnavailableReason }) => ({ name, reason: photoUnavailableReason })),
   places: publicRows.map(({ id, name, urlSlug, geocode_status }) => ({ id, name, urlSlug, geocode_status, listingUrl: `https://littleherbplaces.com/place/${urlSlug}` })),
   held: research.filter(row => ['hold', 'closed'].includes(row.status)).map(({ inputIndex, name, status, reason, sources }) => ({ inputIndex, name, status, reason, sources })),
@@ -153,6 +156,7 @@ const receipt = { seedId, projectRef, seededAt: new Date().toISOString(), insert
   checks: ['All new profiles anonymously readable with matching content', 'Every uploaded image publicly delivered with matching checksum',
     'All pre-existing records unchanged', 'No Featured or Verified badge assigned'],
 };
-const receiptFile = path.join(directory, 'receipt.json');
+// Preserve the original publication receipt when adding second-pass records.
+const receiptFile = path.join(directory, followup ? 'second-pass-receipt.json' : 'receipt.json');
 if (!fs.existsSync(receiptFile) || pending.length) fs.writeFileSync(receiptFile, JSON.stringify(receipt, null, 2) + '\n');
-console.log(`Complete: ${pending.length} added; ${after.length} total; ${uploads.length} photos verified.`);
+console.log(`Complete: ${pending.length} added; ${after.length} total; ${photos.filter(photo => pending.some(place => place.urlSlug === photo.slug)).length} new photos delivered and verified.`);
