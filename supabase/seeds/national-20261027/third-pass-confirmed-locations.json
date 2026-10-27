@@ -1,0 +1,93 @@
+[
+  {
+    "inputIndex": 24,
+    "name": "Mountain Spirit Herbals",
+    "address": "3110 3rd Street",
+    "city": "Port Townsend",
+    "state_code": "WA",
+    "zip": "98368",
+    "latitude": 48.10259309793728,
+    "longitude": -122.81453902083217,
+    "matchedAddress": "3110 3RD ST, Port Townsend, WA 98368",
+    "sourceType": "local-government-address-point",
+    "sources": [
+      "https://www.mountainspiritherbals.com/pages/contact-us",
+      "https://gisweb.jeffcowa.us/server/rest/services/LandRecords/MapServer/3/query?where=OBJECTID+%3D+22695&outFields=%2A&outSR=4326&f=json"
+    ],
+    "note": "Official contact page confirms 3110 3rd Street, Port Townsend WA 98368 and shopping by appointment. Jefferson County site-address point OBJECTID 22695 exactly matches house number, street, municipality, and ZIP; parcel 001093006, ESiteID 177160. Coordinates are the county point geometry returned in EPSG:4326, not a city centroid. No address change needed."
+  },
+  {
+    "inputIndex": 31,
+    "name": "Tendril Herbal Apothecary and Healing Center",
+    "address": "532 Main Street",
+    "city": "Sandpoint",
+    "state_code": "ID",
+    "zip": "83864",
+    "latitude": 48.27628901862797,
+    "longitude": -116.5550669414668,
+    "matchedAddress": "532 Main Street, Sandpoint, ID 83864",
+    "sourceType": "local-government-structure-address-point",
+    "sources": [
+      "https://tendrilapothecary.com/contact/",
+      "https://cloudgis.bonnercountyid.gov/server/rest/services/Map_Services/Addressing_Public/MapServer/0/query?where=objectid+%3D+22668&outFields=%2A&outSR=4326&f=json"
+    ],
+    "note": "Official contact page confirms 532 Main St, Sandpoint ID 83864 and embeds this address in its Google map. Bonner County Addressing Public Structure point objectid 22668 exactly matches fulladdr 532 Main Street, municipality Sandpoint, msag Sandpoint, old address 532 Main St. Coordinates are the county structure point geometry in EPSG:4326. No location move found; Street is expanded from St."
+  },
+  {
+    "inputIndex": 47,
+    "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+    "address": "627 S US Highway 64",
+    "city": "Manteo",
+    "state_code": "NC",
+    "zip": "27954",
+    "latitude": 35.89690715,
+    "longitude": -75.66728735,
+    "matchedAddress": "627 S US 64 HWY, Manteo, NC 27954",
+    "sourceType": "local-government-address-point",
+    "sources": [
+      "https://healinghouseherbsnc.com/pages/contact-us",
+      "https://maps.darecountync.gov/searchData.php?term=627+US",
+      "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
+    ],
+    "note": "Official contact page confirms 627 US Highway 64, Manteo NC 27954, upstairs above Manteo Cyclery and next to the Scuba Diving Shop. Dare County search returns parcel 025723000 / PIN 978907678983 at 627 S US 64 HWY, Manteo NC 27954. The county address_points layer has exactly one point for that parcel, address_points.33293, house 627, direction S, street US 64 HWY, Manteo ZIP 27954. Coordinates come from this authoritative address point (not a guessed location or city centroid). Normalize missing S directional in the submitted address; floor is upstairs, unit unconfirmed. This point identifies the shared address/building, not an independently surveyed upstairs unit entrance."
+  },
+  {
+    "inputIndex": 65,
+    "name": "Synergy Herbal Works - Sparta",
+    "address": "14 Liberty Square",
+    "city": "Sparta",
+    "state_code": "TN",
+    "zip": "38583",
+    "latitude": 35.92521661564504,
+    "longitude": -85.46386790851963,
+    "matchedAddress": "14 LIBERTY SQ, SPARTA, TN 38583",
+    "sourceType": "state-government-address-point",
+    "sources": [
+      "https://synergyherbalworks.com/pages/contact",
+      "https://www.picktnproducts.org/content/picktn/picktn-producers/picktn-listing.27842.html",
+      "https://business.spartatnchamber.com/active-member-directory/Details/synergy-herbal-works-4535794",
+      "https://tnmap.maps.arcgis.com/home/item.html?id=f76e2673388e4c6f803bc51e3ae04b14",
+      "https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_NG911_Address_Points/FeatureServer/0/query?f=json&where=Add_Number+%3D+14+AND+UPPER%28St_Name%29+%3D+%27LIBERTY%27+AND+UPPER%28County%29+LIKE+%27%25WHITE%25%27&outFields=%2A&returnGeometry=true&outSR=4326",
+      "https://reviews.birdeye.com/synergy-herbal-works-176952648580716"
+    ],
+    "note": "Confirmed current storefront address on operator contact page, state producer listing, and local chamber. Exact building address point resolved in Tennessee NG911 layer; use WGS84 geometry, not a city centroid. Shipping policy still says 11 but the explicit visitor contact page and other current sources consistently say 14."
+  },
+  {
+    "inputIndex": 57,
+    "name": "2 Wolves Herbal Apothecary - Augusta",
+    "address": "469 Highland Avenue",
+    "city": "Augusta",
+    "state_code": "GA",
+    "zip": "30909",
+    "latitude": 33.484385651992,
+    "longitude": -82.029937823617,
+    "matchedAddress": "469 HIGHLAND AVE, AUGUSTA, GA, 30909",
+    "sourceType": "us-census-street-interpolation",
+    "sources": [
+      "https://georgiagrown.com/member/2-wolves-herbal-apothecary/",
+      "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+      "https://www.surreycenter.com/cucumber-mint"
+    ],
+    "note": "Correct ZIP 30904 to 30909: state Georgia Grown member listing and official Surrey Center tenant directory corroborate Census exact street/house-number match. Census point is interpolated along the street segment, not a surveyed entrance."
+  }
+]

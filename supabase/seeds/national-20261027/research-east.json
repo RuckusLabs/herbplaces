@@ -71,7 +71,7 @@
     "inputIndex": 45,
     "name": "Simply Vibes Apothecary",
     "status": "hold",
-    "reason": "Owner July 21, 2025 fundraiser confirms a real store but reports rent arrears and risk of closure. Newly found BLK in Bloom partner case study quotes owner and historical store event, without event date or current address/hours; no sufficiently recent public-access confirmation found. Former domain unrelated, so omitted. Business not marked definitively closed.",
+    "reason": "Physical shop at 3550 North Davidson Street was real, but current operation remains unresolved. An April 4, 2025 event corroborates visitor access before the owner July 21, 2025 rent-arrears fundraiser. Newly located Eventbrite category results show tea classes but their snapshots date from 2025 and do not establish current events or 2026 access. BLK in Bloom recap dates its shop event to July 27, 2024. The former domain currently redirects to unrelated gambling content; this is not treated as proof of shop closure. No reliable newer owner announcement, current visitor record, or new address found.",
     "website": null,
     "address": "3550 North Davidson Street",
     "city": "Charlotte",
@@ -85,12 +85,25 @@
       "shops"
     ],
     "sources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
       "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/",
       "https://blkinbloomclt.com/partner/"
     ],
     "photoCandidates": [],
     "secondPassVerifiedAt": "2026-10-27",
-    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://allevents.in/charlotte/baddies-do-yoga/100001300034621549",
+      "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+      "https://www.eventbrite.com/d/sc--rock-hill/tea-party/",
+      "https://blkinbloomclt.com/blog/",
+      "https://www.simplyvibesapothecary.com/"
+    ]
   },
   {
     "inputIndex": 46,
@@ -155,7 +168,7 @@
     "status": "ready",
     "reason": "Official website now branded Healing House Herbs; retained supplied name with rebrand explained.",
     "website": "https://healinghouseherbsnc.com/",
-    "address": "627 US Highway 64",
+    "address": "627 S US Highway 64",
     "city": "Manteo",
     "state": "North Carolina",
     "zip": "27954",
@@ -169,7 +182,10 @@
     ],
     "sources": [
       "https://healinghouseherbsnc.com/",
-      "https://healinghouseherbsnc.com/pages/location-hours"
+      "https://healinghouseherbsnc.com/pages/location-hours",
+      "https://healinghouseherbsnc.com/pages/contact-us",
+      "https://maps.darecountync.gov/searchData.php?term=627+US",
+      "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
     ],
     "photoCandidates": [
       {
@@ -182,7 +198,26 @@
         "height": 600,
         "visuallyVerified": true
       }
-    ]
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 47,
+      "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+      "address": "627 S US Highway 64",
+      "city": "Manteo",
+      "state_code": "NC",
+      "zip": "27954",
+      "latitude": 35.89690715,
+      "longitude": -75.66728735,
+      "matchedAddress": "627 S US 64 HWY, Manteo, NC 27954",
+      "sourceType": "local-government-address-point",
+      "sources": [
+        "https://healinghouseherbsnc.com/pages/contact-us",
+        "https://maps.darecountync.gov/searchData.php?term=627+US",
+        "https://gs.darecountync.gov/geoserver/Production/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Production%3Aaddress_points&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=parcel%3D%27025723000%27"
+      ],
+      "note": "Official contact page confirms 627 US Highway 64, Manteo NC 27954, upstairs above Manteo Cyclery and next to the Scuba Diving Shop. Dare County search returns parcel 025723000 / PIN 978907678983 at 627 S US 64 HWY, Manteo NC 27954. The county address_points layer has exactly one point for that parcel, address_points.33293, house 627, direction S, street US 64 HWY, Manteo ZIP 27954. Coordinates come from this authoritative address point (not a guessed location or city centroid). Normalize missing S directional in the submitted address; floor is upstairs, unit unconfirmed. This point identifies the shared address/building, not an independently surveyed upstairs unit entrance."
+    }
   },
   {
     "inputIndex": 48,
@@ -491,7 +526,7 @@
     "address": "469 Highland Avenue",
     "city": "Augusta",
     "state": "Georgia",
-    "zip": "30904",
+    "zip": "30909",
     "phone": "706-969-1651",
     "hours": "Monday–Friday 10am–5pm; Saturday–Sunday closed",
     "tagline": "Herbal tinctures and botanical goods in Augusta",
@@ -501,7 +536,10 @@
     ],
     "sources": [
       "https://www.2wolvesherbalapothecary.com/",
-      "https://www.2wolvesherbalapothecary.com/locations"
+      "https://www.2wolvesherbalapothecary.com/locations",
+      "https://georgiagrown.com/member/2-wolves-herbal-apothecary/",
+      "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+      "https://www.surreycenter.com/cucumber-mint"
     ],
     "photoCandidates": [
       {
@@ -514,7 +552,26 @@
         "height": 1800,
         "visuallyVerified": true
       }
-    ]
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 57,
+      "name": "2 Wolves Herbal Apothecary - Augusta",
+      "address": "469 Highland Avenue",
+      "city": "Augusta",
+      "state_code": "GA",
+      "zip": "30909",
+      "latitude": 33.484385651992,
+      "longitude": -82.029937823617,
+      "matchedAddress": "469 HIGHLAND AVE, AUGUSTA, GA, 30909",
+      "sourceType": "us-census-street-interpolation",
+      "sources": [
+        "https://georgiagrown.com/member/2-wolves-herbal-apothecary/",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+        "https://www.surreycenter.com/cucumber-mint"
+      ],
+      "note": "Correct ZIP 30904 to 30909: state Georgia Grown member listing and official Surrey Center tenant directory corroborate Census exact street/house-number match. Census point is interpolated along the street segment, not a surveyed entrance."
+    }
   },
   {
     "inputIndex": 58,
@@ -801,7 +858,13 @@
       "workshops"
     ],
     "sources": [
-      "https://synergyherbalworks.com/"
+      "https://synergyherbalworks.com/",
+      "https://synergyherbalworks.com/pages/contact",
+      "https://www.picktnproducts.org/content/picktn/picktn-producers/picktn-listing.27842.html",
+      "https://business.spartatnchamber.com/active-member-directory/Details/synergy-herbal-works-4535794",
+      "https://tnmap.maps.arcgis.com/home/item.html?id=f76e2673388e4c6f803bc51e3ae04b14",
+      "https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_NG911_Address_Points/FeatureServer/0/query?f=json&where=Add_Number+%3D+14+AND+UPPER%28St_Name%29+%3D+%27LIBERTY%27+AND+UPPER%28County%29+LIKE+%27%25WHITE%25%27&outFields=%2A&returnGeometry=true&outSR=4326",
+      "https://reviews.birdeye.com/synergy-herbal-works-176952648580716"
     ],
     "photoCandidates": [
       {
@@ -814,7 +877,29 @@
         "height": 1390,
         "visuallyVerified": true
       }
-    ]
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 65,
+      "name": "Synergy Herbal Works - Sparta",
+      "address": "14 Liberty Square",
+      "city": "Sparta",
+      "state_code": "TN",
+      "zip": "38583",
+      "latitude": 35.92521661564504,
+      "longitude": -85.46386790851963,
+      "matchedAddress": "14 LIBERTY SQ, SPARTA, TN 38583",
+      "sourceType": "state-government-address-point",
+      "sources": [
+        "https://synergyherbalworks.com/pages/contact",
+        "https://www.picktnproducts.org/content/picktn/picktn-producers/picktn-listing.27842.html",
+        "https://business.spartatnchamber.com/active-member-directory/Details/synergy-herbal-works-4535794",
+        "https://tnmap.maps.arcgis.com/home/item.html?id=f76e2673388e4c6f803bc51e3ae04b14",
+        "https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_NG911_Address_Points/FeatureServer/0/query?f=json&where=Add_Number+%3D+14+AND+UPPER%28St_Name%29+%3D+%27LIBERTY%27+AND+UPPER%28County%29+LIKE+%27%25WHITE%25%27&outFields=%2A&returnGeometry=true&outSR=4326",
+        "https://reviews.birdeye.com/synergy-herbal-works-176952648580716"
+      ],
+      "note": "Confirmed current storefront address on operator contact page, state producer listing, and local chamber. Exact building address point resolved in Tennessee NG911 layer; use WGS84 geometry, not a city centroid. Shipping policy still says 11 but the explicit visitor contact page and other current sources consistently say 14."
+    }
   },
   {
     "inputIndex": 66,

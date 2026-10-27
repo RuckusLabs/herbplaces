@@ -104,3 +104,12 @@ test('privacy and membership HTML includes usable full disclosures without JavaS
   assert.match(terms, /refund requests/);
   assert.match(terms, /Thrive is not available for purchase/);
 });
+
+test('profiles without photos retain visit details without an invented listing image', () => {
+  const imageless = { ...place, photos: [], coverPhoto: '' };
+  assert.deepEqual(getPlaceSeo(imageless).structuredData['@graph'][0].image, []);
+  const html = renderPlaceContent(imageless, [imageless]);
+  assert.doesNotMatch(html, /<img\b/);
+  assert.match(html, /123 Main Street/);
+  assert.match(html, /Teas and community workshops/);
+});

@@ -1,0 +1,76 @@
+{
+  "projectRef": "qtpepsebztlremlhpxdt",
+  "appliedAt": "2026-10-27T19:19:13.627Z",
+  "updated": 3,
+  "totalListings": 71,
+  "profiles": [
+    {
+      "id": 41,
+      "name": "Mountain Spirit Herbals",
+      "urlSlug": "mountain-spirit-herbals",
+      "address": "3110 3rd Street",
+      "city": "Port Townsend",
+      "state": "Washington",
+      "zip": "98368",
+      "latitude": 48.1025930979373,
+      "longitude": -122.814539020832,
+      "geocode_status": "confirmed"
+    },
+    {
+      "id": 47,
+      "name": "Tendril Herbal Apothecary and Healing Center",
+      "urlSlug": "tendril-herbal-apothecary-and-healing-center",
+      "address": "532 Main Street",
+      "city": "Sandpoint",
+      "state": "Idaho",
+      "zip": "83864",
+      "latitude": 48.276289018628,
+      "longitude": -116.555066941467,
+      "geocode_status": "confirmed"
+    },
+    {
+      "id": 56,
+      "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+      "urlSlug": "healing-house-herbs-formerly-natural-selection-apothecary",
+      "address": "627 S US Highway 64",
+      "city": "Manteo",
+      "state": "North Carolina",
+      "zip": "27954",
+      "latitude": 35.89690715,
+      "longitude": -75.66728735,
+      "geocode_status": "confirmed"
+    },
+    {
+      "id": 65,
+      "name": "2 Wolves Herbal Apothecary - Augusta",
+      "urlSlug": "2-wolves-herbal-apothecary-augusta",
+      "address": "469 Highland Avenue",
+      "city": "Augusta",
+      "state": "Georgia",
+      "zip": "30909",
+      "latitude": 33.484385651992,
+      "longitude": -82.029937823617,
+      "geocode_status": "confirmed"
+    },
+    {
+      "id": 72,
+      "name": "Synergy Herbal Works - Sparta",
+      "urlSlug": "synergy-herbal-works-sparta",
+      "address": "14 Liberty Square",
+      "city": "Sparta",
+      "state": "Tennessee",
+      "zip": "38583",
+      "latitude": 35.925216615645,
+      "longitude": -85.4638679085196,
+      "geocode_status": "confirmed"
+    }
+  ],
+  "remainingMapReview": [],
+  "checks": [
+    "Exact government address evidence for all five pins",
+    "Version-conditional updates",
+    "Non-location fields including photos unchanged except version/timestamp",
+    "Other profiles unchanged",
+    "Anonymous public address and coordinates verified"
+  ]
+}

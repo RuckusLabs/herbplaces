@@ -19,6 +19,7 @@ const input = read(path.join(directory, 'input.json'));
 assert.equal(research.length, input.length, 'Every supplied place must have a research outcome.');
 assert.equal(new Set(research.map(row => row.inputIndex)).size, input.length);
 const geocodes = read(path.join(directory, 'geocodes.json'));
+const reviewedLocations = read(path.join(directory, 'third-pass-confirmed-locations.json'));
 const env = loadEnv('development', root, 'VITE_');
 const projectRef = 'qtpepsebztlremlhpxdt';
 const seedId = 'national-20261027';
@@ -63,14 +64,21 @@ const rows = ready.map(place => {
   const match = matches.length === 1 ? matches[0] : null;
   const supplied = input[place.inputIndex];
   const stateCode = place.state_code || supplied.state_code;
-  const confirmed = match && match.addressComponents.state === stateCode && match.addressComponents.zip === place.zip;
-  if (confirmed) assert.ok(match.coordinates.y > 18 && match.coordinates.y < 72 && match.coordinates.x < -60 && match.coordinates.x > -180);
+  const reviewed = reviewedLocations.find(row => row.inputIndex === place.inputIndex);
+  if (reviewed) {
+    assert.equal(reviewed.name, place.name);
+    for (const [field, expected] of Object.entries({ address: place.address, city: place.city, state_code: stateCode, zip: place.zip })) assert.equal(reviewed[field], expected);
+    assert.ok(reviewed.sources.length >= 2 && reviewed.matchedAddress && reviewed.note);
+    assert.ok(reviewed.latitude > 18 && reviewed.latitude < 72 && reviewed.longitude < -60 && reviewed.longitude > -180);
+  }
+  const confirmed = reviewed || (match && match.addressComponents.state === stateCode && match.addressComponents.zip === place.zip);
+  if (confirmed && !reviewed) assert.ok(match.coordinates.y > 18 && match.coordinates.y < 72 && match.coordinates.x < -60 && match.coordinates.x > -180);
   return {
     ...Object.fromEntries(['name', 'website', 'address', 'city', 'state', 'zip', 'phone', 'hours', 'tagline', 'description'].map(field => [field, place[field] || ''])),
     urlSlug, type: 'place', category_ids: place.category_ids, social_links: [],
     photos: photoUrls, coverPhoto: photoUrls[0] || '', photo_alt,
-    latitude: confirmed ? match.coordinates.y : null,
-    longitude: confirmed ? match.coordinates.x : null,
+    latitude: confirmed ? reviewed?.latitude ?? match.coordinates.y : null,
+    longitude: confirmed ? reviewed?.longitude ?? match.coordinates.x : null,
     geocode_status: confirmed ? 'confirmed' : 'review',
     isFeatured: false, isVerified: false,
   };

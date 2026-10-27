@@ -197,8 +197,8 @@
   {
     "inputIndex": 7,
     "name": "Great Cape Herbs",
-    "status": "hold",
-    "reason": "Still unconfirmed: operator closure notice September 10, 2022 has not been superseded by a verified reopening. March 20, 2024 local reporting says the co-op abandoned the property purchase after two years of zoning/conservation enforcement disputes. The 2025 farm guide repeats the same gardens/cafe description found in the 2022 pre-closure guide, so it does not establish restored public access.",
+    "status": "closed",
+    "reason": "A newly located January 29, 2025 Cape Cod Chronicle report explicitly confirms Great Cape Herbs permanently closed, while discussing the sale of the Great Cape Tiny Village property. This corroborates the operator September 10, 2022 closure announcement; copied farm-guide listings and other tenants at the property do not establish that this shop reopened. No active replacement herb-shop location found.",
     "website": "",
     "address": "2624 Main Street",
     "city": "Brewster",
@@ -212,14 +212,23 @@
       "shops"
     ],
     "sources": [
+      "https://www.capecodchronicle.com/articles/2265/view/great-cape-tiny-village-finds-new-owner-after-52-years",
       "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://www.capecodchronicle.com/articles/3089/view/snowy-owl-coffee-moving-but-staying-in-brewster",
       "https://capecodchronicle.com/articles/718/view",
       "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf",
       "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2022/05/2022-BFBLCC-Guide-to-Farms-and-Food-website.pdf"
     ],
     "photoCandidates": [],
     "secondPassVerifiedAt": "2026-10-27",
-    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "confirmed_closed",
+    "thirdPassSources": [
+      "https://www.capecodchronicle.com/articles/2265/view/great-cape-tiny-village-finds-new-owner-after-52-years",
+      "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://www.capecodchronicle.com/articles/3089/view/snowy-owl-coffee-moving-but-staying-in-brewster"
+    ]
   },
   {
     "inputIndex": 8,
@@ -400,8 +409,8 @@
   {
     "inputIndex": 12,
     "name": "Found Herbal Apothecary",
-    "status": "hold",
-    "reason": "Current operator explicitly advertises an active Austin clinical herbal practice and information calls, but publishes no verifiable Austin consultation storefront address or public shopping access. The original Bronxville address cannot be carried forward. Keep held as a physical place, without implying business closure.",
+    "status": "closed",
+    "reason": "The current official SERVICES page explicitly says All Sessions Virtual, and explains herbs are filled and shipped by outside herbal dispensaries rather than supplied by Found Herbal. This resolves the address gap: the active Austin clinical practice currently advertises virtual service, not a replacement public Austin storefront or in-person consultation site. Do not reuse the former Bronxville address.",
     "website": "https://foundherbal.com/",
     "address": "118 Kraft Avenue",
     "city": "Bronxville",
@@ -415,18 +424,26 @@
       "shops"
     ],
     "sources": [
+      "https://foundherbal.com/pages/pages-herbal-consultation-womens-health",
       "https://foundherbal.com/",
       "https://foundherbal.com/pages/about-page"
     ],
     "photoCandidates": [],
     "secondPassVerifiedAt": "2026-10-27",
-    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "virtual_only",
+    "thirdPassSources": [
+      "https://foundherbal.com/pages/pages-herbal-consultation-womens-health",
+      "https://foundherbal.com/",
+      "https://foundherbal.com/pages/about-page"
+    ]
   },
   {
     "inputIndex": 13,
     "name": "Briar Patch Herbs",
-    "status": "hold",
-    "reason": "Current own site announces new owners, new name, and reopening in early September, but gives neither successor name nor confirmation reopening occurred. Partner Vital Force Herbs confirms June 2026 in-person classes at submitted address; a September 9 event also appears in a hotel calendar. Those confirm recent activity but do not resolve present successor identity and access after ownership transfer. Existing hours omitted rather than carried forward.",
+    "status": "closed",
+    "reason": "The current official homepage now explicitly says Briar Patch Herbs has closed permanently and will not reopen under new ownership. This supersedes its older cached announcement of new owners and a September reopening. There is no successor herb shop to list at 4480 SW Garden Home Road.",
     "website": "https://briarpatchherbs.com/",
     "address": "4480 SW Garden Home Road",
     "city": "Portland",
@@ -446,7 +463,12 @@
     ],
     "photoCandidates": [],
     "secondPassVerifiedAt": "2026-10-27",
-    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification."
+    "secondPassNotes": "Second pass accepts current organizer, producer, host merchant, and tourism evidence; own domain and a photo are not prerequisites for physical-place verification.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "confirmed_closed",
+    "thirdPassSources": [
+      "https://briarpatchherbs.com/"
+    ]
   },
   {
     "inputIndex": 14,

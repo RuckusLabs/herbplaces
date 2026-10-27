@@ -46,3 +46,22 @@ test('owner sales pages explain the request-to-claim handoff and work on every s
   await page.getByText('Can I subscribe to Thrive today?', { exact: true }).click();
   await expect(page.getByText('Thrive is coming soon and is not yet available for purchase.', { exact: false })).toBeVisible();
 });
+
+for (const coverOnly of [false, true]) {
+  test(coverOnly ? 'a cover-only profile keeps its photo viewer' : 'an imageless profile hides its viewer and retains visit details', async ({ page }) => {
+    await page.route('**/rest/v1/**', route => route.fulfill({ json: [{ ...place, photos: [], coverPhoto: coverOnly ? place.coverPhoto : '' }] }));
+    await page.goto('/place/moss-and-fern/');
+    await expect(page.getByRole('heading', { name: 'Moss & Fern', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Get Directions', exact: true })).toBeVisible();
+    await expect(page.getByRole('region', { name: 'Photos of Moss & Fern', exact: true })).toHaveCount(coverOnly ? 1 : 0);
+    await expect(page.getByRole('button', { name: 'View Full Image', exact: true })).toHaveCount(coverOnly ? 1 : 0);
+    if (coverOnly) {
+      await page.getByRole('button', { name: 'View Full Image', exact: true }).click();
+      await expect(page.getByRole('dialog')).toBeVisible();
+    } else {
+      await expect(page.getByRole('dialog')).toHaveCount(0);
+      const data = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+      expect(data['@graph'][0].image).toEqual([]);
+    }
+  });
+}

@@ -78,7 +78,7 @@
     "inputIndex": 21,
     "name": "Moddejonge’s Herbals",
     "status": "hold",
-    "reason": "Second pass found October 2025 customer reviews and an October 29, 2025 directory update, but Loc8NearMe now explicitly marks the Hewitt Avenue location closed. July 2026 regional herb directory retains it; owner Facebook is inaccessible and the old domain does not resolve. Current public access remains conflicting, rather than a confirmed closure.",
+    "reason": "Historical address is securely identified as 1905/1905 1/2 Hewitt Avenue, with Roadtrippers pin 47.979366,-122.203720. Owner-authored posts mirrored by FindGlocal confirm retail access through June 6, 2025, and customer reviews continue to October 2025. However, Loc8NearMe explicitly says this location has closed and no 2026 owner storefront confirmation was found; keep held rather than publish stale opening hours.",
     "website": "https://www.facebook.com/magickandmore/",
     "address": "1905 1/2 Hewitt Avenue",
     "city": "Everett",
@@ -94,10 +94,23 @@
       "https://www.cylex.us.com/company/moddejonge%27s-herbals-27655665.html",
       "https://www.loc8nearme.com/washington/everett/moddejonges-herbals/5278056/",
       "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
-      "https://www.facebook.com/magickandmore/"
+      "https://www.facebook.com/magickandmore/",
+      "https://www.findglocal.com/US/Everett/343570004165/Moddejonge%27s-Herbals",
+      "https://www.liveineverett.com/blog//moddejonges-herbalsnbsp-hewitts-herbal-apothecary-with-a-magical-twist"
     ],
     "photoCandidates": [],
-    "secondPassCheckedAt": "2026-10-27"
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "historicalAddress": "1905 1/2 Hewitt Avenue, Everett, WA 98201",
+      "historicalBusinessPin": {
+        "latitude": 47.979366,
+        "longitude": -122.20372,
+        "source": "https://maps.roadtrippers.com/us/everett-wa/shopping/moddejonges-herbals-everett"
+      },
+      "lastOwnerDatedPost": "2025-06-06",
+      "unresolved": "Current operating status at this historical storefront conflicts between directories."
+    }
   },
   {
     "inputIndex": 22,
@@ -188,7 +201,8 @@
     ],
     "sources": [
       "https://www.mountainspiritherbals.com/",
-      "https://www.mountainspiritherbals.com/pages/contact-us"
+      "https://www.mountainspiritherbals.com/pages/contact-us",
+      "https://gisweb.jeffcowa.us/server/rest/services/LandRecords/MapServer/3/query?where=OBJECTID+%3D+22695&outFields=%2A&outSR=4326&f=json"
     ],
     "photoCandidates": [
       {
@@ -202,7 +216,25 @@
         "sha256": "aee6f30a871a73fb8683074032ae991cb017f6d459ffd302fdb70355a5f25307"
       }
     ],
-    "photoNote": "Official product/botanical photo; no verified current shop interior image found."
+    "photoNote": "Official product/botanical photo; no verified current shop interior image found.",
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 24,
+      "name": "Mountain Spirit Herbals",
+      "address": "3110 3rd Street",
+      "city": "Port Townsend",
+      "state_code": "WA",
+      "zip": "98368",
+      "latitude": 48.10259309793728,
+      "longitude": -122.81453902083217,
+      "matchedAddress": "3110 3RD ST, Port Townsend, WA 98368",
+      "sourceType": "local-government-address-point",
+      "sources": [
+        "https://www.mountainspiritherbals.com/pages/contact-us",
+        "https://gisweb.jeffcowa.us/server/rest/services/LandRecords/MapServer/3/query?where=OBJECTID+%3D+22695&outFields=%2A&outSR=4326&f=json"
+      ],
+      "note": "Official contact page confirms 3110 3rd Street, Port Townsend WA 98368 and shopping by appointment. Jefferson County site-address point OBJECTID 22695 exactly matches house number, street, municipality, and ZIP; parcel 001093006, ESiteID 177160. Coordinates are the county point geometry returned in EPSG:4326, not a city centroid. No address change needed."
+    }
   },
   {
     "inputIndex": 25,
@@ -308,7 +340,7 @@
     "inputIndex": 28,
     "name": "Salt Creek Apothecary",
     "status": "hold",
-    "reason": "Second pass confirms the downtown association and a maker stockist list still retain Salt Creek, while Wanderlog explicitly marks it permanently closed. The linked current becomeyourmission.org site belongs to owner Dr. Kristen Acesta but describes her practice without confirming an operating Salt Creek storefront or retail hours. No dated current shop confirmation resolves the conflict.",
+    "reason": "The historical storefront is 28 N Wenatchee Avenue. The proprietor's current Mission Health website now gives 115 S Chelan Avenue Suite 302, Wenatchee, and 414 N Pearl Street Suite 211, Ellensburg, with the same 509-885-2664 phone. These are healthcare offices and the website does not confirm Salt Creek retail access. A June 3, 2026 local discussion describes a closing giveaway and Wanderlog marks the shop permanently closed, outweighing an October 13, 2025 tourism article and undated stockist lists for current access. Keep held; do not move the apothecary profile to the clinic.",
     "website": "https://saltcreekapothecary.com/",
     "address": "28 North Wenatchee Avenue",
     "city": "Wenatchee",
@@ -323,10 +355,23 @@
       "https://downtownwenatchee.org/explore",
       "https://ollycostello.com/stockists",
       "https://wanderlog.com/place/details/4165156/salt-creek-apothecary",
-      "https://www.becomeyourmission.org/"
+      "https://www.becomeyourmission.org/",
+      "https://www.reddit.com/r/Wenatchee/comments/1tvtjpn/anyone_know_what_the_salt_creek_apothecary_people/",
+      "https://www.visitwenatchee.org/blog/historic-charm-shops-galore-exploring-the-heart-of-downtown-wenatchee"
     ],
     "photoCandidates": [],
-    "secondPassCheckedAt": "2026-10-27"
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "historicalAddress": "28 North Wenatchee Avenue, Wenatchee, WA 98801",
+      "currentProprietorBusiness": "Mission Health / Dr. Kristen Acesta",
+      "currentProprietorAddresses": [
+        "115 South Chelan Avenue, Suite 302, Wenatchee, WA 98801",
+        "414 North Pearl Street, Suite 211, Ellensburg, WA 98926"
+      ],
+      "operatorSource": "https://www.becomeyourmission.org/",
+      "datedClosureCorroboration": "Community account 2026-06-03 describes giveaway as shop was shutting down; indirect evidence, not an operator closure notice."
+    }
   },
   {
     "inputIndex": 29,
@@ -434,7 +479,8 @@
     "sources": [
       "https://tendrilapothecary.com/",
       "https://tendrilapothecary.com/contact/",
-      "https://tendrilapothecary.com/about/"
+      "https://tendrilapothecary.com/about/",
+      "https://cloudgis.bonnercountyid.gov/server/rest/services/Map_Services/Addressing_Public/MapServer/0/query?where=objectid+%3D+22668&outFields=%2A&outSR=4326&f=json"
     ],
     "photoCandidates": [
       {
@@ -447,13 +493,31 @@
         "height": 1350,
         "sha256": "8ea88acbf1ce3e65971cd7b90632ea1d736c539b1c73c1acb7069f659707b95e"
       }
-    ]
+    ],
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "inputIndex": 31,
+      "name": "Tendril Herbal Apothecary and Healing Center",
+      "address": "532 Main Street",
+      "city": "Sandpoint",
+      "state_code": "ID",
+      "zip": "83864",
+      "latitude": 48.27628901862797,
+      "longitude": -116.5550669414668,
+      "matchedAddress": "532 Main Street, Sandpoint, ID 83864",
+      "sourceType": "local-government-structure-address-point",
+      "sources": [
+        "https://tendrilapothecary.com/contact/",
+        "https://cloudgis.bonnercountyid.gov/server/rest/services/Map_Services/Addressing_Public/MapServer/0/query?where=objectid+%3D+22668&outFields=%2A&outSR=4326&f=json"
+      ],
+      "note": "Official contact page confirms 532 Main St, Sandpoint ID 83864 and embeds this address in its Google map. Bonner County Addressing Public Structure point objectid 22668 exactly matches fulladdr 532 Main Street, municipality Sandpoint, msag Sandpoint, old address 532 Main St. Coordinates are the county structure point geometry in EPSG:4326. No location move found; Street is expanded from St."
+    }
   },
   {
     "inputIndex": 32,
     "name": "Jade Forest Wellness",
     "status": "hold",
-    "reason": "Second pass found an owner-authored 2023 article naming Jim and Stephanie Nymeyer’s Jade Forest Healing Arts, but it supplies no current visitor location. The submitted address is Barjon’s Books, while a business registry mirror gives Terry Avenue; neither establishes a current Jade Forest shop. The former domain does not resolve. Hold until the owner’s present public location is confirmed.",
+    "reason": "223 N 29th Street is definitively Barjon's Books: its current operator website publishes that address and October 2026 events. A 2023 Barjon's article identifies Jim and Stephanie Nymeyer's Jade Forest Healing Arts, but does not establish a dedicated current storefront there. A business registry mirror places Jade Forest Wellness and its School of Herbology at 2536 Terry Avenue, a different address, without visitor access evidence. No current operator site or public shop access was found; retain hold rather than pin Barjon's as Jade Forest.",
     "website": "https://jadeforestwellness.com/",
     "address": "223 North 29th Street",
     "city": "Billings",
@@ -468,10 +532,19 @@
       "https://barjonsbooks.com/blog/discovering-the-five-chinese-elements/",
       "https://barjonsbooks.com/wp-content/uploads/2023/08/08-2023-Newsletter.pdf",
       "https://www.city-data.com/business-entities/Billings-MT-J.html",
-      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest"
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://barjonsbooks.com/"
     ],
     "photoCandidates": [],
-    "secondPassCheckedAt": "2026-10-27"
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "locationEvidence": {
+      "submittedAddressCurrentOccupant": "Barjon's Books & Curiosities",
+      "submittedAddressOccupantSource": "https://barjonsbooks.com/",
+      "registryAddress": "2536 Terry Avenue, Billings, MT 59102",
+      "registrySource": "https://www.city-data.com/business-entities/Billings-MT-J.html",
+      "unresolved": "Neither a registry mailing address nor a historic host venue establishes Jade Forest's current walk-in location."
+    }
   },
   {
     "inputIndex": 33,
@@ -665,7 +738,7 @@
     "inputIndex": 38,
     "name": "OmChi Herbs",
     "status": "hold",
-    "reason": "Second pass confirms OmChi is an active online herb seller, but both its current official contact page and BBB profile publish PO Box 5352. Cylex retains a Highway 99 address and hours alongside the PO box in the same entry, without dated owner confirmation of shopping or pickup there. Physical visitor access remains unverified; no closure is asserted.",
+    "reason": "Active online business confirmed, but public pickup or walk-in shopping remains unverified. Current official contact page gives PO Box 5352; older corporate/trademark records and herb-industry directory locate the business at 85833 Highway 99 South (historical trademark correction adds unit 5), without stating visitor access. Cylex updated July 30, 2026 still mixes the highway address and PO box and describes online sales, so it is not sufficient evidence of a public store. No claim of closure.",
     "website": "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
     "address": "85833 Highway 99 South",
     "city": "Eugene",
@@ -679,11 +752,22 @@
     "sources": [
       "https://www.omchiherbs.com/store/",
       "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
-      "https://www.bbb.org/us/or/eugene/profile/herbs/omchi-herbs-llc-1296-22595702/addressId/186894",
-      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html"
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html",
+      "https://trademarks.justia.com/759/40/cognitol-75940304.html",
+      "https://www.bbb.org/us/or/eugene/profile/herbs/omchi-herbs-llc-1296-22595702/addressId/186894"
     ],
     "photoCandidates": [],
-    "secondPassCheckedAt": "2026-10-27"
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://www.omchiherbs.com/store/",
+      "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
+      "https://www.cylex.us.com/company/om-chi-herb-co-llc-8494461.html",
+      "https://trademarks.justia.com/759/40/cognitol-75940304.html"
+    ]
   },
   {
     "inputIndex": 39,
@@ -724,7 +808,7 @@
     "inputIndex": 40,
     "name": "Essential Elements Apothecary Shop",
     "status": "hold",
-    "reason": "Second pass found BBB, OpenStreetMap-derived and regional herb-directory records retaining the Sellwood address, while Allbiz explicitly marks the business closed. The old domain returns HTTP 410 Gone and owner Facebook could not be read. No recent owner post, visitor report or operating-shop announcement resolves these conflicting records; hold rather than assert closure.",
+    "reason": "No current operator-confirmed Portland retail location found. Allbiz marks the old shop closed; BBB retains 7704 SE 13th Avenue but does not verify current shop operations. A commercial landlord flyer dated October 30, 2024 and property marketing show leasing activity at the address, which does not identify this shop as an operating tenant or prove its closure. Other indexed tenants and an unrelated nearby Wilderness Maven listing do not establish a successor. Keep held; definitive closure is not asserted.",
     "website": "https://essentialelementshhc.com/",
     "address": "7704 SE 13th Avenue",
     "city": "Portland",
@@ -737,14 +821,26 @@
     "category_ids": [],
     "sources": [
       "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://w.barnardcommercial.com/uploads/3/4/0/1/34010144/7704se13thaveflyer10302024.pdf",
+      "https://www.loopnet.com/Listing/7704-SE-13th-Ave-Portland-OR/33741459/",
+      "https://www.cylex.us.com/portland/complementary-alternative-medicine/?dst=westmoreland",
       "https://mapcarta.com/W367895953",
       "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest",
-      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
       "https://www.facebook.com/EssentialElementsHHC/",
       "https://essentialelementshhc.com/"
     ],
     "photoCandidates": [],
-    "secondPassCheckedAt": "2026-10-27"
+    "secondPassCheckedAt": "2026-10-27",
+    "thirdPassCheckedAt": "2026-10-27",
+    "verificationDisposition": "physical_access_unconfirmed",
+    "thirdPassSources": [
+      "https://www.bbb.org/us/or/portland/profile/holistic-health-practitioner/essential-elements-holistic-healing-1296-1000044395",
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831",
+      "https://w.barnardcommercial.com/uploads/3/4/0/1/34010144/7704se13thaveflyer10302024.pdf",
+      "https://www.loopnet.com/Listing/7704-SE-13th-Ave-Portland-OR/33741459/",
+      "https://www.cylex.us.com/portland/complementary-alternative-medicine/?dst=westmoreland"
+    ]
   },
   {
     "inputIndex": 41,

@@ -41,6 +41,7 @@ export default function Place() {
   const thumbnails = useRef(null);
   const requestedPhoto = useRef(null);
   const photos = getPlacePhotos(place);
+  const hasPhotos = photos.length > 0;
 
   useEffect(() => {
     setPhotoIndex(0);
@@ -49,7 +50,7 @@ export default function Place() {
     requestedPhoto.current = null;
     thumbnails.current?.scrollTo({ left: 0, behavior: 'instant' });
     gallery.current?.scrollTo({ left: 0, behavior: 'instant' });
-  }, [slug, place?.content_version, showingPreview]);
+  }, [slug, place?.content_version, showingPreview, photos.length]);
 
   useEffect(() => {
     const element = gallery.current;
@@ -61,7 +62,7 @@ export default function Place() {
     });
     observer.observe(element);
     return () => observer.disconnect();
-  }, [place?.id]);
+  }, [place?.id, hasPhotos]);
 
   useEffect(() => {
     const element = gallery.current;
@@ -76,6 +77,7 @@ export default function Place() {
   }, [photoIndex]);
 
   const showPhoto = index => {
+    if (!hasPhotos) return;
     const next = (index + photos.length) % photos.length;
     const element = gallery.current;
     const slide = element?.querySelector(`[data-photo-index="${next}"]`);
@@ -118,7 +120,7 @@ export default function Place() {
       </div>
       <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
-    <section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
+    {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
         <div ref={gallery} className={styles.photoGallery} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
           const element = event.currentTarget;
@@ -154,7 +156,7 @@ export default function Place() {
       {photos.length > 1 && <div ref={thumbnails} className={styles.thumbnails} aria-label="Choose a photo">{photos.map((photo, index) => <button key={photo} aria-label={`View Photo ${index + 1}`} aria-pressed={photoIndex === index} className={styles.thumbnail} onClick={() => showPhoto(index)}><img src={photo} width="90" height="65" alt="" loading="lazy" decoding="async" /></button>)}</div>}
 
     </section>
-    <PhotoLightbox photos={photos} index={lightboxIndex} name={place.name} onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); showPhoto(index); }} />
+    <PhotoLightbox photos={photos} index={lightboxIndex} name={place.name} onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); showPhoto(index); }} /></>}
     <div className={styles.details}>
       <Reveal as="section" className={styles.story}><h2>A Little About {place.name}</h2>{(place.description || '').split(/\n+/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</Reveal>
       <aside className={styles.visit} aria-labelledby="visit-title">
