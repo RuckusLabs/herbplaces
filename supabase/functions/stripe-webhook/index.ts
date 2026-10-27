@@ -2,6 +2,7 @@ import Stripe from 'npm:stripe@23.0.0';
 import { json, required, stripeClient } from '../_shared/server.ts';
 import { billingEventSubscriptionId } from '../_shared/billingEvents.js';
 import { reconcileSubscription } from '../_shared/billing.ts';
+import { billingEventMatchesEnvironment } from '../_shared/billingEnvironment.js';
 
 Deno.serve(async req => {
   if (req.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
@@ -12,6 +13,7 @@ Deno.serve(async req => {
     event = await stripeClient().webhooks.constructEventAsync(await req.text(), signature, required('STRIPE_WEBHOOK_SECRET'),
       undefined, Stripe.createSubtleCryptoProvider());
   } catch { return json({ error: 'Invalid signature.' }, 400); }
+  if (!billingEventMatchesEnvironment(event, Deno.env.get('STRIPE_LIVEMODE_REQUIRED') === 'true')) return json({ received: true, ignored: true });
   try {
     const subscriptionId = billingEventSubscriptionId(event);
     if (subscriptionId) {

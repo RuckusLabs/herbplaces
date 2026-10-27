@@ -34,12 +34,28 @@ The signed live webhook must target `https://qtpepsebztlremlhpxdt.supabase.co/fu
 
 Prepare the live price ID, restricted server key, webhook signing secret, and portal as a coherent set. Until the cutover, do not replace the current sandbox key or send live events to a receiver configured with only the sandbox signing secret. Never put credential values in this document, browser code, chat, command logs, or a PR. Use the protected Supabase secret workflow.
 
-The runtime restricted key needs Customers, Checkout Sessions, and Customer portal Write; Prices, Products, Subscriptions, and Invoices Read. Catalog/webhook administration should use separately authorized setup access. Verify actual permissions through read-only probes and the reviewed purchase flow; don't widen access without a concrete requirement.
+The runtime restricted LIVE key needs Customers, Checkout Sessions, and Customer portal Write; Prices, Products, Subscriptions, and Invoices Read. Catalog/webhook administration should use separately authorized setup access. Verify actual permissions through read-only probes and the reviewed purchase flow; don't widen access without a concrete requirement.
 
-Makki Home has an active sandbox subscription reference and a test Checkout Session in the shared application database. Before switching credentials, review its cancellation/reset with the owner, preserving its listing content, photos, account, and membership. Do not copy sandbox customer/subscription IDs into live mode or silently remove paid editing access. Retain a private cleanup receipt. Do not delete the listing merely to change billing environments.
+Makki Home’s former sandbox subscription was canceled at the owner’s request to unblock listing deletion. The signed webhook updated the app to canceled. After the owner requested live-only operation, its canceled sandbox references were privately archived and detached, preserving the listing, photos, account, and membership. No live subscription was canceled. Do not copy those customer/subscription/Checkout IDs back into live mode. Do not delete the listing merely to change billing environments.
 
 The temporary `bloom-owner-checkout` function was removed during preparation. The follow-up client no longer routes to it, and the read-only launch audit checks for known temporary billing endpoints and missing required functions. Its `configuration_ready` result only covers server configuration; `live_sales_ready` is intentionally unassessed rather than implied by secret-name presence.
 
 After reviewing activation, billing settings, sandbox cleanup, support/refunds, tax, and live credentials, enable both purchase flags with the matching production build. A first live purchase needs explicit approval. Verify the signed webhook, membership, editing, receipts, portal, and cancellation; do not run a live charge as an automatic smoke test.
 
 References: [Stripe go-live checklist](https://docs.stripe.com/get-started/checklist/go-live), [account checklist](https://docs.stripe.com/get-started/account/checklist), [customer portal configuration](https://docs.stripe.com/api/customer_portal/configurations), [Stripe Tax setup](https://docs.stripe.com/tax/set-up).
+
+
+## Live-only setup now prepared
+
+After renewed authorization, the connector exposes only the Little Herb Places live account. The following live objects were created and read back successfully:
+
+- Product: `little_herb_places_bloom`.
+- Price: `price_1UUxvw8pv7NMGO0iEWnRIsDq`, active USD 1900 cents/month, licensed, per-unit, quantity one, no trial. Tax behavior remains unspecified pending review.
+- Default portal: `bpc_1UUxwM8pv7NMGO0izPH5flaS`, invoices/payment updates enabled, cancellation at period end without proration, plan switching/customer-identity edits/public email portal login disabled. Published privacy/terms links and the My Places return URL are saved.
+- Webhook: `we_1UUxzc8pv7NMGO0iItz6jLvN`, API `2026-09-30.endive`, all 13 lifecycle events above. It is deliberately disabled during credential setup. Its signing secret is securely installed in Supabase and is not recorded here.
+
+Supabase has the live price and webhook signing secret, `STRIPE_LIVEMODE_REQUIRED=true`, and `BLOOM_ENABLED=false`. The hosted `place-management`, `stripe-webhook`, `billing-reconcile`, and `admin-places` functions now enforce the live-only key guard before creating a Stripe client. Signed events with a mismatched environment are ignored. This prevents the still-stored old test API key from being used while the owner replaces it with the restricted LIVE key; the key itself is never exposed by the check. The initial credential probe reported a test key and made zero Stripe requests. No further sandbox account operations are performed.
+
+Hourly billing reconciliation is paused using `cron.alter_job`, preserving its configuration. Customer and admin notification schedules remain active. A secret-protected, read-only `live-billing-readiness` helper expires after one hour, refuses any non-live key before contacting Stripe, and checks the live price, product, read permissions, and default portal. Remove this helper and its dedicated setup secret after verification. Once the owner has saved the live key, rerun the private probe, confirm account activation and policy/tax/retry settings, enable the live webhook, and resume billing reconciliation. Keep new purchases off until the final sales review.
+
+The latest live account check still reported payments/payouts disabled and onboarding incomplete. Connector authorization and payment activation are separate. No live purchase or live customer fixture was created to prepare this configuration.
