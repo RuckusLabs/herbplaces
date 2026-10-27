@@ -24,6 +24,8 @@ const attentionMigration = await readFile(new URL('../../supabase/migrations/202
 const adminHandoffMigration = await readFile(new URL('../../supabase/migrations/202610260002_customer_admin_alert_handoff.sql', import.meta.url), 'utf8');
 const placeDeletionMigration = await readFile(new URL('../../supabase/migrations/202610260003_place_deletion.sql', import.meta.url), 'utf8');
 const customerCutoverMigration = await readFile(new URL('../../supabase/migrations/202610260004_customer_email_cutover.sql', import.meta.url), 'utf8');
+const growthMigration = await readFile(new URL('../../supabase/migrations/202610270001_business_growth.sql', import.meta.url), 'utf8');
+const activityEmailMigration = await readFile(new URL('../../supabase/migrations/202610270002_activity_email_reports.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -57,6 +59,8 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(adminHandoffMigration);
   await database.exec(placeDeletionMigration);
   await database.exec(customerCutoverMigration);
+  await database.exec(growthMigration);
+  await database.exec(activityEmailMigration);
 }
 
 before(async () => {
@@ -885,5 +889,146 @@ test('listing requests no longer create retired admin customer jobs', async () =
     const rows = (await db.query('select kind from public.place_customer_notifications')).rows;
     assert.deepEqual(rows.map(row => row.kind), ['listing_received']);
     assert.equal((await db.query('select count(*) from public.place_admin_notifications')).rows[0].count, 1);
+  });
+});
+
+const growthDraft = (overrides = {}) => ({ primary_action: { label: 'Shop online', url: 'https://example.com/shop' }, specialties: ['Tea'], languages: 'English', access_notes: 'Step-free entrance on Main Street.', announcement: { title: 'Autumn blends', body: 'Explore our seasonal teas.', url: 'https://example.com/tea', code: '', starts_at: '', expires_at: '2099-12-01T12:00:00Z' }, offerings: [], events: [], ...overrides });
+const offering = { id: '20000000-0000-0000-0000-000000000001', title: 'Herbal consultation', kind: 'service', description: 'An introduction to our practice.', price: 'Contact for pricing', url: 'https://example.com/book', image: '', image_alt: '' };
+
+test('business highlights authorize managers, enforce versions and keep private data out of the public projection', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    const access = await rpc('get_growth_access', [ids.place]);
+    assert.equal(access.can_edit, true); assert.equal(access.can_thrive, false);
+    const saved = await rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft()), 1], ['', '::jsonb']);
+    assert.equal(saved.content.primary_action.label, 'Shop online'); assert.equal(saved.version, 2);
+    const report = await rpc('get_place_activity', [ids.place]);
+    assert.equal(report.daily.length, 30); assert.deepEqual(report.current, {});
+    await assert.rejects(rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft()), 1], ['', '::jsonb']), /Someone updated/);
+  });
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('get_growth_access', [ids.place])), /Approved manager/);
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('get_place_activity', [ids.place])), /Bloom or/);
+  await assert.rejects(asRole('anon', null, () => db.query('select * from public.place_activity')), /permission denied/);
+  await asRole('anon', null, async () => { await db.query('select content,version,operating_status from public.public_place_growth'); });
+});
+
+test('Bloom cannot self-upgrade by publishing showcase fields or writing a pilot grant', async () => {
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft({ offerings: [offering] })), 1], ['', '::jsonb'])), /active Thrive pilot/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_set_thrive_pilot', [ids.place, '2099-01-01'])), /Administrator/);
+  await assert.rejects(asRole('authenticated', ids.owner, () => db.query('insert into public.place_growth_pilots(place_id,expires_at) values($1,now()+interval \'10 days\')', [ids.place])), /permission denied/);
+});
+
+test('Thrive pilots are bounded, enable Bloom editing, and preserve published content when the pilot ends', async () => {
+  await asRole('authenticated', ids.admin, async () => {
+    await rpc('admin_set_thrive_pilot', [ids.otherPlace, new Date(Date.now()+7*86400000).toISOString()]);
+    await rpc('admin_assign_manager',[ids.otherPlace,'owner@example.com',false]);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.owner]);
+    const access = await rpc('get_growth_access', [ids.otherPlace]);
+    assert.equal(access.can_thrive,true); assert.equal(access.can_edit,true);
+    assert.ok(await rpc('get_editable_place', [ids.otherPlace]));
+    await rpc('publish_place_growth', [ids.otherPlace, JSON.stringify(growthDraft({ offerings:[offering] })),1], ['', '::jsonb']);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
+    await rpc('admin_set_thrive_pilot', [ids.otherPlace,null]);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.owner]);
+    assert.equal((await rpc('get_growth_access', [ids.otherPlace])).can_edit,false);
+    assert.equal((await db.query('select content from public.public_place_growth where place_id=$1',[ids.otherPlace])).rows[0].content.offerings.length,1);
+  });
+});
+
+test('free essential corrections cannot alter paid fields and invalidate moved map coordinates', async () => {
+  await asRole('service_role', ids.owner, async () => {
+    await db.query("update public.place_subscriptions set status='canceled' where place_id=$1",[ids.place]);
+    await db.exec('set local role authenticated');
+    const saved = await rpc('update_place_essentials', [ids.place, JSON.stringify({ address:'999 New Street',phone:'303-555-0123',hours:'Monday: 10 am–6 pm',operating_status:'temporarily_closed' }),1], ['', '::jsonb']);
+    assert.equal(saved.address,'999 New Street'); assert.equal(saved.latitude,null); assert.equal(saved.geocode_status,'pending'); assert.equal(saved.description,'Original story');
+    assert.equal((await db.query('select operating_status from public.public_place_growth where place_id=$1',[ids.place])).rows[0].operating_status,'temporarily_closed');
+  });
+  await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('update_place_essentials',[ids.place,JSON.stringify({ description:'Bypass',operating_status:'open' }),1],['','::jsonb'])),/Only essential/);
+  await assert.rejects(asRole('authenticated',ids.outsider,()=>rpc('update_place_essentials',[ids.place,JSON.stringify({ phone:'x',operating_status:'open' }),1],['','::jsonb'])),/Approved manager/);
+});
+
+test('growth validation rejects unsafe links, oversized fields, and invalid events at the database boundary', async () => {
+  for (const content of [growthDraft({ primary_action:{ label:'Shop online',url:'javascript:alert(1)' } }),growthDraft({ languages:'a'.repeat(201) }),growthDraft({ announcement:{ title:'Never expires' } }),growthDraft({ specialties:['Invented specialty'] })]) {
+    await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb'])));
+  }
+  const event={ ...offering,starts_at:'2099-01-02T12:00:00Z',ends_at:'2099-01-01T12:00:00Z',timezone:'America/Denver',location:'Our shop' };
+  await assert.rejects(asRole('authenticated',ids.admin,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({ events:[event] })),1],['','::jsonb'])),/end after/);
+});
+
+test('activity writes are service-only, deduplicate repeats, and reports include item totals', async () => {
+  await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('record_place_activity',[ids.place,'profile_view',null,crypto.randomUUID(),'a'.repeat(64)])),/permission denied/);
+  await asRole('authenticated',ids.admin,async()=>{
+    await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({ offerings:[offering] })),1],['','::jsonb']);
+    await db.exec('set local role service_role');
+    const eventId=crypto.randomUUID();
+    assert.equal(await rpc('record_place_activity',[ids.place,'profile_view',null,eventId,'a'.repeat(64)]),true);
+    assert.equal(await rpc('record_place_activity',[ids.place,'profile_view',null,crypto.randomUUID(),'a'.repeat(64)]),false);
+    assert.equal(await rpc('record_place_activity',[ids.place,'offering_click',offering.id,crypto.randomUUID(),'a'.repeat(64)]),true);
+    assert.equal(await rpc('record_place_activity',[ids.place,'offering_click',crypto.randomUUID(),crypto.randomUUID(),'a'.repeat(64)]),false);
+    await db.exec('set local role authenticated');
+    const report=await rpc('get_place_activity',[ids.place]);
+    assert.equal(report.current.profile_view,1); assert.equal(report.current.offering_click,1);assert.equal(report.items[0].item_id,offering.id);
+  });
+});
+
+async function optedInReport() {
+  await rpc('set_activity_email_preference',[ids.place,true]);
+  await db.exec('set local role service_role');
+  await db.query("update public.place_activity_email_preferences set enabled_since=now()-interval '2 months' where place_id=$1",[ids.place]);
+  await rpc('enqueue_activity_email_reports');
+  const jobs=await rpc('take_activity_email_reports');
+  return jobs[0];
+}
+test('monthly reports default off, require personal manager consent, and expose no public report data',async()=>{
+  await asRole('authenticated',ids.owner,async()=>{
+    assert.equal((await rpc('get_activity_email_preference',[ids.place])).enabled,false);
+    assert.equal((await rpc('set_activity_email_preference',[ids.place,true])).enabled,true);
+    assert.equal((await rpc('set_activity_email_preference',[ids.place,false])).enabled,false);
+  });
+  await assert.rejects(asRole('authenticated',ids.outsider,()=>rpc('set_activity_email_preference',[ids.place,true])),/Approved manager/);
+  await assert.rejects(asRole('anon',null,()=>db.query('select * from public.place_activity_email_jobs')),/permission denied/);
+  await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('take_activity_email_reports')),/permission denied/);
+  await asRole('service_role',ids.owner,async()=>{
+    await db.query("update public.place_subscriptions set status='canceled' where place_id=$1",[ids.place]);await db.exec('set local role authenticated');
+    await assert.rejects(rpc('set_activity_email_preference',[ids.place,true]),/active Bloom/);
+  });
+});
+test('monthly scheduling creates one completed-month report and preserves the snapshot across delivery retries',async()=>{
+  await asRole('authenticated',ids.owner,async()=>{
+    await rpc('set_activity_email_preference',[ids.place,true]);await db.exec('set local role service_role');
+    assert.equal(await rpc('enqueue_activity_email_reports'),0);
+    await db.query("update public.place_activity_email_preferences set enabled_since=now()-interval '2 months' where place_id=$1",[ids.place]);
+    assert.equal(await rpc('enqueue_activity_email_reports'),1);assert.equal(await rpc('enqueue_activity_email_reports'),0);
+    const row=(await db.query('select period_start::text as period_start,period_end::text as period_end from public.place_activity_email_jobs')).rows[0];
+    const starting=String(row.period_start).slice(0,10);
+    await db.query("insert into public.place_activity(event_id,place_id,kind,visitor_hash,created_at) values($1,$2,'profile_view',$3,$4)",[crypto.randomUUID(),ids.place,'b'.repeat(64),`${starting}T12:00:00Z`]);
+    const first=(await rpc('take_activity_email_reports'))[0];const prepared=await rpc('prepare_activity_email_report',[first.id,first.lease_token]);
+    assert.equal(prepared.payload.current.profile_view,1);assert.equal(prepared.payload.account_email,'owner@example.com');
+    await rpc('finish_activity_email_report',[first.id,first.lease_token,null]);
+    await db.query("update public.place_activity_email_jobs set available_at=now()-interval '1 second' where id=$1",[first.id]);
+    const second=(await rpc('take_activity_email_reports'))[0];assert.notEqual(second.lease_token,first.lease_token);
+    assert.deepEqual((await rpc('prepare_activity_email_report',[second.id,second.lease_token])).payload,prepared.payload);
+    assert.equal(await rpc('prepare_activity_email_report',[first.id,first.lease_token]),null);
+    await rpc('finish_activity_email_report',[second.id,second.lease_token,'email-sent-1']);assert.deepEqual(await rpc('take_activity_email_reports'),[]);
+  });
+});
+test('stopping reports or changing the verified recipient makes a previously leased report unsendable',async()=>{
+  for(const mode of ['unsubscribe','email','membership','subscription']) await asRole('authenticated',ids.owner,async()=>{
+    const lease=await optedInReport();assert.ok(lease);
+    if(mode==='unsubscribe'){
+      const pref=(await db.query('select unsubscribe_token from public.place_activity_email_preferences where place_id=$1',[ids.place])).rows[0];
+      await rpc('unsubscribe_activity_emails',[pref.unsubscribe_token]);
+    }else if(mode==='email'){await db.exec('reset role');await db.query('update auth.users set email=$1 where id=$2',['new-owner@example.com',ids.owner]);await db.exec('set local role service_role');}
+    else if(mode==='membership')await db.query('delete from public.place_memberships where place_id=$1 and user_id=$2',[ids.place,ids.owner]);
+    else await db.query("update public.place_subscriptions set status='canceled' where place_id=$1",[ids.place]);
+    assert.equal(await rpc('prepare_activity_email_report',[lease.id,lease.lease_token]),null);
+    assert.deepEqual(await rpc('take_activity_email_reports'),[]);
+  });
+});
+test('monthly report retries stop before the provider idempotency window expires',async()=>{
+  await asRole('authenticated',ids.owner,async()=>{
+    const lease=await optedInReport();await rpc('finish_activity_email_report',[lease.id,lease.lease_token,null]);
+    await db.query("update public.place_activity_email_jobs set first_attempt_at=now()-interval '24 hours',available_at=now()-interval '1 second' where id=$1",[lease.id]);
+    assert.deepEqual(await rpc('take_activity_email_reports'),[]);
+    await db.exec('set local role authenticated');assert.equal((await rpc('get_activity_email_preference',[ids.place])).last_report.status,'needs_attention');
   });
 });

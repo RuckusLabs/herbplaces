@@ -20,7 +20,7 @@ async function mockSite(page, { role = 'owner', expired = false, unpaid = false,
   if (role !== 'guest') await page.addInitScript(session => localStorage.setItem('sb-127-auth-token', JSON.stringify(session)), session);
   const subscription = { status: unpaid ? 'none' : expired ? 'canceled' : 'active', paid_until: unpaid ? null : new Date(Date.now() + 86400000).toISOString(), grace_ends_at: null, cancel_at_period_end: false };
   if (renewalProcessing) { subscription.paid_until = new Date(Date.now()-3600000).toISOString(); subscription.grace_ends_at = new Date(Date.now()+3600000).toISOString(); }
-  const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired, place: state.place, subscription }] : [], claims: state.claims });
+  const context = () => ({ is_admin: role === 'admin', memberships: role === 'owner' ? [{ place_id: state.place.id, is_billing_contact: true, can_edit: !expired && !unpaid, place: state.place, subscription }] : [], claims: state.claims });
   await page.route('**/auth/v1/**', route => {
     const request = route.request();
     state.authRequests.push({ url: request.url(), method: request.method(), body: request.method() === 'POST' || request.method() === 'PUT' ? request.postDataJSON() : null });
@@ -826,7 +826,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden');
   await expect(page.getByText('Claiming is free and ownership approval comes before payment.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Explore Thrive', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Explore the Thrive Pilot', exact: true })).toBeVisible();
   await expect(page.getByText('Verified Place Badge', { exact: true })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('business-plans.png'), fullPage: true });
   await page.goto('/the-little-garden/sprout');
@@ -847,7 +847,7 @@ test('renewing owners keep editing while their cycle invoice processes', async (
 test('Bloom starts an inline claim and resumes in the guided flow after sign-in', async ({ page }) => {
   const state = await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/bloom');
-  await page.getByRole('link', { name: 'Get Started with Bloom', exact: true }).first().click();
+  await page.getByRole('link', { name: 'Claim Your Place for Free', exact: true }).first().click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom$/);
   await page.getByRole('searchbox', { name: 'Business name or city', exact: true }).fill('Moss');
   await page.getByRole('button', { name: 'Continue with Moss Apothecary', exact: true }).click();

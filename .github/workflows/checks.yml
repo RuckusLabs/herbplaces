@@ -15,6 +15,8 @@ jobs:
       VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       VITE_BLOOM_ENABLED: ${{ vars.VITE_BLOOM_ENABLED }}
+      VITE_GROWTH_ENABLED: ${{ vars.VITE_GROWTH_ENABLED }}
+      VITE_ACTIVITY_REPORTS_ENABLED: ${{ vars.VITE_ACTIVITY_REPORTS_ENABLED }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

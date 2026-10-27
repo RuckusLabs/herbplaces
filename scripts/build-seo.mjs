@@ -5,8 +5,11 @@ import { loadEnv } from 'vite';
 import { chromium } from 'playwright';
 import { getPlaceSeo, getRouteSeo, privateRoutes, publicRoutes, shareImagePath, sitePageCards, siteShareImagePath } from '../src/utilities/seo.js';
 import { directoryHash, fetchPublicPlaces, validatePlaces } from './seo/directory.mjs';
-import { escapeHtml, notFoundSeo, renderPage, renderPlaceContent, renderRouteContent, renderSitemap, robotsText } from './seo/render.mjs';
+import { escapeHtml, notFoundSeo, renderPage, renderPlaceContent, renderRouteContent, renderSitemap, renderDiscoveryContent, robotsText } from './seo/render.mjs';
 import { shareCardHtml } from './seo/share-card.mjs';
+import { getBrowsePages } from '../src/utilities/browse.js';
+import { canonicalUrl, getDiscoverySeo } from '../src/utilities/seo.js';
+import { discoveryItems } from '../src/utilities/discovery.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = path.join(root, 'dist');
@@ -72,7 +75,12 @@ try {
     await write(`place/${place.urlSlug}/index.html`, renderPage(template, getPlaceSeo(place), renderPlaceContent(place, places)));
   }
 } finally { await browser.close(); }
-for (const route of publicRoutes) await write(route.path === '/' ? 'index.html' : `${route.path.slice(1)}/index.html`, renderPage(template, getRouteSeo(route.path), renderRouteContent(route, places)));
+for (const route of publicRoutes) await write(route.path === '/' ? 'index.html' : `${route.path.slice(1)}/index.html`, renderPage(template, getRouteSeo(route.path), renderRouteContent(route, places, { growthEnabled: env.VITE_GROWTH_ENABLED === 'true', bloomAvailable: env.VITE_BLOOM_ENABLED === 'true', emailReportsEnabled: env.VITE_ACTIVITY_REPORTS_ENABLED === 'true' })));
+for (const route of getBrowsePages(places)) await write(`${route.path.slice(1)}/index.html`, renderPage(template,
+  { ...getRouteSeo(route.path), title: `${route.heading} | Little Herb Places`, description: route.description, canonical: canonicalUrl(route.path), robots: 'index,follow' }, renderRouteContent(route, places)));
+const discoveries = discoveryItems(places, places.map(place => place.growth).filter(Boolean));
+await write('discover/index.html', renderPage(template, { ...getRouteSeo('/discover'), title: 'Herbal Products, Services & Workshops | Little Herb Places', description: 'Discover products, herbal consultations, workshops, and events from independent herb businesses. Shop or book directly with each business.', robots: discoveries.length ? 'index,follow' : 'noindex,follow' }, renderDiscoveryContent(places)));
+for (const item of discoveries) await write(`${item.path.slice(1)}/index.html`, renderPage(template, getDiscoverySeo(item), renderDiscoveryContent(places, item)));
 for (const route of privateRoutes) await write(`${route.slice(1)}/index.html`, renderPage(template, getRouteSeo(route), ''));
 await write('404.html', renderPage(template, notFoundSeo(), '<main class="static-page"><h1>A Little Off the Beaten Path.</h1><p>This page could not be found. <a href="/map/">Explore the directory</a>.</p></main>'));
 await write('robots.txt', robotsText);

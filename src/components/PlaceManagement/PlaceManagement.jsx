@@ -15,7 +15,7 @@ export default function PlaceManagement({ place, placement = 'top', onPreview, p
   const [notice, setNotice] = useState('');
   const membership = management.memberships.find(item => String(item.place_id) === String(place.id));
   const claim = management.claims.find(item => String(item.place_id) === String(place.id) && item.status === 'pending');
-  const canEdit = management.is_admin || (membership && subscriptionAllowsEditing(membership.subscription));
+  const canEdit = management.is_admin || (membership && (membership.can_edit || subscriptionAllowsEditing(membership.subscription)));
   const hasAccess = canEdit || !!membership;
   const closeClaim = () => {
     setClaiming(false);

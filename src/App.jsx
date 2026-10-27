@@ -28,6 +28,9 @@ const Admin = lazy(() => import('./pages/Management/Admin'));
 const MyPlaces = lazy(() => import('./pages/Management/MyPlaces'));
 const RequestPlace = lazy(() => import('./pages/Management/RequestPlace'));
 const Policies = lazy(() => import('./pages/Help/Policies'));
+const Browse = lazy(() => import('./pages/Browse/Browse'));
+const Discover = lazy(() => import('./pages/Discover/Discover'));
+const ReportUnsubscribe = lazy(() => import('./pages/Reports/ReportUnsubscribe'));
 
 function SavedPlacesRoute() {
   const { search, hash } = useLocation();
@@ -38,6 +41,8 @@ function SavedPlacesRoute() {
 const routes = [
   { path: '/', element: <Home /> },
   { path: '/map', element: <Map /> },
+  { path: '/browse/*', element: <Browse /> },
+  { path: '/discover/*', element: <Discover /> },
   { path: '/shop', element: <Shop /> },
   { path: '/about', element: <About /> },
   { path: '/help', element: <Help /> },
@@ -56,6 +61,7 @@ const routes = [
   { path: '/auth/reset-password', element: <AccountRecovery mode="reset" /> },
   { path: '/auth/resend-confirmation', element: <AccountRecovery mode="confirm" /> },
   { path: '/my-places', element: <MyPlaces /> },
+  { path: '/reports/unsubscribe', element: <ReportUnsubscribe /> },
   { path: '/admin', element: <Admin /> },
   { path: '/request-place', element: <RequestPlace /> },
   { path: '/privacy', element: <Policies mode="privacy" /> },

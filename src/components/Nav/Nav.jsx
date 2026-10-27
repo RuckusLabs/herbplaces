@@ -16,6 +16,7 @@ export default function Nav({ variant, className = '', minimal = false }) {
   const [signingOut, setSigningOut] = useState(false);
   const account = useRef(null);
   const accountButton = useRef(null);
+  const menuButton = useRef(null);
   const accountId = useId();
   const accountName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.user_metadata?.display_name || user?.email?.split('@')[0] || 'Your account';
   const { pathname } = useLocation();
@@ -24,13 +25,13 @@ export default function Nav({ variant, className = '', minimal = false }) {
     const escape = event => {
       if (event.key !== 'Escape') return;
       if (accountOpen) { setAccountOpen(false); accountButton.current?.focus(); }
-      else setOpen(false);
+      else if (open) { setOpen(false); menuButton.current?.focus(); }
     };
     const outside = event => { if (!account.current?.contains(event.target)) setAccountOpen(false); };
     document.addEventListener('pointerdown', outside);
     document.addEventListener('keydown', escape);
     return () => { document.removeEventListener('keydown', escape); document.removeEventListener('pointerdown', outside); };
-  }, [accountOpen]);
+  }, [accountOpen, open]);
   const logout = async () => {
     setSigningOut(true); setLogoutError('');
     try {
@@ -45,12 +46,12 @@ export default function Nav({ variant, className = '', minimal = false }) {
     <a className="skip-link" href="#main-content">Skip to content</a>
     <nav className={`${styles.nav} ${pathname === '/' ? styles.home : ''} ${variant === 'bleed' ? styles.bleed : ''} ${className}`} aria-label="Main navigation">
       <Link to="/" className={styles.brand} aria-label="Little Herb Places home"><Logo aria-hidden="true" focusable="false" /></Link>
-      <button className={styles.menuButton} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'menu'} size={23} /></button>
+      <button ref={menuButton} className={styles.menuButton} aria-expanded={open} aria-controls="main-navigation" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(value => !value)}><Icon name={open ? 'close' : 'menu'} size={23} /></button>
       <div id="main-navigation" className={`${styles.links} ${open ? styles.open : ''}`}>
         <NavLink to="/map">Explore Places</NavLink>
         {!user && <NavLink to="/about">Our Story</NavLink>}
         {!(user && hasOwnerActivity) && <NavLink to="/the-little-garden">For Business Owners</NavLink>}
-        <NavLink className={styles.saved} to="/favorites"><Icon name="heart" size={30} /><span>{user ? 'Liked Places' : 'Saved Places'}</span></NavLink>
+        <NavLink className={styles.saved} to="/favorites" aria-label={user ? 'Liked Places' : 'Saved Places'}><Icon name="heart" size={30} /><span>{user ? 'Liked Places' : 'Saved Places'}</span></NavLink>
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <div className={styles.account} ref={account} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false); }}>
           <button ref={accountButton} type="button" className={styles.accountToggle} aria-expanded={accountOpen} aria-controls={accountId} onClick={() => setAccountOpen(value => !value)}><span className={styles.avatar} aria-hidden="true">{accountName.slice(0, 1).toUpperCase()}</span><span className={styles.accountName}>{accountName}</span><svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></button>

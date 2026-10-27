@@ -2,6 +2,11 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
+import { useManagement } from '../../contexts/ManagementContext';
+import useGrowthProfiles from '../../hooks/useGrowthProfiles';
+import { trackPlaceActivity } from '../../utilities/growthApi';
+import PlaceHighlights from '../../components/BusinessTools/PlaceHighlights';
+import BusinessTools from '../../components/BusinessTools/BusinessTools';
 import usePlaces from '../../hooks/usePlaces';
 import { getOpeningHours, getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
 import { getPlaceCategories } from '../../utilities/placeFilters';
@@ -25,6 +30,10 @@ export default function Place() {
   const publishedPlace = places.find(item => item.urlSlug === slug);
   const { user } = useAuth();
   const userId = user?.id;
+  const management = useManagement();
+  const growth = useGrowthProfiles();
+  const growthProfile = growth.profiles.find(item => item.place_id === String(publishedPlace?.id));
+  const managesPlace = management.is_admin || management.memberships.some(item => String(item.place_id) === String(publishedPlace?.id));
   const placeId = publishedPlace?.id;
   const previewTargetId = useId();
   const [previewState, setPreviewState] = useState(null);
@@ -90,6 +99,10 @@ export default function Place() {
   };
   const photoWidth = photo => gallerySize.width ? Math.min(gallerySize.width, Math.max(140, gallerySize.height * (photoRatios[photo] || 4 / 3))) : undefined;
 
+  useEffect(() => {
+    if (placeId && !management.loading && !managesPlace && !showingPreview) trackPlaceActivity(placeId, 'profile_view');
+  }, [placeId, management.loading, managesPlace, showingPreview]);
+
   if (loading) return <main id="main-content" className={styles.page}><div className={styles.loading} role="status"><Icon name="sprout" size={60} /><p>Getting to Know This Little Place…</p></div></main>;
   if (!place) return <main id="main-content" className={styles.page}>{!error && <Helmet><title>Place Not Found | Little Herb Places</title><meta name="robots" content="noindex,follow" /></Helmet>}<div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
 
@@ -120,6 +133,8 @@ export default function Place() {
       </div>
       <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
+    {managesPlace && !showingPreview && <BusinessTools place={publishedPlace} onChanged={growth.refresh} />}
+    {growthProfile && <PlaceHighlights profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
         <div ref={gallery} className={styles.photoGallery} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
@@ -156,7 +171,7 @@ export default function Place() {
       {photos.length > 1 && <div ref={thumbnails} className={styles.thumbnails} aria-label="Choose a photo">{photos.map((photo, index) => <button key={photo} aria-label={`View Photo ${index + 1}`} aria-pressed={photoIndex === index} className={styles.thumbnail} onClick={() => showPhoto(index)}><img src={photo} width="90" height="65" alt="" loading="lazy" decoding="async" /></button>)}</div>}
 
     </section>
-    <PhotoLightbox photos={photos} index={lightboxIndex} name={place.name} onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); showPhoto(index); }} /></>}
+    <PhotoLightbox photos={photos} descriptions={place.photo_alt} index={lightboxIndex} name={place.name} onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); showPhoto(index); }} /></>}
     <div className={styles.details}>
       <Reveal as="section" className={styles.story}><h2>A Little About {place.name}</h2>{(place.description || '').split(/\n+/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</Reveal>
       <aside className={styles.visit} aria-labelledby="visit-title">
@@ -173,12 +188,12 @@ export default function Place() {
           </div>}
           {place.phone && <div className={styles.visitRow}>
             <Icon name="phone" size={20} />
-            <div><h3 className={styles.visitLabel}>Phone</h3><a className={styles.phone} href={`tel:${place.phone}`}>{place.phone}</a></div>
+            <div><h3 className={styles.visitLabel}>Phone</h3><a className={styles.phone} href={`tel:${place.phone}`} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'phone_click'); }}>{place.phone}</a></div>
           </div>}
         </div>
         <div className={styles.visitActions}>
-          {address && <a className="button" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
-          {website && <a className="button" href={website} target="_blank" rel="noopener noreferrer"><Icon name="globe" size={20} />Visit Their Website <Icon name="arrow" size={17} /></a>}
+          {address && <a className="button" onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'directions_click'); }} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
+          {website && <a className="button" href={website} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'website_click'); }} target="_blank" rel="noopener noreferrer"><Icon name="globe" size={20} />Visit Their Website <Icon name="arrow" size={17} /></a>}
           {(place.social_links || []).map((link, index) => getWebsiteUrl(link.url) && <a className="button" href={getWebsiteUrl(link.url)} key={index} target="_blank" rel="noopener noreferrer"><Icon name="link" size={20} />{link.label}<Icon name="arrow" size={17} /></a>)}
           <PlaceManagement key={place.id} place={publishedPlace} placement="visit" />
         </div>
