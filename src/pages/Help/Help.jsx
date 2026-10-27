@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 import { passwordlessEnabled } from '../../utilities/authFeatures';
+import { bloomAvailable } from '../../utilities/managementApi';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 const questions = [
@@ -21,7 +22,7 @@ export default function Help() {
     <p className={styles.intro}>Questions about your account, ownership claim, or subscription? Start here, or email <a href="mailto:help@littleherbplaces.com">help@littleherbplaces.com</a>.</p>
     {questions.map(([question, answer]) => <section className={styles.card} key={question}><h2>{question}</h2><p>{answer}</p></section>)}
     <section id="billing" className={styles.card}><h2>Billing & Cancellation</h2>
-      <p>Bloom’s launch offer is {bloomOffer.label}, billed in USD. Claim approval comes before payment. Purchases remain unavailable until billing is enabled; no subscription starts when you create an account or submit a claim.</p>
+      <p>Bloom’s launch offer is {bloomOffer.label}, billed in USD. Claim approval comes before payment. {bloomAvailable ? 'After approval, your billing contact can subscribe in My Places.' : 'Purchases remain unavailable until billing is enabled.'} No subscription starts when you create an account or submit a claim.</p>
       <p>Bloom renews monthly until canceled. The billing contact can open My Places → Manage Billing with Stripe to update payment details, view invoices, and cancel future renewals. Editing continues through the paid period when cancellation is scheduled for period end. Published content remains visible afterward.</p>
       <p>If a renewal fails, eligible subscriptions have a seven-day editing grace period from the first failure. Resolve the payment in Manage Billing with Stripe, then refresh billing status. Renewed payment attempts do not restart that window.</p>
       <p>Already paid but editing is still locked? Choose Refresh Billing Status in My Places. Please don’t purchase another subscription. If it remains locked, contact us with the listing name and payment date.</p>
