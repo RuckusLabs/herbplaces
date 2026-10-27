@@ -32,8 +32,8 @@ After final approval, enable both purchase flags together with the matching fron
 ## Operational follow-through
 
 - Confirm permanent geocoding entitlement before enabling real stored Mapbox lookups. Until then, keep uncertain locations in admin review and use the existing manual confirmation workflow.
-- Support inbox receipt was confirmed by the owner on October 26. Finalize refund handling before live sales; current copy invites refund inquiries and makes no automatic refund promise.
-- Confirm recoverable database and Storage backups before release; database backups alone do not preserve image objects.
+- Support inbox receipt was confirmed by the owner on October 26. The owner approved a seven-day first-payment refund per place; renewals are reviewed for billing errors. Review the updated Help and membership terms; process requests manually through support/Stripe.
+- A fresh local supplemental snapshot covers 16 application tables and 18 uploaded photos, with photo integrity checked. Confirm automated off-device database/Storage backups and a full restore process; this snapshot excludes Auth/schema/platform configuration and is not full disaster recovery.
 - Check delivery failures, exhausted queues, webhook failures, reconciliation errors, pending map reviews, and unfinished image cleanup after launch. `node scripts/check-launch-readiness.mjs` checks configuration and backlog without printing credentials; investigate exhausted jobs before resetting their retry window.
 - Repeat real delivery checks after sender/template changes. The owner requested live-only operation; use local/mocked checks for further development and obtain explicit approval for any real purchase. Disposable billing scripts intentionally refuse to create mail-producing fixtures while delivery triggers are active; adapt fixture isolation before reusing them.
 

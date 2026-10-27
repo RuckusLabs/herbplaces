@@ -38,6 +38,9 @@ export const policyPages = {
         [`The Bloom launch offer is ${bloomOffer.label}, billed in USD. Checkout shows the charge before you pay. Each place has its own subscription, covering its approved managers. Only its billing contact can manage payment details. Bloom enables editing and photo uploads; it does not guarantee traffic, sales, search rankings, or promotional placements.`],
         ['Subscriptions renew monthly until canceled. Use My Places → Manage Billing with Stripe to cancel the next renewal. Period-end cancellation retains editing through the paid period. Eligible failed renewals allow seven days of editing from the first failure, after which editing pauses until payment is resolved. Published content remains visible.'],
       ] },
+      { heading: 'Refunds', paragraphs: [
+        ['You can request a refund of the first Bloom subscription payment for a place within seven days of that payment. Email ', support, ' with the listing name and invoice reference. Renewal payments are reviewed for billing errors; the seven-day first-payment refund does not apply to renewals. Requesting a refund does not cancel future renewals. Cancel those separately through My Places → Manage Billing with Stripe.'],
+      ] },
       { heading: 'Your listing content', paragraphs: [
         ['Publish accurate information and only text, photos, and links you have permission to share publicly. Our team may correct or remove inappropriate or inaccurate content and review management access. Published revisions and photos are retained for restoration until the listing is removed.'],
       ] },
