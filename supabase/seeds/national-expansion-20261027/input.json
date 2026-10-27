@@ -970,5 +970,77 @@
     "state_code": "CA",
     "zip": "94704",
     "inputIndex": 107
+  },
+  {
+    "name": "Euphoric Herbals Apothecary - Milford",
+    "address": "621 N Dupont Boulevard",
+    "city": "Milford",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19963",
+    "inputIndex": 108
+  },
+  {
+    "name": "Gaia Emporium",
+    "address": "19B Peddlers Row",
+    "city": "Newark",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19702",
+    "inputIndex": 109
+  },
+  {
+    "name": "The Spice Shack",
+    "address": "11334 Page Road",
+    "city": "Grabill",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46741",
+    "inputIndex": 110
+  },
+  {
+    "name": "Good Earth Natural Food Co.",
+    "address": "6350 Guilford Avenue",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46220",
+    "inputIndex": 111
+  },
+  {
+    "name": "Little Woods Herbal",
+    "address": "136 Main Street",
+    "city": "Ames",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50010",
+    "inputIndex": 112
+  },
+  {
+    "name": "Holistic Harmony",
+    "address": "313 N 8th Street",
+    "city": "Clear Lake",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50428",
+    "inputIndex": 113
+  },
+  {
+    "name": "Tonic Herb Shop",
+    "address": "140 E German Street",
+    "city": "Shepherdstown",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "25443",
+    "inputIndex": 114
+  },
+  {
+    "name": "Wild Ginger & Spice",
+    "address": "407 William Avenue",
+    "city": "Davis",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "26260",
+    "inputIndex": 115
   }
 ]

@@ -179,5 +179,220 @@
     "inputIndex": 2,
     "state_code": "IL",
     "note": "City of Chicago Business Licenses exact-address and business-name record"
+  },
+  {
+    "name": "Gaia Emporium",
+    "address": "19B Peddlers Row",
+    "city": "Newark",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19702",
+    "latitude": 39.665178,
+    "longitude": -75.661056,
+    "verificationMethod": "Delaware FirstMap production PointAddress for parent building, corroborated by New Castle County address point",
+    "matchedAddress": "19 PEDDLERS ROW, NEWARK, DE, 19702",
+    "verifiedAt": "2026-10-27",
+    "sources": [
+      "https://gaiaemporium.com/",
+      "https://www.eventbrite.com/e/sound-tea-chakra-series-tickets-2003236817246",
+      "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Location/Delaware_FirstMap_Locator/GeocodeServer/findAddressCandidates?SingleLine=19+Peddlers+Row%2C+Newark%2C+DE+19702&outFields=%2A&outSR=4326&f=json",
+      "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Location/County_Roads_and_Addresses/FeatureServer/0/query?where=UPPER%28STREETNAME%29+LIKE+%27%25PEDDLER%25%27&outFields=%2A&outSR=4326&f=json",
+      "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Location/County_Roads_and_Addresses/FeatureServer"
+    ],
+    "note": "The operator and its in-person event listing confirm unit B at 19 Peddlers Row. Delaware official production locator resolves the exact parent building as PointAddress score 100; this is a building address point, not a town/ZIP centroid or road-range midpoint. The explicit 19B query returns a StreetAddress interpolation instead, so use the exact government parent-building PointAddress above. County address-point layer corroborates 19 Peddlers Row (OBJECTID 18632, New Castle County, ZIP19702) at longitude -75.6610577795504 latitude 39.66518076020132; two street-range Census results are superseded.",
+    "productionPointAddress": {
+      "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Location/Delaware_FirstMap_Locator/GeocodeServer/findAddressCandidates?SingleLine=19+Peddlers+Row%2C+Newark%2C+DE+19702&outFields=%2A&outSR=4326&f=json",
+      "response": {
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        },
+        "candidates": [
+          {
+            "address": "19 PEDDLERS ROW, NEWARK, DE, 19702",
+            "location": {
+              "x": -75.661056,
+              "y": 39.665178
+            },
+            "score": 100,
+            "attributes": {
+              "Status": "M",
+              "Score": 100,
+              "Match_addr": "19 PEDDLERS ROW, NEWARK, DE, 19702",
+              "LongLabel": "19 PEDDLERS ROW, NEWARK, DE, 19702",
+              "ShortLabel": "19 PEDDLERS ROW",
+              "Addr_type": "PointAddress",
+              "Type": "",
+              "PlaceName": "",
+              "Place_addr": "19 PEDDLERS ROW, NEWARK, DE, 19702",
+              "Phone": "",
+              "URL": "",
+              "Rank": 20,
+              "AddBldg": "",
+              "AddNum": "19",
+              "AddNumFrom": "",
+              "AddNumTo": "",
+              "AddRange": "",
+              "Side": "",
+              "StPreDir": "",
+              "StPreType": "",
+              "StName": "PEDDLERS",
+              "StType": "ROW",
+              "StDir": "",
+              "BldgType": "",
+              "BldgName": "",
+              "LevelType": "",
+              "LevelName": "",
+              "UnitType": "",
+              "UnitName": "",
+              "SubAddr": "",
+              "StAddr": "19 PEDDLERS ROW",
+              "Block": "",
+              "Sector": "",
+              "Nbrhd": "PEDDLERS VILLAGE SHOP CTR",
+              "District": "",
+              "City": "NEWARK",
+              "MetroArea": "",
+              "Subregion": "New Castle",
+              "Region": "DE",
+              "RegionAbbr": "DE",
+              "Territory": "",
+              "Zone": "",
+              "Postal": "19702",
+              "PostalExt": "",
+              "Country": "",
+              "CntryName": "USA",
+              "LangCode": "ENG",
+              "Distance": 0,
+              "X": -8422550.226801356,
+              "Y": 4817405.485745481,
+              "DisplayX": -8422550.226801356,
+              "DisplayY": 4817405.485745481,
+              "Xmin": -8422661.54629215,
+              "Xmax": -8422438.907310562,
+              "Ymin": 4817260.876140152,
+              "Ymax": 4817550.097443629,
+              "ExInfo": ""
+            },
+            "extent": {
+              "xmin": -75.662056,
+              "ymin": 39.664178,
+              "xmax": -75.660056,
+              "ymax": 39.666178
+            }
+          }
+        ]
+      }
+    },
+    "countyAddressPoint": {
+      "attributes": {
+        "OBJECTID": 18632,
+        "HOUSENUMBER": "19",
+        "PREFIXDIRECTION": " ",
+        "STREETNAME": "PEDDLERS",
+        "SUFFIXTYPE": "ROW",
+        "SUFFIXDIRECTION": " ",
+        "ZIPCODE": "19702",
+        "CITY": "NEWARK",
+        "STATE": "DE",
+        "COUNTY": "New Castle",
+        "COMMUNITY": "PEDDLERS VILLAGE SHOP CTR",
+        "UNIT": " ",
+        "UNITTYPE": null,
+        "UNITID": null,
+        "UPDATED": 1778902560000,
+        "ZIPID": null,
+        "CITYID": null
+      },
+      "geometry": {
+        "x": -75.6610577795504,
+        "y": 39.66518076020132
+      }
+    },
+    "unitStreetAddressQuery": {
+      "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Location/Delaware_FirstMap_Locator/GeocodeServer/findAddressCandidates?SingleLine=19B+Peddlers+Row%2C+Newark%2C+DE+19702&outFields=%2A&outSR=4326&f=json",
+      "response": {
+        "spatialReference": {
+          "wkid": 4326,
+          "latestWkid": 4326
+        },
+        "candidates": [
+          {
+            "address": "19B PEDDLERS ROW, NEWARK, DE, 19702",
+            "location": {
+              "x": -75.661028914413,
+              "y": 39.665292236926
+            },
+            "score": 99.62,
+            "attributes": {
+              "Status": "M",
+              "Score": 99.62,
+              "Match_addr": "19B PEDDLERS ROW, NEWARK, DE, 19702",
+              "LongLabel": "19B PEDDLERS ROW, NEWARK, DE, 19702",
+              "ShortLabel": "19B PEDDLERS ROW",
+              "Addr_type": "StreetAddress",
+              "Type": "",
+              "PlaceName": "",
+              "Place_addr": "19B PEDDLERS ROW, NEWARK, DE, 19702",
+              "Phone": "",
+              "URL": "",
+              "Rank": 20,
+              "AddBldg": "",
+              "AddNum": "19B",
+              "AddNumFrom": "9",
+              "AddNumTo": "19",
+              "AddRange": "9-19",
+              "Side": "R",
+              "StPreDir": "",
+              "StPreType": "",
+              "StName": "PEDDLERS",
+              "StType": "ROW",
+              "StDir": "",
+              "BldgType": "",
+              "BldgName": "",
+              "LevelType": "",
+              "LevelName": "",
+              "UnitType": "",
+              "UnitName": "",
+              "SubAddr": "",
+              "StAddr": "19B PEDDLERS ROW",
+              "Block": "",
+              "Sector": "",
+              "Nbrhd": "PEDDLERS VILLAGE SHOP CTR",
+              "District": "",
+              "City": "NEWARK",
+              "MetroArea": "",
+              "Subregion": "New Castle",
+              "Region": "DE",
+              "RegionAbbr": "DE",
+              "Territory": "",
+              "Zone": "",
+              "Postal": "19702",
+              "PostalExt": "",
+              "Country": "",
+              "CntryName": "USA",
+              "LangCode": "ENG",
+              "Distance": 0,
+              "X": -8422547.211647607,
+              "Y": 4817422.0056354,
+              "DisplayX": -8422547.211647607,
+              "DisplayY": 4817422.0056354,
+              "Xmin": -8422658.531138401,
+              "Xmax": -8422435.892156813,
+              "Ymin": 4817277.395791,
+              "Ymax": 4817566.617572633,
+              "ExInfo": ""
+            },
+            "extent": {
+              "xmin": -75.662028914413,
+              "ymin": 39.664292236926,
+              "xmax": -75.660028914413,
+              "ymax": 39.666292236926
+            }
+          }
+        ]
+      }
+    },
+    "inputIndex": 109
   }
 ]

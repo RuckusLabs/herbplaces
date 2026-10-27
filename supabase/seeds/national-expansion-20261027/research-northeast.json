@@ -629,16 +629,36 @@
       "https://www.piermontchamber.org/shops-galleries",
       "https://hwbglobal.org/flower-power-herbs-roots-inc/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-piermont-8460d0196102.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "8460d0196102bf5ecb41d5eb847d49ed123759ec9b374b5be454636254e0eacd"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official main body says Saturday–Sunday noon–6; footer says Wednesday–Sunday. Conservatively list verified weekend overlap and call ahead.",
     "inputIndex": 47,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-piermont-8460d0196102.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "8460d0196102bf5ecb41d5eb847d49ed123759ec9b374b5be454636254e0eacd"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found authentic own-brand product photograph as branch-neutral alternative; homepage shopinteriors not selected because branch not explicit."
   },
   {
     "name": "Herbs and Mylk",
@@ -988,16 +1008,36 @@
     "sources": [
       "https://www.pennherb.com/contact"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
     "inputIndex": 54,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
   },
   {
     "name": "Penn Herb Company — Factory Store",
@@ -1017,16 +1057,36 @@
     "sources": [
       "https://www.pennherb.com/contact"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
     "inputIndex": 55,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
   },
   {
     "name": "The Rosemary House & Gardens",
@@ -1310,16 +1370,36 @@
       "https://www.alternatives-4health.com/category/Hours_and_Directions/c72",
       "https://www.alternatives-4health.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/alternatives-for-health-herbal-apothecary-492f596ae8de.webp",
+        "width": 256,
+        "height": 341,
+        "sha256": "492f596ae8de33e53d1e2eacf4a57910edfa82d4fda8fc8276ce9a9e702f8058"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
     "inputIndex": 61,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/alternatives-for-health-herbal-apothecary-492f596ae8de.webp",
+        "width": 256,
+        "height": 341,
+        "sha256": "492f596ae8de33e53d1e2eacf4a57910edfa82d4fda8fc8276ce9a9e702f8058"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Authentic native256x341portrait shopphoto available; meets orientation-aware200short/300long minimum; previous fixedwidth300 rule excluded it."
   },
   {
     "name": "Homegrown Herb & Tea",

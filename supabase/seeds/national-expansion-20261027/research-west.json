@@ -333,7 +333,7 @@
       {
         "url": "https://images.squarespace-cdn.com/content/v1/5f5173ff96341f496ca05c63/697db3cd-5ef6-49d8-a9f8-06cb6ab8efee/IMG_5240.jpg",
         "sourcePage": "https://www.pilarswellnesscollective.com/",
-        "alt": "The apothecary at Pilar’s Wellness Collective",
+        "alt": "Pilar’s Wellness Collective botanical products",
         "localFile": "docs/listing-images/national-expansion-20261027/pilar-s-wellness-collective-apothecary-0425fbaf205c.webp",
         "width": 1200,
         "height": 1600,
@@ -917,27 +917,37 @@
       "https://lhasakarnak.com/",
       "https://www.herb-inc.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Both current operator domains list this distinct retail branch. Older Telegraph Avenue address is obsolete. Current main operator lists Shattuck hours; a 2020-era directory temporary closure is stale.",
     "verifiedAt": "2026-10-27",
     "inputIndex": 106,
     "photoSearchAttempts": [
       {
-        "url": "https://lhasakarnak.com/cdn/shop/files/IMG_7746.png?v=1613177614&width=3840",
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
         "sourcePage": "https://lhasakarnak.com/",
-        "alt": "Lhasa Karnak Herb Company photograph",
-        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-69e4ac1a9852.webp",
-        "width": 1600,
-        "height": 892,
-        "sha256": "69e4ac1a98524b0f596b72d107f4b974c8d3e50348e9f45c26155eb1b8dbaf03"
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
       }
     ],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   },
   {
     "name": "Lhasa Karnak Herb Company - Shattuck",
@@ -958,26 +968,36 @@
       "https://lhasakarnak.com/",
       "https://www.herb-inc.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Both current operator domains list this distinct retail branch. Older Telegraph Avenue address is obsolete. Current main operator lists Shattuck hours; a 2020-era directory temporary closure is stale.",
     "verifiedAt": "2026-10-27",
     "inputIndex": 107,
     "photoSearchAttempts": [
       {
-        "url": "https://lhasakarnak.com/cdn/shop/files/IMG_7746.png?v=1613177614&width=3840",
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
         "sourcePage": "https://lhasakarnak.com/",
-        "alt": "Lhasa Karnak Herb Company photograph",
-        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-69e4ac1a9852.webp",
-        "width": 1600,
-        "height": 892,
-        "sha256": "69e4ac1a98524b0f596b72d107f4b974c8d3e50348e9f45c26155eb1b8dbaf03"
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
       }
     ],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   }
 ]

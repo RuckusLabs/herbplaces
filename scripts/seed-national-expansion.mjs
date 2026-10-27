@@ -26,6 +26,7 @@ const seedId = 'national-expansion-20261027';
 const url = env.VITE_SUPABASE_URL;
 assert.equal(new URL(url).hostname, `${projectRef}.supabase.co`);
 const apply = process.argv.includes('--apply');
+const followup = process.argv.includes('--followup');
 
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const normalize = value => String(value || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -49,7 +50,7 @@ const rows = ready.map(place => {
     const sha256 = hash(bytes);
     assert.equal(sha256, photo.sha256, `Photo changed: ${file}`);
     assert.ok(bytes.length < 10 * 1024 * 1024 && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP');
-    assert.ok(photo.width >= 300 && photo.height >= 200, `Photo too small: ${place.name}`);
+    assert.ok(Math.max(photo.width, photo.height) >= 300 && Math.min(photo.width, photo.height) >= 200, `Photo too small: ${place.name}`);
     const storagePath = `editorial/${seedId}/${urlSlug}/${sha256.slice(0, 16)}.webp`;
     const photoUrl = `${url}/storage/v1/object/public/place-photos/${storagePath}`;
     photos.push({ slug: urlSlug, storagePath, photoUrl, bytes, sha256 });
@@ -120,6 +121,7 @@ console.log(JSON.stringify({ mode: apply ? 'apply' : 'preview', supplied: resear
   missingPhotos: ready.filter(row => !row.photoCandidates?.length).map(row => row.name),
 }, null, 2));
 if (!apply) process.exit(0);
+if (pending.length && fs.existsSync(path.join(directory, 'receipt.json'))) assert.ok(followup, 'Use --followup to preserve the original publication receipt.');
 assert.equal((await value(db.storage.getBucket('place-photos'))).public, true);
 const backupDir = path.join(root, 'supabase/.temp/backups');
 fs.mkdirSync(backupDir, { recursive: true });
@@ -170,6 +172,6 @@ const receipt = { seedId, projectRef, excludedCandidates: read(path.join(directo
     'All pre-existing records unchanged', 'No Featured or Verified badge assigned'],
 };
 // Preserve the publication receipt on an idempotent rerun.
-const receiptFile = path.join(directory, 'receipt.json');
+const receiptFile = path.join(directory, followup ? 'second-pass-receipt.json' : 'receipt.json');
 if (!fs.existsSync(receiptFile) || pending.length) fs.writeFileSync(receiptFile, JSON.stringify(receipt, null, 2) + '\n');
 console.log(`Complete: ${pending.length} added; ${after.length} total; ${photos.filter(photo => pending.some(place => place.urlSlug === photo.slug)).length} new photos delivered and verified.`);

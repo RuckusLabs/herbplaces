@@ -3294,5 +3294,278 @@
         "matchedAddress": "845 SAVANNAH HWY, CHARLESTON, SC, 29407"
       }
     ]
+  },
+  "Euphoric Herbals Apothecary - Milford": {
+    "query": "621 N Dupont Boulevard, Milford, Delaware 19963",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=621+N+Dupont+Boulevard%2C+Milford%2C+Delaware+19963&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "636745587"
+        },
+        "coordinates": {
+          "x": -75.442468570236,
+          "y": 38.916314967002
+        },
+        "addressComponents": {
+          "zip": "19963",
+          "streetName": "DUPONT",
+          "preType": "",
+          "city": "MILFORD",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "601",
+          "state": "DE",
+          "suffixType": "BLVD",
+          "toAddress": "623",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "621 N DUPONT BLVD, MILFORD, DE, 19963"
+      }
+    ]
+  },
+  "Gaia Emporium": {
+    "query": "19B Peddlers Row, Newark, Delaware 19702",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=19B+Peddlers+Row%2C+Newark%2C+Delaware+19702&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "187286780"
+        },
+        "coordinates": {
+          "x": -75.661585078359,
+          "y": 39.665272761626
+        },
+        "addressComponents": {
+          "zip": "19702",
+          "streetName": "PEDDLERS",
+          "preType": "",
+          "city": "NEWARK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "19",
+          "state": "DE",
+          "suffixType": "ROW",
+          "toAddress": "13",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "19B PEDDLERS ROW, NEWARK, DE, 19702"
+      },
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "606234389"
+        },
+        "coordinates": {
+          "x": -75.661232609511,
+          "y": 39.665660676545
+        },
+        "addressComponents": {
+          "zip": "19702",
+          "streetName": "PEDDLERS RW",
+          "preType": "",
+          "city": "NEWARK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1",
+          "state": "DE",
+          "suffixType": "",
+          "toAddress": "99",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "19B PEDDLERS RW, NEWARK, DE, 19702"
+      }
+    ]
+  },
+  "The Spice Shack": {
+    "query": "11334 Page Road, Grabill, Indiana 46741",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=11334+Page+Road%2C+Grabill%2C+Indiana+46741&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "6395080"
+        },
+        "coordinates": {
+          "x": -84.978992274992,
+          "y": 41.189913368259
+        },
+        "addressComponents": {
+          "zip": "46741",
+          "streetName": "PAGE",
+          "preType": "",
+          "city": "GRABILL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "11898",
+          "state": "IN",
+          "suffixType": "RD",
+          "toAddress": "10400",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "11334 PAGE RD, GRABILL, IN, 46741"
+      }
+    ]
+  },
+  "Good Earth Natural Food Co.": {
+    "query": "6350 Guilford Avenue, Indianapolis, Indiana 46220",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6350+Guilford+Avenue%2C+Indianapolis%2C+Indiana+46220&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "645228241"
+        },
+        "coordinates": {
+          "x": -86.142960962574,
+          "y": 39.87158917498
+        },
+        "addressComponents": {
+          "zip": "46220",
+          "streetName": "GUILFORD",
+          "preType": "",
+          "city": "INDIANAPOLIS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "6342",
+          "state": "IN",
+          "suffixType": "AVE",
+          "toAddress": "6350",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "6350 GUILFORD AVE, INDIANAPOLIS, IN, 46220"
+      }
+    ]
+  },
+  "Little Woods Herbal": {
+    "query": "136 Main Street, Ames, Iowa 50010",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=136+Main+Street%2C+Ames%2C+Iowa+50010&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "647652398"
+        },
+        "coordinates": {
+          "x": -93.611054026455,
+          "y": 42.025083218842
+        },
+        "addressComponents": {
+          "zip": "50010",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "AMES",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "100",
+          "state": "IA",
+          "suffixType": "ST",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "136 MAIN ST, AMES, IA, 50010"
+      }
+    ]
+  },
+  "Holistic Harmony": {
+    "query": "313 N 8th Street, Clear Lake, Iowa 50428",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=313+N+8th+Street%2C+Clear+Lake%2C+Iowa+50428&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "7288200"
+        },
+        "coordinates": {
+          "x": -93.37883863598,
+          "y": 43.140195659628
+        },
+        "addressComponents": {
+          "zip": "50428",
+          "streetName": "8TH",
+          "preType": "",
+          "city": "CLEAR LAKE",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "301",
+          "state": "IA",
+          "suffixType": "ST",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "313 N 8TH ST, CLEAR LAKE, IA, 50428"
+      }
+    ]
+  },
+  "Tonic Herb Shop": {
+    "query": "140 E German Street, Shepherdstown, West Virginia 25443",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=140+E+German+Street%2C+Shepherdstown%2C+West+Virginia+25443&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "639584627"
+        },
+        "coordinates": {
+          "x": -77.804998258621,
+          "y": 39.43050950209
+        },
+        "addressComponents": {
+          "zip": "25443",
+          "streetName": "GERMAN",
+          "preType": "",
+          "city": "SHEPHERDSTOWN",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "198",
+          "state": "WV",
+          "suffixType": "ST",
+          "toAddress": "112",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "140 E GERMAN ST, SHEPHERDSTOWN, WV, 25443"
+      }
+    ]
+  },
+  "Wild Ginger & Spice": {
+    "query": "407 William Avenue, Davis, West Virginia 26260",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=407+William+Avenue%2C+Davis%2C+West+Virginia+26260&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "53420072"
+        },
+        "coordinates": {
+          "x": -79.465102406333,
+          "y": 39.128773808964
+        },
+        "addressComponents": {
+          "zip": "26260",
+          "streetName": "WILLIAM",
+          "preType": "",
+          "city": "DAVIS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "459",
+          "state": "WV",
+          "suffixType": "AVE",
+          "toAddress": "401",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "407 WILLIAM AVE, DAVIS, WV, 26260"
+      }
+    ]
   }
 }

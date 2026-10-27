@@ -817,16 +817,36 @@
     "sources": [
       "https://missannesmaypopherbshop.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "localFile": "docs/listing-images/national-expansion-20261027/miss-anne-s-maypop-herb-shop-c1dd6eb4c60a.webp",
+        "width": 1202,
+        "height": 1600,
+        "sha256": "c1dd6eb4c60a67ffda200a94ad2a4e13c31c0259aca0b60582ea75fe607fcc01"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Use current1370Laharpe official address; older directories show former St Claude location.",
     "inputIndex": 77,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "localFile": "docs/listing-images/national-expansion-20261027/miss-anne-s-maypop-herb-shop-c1dd6eb4c60a.webp",
+        "width": 1202,
+        "height": 1600,
+        "sha256": "c1dd6eb4c60a67ffda200a94ad2a4e13c31c0259aca0b60582ea75fe607fcc01"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Selected after official-page search and visual review."
   },
   {
     "name": "Earth Heart Health Food Store",
@@ -846,16 +866,36 @@
     "sources": [
       "https://earthhearthealthfoods.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store roadside sign in Marion",
+        "localFile": "docs/listing-images/national-expansion-20261027/earth-heart-health-food-store-2d5f08806f92.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "2d5f08806f923649c27201e7d4f5ee3b88a40d6aaab1054b76ccaafc64ab73c9"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Current official website publishes a public shop address and visitor information.",
     "inputIndex": 78,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store roadside sign in Marion",
+        "localFile": "docs/listing-images/national-expansion-20261027/earth-heart-health-food-store-2d5f08806f92.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "2d5f08806f923649c27201e7d4f5ee3b88a40d6aaab1054b76ccaafc64ab73c9"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   },
   {
     "name": "Hummingbird Apothecary — South Knoxville",
@@ -1130,16 +1170,36 @@
       "https://mercantileapothecary.com/",
       "https://naecoop.com/road-to-wellness/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "Bulk herb shelves at The Mercantile Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-mercantile-apothecary-9ce609ef5c6c.webp",
+        "width": 1600,
+        "height": 581,
+        "sha256": "9ce609ef5c6c2fde5c51a0524cf7183e9d2da1029be6a4290d9529ff54f5dbe3"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Current official website publishes a public shop address and visitor information.",
     "inputIndex": 83,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "Bulk herb shelves at The Mercantile Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-mercantile-apothecary-9ce609ef5c6c.webp",
+        "width": 1600,
+        "height": 581,
+        "sha256": "9ce609ef5c6c2fde5c51a0524cf7183e9d2da1029be6a4290d9529ff54f5dbe3"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   },
   {
     "name": "CW Organics Herbal Apothecary",
@@ -1159,16 +1219,36 @@
     "sources": [
       "https://cworganicsretail.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://ridgeland.imgix.net/images/CW-Organics-14.jpg?auto=compress%2Cformat&crop=focalpoint&fit=min&fp-x=0.5&fp-y=0.5&h=1440&q=80&w=1440&s=6150ef9220804913c7d07ec322982e65",
+        "sourcePage": "https://www.exploreridgeland.com/directory/cw-organics-apothicaire-tea-room/",
+        "alt": "Tea service and menu at CW Organics in Ridgeland",
+        "localFile": "docs/listing-images/national-expansion-20261027/cw-organics-herbal-apothecary-e8ab715cdf5b.webp",
+        "width": 1366,
+        "height": 1366,
+        "sha256": "e8ab715cdf5b554a33a2bc5b875334f4d237ac527ea4a833763dde01d0517279"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Current official website publishes a public shop address and visitor information.",
     "inputIndex": 84,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://ridgeland.imgix.net/images/CW-Organics-14.jpg?auto=compress%2Cformat&crop=focalpoint&fit=min&fp-x=0.5&fp-y=0.5&h=1440&q=80&w=1440&s=6150ef9220804913c7d07ec322982e65",
+        "sourcePage": "https://www.exploreridgeland.com/directory/cw-organics-apothicaire-tea-room/",
+        "alt": "CW Organics apothecary and tea room in Ridgeland",
+        "localFile": "docs/listing-images/national-expansion-20261027/cw-organics-herbal-apothecary-e8ab715cdf5b.webp",
+        "width": 1366,
+        "height": 1366,
+        "sha256": "e8ab715cdf5b554a33a2bc5b875334f4d237ac527ea4a833763dde01d0517279"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   },
   {
     "name": "Angie’s Gardens Apothecary",
@@ -1189,16 +1269,36 @@
       "https://angiesgardensapothecary.com/",
       "https://angiesgardensapothecary.com/herbal-apothecary-in-tomball-tx/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/05/Angela-Reynolds_square.jpg",
+        "sourcePage": "https://angiesgardens.com/about-us/",
+        "alt": "Angie’s Gardens founder Angela Reynolds",
+        "localFile": "docs/listing-images/national-expansion-20261027/angie-s-gardens-apothecary-dcacd9a29867.webp",
+        "width": 918,
+        "height": 918,
+        "sha256": "dcacd9a298675e695d3eb052495f3a7653285d1f13be82da1077e63f596dd1f8"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Current official website publishes a public shop address and visitor information.",
     "inputIndex": 85,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/05/Angela-Reynolds_square.jpg",
+        "sourcePage": "https://angiesgardens.com/about-us/",
+        "alt": "Angie’s Gardens founder Angela Reynolds",
+        "localFile": "docs/listing-images/national-expansion-20261027/angie-s-gardens-apothecary-dcacd9a29867.webp",
+        "width": 918,
+        "height": 918,
+        "sha256": "dcacd9a298675e695d3eb052495f3a7653285d1f13be82da1077e63f596dd1f8"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
   },
   {
     "name": "The Herb Shop at Cypress Pillar Healing Arts",

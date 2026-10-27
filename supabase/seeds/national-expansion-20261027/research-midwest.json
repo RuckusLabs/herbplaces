@@ -73,16 +73,36 @@
       "https://data.cityofchicago.org/api/views/9cna-y9pk/rows.pdf",
       "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-division-a2405ef51958.webp",
+        "width": 768,
+        "height": 1024,
+        "sha256": "a2405ef519581153682868eff54b5d8dcc8c1fce25b43f9175e834ff697107d3"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
     "inputIndex": 1,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-division-a2405ef51958.webp",
+        "width": 768,
+        "height": 1024,
+        "sha256": "a2405ef519581153682868eff54b5d8dcc8c1fce25b43f9175e834ff697107d3"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found authenticated location photograph; downloaded via valid HTTPS."
   },
   {
     "name": "Hoa My Chinese Medicine",
@@ -208,11 +228,12 @@
     "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
     "inputIndex": 4,
     "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoUnavailableReason": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained.",
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "No suitable authenticated downloadable photograph found."
+    },
+    "secondPassPhotoSearch": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained."
   },
   {
     "name": "DMApothecary at Mella’Ninn Complex",
@@ -648,35 +669,36 @@
     "sources": [
       "https://www.magusbooks.com/"
     ],
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
+        "sourcePage": "https://www.magusbooks.com/",
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-4a94717a4ccc.webp",
+        "width": 400,
+        "height": 306,
+        "sha256": "4a94717a4cccd6f7015f3a09097cc54b9b3c5e287142d78aa63b3974f602615b"
+      }
+    ],
     "status": "ready",
     "verificationNote": "Official site explicitly identifies new location and Summer 2026 events at 2520 Central Avenue NE. Older Dinkytown addresses are obsolete.",
     "inputIndex": 13,
     "photoSearchAttempts": [
       {
-        "url": "https://dhgf5mcbrms62.cloudfront.net/106054633/cover-HaXq6F/pLYWNSw-1200x1200.png",
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
         "sourcePage": "https://www.magusbooks.com/",
-        "alt": "Magus Books and Herbs current homepage cover photograph",
-        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-37e1f48af42f.webp",
-        "width": 1200,
-        "height": 1200,
-        "sha256": "37e1f48af42fe24e64fad1b06908c93771f45aecb9e8c3e0d9c63ba00094a56f"
-      },
-      {
-        "url": "https://dhgf5mcbrms62.cloudfront.net/106054633/cover-FGfAVQ/sKwPsrx-1200x1200.jpg",
-        "sourcePage": "https://www.magusbooks.com/",
-        "alt": "Magus Books and Herbs current homepage photograph",
-        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-373b537312d0.webp",
-        "width": 1200,
-        "height": 1200,
-        "sha256": "373b537312d0dc0a74ae19afebf4d4c62f34d4336a53f9e37167a5f163ec7ef5"
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-4a94717a4ccc.webp",
+        "width": 400,
+        "height": 306,
+        "sha256": "4a94717a4cccd6f7015f3a09097cc54b9b3c5e287142d78aa63b3974f602615b"
       }
     ],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found actual labeled product photograph in official current featured catalog; map and generic looseherb candidate not selected."
   },
   {
     "name": "Jewelweed",
@@ -885,15 +907,6 @@
         "width": 1080,
         "height": 1080,
         "sha256": "870e7443e9b70f5a11af4f0f9b2581028a81404e60aace3ccf46fd70c3f44e8c"
-      },
-      {
-        "url": "https://phoenixherb.com/cdn/shop/products/original_457a13ec-4257-4ce1-924f-b3d2c23a6206.jpg?v=1675030093&width=1200",
-        "sourcePage": "https://phoenixherb.com/",
-        "alt": "Phoenix Herb house tea blend",
-        "localFile": "docs/listing-images/national-expansion-20261027/phoenix-herb-c9a42d697486.webp",
-        "width": 611,
-        "height": 611,
-        "sha256": "c9a42d697486c94381e7ad8669fb3d395b25e1a4f428fabea363b78f3410f74f"
       }
     ],
     "photoReview": {
@@ -1040,15 +1053,6 @@
         "width": 1069,
         "height": 713,
         "sha256": "4ecfe44d20d11a0b1ca497364bf0a5c91a02927430f75c15d768e802dba43a83"
-      },
-      {
-        "url": "https://www.emiliesfrenchteas.com/uploads/b/6372279ec409c2f88697e1c87a807a4bc4062f8633f9147897f32da329098888/2022.01.CenteredSpirit.0786.web_1699559284.jpg",
-        "sourcePage": "https://www.emiliesfrenchteas.com/",
-        "alt": "Centered Spirit tea shop photograph published by Emilie’s French Teas",
-        "localFile": "docs/listing-images/national-expansion-20261027/centered-spirit-apothecary-emilie-s-french-teas-fdab346dd8cf.webp",
-        "width": 1400,
-        "height": 934,
-        "sha256": "fdab346dd8cf1ff0421241598f30797a0589a68a7e244875b4e8124a3a055a84"
       }
     ],
     "photoReview": {
@@ -1867,13 +1871,33 @@
     ],
     "status": "ready",
     "verificationNote": "Officialwebsitecurrent2026award+herbsselection; NorthDakotaofficialPrideofDakota retailer confirmsaddressZIPphone; regionalCVB confirms300bulkherbs/spices/teas. AvoidusingphotosofunrelatedPeachGardenHempco-tenant.",
-    "photoCandidates": [],
+    "photoCandidates": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "localFile": "docs/listing-images/national-expansion-20261027/terry-s-health-products-edcf9464d8f8.webp",
+        "width": 852,
+        "height": 283,
+        "sha256": "edcf9464d8f8b09d10b6c7c3aa9d93cdec2f0ed27d5f8881a46eaf246d2e583f"
+      }
+    ],
     "inputIndex": 35,
-    "photoSearchAttempts": [],
-    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoSearchAttempts": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "localFile": "docs/listing-images/national-expansion-20261027/terry-s-health-products-edcf9464d8f8.webp",
+        "width": 852,
+        "height": 283,
+        "sha256": "edcf9464d8f8b09d10b6c7c3aa9d93cdec2f0ed27d5f8881a46eaf246d2e583f"
+      }
+    ],
     "photoReview": {
       "reviewedAt": "2026-10-27",
-      "result": "No suitable photograph selected."
-    }
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Official HTTPS image downloaded successfully today; previous SSL error did not recur. wwwhost does notresolve."
   }
 ]
