@@ -1,0 +1,1103 @@
+[
+  {
+    "id": 3,
+    "name": "Earth Commons",
+    "address": "641 Tillery St Suite 105",
+    "city": "Austin",
+    "state": "Texas",
+    "zip": "78702",
+    "urlSlug": "earth-commons",
+    "latitude": 30.26,
+    "longitude": -97.71,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/earth-commons-1.jpg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/earth-commons-2.jpg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/earth-commons-3.jpg"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/earth-commons-cover.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Grateful Desert Apothecary",
+    "address": "61607 29 Palms Hwy Suite A",
+    "city": "Joshua Tree",
+    "state": "California",
+    "zip": "92252",
+    "urlSlug": "grateful-desert-apothecary",
+    "latitude": 34.13,
+    "longitude": -116.32,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/grateful-desert-1.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/grateful-desert-cover.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Tucson Herb Store",
+    "address": "228 N 4th Ave",
+    "city": "Tucson",
+    "state": "Arizona",
+    "zip": "85705",
+    "urlSlug": "tucson-herb-store",
+    "latitude": 32.22,
+    "longitude": -110.97,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/tucson-herb-1.png",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/tucson-herb-2.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/tucson-herb-cover.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Bodega Loya",
+    "address": "10257 Socorro Rd",
+    "city": "Socorro",
+    "state": "Texas",
+    "zip": "79927",
+    "urlSlug": "bodega-loya",
+    "latitude": 31.65,
+    "longitude": -106.3,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/bodega-loya-1.png",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/bodega-loya-2.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/bodega-loya-cover.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Comfort Botanical Apothecary",
+    "address": "409 Seventh St",
+    "city": "Comfort",
+    "state": "Texas",
+    "zip": "78013",
+    "urlSlug": "comfort-botanical-apothecary",
+    "latitude": 29.97,
+    "longitude": -98.91,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/comfort-botanical-1.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/comfort-botanical-cover.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Festival Beach Food Forest",
+    "address": "29 Waller St",
+    "city": "Austin",
+    "state": "Texas",
+    "zip": "78702",
+    "urlSlug": "festival-beach-food-forest",
+    "latitude": 30.252592,
+    "longitude": -97.736755,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/festival-beach-food-forest.webp?t=2025-01-23T19%3A20%3A03.398Z"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/festival-beach-food-forest.webp?t=2025-01-23T19%3A20%3A03.398Z"
+  },
+  {
+    "id": 4,
+    "name": "Boggy Creek Farm",
+    "address": "3414 Lyons Rd",
+    "city": "Austin",
+    "state": "Texas",
+    "zip": "78702",
+    "urlSlug": "boggy-creek-farm",
+    "latitude": 30.26,
+    "longitude": -97.7,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/boggy-creek-cover.jpg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/boggy-creek-1.jpeg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/boggy-creek-2.jpeg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/boggy-creek-3.jpeg"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/boggy-creek-4.jpg?t=2025-01-23T19%3A22%3A22.158Z"
+  },
+  {
+    "id": 5,
+    "name": "June Bloom Lavender",
+    "address": "209 E Main St Suite D",
+    "city": "Johnson City",
+    "state": "Texas",
+    "zip": "78636",
+    "urlSlug": "june-bloom-lavender",
+    "latitude": 30.28,
+    "longitude": -98.41,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/june-bloom-3.jpg?t=2025-01-23T19%3A25%3A45.624Z",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/june-bloom-1.png",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/june-bloom-2.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/june-bloom-cover.jpg"
+  },
+  {
+    "id": 2,
+    "name": "The Herb Bar",
+    "address": "200 W Mary St",
+    "city": "Austin",
+    "state": "Texas",
+    "zip": "78704",
+    "urlSlug": "the-herb-bar",
+    "latitude": 30.24,
+    "longitude": -97.75,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/herb-bar-1.jpg",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/herb-bar-2.png"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/places/herb-bar-cover.jpg"
+  },
+  {
+    "id": 26,
+    "name": "Bridget’s Botanicals",
+    "address": "5733 S Prince Street",
+    "city": "Littleton",
+    "state": "Colorado",
+    "zip": "80120",
+    "urlSlug": "bridget-s-botanicals",
+    "latitude": 39.613358391233,
+    "longitude": -105.016272113125,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/bridget-s-botanicals/471c8648fe9665a6.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/bridget-s-botanicals/471c8648fe9665a6.webp"
+  },
+  {
+    "id": 11,
+    "name": "Hearth and Seoul Herbal Shop",
+    "address": "3748 Tejon St",
+    "city": "Denver",
+    "state": "Colorado",
+    "zip": "80211",
+    "urlSlug": "hearth-and-seoul-herbal-shop",
+    "latitude": 39.768659609262,
+    "longitude": -105.011126465053,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/hearth-and-seoul-herbal-shop/96544553c364c779.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/hearth-and-seoul-herbal-shop/75360c7d9ea41d34.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/hearth-and-seoul-herbal-shop/96544553c364c779.webp"
+  },
+  {
+    "id": 12,
+    "name": "Balanced Root Apothecary",
+    "address": "1405 N Ogden St",
+    "city": "Denver",
+    "state": "Colorado",
+    "zip": "80218",
+    "urlSlug": "balanced-root-apothecary",
+    "latitude": 39.738540132964,
+    "longitude": -104.975372324803,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/balanced-root-apothecary/b259c62c357a5c04.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/balanced-root-apothecary/bbfc6efbaebb5092.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/balanced-root-apothecary/085b4b0d3d1abb84.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/balanced-root-apothecary/b259c62c357a5c04.webp"
+  },
+  {
+    "id": 13,
+    "name": "Terra Apothecary",
+    "address": "1452 S Broadway",
+    "city": "Denver",
+    "state": "Colorado",
+    "zip": "80210",
+    "urlSlug": "terra-apothecary",
+    "latitude": 39.690231924193,
+    "longitude": -104.98741556044,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/terra-apothecary/d94456247e7ec9bd.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/terra-apothecary/e016b3ae9a779139.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/terra-apothecary/d94456247e7ec9bd.webp"
+  },
+  {
+    "id": 14,
+    "name": "Rebecca’s Herbal Apothecary & Supply",
+    "address": "1227 Spruce St",
+    "city": "Boulder",
+    "state": "Colorado",
+    "zip": "80302",
+    "urlSlug": "rebeccas-herbal-apothecary",
+    "latitude": 40.019034222816,
+    "longitude": -105.279965666433,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/rebeccas-herbal-apothecary/5e4546a6fa522762.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/rebeccas-herbal-apothecary/b0c8663fba52bf43.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/rebeccas-herbal-apothecary/e1d75aa62fdb3604.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/rebeccas-herbal-apothecary/5e4546a6fa522762.webp"
+  },
+  {
+    "id": 15,
+    "name": "Little Herbal Apothecary",
+    "address": "210 S Public Rd",
+    "city": "Lafayette",
+    "state": "Colorado",
+    "zip": "80026",
+    "urlSlug": "little-herbal-apothecary",
+    "latitude": 39.997078722515,
+    "longitude": -105.090377790177,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/little-herbal-apothecary/8954142f009f028b.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/little-herbal-apothecary/736062da18d467ca.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/little-herbal-apothecary/90fe4586820a6fa1.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/little-herbal-apothecary/8954142f009f028b.webp"
+  },
+  {
+    "id": 16,
+    "name": "Earth Sweet Boutique",
+    "address": "1224 Arapahoe St",
+    "city": "Golden",
+    "state": "Colorado",
+    "zip": "80401",
+    "urlSlug": "earth-sweet-boutique",
+    "latitude": 39.754545945925,
+    "longitude": -105.222283867649,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/earth-sweet-boutique/d5b0d13ae544c8f1.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/earth-sweet-boutique/7c692833686f3b72.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/earth-sweet-boutique/d5b0d13ae544c8f1.webp"
+  },
+  {
+    "id": 17,
+    "name": "Old Barrel Tea Company — Golden",
+    "address": "1224 Washington Ave, Suite 118",
+    "city": "Golden",
+    "state": "Colorado",
+    "zip": "80401",
+    "urlSlug": "old-barrel-tea-company-golden",
+    "latitude": 39.755136336652,
+    "longitude": -105.221168636071,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/old-barrel-tea-company-golden/c0887afb9ff34c50.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/old-barrel-tea-company-golden/7d38fe9545d47036.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/old-barrel-tea-company-golden/0868ad1b91e6d610.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/colorado-20261019/old-barrel-tea-company-golden/c0887afb9ff34c50.webp"
+  },
+  {
+    "id": 25,
+    "name": "Humboldt Herbals",
+    "address": "300 2nd Street",
+    "city": "Eureka",
+    "state": "California",
+    "zip": "95501",
+    "urlSlug": "humboldt-herbals",
+    "latitude": 40.804109774439,
+    "longitude": -124.168118745121,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/humboldt-herbals/666c5ca77fe1ce0d.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/humboldt-herbals/666c5ca77fe1ce0d.webp"
+  },
+  {
+    "id": 27,
+    "name": "Orion’s Apothecary",
+    "address": "270 E 29th Street",
+    "city": "Loveland",
+    "state": "Colorado",
+    "zip": "80538",
+    "urlSlug": "orion-s-apothecary",
+    "latitude": 40.421654721211,
+    "longitude": -105.073356868774,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/orion-s-apothecary/69a93bf736162d27.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/orion-s-apothecary/7ab14e91d39a6791.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/orion-s-apothecary/69a93bf736162d27.webp"
+  },
+  {
+    "id": 28,
+    "name": "Sacred Vibes Apothecary",
+    "address": "717 Coney Island Avenue",
+    "city": "Brooklyn",
+    "state": "New York",
+    "zip": "11218",
+    "urlSlug": "sacred-vibes-apothecary",
+    "latitude": 40.639940599552,
+    "longitude": -73.968891350737,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sacred-vibes-apothecary/44cb9ed57e55e22b.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sacred-vibes-apothecary/4cdaddb8aa55abe0.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sacred-vibes-apothecary/47971c9e62ef21c1.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sacred-vibes-apothecary/44cb9ed57e55e22b.webp"
+  },
+  {
+    "id": 29,
+    "name": "Moonrise Herbs",
+    "address": "826 G Street",
+    "city": "Arcata",
+    "state": "California",
+    "zip": "95521",
+    "urlSlug": "moonrise-herbs",
+    "latitude": 40.86822654787,
+    "longitude": -124.085900241932,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/moonrise-herbs/915f1b9da58ee385.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/moonrise-herbs/915f1b9da58ee385.webp"
+  },
+  {
+    "id": 30,
+    "name": "Thyme Herbal Apothecary",
+    "address": "277 Shrewsbury Street",
+    "city": "Worcester",
+    "state": "Massachusetts",
+    "zip": "01604",
+    "urlSlug": "thyme-herbal-apothecary",
+    "latitude": 42.268069343521,
+    "longitude": -71.781211858109,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/thyme-herbal-apothecary/0c87877a860e5b2a.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/thyme-herbal-apothecary/4ad3a4d29d6e3497.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/thyme-herbal-apothecary/0c87877a860e5b2a.webp"
+  },
+  {
+    "id": 36,
+    "name": "Wonderland Herbs, Teas & Spices",
+    "address": "1305 Railroad Avenue",
+    "city": "Bellingham",
+    "state": "Washington",
+    "zip": "98225",
+    "urlSlug": "wonderland-herbs-teas-spices",
+    "latitude": 48.749202137545,
+    "longitude": -122.478069747305,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wonderland-herbs-teas-spices/d279e6ecd993a8f8.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wonderland-herbs-teas-spices/d279e6ecd993a8f8.webp"
+  },
+  {
+    "id": 31,
+    "name": "Wild Heart Herb House",
+    "address": "777 Shawmut Avenue",
+    "city": "New Bedford",
+    "state": "Massachusetts",
+    "zip": "02746",
+    "urlSlug": "wild-heart-herb-house",
+    "latitude": 41.655330220063,
+    "longitude": -70.945150908599,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-heart-herb-house/139e0e070326c139.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-heart-herb-house/fce89e35c61ad53d.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-heart-herb-house/6ea31ce7752c4df2.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-heart-herb-house/139e0e070326c139.webp"
+  },
+  {
+    "id": 32,
+    "name": "Dragon Herbarium",
+    "address": "4638 SW Beaverton-Hillsdale Highway",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97221",
+    "urlSlug": "dragon-herbarium",
+    "latitude": 45.485844488148,
+    "longitude": -122.724427298349,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dragon-herbarium/1b03a5e469733a32.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dragon-herbarium/1b03a5e469733a32.webp"
+  },
+  {
+    "id": 33,
+    "name": "The Herb Shop",
+    "address": "247 SW G Street",
+    "city": "Grants Pass",
+    "state": "Oregon",
+    "zip": "97526",
+    "urlSlug": "the-herb-shop",
+    "latitude": 42.439457033106,
+    "longitude": -123.329037910486,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/the-herb-shop/7172f343a5de8e9c.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/the-herb-shop/7172f343a5de8e9c.webp"
+  },
+  {
+    "id": 34,
+    "name": "Clover Apothecary at Clover Gift Shop",
+    "address": "10 Elm Street",
+    "city": "Woodstock",
+    "state": "Vermont",
+    "zip": "05091",
+    "urlSlug": "clover-apothecary-at-clover-gift-shop",
+    "latitude": 43.625515859703,
+    "longitude": -72.518544845155,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/clover-apothecary-at-clover-gift-shop/440f28556d6a79f7.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/clover-apothecary-at-clover-gift-shop/a8901f703576a326.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/clover-apothecary-at-clover-gift-shop/440f28556d6a79f7.webp"
+  },
+  {
+    "id": 35,
+    "name": "Herban Wellness",
+    "address": "103 Lake Street S",
+    "city": "Kirkland",
+    "state": "Washington",
+    "zip": "98033",
+    "urlSlug": "herban-wellness",
+    "latitude": 47.675456566781,
+    "longitude": -122.206618392602,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herban-wellness/c442213f2e34876d.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herban-wellness/29ed4495dc98157a.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herban-wellness/c442213f2e34876d.webp"
+  },
+  {
+    "id": 38,
+    "name": "Living Earth Herbs",
+    "address": "1411 Cornwall Avenue",
+    "city": "Bellingham",
+    "state": "Washington",
+    "zip": "98225",
+    "urlSlug": "living-earth-herbs",
+    "latitude": 48.750935451225,
+    "longitude": -122.477535900949,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/living-earth-herbs/9d6b9a68292624b4.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/living-earth-herbs/9d6b9a68292624b4.webp"
+  },
+  {
+    "id": 39,
+    "name": "Northsea Apothecary",
+    "address": "135A Lopez Road",
+    "city": "Lopez Island",
+    "state": "Washington",
+    "zip": "98261",
+    "urlSlug": "northsea-apothecary",
+    "latitude": 48.522709588042,
+    "longitude": -122.912488671543,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/northsea-apothecary/4ab4b620c875484b.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/northsea-apothecary/4ab4b620c875484b.webp"
+  },
+  {
+    "id": 40,
+    "name": "Radiance & Kindred Moon Apothecary",
+    "address": "106 5th Avenue SE",
+    "city": "Olympia",
+    "state": "Washington",
+    "zip": "98501",
+    "urlSlug": "radiance-kindred-moon-apothecary",
+    "latitude": 47.044139581791,
+    "longitude": -122.901412263169,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/radiance-kindred-moon-apothecary/fcc73bbea2f6908e.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/radiance-kindred-moon-apothecary/fcc73bbea2f6908e.webp"
+  },
+  {
+    "id": 42,
+    "name": "SugarPill Apothecary",
+    "address": "214 1st Street",
+    "city": "Langley",
+    "state": "Washington",
+    "zip": "98260",
+    "urlSlug": "sugarpill-apothecary",
+    "latitude": 48.040848639675,
+    "longitude": -122.40850915649,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sugarpill-apothecary/d16912e6b7b05084.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/sugarpill-apothecary/d16912e6b7b05084.webp"
+  },
+  {
+    "id": 43,
+    "name": "Tenzing Momo",
+    "address": "93 Pike Street",
+    "city": "Seattle",
+    "state": "Washington",
+    "zip": "98101",
+    "urlSlug": "tenzing-momo",
+    "latitude": 47.608683464633,
+    "longitude": -122.340414994561,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/tenzing-momo/591c74b3867d2fa6.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/tenzing-momo/591c74b3867d2fa6.webp"
+  },
+  {
+    "id": 44,
+    "name": "Dandelion Botanical Co.",
+    "address": "4681 Sequim Dungeness Way",
+    "city": "Sequim",
+    "state": "Washington",
+    "zip": "98382",
+    "urlSlug": "dandelion-botanical-co",
+    "latitude": 48.142403611185,
+    "longitude": -123.123880080901,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dandelion-botanical-co/723890621b0c108f.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dandelion-botanical-co/723890621b0c108f.webp"
+  },
+  {
+    "id": 45,
+    "name": "Starlight Herb & Spice Company",
+    "address": "208 East 37th Street, Suite 6",
+    "city": "Garden City",
+    "state": "Idaho",
+    "zip": "83714",
+    "urlSlug": "starlight-herb-spice-company",
+    "latitude": 43.626452171765,
+    "longitude": -116.240807564429,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/starlight-herb-spice-company/965751e729d5fa7e.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/starlight-herb-spice-company/965751e729d5fa7e.webp"
+  },
+  {
+    "id": 49,
+    "name": "Meadowsweet",
+    "address": "180 South 3rd Street West",
+    "city": "Missoula",
+    "state": "Montana",
+    "zip": "59801",
+    "urlSlug": "meadowsweet",
+    "latitude": 46.86701383864,
+    "longitude": -113.998840495979,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/meadowsweet/9d4aad25abb73f7c.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/meadowsweet/9d4aad25abb73f7c.webp"
+  },
+  {
+    "id": 48,
+    "name": "Butterfly Herbs",
+    "address": "232 North Higgins Avenue",
+    "city": "Missoula",
+    "state": "Montana",
+    "zip": "59802",
+    "urlSlug": "butterfly-herbs",
+    "latitude": 46.871457472013,
+    "longitude": -113.994382535853,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/butterfly-herbs/b7342206c2d344b7.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/butterfly-herbs/b7342206c2d344b7.webp"
+  },
+  {
+    "id": 47,
+    "name": "Tendril Herbal Apothecary and Healing Center",
+    "address": "532 Main Street",
+    "city": "Sandpoint",
+    "state": "Idaho",
+    "zip": "83864",
+    "urlSlug": "tendril-herbal-apothecary-and-healing-center",
+    "latitude": 48.276289018628,
+    "longitude": -116.555066941467,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/tendril-herbal-apothecary-and-healing-center/8ea88acbf1ce3e65.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/tendril-herbal-apothecary-and-healing-center/8ea88acbf1ce3e65.webp"
+  },
+  {
+    "id": 50,
+    "name": "Mountain Rose Herbs",
+    "address": "152 West 5th Avenue, Suite 3",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97401",
+    "urlSlug": "mountain-rose-herbs",
+    "latitude": 44.05427935099,
+    "longitude": -123.095062009058,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mountain-rose-herbs/f77738b335979cfa.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mountain-rose-herbs/f77738b335979cfa.webp"
+  },
+  {
+    "id": 51,
+    "name": "Mrs. Thompsons Herbs, Gifts & Folklore",
+    "address": "776 West Park Street",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97401",
+    "urlSlug": "mrs-thompsons-herbs-gifts-folklore",
+    "latitude": 44.05117468029,
+    "longitude": -123.092133290571,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mrs-thompsons-herbs-gifts-folklore/978ff9ca6dee39c7.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mrs-thompsons-herbs-gifts-folklore/978ff9ca6dee39c7.webp"
+  },
+  {
+    "id": 52,
+    "name": "Clary Sage Herbarium",
+    "address": "2901 NE Alberta Street",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97211",
+    "urlSlug": "clary-sage-herbarium",
+    "latitude": 45.559098131384,
+    "longitude": -122.635782944265,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/clary-sage-herbarium/2e3c4ac665a202be.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/clary-sage-herbarium/2e3c4ac665a202be.webp"
+  },
+  {
+    "id": 53,
+    "name": "Vibrance Ayurveda",
+    "address": "8083 SE 13th Avenue, Suite 5",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97202",
+    "urlSlug": "vibrance-ayurveda",
+    "latitude": 45.464534773501,
+    "longitude": -122.653078367333,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/vibrance-ayurveda/ce7205dd05660f48.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/vibrance-ayurveda/ce7205dd05660f48.webp"
+  },
+  {
+    "id": 54,
+    "name": "Herbiary Asheville",
+    "address": "29 North Market Street",
+    "city": "Asheville",
+    "state": "North Carolina",
+    "zip": "28801",
+    "urlSlug": "herbiary-asheville",
+    "latitude": 35.596695227672,
+    "longitude": -82.551210400066,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbiary-asheville/40205b67a474523d.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbiary-asheville/40205b67a474523d.webp"
+  },
+  {
+    "id": 55,
+    "name": "Musa Moon",
+    "address": "604 West Morehead Street, Suite 5",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "zip": "28208",
+    "urlSlug": "musa-moon",
+    "latitude": 35.225931364092,
+    "longitude": -80.855884355754,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/musa-moon/184affcc7f43aa18.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/musa-moon/184affcc7f43aa18.webp"
+  },
+  {
+    "id": 57,
+    "name": "Simply Herbal Organics",
+    "address": "35 West Passaic Street",
+    "city": "Peachland",
+    "state": "North Carolina",
+    "zip": "28133",
+    "urlSlug": "simply-herbal-organics",
+    "latitude": 34.992901198796,
+    "longitude": -80.2654894185,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/simply-herbal-organics/0ed1c31454eca605.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/simply-herbal-organics/0ed1c31454eca605.webp"
+  },
+  {
+    "id": 58,
+    "name": "Remedy Apothecary",
+    "address": "4725 Yadkinville Road",
+    "city": "Pfafftown",
+    "state": "North Carolina",
+    "zip": "27040",
+    "urlSlug": "remedy-apothecary",
+    "latitude": 36.152862962776,
+    "longitude": -80.361306777883,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/remedy-apothecary/65b8474d569f61c9.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/remedy-apothecary/65b8474d569f61c9.webp"
+  },
+  {
+    "id": 59,
+    "name": "Native Ceuticals Apothecary",
+    "address": "118A West Broad Street",
+    "city": "Statesville",
+    "state": "North Carolina",
+    "zip": "28677",
+    "urlSlug": "native-ceuticals-apothecary",
+    "latitude": 35.784449687577,
+    "longitude": -80.88905563356,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/native-ceuticals-apothecary/d5b92302961d9c54.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/native-ceuticals-apothecary/d5b92302961d9c54.webp"
+  },
+  {
+    "id": 60,
+    "name": "Chandra Botanicals",
+    "address": "211-5 Atlantic Beach Causeway",
+    "city": "Atlantic Beach",
+    "state": "North Carolina",
+    "zip": "28512",
+    "urlSlug": "chandra-botanicals",
+    "latitude": 34.70246890563,
+    "longitude": -76.738212385481,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/chandra-botanicals/f5ba9549a6650b04.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/chandra-botanicals/f5ba9549a6650b04.webp"
+  },
+  {
+    "id": 61,
+    "name": "Modern Herbal Apothecary",
+    "address": "6412 South MacDill Avenue",
+    "city": "Tampa",
+    "state": "Florida",
+    "zip": "33611",
+    "urlSlug": "modern-herbal-apothecary",
+    "latitude": 27.87623596165,
+    "longitude": -82.493975269739,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/modern-herbal-apothecary/10ca9681b53c93d8.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/modern-herbal-apothecary/10ca9681b53c93d8.webp"
+  },
+  {
+    "id": 62,
+    "name": "The Herbal Haberdashery",
+    "address": "5221 14th Street West",
+    "city": "Bradenton",
+    "state": "Florida",
+    "zip": "34207",
+    "urlSlug": "the-herbal-haberdashery",
+    "latitude": 27.448453849772,
+    "longitude": -82.575341131347,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/the-herbal-haberdashery/56f433aed82111f8.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/the-herbal-haberdashery/56f433aed82111f8.webp"
+  },
+  {
+    "id": 63,
+    "name": "Railyard Apothecary",
+    "address": "28 Howard Street, Suite 101-A",
+    "city": "Burlington",
+    "state": "Vermont",
+    "zip": "05401",
+    "urlSlug": "railyard-apothecary",
+    "latitude": 44.467211184766,
+    "longitude": -73.213884442004,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/railyard-apothecary/1513fd4d9a3fc848.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/railyard-apothecary/1513fd4d9a3fc848.webp"
+  },
+  {
+    "id": 64,
+    "name": "Wild Soul River",
+    "address": "248 Cole Avenue",
+    "city": "Williamstown",
+    "state": "Massachusetts",
+    "zip": "01267",
+    "urlSlug": "wild-soul-river",
+    "latitude": 42.716488315085,
+    "longitude": -73.192452716857,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-soul-river/f52827aa4957076d.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-soul-river/f52827aa4957076d.webp"
+  },
+  {
+    "id": 66,
+    "name": "2 Wolves Herbal Apothecary - Helen",
+    "address": "8065 South Main Street",
+    "city": "Helen",
+    "state": "Georgia",
+    "zip": "30545",
+    "urlSlug": "2-wolves-herbal-apothecary-helen",
+    "latitude": 34.698412344318,
+    "longitude": -83.721264309043,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/2-wolves-herbal-apothecary-helen/66af6d62e582818b.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/2-wolves-herbal-apothecary-helen/66af6d62e582818b.webp"
+  },
+  {
+    "id": 67,
+    "name": "Dande-Lion Herb Shop",
+    "address": "604 Crain Highway South",
+    "city": "Glen Burnie",
+    "state": "Maryland",
+    "zip": "21061",
+    "urlSlug": "dande-lion-herb-shop",
+    "latitude": 39.156854396318,
+    "longitude": -76.629610722161,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dande-lion-herb-shop/5b168e922db6d82d.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dande-lion-herb-shop/5b168e922db6d82d.webp"
+  },
+  {
+    "id": 68,
+    "name": "Wild Roots Apothecary",
+    "address": "4 River Lane",
+    "city": "Sperryville",
+    "state": "Virginia",
+    "zip": "22740",
+    "urlSlug": "wild-roots-apothecary",
+    "latitude": 38.658378770301,
+    "longitude": -78.216948675955,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-roots-apothecary/f9053e8b89bf88f4.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/wild-roots-apothecary/f9053e8b89bf88f4.webp"
+  },
+  {
+    "id": 69,
+    "name": "Dope Botanicals",
+    "address": "257 South 20th Street",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "zip": "19103",
+    "urlSlug": "dope-botanicals",
+    "latitude": 39.948620419775,
+    "longitude": -75.174153903365,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dope-botanicals/12f1cda931383f1b.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/dope-botanicals/12f1cda931383f1b.webp"
+  },
+  {
+    "id": 70,
+    "name": "Herbiary Philadelphia",
+    "address": "1136 Arch Street, Reading Terminal Market",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "zip": "19107",
+    "urlSlug": "herbiary-philadelphia",
+    "latitude": 39.953769188622,
+    "longitude": -75.15847322124,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbiary-philadelphia/178394942b33d5a4.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbiary-philadelphia/178394942b33d5a4.webp"
+  },
+  {
+    "id": 71,
+    "name": "Of the Earth Apothecary",
+    "address": "408 Main Street",
+    "city": "Avon-by-the-Sea",
+    "state": "New Jersey",
+    "zip": "07717",
+    "urlSlug": "of-the-earth-apothecary",
+    "latitude": 40.191811598991,
+    "longitude": -74.021843108496,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/of-the-earth-apothecary/5fdb96e17bd15e01.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/of-the-earth-apothecary/5fdb96e17bd15e01.webp"
+  },
+  {
+    "id": 73,
+    "name": "Erin’s Meadow Herb Farm",
+    "address": "132 England Lane",
+    "city": "Clinton",
+    "state": "Tennessee",
+    "zip": "37716",
+    "urlSlug": "erin-s-meadow-herb-farm",
+    "latitude": 36.046964513017,
+    "longitude": -84.257754425899,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/erin-s-meadow-herb-farm/0056dcbe5b1373af.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/erin-s-meadow-herb-farm/0056dcbe5b1373af.webp"
+  },
+  {
+    "id": 37,
+    "name": "Battleground Healing Arts",
+    "address": "408 East Main Street",
+    "city": "Battle Ground",
+    "state": "Washington",
+    "zip": "98604",
+    "urlSlug": "battleground-healing-arts",
+    "latitude": 45.780971814064,
+    "longitude": -122.532889068895,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/battleground-healing-arts/3b4c73215fb2adaf.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/battleground-healing-arts/3b4c73215fb2adaf.webp"
+  },
+  {
+    "id": 46,
+    "name": "Red Clover Herbs and Market",
+    "address": "1655 South Woodruff Avenue",
+    "city": "Idaho Falls",
+    "state": "Idaho",
+    "zip": "83404",
+    "urlSlug": "red-clover-herbs-and-market",
+    "latitude": 43.483008051848,
+    "longitude": -112.000536986859,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/0acb383e726df79b.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/8b90bb41d88ffcb3.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027-followup/red-clover-herbs-and-market/0acb383e726df79b.webp"
+  },
+  {
+    "id": 74,
+    "name": "Soulful Body & Mind Apothecary",
+    "address": "12 Elm Street",
+    "city": "Baldwinville",
+    "state": "Massachusetts",
+    "zip": "01436",
+    "urlSlug": "soulful-body-mind-apothecary",
+    "latitude": 42.607533785676,
+    "longitude": -72.075065534437,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/soulful-body-mind-apothecary/1c51ffc7960c70a1.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/soulful-body-mind-apothecary/8e45377f076ec3ef.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/soulful-body-mind-apothecary/9f15d306f2bb43cf.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/soulful-body-mind-apothecary/1c51ffc7960c70a1.webp"
+  },
+  {
+    "id": 75,
+    "name": "Herbal Junction Elixirs",
+    "address": "50 East 25th Avenue",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "urlSlug": "herbal-junction-elixirs",
+    "latitude": 44.031224704998,
+    "longitude": -123.090170666687,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbal-junction-elixirs/42602eaa44db82aa.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbal-junction-elixirs/78de1c3ab6688d0e.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/herbal-junction-elixirs/42602eaa44db82aa.webp"
+  },
+  {
+    "id": 76,
+    "name": "Casablanca Herbal Shop",
+    "address": "3035 Fayetteville Street, Unit A",
+    "city": "Durham",
+    "state": "North Carolina",
+    "zip": "27707",
+    "urlSlug": "casablanca-herbal-shop",
+    "latitude": 35.963195466517,
+    "longitude": -78.907695953935,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/casablanca-herbal-shop/33f413401dd7b73a.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/casablanca-herbal-shop/34849a7a03ef0d71.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/casablanca-herbal-shop/aa88e358670144df.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/casablanca-herbal-shop/33f413401dd7b73a.webp"
+  },
+  {
+    "id": 77,
+    "name": "Smile Herb Shop",
+    "address": "4908 Berwyn Road",
+    "city": "College Park",
+    "state": "Maryland",
+    "zip": "20740",
+    "urlSlug": "smile-herb-shop",
+    "latitude": 38.995080789615,
+    "longitude": -76.927417050355,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/smile-herb-shop/9b84ce39f1a52909.webp",
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/smile-herb-shop/816800aa5f398659.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/smile-herb-shop/9b84ce39f1a52909.webp"
+  },
+  {
+    "id": 78,
+    "name": "Little House of Healing Herbs Apothecary",
+    "address": "229 Earl Garrett Street, inside Zen & Alchemy",
+    "city": "Kerrville",
+    "state": "Texas",
+    "zip": "78028",
+    "urlSlug": "little-house-of-healing-herbs-apothecary",
+    "latitude": 30.045810549119,
+    "longitude": -99.140165963554,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/little-house-of-healing-herbs-apothecary/f38bcaa3012050bc.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/little-house-of-healing-herbs-apothecary/f38bcaa3012050bc.webp"
+  },
+  {
+    "id": 79,
+    "name": "Village Apothecary",
+    "address": "12220 Highway N14, Suite N4",
+    "city": "Cedar Crest",
+    "state": "New Mexico",
+    "zip": "87008",
+    "urlSlug": "village-apothecary",
+    "latitude": 35.13831312315,
+    "longitude": -106.364349488331,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/village-apothecary/652799093d60a2a2.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/village-apothecary/652799093d60a2a2.webp"
+  },
+  {
+    "id": 41,
+    "name": "Mountain Spirit Herbals",
+    "address": "3110 3rd Street",
+    "city": "Port Townsend",
+    "state": "Washington",
+    "zip": "98368",
+    "urlSlug": "mountain-spirit-herbals",
+    "latitude": 48.1025930979373,
+    "longitude": -122.814539020832,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mountain-spirit-herbals/aee6f30a871a73fb.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/mountain-spirit-herbals/aee6f30a871a73fb.webp"
+  },
+  {
+    "id": 56,
+    "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+    "address": "627 S US Highway 64",
+    "city": "Manteo",
+    "state": "North Carolina",
+    "zip": "27954",
+    "urlSlug": "healing-house-herbs-formerly-natural-selection-apothecary",
+    "latitude": 35.89690715,
+    "longitude": -75.66728735,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/healing-house-herbs-formerly-natural-selection-apothecary/911b585198b37738.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/healing-house-herbs-formerly-natural-selection-apothecary/911b585198b37738.webp"
+  },
+  {
+    "id": 72,
+    "name": "Synergy Herbal Works - Sparta",
+    "address": "14 Liberty Square",
+    "city": "Sparta",
+    "state": "Tennessee",
+    "zip": "38583",
+    "urlSlug": "synergy-herbal-works-sparta",
+    "latitude": 35.925216615645,
+    "longitude": -85.4638679085196,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/synergy-herbal-works-sparta/7df39962c5f40df9.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/synergy-herbal-works-sparta/7df39962c5f40df9.webp"
+  },
+  {
+    "id": 65,
+    "name": "2 Wolves Herbal Apothecary - Augusta",
+    "address": "469 Highland Avenue",
+    "city": "Augusta",
+    "state": "Georgia",
+    "zip": "30909",
+    "urlSlug": "2-wolves-herbal-apothecary-augusta",
+    "latitude": 33.484385651992,
+    "longitude": -82.029937823617,
+    "photos": [
+      "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/2-wolves-herbal-apothecary-augusta/6689634087c9d9ca.webp"
+    ],
+    "coverPhoto": "https://qtpepsebztlremlhpxdt.supabase.co/storage/v1/object/public/place-photos/editorial/national-20261027/2-wolves-herbal-apothecary-augusta/6689634087c9d9ca.webp"
+  }
+]

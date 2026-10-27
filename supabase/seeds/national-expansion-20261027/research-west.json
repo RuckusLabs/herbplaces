@@ -1,0 +1,983 @@
+[
+  {
+    "name": "Natural Law Apothecary",
+    "address": "423 S 600 W",
+    "city": "Salt Lake City",
+    "state": "Utah",
+    "state_code": "UT",
+    "zip": "84101",
+    "website": "https://naturallawapothecary.com/",
+    "phone": "801-613-2128",
+    "hours": "Monday, Friday, Saturday: noon–8pm; Tuesday–Thursday: 4–8pm; Sunday: closed",
+    "tagline": "Bulk herbs and botanical preparations in Salt Lake City",
+    "description": "Natural Law Apothecary offers bulk herbs, tinctures, resins, and locally made botanical preparations in Salt Lake City.\n\nThe shop also hosts classes, art gatherings, and other community events. Check its current calendar for individual event details.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://naturallawapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://naturallawapothecary.com/cdn/shop/files/123-1_600x600@2x.jpeg?v=1613736271",
+        "sourcePage": "https://naturallawapothecary.com/",
+        "alt": "Natural Law Apothecary shop interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/natural-law-apothecary-b906919ff6f6.webp",
+        "width": 1032,
+        "height": 996,
+        "sha256": "b906919ff6f65b12f9608472743da29e169b79ecf12953be92a18ad089d65fc8"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 88,
+    "photoSearchAttempts": [
+      {
+        "url": "https://naturallawapothecary.com/cdn/shop/files/123-1_600x600@2x.jpeg?v=1613736271",
+        "sourcePage": "https://naturallawapothecary.com/",
+        "alt": "Natural Law Apothecary shop interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/natural-law-apothecary-b906919ff6f6.webp",
+        "width": 1032,
+        "height": 996,
+        "sha256": "b906919ff6f65b12f9608472743da29e169b79ecf12953be92a18ad089d65fc8"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Dragon Herbs Herbal Emporium and Elixir Bar",
+    "address": "460 S Robertson Boulevard",
+    "city": "Los Angeles",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "90048",
+    "website": "https://www.dragonherbs.com/store-locator",
+    "phone": "310-917-2288",
+    "hours": "Daily: 11am–7pm",
+    "tagline": "An herbal emporium and elixir bar in Los Angeles",
+    "description": "Dragon Herbs offers tonic herbs, tinctures, teas, and botanical formulations at its Los Angeles emporium. The store includes an elixir bar and a tea selection.\n\nVisitors can browse in person and ask the shop’s herbalists about its products. The operator also advertises herbal tea tastings.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.dragonherbs.com/store-locator"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.dragonherbs.com//media/wysiwyg/slideshow/slide-LAstore-mainroom1.jpg",
+        "sourcePage": "https://www.dragonherbs.com/store-locator",
+        "alt": "Dragon Herbs Los Angeles store interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/dragon-herbs-herbal-emporium-and-elixir-bar-f6e8820df9d5.webp",
+        "width": 1180,
+        "height": 664,
+        "sha256": "f6e8820df9d5d99a4af1ad00261db16a984256d17ea5dbf1018e6c92c48efa05"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 89,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.dragonherbs.com//media/wysiwyg/slideshow/slide-LAstore-mainroom1.jpg",
+        "sourcePage": "https://www.dragonherbs.com/store-locator",
+        "alt": "Dragon Herbs Los Angeles store interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/dragon-herbs-herbal-emporium-and-elixir-bar-f6e8820df9d5.webp",
+        "width": 1180,
+        "height": 664,
+        "sha256": "f6e8820df9d5d99a4af1ad00261db16a984256d17ea5dbf1018e6c92c48efa05"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Mountain Rose Herbs Mercantile - Palm Springs",
+    "address": "115 S Palm Canyon Drive",
+    "city": "Palm Springs",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "92262",
+    "website": "https://mountainroseherbs.com/mercantiles/palm-springs",
+    "phone": "442-998-4085",
+    "hours": "Monday–Wednesday, Friday–Sunday: 11am–7pm; Thursday: 11am–8pm",
+    "tagline": "Bulk herbs, teas, and botanical supplies in Palm Springs",
+    "description": "Mountain Rose Herbs’ Palm Springs mercantile carries herbs, spices, teas, aromatherapy goods, and supplies for making botanical products.\n\nThis public retail branch offers an in-person selection of the company’s products. Contact the store to check specific inventory before visiting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://mountainroseherbs.com/mercantiles/palm-springs",
+      "https://mountainroseherbs.com/ordering-information/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://store-8466dwhhql.mybigcommerce.com/content/img/home/psmerc-cover.jpg",
+        "sourcePage": "https://mountainroseherbs.com/mercantiles/palm-springs",
+        "alt": "Mountain Rose Herbs Mercantile - Palm Springs storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/mountain-rose-herbs-mercantile-palm-springs-773b9b54f463.webp",
+        "width": 685,
+        "height": 475,
+        "sha256": "773b9b54f463fb19a8f1d23b34035a319e8fc9cb51677ec64510b3b57f206180"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 90,
+    "photoSearchAttempts": [
+      {
+        "url": "https://store-8466dwhhql.mybigcommerce.com/content/img/home/psmerc-cover.jpg",
+        "sourcePage": "https://mountainroseherbs.com/mercantiles/palm-springs",
+        "alt": "Mountain Rose Herbs Mercantile - Palm Springs storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/mountain-rose-herbs-mercantile-palm-springs-773b9b54f463.webp",
+        "width": 685,
+        "height": 475,
+        "sha256": "773b9b54f463fb19a8f1d23b34035a319e8fc9cb51677ec64510b3b57f206180"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Mountain Rose Herbs Mercantile - Seattle",
+    "address": "2111 1st Avenue",
+    "city": "Seattle",
+    "state": "Washington",
+    "state_code": "WA",
+    "zip": "98121",
+    "website": "https://mountainroseherbs.com/mercantiles/seattle",
+    "phone": "206-818-0119",
+    "hours": "Daily: 10am–6pm",
+    "tagline": "Bulk herbs, teas, and botanical supplies in Seattle",
+    "description": "Mountain Rose Herbs’ Seattle mercantile carries herbs, spices, teas, aromatherapy goods, and supplies for making botanical products.\n\nThis public retail branch offers an in-person selection of the company’s products. Contact the store to check specific inventory before visiting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://mountainroseherbs.com/mercantiles/seattle",
+      "https://mountainroseherbs.com/ordering-information/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://store-8466dwhhql.mybigcommerce.com/content/assets/img/smerc-masonry/smerc-header.jpg",
+        "sourcePage": "https://mountainroseherbs.com/mercantiles/seattle",
+        "alt": "Mountain Rose Herbs Mercantile - Seattle storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/mountain-rose-herbs-mercantile-seattle-139988904e89.webp",
+        "width": 1200,
+        "height": 600,
+        "sha256": "139988904e8995ba89dfd4de3754bd79a913920d5d72ab22650aa2c373a7d9a2"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 91,
+    "photoSearchAttempts": [
+      {
+        "url": "https://store-8466dwhhql.mybigcommerce.com/content/assets/img/smerc-masonry/smerc-header.jpg",
+        "sourcePage": "https://mountainroseherbs.com/mercantiles/seattle",
+        "alt": "Mountain Rose Herbs Mercantile - Seattle storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/mountain-rose-herbs-mercantile-seattle-139988904e89.webp",
+        "width": 1200,
+        "height": 600,
+        "sha256": "139988904e8995ba89dfd4de3754bd79a913920d5d72ab22650aa2c373a7d9a2"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herbally Grounded - Charleston",
+    "address": "4441 W Charleston Boulevard",
+    "city": "Las Vegas",
+    "state": "Nevada",
+    "state_code": "NV",
+    "zip": "89102",
+    "website": "https://herballygrounded.com/",
+    "phone": "702-558-4372",
+    "hours": "Monday–Saturday: 9am–7pm",
+    "tagline": "Herbs and botanical products in Las Vegas",
+    "description": "Herbally Grounded’s Las Vegas store offers herbs, botanical blends, and related wellness products. It is one of the family-owned business’s two Las Vegas-area locations.\n\nVisitors can shop in person at this branch and check availability directly with its staff.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://herballygrounded.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herballygrounded.com/cdn/shop/products/herbalfighter4oz_01_1024x1024.jpg?v=1647991059",
+        "sourcePage": "https://herballygrounded.com/",
+        "alt": "Herbally Grounded’s Herbal Fighter bottled preparation",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbally-grounded-eastern-1aad71d4a48d.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "1aad71d4a48d36f0bb2a4d792d20f7fdb576409051ce2edab061a893a8b372de"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site explicitly lists both public retail locations; do not use one branch exterior for the other.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 92,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herballygrounded.com/cdn/shop/products/herbalfighter4oz_01_1024x1024.jpg?v=1647991059",
+        "sourcePage": "https://herballygrounded.com/",
+        "alt": "Herbally Grounded’s Herbal Fighter bottled preparation",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbally-grounded-eastern-1aad71d4a48d.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "1aad71d4a48d36f0bb2a4d792d20f7fdb576409051ce2edab061a893a8b372de"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herbally Grounded - Eastern",
+    "address": "10345 S Eastern Avenue Suite 150",
+    "city": "Henderson",
+    "state": "Nevada",
+    "state_code": "NV",
+    "zip": "89052",
+    "website": "https://herballygrounded.com/",
+    "phone": "725-203-1099",
+    "hours": "Monday–Saturday: 9am–7pm",
+    "tagline": "Herbs and botanical products in Henderson",
+    "description": "Herbally Grounded’s Henderson store offers herbs, botanical blends, and related wellness products. It is one of the family-owned business’s two Las Vegas-area locations.\n\nVisitors can shop in person at this branch and check availability directly with its staff.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://herballygrounded.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herballygrounded.com/cdn/shop/products/herbalfighter4oz_01_1024x1024.jpg?v=1647991059",
+        "sourcePage": "https://herballygrounded.com/",
+        "alt": "Herbally Grounded’s Herbal Fighter bottled preparation",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbally-grounded-eastern-1aad71d4a48d.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "1aad71d4a48d36f0bb2a4d792d20f7fdb576409051ce2edab061a893a8b372de"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site explicitly lists both public retail locations; do not use one branch exterior for the other.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 93,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herballygrounded.com/cdn/shop/products/herbalfighter4oz_01_1024x1024.jpg?v=1647991059",
+        "sourcePage": "https://herballygrounded.com/",
+        "alt": "Herbally Grounded’s Herbal Fighter bottled preparation",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbally-grounded-eastern-1aad71d4a48d.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "1aad71d4a48d36f0bb2a4d792d20f7fdb576409051ce2edab061a893a8b372de"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Pilar’s Wellness Collective Apothecary",
+    "address": "1001 W 17th Street Unit R",
+    "city": "Costa Mesa",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "92627",
+    "website": "https://www.pilarswellnesscollective.com/apothecary",
+    "phone": "949-244-4973",
+    "hours": "Monday–Thursday: 11am–6pm; Friday–Saturday: 11am–4pm",
+    "tagline": "Bulk herbs and botanical supplies in Costa Mesa",
+    "description": "Pilar’s Wellness Collective maintains an apothecary with loose-leaf and powdered herbs, mushrooms, roots, and clays sold by weight. Its shop also offers blended teas and a house botanical product line.\n\nThe collective publishes separate shop hours and hosts classes. Contact the apothecary about inventory or curbside pickup.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.pilarswellnesscollective.com/apothecary",
+      "https://www.pilarswellnesscollective.com/contact/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5f5173ff96341f496ca05c63/697db3cd-5ef6-49d8-a9f8-06cb6ab8efee/IMG_5240.jpg",
+        "sourcePage": "https://www.pilarswellnesscollective.com/",
+        "alt": "Pilar’s Wellness Collective botanical products",
+        "localFile": "docs/listing-images/national-expansion-20261027/pilar-s-wellness-collective-apothecary-0425fbaf205c.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "0425fbaf205c62370ea81b525457972c95f9195210ed35c42a8d62cc66a056ee"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 94,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5f5173ff96341f496ca05c63/697db3cd-5ef6-49d8-a9f8-06cb6ab8efee/IMG_5240.jpg",
+        "sourcePage": "https://www.pilarswellnesscollective.com/",
+        "alt": "The apothecary at Pilar’s Wellness Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/pilar-s-wellness-collective-apothecary-0425fbaf205c.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "0425fbaf205c62370ea81b525457972c95f9195210ed35c42a8d62cc66a056ee"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herban Myth Apothecary at Chico Holistic Wellness Center",
+    "address": "287 Rio Lindo Avenue",
+    "city": "Chico",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "95926",
+    "website": "https://chicoholistic.com/apothecary-herbalism",
+    "phone": "530-809-2112",
+    "hours": "",
+    "tagline": "A community herbal apothecary in Chico",
+    "description": "The apothecary inside Chico Holistic Wellness Center carries botanical products from Herban Myth and other local makers. Offerings include tinctures, oils, and body care.\n\nVisitors can browse its herbal resource library and enjoy tea. Contact the center to confirm current shopping hours or arrange an off-hours visit.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://chicoholistic.com/apothecary-herbalism"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6238a8ac293a130fd6b155da/1685502640453-1IGW9MI2YXMU00AU68Z3/3R9A4611.jpg",
+        "sourcePage": "https://chicoholistic.com/apothecary-herbalism",
+        "alt": "Herban Myth Apothecary at Chico Holistic Wellness Center",
+        "localFile": "docs/listing-images/national-expansion-20261027/herban-myth-apothecary-at-chico-holistic-wellness-center-9b8a4833587b.webp",
+        "width": 1052,
+        "height": 1600,
+        "sha256": "9b8a4833587b88a688f2bc280e2c419496d9e88be76d6dba492734bc8345e8ef"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official page explicitly welcomes shop visitors and off-hours visits by arrangement; regular hours omitted.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 95,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6238a8ac293a130fd6b155da/1685502640453-1IGW9MI2YXMU00AU68Z3/3R9A4611.jpg",
+        "sourcePage": "https://chicoholistic.com/apothecary-herbalism",
+        "alt": "Herban Myth Apothecary at Chico Holistic Wellness Center",
+        "localFile": "docs/listing-images/national-expansion-20261027/herban-myth-apothecary-at-chico-holistic-wellness-center-9b8a4833587b.webp",
+        "width": 1052,
+        "height": 1600,
+        "sha256": "9b8a4833587b88a688f2bc280e2c419496d9e88be76d6dba492734bc8345e8ef"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Enchantment Creek Apothecary",
+    "address": "1126 Lane 11",
+    "city": "Powell",
+    "state": "Wyoming",
+    "state_code": "WY",
+    "zip": "82435",
+    "website": "https://www.enchantmentcreek.com/",
+    "phone": "",
+    "hours": "Wednesday–Saturday: 1–5pm; other days by appointment; Sunday: closed",
+    "tagline": "Farm-made botanical preparations near Powell",
+    "description": "Enchantment Creek Apothecary offers herbal teas, tinctures, salves, and other small-batch botanical preparations. The operator grows and works with plants from its Rocky Mountain region.\n\nThe farm apothecary publishes local shopping hours, with visits on other days arranged by phone.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.enchantmentcreek.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/686c0a6c4f758a3deb967726/e1c8a702-df8c-47bd-ae5d-35d972931492/40z+lemon+balm+4oz.jpeg",
+        "sourcePage": "https://www.enchantmentcreek.com/",
+        "alt": "Enchantment Creek Apothecary lemon balm tincture",
+        "localFile": "docs/listing-images/national-expansion-20261027/enchantment-creek-apothecary-08a00c52759d.webp",
+        "width": 1600,
+        "height": 1323,
+        "sha256": "08a00c52759dd863c6fa9bf41b17b8f1a060b258f3540c30bf238381a91ccead"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 96,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/686c0a6c4f758a3deb967726/e1c8a702-df8c-47bd-ae5d-35d972931492/40z+lemon+balm+4oz.jpeg",
+        "sourcePage": "https://www.enchantmentcreek.com/",
+        "alt": "Enchantment Creek Apothecary lemon balm tincture",
+        "localFile": "docs/listing-images/national-expansion-20261027/enchantment-creek-apothecary-08a00c52759d.webp",
+        "width": 1600,
+        "height": 1323,
+        "sha256": "08a00c52759dd863c6fa9bf41b17b8f1a060b258f3540c30bf238381a91ccead"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Kauai Farmacy",
+    "address": "4731G Kuawa Road",
+    "city": "Kilauea",
+    "state": "Hawaii",
+    "state_code": "HI",
+    "zip": "96754",
+    "website": "https://shop.kauaifarmacy.com/pages/visit",
+    "phone": "808-828-6525",
+    "hours": "Farm store and tea house: Monday–Friday 10am–3pm; guided tours require reservations",
+    "tagline": "A farm store, tea house, and herb garden on Kauai",
+    "description": "Kauai Farmacy grows herbs on its Kilauea farm and makes teas, tinctures, salves, and other botanical goods. Visitors can browse its farm store and enjoy freshly brewed tea.\n\nThe farm offers reserved guided garden tours as well as weekday tea-house drop-ins. Check the operator’s booking calendar for the latest tour schedule.",
+    "category_ids": [
+      "shops",
+      "gardens",
+      "workshops"
+    ],
+    "sources": [
+      "https://shop.kauaifarmacy.com/pages/visit",
+      "https://shop.kauaifarmacy.com/pages/contact-kf"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://shop.kauaifarmacy.com/cdn/shop/files/tours_gaden_photo-1.jpg?v=1784776471&width=2000",
+        "sourcePage": "https://shop.kauaifarmacy.com/pages/visit",
+        "alt": "Kauai Farmacy herb garden",
+        "localFile": "docs/listing-images/national-expansion-20261027/kauai-farmacy-e3be86161fa1.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "e3be86161fa1144bcb585989c7aa97a869df8adc2bb0080f31e7dbc158749655"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 97,
+    "photoSearchAttempts": [
+      {
+        "url": "https://shop.kauaifarmacy.com/cdn/shop/files/tours_gaden_photo-1.jpg?v=1784776471&width=2000",
+        "sourcePage": "https://shop.kauaifarmacy.com/pages/visit",
+        "alt": "Kauai Farmacy herb garden",
+        "localFile": "docs/listing-images/national-expansion-20261027/kauai-farmacy-e3be86161fa1.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "e3be86161fa1144bcb585989c7aa97a869df8adc2bb0080f31e7dbc158749655"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Dragon’s Den Herb Shop",
+    "address": "3681 Baldwin Avenue Suite A-103",
+    "city": "Makawao",
+    "state": "Hawaii",
+    "state_code": "HI",
+    "zip": "96768",
+    "website": "https://dragonsdenhawaii.com/",
+    "phone": "808-572-2424",
+    "hours": "Monday–Saturday: 9:30am–5:30pm; Sunday: 11am–4pm",
+    "tagline": "Bulk herbs and a tea counter in Makawao",
+    "description": "Dragon’s Den Herb Shop offers bulk herbs, teas, tinctures, books, and other botanical goods in Makawao. Its retail shop also carries locally made products.\n\nVisitors can order a cup of tea and browse the selection. The business also announces workshops and community events on its website.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://dragonsdenhawaii.com/",
+      "https://www.mauiinformationguide.com/makawao-town.php"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://dragonsdenhawaii.com/cdn/shop/files/dragons_den_ohana.jpg?v=1749172904&width=2289",
+        "sourcePage": "https://dragonsdenhawaii.com/",
+        "alt": "Dragon’s Den Herb Shop team behind the counter",
+        "localFile": "docs/listing-images/national-expansion-20261027/dragon-s-den-herb-shop-7da9692d4724.webp",
+        "width": 1600,
+        "height": 1343,
+        "sha256": "7da9692d472482966537533f34c25ad591d80630637fc748c401534cfeae489a"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 98,
+    "photoSearchAttempts": [
+      {
+        "url": "https://dragonsdenhawaii.com/cdn/shop/files/dragons_den_ohana.jpg?v=1749172904&width=2289",
+        "sourcePage": "https://dragonsdenhawaii.com/",
+        "alt": "Dragon’s Den Herb Shop team behind the counter",
+        "localFile": "docs/listing-images/national-expansion-20261027/dragon-s-den-herb-shop-7da9692d4724.webp",
+        "width": 1600,
+        "height": 1343,
+        "sha256": "7da9692d472482966537533f34c25ad591d80630637fc748c401534cfeae489a"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Rosemary’s Garden",
+    "address": "176 N Main Street",
+    "city": "Sebastopol",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "95472",
+    "website": "https://www.rosemarysgarden.com/",
+    "phone": "707-829-2539",
+    "hours": "",
+    "tagline": "Herbs, essential oils, and botanical supplies in Sebastopol",
+    "description": "Rosemary’s Garden is a Sebastopol herbal shop offering dried herbs, tea blends, tinctures, essential oils, and body care. It also stocks books and supplies for botanical preparations.\n\nCustomers can visit the Main Street store to browse its selection. Contact the shop for current hours and specific product availability.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.rosemarysgarden.com/",
+      "https://www.sonomacounty.com/shopping/rosemarys-garden/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.rosemarysgarden.com/cdn/shop/files/Herbs.jpg?crop=center&height=1000&v=1779048910&width=1000",
+        "sourcePage": "https://www.rosemarysgarden.com/",
+        "alt": "Rosemary’s Garden herb selection",
+        "localFile": "docs/listing-images/national-expansion-20261027/rosemary-s-garden-81c1882135ea.webp",
+        "width": 1000,
+        "height": 1000,
+        "sha256": "81c1882135eade6469b90b860adc4fc9712a15eb2bc72a1addb9186387bbf1a4"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 99,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.rosemarysgarden.com/cdn/shop/files/Herbs.jpg?crop=center&height=1000&v=1779048910&width=1000",
+        "sourcePage": "https://www.rosemarysgarden.com/",
+        "alt": "Rosemary’s Garden herb selection",
+        "localFile": "docs/listing-images/national-expansion-20261027/rosemary-s-garden-81c1882135ea.webp",
+        "width": 1000,
+        "height": 1000,
+        "sha256": "81c1882135eade6469b90b860adc4fc9712a15eb2bc72a1addb9186387bbf1a4"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Milagro Herbs",
+    "address": "1500 5th Street Unit 6",
+    "city": "Santa Fe",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "87505",
+    "website": "https://www.milagroherbs.com/",
+    "phone": "505-820-6321",
+    "hours": "Monday–Saturday: 10am–5:30pm",
+    "tagline": "Locally crafted herbal products in Santa Fe",
+    "description": "Milagro Herbs offers herbs, tinctures, salves, essential oils, and botanical body care from its Santa Fe shop. Many of its preparations are made in-house.\n\nThe business combines a public retail store with herbal education and events. Contact the shop for information about current products or classes.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.milagroherbs.com/",
+      "https://sfreporter.com/guides/best-of-santa-fe/best-santa-fe-2024-health-personal-services/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.milagroherbs.com/cdn/shop/files/store.webp?v=1781445604&width=1500",
+        "sourcePage": "https://www.milagroherbs.com/",
+        "alt": "Milagro Herbs Santa Fe shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/milagro-herbs-1ff1da02b2b5.webp",
+        "width": 1360,
+        "height": 1020,
+        "sha256": "1ff1da02b2b5e1fd6b9adee1713b8e0a6e5c713a930b5f5d0e17b890f383a98c"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 100,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.milagroherbs.com/cdn/shop/files/store.webp?v=1781445604&width=1500",
+        "sourcePage": "https://www.milagroherbs.com/",
+        "alt": "Milagro Herbs Santa Fe shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/milagro-herbs-1ff1da02b2b5.webp",
+        "width": 1360,
+        "height": 1020,
+        "sha256": "1ff1da02b2b5e1fd6b9adee1713b8e0a6e5c713a930b5f5d0e17b890f383a98c"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Old Town Herbal",
+    "address": "1919 Old Town Road NW Unit 2",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "87104",
+    "website": "https://oldtownherbal.com/",
+    "phone": "505-289-1142",
+    "hours": "",
+    "tagline": "Herbs, teas, and locally made goods in Albuquerque",
+    "description": "Old Town Herbal offers dried herbs, loose-leaf teas, tinctures, botanical body care, and locally made goods in Albuquerque’s Old Town.\n\nThe shop also publishes a calendar of herbal classes and seasonal workshops. Check directly for current hours and individual event details.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://oldtownherbal.com/",
+      "https://oldtownherbal.com/contact-us/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-dc68x3j7ha/images/stencil/500x659/products/2006/2030/0__47110.1683147256.jpg?c=1",
+        "sourcePage": "https://oldtownherbal.com/old-town-herbal/",
+        "alt": "Old Town Herbal’s Ashwagandha tincture",
+        "localFile": "docs/listing-images/national-expansion-20261027/old-town-herbal-413c78076684.webp",
+        "width": 500,
+        "height": 500,
+        "sha256": "413c780766844b523ba8ffe6a6f01500f7a870e2617a50c8a2d42f233c8b8f95"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 101,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-dc68x3j7ha/images/stencil/500x659/products/2006/2030/0__47110.1683147256.jpg?c=1",
+        "sourcePage": "https://oldtownherbal.com/old-town-herbal/",
+        "alt": "Old Town Herbal’s Ashwagandha tincture",
+        "localFile": "docs/listing-images/national-expansion-20261027/old-town-herbal-413c78076684.webp",
+        "width": 500,
+        "height": 500,
+        "sha256": "413c780766844b523ba8ffe6a6f01500f7a870e2617a50c8a2d42f233c8b8f95"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "All About Herbs",
+    "address": "4621 E Palmer-Wasilla Highway Suite 104",
+    "city": "Wasilla",
+    "state": "Alaska",
+    "state_code": "AK",
+    "zip": "99654",
+    "website": "https://allaboutherbs.com/",
+    "phone": "907-376-8327",
+    "hours": "",
+    "tagline": "Bulk herbs and Alaska-made goods in Wasilla",
+    "description": "All About Herbs is a Wasilla retail store carrying bulk herbs, herbal extracts, essential oils, local honey, and botanical bath products alongside supplements. Its selection includes goods made by Alaska producers.\n\nThe business also advertises educational classes. Contact the shop to confirm hours before visiting, as its home and contact pages publish different schedules.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://allaboutherbs.com/",
+      "https://allaboutherbs.com/contact-us/",
+      "https://www.commerce.alaska.gov/dcra/akmadeproducts/Business/Details/6c700523-f03b-407d-b0c4-d003a15ae904"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://allaboutherbs.com/wp-content/uploads/2022/10/All-About-Herbs-About-Us.jpg",
+        "sourcePage": "https://allaboutherbs.com/about/",
+        "alt": "All About Herbs business photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/all-about-herbs-293f1aab70fd.webp",
+        "width": 650,
+        "height": 433,
+        "sha256": "293f1aab70fd1c5f6f2839587bf745ba538d64655fde07cf2f45d1f8f0c770a6"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official retail address and state maker record agree. Conflicting official schedules are omitted rather than guessed.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 102,
+    "photoSearchAttempts": [
+      {
+        "url": "https://allaboutherbs.com/wp-content/uploads/2022/10/All-About-Herbs-About-Us.jpg",
+        "sourcePage": "https://allaboutherbs.com/about/",
+        "alt": "All About Herbs business photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/all-about-herbs-293f1aab70fd.webp",
+        "width": 650,
+        "height": 433,
+        "sha256": "293f1aab70fd1c5f6f2839587bf745ba538d64655fde07cf2f45d1f8f0c770a6"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Rosemary’s Herb Shop",
+    "address": "1705 Sudderth Drive",
+    "city": "Ruidoso",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "88345",
+    "website": "https://www.rosemarysherbshop.com/home-2",
+    "phone": "575-257-0333",
+    "hours": "Monday–Friday: 9:30am–5:30pm; Saturday: 9:30am–5pm; Sunday: closed",
+    "tagline": "Herbs and botanical products in Ruidoso",
+    "description": "Rosemary’s Herb Shop is a Ruidoso storefront offering herbs and related wellness products. The operator publishes regular shopping hours at its Sudderth Drive address.\n\nContact the store for current inventory and pricing, which the website asks shoppers to confirm by phone.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.rosemarysherbshop.com/home-2",
+      "https://nextdoor.com/pages/rosemarys-herb-shop-ruidoso-nm/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/a7a68b_b13bd757cb8b497996242511f4852dd7.jpg",
+        "sourcePage": "https://www.rosemarysherbshop.com/about",
+        "alt": "Rosemary of Rosemary’s Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/rosemary-s-herb-shop-8b40d237a22b.webp",
+        "width": 450,
+        "height": 342,
+        "sha256": "8b40d237a22baf4ae32e9160084c62b92618df156f6eb2069320e5b3701329a8"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 103,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/a7a68b_b13bd757cb8b497996242511f4852dd7.jpg",
+        "sourcePage": "https://www.rosemarysherbshop.com/about",
+        "alt": "Rosemary of Rosemary’s Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/rosemary-s-herb-shop-8b40d237a22b.webp",
+        "width": 450,
+        "height": 342,
+        "sha256": "8b40d237a22baf4ae32e9160084c62b92618df156f6eb2069320e5b3701329a8"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Herbal Ritual Apothecary and Pharmacy",
+    "address": "344 40th Street",
+    "city": "Oakland",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94609",
+    "website": "https://www.theherbalritual.com/",
+    "phone": "510-923-0178",
+    "hours": "Monday–Friday: 11am–6pm; Saturday: 11am–4pm",
+    "tagline": "Bulk herbs and botanical goods in Oakland",
+    "description": "The Herbal Ritual Apothecary offers bulk herbs, tinctures, teas, supplements, and supplies at its Oakland shop. The business now operates the former Five Flavors Herbs retail location.\n\nVisitors can browse botanical goods and ask about the apothecary’s retail and herbal pharmacy offerings. Check the operator’s current information for individual service arrangements.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.theherbalritual.com/",
+      "https://www.theherbalritual.com/policies/contact-information",
+      "https://fiveflavorsherbs.com/shop-in-oakland/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.theherbalritual.com/cdn/shop/files/DSCF3343_cc236789-845e-468e-a68a-2ae3d4e96602.jpg?v=1767724487&width=3840",
+        "sourcePage": "https://www.theherbalritual.com/",
+        "alt": "The Herbal Ritual Apothecary shop interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-ritual-apothecary-and-pharmacy-d81234010742.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "d812340107423472617b816dda209458f6b75101107f067660c5a077877ff774"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 104,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.theherbalritual.com/cdn/shop/files/DSCF3343_cc236789-845e-468e-a68a-2ae3d4e96602.jpg?v=1767724487&width=3840",
+        "sourcePage": "https://www.theherbalritual.com/",
+        "alt": "The Herbal Ritual Apothecary shop interior",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-ritual-apothecary-and-pharmacy-d81234010742.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "d812340107423472617b816dda209458f6b75101107f067660c5a077877ff774"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Green Wisdom Herbal Studies",
+    "address": "702 Cedar Avenue",
+    "city": "Long Beach",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "90813",
+    "website": "https://www.greenwisdomherbalstudies.com/",
+    "phone": "562-591-8700",
+    "hours": "Monday–Friday: 11am–6pm; Saturday: noon–4pm",
+    "tagline": "A public herb shop and herbal school in Long Beach",
+    "description": "Green Wisdom Herbal Studies combines an herbal apothecary with classes in Long Beach. Its shop offers bulk herbs, packaging supplies, and locally made botanical products.\n\nVisitors can browse the Cedar Avenue storefront and explore its class offerings. Check directly for the current course schedule.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.greenwisdomherbalstudies.com/",
+      "https://www.greenwisdomherbalstudies.com/contact",
+      "https://visitgaylongbeach.org/green-wisdom/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/562a7471e4b01e6e3d97f7fb/1510008002998-YKJS33G3FO0CHDM4HYI2/IMG_2145.JPG",
+        "sourcePage": "https://www.greenwisdomherbalstudies.com/",
+        "alt": "Green Wisdom Herbal Studies shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-wisdom-herbal-studies-952ee330f1ad.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "952ee330f1ad206b12d31d4b5564a42865d36ae50e8f786214d962bdeb60fffd"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator publishes a public retail address.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 105,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/562a7471e4b01e6e3d97f7fb/1510008002998-YKJS33G3FO0CHDM4HYI2/IMG_2145.JPG",
+        "sourcePage": "https://www.greenwisdomherbalstudies.com/",
+        "alt": "Green Wisdom Herbal Studies shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-wisdom-herbal-studies-952ee330f1ad.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "952ee330f1ad206b12d31d4b5564a42865d36ae50e8f786214d962bdeb60fffd"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - San Pablo",
+    "address": "2506 San Pablo Avenue",
+    "city": "Berkeley",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94702",
+    "website": "https://lhasakarnak.com/",
+    "phone": "510-548-0380",
+    "hours": "Monday–Saturday: 10am–7pm; Sunday: 10am–6pm",
+    "tagline": "Bulk herbs, teas, and aromatic supplies in Berkeley",
+    "description": "Lhasa Karnak’s San Pablo Avenue shop offers dried herbs, culinary spices, teas, oils, and botanical extracts. The business maintains two distinct Berkeley retail locations.\n\nVisitors can shop for herbs by weight and browse its other botanical supplies. Contact this branch for specific stock and shopping details.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://lhasakarnak.com/",
+      "https://www.herb-inc.com/"
+    ],
+    "photoCandidates": [],
+    "status": "ready",
+    "verificationNote": "Both current operator domains list this distinct retail branch. Older Telegraph Avenue address is obsolete. Current main operator lists Shattuck hours; a 2020-era directory temporary closure is stale.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 106,
+    "photoSearchAttempts": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/files/IMG_7746.png?v=1613177614&width=3840",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Lhasa Karnak Herb Company photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-69e4ac1a9852.webp",
+        "width": 1600,
+        "height": 892,
+        "sha256": "69e4ac1a98524b0f596b72d107f4b974c8d3e50348e9f45c26155eb1b8dbaf03"
+      }
+    ],
+    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "No suitable photograph selected."
+    }
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - Shattuck",
+    "address": "1942 Shattuck Avenue",
+    "city": "Berkeley",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94704",
+    "website": "https://lhasakarnak.com/",
+    "phone": "510-548-0372",
+    "hours": "Monday–Saturday: 10am–6pm",
+    "tagline": "Bulk herbs, teas, and aromatic supplies in Berkeley",
+    "description": "Lhasa Karnak’s Shattuck Avenue shop offers dried herbs, culinary spices, teas, oils, and botanical extracts. The business maintains two distinct Berkeley retail locations.\n\nVisitors can shop for herbs by weight and browse its other botanical supplies. Contact this branch for specific stock and shopping details.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://lhasakarnak.com/",
+      "https://www.herb-inc.com/"
+    ],
+    "photoCandidates": [],
+    "status": "ready",
+    "verificationNote": "Both current operator domains list this distinct retail branch. Older Telegraph Avenue address is obsolete. Current main operator lists Shattuck hours; a 2020-era directory temporary closure is stale.",
+    "verifiedAt": "2026-10-27",
+    "inputIndex": 107,
+    "photoSearchAttempts": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/files/IMG_7746.png?v=1613177614&width=3840",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Lhasa Karnak Herb Company photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-69e4ac1a9852.webp",
+        "width": 1600,
+        "height": 892,
+        "sha256": "69e4ac1a98524b0f596b72d107f4b974c8d3e50348e9f45c26155eb1b8dbaf03"
+      }
+    ],
+    "photoUnavailableReason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available.",
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "No suitable photograph selected."
+    }
+  }
+]

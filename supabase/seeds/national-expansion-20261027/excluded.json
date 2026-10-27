@@ -1,0 +1,153 @@
+[
+  {
+    "name": "Tangled Roots Herbal",
+    "status": "hold",
+    "reason": "The current official website contact page is a template without a visitor address; recent directory reviews report storefront closed in 2025. Do not add stale Nashua address.",
+    "sources": [
+      "https://tangledrootsherbal.com/pages/contact",
+      "https://www.loc8nearme.com/new-hampshire/nashua/tangled-roots-herbal/5070300/"
+    ]
+  },
+  {
+    "name": "Avena Botanicals",
+    "status": "hold",
+    "reason": "Official contact page says gardens closed to general public except a few scheduled events; no regular public shop verified.",
+    "sources": [
+      "https://www.avenabotanicals.com/pages/contact"
+    ]
+  },
+  {
+    "name": "Remedies Herb Shop — Woodstock",
+    "status": "hold",
+    "reason": "Current official page says temporary pop-up at128 Tinker through2026 with move to59 Tinker January2027. Prefer durable shop addresses.",
+    "sources": [
+      "https://remediesherbshop.com/hours-and-information/"
+    ]
+  },
+  {
+    "name": "Radicle Herb Shop",
+    "status": "closed",
+    "reason": "Founder explicitly states shop closed in2023; older directories still falsely list open.",
+    "sources": [
+      "https://chrisradicle.com/"
+    ]
+  },
+  {
+    "name": "MXED Greens",
+    "status": "closed",
+    "reason": "Official contact page announces closure.",
+    "sources": [
+      "https://mxedgreens.com/pages/contact-us"
+    ]
+  },
+  {
+    "name": "Anima Mundi — SoHo",
+    "status": "hold",
+    "reason": "Current primary address117 Crosby adjacent collaborative Alchemist119 Crosby; omitted to avoid potentially counting one shared retail operation twice.",
+    "sources": [
+      "https://animamundiherbals.com/pages/soho",
+      "https://www.thealchemistskitchen.com/pages/visit-us"
+    ]
+  },
+  {
+    "name": "AM Authentically Me",
+    "city": "Appleton",
+    "state": "Wisconsin",
+    "status": "closed",
+    "reason": "Official site explicitly says physical location closed9/26/26;onlineonly herbalshopcontinues.",
+    "sources": [
+      "https://www.amauthenticallyme.com/herbal-apothecary"
+    ]
+  },
+  {
+    "name": "Herbz and Spicez",
+    "city": "Fargo",
+    "state": "North Dakota",
+    "status": "hold",
+    "reason": "Officialfooter gives26RobertsStbutshoppingFAQonlypromisescoordinatedpickupandpopups.No clearpublicstorehours/addressaccess;do notadduntilverified.",
+    "sources": [
+      "https://herbzandspicez.com/"
+    ]
+  },
+  {
+    "name": "Snakeroot Botanicals",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "status": "hold",
+    "reason": "Official currentcatalog focusesliveplants,herbseeds,gardensupplies; tourismdescribesbulkherbsbutnotclearcurrentdedicatedherbshop.Openaddressnow1054Virginia not1052tourismlisting. Donotaddwithoutprimaryherbalinventoryproof.",
+    "sources": [
+      "https://snakerootbotanicals.com/",
+      "https://de.visitindy.com/directory/snakeroot-botanicals-fountain-square/"
+    ]
+  },
+  {
+    "name": "Indiana Herbal Center",
+    "city": "Bloomington",
+    "state": "Indiana",
+    "status": "hold",
+    "reason": "Officialcontactappointment-only;noverifiedwalkinretailpublicaccess.",
+    "sources": [
+      "https://indianaherbalcenter.com/contact"
+    ]
+  },
+  {
+    "name": "Arise Botanicals",
+    "city": "Lincoln",
+    "state": "Nebraska",
+    "status": "hold",
+    "reason": "Officialsiteonhiatusfrommarkets, acceptsordersandlimitedstockistdistribution.Noidentifiedpublicstorefront.",
+    "sources": [
+      "https://www.arisebotanicals.com/"
+    ]
+  },
+  {
+    "name": "2 Wolves Herbal Apothecary — Cleveland",
+    "address": "783 S Main Street, Suite 5",
+    "city": "Cleveland",
+    "state": "Georgia",
+    "state_code": "GA",
+    "zip": "30528",
+    "website": "https://www.2wolvesinc.com/",
+    "phone": "706-969-1651",
+    "hours": "Tuesday–Saturday 10am–6pm",
+    "tagline": "Handcrafted herbal teas and botanical preparations in Cleveland.",
+    "description": "2 Wolves Herbal Apothecary’s Cleveland shop offers handcrafted herbal teas, tinctures and botanical preparations. The Georgia business also makes mushroom-based drinks, infused honey and body-care products.\n\nThe Cleveland storefront is listed by Georgia Grown as the business’s primary location. It is a separate visitor address from its Helen and Augusta shops.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.2wolvesinc.com/",
+      "https://georgiagrown.com/member/2-wolves-herbal-apothecary/"
+    ],
+    "photoCandidates": [],
+    "status": "hold",
+    "verificationNote": "Current official site no longer mentions Cleveland and instead has synced location450CNorthGroveStreet,Dahlonega30533. StateGeorgiaGrownstilllistsCleveland. Holduntilbranchcontinuityverified."
+  },
+  {
+    "name": "Spinning Moon Apothecary",
+    "status": "hold",
+    "reason": "Historical Sitka shop and public listings conflict with a current permanent-closure directory record; no current operator-confirmed visitor address established.",
+    "sources": [
+      "https://reviews.birdeye.com/spinning-moon-apothecary-176953371597524",
+      "https://akroseroot.com/pages/find-our-products-locally"
+    ]
+  },
+  {
+    "name": "Taos Herb Company",
+    "status": "hold",
+    "reason": "Public directories give conflicting retail addresses; official website could not be retrieved for a current visitor-address confirmation. No closure inferred from website access alone.",
+    "sources": [
+      "https://www.taosherb.com/store/index.html",
+      "https://heytaos.com/pages/new-mexico-food-shops-taos",
+      "https://www.loc8nearme.com/new-mexico/taos/taos-herb-company/7579195/"
+    ]
+  },
+  {
+    "name": "Beatrice’s Herbs",
+    "status": "hold",
+    "reason": "Cached official contact page is old and a fresh direct retrieval failed; current independent storefront operation was not established in this pass.",
+    "sources": [
+      "https://beatricesherbs.com/contact.htm"
+    ]
+  }
+]
