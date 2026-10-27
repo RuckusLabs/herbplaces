@@ -28,6 +28,7 @@ try {
   const missingSecrets = required.filter(name => !names.has(name));
   const enabledDigest = crypto.createHash('sha256').update('true').digest('hex');
   const liveOnlyBilling = secrets.find(secret => secret.name === 'STRIPE_LIVEMODE_REQUIRED')?.value === enabledDigest;
+  const automaticTaxEnabled = secrets.find(secret => secret.name === 'STRIPE_AUTOMATIC_TAX_ENABLED')?.value === enabledDigest;
   const purchasesEnabled = secrets.find(secret => secret.name === 'BLOOM_ENABLED')?.value === enabledDigest;
   const schema = query(`select jsonb_build_object(
     'listing_requests',to_regclass('public.place_listing_requests') is not null,
@@ -65,11 +66,11 @@ try {
   for (const name of ['bloom-billing-reconciliation', 'claim-notification-retries', 'admin-notification-retries']) if (!jobs.some(job => job.jobname === name && job.active)) blockers.push(`Scheduler is inactive: ${name}.`);
   for (const name of ['billing_reconcile_url', 'billing_reconcile_secret', 'claim_notification_url', 'claim_notification_secret', 'admin_notification_url', 'admin_notification_secret']) if (!schema.vault_secret_names.includes(name)) blockers.push(`Vault configuration is missing: ${name}.`);
   if (queue.exhausted) blockers.push('Notification delivery has exhausted jobs requiring investigation.');
-  const report = { project: projectRef, checked_at: new Date().toISOString(), purchases_enabled: purchasesEnabled, live_only_billing: liveOnlyBilling,
+  const report = { project: projectRef, checked_at: new Date().toISOString(), purchases_enabled: purchasesEnabled, live_only_billing: liveOnlyBilling, automatic_tax_enabled: automaticTaxEnabled,
     configuration_ready: blockers.length === 0, audit_scope: 'server_configuration_only', live_sales_ready: null,
     temporary_billing_functions: temporaryBillingFunctions, missing_server_functions: missingFunctions, missing_server_secrets: missingSecrets, email_confirmation_required: auth.mailer_autoconfirm === false,
     places: schema.places, subscriptions: schema.subscriptions, notification_queue: queue, admin_notification_queue: adminQueue, blockers,
-    still_requires_live_verification: ['Repeat real email delivery verification after changing email configuration or templates', 'Review sandbox lifecycle evidence; repeat after billing changes', 'Live Stripe account activation, matching live credentials/price/webhook, and sandbox-reference cleanup', 'Live portal, payment retries, and tax/refund settings'] };
+    still_requires_live_verification: ['Repeat real email delivery verification after changing email configuration or templates', 'Use retained lifecycle evidence and local tests; obtain explicit approval for a real purchase', 'Verify actual live checkout and Stripe-delivered subscription lifecycle after final sales approval', 'Live portal, payment retries, and tax/refund settings'] };
   console.log(JSON.stringify(report, null, 2));
   // Configuration presence alone never certifies a launch. Read the remaining
   // verification requirements even when this command eventually exits zero.

@@ -41,7 +41,7 @@ export default function TheLittleGarden() {
           <Link to={`/the-little-garden/${plan.name.toLowerCase()}`} className="button">{plan.name === 'Bloom' ? 'Explore Bloom' : plan.name === 'Thrive' ? 'Explore Thrive' : 'Explore Sprout'} <Icon name="arrow" size={18} /></Link>
         </article>)}
       </div>
-      <p className={styles.planNote}>Bloom renews monthly until canceled. Cancel in Manage Billing with Stripe to stop the next renewal; editing continues through the paid period. Published listings stay visible after editing access ends. Thrive is not available for purchase.</p>
+      <p className={styles.planNote}>Bloom is {bloomOffer.label}, and renews monthly until canceled. Cancel in Manage Billing with Stripe to stop the next renewal; editing continues through the paid period. Published listings stay visible after editing access ends. Thrive is not available for purchase.</p>
       <p className={styles.planNote}>Ownership verification is independent of payment. A verified listing is not an endorsement of products or medical advice. <Link to="/help#billing">Billing questions</Link> · <Link to="/membership-terms">Membership terms</Link></p>
     </Reveal>
     <section className={styles.howItWorks} aria-labelledby="business-steps"><h2 id="business-steps">From Your Place to Your People.</h2>

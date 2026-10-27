@@ -8,3 +8,9 @@ export function assertStripeEnvironment(key, liveOnly) {
 export function billingEventMatchesEnvironment(event, liveOnly) {
   return !liveOnly || event?.livemode === true;
 }
+
+export function checkoutTaxOptions(setting, price) {
+  if (setting !== 'true') return {};
+  if (price?.tax_behavior !== 'exclusive') throw new Error('Bloom price must add applicable tax at checkout.');
+  return { automatic_tax: { enabled: true }, billing_address_collection: 'required', customer_update: { address: 'auto' } };
+}

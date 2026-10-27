@@ -1,6 +1,6 @@
 // Public offer definitions are shared with website copy. Stripe IDs stay server-side.
 // New offers remain unavailable until their features and customer terms are reviewed.
-export const bloomOffer = Object.freeze({ key: 'bloom-monthly-launch', plan: 'bloom', amount: 1900, currency: 'usd', interval: 'month', intervalCount: 1, label: '$19/month per place' });
+export const bloomOffer = Object.freeze({ key: 'bloom-monthly-launch', plan: 'bloom', amount: 1900, currency: 'usd', interval: 'month', intervalCount: 1, label: '$19/month per place, plus applicable tax' });
 export const thriveOffer = Object.freeze({ key: 'thrive-monthly-pilot', plan: 'thrive', amount: 4900, currency: 'usd', interval: 'month', intervalCount: 1, label: '$49/month per place' });
 
 export function bloomPriceIds(primaryId, previousIds = '') {

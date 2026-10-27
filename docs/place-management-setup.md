@@ -2,6 +2,10 @@
 
 Place management stays in the current React site. Supabase runs trusted operations; Stripe processes Bloom subscriptions. Public listings and favorites retain their IDs. Thrive's external-link product store remains a later release.
 
+## Current live billing status — October 26, 2026
+
+Payments and payouts are enabled with no outstanding Stripe verification. The restricted live key, live catalog, portal, enabled webhook/signature handling, hourly reconciliation, Arizona registration, and tax-exclusive $19 offer are configured. Automatic tax requires a billing address and the exclusive price. Purchases remain off; PR #12 contains the matching tax copy and live-only protections. Payment emails/retry settings, refund handling, and final sales approval remain review gates. No live customer payment has been made. See `live-billing-setup.md` for current status; all dated checkpoints below are historical and do not authorize further sandbox operations.
+
 ## Current email status — October 26, 2026
 
 Resend and Supabase SMTP are configured, real existing-owner code sign-in is verified, and email confirmation is required. Signup, sign-in, invitations, email-change confirmation, recovery, and reauthentication templates are branded and saved in hosted Auth. Claim/listing HTML branding is deployed with escaped user content and a plain-text fallback. New admin review alerts are active to lhp@ruckuslabs.co. Customer receipts and decisions are active, and a real listing receipt/review decision pair was delivered to the approved test alias. Three historical setup messages are explicitly suppressed, not marked delivered. New-account mailbox confirmation and real two-inbox email changes are verified, with the same account and favorite preserved. Public purchases and frontend publication remain separate review gates. The dated sections below retain earlier checkpoints.
