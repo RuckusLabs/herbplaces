@@ -12,9 +12,9 @@ export const planPages = {
     name: 'Bloom', icon: 'sun', heroPhoto: '/assets/pages/home/hero.jpg', heroAlt: 'Hands tending fresh herbs in a wooden planting tray', heroPosition: 'center 32%', eyebrow: 'For the people behind the place',
     heading: 'Your place. Your story. In full bloom.',
     title: 'Bloom | Manage Your Herb Business Listing | Little Herb Places',
-    description: 'Keep your herb shop, herbal practice, or garden listing current with Bloom. Share photos, hours, and useful links for $19/month per place after ownership approval.',
+    description: 'Keep your herb shop, herbal practice, or garden listing current with Bloom. Share photos, hours, and useful links for $19/month per place, plus applicable tax, after ownership approval.',
     intro: 'You put care into your place. Give people a clear picture of what they’ll find there, from the feeling of your space to the details that help them plan a visit.',
-    price: bloomOffer.amount / 100, priceNote: 'USD / month per place · renews monthly',
+    price: bloomOffer.amount / 100, priceNote: 'USD / month per place · plus applicable tax · renews monthly',
     sectionTitle: 'A little more of what makes you, you.',
     sectionIntro: 'Bloom puts your listing in the hands of the people who know it best. Keep the essentials together, and give visitors a reason to take a closer look.',
     features: [
@@ -31,7 +31,7 @@ export const planPages = {
       { question: 'What if my place isn’t in the directory yet?', answer: 'Send a free listing request first. After our team adds or links the listing, open it and submit an ownership claim. Listing approval does not automatically approve you as a manager.' },
       { question: 'When do I pay?', answer: 'Only after your ownership claim has been approved and you choose to subscribe when purchases are available. There is no charge to send a listing request or ownership claim.' },
       { question: 'Can I cancel?', answer: 'Yes. Cancel future renewals in Manage Billing with Stripe from My Places. Editing continues through the paid period, and your published listing stays visible after editing access ends.' },
-      { question: 'Is the price per manager or per place?', answer: 'Bloom is $19 USD per month per place. All approved managers of that place are included; a separate place needs its own subscription.' },
+      { question: 'Is the price per manager or per place?', answer: 'Bloom is $19 USD per month per place, plus applicable tax. All approved managers of that place are included; a separate place needs its own subscription.' },
     ],
   },
   thrive: {

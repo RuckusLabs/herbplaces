@@ -244,5 +244,8 @@ test('release help explains email codes and sales stay disabled for an approved 
   await expect(page.getByRole('heading', { name: 'Access, corrections, and deletion' })).toBeVisible();
   await page.goto('/membership-terms');
   await expect(page.getByText('Subscriptions renew monthly until canceled.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'help@littleherbplaces.com', exact: true })).toHaveAttribute('href', 'mailto:help@littleherbplaces.com');
+  const refund = page.getByRole('paragraph').filter({ hasText: 'You can request a refund of the first Bloom subscription payment' });
+  await expect(refund).toContainText('within seven days');
+  await expect(refund).toContainText('Requesting a refund does not cancel future renewals.');
+  await expect(refund.getByRole('link', { name: 'help@littleherbplaces.com', exact: true })).toHaveAttribute('href', 'mailto:help@littleherbplaces.com');
 });

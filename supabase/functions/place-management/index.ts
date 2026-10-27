@@ -2,6 +2,7 @@ import { authenticated, checked, corsHeaders, allowedOrigin, json, required, ser
 import { reconcileSubscription } from '../_shared/billing.ts';
 import { validateCheckoutPrice } from '../_shared/billingCatalog.js';
 import { findPlaceSubscription } from '../_shared/billingRecovery.js';
+import { checkoutTaxOptions } from '../_shared/billingEnvironment.js';
 import { coordinatesFromGeocode, hasImageSignature, PHOTO_BYTES, validatePhotoFile } from '../_shared/entitlements.js';
 
 Deno.serve(async req => {
@@ -61,6 +62,10 @@ Deno.serve(async req => {
 
     if (action === 'geocode') {
       if (access.place.geocode_status === 'confirmed') return json({ status: 'confirmed' }, 200, headers);
+      if (Deno.env.get('AUTOMATIC_GEOCODING_ENABLED') !== 'true') {
+        await checked(await db.rpc('apply_place_geocode', { p_place_id: placeId, p_address_version: access.place.content_version, p_latitude: null, p_longitude: null }));
+        return json({ status: 'review' }, 200, headers);
+      }
       const place = await checked(await db.rpc('reserve_place_geocode', { p_place_id: placeId, p_user_id: user.id }));
       if (!place) return json({ status: 'review' }, 200, headers);
       let coordinates = null;
@@ -93,7 +98,8 @@ Deno.serve(async req => {
     }
     if (action === 'checkout') {
       if (Deno.env.get('BLOOM_ENABLED') !== 'true') throw new Error('Payment signup is not available yet. Please check back soon.');
-      validateCheckoutPrice(await stripe.prices.retrieve(required('STRIPE_BLOOM_PRICE_ID')));
+      const price = validateCheckoutPrice(await stripe.prices.retrieve(required('STRIPE_BLOOM_PRICE_ID')));
+      const taxOptions = checkoutTaxOptions(Deno.env.get('STRIPE_AUTOMATIC_TAX_ENABLED'), price);
       const reservation = await checked(await db.rpc('reserve_place_checkout', { p_place_id: placeId, p_user_id: user.id }));
       let customerId = reservation.stripe_customer_id;
       if (!customerId) {
@@ -113,6 +119,7 @@ Deno.serve(async req => {
       const session = await stripe.checkout.sessions.create({
         integration_identifier: 'littleherbplaces_bloom_mbuchtuv',
         mode: 'subscription', customer: customerId, line_items: [{ price: required('STRIPE_BLOOM_PRICE_ID'), quantity: 1 }],
+        ...taxOptions,
         metadata: { place_id: placeId }, subscription_data: { metadata: { place_id: placeId } },
         expires_at: Math.floor(Date.parse(reservation.checkout_expires_at) / 1000),
         success_url: `${siteUrl}/my-places?billing=returned&place=${encodeURIComponent(placeId)}`,
