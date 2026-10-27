@@ -1,1 +1,0 @@
-import{j as r}from"./index-B_cCXS_E.js";import{A as t}from"./AuthForm-t010BCrM.js";import"./EmailCodeForm-CdU31dXF.js";import"./auth.module-wVugQgi9.js";function s(){return r.jsx(t,{mode:"register"})}export{s as default};
