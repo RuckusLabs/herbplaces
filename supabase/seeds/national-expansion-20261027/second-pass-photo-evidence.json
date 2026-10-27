@@ -1,0 +1,232 @@
+[
+  {
+    "name": "Alkaline Healing Herbs - Division",
+    "photoCandidates": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-division-a2405ef51958.webp",
+        "width": 768,
+        "height": 1024,
+        "sha256": "a2405ef519581153682868eff54b5d8dcc8c1fce25b43f9175e834ff697107d3"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Found authenticated location photograph; downloaded via valid HTTPS."
+  },
+  {
+    "name": "Lisa Herbal Corporation",
+    "photoCandidates": [],
+    "photoUnavailableReason": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained.",
+    "outcome": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained."
+  },
+  {
+    "name": "Magus Books and Herbs",
+    "photoCandidates": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
+        "sourcePage": "https://www.magusbooks.com/",
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-4a94717a4ccc.webp",
+        "width": 400,
+        "height": 306,
+        "sha256": "4a94717a4cccd6f7015f3a09097cc54b9b3c5e287142d78aa63b3974f602615b"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Found actual labeled product photograph in official current featured catalog; map and generic looseherb candidate not selected."
+  },
+  {
+    "name": "Terry’s Health Products",
+    "photoCandidates": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "localFile": "docs/listing-images/national-expansion-20261027/terry-s-health-products-edcf9464d8f8.webp",
+        "width": 852,
+        "height": 283,
+        "sha256": "edcf9464d8f8b09d10b6c7c3aa9d93cdec2f0ed27d5f8881a46eaf246d2e583f"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Official HTTPS image downloaded successfully today; previous SSL error did not recur. wwwhost does notresolve."
+  },
+  {
+    "name": "Flower Power Herbs & Roots — Piermont",
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-piermont-8460d0196102.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "8460d0196102bf5ecb41d5eb847d49ed123759ec9b374b5be454636254e0eacd"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Found authentic own-brand product photograph as branch-neutral alternative; homepage shopinteriors not selected because branch not explicit."
+  },
+  {
+    "name": "Penn Herb Company — Flagship Store",
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "Penn Herb Company — Factory Store",
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "Alternatives For Health Herbal Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/alternatives-for-health-herbal-apothecary-492f596ae8de.webp",
+        "width": 256,
+        "height": 341,
+        "sha256": "492f596ae8de33e53d1e2eacf4a57910edfa82d4fda8fc8276ce9a9e702f8058"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Authentic native256x341portrait shopphoto available; meets orientation-aware200short/300long minimum; previous fixedwidth300 rule excluded it."
+  },
+  {
+    "name": "Miss Anne’s Maypop Herb Shop",
+    "photoCandidates": [
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "localFile": "docs/listing-images/national-expansion-20261027/miss-anne-s-maypop-herb-shop-c1dd6eb4c60a.webp",
+        "width": 1202,
+        "height": 1600,
+        "sha256": "c1dd6eb4c60a67ffda200a94ad2a4e13c31c0259aca0b60582ea75fe607fcc01"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Selected after official-page search and visual review."
+  },
+  {
+    "name": "Earth Heart Health Food Store",
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store roadside sign in Marion",
+        "localFile": "docs/listing-images/national-expansion-20261027/earth-heart-health-food-store-2d5f08806f92.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "2d5f08806f923649c27201e7d4f5ee3b88a40d6aaab1054b76ccaafc64ab73c9"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "The Mercantile Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "Bulk herb shelves at The Mercantile Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-mercantile-apothecary-9ce609ef5c6c.webp",
+        "width": 1600,
+        "height": 581,
+        "sha256": "9ce609ef5c6c2fde5c51a0524cf7183e9d2da1029be6a4290d9529ff54f5dbe3"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "CW Organics Herbal Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://ridgeland.imgix.net/images/CW-Organics-14.jpg?auto=compress%2Cformat&crop=focalpoint&fit=min&fp-x=0.5&fp-y=0.5&h=1440&q=80&w=1440&s=6150ef9220804913c7d07ec322982e65",
+        "sourcePage": "https://www.exploreridgeland.com/directory/cw-organics-apothicaire-tea-room/",
+        "alt": "Tea service and menu at CW Organics in Ridgeland",
+        "localFile": "docs/listing-images/national-expansion-20261027/cw-organics-herbal-apothecary-e8ab715cdf5b.webp",
+        "width": 1366,
+        "height": 1366,
+        "sha256": "e8ab715cdf5b554a33a2bc5b875334f4d237ac527ea4a833763dde01d0517279"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Angie’s Gardens Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/05/Angela-Reynolds_square.jpg",
+        "sourcePage": "https://angiesgardens.com/about-us/",
+        "alt": "Angie’s Gardens founder Angela Reynolds",
+        "localFile": "docs/listing-images/national-expansion-20261027/angie-s-gardens-apothecary-dcacd9a29867.webp",
+        "width": 918,
+        "height": 918,
+        "sha256": "dcacd9a298675e695d3eb052495f3a7653285d1f13be82da1077e63f596dd1f8"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - San Pablo",
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - Shattuck",
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company",
+        "localFile": "docs/listing-images/national-expansion-20261027/lhasa-karnak-herb-company-shattuck-cc0919c58820.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "cc0919c588209013305b2750caa665cef7e93cfb259ad1d4732fb72435efbceb"
+      }
+    ],
+    "photoUnavailableReason": null,
+    "outcome": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  }
+]

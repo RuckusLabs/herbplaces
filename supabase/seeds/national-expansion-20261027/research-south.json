@@ -1,0 +1,1440 @@
+[
+  {
+    "name": "Mother’s Natchez",
+    "address": "520 Franklin Street",
+    "city": "Natchez",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39120",
+    "website": "https://mothersnatchez.com/",
+    "phone": "601-653-7984",
+    "hours": "Tuesday–Saturday 10am–4:30pm; Sunday–Monday closed",
+    "tagline": "Herbs, teas and plant-based provisions in downtown Natchez.",
+    "description": "Mother’s Natchez is an independent apothecary and provisions shop in downtown Natchez. Its shelves include herbal teas, tinctures, extracts, herbal supplements and aromatherapy products.\n\nVisitors can also browse natural bath and body care, books, household goods and gifts at the Franklin Street storefront.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://mothersnatchez.com/",
+      "https://mothersnatchez.com/pages/contact-us",
+      "https://visitnatchez.org/listing/mothers-natchez/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://mothersnatchez.com/cdn/shop/files/Untitled_design_2_2048x.jpg?v=1670002119",
+        "sourcePage": "https://mothersnatchez.com/",
+        "alt": "Photo published by Mother’s Natchez",
+        "localFile": "docs/listing-images/national-expansion-20261027/mother-s-natchez-04d276ffd066.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "04d276ffd0662001cd79bff16373e42dad0e4beabd8b12dffe24f6b57bcee7bb"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 63,
+    "photoSearchAttempts": [
+      {
+        "url": "https://mothersnatchez.com/cdn/shop/files/Untitled_design_2_2048x.jpg?v=1670002119",
+        "sourcePage": "https://mothersnatchez.com/",
+        "alt": "Photo published by Mother’s Natchez",
+        "localFile": "docs/listing-images/national-expansion-20261027/mother-s-natchez-04d276ffd066.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "04d276ffd0662001cd79bff16373e42dad0e4beabd8b12dffe24f6b57bcee7bb"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Green Oaks Apothecary",
+    "address": "2238 First Street",
+    "city": "Slidell",
+    "state": "Louisiana",
+    "state_code": "LA",
+    "zip": "70458",
+    "website": "https://www.greenoaksapothecary.com/",
+    "phone": "985-285-5613",
+    "hours": "Monday–Friday 9am–7pm; Saturday 10am–5pm; Sunday 11am–4pm",
+    "tagline": "Handcrafted herbal goods and dried herbs in Olde Towne Slidell.",
+    "description": "Green Oaks Apothecary is a locally owned shop in Olde Towne Slidell. It carries dried herbs, herbal teas, essential oils and handcrafted botanical preparations.\n\nThe shop also stocks plant-based body care, candles, local art and gifts. Customers can visit the First Street storefront or arrange curbside pickup.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.greenoaksapothecary.com/",
+      "https://ahglouisiana.org/links"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/3197bb_6d48db3421a24ac69ed5797eab1b020c~mv2.jpeg",
+        "sourcePage": "https://www.greenoaksapothecary.com/",
+        "alt": "IMG_0641.jpeg",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-oaks-apothecary-1db5c36a5880.webp",
+        "width": 1199,
+        "height": 1600,
+        "sha256": "1db5c36a5880d259a4f7bbb17a225c224588bdc7ba7cd20b3e158cfba35ad001"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/3197bb_8577daecfae14e48a4c227da64e1258f~mv2.jpeg",
+        "sourcePage": "https://www.greenoaksapothecary.com/",
+        "alt": "272801593_5150866211655939_5374952852629094574_n.jpeg",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-oaks-apothecary-bcc7166581ba.webp",
+        "width": 1440,
+        "height": 1433,
+        "sha256": "bcc7166581babf3a10b590f235473cf46f4d68639b47b316abdab81966c37976"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 64,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/3197bb_6d48db3421a24ac69ed5797eab1b020c~mv2.jpeg",
+        "sourcePage": "https://www.greenoaksapothecary.com/",
+        "alt": "IMG_0641.jpeg",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-oaks-apothecary-1db5c36a5880.webp",
+        "width": 1199,
+        "height": 1600,
+        "sha256": "1db5c36a5880d259a4f7bbb17a225c224588bdc7ba7cd20b3e158cfba35ad001"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/3197bb_8577daecfae14e48a4c227da64e1258f~mv2.jpeg",
+        "sourcePage": "https://www.greenoaksapothecary.com/",
+        "alt": "272801593_5150866211655939_5374952852629094574_n.jpeg",
+        "localFile": "docs/listing-images/national-expansion-20261027/green-oaks-apothecary-bcc7166581ba.webp",
+        "width": 1440,
+        "height": 1433,
+        "sha256": "bcc7166581babf3a10b590f235473cf46f4d68639b47b316abdab81966c37976"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Clary & Sage Apothecary",
+    "address": "1010 Porter Avenue, Suite B",
+    "city": "Ocean Springs",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39564",
+    "website": "https://www.csapothecary.com/",
+    "phone": "228-623-5232",
+    "hours": "Tuesday–Saturday 10am–6pm; Sunday 11am–4pm; Monday closed",
+    "tagline": "Bulk herbs and house blends in downtown Ocean Springs.",
+    "description": "Clary & Sage Apothecary is a family-run herb and metaphysical shop in downtown Ocean Springs. Its current Porter Avenue location carries bulk herbs, resins and house-blended herbal drinks.\n\nThe shelves also feature handmade candles, crystals, vintage curiosities and goods from local makers. Restored pharmacy cabinets form part of the shop interior.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.csapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.csapothecary.com/__l5e/assets-v1/505a2e38-499e-4403-9201-a94071317343/cs-1000020640.jpg",
+        "sourcePage": "https://www.csapothecary.com/",
+        "alt": "Inside Clary & Sage Apothecary — wooden shelves lined with herb jars, tinctures, and a warm lamp",
+        "localFile": "docs/listing-images/national-expansion-20261027/clary-sage-apothecary-fadea7d16d72.webp",
+        "width": 1600,
+        "height": 1066,
+        "sha256": "fadea7d16d729285f0fc53dcc5f445fd459989423bfb0da3e97bf7198e4e5aeb"
+      },
+      {
+        "url": "https://www.csapothecary.com/__l5e/assets-v1/44cd48c7-b2ef-49b5-8123-fa9ca0d853af/cs-1000020634.jpg",
+        "sourcePage": "https://www.csapothecary.com/",
+        "alt": "Restored 1930s apothecary drawers from the old Lovelace Pharmacy, holding herbs and remedies",
+        "localFile": "docs/listing-images/national-expansion-20261027/clary-sage-apothecary-7fa4c63cfbc9.webp",
+        "width": 1232,
+        "height": 1600,
+        "sha256": "7fa4c63cfbc9316c4059d45650a875d06149f9c64c55152d7819254ab39067a2"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official site identifies Ocean Springs as current location. Older tourism directory still lists Pascagoula; do not add the former location.",
+    "inputIndex": 65,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.csapothecary.com/__l5e/assets-v1/505a2e38-499e-4403-9201-a94071317343/cs-1000020640.jpg",
+        "sourcePage": "https://www.csapothecary.com/",
+        "alt": "Inside Clary & Sage Apothecary — wooden shelves lined with herb jars, tinctures, and a warm lamp",
+        "localFile": "docs/listing-images/national-expansion-20261027/clary-sage-apothecary-fadea7d16d72.webp",
+        "width": 1600,
+        "height": 1066,
+        "sha256": "fadea7d16d729285f0fc53dcc5f445fd459989423bfb0da3e97bf7198e4e5aeb"
+      },
+      {
+        "url": "https://www.csapothecary.com/__l5e/assets-v1/44cd48c7-b2ef-49b5-8123-fa9ca0d853af/cs-1000020634.jpg",
+        "sourcePage": "https://www.csapothecary.com/",
+        "alt": "Restored 1930s apothecary drawers from the old Lovelace Pharmacy, holding herbs and remedies",
+        "localFile": "docs/listing-images/national-expansion-20261027/clary-sage-apothecary-7fa4c63cfbc9.webp",
+        "width": 1232,
+        "height": 1600,
+        "sha256": "7fa4c63cfbc9316c4059d45650a875d06149f9c64c55152d7819254ab39067a2"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Melanated Ancestral Collective",
+    "address": "1003 SW E Avenue",
+    "city": "Lawton",
+    "state": "Oklahoma",
+    "state_code": "OK",
+    "zip": "73501",
+    "website": "https://www.collectiveherbs.com/",
+    "phone": "580-400-7300",
+    "hours": "Monday–Friday 10am–6pm; Saturday 9am–3pm",
+    "tagline": "Whole herbs, dried mushrooms and tea blends in Lawton.",
+    "description": "Melanated Ancestral Collective is a Lawton herbal retail shop offering whole herbs, dried mushrooms, spices and tea blends. Its products are available in small resealable packages.\n\nVisitors can shop in person at the SW E Avenue location. The shop also invites customers to try a featured tea blend on Saturdays.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.collectiveherbs.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/23be9d_73097df6fdb141caa4a2d702de871204~mv2.webp",
+        "sourcePage": "https://www.collectiveherbs.com/",
+        "alt": "Photo published by Melanated Ancestral Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/melanated-ancestral-collective-8e77da447521.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "8e77da4475211f531f831beb6d30ed650dca07abafeeed1a6d7cd42bdaced27f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 66,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/23be9d_73097df6fdb141caa4a2d702de871204~mv2.webp",
+        "sourcePage": "https://www.collectiveherbs.com/",
+        "alt": "Photo published by Melanated Ancestral Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/melanated-ancestral-collective-8e77da447521.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "8e77da4475211f531f831beb6d30ed650dca07abafeeed1a6d7cd42bdaced27f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "A Thousand Leaves Community Apothecary",
+    "address": "22 SE 5th Avenue, Suite D",
+    "city": "Gainesville",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "32601",
+    "website": "https://www.athousandleavesherbshop.com/",
+    "phone": "",
+    "hours": "Wednesday–Saturday noon–6pm; Sunday noon–5pm; Monday–Tuesday closed",
+    "tagline": "A community herb shop and learning space in Gainesville.",
+    "description": "A Thousand Leaves Community Apothecary is a community-centered herb shop in downtown Gainesville. The storefront provides herbs and an in-person place to explore herbalism.\n\nIts education offerings include community workshops and a beginners herbal program, alongside online learning. The shop publishes regular visitor hours at its SE 5th Avenue address.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.athousandleavesherbshop.com/",
+      "https://www.athousandleavesherbshop.com/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6936063c5190397f24b3967c/594b5da0-d581-4d99-9254-10199dddf2c4/Herbalist+reaching+for+jar+of+Elderberries+on+shelf.png",
+        "sourcePage": "https://www.athousandleavesherbshop.com/",
+        "alt": "Photo published by A Thousand Leaves Community Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/a-thousand-leaves-community-apothecary-675648248a1b.webp",
+        "width": 1313,
+        "height": 875,
+        "sha256": "675648248a1bccb7a95b93a03f1b6ddadee6d075626447eac6ed3e05e24c3adf"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6936063c5190397f24b3967c/1f0dbf95-e70e-40d8-ac9c-89da8952e5b5/Shelves+of+tinctures+and+teas.jpg",
+        "sourcePage": "https://www.athousandleavesherbshop.com/",
+        "alt": "Photo published by A Thousand Leaves Community Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/a-thousand-leaves-community-apothecary-e4124e4c4904.webp",
+        "width": 1000,
+        "height": 1500,
+        "sha256": "e4124e4c4904404dc08b81cf0f5a852b8ccdecb5faf3ed13c26c1ee22b89455f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 67,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6936063c5190397f24b3967c/594b5da0-d581-4d99-9254-10199dddf2c4/Herbalist+reaching+for+jar+of+Elderberries+on+shelf.png",
+        "sourcePage": "https://www.athousandleavesherbshop.com/",
+        "alt": "Photo published by A Thousand Leaves Community Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/a-thousand-leaves-community-apothecary-675648248a1b.webp",
+        "width": 1313,
+        "height": 875,
+        "sha256": "675648248a1bccb7a95b93a03f1b6ddadee6d075626447eac6ed3e05e24c3adf"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6936063c5190397f24b3967c/1f0dbf95-e70e-40d8-ac9c-89da8952e5b5/Shelves+of+tinctures+and+teas.jpg",
+        "sourcePage": "https://www.athousandleavesherbshop.com/",
+        "alt": "Photo published by A Thousand Leaves Community Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/a-thousand-leaves-community-apothecary-e4124e4c4904.webp",
+        "width": 1000,
+        "height": 1500,
+        "sha256": "e4124e4c4904404dc08b81cf0f5a852b8ccdecb5faf3ed13c26c1ee22b89455f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "KindFolk Apothecary + Wellness",
+    "address": "901 N Vista Ridge Boulevard, Suite 300",
+    "city": "Cedar Park",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78613",
+    "website": "https://www.kindfolkapothecary.com/",
+    "phone": "512-569-8277",
+    "hours": "Tuesday–Saturday 11am–6pm; Sunday–Monday closed",
+    "tagline": "Community herbalism, botanical preparations and workshops in Cedar Park.",
+    "description": "KindFolk Apothecary + Wellness is a community apothecary founded by Claire and Nae. Its Cedar Park shop offers herbs, elixirs, tinctures, oils, salves and botanical goods from local creators.\n\nThe space hosts workshops and events and offers private consultations. Visitors can browse the open storefront on North Vista Ridge Boulevard.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.kindfolkapothecary.com/",
+      "https://www.kindfolkapothecary.com/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6320f734258b423205125104/5d82b4ee-728d-42c6-9953-9ff340de43e6/KINDFOLK_APOTHECARY_AUSTIN_CEDAR_PARK_BRICK_MORTAR_STORE_2.jpg.png",
+        "sourcePage": "https://www.kindfolkapothecary.com/",
+        "alt": "Photo published by KindFolk Apothecary + Wellness",
+        "localFile": "docs/listing-images/national-expansion-20261027/kindfolk-apothecary-wellness-12fd251fb908.webp",
+        "width": 1115,
+        "height": 1355,
+        "sha256": "12fd251fb908f0cae5da62507a5142ec87423007a7d76f88b95f0926b8e51eb8"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6320f734258b423205125104/d2d79b38-d04e-49f3-93aa-7a9075bc9c82/KINDFOLK_APOTHECARY_AUSTIN_CEDAR_PARK_BRICK_MORTAR_STORE.jpg.png",
+        "sourcePage": "https://www.kindfolkapothecary.com/",
+        "alt": "Photo published by KindFolk Apothecary + Wellness",
+        "localFile": "docs/listing-images/national-expansion-20261027/kindfolk-apothecary-wellness-6932a6514a47.webp",
+        "width": 1030,
+        "height": 1387,
+        "sha256": "6932a6514a47f0a4738500ee0bfbde90c5028a6c50960d24176cdb9cdf84041d"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 68,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6320f734258b423205125104/5d82b4ee-728d-42c6-9953-9ff340de43e6/KINDFOLK_APOTHECARY_AUSTIN_CEDAR_PARK_BRICK_MORTAR_STORE_2.jpg.png",
+        "sourcePage": "https://www.kindfolkapothecary.com/",
+        "alt": "Photo published by KindFolk Apothecary + Wellness",
+        "localFile": "docs/listing-images/national-expansion-20261027/kindfolk-apothecary-wellness-12fd251fb908.webp",
+        "width": 1115,
+        "height": 1355,
+        "sha256": "12fd251fb908f0cae5da62507a5142ec87423007a7d76f88b95f0926b8e51eb8"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/6320f734258b423205125104/d2d79b38-d04e-49f3-93aa-7a9075bc9c82/KINDFOLK_APOTHECARY_AUSTIN_CEDAR_PARK_BRICK_MORTAR_STORE.jpg.png",
+        "sourcePage": "https://www.kindfolkapothecary.com/",
+        "alt": "Photo published by KindFolk Apothecary + Wellness",
+        "localFile": "docs/listing-images/national-expansion-20261027/kindfolk-apothecary-wellness-6932a6514a47.webp",
+        "width": 1030,
+        "height": 1387,
+        "sha256": "6932a6514a47f0a4738500ee0bfbde90c5028a6c50960d24176cdb9cdf84041d"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Baldflower Apothecary",
+    "address": "184 N Dean Street",
+    "city": "Spartanburg",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29302",
+    "website": "https://baldflowerapothecaryllc.com/",
+    "phone": "",
+    "hours": "Tuesday 10am–5pm; Wednesday–Friday 10am–6pm; Saturday 10am–1pm; Monday by appointment",
+    "tagline": "Herbal teas, custom blends and classes in Spartanburg.",
+    "description": "Baldflower Apothecary operates a public storefront on North Dean Street in Spartanburg. Its offerings include herbal teas, tinctures, capsules, soaks and custom tea blends.\n\nThe shop also advertises herbal consultations and adult herbal workshops. Check directly before visiting because different sections of the official website give slightly different Tuesday hours.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://baldflowerapothecaryllc.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://baldflowerapothecaryllc.com/cdn/shop/files/Baldflower_Apothecary-4.jpg?v=1784761725&width=3840",
+        "sourcePage": "https://baldflowerapothecaryllc.com/",
+        "alt": "Photo published by Baldflower Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/baldflower-apothecary-eb3394c19637.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "eb3394c1963720725132b2b13837086210815c271ddb9d2302d618d04523dd59"
+      },
+      {
+        "url": "https://baldflowerapothecaryllc.com/cdn/shop/files/Baldflower_Apothecary-5.jpg?v=1784773960&width=3840",
+        "sourcePage": "https://baldflowerapothecaryllc.com/",
+        "alt": "custom t blend",
+        "localFile": "docs/listing-images/national-expansion-20261027/baldflower-apothecary-fe62a8dbd592.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "fe62a8dbd5923487126834f5901bc2573981b2a16f44e51604e1effedbb9ff0f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official address explicit. Top banner says Tuesday 10–5, Wed–Fri 10–6, Sat10–1; footer says Tue–Fri10–6. Prefer banner and flag Tuesday discrepancy.",
+    "inputIndex": 69,
+    "photoSearchAttempts": [
+      {
+        "url": "https://baldflowerapothecaryllc.com/cdn/shop/files/Baldflower_Apothecary-4.jpg?v=1784761725&width=3840",
+        "sourcePage": "https://baldflowerapothecaryllc.com/",
+        "alt": "Photo published by Baldflower Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/baldflower-apothecary-eb3394c19637.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "eb3394c1963720725132b2b13837086210815c271ddb9d2302d618d04523dd59"
+      },
+      {
+        "url": "https://baldflowerapothecaryllc.com/cdn/shop/files/Baldflower_Apothecary-5.jpg?v=1784773960&width=3840",
+        "sourcePage": "https://baldflowerapothecaryllc.com/",
+        "alt": "custom t blend",
+        "localFile": "docs/listing-images/national-expansion-20261027/baldflower-apothecary-fe62a8dbd592.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "fe62a8dbd5923487126834f5901bc2573981b2a16f44e51604e1effedbb9ff0f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Into the Wilds Apothecary",
+    "address": "205 N 3rd Street",
+    "city": "Ozark",
+    "state": "Arkansas",
+    "state_code": "AR",
+    "zip": "72949",
+    "website": "https://intothewildsapothecary.com/",
+    "phone": "479-667-9661",
+    "hours": "",
+    "tagline": "Small-batch teas, tinctures and botanical body care in Ozark.",
+    "description": "Into the Wilds Apothecary is an Ozark storefront offering small-batch herbal teas, tinctures, salves and balms. Its products draw on homegrown, foraged and sourced herbs.\n\nThe shop emphasizes reusable packaging and customizable preparations. Visitors are welcomed at the North 3rd Street storefront during its published daily opening hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://intothewildsapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/f8aa1b1a-77d2-4c15-9c60-82d8fbbbdecd/20221031_095059.jpg",
+        "sourcePage": "https://intothewildsapothecary.com/",
+        "alt": "Photo published by Into the Wilds Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/into-the-wilds-apothecary-b1ffd150e75b.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "b1ffd150e75badcd4a84c895767e76de2a8ab1879c798d4d382ebc0df9775704"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official public storefront address without ZIP; Ozark ZIP72949 requires geocoder corroboration before publication. Official hours widget only gives today11–6; no invented weekly schedule.",
+    "inputIndex": 70,
+    "photoSearchAttempts": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/f8aa1b1a-77d2-4c15-9c60-82d8fbbbdecd/20221031_095059.jpg",
+        "sourcePage": "https://intothewildsapothecary.com/",
+        "alt": "Photo published by Into the Wilds Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/into-the-wilds-apothecary-b1ffd150e75b.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "b1ffd150e75badcd4a84c895767e76de2a8ab1879c798d4d382ebc0df9775704"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Apothecary of Knightdale",
+    "address": "819 N Smithfield Road",
+    "city": "Knightdale",
+    "state": "North Carolina",
+    "state_code": "NC",
+    "zip": "27545",
+    "website": "https://www.apothecaryofknightdale.com/",
+    "phone": "",
+    "hours": "",
+    "tagline": "Herbal teas and botanical products in Knightdale.",
+    "description": "Apothecary of Knightdale is a botanical shop on North Smithfield Road. Its official product range includes teas and other herbal goods alongside CBD products.\n\nThe storefront presents its products as part of a plant-focused approach to everyday wellness. Contact the shop for current hours and availability before making a trip.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.apothecaryofknightdale.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/e570d1_e161488592614767808fef563bdc581b~mv2.jpg",
+        "sourcePage": "https://www.apothecaryofknightdale.com/",
+        "alt": "Photo published by Apothecary of Knightdale",
+        "localFile": "docs/listing-images/national-expansion-20261027/apothecary-of-knightdale-6203263a0dad.webp",
+        "width": 1525,
+        "height": 1600,
+        "sha256": "6203263a0dad2811f740e015176bcfbd3616a42381b9e9818b678b49c7ff138e"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 71,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/e570d1_e161488592614767808fef563bdc581b~mv2.jpg",
+        "sourcePage": "https://www.apothecaryofknightdale.com/",
+        "alt": "Photo published by Apothecary of Knightdale",
+        "localFile": "docs/listing-images/national-expansion-20261027/apothecary-of-knightdale-6203263a0dad.webp",
+        "width": 1525,
+        "height": 1600,
+        "sha256": "6203263a0dad2811f740e015176bcfbd3616a42381b9e9818b678b49c7ff138e"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Herb Room Organic Apothecary",
+    "address": "14 New Orleans Road, Suite 2",
+    "city": "Hilton Head Island",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29928",
+    "website": "https://www.theherbistheword.com/",
+    "phone": "843-422-8860",
+    "hours": "Monday–Friday 9am–3pm; weekend hours vary; call ahead",
+    "tagline": "Herbs by the ounce and house-made botanical preparations on Hilton Head.",
+    "description": "The Herb Room Organic Apothecary sells herbs by the ounce, specialty tea blends, tinctures and botanical balms on Hilton Head Island. Its range also includes essential oils and plant-based skin and hair products.\n\nVisitors can browse the New Orleans Road shop and ask about its natural health consultations. The business recommends calling ahead because opening hours may vary.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.theherbistheword.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/309bd7_2a1f6d6726d24ee9b6eac753489e8338~mv2.jpg",
+        "sourcePage": "https://www.theherbistheword.com/",
+        "alt": "Photo published by The Herb Room Organic Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-room-organic-apothecary-ca3b72155b38.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "ca3b72155b38034de6d34f61aeb4ced7f7150838d83848036d2f2b5d6ecfe44e"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 72,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/309bd7_2a1f6d6726d24ee9b6eac753489e8338~mv2.jpg",
+        "sourcePage": "https://www.theherbistheword.com/",
+        "alt": "Photo published by The Herb Room Organic Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-room-organic-apothecary-ca3b72155b38.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "ca3b72155b38034de6d34f61aeb4ced7f7150838d83848036d2f2b5d6ecfe44e"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Gathering Place",
+    "address": "115 S Crockett Street",
+    "city": "Seguin",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78155",
+    "website": "https://gatherseguin.com/",
+    "phone": "830-433-4545",
+    "hours": "Tuesday–Sunday 10am–6pm; Monday closed",
+    "tagline": "An herbal apothecary within a Seguin homesteading market.",
+    "description": "The Gathering Place combines an herbal apothecary with a homesteading market in downtown Seguin. Its botanical selection includes teas, tinctures, salves, infused oils and hydrosols.\n\nThe shop offers herbal consultations and hands-on workshops, alongside gardening and homesteading goods. Some herbs are grown in its gardens or gathered from the surrounding Texas landscape.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://gatherseguin.com/herbal-apothecary-seguin-tx",
+      "https://visitseguin.com/directory/the-gathering-place/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ZsBH7RHNgFgKga30ZPG2/media/6a191cd0f58810f313bdcff9.jpg",
+        "sourcePage": "https://gatherseguin.com/",
+        "alt": "Photo published by The Gathering Place",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-gathering-place-d2d78fdabb95.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "d2d78fdabb956ec4eafe12769a536fd048817b1e02435e4d9ef461e78e5b0a2d"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 73,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/ZsBH7RHNgFgKga30ZPG2/media/6a191cd0f58810f313bdcff9.jpg",
+        "sourcePage": "https://gatherseguin.com/",
+        "alt": "Photo published by The Gathering Place",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-gathering-place-d2d78fdabb95.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "d2d78fdabb956ec4eafe12769a536fd048817b1e02435e4d9ef461e78e5b0a2d"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Sacred Moon Herbs",
+    "address": "305 W Mercer Street",
+    "city": "Dripping Springs",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78620",
+    "website": "https://sacredmoonherbs.com/",
+    "phone": "512-858-7305",
+    "hours": "Wednesday–Saturday 10am–5pm; call to confirm Sunday hours",
+    "tagline": "Bulk herbs, organic teas and an aromatherapy bar in Dripping Springs.",
+    "description": "Sacred Moon Herbs is a Dripping Springs shop offering bulk herbs, organic teas, spices and essential oils. The Mercer Street storefront also carries herbal preparations, books, jewelry and gifts.\n\nThe shop makes aromatherapy sprays and custom perfume oils in house and offers herbal classes and workshops throughout the year.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://sacredmoonherbs.com/",
+      "https://sacredmoonherbs.com/pages/contact/",
+      "https://sacredmoonherbs.com/pages/about/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://sacredmoonherbs.com/wp-content/uploads/2026/08/Blending-Happy-Heart-Tea-Sacred-Moon-Herbs-shop-604x400.jpg",
+        "sourcePage": "https://sacredmoonherbs.com/",
+        "alt": "Sacred Moon Herbs Dripping Springs Texas",
+        "localFile": "docs/listing-images/national-expansion-20261027/sacred-moon-herbs-ea0620a2f532.webp",
+        "width": 604,
+        "height": 400,
+        "sha256": "ea0620a2f5327f1bb9e36856ea7e27f378aa3234a5f9d4e146c93df428b3b48e"
+      },
+      {
+        "url": "https://sacredmoonherbs.com/wp-content/uploads/2026/08/34287-768x1020.jpg",
+        "sourcePage": "https://sacredmoonherbs.com/",
+        "alt": "Herb and Tea Wall Sacred Moon Herbs Dripping Springs",
+        "localFile": "docs/listing-images/national-expansion-20261027/sacred-moon-herbs-d098da3ef7ce.webp",
+        "width": 768,
+        "height": 1020,
+        "sha256": "d098da3ef7ce70a9dc5b1a0564f245d3ba922e6a843edc570241c03039a22484"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official address and phone clear; main footer says Wed–Sun, contact FAQ says Wed–Sat. Use conservative confirmed Wed–Sat with Sunday call-ahead note.",
+    "inputIndex": 74,
+    "photoSearchAttempts": [
+      {
+        "url": "https://sacredmoonherbs.com/wp-content/uploads/2026/08/Blending-Happy-Heart-Tea-Sacred-Moon-Herbs-shop-604x400.jpg",
+        "sourcePage": "https://sacredmoonherbs.com/",
+        "alt": "Sacred Moon Herbs Dripping Springs Texas",
+        "localFile": "docs/listing-images/national-expansion-20261027/sacred-moon-herbs-ea0620a2f532.webp",
+        "width": 604,
+        "height": 400,
+        "sha256": "ea0620a2f5327f1bb9e36856ea7e27f378aa3234a5f9d4e146c93df428b3b48e"
+      },
+      {
+        "url": "https://sacredmoonherbs.com/wp-content/uploads/2026/08/34287-768x1020.jpg",
+        "sourcePage": "https://sacredmoonherbs.com/",
+        "alt": "Herb and Tea Wall Sacred Moon Herbs Dripping Springs",
+        "localFile": "docs/listing-images/national-expansion-20261027/sacred-moon-herbs-d098da3ef7ce.webp",
+        "width": 768,
+        "height": 1020,
+        "sha256": "d098da3ef7ce70a9dc5b1a0564f245d3ba922e6a843edc570241c03039a22484"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Herb Shop of Vinings",
+    "address": "2250 Marietta Boulevard NW, Suite 214",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "state_code": "GA",
+    "zip": "30318",
+    "website": "https://theherbshopofvinings.com/",
+    "phone": "770-984-9323",
+    "hours": "Monday–Saturday 10am–6pm; Sunday and holidays closed",
+    "tagline": "An herb and vitamin shop in Atlanta’s Westside Village.",
+    "description": "The Herb Shop of Vinings operates from Westside Village in Atlanta. The public retail store offers vitamins and herbal products with in-person customer assistance.\n\nIts current shop is on Marietta Boulevard NW, despite retaining the Vinings name. Visitors can shop Monday through Saturday, with the store closed Sundays and holidays.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://theherbshopofvinings.com/contact-us/",
+      "https://theherbshopofvinings.com/about-us-3/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://theherbshopofvinings.com/wp-content/uploads/2013/08/Essence-of-vitality.jpg",
+        "sourcePage": "https://theherbshopofvinings.com/",
+        "alt": "Essence of Vitality herbal preparation sold by The Herb Shop of Vinings",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-of-vinings-d285e1fd8f96.webp",
+        "width": 466,
+        "height": 400,
+        "sha256": "d285e1fd8f9639387c4e7af32de006a84940713fc8fc86cd3b4ced28d16a3b19"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 75,
+    "photoSearchAttempts": [
+      {
+        "url": "https://theherbshopofvinings.com/wp-content/uploads/2013/08/Essence-of-vitality.jpg",
+        "sourcePage": "https://theherbshopofvinings.com/",
+        "alt": "Essence of Vitality herbal preparation sold by The Herb Shop of Vinings",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-of-vinings-d285e1fd8f96.webp",
+        "width": 466,
+        "height": 400,
+        "sha256": "d285e1fd8f9639387c4e7af32de006a84940713fc8fc86cd3b4ced28d16a3b19"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Healing Waters Clinic & Herb Shop",
+    "address": "26 Clark Street",
+    "city": "St. Augustine",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "32084",
+    "website": "https://healingwatersclinic.com/",
+    "phone": "904-826-1965",
+    "hours": "Monday–Saturday 10am–6pm",
+    "tagline": "Bulk Western, Chinese and Ayurvedic herbs near historic St. Augustine.",
+    "description": "Healing Waters Clinic & Herb Shop combines a public herb shop with an appointment-based clinic in St. Augustine. The shop stocks bulk Western, Chinese and Ayurvedic herbs.\n\nIts dispensary also prepares custom tea blends, tincture combinations and capsules. Customers may visit the herb shop or arrange a separate herbal consultation.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://healingwatersclinic.com/",
+      "https://healingwatersclinic.com/contact-us/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://healingwatersclinic.com/wp-content/uploads/2025/02/IMG_20230531_162659-1024x768.jpg",
+        "sourcePage": "https://healingwatersclinic.com/",
+        "alt": "Healing Waters Clinic and Herb Shop storefront at26ClarkStreet",
+        "localFile": "docs/listing-images/national-expansion-20261027/healing-waters-clinic-herb-shop-0b9f3e0e8e90.webp",
+        "width": 1024,
+        "height": 768,
+        "sha256": "0b9f3e0e8e908b2451af6007615fabc9ef2983cbfcbe8a954eb8d8ca4218c53f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site clearly welcomes herb-shop visitors distinct from clinic appointments; address26Clark explicit, ZIP32084 needs geocoder confirmation.",
+    "inputIndex": 76,
+    "photoSearchAttempts": [
+      {
+        "url": "https://healingwatersclinic.com/wp-content/uploads/2025/02/IMG_20230531_162659-1024x768.jpg",
+        "sourcePage": "https://healingwatersclinic.com/",
+        "alt": "Healing Waters Clinic and Herb Shop storefront at26ClarkStreet",
+        "localFile": "docs/listing-images/national-expansion-20261027/healing-waters-clinic-herb-shop-0b9f3e0e8e90.webp",
+        "width": 1024,
+        "height": 768,
+        "sha256": "0b9f3e0e8e908b2451af6007615fabc9ef2983cbfcbe8a954eb8d8ca4218c53f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Miss Anne’s Maypop Herb Shop",
+    "address": "1370 Laharpe Street",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "state_code": "LA",
+    "zip": "70116",
+    "website": "https://missannesmaypopherbshop.com/",
+    "phone": "504-304-5067",
+    "hours": "Daily 11am–6pm",
+    "tagline": "Bulk herbs, teas and locally made preparations in New Orleans.",
+    "description": "Miss Anne’s Maypop Herb Shop is a New Orleans herb shop focused on Indigenous herbalism and community plant knowledge. It stocks bulk herbs, spices, tea blends and herbal extracts.\n\nThe shop offers house-made blends, custom preparations and products from small makers. Its current website welcomes visitors daily at the Laharpe Street location.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://missannesmaypopherbshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "localFile": "docs/listing-images/national-expansion-20261027/miss-anne-s-maypop-herb-shop-c1dd6eb4c60a.webp",
+        "width": 1202,
+        "height": 1600,
+        "sha256": "c1dd6eb4c60a67ffda200a94ad2a4e13c31c0259aca0b60582ea75fe607fcc01"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Use current1370Laharpe official address; older directories show former St Claude location.",
+    "inputIndex": 77,
+    "photoSearchAttempts": [
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "localFile": "docs/listing-images/national-expansion-20261027/miss-anne-s-maypop-herb-shop-c1dd6eb4c60a.webp",
+        "width": 1202,
+        "height": 1600,
+        "sha256": "c1dd6eb4c60a67ffda200a94ad2a4e13c31c0259aca0b60582ea75fe607fcc01"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Selected after official-page search and visual review."
+  },
+  {
+    "name": "Earth Heart Health Food Store",
+    "address": "4573 US Highway 221 North",
+    "city": "Marion",
+    "state": "North Carolina",
+    "state_code": "NC",
+    "zip": "28752",
+    "website": "https://earthhearthealthfoods.com/",
+    "phone": "828-756-2224",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–4pm; Sunday closed",
+    "tagline": "Bulk herbs and natural provisions in the Blue Ridge Mountains.",
+    "description": "Earth Heart is an independent health food store in Marion with a bulk-herb section and apothecary jars. It also carries essential oils, herbal supplements and locally made botanical goods.\n\nFounded in 1998, the shop welcomes in-person visitors at its US Highway 221 North location. Other departments include natural body care, groceries and vitamins.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://earthhearthealthfoods.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store roadside sign in Marion",
+        "localFile": "docs/listing-images/national-expansion-20261027/earth-heart-health-food-store-2d5f08806f92.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "2d5f08806f923649c27201e7d4f5ee3b88a40d6aaab1054b76ccaafc64ab73c9"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 78,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store roadside sign in Marion",
+        "localFile": "docs/listing-images/national-expansion-20261027/earth-heart-health-food-store-2d5f08806f92.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "2d5f08806f923649c27201e7d4f5ee3b88a40d6aaab1054b76ccaafc64ab73c9"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Hummingbird Apothecary — South Knoxville",
+    "address": "3726 Sevier Heights Road, Suite 106",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "37920",
+    "website": "https://hummingbirdapothecary.com/",
+    "phone": "865-910-0285",
+    "hours": "Monday–Thursday 9am–10pm; Friday–Saturday 9am–11pm; Sunday 9am–9pm",
+    "tagline": "Herbal drinks and take-home botanicals in South Knoxville.",
+    "description": "Hummingbird Apothecary’s South Knoxville location combines an herbal apothecary with a café. The woman-owned business serves herbal drinks, tea lattes, coffee and botanical mocktails.\n\nIngredients are also sold in their raw form to take home. The shop hosts community events and presents a broad selection of herbs at its Sevier Heights Road location.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://hummingbirdapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.spotapps.co/spots/a1/327e9f253c4821ac39a0f2db555752/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our South Location gallery carousel photo number 1",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-south-knoxville-e54d3c5c4a6b.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "e54d3c5c4a6b53ac9f2ea21789a90b88a76a91f6a363ff1f7dd591d02e126acf"
+      },
+      {
+        "url": "https://static.spotapps.co/spots/5d/12c493b2024ccfb2e2ad3814523c7d/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our South Location gallery carousel photo number 3",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-south-knoxville-ba528b5264c1.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "ba528b5264c140af2e8557154cc0e1e39023597d6439a4b40e5baa15708f1eb2"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 79,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.spotapps.co/spots/a1/327e9f253c4821ac39a0f2db555752/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our South Location gallery carousel photo number 1",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-south-knoxville-e54d3c5c4a6b.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "e54d3c5c4a6b53ac9f2ea21789a90b88a76a91f6a363ff1f7dd591d02e126acf"
+      },
+      {
+        "url": "https://static.spotapps.co/spots/5d/12c493b2024ccfb2e2ad3814523c7d/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our South Location gallery carousel photo number 3",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-south-knoxville-ba528b5264c1.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "ba528b5264c140af2e8557154cc0e1e39023597d6439a4b40e5baa15708f1eb2"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Hummingbird Apothecary — North Knoxville",
+    "address": "3716 Walker Boulevard",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "37917",
+    "website": "https://hummingbirdapothecary.com/",
+    "phone": "865-219-1190",
+    "hours": "Monday–Friday 9am–10pm; Saturday 11am–10pm; Sunday noon–8pm",
+    "tagline": "An herbal café and apothecary on Walker Boulevard.",
+    "description": "Hummingbird Apothecary’s North Knoxville branch serves herbal teas, botanical drinks, coffee and tea lattes. The business also sells drink ingredients in raw form for customers to take home.\n\nThe Walker Boulevard location is one of two Knoxville shops operated by the woman-owned apothecary. Its menu and community events bring herbal ingredients into a café setting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://hummingbirdapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.spotapps.co/spots/92/cd56762e1a4d64a7fb20dcc281c925/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our North Location gallery carousel photo number 1",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-north-knoxville-5d4e1a5d89fb.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "5d4e1a5d89fbb7a06c97ecbd0c4da12c37fafe52267850a161c9c3e6e95fb7ba"
+      },
+      {
+        "url": "https://static.spotapps.co/spots/6b/2ea39d351548b69d4bb6dff2ca3419/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our North Location gallery carousel photo number 2",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-north-knoxville-0de90f6b8913.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "0de90f6b89130b30994118f3b4ab9ad2835a1c3e9ff87f921c1121d7640c1786"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 80,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.spotapps.co/spots/92/cd56762e1a4d64a7fb20dcc281c925/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our North Location gallery carousel photo number 1",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-north-knoxville-5d4e1a5d89fb.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "5d4e1a5d89fbb7a06c97ecbd0c4da12c37fafe52267850a161c9c3e6e95fb7ba"
+      },
+      {
+        "url": "https://static.spotapps.co/spots/6b/2ea39d351548b69d4bb6dff2ca3419/full",
+        "sourcePage": "https://hummingbirdapothecary.com/",
+        "alt": "Our North Location gallery carousel photo number 2",
+        "localFile": "docs/listing-images/national-expansion-20261027/hummingbird-apothecary-north-knoxville-0de90f6b8913.webp",
+        "width": 800,
+        "height": 800,
+        "sha256": "0de90f6b89130b30994118f3b4ab9ad2835a1c3e9ff87f921c1121d7640c1786"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Synergy Herbal Works — Cookeville",
+    "address": "44 S Cedar Avenue",
+    "city": "Cookeville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "38501",
+    "website": "https://synergyherbalworks.com/",
+    "phone": "931-256-0373",
+    "hours": "Monday–Saturday 9am–5pm",
+    "tagline": "Bulk botanicals, loose-leaf tea and handmade herbal goods in Cookeville.",
+    "description": "Synergy Herbal Works’ Cookeville shop offers bulk herbs, loose-leaf tea, tinctures and handcrafted botanical products. The Tennessee business sources herbs from growers and also makes preparations using plants from its farm.\n\nThe apothecary offers herbal education and consultations alongside its retail shelves. The Cookeville branch is on South Cedar Avenue.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://synergyherbalworks.com/",
+      "https://synergyherbalworks.com/pages/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://synergyherbalworks.com/cdn/shop/files/unnamed_5.jpg?v=1788471983&width=1200",
+        "sourcePage": "https://synergyherbalworks.com/pages/contact",
+        "alt": "Synergy Herbal Works Cookeville location",
+        "localFile": "docs/listing-images/national-expansion-20261027/synergy-herbal-works-cookeville-fbb27c7329e5.webp",
+        "width": 359,
+        "height": 512,
+        "sha256": "fbb27c7329e57123f4f15d59a339bf33817df54cd1dd6980b900ff872f0ee5d5"
+      },
+      {
+        "url": "https://synergyherbalworks.com/cdn/shop/files/unnamed_3.jpg?v=1788471926&width=1200",
+        "sourcePage": "https://synergyherbalworks.com/pages/contact",
+        "alt": "Inside the Cookeville apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/synergy-herbal-works-cookeville-fade091360a7.webp",
+        "width": 350,
+        "height": 512,
+        "sha256": "fade091360a7e898283d686fc2dace8cd37e4fe054f698c6522c8f3083c02f62"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 81,
+    "photoSearchAttempts": [
+      {
+        "url": "https://synergyherbalworks.com/cdn/shop/files/unnamed_5.jpg?v=1788471983&width=1200",
+        "sourcePage": "https://synergyherbalworks.com/pages/contact",
+        "alt": "Synergy Herbal Works Cookeville location",
+        "localFile": "docs/listing-images/national-expansion-20261027/synergy-herbal-works-cookeville-fbb27c7329e5.webp",
+        "width": 359,
+        "height": 512,
+        "sha256": "fbb27c7329e57123f4f15d59a339bf33817df54cd1dd6980b900ff872f0ee5d5"
+      },
+      {
+        "url": "https://synergyherbalworks.com/cdn/shop/files/unnamed_3.jpg?v=1788471926&width=1200",
+        "sourcePage": "https://synergyherbalworks.com/pages/contact",
+        "alt": "Inside the Cookeville apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/synergy-herbal-works-cookeville-fade091360a7.webp",
+        "width": 350,
+        "height": 512,
+        "sha256": "fade091360a7e898283d686fc2dace8cd37e4fe054f698c6522c8f3083c02f62"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Green Lass Apothecary & Tea Shop",
+    "address": "2118 Highway 72 East, Suite 2",
+    "city": "Huntsville",
+    "state": "Alabama",
+    "state_code": "AL",
+    "zip": "35811",
+    "website": "https://www.thegreenlass.com/",
+    "phone": "256-361-9096",
+    "hours": "Tuesday–Saturday 11am–4pm; seasonal hours may vary",
+    "tagline": "Loose-leaf herbs by the ounce and herbal drinks in Huntsville.",
+    "description": "The Green Lass Apothecary & Tea Shop sells loose-leaf herbs and teas by the ounce in Huntsville. Its apothecary wall and herbal drink counter sit alongside goods from local artisans.\n\nThe shop offers herbal consultations, tea tastings and regular herb classes. Public shopping hours are separate from early-morning client appointments.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.thegreenlass.com/",
+      "https://www.thegreenlass.com/about-3"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/7b1552_dec40852ea754ec9962f9c09ee3aa733~mv2.jpg",
+        "sourcePage": "https://www.thegreenlass.com/",
+        "alt": "Peace Tea 1.jpg",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-green-lass-apothecary-tea-shop-2bb3b3b5d1c2.webp",
+        "width": 1600,
+        "height": 1060,
+        "sha256": "2bb3b3b5d1c2a3288cec320ebb2c6c6ec12dd13f679deda9722dff24a8b6148a"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official current page lists Oct and Nov2026 events and clear public hours Tue–Sat11–4; holiday hours beginNov8, so no future schedule substituted.",
+    "inputIndex": 82,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/7b1552_dec40852ea754ec9962f9c09ee3aa733~mv2.jpg",
+        "sourcePage": "https://www.thegreenlass.com/",
+        "alt": "Peace Tea 1.jpg",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-green-lass-apothecary-tea-shop-2bb3b3b5d1c2.webp",
+        "width": 1600,
+        "height": 1060,
+        "sha256": "2bb3b3b5d1c2a3288cec320ebb2c6c6ec12dd13f679deda9722dff24a8b6148a"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Mercantile Apothecary",
+    "address": "104 W Main Street",
+    "city": "Stevenson",
+    "state": "Alabama",
+    "state_code": "AL",
+    "zip": "35772",
+    "website": "https://mercantileapothecary.com/",
+    "phone": "256-203-3953",
+    "hours": "Tuesday 1pm–6pm; Wednesday–Friday 10am–5pm; Saturday 10am–2pm; Sunday–Monday closed",
+    "tagline": "Dried herbs, tea blends and handmade preparations in Stevenson.",
+    "description": "The Mercantile Apothecary is a downtown Stevenson shop operated by herbalist and educator Leanne. It carries dried herbs, teas, tinctures, herbal salves and supplies for making botanical preparations.\n\nThe business offers herbal consultations and classes alongside its retail selection. Visitors can browse the West Main Street storefront during its published afternoon and daytime hours.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://mercantileapothecary.com/",
+      "https://naecoop.com/road-to-wellness/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "Bulk herb shelves at The Mercantile Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-mercantile-apothecary-9ce609ef5c6c.webp",
+        "width": 1600,
+        "height": 581,
+        "sha256": "9ce609ef5c6c2fde5c51a0524cf7183e9d2da1029be6a4290d9529ff54f5dbe3"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 83,
+    "photoSearchAttempts": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "Bulk herb shelves at The Mercantile Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-mercantile-apothecary-9ce609ef5c6c.webp",
+        "width": 1600,
+        "height": 581,
+        "sha256": "9ce609ef5c6c2fde5c51a0524cf7183e9d2da1029be6a4290d9529ff54f5dbe3"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "CW Organics Herbal Apothecary",
+    "address": "103 W Washington Street, Suite B4, City Market Suites",
+    "city": "Ridgeland",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39157",
+    "website": "https://cworganicsretail.com/",
+    "phone": "601-707-7253",
+    "hours": "",
+    "tagline": "House-blended herbal teas and botanical body care in Ridgeland.",
+    "description": "CW Organics Herbal Apothecary operates a retail shop in Ridgeland’s City Market Suites. Its offerings include custom herbal tea blends, botanical sprays, soaps, bath salts and plant-based body butters.\n\nThe business also operates a tea room with reservations through its official site. Contact the store for current retail opening hours before visiting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://cworganicsretail.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://ridgeland.imgix.net/images/CW-Organics-14.jpg?auto=compress%2Cformat&crop=focalpoint&fit=min&fp-x=0.5&fp-y=0.5&h=1440&q=80&w=1440&s=6150ef9220804913c7d07ec322982e65",
+        "sourcePage": "https://www.exploreridgeland.com/directory/cw-organics-apothicaire-tea-room/",
+        "alt": "Tea service and menu at CW Organics in Ridgeland",
+        "localFile": "docs/listing-images/national-expansion-20261027/cw-organics-herbal-apothecary-e8ab715cdf5b.webp",
+        "width": 1366,
+        "height": 1366,
+        "sha256": "e8ab715cdf5b554a33a2bc5b875334f4d237ac527ea4a833763dde01d0517279"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 84,
+    "photoSearchAttempts": [
+      {
+        "url": "https://ridgeland.imgix.net/images/CW-Organics-14.jpg?auto=compress%2Cformat&crop=focalpoint&fit=min&fp-x=0.5&fp-y=0.5&h=1440&q=80&w=1440&s=6150ef9220804913c7d07ec322982e65",
+        "sourcePage": "https://www.exploreridgeland.com/directory/cw-organics-apothicaire-tea-room/",
+        "alt": "CW Organics apothecary and tea room in Ridgeland",
+        "localFile": "docs/listing-images/national-expansion-20261027/cw-organics-herbal-apothecary-e8ab715cdf5b.webp",
+        "width": 1366,
+        "height": 1366,
+        "sha256": "e8ab715cdf5b554a33a2bc5b875334f4d237ac527ea4a833763dde01d0517279"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Angie’s Gardens Apothecary",
+    "address": "444 Holderrieth Boulevard, Suite 3",
+    "city": "Tomball",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "77375",
+    "website": "https://angiesgardensapothecary.com/",
+    "phone": "832-698-1148",
+    "hours": "",
+    "tagline": "Herbal teas, tinctures and handcrafted botanical goods in Tomball.",
+    "description": "Angie’s Gardens Apothecary makes and sells herbal teas, tinctures, tonics, syrups and botanical skin care. Its Tomball shop also carries soaps, salves, tea accessories and CBD products.\n\nThe business shares information about its herbal methods and ingredients through its website. Visitors can contact the Holderrieth Boulevard shop for current hours and product availability.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://angiesgardensapothecary.com/",
+      "https://angiesgardensapothecary.com/herbal-apothecary-in-tomball-tx/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/05/Angela-Reynolds_square.jpg",
+        "sourcePage": "https://angiesgardens.com/about-us/",
+        "alt": "Angie’s Gardens founder Angela Reynolds",
+        "localFile": "docs/listing-images/national-expansion-20261027/angie-s-gardens-apothecary-dcacd9a29867.webp",
+        "width": 918,
+        "height": 918,
+        "sha256": "dcacd9a298675e695d3eb052495f3a7653285d1f13be82da1077e63f596dd1f8"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official website publishes a public shop address and visitor information.",
+    "inputIndex": 85,
+    "photoSearchAttempts": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/05/Angela-Reynolds_square.jpg",
+        "sourcePage": "https://angiesgardens.com/about-us/",
+        "alt": "Angie’s Gardens founder Angela Reynolds",
+        "localFile": "docs/listing-images/national-expansion-20261027/angie-s-gardens-apothecary-dcacd9a29867.webp",
+        "width": 918,
+        "height": 918,
+        "sha256": "dcacd9a298675e695d3eb052495f3a7653285d1f13be82da1077e63f596dd1f8"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "The Herb Shop at Cypress Pillar Healing Arts",
+    "address": "1940 Northgate Boulevard, Suite B-2",
+    "city": "Sarasota",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "34234",
+    "website": "https://www.cypresspillar.com/herbshop-info",
+    "phone": "941-358-0784",
+    "hours": "Herb-shop visits by prior appointment; generally Monday, Tuesday and Friday 11am–7pm, with some Saturday appointments",
+    "tagline": "An appointment-based Sarasota apothecary with Western and Chinese herbs.",
+    "description": "The Herb Shop at Cypress Pillar Healing Arts carries more than one hundred herbs, including flowers, roots, leaves, bark and powders. Its selection includes Western and Chinese botanicals for culinary and other traditional uses.\n\nThe shop is open to the public by prior appointment for herb purchases and pickups. Formulation assistance and herbal consultations are separate services; arrange a visit before traveling.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.cypresspillar.com/herbshop-info",
+      "https://www.cypresspillar.com/connect"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5cc8de1f7abc0700018bbc38/f2630db2-fba0-4dbb-9b3d-3cb854bb60b5/sarasota_apothecary.jpg",
+        "sourcePage": "https://www.cypresspillar.com/herbshop-info",
+        "alt": "Photo published by The Herb Shop at Cypress Pillar Healing Arts",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-at-cypress-pillar-healing-arts-0fa9c80bc1bb.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "0fa9c80bc1bb11a01e7837134730f748746f8486ed3ad1601abd9ddaf9e1de67"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5cc8de1f7abc0700018bbc38/f479b9c6-c151-49d5-9f74-50eaad64f0e1/sarasota_apotehcary2.jpg",
+        "sourcePage": "https://www.cypresspillar.com/herbshop-info",
+        "alt": "Photo published by The Herb Shop at Cypress Pillar Healing Arts",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-at-cypress-pillar-healing-arts-6b8506b64035.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "6b8506b640356685223355854b042dc019fa8b58176ed7aaac9dec4bca33fb4c"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Physical public herb shop explicitly welcomes scheduled pickups, not solely a private clinic. Appointments required; never represent as walk-in.",
+    "inputIndex": 86,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5cc8de1f7abc0700018bbc38/f2630db2-fba0-4dbb-9b3d-3cb854bb60b5/sarasota_apothecary.jpg",
+        "sourcePage": "https://www.cypresspillar.com/herbshop-info",
+        "alt": "Photo published by The Herb Shop at Cypress Pillar Healing Arts",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-at-cypress-pillar-healing-arts-0fa9c80bc1bb.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "0fa9c80bc1bb11a01e7837134730f748746f8486ed3ad1601abd9ddaf9e1de67"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5cc8de1f7abc0700018bbc38/f479b9c6-c151-49d5-9f74-50eaad64f0e1/sarasota_apotehcary2.jpg",
+        "sourcePage": "https://www.cypresspillar.com/herbshop-info",
+        "alt": "Photo published by The Herb Shop at Cypress Pillar Healing Arts",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herb-shop-at-cypress-pillar-healing-arts-6b8506b64035.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "6b8506b640356685223355854b042dc019fa8b58176ed7aaac9dec4bca33fb4c"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herbal Passion",
+    "address": "845 Savannah Highway, Suite B",
+    "city": "Charleston",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29407",
+    "website": "https://herbalpassionsc.com/",
+    "phone": "630-335-3231",
+    "hours": "Wednesday–Friday 11am–6pm; Saturday 10am–2pm; Sunday–Tuesday closed",
+    "tagline": "Bulk herbs, tea blends and tinctures in Charleston’s Avondale neighborhood.",
+    "description": "Herbal Passion is a Charleston apothecary with bulk herbs, spices, tea blends and tinctures. The Savannah Highway shop also carries essential oils and botanical goods.\n\nThe business publishes regular public shopping hours and offers herbal classes. Customers can browse its herb selection in person and ask about house tea blends.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://herbalpassionsc.com/",
+      "https://www.handsonwellnessmassage.com/contact",
+      "https://charlestongrit.com/herbal-passions-mission-rooted-holistic-herbalism"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herbalpassionsc.com/wp-content/uploads/2025/01/68a9981c-d4b6-49e1-9414-449ac35e67bd-1.jpg",
+        "sourcePage": "https://herbalpassionsc.com/",
+        "alt": "Photo published by Herbal Passion",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-passion-f9d8ff8ddaaa.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "f9d8ff8ddaaac36dc913f215f3d57914f9fb79c8be15bdf9465fe33493b7ec21"
+      },
+      {
+        "url": "https://herbalpassionsc.com/wp-content/uploads/2025/01/e875a7f4-dddd-40f2-9ff6-0700c232fab1.jpg",
+        "sourcePage": "https://herbalpassionsc.com/",
+        "alt": "Photo published by Herbal Passion",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-passion-7c592d69aa3b.webp",
+        "width": 1280,
+        "height": 1280,
+        "sha256": "7c592d69aa3b1cfe4d0e17a82e43c388c26a325e5e6533c9d362e08bcbf7a713"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official HTML directly retrievedOct27 confirms845SavannahSuiteB,currenthoursWed–Fri11–6 Sat10–2. TenantHandsOnWellnessprimarysitecorroboratesaddress. OfficialsitehaslotsPexelsstock;avoidthoseimages.",
+    "inputIndex": 87,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herbalpassionsc.com/wp-content/uploads/2025/01/68a9981c-d4b6-49e1-9414-449ac35e67bd-1.jpg",
+        "sourcePage": "https://herbalpassionsc.com/",
+        "alt": "Photo published by Herbal Passion",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-passion-f9d8ff8ddaaa.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "f9d8ff8ddaaac36dc913f215f3d57914f9fb79c8be15bdf9465fe33493b7ec21"
+      },
+      {
+        "url": "https://herbalpassionsc.com/wp-content/uploads/2025/01/e875a7f4-dddd-40f2-9ff6-0700c232fab1.jpg",
+        "sourcePage": "https://herbalpassionsc.com/",
+        "alt": "Photo published by Herbal Passion",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-passion-7c592d69aa3b.webp",
+        "width": 1280,
+        "height": 1280,
+        "sha256": "7c592d69aa3b1cfe4d0e17a82e43c388c26a325e5e6533c9d362e08bcbf7a713"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  }
+]

@@ -1,0 +1,3571 @@
+{
+  "Mother\u2019s Natchez": {
+    "query": "520 Franklin Street, Natchez, Mississippi 39120",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=520+Franklin+Street%2C+Natchez%2C+Mississippi+39120&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "79845145"
+        },
+        "coordinates": {
+          "x": -91.401556635267,
+          "y": 31.560300736672
+        },
+        "addressComponents": {
+          "zip": "39120",
+          "streetName": "FRANKLIN",
+          "preType": "",
+          "city": "NATCHEZ",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "598",
+          "state": "MS",
+          "suffixType": "ST",
+          "toAddress": "500",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "520 FRANKLIN ST, NATCHEZ, MS, 39120"
+      }
+    ]
+  },
+  "Green Oaks Apothecary": {
+    "query": "2238 First Street, Slidell, Louisiana 70458",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2238+First+Street%2C+Slidell%2C+Louisiana+70458&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "111248907"
+        },
+        "coordinates": {
+          "x": -89.782664694896,
+          "y": 30.273586478811
+        },
+        "addressComponents": {
+          "zip": "70458",
+          "streetName": "1ST",
+          "preType": "",
+          "city": "SLIDELL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2298",
+          "state": "LA",
+          "suffixType": "ST",
+          "toAddress": "2200",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2238 1ST ST, SLIDELL, LA, 70458"
+      }
+    ]
+  },
+  "Clary & Sage Apothecary": {
+    "query": "1010 Porter Avenue, Ocean Springs, Mississippi 39564",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1010+Porter+Avenue%2C+Ocean+Springs%2C+Mississippi+39564&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "89258348"
+        },
+        "coordinates": {
+          "x": -88.827624625607,
+          "y": 30.41147413256
+        },
+        "addressComponents": {
+          "zip": "39564",
+          "streetName": "PORTER",
+          "preType": "",
+          "city": "OCEAN SPRINGS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1098",
+          "state": "MS",
+          "suffixType": "ST",
+          "toAddress": "1000",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1010 PORTER ST, OCEAN SPRINGS, MS, 39564"
+      }
+    ]
+  },
+  "Melanated Ancestral Collective": {
+    "query": "1003 SW E Avenue, Lawton, Oklahoma 73501",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1003+SW+E+Avenue%2C+Lawton%2C+Oklahoma+73501&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "14995387"
+        },
+        "coordinates": {
+          "x": -98.403285009777,
+          "y": 34.602944599091
+        },
+        "addressComponents": {
+          "zip": "73501",
+          "streetName": "E",
+          "preType": "",
+          "city": "LAWTON",
+          "preDirection": "SW",
+          "suffixDirection": "",
+          "fromAddress": "1001",
+          "state": "OK",
+          "suffixType": "AVE",
+          "toAddress": "1099",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1003 SW E AVE, LAWTON, OK, 73501"
+      }
+    ]
+  },
+  "A Thousand Leaves Community Apothecary": {
+    "query": "22 SE 5th Avenue, Gainesville, Florida 32601",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=22+SE+5th+Avenue%2C+Gainesville%2C+Florida+32601&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "637951542"
+        },
+        "coordinates": {
+          "x": -82.324619221262,
+          "y": 29.647209329319
+        },
+        "addressComponents": {
+          "zip": "32601",
+          "streetName": "5TH",
+          "preType": "",
+          "city": "GAINESVILLE",
+          "preDirection": "SE",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "FL",
+          "suffixType": "AVE",
+          "toAddress": "98",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "22 SE 5TH AVE, GAINESVILLE, FL, 32601"
+      }
+    ]
+  },
+  "KindFolk Apothecary + Wellness": {
+    "query": "901 N Vista Ridge Boulevard, Cedar Park, Texas 78613",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=901+N+Vista+Ridge+Boulevard%2C+Cedar+Park%2C+Texas+78613&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "617953914"
+        },
+        "coordinates": {
+          "x": -97.791500300572,
+          "y": 30.530431168979
+        },
+        "addressComponents": {
+          "zip": "78613",
+          "streetName": "VISTA RIDGE",
+          "preType": "",
+          "city": "CEDAR PARK",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "701",
+          "state": "TX",
+          "suffixType": "BLVD",
+          "toAddress": "999",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "901 N VISTA RIDGE BLVD, CEDAR PARK, TX, 78613"
+      }
+    ]
+  },
+  "Baldflower Apothecary": {
+    "query": "184 N Dean Street, Spartanburg, South Carolina 29302",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=184+N+Dean+Street%2C+Spartanburg%2C+South+Carolina+29302&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "19468534"
+        },
+        "coordinates": {
+          "x": -81.926654877907,
+          "y": 34.953148385628
+        },
+        "addressComponents": {
+          "zip": "29302",
+          "streetName": "DEAN",
+          "preType": "",
+          "city": "SPARTANBURG",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "100",
+          "state": "SC",
+          "suffixType": "ST",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "184 N DEAN ST, SPARTANBURG, SC, 29302"
+      }
+    ]
+  },
+  "Into the Wilds Apothecary": {
+    "query": "205 N 3rd Street, Ozark, Arkansas 72949",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=205+N+3rd+Street%2C+Ozark%2C+Arkansas+72949&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "55881039"
+        },
+        "coordinates": {
+          "x": -93.827149818514,
+          "y": 35.487763575866
+        },
+        "addressComponents": {
+          "zip": "72949",
+          "streetName": "3RD",
+          "preType": "",
+          "city": "OZARK",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "201",
+          "state": "AR",
+          "suffixType": "ST",
+          "toAddress": "299",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "205 N 3RD ST, OZARK, AR, 72949"
+      }
+    ]
+  },
+  "Apothecary of Knightdale": {
+    "query": "819 N Smithfield Road, Knightdale, North Carolina 27545",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=819+N+Smithfield+Road%2C+Knightdale%2C+North+Carolina+27545&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "647330285"
+        },
+        "coordinates": {
+          "x": -78.48664750269,
+          "y": 35.794664630953
+        },
+        "addressComponents": {
+          "zip": "27545",
+          "streetName": "SMITHFIELD",
+          "preType": "",
+          "city": "KNIGHTDALE",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "801",
+          "state": "NC",
+          "suffixType": "RD",
+          "toAddress": "1199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "819 N SMITHFIELD RD, KNIGHTDALE, NC, 27545"
+      }
+    ]
+  },
+  "The Herb Room Organic Apothecary": {
+    "query": "14 New Orleans Road, Hilton Head Island, South Carolina 29928",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=14+New+Orleans+Road%2C+Hilton+Head+Island%2C+South+Carolina+29928&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "87615476"
+        },
+        "coordinates": {
+          "x": -80.754335662292,
+          "y": 32.157769261783
+        },
+        "addressComponents": {
+          "zip": "29928",
+          "streetName": "NEW ORLEANS",
+          "preType": "",
+          "city": "HILTON HEAD ISLAND",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "SC",
+          "suffixType": "RD",
+          "toAddress": "18",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "14 NEW ORLEANS RD, HILTON HEAD ISLAND, SC, 29928"
+      }
+    ]
+  },
+  "The Gathering Place": {
+    "query": "115 S Crockett Street, Seguin, Texas 78155",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=115+S+Crockett+Street%2C+Seguin%2C+Texas+78155&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "54827865"
+        },
+        "coordinates": {
+          "x": -97.962852751044,
+          "y": 29.568777106354
+        },
+        "addressComponents": {
+          "zip": "78155",
+          "streetName": "CROCKETT",
+          "preType": "",
+          "city": "SEGUIN",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "TX",
+          "suffixType": "ST",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "115 S CROCKETT ST, SEGUIN, TX, 78155"
+      }
+    ]
+  },
+  "Sacred Moon Herbs": {
+    "query": "305 W Mercer Street, Dripping Springs, Texas 78620",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=305+W+Mercer+Street%2C+Dripping+Springs%2C+Texas+78620&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "63819244"
+        },
+        "coordinates": {
+          "x": -98.090328148609,
+          "y": 30.192723362207
+        },
+        "addressComponents": {
+          "zip": "78620",
+          "streetName": "MERCER",
+          "preType": "",
+          "city": "DRIPPING SPRINGS",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "211",
+          "state": "TX",
+          "suffixType": "ST",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "305 W MERCER ST, DRIPPING SPRINGS, TX, 78620"
+      }
+    ]
+  },
+  "The Herb Shop of Vinings": {
+    "query": "2250 Marietta Boulevard NW, Atlanta, Georgia 30318",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2250+Marietta+Boulevard+NW%2C+Atlanta%2C+Georgia+30318&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "17415618"
+        },
+        "coordinates": {
+          "x": -84.448749037531,
+          "y": 33.817813391091
+        },
+        "addressComponents": {
+          "zip": "30318",
+          "streetName": "MARIETTA",
+          "preType": "",
+          "city": "ATLANTA",
+          "preDirection": "",
+          "suffixDirection": "NW",
+          "fromAddress": "2248",
+          "state": "GA",
+          "suffixType": "BLVD",
+          "toAddress": "2342",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2250 MARIETTA BLVD NW, ATLANTA, GA, 30318"
+      }
+    ]
+  },
+  "Healing Waters Clinic & Herb Shop": {
+    "query": "26 Clark Street, St. Augustine, Florida 32084",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=26+Clark+Street%2C+St.+Augustine%2C+Florida+32084&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "639346247"
+        },
+        "coordinates": {
+          "x": -81.324766815891,
+          "y": 29.88821096069
+        },
+        "addressComponents": {
+          "zip": "32084",
+          "streetName": "CLARK",
+          "preType": "",
+          "city": "ST AUGUSTINE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "98",
+          "state": "FL",
+          "suffixType": "ST",
+          "toAddress": "12",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "26 CLARK ST, ST AUGUSTINE, FL, 32084"
+      }
+    ]
+  },
+  "Miss Anne\u2019s Maypop Herb Shop": {
+    "query": "1370 Laharpe Street, New Orleans, Louisiana 70116",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1370+Laharpe+Street%2C+New+Orleans%2C+Louisiana+70116&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "191710553"
+        },
+        "coordinates": {
+          "x": -90.064584206304,
+          "y": 29.970518187163
+        },
+        "addressComponents": {
+          "zip": "70116",
+          "streetName": "LAHARPE",
+          "preType": "",
+          "city": "NEW ORLEANS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1300",
+          "state": "LA",
+          "suffixType": "ST",
+          "toAddress": "1398",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1370 LAHARPE ST, NEW ORLEANS, LA, 70116"
+      }
+    ]
+  },
+  "Earth Heart Health Food Store": {
+    "query": "4573 US Highway 221 North, Marion, North Carolina 28752",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4573+US+Highway+221+North%2C+Marion%2C+North+Carolina+28752&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "35913788"
+        },
+        "coordinates": {
+          "x": -82.048992115874,
+          "y": 35.738407342522
+        },
+        "addressComponents": {
+          "zip": "28752",
+          "streetName": "221",
+          "preType": "US HWY",
+          "city": "MARION",
+          "preDirection": "",
+          "suffixDirection": "N",
+          "fromAddress": "4501",
+          "state": "NC",
+          "suffixType": "",
+          "toAddress": "4599",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4573 US HWY 221 N, MARION, NC, 28752"
+      }
+    ]
+  },
+  "Hummingbird Apothecary \u2014 South Knoxville": {
+    "query": "3726 Sevier Heights Road, Knoxville, Tennessee 37920",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3726+Sevier+Heights+Road%2C+Knoxville%2C+Tennessee+37920&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "42625007"
+        },
+        "coordinates": {
+          "x": -83.891111790299,
+          "y": 35.942232634185
+        },
+        "addressComponents": {
+          "zip": "37920",
+          "streetName": "SEVIER HEIGHTS",
+          "preType": "",
+          "city": "KNOXVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3798",
+          "state": "TN",
+          "suffixType": "RD",
+          "toAddress": "3700",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3726 SEVIER HEIGHTS RD, KNOXVILLE, TN, 37920"
+      }
+    ]
+  },
+  "Hummingbird Apothecary \u2014 North Knoxville": {
+    "query": "3716 Walker Boulevard, Knoxville, Tennessee 37917",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3716+Walker+Boulevard%2C+Knoxville%2C+Tennessee+37917&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "42617849"
+        },
+        "coordinates": {
+          "x": -83.926593542377,
+          "y": 36.005564145009
+        },
+        "addressComponents": {
+          "zip": "37917",
+          "streetName": "WALKER",
+          "preType": "",
+          "city": "KNOXVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3700",
+          "state": "TN",
+          "suffixType": "BLVD",
+          "toAddress": "3798",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3716 WALKER BLVD, KNOXVILLE, TN, 37917"
+      }
+    ]
+  },
+  "Synergy Herbal Works \u2014 Cookeville": {
+    "query": "44 S Cedar Avenue, Cookeville, Tennessee 38501",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=44+S+Cedar+Avenue%2C+Cookeville%2C+Tennessee+38501&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "605281443"
+        },
+        "coordinates": {
+          "x": -85.507878168461,
+          "y": 36.162914471017
+        },
+        "addressComponents": {
+          "zip": "38501",
+          "streetName": "CEDAR",
+          "preType": "",
+          "city": "COOKEVILLE",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "52",
+          "state": "TN",
+          "suffixType": "AVE",
+          "toAddress": "18",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "44 S CEDAR AVE, COOKEVILLE, TN, 38501"
+      }
+    ]
+  },
+  "Natural Law Apothecary": {
+    "query": "423 S 600 W, Salt Lake City, Utah 84101",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=423+S+600+W%2C+Salt+Lake+City%2C+Utah+84101&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "176138335"
+        },
+        "coordinates": {
+          "x": -111.908171344376,
+          "y": 40.760241925626
+        },
+        "addressComponents": {
+          "zip": "84101",
+          "streetName": "600",
+          "preType": "",
+          "city": "SALT LAKE CITY",
+          "preDirection": "S",
+          "suffixDirection": "W",
+          "fromAddress": "401",
+          "state": "UT",
+          "suffixType": "",
+          "toAddress": "461",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "423 S 600 W, SALT LAKE CITY, UT, 84101"
+      }
+    ]
+  },
+  "Dragon Herbs Herbal Emporium and Elixir Bar": {
+    "query": "460 S Robertson Boulevard, Los Angeles, California 90048",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=460+S+Robertson+Boulevard%2C+Los+Angeles%2C+California+90048&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "142719269"
+        },
+        "coordinates": {
+          "x": -118.383688852233,
+          "y": 34.070564793586
+        },
+        "addressComponents": {
+          "zip": "90048",
+          "streetName": "ROBERTSON",
+          "preType": "",
+          "city": "LOS ANGELES",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "450",
+          "state": "CA",
+          "suffixType": "BLVD",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "460 ROBERTSON BLVD, LOS ANGELES, CA, 90048"
+      }
+    ]
+  },
+  "Mountain Rose Herbs Mercantile - Palm Springs": {
+    "query": "115 S Palm Canyon Drive, Palm Springs, California 92262",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=115+S+Palm+Canyon+Drive%2C+Palm+Springs%2C+California+92262&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "195071502"
+        },
+        "coordinates": {
+          "x": -116.546848953081,
+          "y": 33.822856155194
+        },
+        "addressComponents": {
+          "zip": "92262",
+          "streetName": "PALM CANYON",
+          "preType": "",
+          "city": "PALM SPRINGS",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "CA",
+          "suffixType": "DR",
+          "toAddress": "129",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "115 S PALM CANYON DR, PALM SPRINGS, CA, 92262"
+      }
+    ]
+  },
+  "Mountain Rose Herbs Mercantile - Seattle": {
+    "query": "2111 1st Avenue, Seattle, Washington 98121",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2111+1st+Avenue%2C+Seattle%2C+Washington+98121&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "186588928"
+        },
+        "coordinates": {
+          "x": -122.344153687105,
+          "y": 47.611900599924
+        },
+        "addressComponents": {
+          "zip": "98121",
+          "streetName": "1ST",
+          "preType": "",
+          "city": "SEATTLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2101",
+          "state": "WA",
+          "suffixType": "AVE",
+          "toAddress": "2199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2111 1ST AVE, SEATTLE, WA, 98121"
+      }
+    ]
+  },
+  "Herbally Grounded - Charleston": {
+    "query": "4441 W Charleston Boulevard, Las Vegas, Nevada 89102",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4441+W+Charleston+Boulevard%2C+Las+Vegas%2C+Nevada+89102&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "639384913"
+        },
+        "coordinates": {
+          "x": -115.200400797168,
+          "y": 36.158917880851
+        },
+        "addressComponents": {
+          "zip": "89102",
+          "streetName": "CHARLESTON",
+          "preType": "",
+          "city": "LAS VEGAS",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "4499",
+          "state": "NV",
+          "suffixType": "BLVD",
+          "toAddress": "4401",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4441 W CHARLESTON BLVD, LAS VEGAS, NV, 89102"
+      }
+    ]
+  },
+  "Herbally Grounded - Eastern": {
+    "query": "10345 S Eastern Avenue, Henderson, Nevada 89052",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10345+S+Eastern+Avenue%2C+Henderson%2C+Nevada+89052&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "640233822"
+        },
+        "coordinates": {
+          "x": -115.108301693486,
+          "y": 36.001987596429
+        },
+        "addressComponents": {
+          "zip": "89052",
+          "streetName": "EASTERN",
+          "preType": "",
+          "city": "HENDERSON",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "10301",
+          "state": "NV",
+          "suffixType": "AVE",
+          "toAddress": "10599",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "10345 S EASTERN AVE, HENDERSON, NV, 89052"
+      }
+    ]
+  },
+  "Pilar\u2019s Wellness Collective Apothecary": {
+    "query": "1001 W 17th Street, Costa Mesa, California 92627",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1001+W+17th+Street%2C+Costa+Mesa%2C+California+92627&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "144046588"
+        },
+        "coordinates": {
+          "x": -117.940633780555,
+          "y": 33.635982875863
+        },
+        "addressComponents": {
+          "zip": "92627",
+          "streetName": "17TH",
+          "preType": "",
+          "city": "COSTA MESA",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "1001",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "1099",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1001 W 17TH ST, COSTA MESA, CA, 92627"
+      }
+    ]
+  },
+  "Herban Myth Apothecary at Chico Holistic Wellness Center": {
+    "query": "287 Rio Lindo Avenue, Chico, California 95926",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=287+Rio+Lindo+Avenue%2C+Chico%2C+California+95926&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "642907703"
+        },
+        "coordinates": {
+          "x": -121.854212620287,
+          "y": 39.754358928576
+        },
+        "addressComponents": {
+          "zip": "95926",
+          "streetName": "RIO LINDO",
+          "preType": "",
+          "city": "CHICO",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "259",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "287 RIO LINDO AVE, CHICO, CA, 95926"
+      }
+    ]
+  },
+  "Enchantment Creek Apothecary": {
+    "query": "1126 Lane 11, Powell, Wyoming 82435",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1126+Lane+11%2C+Powell%2C+Wyoming+82435&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "612468905"
+        },
+        "coordinates": {
+          "x": -108.802767404452,
+          "y": 44.724674894726
+        },
+        "addressComponents": {
+          "zip": "82435",
+          "streetName": "11",
+          "preType": "LN",
+          "city": "POWELL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1100",
+          "state": "WY",
+          "suffixType": "",
+          "toAddress": "1198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1126 LN 11, POWELL, WY, 82435"
+      }
+    ]
+  },
+  "Kauai Farmacy": {
+    "query": "4731G Kuawa Road, Kilauea, Hawaii 96754",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4731G+Kuawa+Road%2C+Kilauea%2C+Hawaii+96754&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "653181586"
+        },
+        "coordinates": {
+          "x": -159.414710217486,
+          "y": 22.199451166825
+        },
+        "addressComponents": {
+          "zip": "96754",
+          "streetName": "KUAWA",
+          "preType": "",
+          "city": "KILAUEA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "4601",
+          "state": "HI",
+          "suffixType": "RD",
+          "toAddress": "4799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4731G KUAWA RD, KILAUEA, HI, 96754"
+      }
+    ]
+  },
+  "Dragon\u2019s Den Herb Shop": {
+    "query": "3681 Baldwin Avenue, Makawao, Hawaii 96768",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3681+Baldwin+Avenue%2C+Makawao%2C+Hawaii+96768&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "85069649"
+        },
+        "coordinates": {
+          "x": -156.31129219228,
+          "y": 20.855232459966
+        },
+        "addressComponents": {
+          "zip": "96768",
+          "streetName": "BALDWIN",
+          "preType": "",
+          "city": "MAKAWAO",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3681",
+          "state": "HI",
+          "suffixType": "AVE",
+          "toAddress": "3699",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3681 BALDWIN AVE, MAKAWAO, HI, 96768"
+      }
+    ]
+  },
+  "Rosemary\u2019s Garden": {
+    "query": "176 N Main Street, Sebastopol, California 95472",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=176+N+Main+Street%2C+Sebastopol%2C+California+95472&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "67465132"
+        },
+        "coordinates": {
+          "x": -122.824933052296,
+          "y": 38.40316317274
+        },
+        "addressComponents": {
+          "zip": "95472",
+          "streetName": "N MAIN",
+          "preType": "",
+          "city": "SEBASTOPOL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "174",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "176 N MAIN ST, SEBASTOPOL, CA, 95472"
+      }
+    ]
+  },
+  "Milagro Herbs": {
+    "query": "1500 5th Street, Santa Fe, New Mexico 87505",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1500+5th+Street%2C+Santa+Fe%2C+New+Mexico+87505&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "169377791"
+        },
+        "coordinates": {
+          "x": -105.971907933352,
+          "y": 35.664288494702
+        },
+        "addressComponents": {
+          "zip": "87505",
+          "streetName": "5TH",
+          "preType": "",
+          "city": "SANTA FE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1500",
+          "state": "NM",
+          "suffixType": "ST",
+          "toAddress": "1598",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1500 5TH ST, SANTA FE, NM, 87505"
+      }
+    ]
+  },
+  "Old Town Herbal": {
+    "query": "1919 Old Town Road NW, Albuquerque, New Mexico 87104",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1919+Old+Town+Road+NW%2C+Albuquerque%2C+New+Mexico+87104&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "206706105"
+        },
+        "coordinates": {
+          "x": -106.668402492763,
+          "y": 35.095696649331
+        },
+        "addressComponents": {
+          "zip": "87104",
+          "streetName": "NW",
+          "preType": "TOWN RD",
+          "city": "ALBUQUERQUE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1901",
+          "state": "NM",
+          "suffixType": "",
+          "toAddress": "1923",
+          "suffixQualifier": "",
+          "preQualifier": "OLD"
+        },
+        "matchedAddress": "1919 OLD TOWN RD NW, ALBUQUERQUE, NM, 87104"
+      }
+    ]
+  },
+  "All About Herbs": {
+    "query": "4621 E Palmer-Wasilla Highway, Wasilla, Alaska 99654",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4621+E+Palmer-Wasilla+Highway%2C+Wasilla%2C+Alaska+99654&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "637629912"
+        },
+        "coordinates": {
+          "x": -149.334867767179,
+          "y": 61.585051895095
+        },
+        "addressComponents": {
+          "zip": "99654",
+          "streetName": "PALMER-WASILLA",
+          "preType": "",
+          "city": "WASILLA",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "4699",
+          "state": "AK",
+          "suffixType": "HWY",
+          "toAddress": "4501",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4621 E PALMER-WASILLA HWY, WASILLA, AK, 99654"
+      }
+    ]
+  },
+  "Rosemary\u2019s Herb Shop": {
+    "query": "1705 Sudderth Drive, Ruidoso, New Mexico 88345",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1705+Sudderth+Drive%2C+Ruidoso%2C+New+Mexico+88345&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "169113867"
+        },
+        "coordinates": {
+          "x": -105.662207297511,
+          "y": 33.328069700804
+        },
+        "addressComponents": {
+          "zip": "88345",
+          "streetName": "SUDDERTH",
+          "preType": "",
+          "city": "RUIDOSO",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1701",
+          "state": "NM",
+          "suffixType": "DR",
+          "toAddress": "1799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1705 SUDDERTH DR, RUIDOSO, NM, 88345"
+      }
+    ]
+  },
+  "The Herbal Ritual Apothecary and Pharmacy": {
+    "query": "344 40th Street, Oakland, California 94609",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=344+40th+Street%2C+Oakland%2C+California+94609&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "652204406"
+        },
+        "coordinates": {
+          "x": -122.257567694948,
+          "y": 37.828065400685
+        },
+        "addressComponents": {
+          "zip": "94609",
+          "streetName": "40TH",
+          "preType": "",
+          "city": "OAKLAND",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "310",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "354",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "344 40TH ST, OAKLAND, CA, 94609"
+      }
+    ]
+  },
+  "Green Wisdom Herbal Studies": {
+    "query": "702 Cedar Avenue, Long Beach, California 90813",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=702+Cedar+Avenue%2C+Long+Beach%2C+California+90813&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "141693866"
+        },
+        "coordinates": {
+          "x": -118.194981537769,
+          "y": 33.775424375315
+        },
+        "addressComponents": {
+          "zip": "90813",
+          "streetName": "CEDAR",
+          "preType": "",
+          "city": "LONG BEACH",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "700",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "726",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "702 CEDAR AVE, LONG BEACH, CA, 90813"
+      }
+    ]
+  },
+  "Lhasa Karnak Herb Company - San Pablo": {
+    "query": "2506 San Pablo Avenue, Berkeley, California 94702",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2506+San+Pablo+Avenue%2C+Berkeley%2C+California+94702&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "124994091"
+        },
+        "coordinates": {
+          "x": -122.289664040962,
+          "y": 37.860908768037
+        },
+        "addressComponents": {
+          "zip": "94702",
+          "streetName": "SAN PABLO",
+          "preType": "",
+          "city": "BERKELEY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2500",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "2536",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2506 SAN PABLO AVE, BERKELEY, CA, 94702"
+      }
+    ]
+  },
+  "Lhasa Karnak Herb Company - Shattuck": {
+    "query": "1942 Shattuck Avenue, Berkeley, California 94704",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1942+Shattuck+Avenue%2C+Berkeley%2C+California+94704&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "606225603"
+        },
+        "coordinates": {
+          "x": -122.268629034176,
+          "y": 37.87291303415
+        },
+        "addressComponents": {
+          "zip": "94704",
+          "streetName": "SHATTUCK",
+          "preType": "",
+          "city": "BERKELEY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1938",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "1998",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1942 SHATTUCK AVE, BERKELEY, CA, 94704"
+      }
+    ]
+  },
+  "Alkaline Healing Herbs - Elston": {
+    "query": "4661 N Elston Avenue, Chicago, Illinois 60630",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4661+N+Elston+Avenue%2C+Chicago%2C+Illinois+60630&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "111755410"
+        },
+        "coordinates": {
+          "x": -87.736461234086,
+          "y": 41.965659435983
+        },
+        "addressComponents": {
+          "zip": "60630",
+          "streetName": "ELSTON",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "4633",
+          "state": "IL",
+          "suffixType": "AVE",
+          "toAddress": "4675",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4661 N ELSTON AVE, CHICAGO, IL, 60630"
+      }
+    ]
+  },
+  "Alkaline Healing Herbs - Division": {
+    "query": "2455 W Division Street, Chicago, Illinois 60622",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2455+W+Division+Street%2C+Chicago%2C+Illinois+60622&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "111763653"
+        },
+        "coordinates": {
+          "x": -87.688733784026,
+          "y": 41.902941816027
+        },
+        "addressComponents": {
+          "zip": "60622",
+          "streetName": "DIVISION",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "2429",
+          "state": "IL",
+          "suffixType": "ST",
+          "toAddress": "2499",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2455 W DIVISION ST, CHICAGO, IL, 60622"
+      }
+    ]
+  },
+  "Hoa My Chinese Medicine": {
+    "query": "1123 W Argyle Street, Chicago, Illinois 60640",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1123+W+Argyle+Street%2C+Chicago%2C+Illinois+60640&benchmark=Public_AR_Current&format=json",
+    "matches": []
+  },
+  "Herb Stone": {
+    "query": "2200 S Wentworth Avenue, Chicago, Illinois 60616",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2200+S+Wentworth+Avenue%2C+Chicago%2C+Illinois+60616&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "616795079"
+        },
+        "coordinates": {
+          "x": -87.632085453105,
+          "y": 41.85286564954
+        },
+        "addressComponents": {
+          "zip": "60616",
+          "streetName": "WENTWORTH",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "2204",
+          "state": "IL",
+          "suffixType": "AVE",
+          "toAddress": "2200",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2200 S WENTWORTH AVE, CHICAGO, IL, 60616"
+      }
+    ]
+  },
+  "Lisa Herbal Corporation": {
+    "query": "2802 S Wentworth Avenue, Chicago, Illinois 60616",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2802+S+Wentworth+Avenue%2C+Chicago%2C+Illinois+60616&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "111828763"
+        },
+        "coordinates": {
+          "x": -87.631870568489,
+          "y": 41.842543234198
+        },
+        "addressComponents": {
+          "zip": "60616",
+          "streetName": "WENTWORTH",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "2800",
+          "state": "IL",
+          "suffixType": "AVE",
+          "toAddress": "2898",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2802 S WENTWORTH AVE, CHICAGO, IL, 60616"
+      }
+    ]
+  },
+  "DMApothecary at Mella\u2019Ninn Complex": {
+    "query": "5430 N Broadway, Chicago, Illinois 60640",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=5430+N+Broadway%2C+Chicago%2C+Illinois+60640&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "111761475"
+        },
+        "coordinates": {
+          "x": -87.660060948645,
+          "y": 41.980551313044
+        },
+        "addressComponents": {
+          "zip": "60640",
+          "streetName": "BROADWAY",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "5400",
+          "state": "IL",
+          "suffixType": "ST",
+          "toAddress": "5498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "5430 N BROADWAY ST, CHICAGO, IL, 60640"
+      }
+    ]
+  },
+  "Merz Apothecary": {
+    "query": "4716 N Lincoln Avenue, Chicago, Illinois 60625",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4716+N+Lincoln+Avenue%2C+Chicago%2C+Illinois+60625&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "635485682"
+        },
+        "coordinates": {
+          "x": -87.687708210486,
+          "y": 41.967157602084
+        },
+        "addressComponents": {
+          "zip": "60625",
+          "streetName": "LINCOLN",
+          "preType": "",
+          "city": "CHICAGO",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "4700",
+          "state": "IL",
+          "suffixType": "AVE",
+          "toAddress": "4734",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4716 N LINCOLN AVE, CHICAGO, IL, 60625"
+      }
+    ]
+  },
+  "Topaz Apothecary & Collective": {
+    "query": "804 N Grand Avenue, Waukesha, Wisconsin 53186",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=804+N+Grand+Avenue%2C+Waukesha%2C+Wisconsin+53186&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "649598922"
+        },
+        "coordinates": {
+          "x": -88.231652583026,
+          "y": 43.010803890061
+        },
+        "addressComponents": {
+          "zip": "53186",
+          "streetName": "GRAND",
+          "preType": "",
+          "city": "WAUKESHA",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "800",
+          "state": "WI",
+          "suffixType": "AVE",
+          "toAddress": "898",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "804 N GRAND AVE, WAUKESHA, WI, 53186"
+      }
+    ]
+  },
+  "Aurora\u2019s Apothecary - Appleton": {
+    "query": "1607 N Richmond Street, Appleton, Wisconsin 54911",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1607+N+Richmond+Street%2C+Appleton%2C+Wisconsin+54911&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "74885591"
+        },
+        "coordinates": {
+          "x": -88.415856473478,
+          "y": 44.275682888461
+        },
+        "addressComponents": {
+          "zip": "54911",
+          "streetName": "RICHMOND",
+          "preType": "",
+          "city": "APPLETON",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "1601",
+          "state": "WI",
+          "suffixType": "ST",
+          "toAddress": "1625",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1607 N RICHMOND ST, APPLETON, WI, 54911"
+      }
+    ]
+  },
+  "Aurora\u2019s Apothecary - Green Bay": {
+    "query": "133 N Broadway, Green Bay, Wisconsin 54303",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=133+N+Broadway%2C+Green+Bay%2C+Wisconsin+54303&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "148100671"
+        },
+        "coordinates": {
+          "x": -88.021529214166,
+          "y": 44.516981001387
+        },
+        "addressComponents": {
+          "zip": "54303",
+          "streetName": "BROADWAY",
+          "preType": "",
+          "city": "GREEN BAY",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "WI",
+          "suffixType": "",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "133 N BROADWAY, GREEN BAY, WI, 54303"
+      }
+    ]
+  },
+  "Aurora\u2019s Apothecary - Fond du Lac": {
+    "query": "171 S Main Street, Fond du Lac, Wisconsin 54935",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=171+S+Main+Street%2C+Fond+du+Lac%2C+Wisconsin+54935&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "74811235"
+        },
+        "coordinates": {
+          "x": -88.44697932461,
+          "y": 43.77411181975
+        },
+        "addressComponents": {
+          "zip": "54935",
+          "streetName": "S MAIN",
+          "preType": "",
+          "city": "FOND DU LAC",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "161",
+          "state": "WI",
+          "suffixType": "ST",
+          "toAddress": "171",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "171 S MAIN ST, FOND DU LAC, WI, 54935"
+      }
+    ]
+  },
+  "Lakota Made": {
+    "query": "606 N Riverfront Drive, Mankato, Minnesota 56001",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=606+N+Riverfront+Drive%2C+Mankato%2C+Minnesota+56001&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "28100051"
+        },
+        "coordinates": {
+          "x": -93.998232477207,
+          "y": 44.172250563271
+        },
+        "addressComponents": {
+          "zip": "56001",
+          "streetName": "RIVERFRONT",
+          "preType": "",
+          "city": "MANKATO",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "600",
+          "state": "MN",
+          "suffixType": "DR",
+          "toAddress": "698",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "606 N RIVERFRONT DR, MANKATO, MN, 56001"
+      }
+    ]
+  },
+  "Present Moment Herbs & Books": {
+    "query": "3546 Grand Avenue S, Minneapolis, Minnesota 55408",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3546+Grand+Avenue+S%2C+Minneapolis%2C+Minnesota+55408&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "43633615"
+        },
+        "coordinates": {
+          "x": -93.284409221835,
+          "y": 44.938673526763
+        },
+        "addressComponents": {
+          "zip": "55408",
+          "streetName": "GRAND",
+          "preType": "",
+          "city": "MINNEAPOLIS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3500",
+          "state": "MN",
+          "suffixType": "AVE",
+          "toAddress": "3598",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3546 GRAND AVE, MINNEAPOLIS, MN, 55408"
+      }
+    ]
+  },
+  "Magus Books and Herbs": {
+    "query": "2520 Central Avenue NE, Minneapolis, Minnesota 55418",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2520+Central+Avenue+NE%2C+Minneapolis%2C+Minnesota+55418&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "43636228"
+        },
+        "coordinates": {
+          "x": -93.247418010242,
+          "y": 45.013562256305
+        },
+        "addressComponents": {
+          "zip": "55418",
+          "streetName": "CENTRAL",
+          "preType": "",
+          "city": "MINNEAPOLIS",
+          "preDirection": "",
+          "suffixDirection": "NE",
+          "fromAddress": "2500",
+          "state": "MN",
+          "suffixType": "AVE",
+          "toAddress": "2598",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2520 CENTRAL AVE NE, MINNEAPOLIS, MN, 55418"
+      }
+    ]
+  },
+  "Jewelweed": {
+    "query": "223 Water Street, Excelsior, Minnesota 55331",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=223+Water+Street%2C+Excelsior%2C+Minnesota+55331&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "43605295"
+        },
+        "coordinates": {
+          "x": -93.566385852165,
+          "y": 44.903140839995
+        },
+        "addressComponents": {
+          "zip": "55331",
+          "streetName": "WATER",
+          "preType": "",
+          "city": "EXCELSIOR",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "299",
+          "state": "MN",
+          "suffixType": "ST",
+          "toAddress": "201",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "223 WATER ST, EXCELSIOR, MN, 55331"
+      }
+    ]
+  },
+  "Leaf & Stone Apothecary": {
+    "query": "815 W 11th Street N, Wichita, Kansas 67203",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=815+W+11th+Street+N%2C+Wichita%2C+Kansas+67203&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "115634741"
+        },
+        "coordinates": {
+          "x": -97.347302602417,
+          "y": 37.704286708279
+        },
+        "addressComponents": {
+          "zip": "67203",
+          "streetName": "11TH",
+          "preType": "",
+          "city": "WICHITA",
+          "preDirection": "W",
+          "suffixDirection": "N",
+          "fromAddress": "801",
+          "state": "KS",
+          "suffixType": "ST",
+          "toAddress": "899",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "815 W 11TH ST N, WICHITA, KS, 67203"
+      }
+    ]
+  },
+  "Flourish Herbals & Aromatherapy": {
+    "query": "203 E Laurel Street, Garden City, Kansas 67846",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=203+E+Laurel+Street%2C+Garden+City%2C+Kansas+67846&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "145421909"
+        },
+        "coordinates": {
+          "x": -100.872219572679,
+          "y": 37.967456495329
+        },
+        "addressComponents": {
+          "zip": "67846",
+          "streetName": "LAUREL",
+          "preType": "",
+          "city": "GARDEN CITY",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "299",
+          "state": "KS",
+          "suffixType": "ST",
+          "toAddress": "201",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "203 E LAUREL ST, GARDEN CITY, KS, 67846"
+      }
+    ]
+  },
+  "Phoenix Herb": {
+    "query": "3957 Main Street, Kansas City, Missouri 64111",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3957+Main+Street%2C+Kansas+City%2C+Missouri+64111&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "91521179"
+        },
+        "coordinates": {
+          "x": -94.586108949123,
+          "y": 39.055237173711
+        },
+        "addressComponents": {
+          "zip": "64111",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "KANSAS CITY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "3937",
+          "state": "MO",
+          "suffixType": "ST",
+          "toAddress": "3999",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3957 MAIN ST, KANSAS CITY, MO, 64111"
+      }
+    ]
+  },
+  "Cheryl\u2019s Herbs": {
+    "query": "7233 Manchester Road, Maplewood, Missouri 63143",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=7233+Manchester+Road%2C+Maplewood%2C+Missouri+63143&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "100196512"
+        },
+        "coordinates": {
+          "x": -90.315471981547,
+          "y": 38.613839163759
+        },
+        "addressComponents": {
+          "zip": "63143",
+          "streetName": "MANCHESTER",
+          "preType": "",
+          "city": "MAPLEWOOD",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "7219",
+          "state": "MO",
+          "suffixType": "RD",
+          "toAddress": "7239",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "7233 MANCHESTER RD, MAPLEWOOD, MO, 63143"
+      }
+    ]
+  },
+  "STL Herbs and Aromatics": {
+    "query": "7290 Manchester Road, Maplewood, Missouri 63143",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=7290+Manchester+Road%2C+Maplewood%2C+Missouri+63143&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "100153601"
+        },
+        "coordinates": {
+          "x": -90.316795681963,
+          "y": 38.613351577955
+        },
+        "addressComponents": {
+          "zip": "63143",
+          "streetName": "MANCHESTER",
+          "preType": "",
+          "city": "MAPLEWOOD",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "7262",
+          "state": "MO",
+          "suffixType": "RD",
+          "toAddress": "7298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "7290 MANCHESTER RD, MAPLEWOOD, MO, 63143"
+      }
+    ]
+  },
+  "Centered Spirit Apothecary & Emilie\u2019s French Teas": {
+    "query": "8131 Wornall Road, Kansas City, Missouri 64114",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=8131+Wornall+Road%2C+Kansas+City%2C+Missouri+64114&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "91507431"
+        },
+        "coordinates": {
+          "x": -94.594713836155,
+          "y": 38.980320696576
+        },
+        "addressComponents": {
+          "zip": "64114",
+          "streetName": "WORNALL",
+          "preType": "",
+          "city": "KANSAS CITY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "8127",
+          "state": "MO",
+          "suffixType": "RD",
+          "toAddress": "8135",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "8131 WORNALL RD, KANSAS CITY, MO, 64114"
+      }
+    ]
+  },
+  "Hawthorn & Violet Herbal Apothecary": {
+    "query": "1024 N Leroy Street, Fenton, Michigan 48430",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1024+N+Leroy+Street%2C+Fenton%2C+Michigan+48430&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "69579827"
+        },
+        "coordinates": {
+          "x": -83.707201677809,
+          "y": 42.807814831072
+        },
+        "addressComponents": {
+          "zip": "48430",
+          "streetName": "LEROY",
+          "preType": "",
+          "city": "FENTON",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "1098",
+          "state": "MI",
+          "suffixType": "ST",
+          "toAddress": "1000",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1024 N LEROY ST, FENTON, MI, 48430"
+      }
+    ]
+  },
+  "Those Nature People Herb Haus - Frankenmuth": {
+    "query": "455 S Main Street, Frankenmuth, Michigan 48734",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=455+S+Main+Street%2C+Frankenmuth%2C+Michigan+48734&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "80206114"
+        },
+        "coordinates": {
+          "x": -83.738407605059,
+          "y": 43.330683250377
+        },
+        "addressComponents": {
+          "zip": "48734",
+          "streetName": "S MAIN",
+          "preType": "",
+          "city": "FRANKENMUTH",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "599",
+          "state": "MI",
+          "suffixType": "ST",
+          "toAddress": "401",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "455 S MAIN ST, FRANKENMUTH, MI, 48734"
+      }
+    ]
+  },
+  "Those Nature People Herb Haus - Flint": {
+    "query": "300 E First Street, Flint Farmers\u2019 Market, Flint, Michigan 48502",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=300+E+First+Street%2C+Flint+Farmers%E2%80%99+Market%2C+Flint%2C+Michigan+48502&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "69568085"
+        },
+        "coordinates": {
+          "x": -83.687981182035,
+          "y": 43.01707330098
+        },
+        "addressComponents": {
+          "zip": "48502",
+          "streetName": "FIRST",
+          "preType": "",
+          "city": "FLINT",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "300",
+          "state": "MI",
+          "suffixType": "ST",
+          "toAddress": "398",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "300 E FIRST ST, FLINT, MI, 48502"
+      }
+    ]
+  },
+  "Those Nature People Herb Haus - Davison": {
+    "query": "8110 E Court Street, Davison Farmers\u2019 Market, Davison, Michigan 48423",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=8110+E+Court+Street%2C+Davison+Farmers%E2%80%99+Market%2C+Davison%2C+Michigan+48423&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "69589855"
+        },
+        "coordinates": {
+          "x": -83.551184805564,
+          "y": 43.019581211237
+        },
+        "addressComponents": {
+          "zip": "48423",
+          "streetName": "COURT",
+          "preType": "",
+          "city": "DAVISON",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "8100",
+          "state": "MI",
+          "suffixType": "ST",
+          "toAddress": "8198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "8110 E COURT ST, DAVISON, MI, 48423"
+      }
+    ]
+  },
+  "Perry\u2019s Place": {
+    "query": "90 N Main Street, Cedar Springs, Michigan 49319",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=90+N+Main+Street%2C+Cedar+Springs%2C+Michigan+49319&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "12446775"
+        },
+        "coordinates": {
+          "x": -85.55111311319,
+          "y": 43.22518895162
+        },
+        "addressComponents": {
+          "zip": "49319",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "CEDAR SPRINGS",
+          "preDirection": "N",
+          "suffixDirection": "NE",
+          "fromAddress": "60",
+          "state": "MI",
+          "suffixType": "ST",
+          "toAddress": "98",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "90 N MAIN ST NE, CEDAR SPRINGS, MI, 49319"
+      }
+    ]
+  },
+  "Earthley Wellness - Columbus Store": {
+    "query": "6903 E Broad Street, Columbus, Ohio 43213",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6903+E+Broad+Street%2C+Columbus%2C+Ohio+43213&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "658691531"
+        },
+        "coordinates": {
+          "x": -82.82184226455,
+          "y": 39.981804128571
+        },
+        "addressComponents": {
+          "zip": "43213",
+          "streetName": "BROAD",
+          "preType": "",
+          "city": "COLUMBUS",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "6701",
+          "state": "OH",
+          "suffixType": "ST",
+          "toAddress": "6971",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "6903 E BROAD ST, COLUMBUS, OH, 43213"
+      }
+    ]
+  },
+  "Spirit Apothecary Botanicals & Findings": {
+    "query": "691 Broadway Avenue, Bedford, Ohio 44146",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=691+Broadway+Avenue%2C+Bedford%2C+Ohio+44146&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "61130160"
+        },
+        "coordinates": {
+          "x": -81.535396856764,
+          "y": 41.391520673892
+        },
+        "addressComponents": {
+          "zip": "44146",
+          "streetName": "BROADWAY",
+          "preType": "",
+          "city": "BEDFORD",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "673",
+          "state": "OH",
+          "suffixType": "AVE",
+          "toAddress": "703",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "691 BROADWAY AVE, BEDFORD, OH, 44146"
+      }
+    ]
+  },
+  "Clintonville Natural Foods": {
+    "query": "4398 Indianola Avenue, Columbus, Ohio 43214",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4398+Indianola+Avenue%2C+Columbus%2C+Ohio+43214&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "218685430"
+        },
+        "coordinates": {
+          "x": -83.000279180504,
+          "y": 40.054702087881
+        },
+        "addressComponents": {
+          "zip": "43214",
+          "streetName": "INDIANOLA",
+          "preType": "",
+          "city": "COLUMBUS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "4384",
+          "state": "OH",
+          "suffixType": "AVE",
+          "toAddress": "4444",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4398 INDIANOLA AVE, COLUMBUS, OH, 43214"
+      }
+    ]
+  },
+  "Bentley\u2019s Apothecary": {
+    "query": "339 N Broad Street, Fremont, Nebraska 68025",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=339+N+Broad+Street%2C+Fremont%2C+Nebraska+68025&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "136315025"
+        },
+        "coordinates": {
+          "x": -96.498935335626,
+          "y": 41.432385299801
+        },
+        "addressComponents": {
+          "zip": "68025",
+          "streetName": "BROAD",
+          "preType": "",
+          "city": "FREMONT",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "301",
+          "state": "NE",
+          "suffixType": "ST",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "339 N BROAD ST, FREMONT, NE, 68025"
+      }
+    ]
+  },
+  "Prairie Star Botanicals": {
+    "query": "321 N 16th Street, Blair, Nebraska 68008",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=321+N+16th+Street%2C+Blair%2C+Nebraska+68008&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "176773328"
+        },
+        "coordinates": {
+          "x": -96.136205580175,
+          "y": 41.546550653143
+        },
+        "addressComponents": {
+          "zip": "68008",
+          "streetName": "16TH",
+          "preType": "",
+          "city": "BLAIR",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "301",
+          "state": "NE",
+          "suffixType": "ST",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "321 N 16TH ST, BLAIR, NE, 68008"
+      }
+    ]
+  },
+  "Wild Thyme Herbal Apothecary": {
+    "query": "224 N 3rd Street, Bardstown, Kentucky 40004",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=224+N+3rd+Street%2C+Bardstown%2C+Kentucky+40004&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "35154104"
+        },
+        "coordinates": {
+          "x": -85.466217343718,
+          "y": 37.811232161794
+        },
+        "addressComponents": {
+          "zip": "40004",
+          "streetName": "3RD",
+          "preType": "",
+          "city": "BARDSTOWN",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "224",
+          "state": "KY",
+          "suffixType": "ST",
+          "toAddress": "298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "224 N 3RD ST, BARDSTOWN, KY, 40004"
+      }
+    ]
+  },
+  "Bloodroot Herb Shop": {
+    "query": "208 W Michigan Avenue, Ypsilanti, Michigan 48197",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=208+W+Michigan+Avenue%2C+Ypsilanti%2C+Michigan+48197&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "26020818"
+        },
+        "coordinates": {
+          "x": -83.614714510944,
+          "y": 42.241079916668
+        },
+        "addressComponents": {
+          "zip": "48197",
+          "streetName": "MICHIGAN",
+          "preType": "",
+          "city": "YPSILANTI",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "200",
+          "state": "MI",
+          "suffixType": "AVE",
+          "toAddress": "298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "208 W MICHIGAN AVE, YPSILANTI, MI, 48197"
+      }
+    ]
+  },
+  "Gathered Botanicals": {
+    "query": "781 College Avenue NE, Grand Rapids, Michigan 49503",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=781+College+Avenue+NE%2C+Grand+Rapids%2C+Michigan+49503&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "12460123"
+        },
+        "coordinates": {
+          "x": -85.657120384176,
+          "y": 42.977112119359
+        },
+        "addressComponents": {
+          "zip": "49503",
+          "streetName": "COLLEGE",
+          "preType": "",
+          "city": "GRAND RAPIDS",
+          "preDirection": "",
+          "suffixDirection": "NE",
+          "fromAddress": "773",
+          "state": "MI",
+          "suffixType": "AVE",
+          "toAddress": "799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "781 COLLEGE AVE NE, GRAND RAPIDS, MI, 49503"
+      }
+    ]
+  },
+  "Juniper Apothecary": {
+    "query": "2019 S Minnesota Avenue, Sioux Falls, South Dakota 57105",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2019+S+Minnesota+Avenue%2C+Sioux+Falls%2C+South+Dakota+57105&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "34972770"
+        },
+        "coordinates": {
+          "x": -96.731375450524,
+          "y": 43.52694952295
+        },
+        "addressComponents": {
+          "zip": "57105",
+          "streetName": "MINNESOTA",
+          "preType": "",
+          "city": "SIOUX FALLS",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "2001",
+          "state": "SD",
+          "suffixType": "AVE",
+          "toAddress": "2099",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2019 S MINNESOTA AVE, SIOUX FALLS, SD, 57105"
+      }
+    ]
+  },
+  "Terry\u2019s Health Products": {
+    "query": "717 E Main Avenue, Bismarck, North Dakota 58501",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=717+E+Main+Avenue%2C+Bismarck%2C+North+Dakota+58501&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "198848583"
+        },
+        "coordinates": {
+          "x": -100.781297292698,
+          "y": 46.805326912301
+        },
+        "addressComponents": {
+          "zip": "58501",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "BISMARCK",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "701",
+          "state": "ND",
+          "suffixType": "AVE",
+          "toAddress": "799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "717 E MAIN AVE, BISMARCK, ND, 58501"
+      }
+    ]
+  },
+  "Herbalist & Alchemist Retail Store": {
+    "query": "401 East Washington Avenue, Washington, New Jersey 07882",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=401+East+Washington+Avenue%2C+Washington%2C+New+Jersey+07882&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "642957556"
+        },
+        "coordinates": {
+          "x": -74.961771609972,
+          "y": 40.762173972374
+        },
+        "addressComponents": {
+          "zip": "07882",
+          "streetName": "WASHINGTON",
+          "preType": "",
+          "city": "WASHINGTON",
+          "preDirection": "",
+          "suffixDirection": "E",
+          "fromAddress": "301",
+          "state": "NJ",
+          "suffixType": "AVE",
+          "toAddress": "599",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "401 WASHINGTON AVE E, WASHINGTON, NJ, 07882"
+      }
+    ]
+  },
+  "Bluestem Botanicals": {
+    "query": "52A East State Street, Doylestown, Pennsylvania 18901",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=52A+East+State+Street%2C+Doylestown%2C+Pennsylvania+18901&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "134703715"
+        },
+        "coordinates": {
+          "x": -75.128633105593,
+          "y": 40.310813381647
+        },
+        "addressComponents": {
+          "zip": "18901",
+          "streetName": "STATE",
+          "preType": "",
+          "city": "DOYLESTOWN",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "48",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "100",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "52A E STATE ST, DOYLESTOWN, PA, 18901"
+      }
+    ]
+  },
+  "Dorothy\u2019s Herb Shop & Herbal Apothecary": {
+    "query": "6 West Diamond Street, Butler, Pennsylvania 16001",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6+West+Diamond+Street%2C+Butler%2C+Pennsylvania+16001&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "52653864"
+        },
+        "coordinates": {
+          "x": -79.895442064075,
+          "y": 40.858191996867
+        },
+        "addressComponents": {
+          "zip": "16001",
+          "streetName": "DIAMOND",
+          "preType": "",
+          "city": "BUTLER",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "98",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "6 W DIAMOND ST, BUTLER, PA, 16001"
+      }
+    ]
+  },
+  "Spirit Wise Herbs & Magick": {
+    "query": "60 State Street, Portsmouth, New Hampshire 03801",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=60+State+Street%2C+Portsmouth%2C+New+Hampshire+03801&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "113702435"
+        },
+        "coordinates": {
+          "x": -70.754006212856,
+          "y": 43.077230776782
+        },
+        "addressComponents": {
+          "zip": "03801",
+          "streetName": "STATE",
+          "preType": "",
+          "city": "PORTSMOUTH",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "56",
+          "state": "NH",
+          "suffixType": "ST",
+          "toAddress": "94",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "60 STATE ST, PORTSMOUTH, NH, 03801"
+      }
+    ]
+  },
+  "Greenwood Herbals": {
+    "query": "561 Parsonsfield Road, Limerick, Maine 04048",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=561+Parsonsfield+Road%2C+Limerick%2C+Maine+04048&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "635805271"
+        },
+        "coordinates": {
+          "x": -70.824068362529,
+          "y": 43.713131589373
+        },
+        "addressComponents": {
+          "zip": "04048",
+          "streetName": "PARSONSFIELD",
+          "preType": "",
+          "city": "LIMERICK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "501",
+          "state": "ME",
+          "suffixType": "RD",
+          "toAddress": "569",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "561 PARSONSFIELD RD, LIMERICK, ME, 04048"
+      }
+    ]
+  },
+  "The Herbal Path \u2014 Dover": {
+    "query": "835 Central Avenue, Dover, New Hampshire 03820",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=835+Central+Avenue%2C+Dover%2C+New+Hampshire+03820&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "657917914"
+        },
+        "coordinates": {
+          "x": -70.879780687091,
+          "y": 43.215785344389
+        },
+        "addressComponents": {
+          "zip": "03820",
+          "streetName": "CENTRAL",
+          "preType": "",
+          "city": "DOVER",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "833",
+          "state": "NH",
+          "suffixType": "AVE",
+          "toAddress": "839",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "835 CENTRAL AVE, DOVER, NH, 03820"
+      }
+    ]
+  },
+  "The Herbal Path \u2014 Portsmouth": {
+    "query": "1262 Woodbury Avenue, Portsmouth, New Hampshire 03801",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1262+Woodbury+Avenue%2C+Portsmouth%2C+New+Hampshire+03801&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "113686324"
+        },
+        "coordinates": {
+          "x": -70.787272637808,
+          "y": 43.084930138452
+        },
+        "addressComponents": {
+          "zip": "03801",
+          "streetName": "WOODBURY",
+          "preType": "",
+          "city": "PORTSMOUTH",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1200",
+          "state": "NH",
+          "suffixType": "AVE",
+          "toAddress": "1288",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1262 WOODBURY AVE, PORTSMOUTH, NH, 03801"
+      }
+    ]
+  },
+  "The Alchemist\u2019s Kitchen": {
+    "query": "119 Crosby Street, New York, New York 10012",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=119+Crosby+Street%2C+New+York%2C+New+York+10012&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "59653891"
+        },
+        "coordinates": {
+          "x": -73.996505528763,
+          "y": 40.724308927649
+        },
+        "addressComponents": {
+          "zip": "10012",
+          "streetName": "CROSBY",
+          "preType": "",
+          "city": "NEW YORK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "107",
+          "state": "NY",
+          "suffixType": "ST",
+          "toAddress": "127",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "119 CROSBY ST, NEW YORK, NY, 10012"
+      }
+    ]
+  },
+  "Grian Herbs Apothecary": {
+    "query": "34 Elm Street, Montpelier, Vermont 05602",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=34+Elm+Street%2C+Montpelier%2C+Vermont+05602&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "136690296"
+        },
+        "coordinates": {
+          "x": -72.575984378657,
+          "y": 44.261410133994
+        },
+        "addressComponents": {
+          "zip": "05602",
+          "streetName": "ELM",
+          "preType": "",
+          "city": "MONTPELIER",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "VT",
+          "suffixType": "ST",
+          "toAddress": "44",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "34 ELM ST, MONTPELIER, VT, 05602"
+      }
+    ]
+  },
+  "Integrative Herbalism": {
+    "query": "104 Boonton Avenue, Kinnelon, New Jersey 07405",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=104+Boonton+Avenue%2C+Kinnelon%2C+New+Jersey+07405&benchmark=Public_AR_Current&format=json",
+    "matches": []
+  },
+  "Flower Power Herbs & Roots \u2014 East Village": {
+    "query": "406 East 9th Street, New York, New York 10009",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=406+East+9th+Street%2C+New+York%2C+New+York+10009&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "59654070"
+        },
+        "coordinates": {
+          "x": -73.984717873304,
+          "y": 40.728062373874
+        },
+        "addressComponents": {
+          "zip": "10009",
+          "streetName": "9TH",
+          "preType": "",
+          "city": "NEW YORK",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "400",
+          "state": "NY",
+          "suffixType": "ST",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "406 E 9TH ST, NEW YORK, NY, 10009"
+      }
+    ]
+  },
+  "Flower Power Herbs & Roots \u2014 Piermont": {
+    "query": "449 Piermont Avenue, Piermont, New York 10968",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=449+Piermont+Avenue%2C+Piermont%2C+New+York+10968&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "124600947"
+        },
+        "coordinates": {
+          "x": -73.916119851687,
+          "y": 41.039069728527
+        },
+        "addressComponents": {
+          "zip": "10968",
+          "streetName": "PIERMONT",
+          "preType": "",
+          "city": "PIERMONT",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "407",
+          "state": "NY",
+          "suffixType": "AVE",
+          "toAddress": "469",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "449 PIERMONT AVE, PIERMONT, NY, 10968"
+      }
+    ]
+  },
+  "Herbs and Mylk": {
+    "query": "650 Ten Rod Road, North Kingstown, Rhode Island 02852",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=650+Ten+Rod+Road%2C+North+Kingstown%2C+Rhode+Island+02852&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "655465385"
+        },
+        "coordinates": {
+          "x": -71.485493879776,
+          "y": 41.57334667426
+        },
+        "addressComponents": {
+          "zip": "02852",
+          "streetName": "TEN ROD",
+          "preType": "",
+          "city": "NORTH KINGSTOWN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "550",
+          "state": "RI",
+          "suffixType": "RD",
+          "toAddress": "660",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "650 TEN ROD RD, NORTH KINGSTOWN, RI, 02852"
+      }
+    ]
+  },
+  "Wildcraft Herb Shoppe": {
+    "query": "70 Main Street, East Hampton, Connecticut 06424",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=70+Main+Street%2C+East+Hampton%2C+Connecticut+06424&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "113885190"
+        },
+        "coordinates": {
+          "x": -72.502942028421,
+          "y": 41.576020009475
+        },
+        "addressComponents": {
+          "zip": "06424",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "EAST HAMPTON",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "80",
+          "state": "CT",
+          "suffixType": "ST",
+          "toAddress": "60",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "70 MAIN ST, EAST HAMPTON, CT, 06424"
+      }
+    ]
+  },
+  "Anima Mundi Apothecary \u2014 Brooklyn": {
+    "query": "31 Noble Street, Brooklyn, New York 11222",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=31+Noble+Street%2C+Brooklyn%2C+New+York+11222&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "640867870"
+        },
+        "coordinates": {
+          "x": -73.959092736205,
+          "y": 40.728363462234
+        },
+        "addressComponents": {
+          "zip": "11222",
+          "streetName": "NOBLE",
+          "preType": "",
+          "city": "BROOKLYN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1",
+          "state": "NY",
+          "suffixType": "ST",
+          "toAddress": "31",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "31 NOBLE ST, BROOKLYN, NY, 11222"
+      }
+    ]
+  },
+  "Remedies Herb Shop \u2014 Brooklyn": {
+    "query": "453 Court Street, Brooklyn, New York 11231",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=453+Court+Street%2C+Brooklyn%2C+New+York+11231&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "59075444"
+        },
+        "coordinates": {
+          "x": -73.998097301068,
+          "y": 40.677636073457
+        },
+        "addressComponents": {
+          "zip": "11231",
+          "streetName": "COURT",
+          "preType": "",
+          "city": "BROOKLYN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "449",
+          "state": "NY",
+          "suffixType": "ST",
+          "toAddress": "465",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "453 COURT ST, BROOKLYN, NY, 11231"
+      }
+    ]
+  },
+  "Red Antler Apothecary \u2014 Lowell": {
+    "query": "101 Paige Street, Hive Public Market, Lowell, Massachusetts 01852",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=101+Paige+Street%2C+Hive+Public+Market%2C+Lowell%2C+Massachusetts+01852&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "87089979"
+        },
+        "coordinates": {
+          "x": -71.308581155388,
+          "y": 42.646348432089
+        },
+        "addressComponents": {
+          "zip": "01852",
+          "streetName": "PAIGE",
+          "preType": "",
+          "city": "LOWELL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "MA",
+          "suffixType": "ST",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "101 PAIGE ST, LOWELL, MA, 01852"
+      }
+    ]
+  },
+  "Red Antler Apothecary \u2014 Salem": {
+    "query": "30 Church Street, Salem, Massachusetts 01970",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=30+Church+Street%2C+Salem%2C+Massachusetts+01970&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "86677588"
+        },
+        "coordinates": {
+          "x": -70.893774849685,
+          "y": 42.522812357229
+        },
+        "addressComponents": {
+          "zip": "01970",
+          "streetName": "CHURCH",
+          "preType": "",
+          "city": "SALEM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "MA",
+          "suffixType": "ST",
+          "toAddress": "98",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "30 CHURCH ST, SALEM, MA, 01970"
+      }
+    ]
+  },
+  "Penn Herb Company \u2014 Flagship Store": {
+    "query": "601 North Second Street, Philadelphia, Pennsylvania 19123",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=601+North+Second+Street%2C+Philadelphia%2C+Pennsylvania+19123&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "131423123"
+        },
+        "coordinates": {
+          "x": -75.141296996178,
+          "y": 39.961002106878
+        },
+        "addressComponents": {
+          "zip": "19123",
+          "streetName": "N 2ND",
+          "preType": "",
+          "city": "PHILADELPHIA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "601",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "699",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "601 N 2ND ST, PHILADELPHIA, PA, 19123"
+      }
+    ]
+  },
+  "Penn Herb Company \u2014 Factory Store": {
+    "query": "10601 Decatur Road, Philadelphia, Pennsylvania 19154",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10601+Decatur+Road%2C+Philadelphia%2C+Pennsylvania+19154&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "131454123"
+        },
+        "coordinates": {
+          "x": -74.996315284754,
+          "y": 40.089000678205
+        },
+        "addressComponents": {
+          "zip": "19154",
+          "streetName": "DECATUR",
+          "preType": "",
+          "city": "PHILADELPHIA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "10601",
+          "state": "PA",
+          "suffixType": "RD",
+          "toAddress": "10799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "10601 DECATUR RD, PHILADELPHIA, PA, 19154"
+      }
+    ]
+  },
+  "The Rosemary House & Gardens": {
+    "query": "120 South Market Street, Mechanicsburg, Pennsylvania 17055",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=120+South+Market+Street%2C+Mechanicsburg%2C+Pennsylvania+17055&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "60986002"
+        },
+        "coordinates": {
+          "x": -77.007550065617,
+          "y": 40.212146395256
+        },
+        "addressComponents": {
+          "zip": "17055",
+          "streetName": "MARKET",
+          "preType": "",
+          "city": "MECHANICSBURG",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "102",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "120 S MARKET ST, MECHANICSBURG, PA, 17055"
+      }
+    ]
+  },
+  "Village Green Apothecary": {
+    "query": "5415 West Cedar Lane, Bethesda, Maryland 20814",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=5415+West+Cedar+Lane%2C+Bethesda%2C+Maryland+20814&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "62116920"
+        },
+        "coordinates": {
+          "x": -77.106497244765,
+          "y": 39.005266757083
+        },
+        "addressComponents": {
+          "zip": "20814",
+          "streetName": "CEDAR",
+          "preType": "",
+          "city": "BETHESDA",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "5401",
+          "state": "MD",
+          "suffixType": "LN",
+          "toAddress": "5499",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "5415 W CEDAR LN, BETHESDA, MD, 20814"
+      }
+    ]
+  },
+  "Raine n River Apothecary": {
+    "query": "299 Grove Street, Jersey City, New Jersey 07302",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=299+Grove+Street%2C+Jersey+City%2C+New+Jersey+07302&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "59606243"
+        },
+        "coordinates": {
+          "x": -74.043571093541,
+          "y": 40.71861059953
+        },
+        "addressComponents": {
+          "zip": "07302",
+          "streetName": "GROVE",
+          "preType": "",
+          "city": "JERSEY CITY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "289",
+          "state": "NJ",
+          "suffixType": "ST",
+          "toAddress": "303",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "299 GROVE ST, JERSEY CITY, NJ, 07302"
+      }
+    ]
+  },
+  "Herbal Root Organics": {
+    "query": "107 William Street, Boonton, New Jersey 07005",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=107+William+Street%2C+Boonton%2C+New+Jersey+07005&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "60459562"
+        },
+        "coordinates": {
+          "x": -74.409132786386,
+          "y": 40.904427872575
+        },
+        "addressComponents": {
+          "zip": "07005",
+          "streetName": "WILLIAM",
+          "preType": "",
+          "city": "BOONTON",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "NJ",
+          "suffixType": "ST",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "107 WILLIAM ST, BOONTON, NJ, 07005"
+      }
+    ]
+  },
+  "Forrest Green Farm": {
+    "query": "2317 Evergreen Road, Louisa, Virginia 23093",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2317+Evergreen+Road%2C+Louisa%2C+Virginia+23093&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "84917720"
+        },
+        "coordinates": {
+          "x": -78.13907238488,
+          "y": 37.977793082383
+        },
+        "addressComponents": {
+          "zip": "23093",
+          "streetName": "EVERGREEN",
+          "preType": "",
+          "city": "LOUISA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2301",
+          "state": "VA",
+          "suffixType": "RD",
+          "toAddress": "2319",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2317 EVERGREEN RD, LOUISA, VA, 23093"
+      }
+    ]
+  },
+  "Alternatives For Health Herbal Apothecary": {
+    "query": "426 Main Street, Sturbridge, Massachusetts 01566",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=426+Main+Street%2C+Sturbridge%2C+Massachusetts+01566&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "40002193"
+        },
+        "coordinates": {
+          "x": -72.095745542262,
+          "y": 42.111301469216
+        },
+        "addressComponents": {
+          "zip": "01566",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "STURBRIDGE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "400",
+          "state": "MA",
+          "suffixType": "ST",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "426 MAIN ST, STURBRIDGE, MA, 01566"
+      }
+    ]
+  },
+  "Homegrown Herb & Tea": {
+    "query": "195 Congress Street, Portland, Maine 04101",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=195+Congress+Street%2C+Portland%2C+Maine+04101&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "78028485"
+        },
+        "coordinates": {
+          "x": -70.250245263565,
+          "y": 43.664026661181
+        },
+        "addressComponents": {
+          "zip": "04101",
+          "streetName": "CONGRESS",
+          "preType": "",
+          "city": "PORTLAND",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "195",
+          "state": "ME",
+          "suffixType": "ST",
+          "toAddress": "219",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "195 CONGRESS ST, PORTLAND, ME, 04101"
+      }
+    ]
+  },
+  "The Green Lass Apothecary & Tea Shop": {
+    "query": "2118 Highway 72 East, Huntsville, Alabama 35811",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2118+Highway+72+East%2C+Huntsville%2C+Alabama+35811&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "236724744"
+        },
+        "coordinates": {
+          "x": -86.51370472717,
+          "y": 34.771803633547
+        },
+        "addressComponents": {
+          "zip": "35811",
+          "streetName": "72",
+          "preType": "US HWY",
+          "city": "HUNTSVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2108",
+          "state": "AL",
+          "suffixType": "",
+          "toAddress": "2136",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2118 US HWY 72, HUNTSVILLE, AL, 35811"
+      }
+    ]
+  },
+  "The Mercantile Apothecary": {
+    "query": "104 W Main Street, Stevenson, Alabama 35772",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=104+W+Main+Street%2C+Stevenson%2C+Alabama+35772&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "636432684"
+        },
+        "coordinates": {
+          "x": -85.839068346855,
+          "y": 34.868715548771
+        },
+        "addressComponents": {
+          "zip": "35772",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "STEVENSON",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "100",
+          "state": "AL",
+          "suffixType": "ST",
+          "toAddress": "104",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "104 W MAIN ST, STEVENSON, AL, 35772"
+      }
+    ]
+  },
+  "CW Organics Herbal Apothecary": {
+    "query": "103 W Washington Street, Ridgeland, Mississippi 39157",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=103+W+Washington+Street%2C+Ridgeland%2C+Mississippi+39157&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "152500773"
+        },
+        "coordinates": {
+          "x": -90.129246203391,
+          "y": 32.431049587317
+        },
+        "addressComponents": {
+          "zip": "39157",
+          "streetName": "WASHINGTON",
+          "preType": "",
+          "city": "RIDGELAND",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "199",
+          "state": "MS",
+          "suffixType": "ST",
+          "toAddress": "103",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "103 W WASHINGTON ST, RIDGELAND, MS, 39157"
+      }
+    ]
+  },
+  "Angie\u2019s Gardens Apothecary": {
+    "query": "444 Holderrieth Boulevard, Tomball, Texas 77375",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=444+Holderrieth+Boulevard%2C+Tomball%2C+Texas+77375&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "642867197"
+        },
+        "coordinates": {
+          "x": -95.624132255294,
+          "y": 30.090212705403
+        },
+        "addressComponents": {
+          "zip": "77375",
+          "streetName": "HOLDERRIETH",
+          "preType": "",
+          "city": "TOMBALL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "698",
+          "state": "TX",
+          "suffixType": "BLVD",
+          "toAddress": "400",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "444 HOLDERRIETH BLVD, TOMBALL, TX, 77375"
+      }
+    ]
+  },
+  "The Herb Shop at Cypress Pillar Healing Arts": {
+    "query": "1940 Northgate Boulevard, Sarasota, Florida 34234",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1940+Northgate+Boulevard%2C+Sarasota%2C+Florida+34234&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "16400537"
+        },
+        "coordinates": {
+          "x": -82.532105020663,
+          "y": 27.372047414579
+        },
+        "addressComponents": {
+          "zip": "34234",
+          "streetName": "NORTHGATE",
+          "preType": "",
+          "city": "SARASOTA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1860",
+          "state": "FL",
+          "suffixType": "BLVD",
+          "toAddress": "1998",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1940 NORTHGATE BLVD, SARASOTA, FL, 34234"
+      }
+    ]
+  },
+  "Herbal Passion": {
+    "query": "845 Savannah Highway, Charleston, South Carolina 29407",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=845+Savannah+Highway%2C+Charleston%2C+South+Carolina+29407&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "656985315"
+        },
+        "coordinates": {
+          "x": -79.987577412652,
+          "y": 32.782271236721
+        },
+        "addressComponents": {
+          "zip": "29407",
+          "streetName": "SAVANNAH",
+          "preType": "",
+          "city": "CHARLESTON",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "841",
+          "state": "SC",
+          "suffixType": "HWY",
+          "toAddress": "847",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "845 SAVANNAH HWY, CHARLESTON, SC, 29407"
+      }
+    ]
+  },
+  "Euphoric Herbals Apothecary - Milford": {
+    "query": "621 N Dupont Boulevard, Milford, Delaware 19963",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=621+N+Dupont+Boulevard%2C+Milford%2C+Delaware+19963&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "636745587"
+        },
+        "coordinates": {
+          "x": -75.442468570236,
+          "y": 38.916314967002
+        },
+        "addressComponents": {
+          "zip": "19963",
+          "streetName": "DUPONT",
+          "preType": "",
+          "city": "MILFORD",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "601",
+          "state": "DE",
+          "suffixType": "BLVD",
+          "toAddress": "623",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "621 N DUPONT BLVD, MILFORD, DE, 19963"
+      }
+    ]
+  },
+  "Gaia Emporium": {
+    "query": "19B Peddlers Row, Newark, Delaware 19702",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=19B+Peddlers+Row%2C+Newark%2C+Delaware+19702&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "187286780"
+        },
+        "coordinates": {
+          "x": -75.661585078359,
+          "y": 39.665272761626
+        },
+        "addressComponents": {
+          "zip": "19702",
+          "streetName": "PEDDLERS",
+          "preType": "",
+          "city": "NEWARK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "19",
+          "state": "DE",
+          "suffixType": "ROW",
+          "toAddress": "13",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "19B PEDDLERS ROW, NEWARK, DE, 19702"
+      },
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "606234389"
+        },
+        "coordinates": {
+          "x": -75.661232609511,
+          "y": 39.665660676545
+        },
+        "addressComponents": {
+          "zip": "19702",
+          "streetName": "PEDDLERS RW",
+          "preType": "",
+          "city": "NEWARK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1",
+          "state": "DE",
+          "suffixType": "",
+          "toAddress": "99",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "19B PEDDLERS RW, NEWARK, DE, 19702"
+      }
+    ]
+  },
+  "The Spice Shack": {
+    "query": "11334 Page Road, Grabill, Indiana 46741",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=11334+Page+Road%2C+Grabill%2C+Indiana+46741&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "6395080"
+        },
+        "coordinates": {
+          "x": -84.978992274992,
+          "y": 41.189913368259
+        },
+        "addressComponents": {
+          "zip": "46741",
+          "streetName": "PAGE",
+          "preType": "",
+          "city": "GRABILL",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "11898",
+          "state": "IN",
+          "suffixType": "RD",
+          "toAddress": "10400",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "11334 PAGE RD, GRABILL, IN, 46741"
+      }
+    ]
+  },
+  "Good Earth Natural Food Co.": {
+    "query": "6350 Guilford Avenue, Indianapolis, Indiana 46220",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6350+Guilford+Avenue%2C+Indianapolis%2C+Indiana+46220&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "645228241"
+        },
+        "coordinates": {
+          "x": -86.142960962574,
+          "y": 39.87158917498
+        },
+        "addressComponents": {
+          "zip": "46220",
+          "streetName": "GUILFORD",
+          "preType": "",
+          "city": "INDIANAPOLIS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "6342",
+          "state": "IN",
+          "suffixType": "AVE",
+          "toAddress": "6350",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "6350 GUILFORD AVE, INDIANAPOLIS, IN, 46220"
+      }
+    ]
+  },
+  "Little Woods Herbal": {
+    "query": "136 Main Street, Ames, Iowa 50010",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=136+Main+Street%2C+Ames%2C+Iowa+50010&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "647652398"
+        },
+        "coordinates": {
+          "x": -93.611054026455,
+          "y": 42.025083218842
+        },
+        "addressComponents": {
+          "zip": "50010",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "AMES",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "100",
+          "state": "IA",
+          "suffixType": "ST",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "136 MAIN ST, AMES, IA, 50010"
+      }
+    ]
+  },
+  "Holistic Harmony": {
+    "query": "313 N 8th Street, Clear Lake, Iowa 50428",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=313+N+8th+Street%2C+Clear+Lake%2C+Iowa+50428&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "7288200"
+        },
+        "coordinates": {
+          "x": -93.37883863598,
+          "y": 43.140195659628
+        },
+        "addressComponents": {
+          "zip": "50428",
+          "streetName": "8TH",
+          "preType": "",
+          "city": "CLEAR LAKE",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "301",
+          "state": "IA",
+          "suffixType": "ST",
+          "toAddress": "399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "313 N 8TH ST, CLEAR LAKE, IA, 50428"
+      }
+    ]
+  },
+  "Tonic Herb Shop": {
+    "query": "140 E German Street, Shepherdstown, West Virginia 25443",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=140+E+German+Street%2C+Shepherdstown%2C+West+Virginia+25443&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "639584627"
+        },
+        "coordinates": {
+          "x": -77.804998258621,
+          "y": 39.43050950209
+        },
+        "addressComponents": {
+          "zip": "25443",
+          "streetName": "GERMAN",
+          "preType": "",
+          "city": "SHEPHERDSTOWN",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "198",
+          "state": "WV",
+          "suffixType": "ST",
+          "toAddress": "112",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "140 E GERMAN ST, SHEPHERDSTOWN, WV, 25443"
+      }
+    ]
+  },
+  "Wild Ginger & Spice": {
+    "query": "407 William Avenue, Davis, West Virginia 26260",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=407+William+Avenue%2C+Davis%2C+West+Virginia+26260&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "53420072"
+        },
+        "coordinates": {
+          "x": -79.465102406333,
+          "y": 39.128773808964
+        },
+        "addressComponents": {
+          "zip": "26260",
+          "streetName": "WILLIAM",
+          "preType": "",
+          "city": "DAVIS",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "459",
+          "state": "WV",
+          "suffixType": "AVE",
+          "toAddress": "401",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "407 WILLIAM AVE, DAVIS, WV, 26260"
+      }
+    ]
+  }
+}

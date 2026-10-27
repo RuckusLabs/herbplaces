@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Earth Heart Health Food Store",
+    "photoCandidates": [
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/Euqcgui1wa.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Earth Heart Health Food Store in Marion"
+      },
+      {
+        "url": "https://cdn10.localdatacdn.com/nc/marion/8516147/original/854uAyUgiI.jpg",
+        "sourcePage": "https://www.loc8nearme.com/north-carolina/marion/earth-heart/8516147/",
+        "alt": "Inside Earth Heart Health Food Store"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "The Mercantile Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/Untitled_design_38.png?v=1786733449&width=3840",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "The Mercantile Apothecary in Stevenson"
+      },
+      {
+        "url": "https://mercantileapothecary.com/cdn/shop/files/GreenHealingSalveFront.png?v=1760044005&width=533",
+        "sourcePage": "https://mercantileapothecary.com/",
+        "alt": "The Mercantile Apothecary Green Healing Salve"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "CW Organics Herbal Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://cworganicsretail.com/cdn/shop/files/IMG_0933.jpg?v=1740955523&width=3840",
+        "sourcePage": "https://cworganicsretail.com/",
+        "alt": "CW Organics apothecary in Ridgeland"
+      },
+      {
+        "url": "https://cworganicsretail.com/cdn/shop/files/IMG_0930.jpg?v=1740955524&width=3840",
+        "sourcePage": "https://cworganicsretail.com/",
+        "alt": "CW Organics retail display"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Angie’s Gardens Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/04/Herbal-Bath-and-Body-4.webp",
+        "sourcePage": "https://angiesgardensapothecary.com/",
+        "alt": "Angie’s Gardens botanical body products"
+      },
+      {
+        "url": "https://angiesgardensapothecary.com/wp-content/uploads/2026/09/salve-roll-on-oil-and-lip-balm.webp",
+        "sourcePage": "https://angiesgardensapothecary.com/",
+        "alt": "Angie’s Gardens salve, oil, and lip balm products"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - San Pablo",
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - Shattuck",
+    "photoCandidates": [
+      {
+        "url": "https://lhasakarnak.com/cdn/shop/collections/20200906_113949.jpg?v=1599502315&width=1200",
+        "sourcePage": "https://lhasakarnak.com/",
+        "alt": "Essential oil bottles offered by Lhasa Karnak Herb Company"
+      }
+    ],
+    "reason": "Rechecked official catalogue and editorial/tourism photography; candidates require visual review."
+  },
+  {
+    "name": "Alkaline Healing Herbs - Division",
+    "photoCandidates": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "width": 768,
+        "height": 1024,
+        "verificationNote": "Original Puerto Rican Cultural Center neighborhood report identifies the new business at2455WDivision; photo shows founder at shop counter. Historical2020image, same current verified branch. Not the Elston branch.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Found authenticated location photograph; downloaded via valid HTTPS."
+  },
+  {
+    "name": "Lisa Herbal Corporation",
+    "photoCandidates": [],
+    "outcome": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained.",
+    "sources": [
+      "https://www.lisaherbal.com/",
+      "https://borderlessmag.org/es/2022/04/06/remedios-naturales-hierbas-inmigrantes-acceso-a-la-sanidad-tratamientos-covid/"
+    ],
+    "unavailableCandidates": [
+      {
+        "url": "https://borderlessmag.org/wordpress/wp-content/uploads/2022/04/220328_Lisa_Lau_web-4.jpg",
+        "reason": "HTTP403"
+      },
+      {
+        "url": "https://borderlessmag.org/wordpress/wp-content/uploads/2022/04/220328_Lisa_Lau_web-8.jpg",
+        "reason": "HTTP403"
+      }
+    ]
+  },
+  {
+    "name": "Magus Books and Herbs",
+    "photoCandidates": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
+        "sourcePage": "https://www.magusbooks.com/",
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "width": 400,
+        "height": 306,
+        "verificationNote": "Exact image is linked by current official homepage’s Holy Water,8fluidounces featured item. Visual review shows actual labeled bottle with Magus mark. Merchandise photo, not current storefront photograph.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Found actual labeled product photograph in official current featured catalog; map and generic looseherb candidate not selected."
+  },
+  {
+    "name": "Terry’s Health Products",
+    "photoCandidates": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "width": 852,
+        "height": 283,
+        "verificationNote": "Official current homepage directly publishes this shop panorama. Valid HTTPS download succeeded without certificate bypass. Image shows store aisles, groceries and bulkgoods; no unrelated co-tenant.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Official HTTPS image downloaded successfully today; previous SSL error did not recur. wwwhost does notresolve."
+  },
+  {
+    "name": "Flower Power Herbs & Roots — Piermont",
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "width": 1080,
+        "height": 1080,
+        "verificationNote": "Official current product page shows own-brand labeled bottle available from shared catalog; officialaboutpageofferspickupatPiermont. Truthful branch-neutralproductcaption, no assertionthatNYCinteriorisPiermont.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Found authentic own-brand product photograph as branch-neutral alternative; homepage shopinteriors not selected because branch not explicit."
+  },
+  {
+    "name": "Penn Herb Company — Flagship Store",
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "width": 585,
+        "height": 798,
+        "verificationNote": "Official detailed product page directly links full-size own-brand Nature’s Wonderland supplement bottle. Visually reviewed genuine labeled bottle photo; branch-neutral shared merchandise, not asserted to show store premises.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "Penn Herb Company — Factory Store",
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "width": 585,
+        "height": 798,
+        "verificationNote": "Official detailed product page directly links full-size own-brand Nature’s Wonderland supplement bottle. Visually reviewed genuine labeled bottle photo; branch-neutral shared merchandise, not asserted to show store premises.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "Alternatives For Health Herbal Apothecary",
+    "photoCandidates": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "width": 256,
+        "height": 341,
+        "verificationNote": "Current official homepage publishes this authentic shop shelves photograph. Native256x341portrait; suitable if minimum is orientation-aware(shortside>=200,longside>=300). Do not upscale.",
+        "reviewedAt": "2026-10-27"
+      }
+    ],
+    "outcome": "Authentic native256x341portrait shopphoto available; meets orientation-aware200short/300long minimum; previous fixedwidth300 rule excluded it.",
+    "sources": [
+      "https://www.alternatives-4health.com/",
+      "https://www.alternatives-4health.com/category/Hours_and_Directions/c72",
+      "https://www.alternatives-4health.com/category/Bulk_Teas/c65"
+    ],
+    "unavailableCandidates": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "width": 256,
+        "height": 341,
+        "reason": "Below300pxminimumwidth"
+      }
+    ]
+  },
+  {
+    "name": "Miss Anne’s Maypop Herb Shop",
+    "photoCandidates": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/71827886/4681045310.jpg",
+        "sourcePage": "https://missannesmaypopherbshop.com/store/Two-Tinctures-%26-A-Tea-Gift-Bundle-p714731140",
+        "alt": "Maypop Relaxation tea and house tinctures displayed as a product bundle",
+        "width": 1125,
+        "height": 1500,
+        "verificationNote": "Official current product page offers the Two Tinctures & A Tea Gift Bundle. The actual product photograph shows clearly branded Maypop Relaxation tea, Sweet Slumber and Stress Less tinctures. This is a product photograph, not a claim about current premises. Labels show former St Claude address; retain current listing address 1370 Laharpe St."
+      },
+      {
+        "url": "https://missannesmaypopherbshop-media.s3.us-east-2.amazonaws.com/wp-content/uploads/2024/01/29171709/bio-photo-scaled.jpeg",
+        "sourcePage": "https://missannesmaypopherbshop.com/about-us/",
+        "alt": "Maypop herbalist Cate Alber pictured among flowers",
+        "width": 1923,
+        "height": 2560,
+        "verificationNote": "Official About Us identifies Cate Alber and supplies this portrait. Visually inspected; no old shop facade or address visible."
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Visually inspected authentic labeled Maypop products; no logo-only, stock, or AI image."
+    },
+    "sources": [
+      "https://missannesmaypopherbshop.com/store/Two-Tinctures-%26-A-Tea-Gift-Bundle-p714731140",
+      "https://missannesmaypopherbshop.com/"
+    ]
+  }
+]

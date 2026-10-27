@@ -1,0 +1,394 @@
+[
+  {
+    "name": "Euphoric Herbals Apothecary - Milford",
+    "address": "621 N Dupont Boulevard",
+    "city": "Milford",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19963",
+    "website": "https://www.euphoricherbals.com",
+    "phone": "302-491-4443",
+    "hours": "Check current shop hours with the store.",
+    "tagline": "Bulk herbs, loose-leaf teas, and a smoothie bar in Milford.",
+    "description": "Euphoric Herbals operates a public apothecary on North Dupont Boulevard in Milford. The shop carries bulk botanical ingredients, loose-leaf teas, extracts, and natural body care products.\n\nVisitors can also order plant-based smoothies and teas from its in-store bar. Check the latest store hours before visiting.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.euphoricherbals.com/pages/locations",
+      "https://www.euphoricherbals.com/pages/about-us",
+      "https://www.euphoricherbals.com/blogs/blog/delawareapothecary",
+      "https://cdcc.net/wp-content/uploads/2024/03/CDCC-9.1.21-for-the-web2.pdf"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.euphoricherbals.com/cdn/shop/files/abt-img.png?v=1751904439&width=1200",
+        "sourcePage": "https://www.euphoricherbals.com/pages/about-us",
+        "alt": "Euphoric Herbals founder at the apothecary counter alongside a close-up of botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/euphoric-herbals-apothecary-milford-c5741d8005e0.webp",
+        "width": 1200,
+        "height": 1190,
+        "sha256": "c5741d8005e0855c801f3c13c44a5a64377e92ed7f2275b6ead605a7f090481e"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator site verifies public shop address, herbal inventory, and visitor access; checked 2026-10-27.",
+    "inputIndex": 108,
+    "verifiedAt": "2026-10-27",
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.euphoricherbals.com/cdn/shop/files/abt-img.png?v=1751904439&width=1200",
+        "sourcePage": "https://www.euphoricherbals.com/pages/about-us",
+        "alt": "Euphoric Herbals founder at the apothecary counter alongside a close-up of botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/euphoric-herbals-apothecary-milford-c5741d8005e0.webp",
+        "width": 1200,
+        "height": 1190,
+        "sha256": "c5741d8005e0855c801f3c13c44a5a64377e92ed7f2275b6ead605a7f090481e"
+      }
+    ]
+  },
+  {
+    "name": "Gaia Emporium",
+    "address": "19B Peddlers Row",
+    "city": "Newark",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19702",
+    "website": "https://gaiaemporium.com",
+    "phone": "302-379-0215",
+    "hours": "Monday and Thursday–Saturday 10:30am–5pm; Sunday by appointment.",
+    "tagline": "Herbal tea blends and botanical products in Newark.",
+    "description": "Gaia Emporium is a Newark shop offering its own herbal tea blends alongside crystals and related wellness products. Founders Elaysia and Ian combine herbal interests and crystal craftsmanship in the business.\n\nThe shop publishes regular visiting hours on Peddlers Row and also hosts in-person tea and sound events. Sunday visits are by appointment.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://gaiaemporium.com/",
+      "https://gaiaemporium.com/pages/about-us",
+      "https://www.eventbrite.com/e/sound-tea-chakra-series-tickets-2003236817246"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://gaiaemporium.com/cdn/shop/files/FullSizeRender_2302a696-9041-4b82-863d-ea0d328aabf6.heic?v=1752952917&width=1066&format=jpg",
+        "sourcePage": "https://gaiaemporium.com/",
+        "alt": "Gaia Emporium herbal tea pouch photographed beside a rose quartz crystal",
+        "localFile": "docs/listing-images/national-expansion-20261027/gaia-emporium-5726347c1275.webp",
+        "width": 1066,
+        "height": 1066,
+        "sha256": "5726347c1275351ae764c74b1560f0bec3b7fc029e15ad07df7a08bbd2b787de"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator site verifies public shop address, herbal inventory, and visitor access; checked 2026-10-27.",
+    "inputIndex": 109,
+    "verifiedAt": "2026-10-27",
+    "photoSearchAttempts": [
+      {
+        "url": "https://gaiaemporium.com/cdn/shop/files/FullSizeRender_2302a696-9041-4b82-863d-ea0d328aabf6.heic?v=1752952917&width=1066&format=jpg",
+        "sourcePage": "https://gaiaemporium.com/",
+        "alt": "Gaia Emporium herbal tea pouch photographed beside a rose quartz crystal",
+        "localFile": "docs/listing-images/national-expansion-20261027/gaia-emporium-5726347c1275.webp",
+        "width": 1066,
+        "height": 1066,
+        "sha256": "5726347c1275351ae764c74b1560f0bec3b7fc029e15ad07df7a08bbd2b787de"
+      }
+    ]
+  },
+  {
+    "name": "The Spice Shack",
+    "address": "11334 Page Road",
+    "city": "Grabill",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46741",
+    "website": "https://www.thespiceshack.org",
+    "phone": "260-615-9634",
+    "hours": "Monday–Wednesday and Friday 9am–4pm; Saturday 9am–2pm.",
+    "tagline": "A family-owned shop for bulk herbs, spices, and loose-leaf teas.",
+    "description": "The Spice Shack is a family-owned shop in Grabill, near Fort Wayne. Its more than 200 bulk items include medicinal and culinary herbs, spices, blends, and loose-leaf teas.\n\nVisitors can shop in person during the published opening hours. Custom quantities smaller than a pound can be arranged directly with the shop.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.thespiceshack.org/",
+      "https://www.thespiceshack.org/contact-us",
+      "https://www.thespiceshack.org/about-the-spice-shack"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/193f27_4dd77c6505b247eda8525506dd6407fd~mv2.jpg",
+        "sourcePage": "https://www.thespiceshack.org/about-the-spice-shack",
+        "alt": "Shelves of labeled bulk herb jars inside The Spice Shack",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-spice-shack-ead3362c1f0c.webp",
+        "width": 720,
+        "height": 960,
+        "sha256": "ead3362c1f0cf1415820c8209bfc8688017bf478ce975b8528daa1c744e264f2"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator site verifies public shop address, herbal inventory, and visitor access; checked 2026-10-27.",
+    "inputIndex": 110,
+    "verifiedAt": "2026-10-27",
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/193f27_4dd77c6505b247eda8525506dd6407fd~mv2.jpg",
+        "sourcePage": "https://www.thespiceshack.org/about-the-spice-shack",
+        "alt": "Shelves of labeled bulk herb jars inside The Spice Shack",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-spice-shack-ead3362c1f0c.webp",
+        "width": 720,
+        "height": 960,
+        "sha256": "ead3362c1f0cf1415820c8209bfc8688017bf478ce975b8528daa1c744e264f2"
+      }
+    ]
+  },
+  {
+    "name": "Good Earth Natural Food Co.",
+    "address": "6350 Guilford Avenue",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46220",
+    "website": "https://good-earth.com",
+    "phone": "317-253-3709",
+    "hours": "Monday–Saturday 9am–8pm; Sunday 11am–6pm.",
+    "tagline": "A Broad Ripple natural foods shop with a dedicated bulk herb selection.",
+    "description": "Good Earth Natural Food Co. is a family-owned Indianapolis store founded in 1971. Alongside natural groceries, supplements, and body care, it sells bulk herbs, spices, and teas.\n\nThe store offers smaller amounts of its bulk items on request and has a dedicated contact line for its herb department.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://good-earth.com/contact-us/",
+      "https://good-earth.com/about-us/",
+      "https://good-earth.com/product-category/natural-foods/bulk-foods/",
+      "https://www.visitindy.com/directory/good-earth-natural-food-co/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://good-earth.com/wp-content/uploads/2018/03/About-Us.jpg",
+        "sourcePage": "https://good-earth.com/",
+        "alt": "The Good Earth Natural Food Co. team pictured outside the shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/good-earth-natural-food-co-5ca39f8f39d7.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "5ca39f8f39d7e95eb236beb900a58b61682e11b15369022ce63440960a8616b8"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official operator site verifies public shop address, herbal inventory, and visitor access; checked 2026-10-27.",
+    "inputIndex": 111,
+    "verifiedAt": "2026-10-27",
+    "photoSearchAttempts": [
+      {
+        "url": "https://good-earth.com/wp-content/uploads/2018/03/About-Us.jpg",
+        "sourcePage": "https://good-earth.com/",
+        "alt": "The Good Earth Natural Food Co. team pictured outside the shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/good-earth-natural-food-co-5ca39f8f39d7.webp",
+        "width": 1200,
+        "height": 900,
+        "sha256": "5ca39f8f39d7e95eb236beb900a58b61682e11b15369022ce63440960a8616b8"
+      }
+    ]
+  },
+  {
+    "status": "ready",
+    "verifiedAt": "2026-10-27",
+    "verificationNote": "Official operator website publishes a public retail location and shop hours; photo visually reviewed against the official source page.",
+    "category_ids": [
+      "shops"
+    ],
+    "name": "Little Woods Herbal",
+    "address": "136 Main Street",
+    "city": "Ames",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50010",
+    "website": "https://www.littlewoodsherbal.com/",
+    "phone": "515-233-3838",
+    "hours": "Monday–Wednesday 10am–5pm; Thursday–Friday 10am–6pm; Saturday 10am–4pm; Sunday closed.",
+    "tagline": "Bulk botanicals, tea, and spices on Main Street in Ames.",
+    "description": "Little Woods Herbal is a family-owned tea and spice shop in downtown Ames. Its shelves include bulk herbs, spices, loose-leaf teas, and original botanical blends.\n\nVisitors can browse apothecary supplies and herb books, or order brewed tea at the tasting bar.",
+    "sources": [
+      "https://www.littlewoodsherbal.com/about",
+      "https://www.littlewoodsherbal.com/contacts",
+      "https://www.littlewoodsherbal.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.littlewoodsherbal.com/assets/littlewoods-storefront-685d6aa7c48f4cfd483913764e16ec92ba1def1b0484a0e502a90d901b00c20b.jpg",
+        "sourcePage": "https://www.littlewoodsherbal.com/about",
+        "alt": "Little Woods Herbal storefront at 136 Main Street in Ames",
+        "localFile": "docs/listing-images/national-expansion-20261027/little-woods-herbal-aee699854b4d.webp",
+        "width": 450,
+        "height": 450,
+        "sha256": "aee699854b4dff59afa8df8b5c48ac230445c0be35cc902337342a082be2bc49"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Visually inspected actual operator photograph; not a logo, stock image, flyer, or AI image."
+    },
+    "inputIndex": 112,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.littlewoodsherbal.com/assets/littlewoods-storefront-685d6aa7c48f4cfd483913764e16ec92ba1def1b0484a0e502a90d901b00c20b.jpg",
+        "sourcePage": "https://www.littlewoodsherbal.com/about",
+        "alt": "Little Woods Herbal storefront at 136 Main Street in Ames",
+        "localFile": "docs/listing-images/national-expansion-20261027/little-woods-herbal-aee699854b4d.webp",
+        "width": 450,
+        "height": 450,
+        "sha256": "aee699854b4dff59afa8df8b5c48ac230445c0be35cc902337342a082be2bc49"
+      }
+    ]
+  },
+  {
+    "status": "ready",
+    "verifiedAt": "2026-10-27",
+    "verificationNote": "Official operator website publishes a public retail location and shop hours; photo visually reviewed against the official source page.",
+    "category_ids": [
+      "shops"
+    ],
+    "name": "Holistic Harmony",
+    "address": "313 N 8th Street",
+    "city": "Clear Lake",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50428",
+    "website": "https://holisticharmonycl.com/",
+    "phone": "641-357-4372",
+    "hours": "Monday–Wednesday and Friday 9am–5pm; Thursday 9am–6pm; Saturday 9am–4pm; Sunday closed.",
+    "tagline": "Herbal products and a tea shop in Clear Lake.",
+    "description": "Holistic Harmony combines a retail herb and wellness shop with a tea selection and educational classes in Clear Lake. Its offerings include herbal formulas, house tea blends, and botanical products.\n\nThe shop also publishes a menu of wellness services and welcomes visitors during its regular retail hours.",
+    "sources": [
+      "https://holisticharmonycl.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://dhgf5mcbrms62.cloudfront.net/92792541/cover-DEApus/R23NNQz-2000x2000.jpg",
+        "sourcePage": "https://holisticharmonycl.com/",
+        "alt": "The Holistic Harmony team photographed inside the Clear Lake shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/holistic-harmony-27223e0cb7f1.webp",
+        "width": 1600,
+        "height": 1214,
+        "sha256": "27223e0cb7f1272603badff88cbd267af3c3b4a7f1e814a45d3fef4632c3f2b5"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Visually inspected actual operator photograph; not a logo, stock image, flyer, or AI image."
+    },
+    "inputIndex": 113,
+    "photoSearchAttempts": [
+      {
+        "url": "https://dhgf5mcbrms62.cloudfront.net/92792541/cover-DEApus/R23NNQz-2000x2000.jpg",
+        "sourcePage": "https://holisticharmonycl.com/",
+        "alt": "The Holistic Harmony team photographed inside the Clear Lake shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/holistic-harmony-27223e0cb7f1.webp",
+        "width": 1600,
+        "height": 1214,
+        "sha256": "27223e0cb7f1272603badff88cbd267af3c3b4a7f1e814a45d3fef4632c3f2b5"
+      }
+    ]
+  },
+  {
+    "status": "ready",
+    "verifiedAt": "2026-10-27",
+    "verificationNote": "Official operator website publishes a public retail location and shop hours; photo visually reviewed against the official source page. Official homepage also has October 2026 articles and in-person events at this shop.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "name": "Tonic Herb Shop",
+    "address": "140 E German Street",
+    "city": "Shepherdstown",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "25443",
+    "website": "https://tonicherbshop.com/",
+    "phone": "304-870-4527",
+    "hours": "Monday and Wednesday–Friday 11am–6pm; Tuesday 11am–4pm; Saturday 10am–6pm; Sunday 11am–5pm.",
+    "tagline": "Bulk herbs and an elixir bar in Shepherdstown.",
+    "description": "Tonic Herb Shop offers bulk herbs and spices, small-batch botanical products, and medicine-making supplies at its Shepherdstown storefront. Its elixir bar gives visitors another way to explore the shop’s herbal blends.\n\nThe business also hosts herbal workshops and offers consultations and compounding services.",
+    "sources": [
+      "https://tonicherbshop.com/contact/",
+      "https://tonicherbshop.com/bulk-herbs/",
+      "https://tonicherbshop.com/our-team/",
+      "https://tonicherbshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://tonicherbshop.com/wp-content/uploads/2017/07/Bulk-Herbs-_-Spices-e1560868517247-1500x630.jpg",
+        "sourcePage": "https://tonicherbshop.com/bulk-herbs/",
+        "alt": "Labeled bulk herb jars on the shelves at Tonic Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/tonic-herb-shop-3c514f225183.webp",
+        "width": 1500,
+        "height": 630,
+        "sha256": "3c514f225183d0ece15369ae16ebd9cf99d6b437fe0ec034f2b333e33d356fb5"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Visually inspected actual operator photograph; not a logo, stock image, flyer, or AI image."
+    },
+    "inputIndex": 114,
+    "photoSearchAttempts": [
+      {
+        "url": "https://tonicherbshop.com/wp-content/uploads/2017/07/Bulk-Herbs-_-Spices-e1560868517247-1500x630.jpg",
+        "sourcePage": "https://tonicherbshop.com/bulk-herbs/",
+        "alt": "Labeled bulk herb jars on the shelves at Tonic Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/tonic-herb-shop-3c514f225183.webp",
+        "width": 1500,
+        "height": 630,
+        "sha256": "3c514f225183d0ece15369ae16ebd9cf99d6b437fe0ec034f2b333e33d356fb5"
+      }
+    ]
+  },
+  {
+    "status": "ready",
+    "verifiedAt": "2026-10-27",
+    "verificationNote": "Official operator website publishes a public retail location and shop hours; photo visually reviewed against the official source page.",
+    "category_ids": [
+      "shops"
+    ],
+    "name": "Wild Ginger & Spice",
+    "address": "407 William Avenue",
+    "city": "Davis",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "26260",
+    "website": "https://www.wildgingerspice.com/home",
+    "phone": "304-259-5555",
+    "hours": "Monday–Thursday 9:30am–4:30pm; Friday 9:30am–5:30pm; Saturday 9am–5:30pm; Sunday 9am–5pm.",
+    "tagline": "Bulk herbs, tea, and handmade goods in Davis.",
+    "description": "Wild Ginger & Spice stocks bulk herbs, teas, and spices alongside handmade body products in Davis. Visitors can also browse West Virginia foods, artisan gifts, and other goods in its historic stone storefront.\n\nThe operator describes the space as a shop and working lab and explicitly invites in-person visits.",
+    "sources": [
+      "https://www.wildgingerspice.com/home"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.wildgingerspice.com/uploads/b/2f421918a64d965612aa10fbd8cf53e4c8fb01440835f946627c84fa09698947/1350%20_1788798828.png",
+        "sourcePage": "https://www.wildgingerspice.com/home",
+        "alt": "Wild Ginger & Spice’s stone storefront and shop window in Davis",
+        "localFile": "docs/listing-images/national-expansion-20261027/wild-ginger-spice-2507a84a8097.webp",
+        "width": 1350,
+        "height": 380,
+        "sha256": "2507a84a8097916edb84fedbb12a5809102674d27ff3b9cfd185ccf69b07b3c6"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Visually inspected actual operator photograph; not a logo, stock image, flyer, or AI image."
+    },
+    "inputIndex": 115,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.wildgingerspice.com/uploads/b/2f421918a64d965612aa10fbd8cf53e4c8fb01440835f946627c84fa09698947/1350%20_1788798828.png",
+        "sourcePage": "https://www.wildgingerspice.com/home",
+        "alt": "Wild Ginger & Spice’s stone storefront and shop window in Davis",
+        "localFile": "docs/listing-images/national-expansion-20261027/wild-ginger-spice-2507a84a8097.webp",
+        "width": 1350,
+        "height": 380,
+        "sha256": "2507a84a8097916edb84fedbb12a5809102674d27ff3b9cfd185ccf69b07b3c6"
+      }
+    ]
+  }
+]

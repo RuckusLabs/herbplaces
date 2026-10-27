@@ -1,0 +1,1046 @@
+[
+  {
+    "name": "Alkaline Healing Herbs - Elston",
+    "address": "4661 N Elston Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60630",
+    "inputIndex": 0
+  },
+  {
+    "name": "Alkaline Healing Herbs - Division",
+    "address": "2455 W Division Street",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60622",
+    "inputIndex": 1
+  },
+  {
+    "name": "Hoa My Chinese Medicine",
+    "address": "1123 W Argyle Street",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60640",
+    "inputIndex": 2
+  },
+  {
+    "name": "Herb Stone",
+    "address": "2200 S Wentworth Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60616",
+    "inputIndex": 3
+  },
+  {
+    "name": "Lisa Herbal Corporation",
+    "address": "2802 S Wentworth Avenue, Suite 1",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60616",
+    "inputIndex": 4
+  },
+  {
+    "name": "DMApothecary at Mella’Ninn Complex",
+    "address": "5430 N Broadway",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60640",
+    "inputIndex": 5
+  },
+  {
+    "name": "Merz Apothecary",
+    "address": "4716 N Lincoln Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60625",
+    "inputIndex": 6
+  },
+  {
+    "name": "Topaz Apothecary & Collective",
+    "address": "804 N Grand Avenue",
+    "city": "Waukesha",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "53186",
+    "inputIndex": 7
+  },
+  {
+    "name": "Aurora’s Apothecary - Appleton",
+    "address": "1607 N Richmond Street",
+    "city": "Appleton",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54911",
+    "inputIndex": 8
+  },
+  {
+    "name": "Aurora’s Apothecary - Green Bay",
+    "address": "133 N Broadway, Suite A",
+    "city": "Green Bay",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54303",
+    "inputIndex": 9
+  },
+  {
+    "name": "Aurora’s Apothecary - Fond du Lac",
+    "address": "171 S Main Street",
+    "city": "Fond du Lac",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54935",
+    "inputIndex": 10
+  },
+  {
+    "name": "Lakota Made",
+    "address": "606 N Riverfront Drive",
+    "city": "Mankato",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "56001",
+    "inputIndex": 11
+  },
+  {
+    "name": "Present Moment Herbs & Books",
+    "address": "3546 Grand Avenue S",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55408",
+    "inputIndex": 12
+  },
+  {
+    "name": "Magus Books and Herbs",
+    "address": "2520 Central Avenue NE",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55418",
+    "inputIndex": 13
+  },
+  {
+    "name": "Jewelweed",
+    "address": "223 Water Street",
+    "city": "Excelsior",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55331",
+    "inputIndex": 14
+  },
+  {
+    "name": "Leaf & Stone Apothecary",
+    "address": "815 W 11th Street N",
+    "city": "Wichita",
+    "state": "Kansas",
+    "state_code": "KS",
+    "zip": "67203",
+    "inputIndex": 15
+  },
+  {
+    "name": "Flourish Herbals & Aromatherapy",
+    "address": "203 E Laurel Street",
+    "city": "Garden City",
+    "state": "Kansas",
+    "state_code": "KS",
+    "zip": "67846",
+    "inputIndex": 16
+  },
+  {
+    "name": "Phoenix Herb",
+    "address": "3957 Main Street",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "64111",
+    "inputIndex": 17
+  },
+  {
+    "name": "Cheryl’s Herbs",
+    "address": "7233 Manchester Road",
+    "city": "Maplewood",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "63143",
+    "inputIndex": 18
+  },
+  {
+    "name": "STL Herbs and Aromatics",
+    "address": "7290 Manchester Road",
+    "city": "Maplewood",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "63143",
+    "inputIndex": 19
+  },
+  {
+    "name": "Centered Spirit Apothecary & Emilie’s French Teas",
+    "address": "8131 Wornall Road",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "64114",
+    "inputIndex": 20
+  },
+  {
+    "name": "Hawthorn & Violet Herbal Apothecary",
+    "address": "1024 N Leroy Street",
+    "city": "Fenton",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48430",
+    "inputIndex": 21
+  },
+  {
+    "name": "Those Nature People Herb Haus - Frankenmuth",
+    "address": "455 S Main Street",
+    "city": "Frankenmuth",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48734",
+    "inputIndex": 22
+  },
+  {
+    "name": "Those Nature People Herb Haus - Flint",
+    "address": "300 E First Street, Flint Farmers’ Market",
+    "city": "Flint",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48502",
+    "inputIndex": 23
+  },
+  {
+    "name": "Those Nature People Herb Haus - Davison",
+    "address": "8110 E Court Street, Davison Farmers’ Market",
+    "city": "Davison",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48423",
+    "inputIndex": 24
+  },
+  {
+    "name": "Perry’s Place",
+    "address": "90 N Main Street, Suite B",
+    "city": "Cedar Springs",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "49319",
+    "inputIndex": 25
+  },
+  {
+    "name": "Earthley Wellness - Columbus Store",
+    "address": "6903 E Broad Street",
+    "city": "Columbus",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "43213",
+    "inputIndex": 26
+  },
+  {
+    "name": "Spirit Apothecary Botanicals & Findings",
+    "address": "691 Broadway Avenue",
+    "city": "Bedford",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "44146",
+    "inputIndex": 27
+  },
+  {
+    "name": "Clintonville Natural Foods",
+    "address": "4398 Indianola Avenue",
+    "city": "Columbus",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "43214",
+    "inputIndex": 28
+  },
+  {
+    "name": "Bentley’s Apothecary",
+    "address": "339 N Broad Street",
+    "city": "Fremont",
+    "state": "Nebraska",
+    "state_code": "NE",
+    "zip": "68025",
+    "inputIndex": 29
+  },
+  {
+    "name": "Prairie Star Botanicals",
+    "address": "321 N 16th Street",
+    "city": "Blair",
+    "state": "Nebraska",
+    "state_code": "NE",
+    "zip": "68008",
+    "inputIndex": 30
+  },
+  {
+    "name": "Wild Thyme Herbal Apothecary",
+    "address": "224 N 3rd Street",
+    "city": "Bardstown",
+    "state": "Kentucky",
+    "state_code": "KY",
+    "zip": "40004",
+    "inputIndex": 31
+  },
+  {
+    "name": "Bloodroot Herb Shop",
+    "address": "208 W Michigan Avenue",
+    "city": "Ypsilanti",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48197",
+    "inputIndex": 32
+  },
+  {
+    "name": "Gathered Botanicals",
+    "address": "781 College Avenue NE",
+    "city": "Grand Rapids",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "49503",
+    "inputIndex": 33
+  },
+  {
+    "name": "Juniper Apothecary",
+    "address": "2019 S Minnesota Avenue",
+    "city": "Sioux Falls",
+    "state": "South Dakota",
+    "state_code": "SD",
+    "zip": "57105",
+    "inputIndex": 34
+  },
+  {
+    "name": "Terry’s Health Products",
+    "address": "717 E Main Avenue",
+    "city": "Bismarck",
+    "state": "North Dakota",
+    "state_code": "ND",
+    "zip": "58501",
+    "inputIndex": 35
+  },
+  {
+    "name": "Herbalist & Alchemist Retail Store",
+    "address": "401 East Washington Avenue",
+    "city": "Washington",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07882",
+    "inputIndex": 36
+  },
+  {
+    "name": "Bluestem Botanicals",
+    "address": "52A East State Street",
+    "city": "Doylestown",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "18901",
+    "inputIndex": 37
+  },
+  {
+    "name": "Dorothy’s Herb Shop & Herbal Apothecary",
+    "address": "6 West Diamond Street, inside The Shops on West Diamond",
+    "city": "Butler",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "16001",
+    "inputIndex": 38
+  },
+  {
+    "name": "Spirit Wise Herbs & Magick",
+    "address": "60 State Street",
+    "city": "Portsmouth",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03801",
+    "inputIndex": 39
+  },
+  {
+    "name": "Greenwood Herbals",
+    "address": "561 Parsonsfield Road",
+    "city": "Limerick",
+    "state": "Maine",
+    "state_code": "ME",
+    "zip": "04048",
+    "inputIndex": 40
+  },
+  {
+    "name": "The Herbal Path — Dover",
+    "address": "835 Central Avenue",
+    "city": "Dover",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03820",
+    "inputIndex": 41
+  },
+  {
+    "name": "The Herbal Path — Portsmouth",
+    "address": "1262 Woodbury Avenue",
+    "city": "Portsmouth",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03801",
+    "inputIndex": 42
+  },
+  {
+    "name": "The Alchemist’s Kitchen",
+    "address": "119 Crosby Street",
+    "city": "New York",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10012",
+    "inputIndex": 43
+  },
+  {
+    "name": "Grian Herbs Apothecary",
+    "address": "34 Elm Street",
+    "city": "Montpelier",
+    "state": "Vermont",
+    "state_code": "VT",
+    "zip": "05602",
+    "inputIndex": 44
+  },
+  {
+    "name": "Integrative Herbalism",
+    "address": "104 Boonton Avenue",
+    "city": "Kinnelon",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07405",
+    "inputIndex": 45
+  },
+  {
+    "name": "Flower Power Herbs & Roots — East Village",
+    "address": "406 East 9th Street",
+    "city": "New York",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10009",
+    "inputIndex": 46
+  },
+  {
+    "name": "Flower Power Herbs & Roots — Piermont",
+    "address": "449 Piermont Avenue",
+    "city": "Piermont",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10968",
+    "inputIndex": 47
+  },
+  {
+    "name": "Herbs and Mylk",
+    "address": "650 Ten Rod Road, Suite 129A",
+    "city": "North Kingstown",
+    "state": "Rhode Island",
+    "state_code": "RI",
+    "zip": "02852",
+    "inputIndex": 48
+  },
+  {
+    "name": "Wildcraft Herb Shoppe",
+    "address": "70 Main Street, Unit B",
+    "city": "East Hampton",
+    "state": "Connecticut",
+    "state_code": "CT",
+    "zip": "06424",
+    "inputIndex": 49
+  },
+  {
+    "name": "Anima Mundi Apothecary — Brooklyn",
+    "address": "31 Noble Street",
+    "city": "Brooklyn",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "11222",
+    "inputIndex": 50
+  },
+  {
+    "name": "Remedies Herb Shop — Brooklyn",
+    "address": "453 Court Street",
+    "city": "Brooklyn",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "11231",
+    "inputIndex": 51
+  },
+  {
+    "name": "Red Antler Apothecary — Lowell",
+    "address": "101 Paige Street, Hive Public Market",
+    "city": "Lowell",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01852",
+    "inputIndex": 52
+  },
+  {
+    "name": "Red Antler Apothecary — Salem",
+    "address": "30 Church Street, inside Hive & Forge",
+    "city": "Salem",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01970",
+    "inputIndex": 53
+  },
+  {
+    "name": "Penn Herb Company — Flagship Store",
+    "address": "601 North Second Street",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "19123",
+    "inputIndex": 54
+  },
+  {
+    "name": "Penn Herb Company — Factory Store",
+    "address": "10601 Decatur Road",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "19154",
+    "inputIndex": 55
+  },
+  {
+    "name": "The Rosemary House & Gardens",
+    "address": "120 South Market Street",
+    "city": "Mechanicsburg",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "17055",
+    "inputIndex": 56
+  },
+  {
+    "name": "Village Green Apothecary",
+    "address": "5415 West Cedar Lane",
+    "city": "Bethesda",
+    "state": "Maryland",
+    "state_code": "MD",
+    "zip": "20814",
+    "inputIndex": 57
+  },
+  {
+    "name": "Raine n River Apothecary",
+    "address": "299 Grove Street",
+    "city": "Jersey City",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07302",
+    "inputIndex": 58
+  },
+  {
+    "name": "Herbal Root Organics",
+    "address": "107 William Street",
+    "city": "Boonton",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07005",
+    "inputIndex": 59
+  },
+  {
+    "name": "Forrest Green Farm",
+    "address": "2317 Evergreen Road",
+    "city": "Louisa",
+    "state": "Virginia",
+    "state_code": "VA",
+    "zip": "23093",
+    "inputIndex": 60
+  },
+  {
+    "name": "Alternatives For Health Herbal Apothecary",
+    "address": "426 Main Street",
+    "city": "Sturbridge",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01566",
+    "inputIndex": 61
+  },
+  {
+    "name": "Homegrown Herb & Tea",
+    "address": "195 Congress Street",
+    "city": "Portland",
+    "state": "Maine",
+    "state_code": "ME",
+    "zip": "04101",
+    "inputIndex": 62
+  },
+  {
+    "name": "Mother’s Natchez",
+    "address": "520 Franklin Street",
+    "city": "Natchez",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39120",
+    "inputIndex": 63
+  },
+  {
+    "name": "Green Oaks Apothecary",
+    "address": "2238 First Street",
+    "city": "Slidell",
+    "state": "Louisiana",
+    "state_code": "LA",
+    "zip": "70458",
+    "inputIndex": 64
+  },
+  {
+    "name": "Clary & Sage Apothecary",
+    "address": "1010 Porter Avenue, Suite B",
+    "city": "Ocean Springs",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39564",
+    "inputIndex": 65
+  },
+  {
+    "name": "Melanated Ancestral Collective",
+    "address": "1003 SW E Avenue",
+    "city": "Lawton",
+    "state": "Oklahoma",
+    "state_code": "OK",
+    "zip": "73501",
+    "inputIndex": 66
+  },
+  {
+    "name": "A Thousand Leaves Community Apothecary",
+    "address": "22 SE 5th Avenue, Suite D",
+    "city": "Gainesville",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "32601",
+    "inputIndex": 67
+  },
+  {
+    "name": "KindFolk Apothecary + Wellness",
+    "address": "901 N Vista Ridge Boulevard, Suite 300",
+    "city": "Cedar Park",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78613",
+    "inputIndex": 68
+  },
+  {
+    "name": "Baldflower Apothecary",
+    "address": "184 N Dean Street",
+    "city": "Spartanburg",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29302",
+    "inputIndex": 69
+  },
+  {
+    "name": "Into the Wilds Apothecary",
+    "address": "205 N 3rd Street",
+    "city": "Ozark",
+    "state": "Arkansas",
+    "state_code": "AR",
+    "zip": "72949",
+    "inputIndex": 70
+  },
+  {
+    "name": "Apothecary of Knightdale",
+    "address": "819 N Smithfield Road",
+    "city": "Knightdale",
+    "state": "North Carolina",
+    "state_code": "NC",
+    "zip": "27545",
+    "inputIndex": 71
+  },
+  {
+    "name": "The Herb Room Organic Apothecary",
+    "address": "14 New Orleans Road, Suite 2",
+    "city": "Hilton Head Island",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29928",
+    "inputIndex": 72
+  },
+  {
+    "name": "The Gathering Place",
+    "address": "115 S Crockett Street",
+    "city": "Seguin",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78155",
+    "inputIndex": 73
+  },
+  {
+    "name": "Sacred Moon Herbs",
+    "address": "305 W Mercer Street",
+    "city": "Dripping Springs",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "78620",
+    "inputIndex": 74
+  },
+  {
+    "name": "The Herb Shop of Vinings",
+    "address": "2250 Marietta Boulevard NW, Suite 214",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "state_code": "GA",
+    "zip": "30318",
+    "inputIndex": 75
+  },
+  {
+    "name": "Healing Waters Clinic & Herb Shop",
+    "address": "26 Clark Street",
+    "city": "St. Augustine",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "32084",
+    "inputIndex": 76
+  },
+  {
+    "name": "Miss Anne’s Maypop Herb Shop",
+    "address": "1370 Laharpe Street",
+    "city": "New Orleans",
+    "state": "Louisiana",
+    "state_code": "LA",
+    "zip": "70116",
+    "inputIndex": 77
+  },
+  {
+    "name": "Earth Heart Health Food Store",
+    "address": "4573 US Highway 221 North",
+    "city": "Marion",
+    "state": "North Carolina",
+    "state_code": "NC",
+    "zip": "28752",
+    "inputIndex": 78
+  },
+  {
+    "name": "Hummingbird Apothecary — South Knoxville",
+    "address": "3726 Sevier Heights Road, Suite 106",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "37920",
+    "inputIndex": 79
+  },
+  {
+    "name": "Hummingbird Apothecary — North Knoxville",
+    "address": "3716 Walker Boulevard",
+    "city": "Knoxville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "37917",
+    "inputIndex": 80
+  },
+  {
+    "name": "Synergy Herbal Works — Cookeville",
+    "address": "44 S Cedar Avenue",
+    "city": "Cookeville",
+    "state": "Tennessee",
+    "state_code": "TN",
+    "zip": "38501",
+    "inputIndex": 81
+  },
+  {
+    "name": "The Green Lass Apothecary & Tea Shop",
+    "address": "2118 Highway 72 East, Suite 2",
+    "city": "Huntsville",
+    "state": "Alabama",
+    "state_code": "AL",
+    "zip": "35811",
+    "inputIndex": 82
+  },
+  {
+    "name": "The Mercantile Apothecary",
+    "address": "104 W Main Street",
+    "city": "Stevenson",
+    "state": "Alabama",
+    "state_code": "AL",
+    "zip": "35772",
+    "inputIndex": 83
+  },
+  {
+    "name": "CW Organics Herbal Apothecary",
+    "address": "103 W Washington Street, Suite B4, City Market Suites",
+    "city": "Ridgeland",
+    "state": "Mississippi",
+    "state_code": "MS",
+    "zip": "39157",
+    "inputIndex": 84
+  },
+  {
+    "name": "Angie’s Gardens Apothecary",
+    "address": "444 Holderrieth Boulevard, Suite 3",
+    "city": "Tomball",
+    "state": "Texas",
+    "state_code": "TX",
+    "zip": "77375",
+    "inputIndex": 85
+  },
+  {
+    "name": "The Herb Shop at Cypress Pillar Healing Arts",
+    "address": "1940 Northgate Boulevard, Suite B-2",
+    "city": "Sarasota",
+    "state": "Florida",
+    "state_code": "FL",
+    "zip": "34234",
+    "inputIndex": 86
+  },
+  {
+    "name": "Herbal Passion",
+    "address": "845 Savannah Highway, Suite B",
+    "city": "Charleston",
+    "state": "South Carolina",
+    "state_code": "SC",
+    "zip": "29407",
+    "inputIndex": 87
+  },
+  {
+    "name": "Natural Law Apothecary",
+    "address": "423 S 600 W",
+    "city": "Salt Lake City",
+    "state": "Utah",
+    "state_code": "UT",
+    "zip": "84101",
+    "inputIndex": 88
+  },
+  {
+    "name": "Dragon Herbs Herbal Emporium and Elixir Bar",
+    "address": "460 S Robertson Boulevard",
+    "city": "Los Angeles",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "90048",
+    "inputIndex": 89
+  },
+  {
+    "name": "Mountain Rose Herbs Mercantile - Palm Springs",
+    "address": "115 S Palm Canyon Drive",
+    "city": "Palm Springs",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "92262",
+    "inputIndex": 90
+  },
+  {
+    "name": "Mountain Rose Herbs Mercantile - Seattle",
+    "address": "2111 1st Avenue",
+    "city": "Seattle",
+    "state": "Washington",
+    "state_code": "WA",
+    "zip": "98121",
+    "inputIndex": 91
+  },
+  {
+    "name": "Herbally Grounded - Charleston",
+    "address": "4441 W Charleston Boulevard",
+    "city": "Las Vegas",
+    "state": "Nevada",
+    "state_code": "NV",
+    "zip": "89102",
+    "inputIndex": 92
+  },
+  {
+    "name": "Herbally Grounded - Eastern",
+    "address": "10345 S Eastern Avenue Suite 150",
+    "city": "Henderson",
+    "state": "Nevada",
+    "state_code": "NV",
+    "zip": "89052",
+    "inputIndex": 93
+  },
+  {
+    "name": "Pilar’s Wellness Collective Apothecary",
+    "address": "1001 W 17th Street Unit R",
+    "city": "Costa Mesa",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "92627",
+    "inputIndex": 94
+  },
+  {
+    "name": "Herban Myth Apothecary at Chico Holistic Wellness Center",
+    "address": "287 Rio Lindo Avenue",
+    "city": "Chico",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "95926",
+    "inputIndex": 95
+  },
+  {
+    "name": "Enchantment Creek Apothecary",
+    "address": "1126 Lane 11",
+    "city": "Powell",
+    "state": "Wyoming",
+    "state_code": "WY",
+    "zip": "82435",
+    "inputIndex": 96
+  },
+  {
+    "name": "Kauai Farmacy",
+    "address": "4731G Kuawa Road",
+    "city": "Kilauea",
+    "state": "Hawaii",
+    "state_code": "HI",
+    "zip": "96754",
+    "inputIndex": 97
+  },
+  {
+    "name": "Dragon’s Den Herb Shop",
+    "address": "3681 Baldwin Avenue Suite A-103",
+    "city": "Makawao",
+    "state": "Hawaii",
+    "state_code": "HI",
+    "zip": "96768",
+    "inputIndex": 98
+  },
+  {
+    "name": "Rosemary’s Garden",
+    "address": "176 N Main Street",
+    "city": "Sebastopol",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "95472",
+    "inputIndex": 99
+  },
+  {
+    "name": "Milagro Herbs",
+    "address": "1500 5th Street Unit 6",
+    "city": "Santa Fe",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "87505",
+    "inputIndex": 100
+  },
+  {
+    "name": "Old Town Herbal",
+    "address": "1919 Old Town Road NW Unit 2",
+    "city": "Albuquerque",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "87104",
+    "inputIndex": 101
+  },
+  {
+    "name": "All About Herbs",
+    "address": "4621 E Palmer-Wasilla Highway Suite 104",
+    "city": "Wasilla",
+    "state": "Alaska",
+    "state_code": "AK",
+    "zip": "99654",
+    "inputIndex": 102
+  },
+  {
+    "name": "Rosemary’s Herb Shop",
+    "address": "1705 Sudderth Drive",
+    "city": "Ruidoso",
+    "state": "New Mexico",
+    "state_code": "NM",
+    "zip": "88345",
+    "inputIndex": 103
+  },
+  {
+    "name": "The Herbal Ritual Apothecary and Pharmacy",
+    "address": "344 40th Street",
+    "city": "Oakland",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94609",
+    "inputIndex": 104
+  },
+  {
+    "name": "Green Wisdom Herbal Studies",
+    "address": "702 Cedar Avenue",
+    "city": "Long Beach",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "90813",
+    "inputIndex": 105
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - San Pablo",
+    "address": "2506 San Pablo Avenue",
+    "city": "Berkeley",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94702",
+    "inputIndex": 106
+  },
+  {
+    "name": "Lhasa Karnak Herb Company - Shattuck",
+    "address": "1942 Shattuck Avenue",
+    "city": "Berkeley",
+    "state": "California",
+    "state_code": "CA",
+    "zip": "94704",
+    "inputIndex": 107
+  },
+  {
+    "name": "Euphoric Herbals Apothecary - Milford",
+    "address": "621 N Dupont Boulevard",
+    "city": "Milford",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19963",
+    "inputIndex": 108
+  },
+  {
+    "name": "Gaia Emporium",
+    "address": "19B Peddlers Row",
+    "city": "Newark",
+    "state": "Delaware",
+    "state_code": "DE",
+    "zip": "19702",
+    "inputIndex": 109
+  },
+  {
+    "name": "The Spice Shack",
+    "address": "11334 Page Road",
+    "city": "Grabill",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46741",
+    "inputIndex": 110
+  },
+  {
+    "name": "Good Earth Natural Food Co.",
+    "address": "6350 Guilford Avenue",
+    "city": "Indianapolis",
+    "state": "Indiana",
+    "state_code": "IN",
+    "zip": "46220",
+    "inputIndex": 111
+  },
+  {
+    "name": "Little Woods Herbal",
+    "address": "136 Main Street",
+    "city": "Ames",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50010",
+    "inputIndex": 112
+  },
+  {
+    "name": "Holistic Harmony",
+    "address": "313 N 8th Street",
+    "city": "Clear Lake",
+    "state": "Iowa",
+    "state_code": "IA",
+    "zip": "50428",
+    "inputIndex": 113
+  },
+  {
+    "name": "Tonic Herb Shop",
+    "address": "140 E German Street",
+    "city": "Shepherdstown",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "25443",
+    "inputIndex": 114
+  },
+  {
+    "name": "Wild Ginger & Spice",
+    "address": "407 William Avenue",
+    "city": "Davis",
+    "state": "West Virginia",
+    "state_code": "WV",
+    "zip": "26260",
+    "inputIndex": 115
+  }
+]

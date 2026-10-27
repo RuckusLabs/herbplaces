@@ -1,0 +1,992 @@
+{
+  "seedId": "national-expansion-20261027",
+  "projectRef": "qtpepsebztlremlhpxdt",
+  "excludedCandidates": [
+    {
+      "name": "Tangled Roots Herbal",
+      "status": "hold",
+      "reason": "The current official website contact page is a template without a visitor address; recent directory reviews report storefront closed in 2025. Do not add stale Nashua address.",
+      "sources": [
+        "https://tangledrootsherbal.com/pages/contact",
+        "https://www.loc8nearme.com/new-hampshire/nashua/tangled-roots-herbal/5070300/"
+      ]
+    },
+    {
+      "name": "Avena Botanicals",
+      "status": "hold",
+      "reason": "Official contact page says gardens closed to general public except a few scheduled events; no regular public shop verified.",
+      "sources": [
+        "https://www.avenabotanicals.com/pages/contact"
+      ]
+    },
+    {
+      "name": "Remedies Herb Shop — Woodstock",
+      "status": "hold",
+      "reason": "Current official page says temporary pop-up at128 Tinker through2026 with move to59 Tinker January2027. Prefer durable shop addresses.",
+      "sources": [
+        "https://remediesherbshop.com/hours-and-information/"
+      ]
+    },
+    {
+      "name": "Radicle Herb Shop",
+      "status": "closed",
+      "reason": "Founder explicitly states shop closed in2023; older directories still falsely list open.",
+      "sources": [
+        "https://chrisradicle.com/"
+      ]
+    },
+    {
+      "name": "MXED Greens",
+      "status": "closed",
+      "reason": "Official contact page announces closure.",
+      "sources": [
+        "https://mxedgreens.com/pages/contact-us"
+      ]
+    },
+    {
+      "name": "Anima Mundi — SoHo",
+      "status": "hold",
+      "reason": "Current primary address117 Crosby adjacent collaborative Alchemist119 Crosby; omitted to avoid potentially counting one shared retail operation twice.",
+      "sources": [
+        "https://animamundiherbals.com/pages/soho",
+        "https://www.thealchemistskitchen.com/pages/visit-us"
+      ]
+    },
+    {
+      "name": "AM Authentically Me",
+      "city": "Appleton",
+      "state": "Wisconsin",
+      "status": "closed",
+      "reason": "Official site explicitly says physical location closed9/26/26;onlineonly herbalshopcontinues.",
+      "sources": [
+        "https://www.amauthenticallyme.com/herbal-apothecary"
+      ]
+    },
+    {
+      "name": "Herbz and Spicez",
+      "city": "Fargo",
+      "state": "North Dakota",
+      "status": "hold",
+      "reason": "Officialfooter gives26RobertsStbutshoppingFAQonlypromisescoordinatedpickupandpopups.No clearpublicstorehours/addressaccess;do notadduntilverified.",
+      "sources": [
+        "https://herbzandspicez.com/"
+      ]
+    },
+    {
+      "name": "Snakeroot Botanicals",
+      "city": "Indianapolis",
+      "state": "Indiana",
+      "status": "hold",
+      "reason": "Official currentcatalog focusesliveplants,herbseeds,gardensupplies; tourismdescribesbulkherbsbutnotclearcurrentdedicatedherbshop.Openaddressnow1054Virginia not1052tourismlisting. Donotaddwithoutprimaryherbalinventoryproof.",
+      "sources": [
+        "https://snakerootbotanicals.com/",
+        "https://de.visitindy.com/directory/snakeroot-botanicals-fountain-square/"
+      ]
+    },
+    {
+      "name": "Indiana Herbal Center",
+      "city": "Bloomington",
+      "state": "Indiana",
+      "status": "hold",
+      "reason": "Officialcontactappointment-only;noverifiedwalkinretailpublicaccess.",
+      "sources": [
+        "https://indianaherbalcenter.com/contact"
+      ]
+    },
+    {
+      "name": "Arise Botanicals",
+      "city": "Lincoln",
+      "state": "Nebraska",
+      "status": "hold",
+      "reason": "Officialsiteonhiatusfrommarkets, acceptsordersandlimitedstockistdistribution.Noidentifiedpublicstorefront.",
+      "sources": [
+        "https://www.arisebotanicals.com/"
+      ]
+    },
+    {
+      "name": "2 Wolves Herbal Apothecary — Cleveland",
+      "address": "783 S Main Street, Suite 5",
+      "city": "Cleveland",
+      "state": "Georgia",
+      "state_code": "GA",
+      "zip": "30528",
+      "website": "https://www.2wolvesinc.com/",
+      "phone": "706-969-1651",
+      "hours": "Tuesday–Saturday 10am–6pm",
+      "tagline": "Handcrafted herbal teas and botanical preparations in Cleveland.",
+      "description": "2 Wolves Herbal Apothecary’s Cleveland shop offers handcrafted herbal teas, tinctures and botanical preparations. The Georgia business also makes mushroom-based drinks, infused honey and body-care products.\n\nThe Cleveland storefront is listed by Georgia Grown as the business’s primary location. It is a separate visitor address from its Helen and Augusta shops.",
+      "category_ids": [
+        "shops"
+      ],
+      "sources": [
+        "https://www.2wolvesinc.com/",
+        "https://georgiagrown.com/member/2-wolves-herbal-apothecary/"
+      ],
+      "photoCandidates": [],
+      "status": "hold",
+      "verificationNote": "Current official site no longer mentions Cleveland and instead has synced location450CNorthGroveStreet,Dahlonega30533. StateGeorgiaGrownstilllistsCleveland. Holduntilbranchcontinuityverified."
+    },
+    {
+      "name": "Spinning Moon Apothecary",
+      "status": "hold",
+      "reason": "Historical Sitka shop and public listings conflict with a current permanent-closure directory record; no current operator-confirmed visitor address established.",
+      "sources": [
+        "https://reviews.birdeye.com/spinning-moon-apothecary-176953371597524",
+        "https://akroseroot.com/pages/find-our-products-locally"
+      ]
+    },
+    {
+      "name": "Taos Herb Company",
+      "status": "hold",
+      "reason": "Public directories give conflicting retail addresses; official website could not be retrieved for a current visitor-address confirmation. No closure inferred from website access alone.",
+      "sources": [
+        "https://www.taosherb.com/store/index.html",
+        "https://heytaos.com/pages/new-mexico-food-shops-taos",
+        "https://www.loc8nearme.com/new-mexico/taos/taos-herb-company/7579195/"
+      ]
+    },
+    {
+      "name": "Beatrice’s Herbs",
+      "status": "hold",
+      "reason": "Cached official contact page is old and a fresh direct retrieval failed; current independent storefront operation was not established in this pass.",
+      "sources": [
+        "https://beatricesherbs.com/contact.htm"
+      ]
+    }
+  ],
+  "seededAt": "2026-10-27T19:55:39.383Z",
+  "inserted": 108,
+  "totalListings": 179,
+  "photos": 118,
+  "photosAdded": 118,
+  "photoStorageRegistrations": 118,
+  "unchangedExisting": 71,
+  "missingPhotos": [
+    {
+      "name": "Alkaline Healing Herbs - Division",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Lisa Herbal Corporation",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Magus Books and Herbs",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Terry’s Health Products",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Flower Power Herbs & Roots — Piermont",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Penn Herb Company — Flagship Store",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Penn Herb Company — Factory Store",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Alternatives For Health Herbal Apothecary",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Miss Anne’s Maypop Herb Shop",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Earth Heart Health Food Store",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "The Mercantile Apothecary",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "CW Organics Herbal Apothecary",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Angie’s Gardens Apothecary",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Lhasa Karnak Herb Company - San Pablo",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    },
+    {
+      "name": "Lhasa Karnak Herb Company - Shattuck",
+      "reason": "No suitable authenticated photograph after official-page search, download checks, and visual review. Image viewer is hidden until a usable photo is available."
+    }
+  ],
+  "places": [
+    {
+      "id": 83,
+      "name": "Herb Stone",
+      "urlSlug": "herb-stone",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herb-stone"
+    },
+    {
+      "id": 80,
+      "name": "Alkaline Healing Herbs - Elston",
+      "urlSlug": "alkaline-healing-herbs-elston",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/alkaline-healing-herbs-elston"
+    },
+    {
+      "id": 81,
+      "name": "Alkaline Healing Herbs - Division",
+      "urlSlug": "alkaline-healing-herbs-division",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/alkaline-healing-herbs-division"
+    },
+    {
+      "id": 82,
+      "name": "Hoa My Chinese Medicine",
+      "urlSlug": "hoa-my-chinese-medicine",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/hoa-my-chinese-medicine"
+    },
+    {
+      "id": 84,
+      "name": "Lisa Herbal Corporation",
+      "urlSlug": "lisa-herbal-corporation",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/lisa-herbal-corporation"
+    },
+    {
+      "id": 85,
+      "name": "DMApothecary at Mella’Ninn Complex",
+      "urlSlug": "dmapothecary-at-mella-ninn-complex",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dmapothecary-at-mella-ninn-complex"
+    },
+    {
+      "id": 86,
+      "name": "Merz Apothecary",
+      "urlSlug": "merz-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/merz-apothecary"
+    },
+    {
+      "id": 87,
+      "name": "Topaz Apothecary & Collective",
+      "urlSlug": "topaz-apothecary-collective",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/topaz-apothecary-collective"
+    },
+    {
+      "id": 88,
+      "name": "Aurora’s Apothecary - Appleton",
+      "urlSlug": "aurora-s-apothecary-appleton",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/aurora-s-apothecary-appleton"
+    },
+    {
+      "id": 89,
+      "name": "Aurora’s Apothecary - Green Bay",
+      "urlSlug": "aurora-s-apothecary-green-bay",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/aurora-s-apothecary-green-bay"
+    },
+    {
+      "id": 90,
+      "name": "Aurora’s Apothecary - Fond du Lac",
+      "urlSlug": "aurora-s-apothecary-fond-du-lac",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/aurora-s-apothecary-fond-du-lac"
+    },
+    {
+      "id": 91,
+      "name": "Lakota Made",
+      "urlSlug": "lakota-made",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/lakota-made"
+    },
+    {
+      "id": 92,
+      "name": "Present Moment Herbs & Books",
+      "urlSlug": "present-moment-herbs-books",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/present-moment-herbs-books"
+    },
+    {
+      "id": 93,
+      "name": "Magus Books and Herbs",
+      "urlSlug": "magus-books-and-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/magus-books-and-herbs"
+    },
+    {
+      "id": 94,
+      "name": "Jewelweed",
+      "urlSlug": "jewelweed",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/jewelweed"
+    },
+    {
+      "id": 95,
+      "name": "Leaf & Stone Apothecary",
+      "urlSlug": "leaf-stone-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/leaf-stone-apothecary"
+    },
+    {
+      "id": 96,
+      "name": "Flourish Herbals & Aromatherapy",
+      "urlSlug": "flourish-herbals-aromatherapy",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/flourish-herbals-aromatherapy"
+    },
+    {
+      "id": 97,
+      "name": "Phoenix Herb",
+      "urlSlug": "phoenix-herb",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/phoenix-herb"
+    },
+    {
+      "id": 98,
+      "name": "Cheryl’s Herbs",
+      "urlSlug": "cheryl-s-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/cheryl-s-herbs"
+    },
+    {
+      "id": 99,
+      "name": "STL Herbs and Aromatics",
+      "urlSlug": "stl-herbs-and-aromatics",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/stl-herbs-and-aromatics"
+    },
+    {
+      "id": 100,
+      "name": "Centered Spirit Apothecary & Emilie’s French Teas",
+      "urlSlug": "centered-spirit-apothecary-emilie-s-french-teas",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/centered-spirit-apothecary-emilie-s-french-teas"
+    },
+    {
+      "id": 101,
+      "name": "Hawthorn & Violet Herbal Apothecary",
+      "urlSlug": "hawthorn-violet-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/hawthorn-violet-herbal-apothecary"
+    },
+    {
+      "id": 102,
+      "name": "Those Nature People Herb Haus - Frankenmuth",
+      "urlSlug": "those-nature-people-herb-haus-frankenmuth",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/those-nature-people-herb-haus-frankenmuth"
+    },
+    {
+      "id": 103,
+      "name": "Those Nature People Herb Haus - Flint",
+      "urlSlug": "those-nature-people-herb-haus-flint",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/those-nature-people-herb-haus-flint"
+    },
+    {
+      "id": 104,
+      "name": "Those Nature People Herb Haus - Davison",
+      "urlSlug": "those-nature-people-herb-haus-davison",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/those-nature-people-herb-haus-davison"
+    },
+    {
+      "id": 105,
+      "name": "Perry’s Place",
+      "urlSlug": "perry-s-place",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/perry-s-place"
+    },
+    {
+      "id": 106,
+      "name": "Earthley Wellness - Columbus Store",
+      "urlSlug": "earthley-wellness-columbus-store",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/earthley-wellness-columbus-store"
+    },
+    {
+      "id": 107,
+      "name": "Spirit Apothecary Botanicals & Findings",
+      "urlSlug": "spirit-apothecary-botanicals-findings",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/spirit-apothecary-botanicals-findings"
+    },
+    {
+      "id": 158,
+      "name": "Earth Heart Health Food Store",
+      "urlSlug": "earth-heart-health-food-store",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/earth-heart-health-food-store"
+    },
+    {
+      "id": 108,
+      "name": "Clintonville Natural Foods",
+      "urlSlug": "clintonville-natural-foods",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/clintonville-natural-foods"
+    },
+    {
+      "id": 109,
+      "name": "Bentley’s Apothecary",
+      "urlSlug": "bentley-s-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/bentley-s-apothecary"
+    },
+    {
+      "id": 110,
+      "name": "Prairie Star Botanicals",
+      "urlSlug": "prairie-star-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/prairie-star-botanicals"
+    },
+    {
+      "id": 111,
+      "name": "Wild Thyme Herbal Apothecary",
+      "urlSlug": "wild-thyme-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wild-thyme-herbal-apothecary"
+    },
+    {
+      "id": 112,
+      "name": "Bloodroot Herb Shop",
+      "urlSlug": "bloodroot-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/bloodroot-herb-shop"
+    },
+    {
+      "id": 164,
+      "name": "CW Organics Herbal Apothecary",
+      "urlSlug": "cw-organics-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/cw-organics-herbal-apothecary"
+    },
+    {
+      "id": 113,
+      "name": "Gathered Botanicals",
+      "urlSlug": "gathered-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/gathered-botanicals"
+    },
+    {
+      "id": 114,
+      "name": "Juniper Apothecary",
+      "urlSlug": "juniper-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/juniper-apothecary"
+    },
+    {
+      "id": 115,
+      "name": "Terry’s Health Products",
+      "urlSlug": "terry-s-health-products",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/terry-s-health-products"
+    },
+    {
+      "id": 116,
+      "name": "Herbalist & Alchemist Retail Store",
+      "urlSlug": "herbalist-alchemist-retail-store",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbalist-alchemist-retail-store"
+    },
+    {
+      "id": 117,
+      "name": "Bluestem Botanicals",
+      "urlSlug": "bluestem-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/bluestem-botanicals"
+    },
+    {
+      "id": 118,
+      "name": "Dorothy’s Herb Shop & Herbal Apothecary",
+      "urlSlug": "dorothy-s-herb-shop-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dorothy-s-herb-shop-herbal-apothecary"
+    },
+    {
+      "id": 119,
+      "name": "Spirit Wise Herbs & Magick",
+      "urlSlug": "spirit-wise-herbs-magick",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/spirit-wise-herbs-magick"
+    },
+    {
+      "id": 120,
+      "name": "Greenwood Herbals",
+      "urlSlug": "greenwood-herbals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/greenwood-herbals"
+    },
+    {
+      "id": 121,
+      "name": "The Herbal Path — Dover",
+      "urlSlug": "the-herbal-path-dover",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herbal-path-dover"
+    },
+    {
+      "id": 122,
+      "name": "The Herbal Path — Portsmouth",
+      "urlSlug": "the-herbal-path-portsmouth",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herbal-path-portsmouth"
+    },
+    {
+      "id": 123,
+      "name": "The Alchemist’s Kitchen",
+      "urlSlug": "the-alchemist-s-kitchen",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-alchemist-s-kitchen"
+    },
+    {
+      "id": 124,
+      "name": "Grian Herbs Apothecary",
+      "urlSlug": "grian-herbs-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/grian-herbs-apothecary"
+    },
+    {
+      "id": 125,
+      "name": "Integrative Herbalism",
+      "urlSlug": "integrative-herbalism",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/integrative-herbalism"
+    },
+    {
+      "id": 126,
+      "name": "Flower Power Herbs & Roots — East Village",
+      "urlSlug": "flower-power-herbs-roots-east-village",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/flower-power-herbs-roots-east-village"
+    },
+    {
+      "id": 127,
+      "name": "Flower Power Herbs & Roots — Piermont",
+      "urlSlug": "flower-power-herbs-roots-piermont",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/flower-power-herbs-roots-piermont"
+    },
+    {
+      "id": 128,
+      "name": "Herbs and Mylk",
+      "urlSlug": "herbs-and-mylk",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbs-and-mylk"
+    },
+    {
+      "id": 129,
+      "name": "Wildcraft Herb Shoppe",
+      "urlSlug": "wildcraft-herb-shoppe",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wildcraft-herb-shoppe"
+    },
+    {
+      "id": 130,
+      "name": "Anima Mundi Apothecary — Brooklyn",
+      "urlSlug": "anima-mundi-apothecary-brooklyn",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/anima-mundi-apothecary-brooklyn"
+    },
+    {
+      "id": 131,
+      "name": "Remedies Herb Shop — Brooklyn",
+      "urlSlug": "remedies-herb-shop-brooklyn",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/remedies-herb-shop-brooklyn"
+    },
+    {
+      "id": 132,
+      "name": "Red Antler Apothecary — Lowell",
+      "urlSlug": "red-antler-apothecary-lowell",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/red-antler-apothecary-lowell"
+    },
+    {
+      "id": 133,
+      "name": "Red Antler Apothecary — Salem",
+      "urlSlug": "red-antler-apothecary-salem",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/red-antler-apothecary-salem"
+    },
+    {
+      "id": 134,
+      "name": "Penn Herb Company — Flagship Store",
+      "urlSlug": "penn-herb-company-flagship-store",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/penn-herb-company-flagship-store"
+    },
+    {
+      "id": 135,
+      "name": "Penn Herb Company — Factory Store",
+      "urlSlug": "penn-herb-company-factory-store",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/penn-herb-company-factory-store"
+    },
+    {
+      "id": 136,
+      "name": "The Rosemary House & Gardens",
+      "urlSlug": "the-rosemary-house-gardens",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-rosemary-house-gardens"
+    },
+    {
+      "id": 137,
+      "name": "Village Green Apothecary",
+      "urlSlug": "village-green-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/village-green-apothecary"
+    },
+    {
+      "id": 138,
+      "name": "Raine n River Apothecary",
+      "urlSlug": "raine-n-river-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/raine-n-river-apothecary"
+    },
+    {
+      "id": 139,
+      "name": "Herbal Root Organics",
+      "urlSlug": "herbal-root-organics",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbal-root-organics"
+    },
+    {
+      "id": 140,
+      "name": "Forrest Green Farm",
+      "urlSlug": "forrest-green-farm",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/forrest-green-farm"
+    },
+    {
+      "id": 141,
+      "name": "Alternatives For Health Herbal Apothecary",
+      "urlSlug": "alternatives-for-health-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/alternatives-for-health-herbal-apothecary"
+    },
+    {
+      "id": 142,
+      "name": "Homegrown Herb & Tea",
+      "urlSlug": "homegrown-herb-tea",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/homegrown-herb-tea"
+    },
+    {
+      "id": 143,
+      "name": "Mother’s Natchez",
+      "urlSlug": "mother-s-natchez",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/mother-s-natchez"
+    },
+    {
+      "id": 144,
+      "name": "Green Oaks Apothecary",
+      "urlSlug": "green-oaks-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/green-oaks-apothecary"
+    },
+    {
+      "id": 145,
+      "name": "Clary & Sage Apothecary",
+      "urlSlug": "clary-sage-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/clary-sage-apothecary"
+    },
+    {
+      "id": 146,
+      "name": "Melanated Ancestral Collective",
+      "urlSlug": "melanated-ancestral-collective",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/melanated-ancestral-collective"
+    },
+    {
+      "id": 165,
+      "name": "Angie’s Gardens Apothecary",
+      "urlSlug": "angie-s-gardens-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/angie-s-gardens-apothecary"
+    },
+    {
+      "id": 147,
+      "name": "A Thousand Leaves Community Apothecary",
+      "urlSlug": "a-thousand-leaves-community-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/a-thousand-leaves-community-apothecary"
+    },
+    {
+      "id": 148,
+      "name": "KindFolk Apothecary + Wellness",
+      "urlSlug": "kindfolk-apothecary-wellness",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/kindfolk-apothecary-wellness"
+    },
+    {
+      "id": 149,
+      "name": "Baldflower Apothecary",
+      "urlSlug": "baldflower-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/baldflower-apothecary"
+    },
+    {
+      "id": 150,
+      "name": "Into the Wilds Apothecary",
+      "urlSlug": "into-the-wilds-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/into-the-wilds-apothecary"
+    },
+    {
+      "id": 151,
+      "name": "Apothecary of Knightdale",
+      "urlSlug": "apothecary-of-knightdale",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/apothecary-of-knightdale"
+    },
+    {
+      "id": 152,
+      "name": "The Herb Room Organic Apothecary",
+      "urlSlug": "the-herb-room-organic-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herb-room-organic-apothecary"
+    },
+    {
+      "id": 153,
+      "name": "The Gathering Place",
+      "urlSlug": "the-gathering-place",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-gathering-place"
+    },
+    {
+      "id": 154,
+      "name": "Sacred Moon Herbs",
+      "urlSlug": "sacred-moon-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/sacred-moon-herbs"
+    },
+    {
+      "id": 155,
+      "name": "The Herb Shop of Vinings",
+      "urlSlug": "the-herb-shop-of-vinings",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herb-shop-of-vinings"
+    },
+    {
+      "id": 156,
+      "name": "Healing Waters Clinic & Herb Shop",
+      "urlSlug": "healing-waters-clinic-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/healing-waters-clinic-herb-shop"
+    },
+    {
+      "id": 157,
+      "name": "Miss Anne’s Maypop Herb Shop",
+      "urlSlug": "miss-anne-s-maypop-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/miss-anne-s-maypop-herb-shop"
+    },
+    {
+      "id": 159,
+      "name": "Hummingbird Apothecary — South Knoxville",
+      "urlSlug": "hummingbird-apothecary-south-knoxville",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/hummingbird-apothecary-south-knoxville"
+    },
+    {
+      "id": 160,
+      "name": "Hummingbird Apothecary — North Knoxville",
+      "urlSlug": "hummingbird-apothecary-north-knoxville",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/hummingbird-apothecary-north-knoxville"
+    },
+    {
+      "id": 161,
+      "name": "Synergy Herbal Works — Cookeville",
+      "urlSlug": "synergy-herbal-works-cookeville",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/synergy-herbal-works-cookeville"
+    },
+    {
+      "id": 162,
+      "name": "The Green Lass Apothecary & Tea Shop",
+      "urlSlug": "the-green-lass-apothecary-tea-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-green-lass-apothecary-tea-shop"
+    },
+    {
+      "id": 163,
+      "name": "The Mercantile Apothecary",
+      "urlSlug": "the-mercantile-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-mercantile-apothecary"
+    },
+    {
+      "id": 166,
+      "name": "The Herb Shop at Cypress Pillar Healing Arts",
+      "urlSlug": "the-herb-shop-at-cypress-pillar-healing-arts",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herb-shop-at-cypress-pillar-healing-arts"
+    },
+    {
+      "id": 167,
+      "name": "Herbal Passion",
+      "urlSlug": "herbal-passion",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbal-passion"
+    },
+    {
+      "id": 168,
+      "name": "Natural Law Apothecary",
+      "urlSlug": "natural-law-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/natural-law-apothecary"
+    },
+    {
+      "id": 169,
+      "name": "Dragon Herbs Herbal Emporium and Elixir Bar",
+      "urlSlug": "dragon-herbs-herbal-emporium-and-elixir-bar",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dragon-herbs-herbal-emporium-and-elixir-bar"
+    },
+    {
+      "id": 170,
+      "name": "Mountain Rose Herbs Mercantile - Palm Springs",
+      "urlSlug": "mountain-rose-herbs-mercantile-palm-springs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/mountain-rose-herbs-mercantile-palm-springs"
+    },
+    {
+      "id": 171,
+      "name": "Mountain Rose Herbs Mercantile - Seattle",
+      "urlSlug": "mountain-rose-herbs-mercantile-seattle",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/mountain-rose-herbs-mercantile-seattle"
+    },
+    {
+      "id": 172,
+      "name": "Herbally Grounded - Charleston",
+      "urlSlug": "herbally-grounded-charleston",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbally-grounded-charleston"
+    },
+    {
+      "id": 173,
+      "name": "Herbally Grounded - Eastern",
+      "urlSlug": "herbally-grounded-eastern",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbally-grounded-eastern"
+    },
+    {
+      "id": 174,
+      "name": "Pilar’s Wellness Collective Apothecary",
+      "urlSlug": "pilar-s-wellness-collective-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/pilar-s-wellness-collective-apothecary"
+    },
+    {
+      "id": 175,
+      "name": "Herban Myth Apothecary at Chico Holistic Wellness Center",
+      "urlSlug": "herban-myth-apothecary-at-chico-holistic-wellness-center",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herban-myth-apothecary-at-chico-holistic-wellness-center"
+    },
+    {
+      "id": 176,
+      "name": "Enchantment Creek Apothecary",
+      "urlSlug": "enchantment-creek-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/enchantment-creek-apothecary"
+    },
+    {
+      "id": 177,
+      "name": "Kauai Farmacy",
+      "urlSlug": "kauai-farmacy",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/kauai-farmacy"
+    },
+    {
+      "id": 178,
+      "name": "Dragon’s Den Herb Shop",
+      "urlSlug": "dragon-s-den-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dragon-s-den-herb-shop"
+    },
+    {
+      "id": 179,
+      "name": "Rosemary’s Garden",
+      "urlSlug": "rosemary-s-garden",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/rosemary-s-garden"
+    },
+    {
+      "id": 180,
+      "name": "Milagro Herbs",
+      "urlSlug": "milagro-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/milagro-herbs"
+    },
+    {
+      "id": 181,
+      "name": "Old Town Herbal",
+      "urlSlug": "old-town-herbal",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/old-town-herbal"
+    },
+    {
+      "id": 182,
+      "name": "All About Herbs",
+      "urlSlug": "all-about-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/all-about-herbs"
+    },
+    {
+      "id": 183,
+      "name": "Rosemary’s Herb Shop",
+      "urlSlug": "rosemary-s-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/rosemary-s-herb-shop"
+    },
+    {
+      "id": 184,
+      "name": "The Herbal Ritual Apothecary and Pharmacy",
+      "urlSlug": "the-herbal-ritual-apothecary-and-pharmacy",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herbal-ritual-apothecary-and-pharmacy"
+    },
+    {
+      "id": 185,
+      "name": "Green Wisdom Herbal Studies",
+      "urlSlug": "green-wisdom-herbal-studies",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/green-wisdom-herbal-studies"
+    },
+    {
+      "id": 186,
+      "name": "Lhasa Karnak Herb Company - San Pablo",
+      "urlSlug": "lhasa-karnak-herb-company-san-pablo",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/lhasa-karnak-herb-company-san-pablo"
+    },
+    {
+      "id": 187,
+      "name": "Lhasa Karnak Herb Company - Shattuck",
+      "urlSlug": "lhasa-karnak-herb-company-shattuck",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/lhasa-karnak-herb-company-shattuck"
+    }
+  ],
+  "held": [],
+  "duplicates": [],
+  "checks": [
+    "All new profiles anonymously readable with matching content",
+    "Every uploaded image publicly delivered with matching checksum",
+    "All pre-existing records unchanged",
+    "No Featured or Verified badge assigned"
+  ]
+}

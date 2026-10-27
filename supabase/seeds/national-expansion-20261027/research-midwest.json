@@ -1,0 +1,1903 @@
+[
+  {
+    "name": "Alkaline Healing Herbs - Elston",
+    "address": "4661 N Elston Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60630",
+    "website": "https://alkalinehealingherbs.com",
+    "phone": "708-320-2850",
+    "hours": "Daily 12pm–7pm",
+    "tagline": "Walk-in herb shop on North Elston Avenue.",
+    "description": "Alkaline Healing Herbs operates this flagship Chicago shop with wild-harvested herbs and hand-blended botanical products.\n\nVisitors can browse the shop or ask about its herbal consultations. The business explicitly welcomes walk-ins.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://alkalinehealingherbs.com/visit",
+      "https://www.alkalinehealingherbs.com/blank-1",
+      "https://data.cityofchicago.org/api/views/9cna-y9pk/rows.pdf",
+      "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://alkalinehealingherbs.com/assets/store-interior-QFU9ITXt.webp",
+        "sourcePage": "https://alkalinehealingherbs.com",
+        "alt": "Inside the Alkaline Healing Herbs Chicago shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-elston-ec417719b33c.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "ec417719b33c170311ee82c323ba6b1edb3eed357c4fb8f50a93c65919a2e472"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 0,
+    "photoSearchAttempts": [
+      {
+        "url": "https://alkalinehealingherbs.com/assets/store-interior-QFU9ITXt.webp",
+        "sourcePage": "https://alkalinehealingherbs.com",
+        "alt": "Inside the Alkaline Healing Herbs Chicago shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-elston-ec417719b33c.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "ec417719b33c170311ee82c323ba6b1edb3eed357c4fb8f50a93c65919a2e472"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Alkaline Healing Herbs - Division",
+    "address": "2455 W Division Street",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60622",
+    "website": "https://alkalinehealingherbs.com",
+    "phone": "773-687-8122",
+    "hours": "Tuesday–Saturday 12pm–6pm; Sunday–Monday closed",
+    "tagline": "Hand-blended herbs in Chicago’s Division Street shop.",
+    "description": "This Chicago branch of Alkaline Healing Herbs offers the company’s herbs and botanical blends.\n\nThe Division Street location welcomes visitors during its published shop hours and offers access to herbal consultations.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://alkalinehealingherbs.com/visit",
+      "https://www.alkalinehealingherbs.com/blank-1",
+      "https://data.cityofchicago.org/api/views/9cna-y9pk/rows.pdf",
+      "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-division-a2405ef51958.webp",
+        "width": 768,
+        "height": 1024,
+        "sha256": "a2405ef519581153682868eff54b5d8dcc8c1fce25b43f9175e834ff697107d3"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 1,
+    "photoSearchAttempts": [
+      {
+        "url": "https://prcc-chgo.org/wp-content/uploads/2020/12/CORALEE-Montes-1-768x1024.jpeg",
+        "sourcePage": "https://prcc-chgo.org/2020/12/15/new-business-opens-on-paseo-boricua/",
+        "alt": "Coralee Montes behind the counter at Alkaline Healing Herbs on Division Street",
+        "localFile": "docs/listing-images/national-expansion-20261027/alkaline-healing-herbs-division-a2405ef51958.webp",
+        "width": 768,
+        "height": 1024,
+        "sha256": "a2405ef519581153682868eff54b5d8dcc8c1fce25b43f9175e834ff697107d3"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found authenticated location photograph; downloaded via valid HTTPS."
+  },
+  {
+    "name": "Hoa My Chinese Medicine",
+    "address": "1123 W Argyle Street",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60640",
+    "website": "https://www.hoamychicago.com/",
+    "phone": "773-271-0504",
+    "hours": "Monday, Wednesday–Friday 11am–5pm; Saturday–Sunday 10am–5pm; Tuesday closed",
+    "tagline": "Traditional Chinese herbal apothecary on Argyle Street.",
+    "description": "Hoa My is a Chinese apothecary in Chicago’s Uptown neighborhood. Its herbal selection includes traditional Chinese herbs and ginseng.\n\nThe shop prepares herbal formulas for individual clients and also lists acupuncture and tui na services.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.hoamychicago.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/578168f51b631b1a87acf00c/1468100794517-Y8VGWFCP4DF40164N08R/20150816_114827.jpg",
+        "sourcePage": "https://www.hoamychicago.com/",
+        "alt": "Chinese Herbs",
+        "localFile": "docs/listing-images/national-expansion-20261027/hoa-my-chinese-medicine-57c2d03b0253.webp",
+        "width": 1600,
+        "height": 1407,
+        "sha256": "57c2d03b02538661fb05afb652d67697bb59695f4a223e80d1f6a4b0c2fcec8b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 2,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/578168f51b631b1a87acf00c/1468100794517-Y8VGWFCP4DF40164N08R/20150816_114827.jpg",
+        "sourcePage": "https://www.hoamychicago.com/",
+        "alt": "Chinese Herbs",
+        "localFile": "docs/listing-images/national-expansion-20261027/hoa-my-chinese-medicine-57c2d03b0253.webp",
+        "width": 1600,
+        "height": 1407,
+        "sha256": "57c2d03b02538661fb05afb652d67697bb59695f4a223e80d1f6a4b0c2fcec8b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herb Stone",
+    "address": "2200 S Wentworth Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60616",
+    "website": "https://herbstone.com/",
+    "phone": "312-998-2899",
+    "hours": "Sunday–Thursday 10am–9pm; Friday–Saturday 10am–10pm",
+    "tagline": "Herbal dispensary and retail shop in Chicago’s Chinatown.",
+    "description": "Herb Stone combines a curated herbal dispensary and retail selection with Traditional Chinese Medicine services in Chinatown.\n\nThe center also offers licensed clinical services and consultation bookings. Its website publishes daily store hours for visitors.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://herbstone.com/pages/about-herb-stone",
+      "https://herbstone.janeapp.com/",
+      "https://data.cityofchicago.org/api/views/fxh5-b5jq/rows.pdf"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herbstone.com/cdn/shop/files/R0004018.jpg?v=1782177205&width=940",
+        "sourcePage": "https://herbstone.com/",
+        "alt": "Photo published by Herb Stone",
+        "localFile": "docs/listing-images/national-expansion-20261027/herb-stone-b490c9d8abfc.webp",
+        "width": 940,
+        "height": 627,
+        "sha256": "b490c9d8abfc7e5ae26e0d2def3dc299f8e278e1754e50a46eee9d86d07b093b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 3,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herbstone.com/cdn/shop/files/R0004018.jpg?v=1782177205&width=940",
+        "sourcePage": "https://herbstone.com/",
+        "alt": "Photo published by Herb Stone",
+        "localFile": "docs/listing-images/national-expansion-20261027/herb-stone-b490c9d8abfc.webp",
+        "width": 940,
+        "height": 627,
+        "sha256": "b490c9d8abfc7e5ae26e0d2def3dc299f8e278e1754e50a46eee9d86d07b093b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Lisa Herbal Corporation",
+    "address": "2802 S Wentworth Avenue, Suite 1",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60616",
+    "website": "https://www.lisaherbal.com/",
+    "phone": "312-808-1186",
+    "hours": "Monday–Wednesday, Friday–Saturday 9:30am–5pm; Sunday 9am–1:30pm; Thursday closed",
+    "tagline": "Chinese herbal teas and consultations in Chinatown.",
+    "description": "Lisa Herbal Corporation is a Chicago herbal business offering prepared teas and herbal products from its Wentworth Avenue location.\n\nConsultations are by appointment. The business asks customers ordering tea refills to call ahead.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.lisaherbal.com/"
+    ],
+    "photoCandidates": [],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 4,
+    "photoSearchAttempts": [],
+    "photoUnavailableReason": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained.",
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "No suitable authenticated downloadable photograph found."
+    },
+    "secondPassPhotoSearch": "Official homepage assets include logo and generic staged traditional-Chinese-medicine background; both rejected. Original Borderless reporting documents genuine2022LisaHerbal photographs with named photographer, but both direct downloads returned403. No suitable downloadable image obtained."
+  },
+  {
+    "name": "DMApothecary at Mella’Ninn Complex",
+    "address": "5430 N Broadway",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60640",
+    "website": "https://mellaninncomplex.com/",
+    "phone": "773-758-4537",
+    "hours": "Tuesday–Friday 11am–5pm; call for Saturday hours; Sunday–Monday closed",
+    "tagline": "Herbal teas and handmade goods on North Broadway.",
+    "description": "DMApothecary is part of Chicago’s Mella’Ninn Complex, a community shop on North Broadway. Its selection includes herbal tea blends and botanical personal care goods.\n\nThe shop also advertises hands-on activities such as soap-making classes. Contact the business for its current visiting schedule.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://mellaninncomplex.com/",
+      "https://deestea.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/089b8a4c-3e32-4f09-94df-24dd24f6c92e/F5D2800A-C17F-43C3-986D-8CF654EC5668.jpeg",
+        "sourcePage": "https://mellaninncomplex.com/",
+        "alt": "Photo published by DMApothecary at Mella’Ninn Complex",
+        "localFile": "docs/listing-images/national-expansion-20261027/dmapothecary-at-mella-ninn-complex-49ef550fa9ff.webp",
+        "width": 1426,
+        "height": 1600,
+        "sha256": "49ef550fa9ff1fc5b423e3813150033c7cdd36a79b2df7c7ed268d8e2a9d3a68"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27. Official sister tea site deestea.com corroborates publictea shopat5430; Saturdayclosingtypo5amomitted.",
+    "inputIndex": 5,
+    "photoSearchAttempts": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/089b8a4c-3e32-4f09-94df-24dd24f6c92e/F5D2800A-C17F-43C3-986D-8CF654EC5668.jpeg",
+        "sourcePage": "https://mellaninncomplex.com/",
+        "alt": "Photo published by DMApothecary at Mella’Ninn Complex",
+        "localFile": "docs/listing-images/national-expansion-20261027/dmapothecary-at-mella-ninn-complex-49ef550fa9ff.webp",
+        "width": 1426,
+        "height": 1600,
+        "sha256": "49ef550fa9ff1fc5b423e3813150033c7cdd36a79b2df7c7ed268d8e2a9d3a68"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Merz Apothecary",
+    "address": "4716 N Lincoln Avenue",
+    "city": "Chicago",
+    "state": "Illinois",
+    "state_code": "IL",
+    "zip": "60625",
+    "website": "https://www.merzapothecary.com/",
+    "phone": "773-989-0900",
+    "hours": "Monday–Saturday 10am–6pm; Sunday closed",
+    "tagline": "Historic Lincoln Square apothecary with herbs and personal care.",
+    "description": "Merz Apothecary is a family-owned Chicago shop established in 1875. Its selection spans herbal products, teas, supplements and personal care items.\n\nThe Lincoln Square location offers in-store shopping and curbside pickup. Its long-running shop is located on North Lincoln Avenue.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.merzapothecary.com/locations/",
+      "https://www.merzapothecary.com/wp-content/uploads/2014/02/timeline_web.pdf",
+      "https://www.chicagoexhibitionweekend.com/g/merz-apothecary"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.merzapothecary.com/wp-content/uploads/2022/01/Storefronts-1-1145x517.jpg",
+        "sourcePage": "https://www.merzapothecary.com/",
+        "alt": "Merz Apothecary and neighboring shops on North Lincoln Avenue",
+        "localFile": "docs/listing-images/national-expansion-20261027/merz-apothecary-99b367423023.webp",
+        "width": 1145,
+        "height": 517,
+        "sha256": "99b3674230234985635bca890329f79960cff7e5f474bddecf6811cc08c97974"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 6,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.merzapothecary.com/wp-content/uploads/2022/01/Storefronts-1-1145x517.jpg",
+        "sourcePage": "https://www.merzapothecary.com/",
+        "alt": "Merz Apothecary and neighboring shops on North Lincoln Avenue",
+        "localFile": "docs/listing-images/national-expansion-20261027/merz-apothecary-99b367423023.webp",
+        "width": 1145,
+        "height": 517,
+        "sha256": "99b3674230234985635bca890329f79960cff7e5f474bddecf6811cc08c97974"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Topaz Apothecary & Collective",
+    "address": "804 N Grand Avenue",
+    "city": "Waukesha",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "53186",
+    "website": "https://www.topazapothecary.com/",
+    "phone": "262-408-3334",
+    "hours": "Tuesday–Thursday 12:30pm–6pm; Friday 12:30pm–9pm; Saturday 12:30pm–5pm; Sunday–Monday closed",
+    "tagline": "Loose herbs, tea blends and handmade salves in downtown Waukesha.",
+    "description": "Topaz Apothecary & Collective stocks more than 90 loose herbs alongside tea blends and homemade herbal salves. Its downtown Waukesha shop also carries incense, jewelry and other gifts.\n\nThe collective combines retail shopping with services from local practitioners. Visitors can contact the shop for current offerings.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.topazapothecary.com/",
+      "https://www.topazapothecary.com/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/634ef4107283136c2a52e6c9/a28b1c69-80ea-4c6e-8236-85c541ffa155/IMG_1122.jpg",
+        "sourcePage": "https://www.topazapothecary.com/",
+        "alt": "Photo published by Topaz Apothecary & Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/topaz-apothecary-collective-c386e1f404a7.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "c386e1f404a7389374f7931220df75a21a6b564eb136ff3c4ddced600e63506c"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/634ef4107283136c2a52e6c9/59730437-1a11-45eb-90f4-e5f88f1a2e0a/IMG_1121.jpeg",
+        "sourcePage": "https://www.topazapothecary.com/",
+        "alt": "Photo published by Topaz Apothecary & Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/topaz-apothecary-collective-58e579df8f56.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "58e579df8f562139282bed925f51e126c57ef5e968761fab266a5f4394c8c9fd"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 7,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/634ef4107283136c2a52e6c9/a28b1c69-80ea-4c6e-8236-85c541ffa155/IMG_1122.jpg",
+        "sourcePage": "https://www.topazapothecary.com/",
+        "alt": "Photo published by Topaz Apothecary & Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/topaz-apothecary-collective-c386e1f404a7.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "c386e1f404a7389374f7931220df75a21a6b564eb136ff3c4ddced600e63506c"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/634ef4107283136c2a52e6c9/59730437-1a11-45eb-90f4-e5f88f1a2e0a/IMG_1121.jpeg",
+        "sourcePage": "https://www.topazapothecary.com/",
+        "alt": "Photo published by Topaz Apothecary & Collective",
+        "localFile": "docs/listing-images/national-expansion-20261027/topaz-apothecary-collective-58e579df8f56.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "58e579df8f562139282bed925f51e126c57ef5e968761fab266a5f4394c8c9fd"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Aurora’s Apothecary - Appleton",
+    "address": "1607 N Richmond Street",
+    "city": "Appleton",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54911",
+    "website": "https://aurorasapothecary.com/",
+    "phone": "920-358-7080",
+    "hours": "",
+    "tagline": "Herbs, teas and handmade botanicals in Appleton.",
+    "description": "Aurora’s Apothecary offers herbs, teas, tinctures and botanical body products at its Appleton shop. The Wisconsin business makes many of its herbal goods in-house.\n\nIts current website lists this branch among its visitor locations. Check with the store for current hours.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://aurorasapothecary.com/",
+      "https://aurorasapothecary.com/pages/the-business",
+      "https://foxcitiespac.com/appletoncityguide2024/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official site lists this branch with a Google Maps link. Address corroborated by local destination/arts organization. Official map links resolve to Appleton 44.2759211,-88.4160386; Green Bay 44.5172506,-88.021467; Fond du Lac 43.7740933,-88.446724. Do not use obsolete Greenleaf or Fish Creek listings.",
+    "inputIndex": 8,
+    "photoSearchAttempts": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Aurora’s Apothecary - Green Bay",
+    "address": "133 N Broadway, Suite A",
+    "city": "Green Bay",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54303",
+    "website": "https://aurorasapothecary.com/",
+    "phone": "920-857-3969",
+    "hours": "",
+    "tagline": "Herbs, teas and handmade botanicals in Green Bay.",
+    "description": "Aurora’s Apothecary offers herbs, teas, tinctures and botanical body products at its Green Bay shop. The Wisconsin business makes many of its herbal goods in-house.\n\nIts current website lists this branch among its visitor locations. Check with the store for current hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://aurorasapothecary.com/",
+      "https://aurorasapothecary.com/pages/the-business",
+      "https://downtowngreenbay.com/go/auroras-apothecary-llc"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official site lists this branch with a Google Maps link. Address corroborated by local destination/arts organization. Official map links resolve to Appleton 44.2759211,-88.4160386; Green Bay 44.5172506,-88.021467; Fond du Lac 43.7740933,-88.446724. Do not use obsolete Greenleaf or Fish Creek listings.",
+    "inputIndex": 9,
+    "photoSearchAttempts": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Aurora’s Apothecary - Fond du Lac",
+    "address": "171 S Main Street",
+    "city": "Fond du Lac",
+    "state": "Wisconsin",
+    "state_code": "WI",
+    "zip": "54935",
+    "website": "https://aurorasapothecary.com/",
+    "phone": "",
+    "hours": "",
+    "tagline": "Herbs, teas and handmade botanicals in Fond du Lac.",
+    "description": "Aurora’s Apothecary offers herbs, teas, tinctures and botanical body products at its Fond du Lac shop. The Wisconsin business makes many of its herbal goods in-house.\n\nIts current website lists this branch among its visitor locations. Check with the store for current hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://aurorasapothecary.com/",
+      "https://aurorasapothecary.com/pages/the-business",
+      "https://www.fdl.com/wp-content/uploads/2025/10/Specials-List-FDL.pdf"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current official site lists this branch with a Google Maps link. Address corroborated by local destination/arts organization. Official map links resolve to Appleton 44.2759211,-88.4160386; Green Bay 44.5172506,-88.021467; Fond du Lac 43.7740933,-88.446724. Do not use obsolete Greenleaf or Fish Creek listings.",
+    "inputIndex": 10,
+    "photoSearchAttempts": [
+      {
+        "url": "https://aurorasapothecary.com/cdn/shop/files/SweetDreamsTeaFullSize.jpg?v=1704736694&width=1500",
+        "sourcePage": "https://aurorasapothecary.com/pages/the-business",
+        "alt": "Aurora’s Apothecary packaged herbal tea",
+        "localFile": "docs/listing-images/national-expansion-20261027/aurora-s-apothecary-fond-du-lac-15944b2ed08a.webp",
+        "width": 720,
+        "height": 720,
+        "sha256": "15944b2ed08ab0ce8715b96c93d132634d54437f186157fd0b27409cc7bb4791"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Lakota Made",
+    "address": "606 N Riverfront Drive",
+    "city": "Mankato",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "56001",
+    "website": "https://www.lakotamade.com/",
+    "phone": "507-779-7053",
+    "hours": "Wednesday–Friday 12pm–5pm; Saturday 10am–5pm; Sunday 10am–3pm; Monday–Tuesday closed",
+    "tagline": "Native-owned herbal apothecary and small-batch body care.",
+    "description": "Lakota Made is a Native-owned Mankato shop selling herbal teas, tinctures, salves, soaps and personal care products. Its goods are made and packed in small batches.\n\nThe shop welcomes visitors at its North Riverfront Drive location. Current hours are published on the official site.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.lakotamade.com/",
+      "https://karmalize.org/business/lakota-made/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.lakotamade.com/uploads/b/86adaed46e29e333e832f36a45b2edf4fe8fa2a8895a34aa699c4e3384951ddd/store%20view%203_1785766973.png",
+        "sourcePage": "https://www.lakotamade.com",
+        "alt": "Inside Lakota Made’s Mankato shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/lakota-made-1571deb257fb.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "1571deb257fb5e717268fcbe889bd86a905893568a5a26b23da78f7861e3af3e"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 11,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.lakotamade.com/uploads/b/86adaed46e29e333e832f36a45b2edf4fe8fa2a8895a34aa699c4e3384951ddd/store%20view%203_1785766973.png",
+        "sourcePage": "https://www.lakotamade.com",
+        "alt": "Inside Lakota Made’s Mankato shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/lakota-made-1571deb257fb.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "1571deb257fb5e717268fcbe889bd86a905893568a5a26b23da78f7861e3af3e"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Present Moment Herbs & Books",
+    "address": "3546 Grand Avenue S",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55408",
+    "website": "https://presentmoment.com/",
+    "phone": "612-824-3157",
+    "hours": "Monday–Saturday 10am–7pm; Sunday 12pm–5pm",
+    "tagline": "Bulk herbs and an extensive book collection in Minneapolis.",
+    "description": "Present Moment Herbs & Books offers bulk herbs, herbal extracts, teas, aromatherapy items and personal care products. The Minneapolis shop also stocks a large selection of new and used books.\n\nVisitors can browse botanical supplies alongside incense, crystals and other specialty goods at its Grand Avenue store.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://presentmoment.com/about-us/",
+      "https://www.cfpampls.com/contact/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn9.localdatacdn.com/mn/minneapolis/3053840/original/35EYr0ipKS.jpg",
+        "sourcePage": "https://www.loc8nearme.com/minnesota/minneapolis/present-moment-herbs-and-books/3053840/",
+        "alt": "Inside Present Moment Herbs & Books in Minneapolis",
+        "localFile": "docs/listing-images/national-expansion-20261027/present-moment-herbs-books-3ddab462df25.webp",
+        "width": 1600,
+        "height": 830,
+        "sha256": "3ddab462df25cfbb3234a3fe4af345c484c7bd6ab4eaeab9da73b3bd23a03baf"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 12,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn9.localdatacdn.com/mn/minneapolis/3053840/original/35EYr0ipKS.jpg",
+        "sourcePage": "https://www.loc8nearme.com/minnesota/minneapolis/present-moment-herbs-and-books/3053840/",
+        "alt": "Inside Present Moment Herbs & Books in Minneapolis",
+        "localFile": "docs/listing-images/national-expansion-20261027/present-moment-herbs-books-3ddab462df25.webp",
+        "width": 1600,
+        "height": 830,
+        "sha256": "3ddab462df25cfbb3234a3fe4af345c484c7bd6ab4eaeab9da73b3bd23a03baf"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Magus Books and Herbs",
+    "address": "2520 Central Avenue NE",
+    "city": "Minneapolis",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55418",
+    "website": "https://www.magusbooks.com/",
+    "phone": "612-379-7669",
+    "hours": "Daily 12pm–6pm; closed New Year’s Day, Memorial Day, July 4, Thanksgiving and Christmas",
+    "tagline": "Books, herbs and community events in Northeast Minneapolis.",
+    "description": "Magus Books and Herbs is a Minneapolis shop offering new and used books, herbs and consignment goods. It has served the community since 1992.\n\nThe store’s current home is on Central Avenue NE. Its website lists events and daily visitor hours at this location.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.magusbooks.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
+        "sourcePage": "https://www.magusbooks.com/",
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-4a94717a4ccc.webp",
+        "width": 400,
+        "height": 306,
+        "sha256": "4a94717a4cccd6f7015f3a09097cc54b9b3c5e287142d78aa63b3974f602615b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site explicitly identifies new location and Summer 2026 events at 2520 Central Avenue NE. Older Dinkytown addresses are obsolete.",
+    "inputIndex": 13,
+    "photoSearchAttempts": [
+      {
+        "url": "https://d2j6dbq0eux0bg.cloudfront.net/images/106054633/products/685690778/6322538476.jpg",
+        "sourcePage": "https://www.magusbooks.com/",
+        "alt": "Magus Books and Herbs’ labeled Holy Water bottle from its featured catalog",
+        "localFile": "docs/listing-images/national-expansion-20261027/magus-books-and-herbs-4a94717a4ccc.webp",
+        "width": 400,
+        "height": 306,
+        "sha256": "4a94717a4cccd6f7015f3a09097cc54b9b3c5e287142d78aa63b3974f602615b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found actual labeled product photograph in official current featured catalog; map and generic looseherb candidate not selected."
+  },
+  {
+    "name": "Jewelweed",
+    "address": "223 Water Street",
+    "city": "Excelsior",
+    "state": "Minnesota",
+    "state_code": "MN",
+    "zip": "55331",
+    "website": "https://jewelweed.com/",
+    "phone": "952-476-7631",
+    "hours": "Tuesday–Saturday 11am–5pm; Sunday 12pm–5pm; Monday closed",
+    "tagline": "Small-batch herbal goods and classes near Lake Minnetonka.",
+    "description": "Jewelweed curates herbal products, flower essences, tea, aromatherapy and botanical personal care from small makers. The shop also offers its own micro-batch herbal line.\n\nIt moved from Wayzata to Excelsior in May 2025. Classes and events are part of the shop’s ongoing community offerings.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://jewelweed.com/pages/about",
+      "https://redcloverapothecary.com/find-us/",
+      "https://business.excelsior-lakeminnetonkachamberofcommerce.org/directory/Search/shopping-specialty-retail-378324?cid=378406"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0363/3263/4244/files/JW_facade.jpg?v=1747500771",
+        "sourcePage": "https://jewelweed.com/pages/about",
+        "alt": "Jewelweed storefront in Excelsior",
+        "localFile": "docs/listing-images/national-expansion-20261027/jewelweed-084dd388d295.webp",
+        "width": 1497,
+        "height": 1587,
+        "sha256": "084dd388d295b1f810f29432c9d7d881cf60b84e5c0a3dac2b80a89735e1e3f1"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0363/3263/4244/files/96TerraSuraPhotography-Jewelweed-2403_00e2d95b-11ee-406f-9166-4d8f33331dda.jpg?v=1747499122",
+        "sourcePage": "https://jewelweed.com/pages/about",
+        "alt": "Jewelweed shop photograph published with its current location page",
+        "localFile": "docs/listing-images/national-expansion-20261027/jewelweed-b87c2aa02b1c.webp",
+        "width": 1067,
+        "height": 1600,
+        "sha256": "b87c2aa02b1c409a77b9a55c2a0d292afa2899c6678a000b2389f90d4d9d451c"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official page confirms relocation May2025 to223WaterStreet,Excelsior. Current local Chamber corroborates address,phone,correctZIP55331. Disregard stockistpage ZIP55341 typo.",
+    "inputIndex": 14,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0363/3263/4244/files/JW_facade.jpg?v=1747500771",
+        "sourcePage": "https://jewelweed.com/pages/about",
+        "alt": "Jewelweed storefront in Excelsior",
+        "localFile": "docs/listing-images/national-expansion-20261027/jewelweed-084dd388d295.webp",
+        "width": 1497,
+        "height": 1587,
+        "sha256": "084dd388d295b1f810f29432c9d7d881cf60b84e5c0a3dac2b80a89735e1e3f1"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0363/3263/4244/files/96TerraSuraPhotography-Jewelweed-2403_00e2d95b-11ee-406f-9166-4d8f33331dda.jpg?v=1747499122",
+        "sourcePage": "https://jewelweed.com/pages/about",
+        "alt": "Jewelweed shop photograph published with its current location page",
+        "localFile": "docs/listing-images/national-expansion-20261027/jewelweed-b87c2aa02b1c.webp",
+        "width": 1067,
+        "height": 1600,
+        "sha256": "b87c2aa02b1c409a77b9a55c2a0d292afa2899c6678a000b2389f90d4d9d451c"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Leaf & Stone Apothecary",
+    "address": "815 W 11th Street N",
+    "city": "Wichita",
+    "state": "Kansas",
+    "state_code": "KS",
+    "zip": "67203",
+    "website": "https://www.landsapothecary.com/",
+    "phone": "316-302-5619",
+    "hours": "Tuesday–Saturday 10am–6pm; Sunday 10am–4pm; Monday closed",
+    "tagline": "Bulk organic herbs and small-batch botanicals in Wichita.",
+    "description": "Leaf & Stone Apothecary offers bulk organic herbs, signature herbal blends, salves and aromatic products. The shop emphasizes compostable and recyclable packaging.\n\nIts Wichita storefront carries ingredients for home herbal projects alongside prepared botanical goods. Published hours include weekend shopping.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.landsapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/2dc528_8a699b0b75b94ec7adcaf29ba31bcfba~mv2.jpg",
+        "sourcePage": "https://www.landsapothecary.com/",
+        "alt": "Photo published by Leaf & Stone Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/leaf-stone-apothecary-406cc181b9d0.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "406cc181b9d06d05780406ab4736c6a96eef4fab1c79c7ce01501941a8e0a5c4"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 15,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/2dc528_8a699b0b75b94ec7adcaf29ba31bcfba~mv2.jpg",
+        "sourcePage": "https://www.landsapothecary.com/",
+        "alt": "Photo published by Leaf & Stone Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/leaf-stone-apothecary-406cc181b9d0.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "406cc181b9d06d05780406ab4736c6a96eef4fab1c79c7ce01501941a8e0a5c4"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Flourish Herbals & Aromatherapy",
+    "address": "203 E Laurel Street",
+    "city": "Garden City",
+    "state": "Kansas",
+    "state_code": "KS",
+    "zip": "67846",
+    "website": "https://flourish-herbals.com/",
+    "phone": "620-290-3416",
+    "hours": "Tuesday–Friday 10am–5:30pm; Saturday hours vary, call ahead; Sunday–Monday closed",
+    "tagline": "Herbal goods and aromatherapy in Garden City.",
+    "description": "Flourish Herbals & Aromatherapy is a Garden City shop offering herbal products and aromatic goods. Visitors can ask its herbalists about specific herbs.\n\nThe store is located on East Laurel Street. Its contact page publishes weekday visitor hours; call to confirm Saturday closing time.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://flourish-herbals.com/pages/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://flourish-herbals.com/cdn/shop/files/340937448_903797494177460_6527367693271002336_n.jpg?v=1755316974",
+        "sourcePage": "https://flourish-herbals.com/",
+        "alt": "Photo published by Flourish Herbals & Aromatherapy",
+        "localFile": "docs/listing-images/national-expansion-20261027/flourish-herbals-aromatherapy-8b3488538d00.webp",
+        "width": 1197,
+        "height": 798,
+        "sha256": "8b3488538d00de17160e65606fef44ea8bd59ef10fa0cebe8d0a02a461feb7e3"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official address and phone confirmed. Same contact page conflicts Saturday4pm versus4:30pm, so Saturday closing omitted pending confirmation.",
+    "inputIndex": 16,
+    "photoSearchAttempts": [
+      {
+        "url": "https://flourish-herbals.com/cdn/shop/files/340937448_903797494177460_6527367693271002336_n.jpg?v=1755316974",
+        "sourcePage": "https://flourish-herbals.com/",
+        "alt": "Photo published by Flourish Herbals & Aromatherapy",
+        "localFile": "docs/listing-images/national-expansion-20261027/flourish-herbals-aromatherapy-8b3488538d00.webp",
+        "width": 1197,
+        "height": 798,
+        "sha256": "8b3488538d00de17160e65606fef44ea8bd59ef10fa0cebe8d0a02a461feb7e3"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Phoenix Herb",
+    "address": "3957 Main Street",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "64111",
+    "website": "https://phoenixherb.com/",
+    "phone": "816-531-8327",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–4pm; Sunday closed",
+    "tagline": "Bulk herbs, teas and spices on Kansas City’s Main Street.",
+    "description": "Phoenix Herb offers individual herbs, herbal blends, teas, culinary spices, tinctures and essential oils. The shop also carries brewing accessories and goods from local makers.\n\nVisitors can browse at its Kansas City storefront on Main Street. The homepage announces its current expanded weekday hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://phoenixherb.com/",
+      "https://phoenixherb.com/pages/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://phoenixherb.com/cdn/shop/files/detoxkit.png?v=1792084300&width=1200",
+        "sourcePage": "https://phoenixherb.com/",
+        "alt": "Phoenix Herb packaged tea kit",
+        "localFile": "docs/listing-images/national-expansion-20261027/phoenix-herb-870e7443e9b7.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "870e7443e9b70f5a11af4f0f9b2581028a81404e60aace3ccf46fd70c3f44e8c"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Current homepage says NOW OPEN Monday–Friday10–6,Saturday10–4; older contact page retains narrower Tue–Sat schedule. Use homepage announcement.",
+    "inputIndex": 17,
+    "photoSearchAttempts": [
+      {
+        "url": "https://phoenixherb.com/cdn/shop/files/detoxkit.png?v=1792084300&width=1200",
+        "sourcePage": "https://phoenixherb.com/",
+        "alt": "Phoenix Herb packaged tea kit",
+        "localFile": "docs/listing-images/national-expansion-20261027/phoenix-herb-870e7443e9b7.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "870e7443e9b70f5a11af4f0f9b2581028a81404e60aace3ccf46fd70c3f44e8c"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Cheryl’s Herbs",
+    "address": "7233 Manchester Road",
+    "city": "Maplewood",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "63143",
+    "website": "https://cherylsherbs.com/",
+    "phone": "314-645-2165",
+    "hours": "Monday–Saturday 10am–5:30pm; Sunday closed; closed holidays",
+    "tagline": "Herbal extracts, dried herbs and aromatic supplies in Maplewood.",
+    "description": "Cheryl’s Herbs offers dried botanicals, liquid extracts, essential oils and prepared herbal blends. The business serves both retail and wholesale customers.\n\nIts public shop is on Manchester Road in Maplewood, in the St. Louis area. The official contact page lists regular retail hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://cherylsherbs.com/pages/contact",
+      "https://www.tgthr.city/business/cheryl-s-herbs/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cherylsherbs.com/cdn/shop/files/essential_oils.jpg?v=1741762035&width=3840",
+        "sourcePage": "https://cherylsherbs.com/",
+        "alt": "essentia oils",
+        "localFile": "docs/listing-images/national-expansion-20261027/cheryl-s-herbs-edc52164056c.webp",
+        "width": 1600,
+        "height": 556,
+        "sha256": "edc52164056c763f574b1154c661632e390cdd4dcf7a336b51665897d63e2dd2"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 18,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cherylsherbs.com/cdn/shop/files/essential_oils.jpg?v=1741762035&width=3840",
+        "sourcePage": "https://cherylsherbs.com/",
+        "alt": "essentia oils",
+        "localFile": "docs/listing-images/national-expansion-20261027/cheryl-s-herbs-edc52164056c.webp",
+        "width": 1600,
+        "height": 556,
+        "sha256": "edc52164056c763f574b1154c661632e390cdd4dcf7a336b51665897d63e2dd2"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "STL Herbs and Aromatics",
+    "address": "7290 Manchester Road",
+    "city": "Maplewood",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "63143",
+    "website": "https://www.stlherbsandaromatics.com/",
+    "phone": "314-282-0980",
+    "hours": "Monday 8:30am–4pm; Tuesday–Friday 9am–5pm; Saturday 10am–5pm; Sunday closed",
+    "tagline": "Herbs, essential oils and botanical blends in Maplewood.",
+    "description": "STL Herbs and Aromatics offers dried herbs, herbal products and essential oils from its Manchester Road storefront. Its online catalog includes individual botanicals and prepared blends.\n\nVisitors can shop in person during the business’s posted retail hours. This is a separate store from nearby Cheryl’s Herbs.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.stlherbsandaromatics.com/shop.html",
+      "https://www.stlherbsandaromatics.com/blog"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.stlherbsandaromatics.com/uploads/3/1/0/6/31068271/s995531351389264043_p449_i1_w640.jpeg",
+        "sourcePage": "https://www.stlherbsandaromatics.com/store/p449/CALENDULA_FLOWER_EXTRACT.html",
+        "alt": "STL Herbs and Aromatics calendula flower extract",
+        "localFile": "docs/listing-images/national-expansion-20261027/stl-herbs-and-aromatics-d1551e581300.webp",
+        "width": 640,
+        "height": 640,
+        "sha256": "d1551e581300c8fae78f0609223991447dcfcb56c27d256bbc09436511153a1f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 19,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.stlherbsandaromatics.com/uploads/3/1/0/6/31068271/s995531351389264043_p449_i1_w640.jpeg",
+        "sourcePage": "https://www.stlherbsandaromatics.com/store/p449/CALENDULA_FLOWER_EXTRACT.html",
+        "alt": "STL Herbs and Aromatics calendula flower extract",
+        "localFile": "docs/listing-images/national-expansion-20261027/stl-herbs-and-aromatics-d1551e581300.webp",
+        "width": 640,
+        "height": 640,
+        "sha256": "d1551e581300c8fae78f0609223991447dcfcb56c27d256bbc09436511153a1f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Centered Spirit Apothecary & Emilie’s French Teas",
+    "address": "8131 Wornall Road",
+    "city": "Kansas City",
+    "state": "Missouri",
+    "state_code": "MO",
+    "zip": "64114",
+    "website": "https://www.centeredspirit.com/",
+    "phone": "816-225-9393",
+    "hours": "Tea room and shop: Tuesday–Friday 10:30am–5:30pm; Saturday 11am–4pm; center services by appointment",
+    "tagline": "Loose teas and herbal apothecary goods in Kansas City.",
+    "description": "Centered Spirit’s shop offers loose teas, herbs, tinctures and salves, including products from local makers and producers in France and Mexico. Teaware and wellness books round out its selection.\n\nThe tea room has public shopping hours at the Wornall Road location. The center’s individual services are by appointment.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.centeredspirit.com/shop"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.emiliesfrenchteas.com/uploads/b/6372279ec409c2f88697e1c87a807a4bc4062f8633f9147897f32da329098888/2023-11-09_14-39-57_1699562415.jpg",
+        "sourcePage": "https://www.emiliesfrenchteas.com/",
+        "alt": "Owner Emilie in front of loose-leaf tea shelves at Centered Spirit",
+        "localFile": "docs/listing-images/national-expansion-20261027/centered-spirit-apothecary-emilie-s-french-teas-4ecfe44d20d1.webp",
+        "width": 1069,
+        "height": 713,
+        "sha256": "4ecfe44d20d11a0b1ca497364bf0a5c91a02927430f75c15d768e802dba43a83"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 20,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.emiliesfrenchteas.com/uploads/b/6372279ec409c2f88697e1c87a807a4bc4062f8633f9147897f32da329098888/2023-11-09_14-39-57_1699562415.jpg",
+        "sourcePage": "https://www.emiliesfrenchteas.com/",
+        "alt": "Owner Emilie in front of loose-leaf tea shelves at Centered Spirit",
+        "localFile": "docs/listing-images/national-expansion-20261027/centered-spirit-apothecary-emilie-s-french-teas-4ecfe44d20d1.webp",
+        "width": 1069,
+        "height": 713,
+        "sha256": "4ecfe44d20d11a0b1ca497364bf0a5c91a02927430f75c15d768e802dba43a83"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Hawthorn & Violet Herbal Apothecary",
+    "address": "1024 N Leroy Street",
+    "city": "Fenton",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48430",
+    "website": "https://www.hawthornviolet.com/",
+    "phone": "810-569-6820",
+    "hours": "Monday–Thursday 10am–5:30pm; Friday 10am–8pm; Saturday 10am–4pm; Sunday 12pm–4pm",
+    "tagline": "Bulk herbs and practical herbal classes in Fenton.",
+    "description": "Hawthorn & Violet stocks more than 200 bulk herbs along with tinctures, herbal books, essential oils and locally made personal care goods. The shop sources herbs from established botanical suppliers.\n\nVisitors can browse in person or arrange porch pickup. The business also offers classes and naturopathic services.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.hawthornviolet.com/",
+      "https://www.hawthornviolet.com/contact",
+      "https://www.michigan.gov/-/media/Project/Websites/mdhhs/Assistance-Programs/WIC-Media/WIC-Foods/List-of-MDARD-Licenses.pdf?hash=139A7C316C128ABCF1AF11280A61F9FD&rev=6e41454fcad04781968d514e798a47a3"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/53f81b_92d47d6a135743749a599453c400ce10~mv2.jpg",
+        "sourcePage": "https://www.hawthornviolet.com/",
+        "alt": "Photo published by Hawthorn & Violet Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/hawthorn-violet-herbal-apothecary-1ef346e7143f.webp",
+        "width": 1440,
+        "height": 1440,
+        "sha256": "1ef346e7143f16e7b5941946706bdc0435d6c07e197b40c4247c0a385a97de59"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official contact gives current hours including Friday8pm. Address corroborated by Michigan state food-retail license list and 2026 business posts; website map may need extraction for primary address evidence.",
+    "inputIndex": 21,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/53f81b_92d47d6a135743749a599453c400ce10~mv2.jpg",
+        "sourcePage": "https://www.hawthornviolet.com/",
+        "alt": "Photo published by Hawthorn & Violet Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/hawthorn-violet-herbal-apothecary-1ef346e7143f.webp",
+        "width": 1440,
+        "height": 1440,
+        "sha256": "1ef346e7143f16e7b5941946706bdc0435d6c07e197b40c4247c0a385a97de59"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Those Nature People Herb Haus - Frankenmuth",
+    "address": "455 S Main Street",
+    "city": "Frankenmuth",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48734",
+    "website": "https://www.thosenaturepeople.com/",
+    "phone": "",
+    "hours": "Monday–Thursday 11am–7pm; Friday–Sunday 9am–9pm",
+    "tagline": "Herbs, teas and handcrafted botanical goods in Frankenmuth.",
+    "description": "Those Nature People offers organic herbs, teas, spices, essential oils and handmade body products. Its Frankenmuth location is one of three shops listed by the Michigan business.\n\nThe Main Street shop welcomes visitors seven days a week.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.thosenaturepeople.com/",
+      "https://www.thosenaturepeople.com/visit-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 22,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Those Nature People Herb Haus - Flint",
+    "address": "300 E First Street, Flint Farmers’ Market",
+    "city": "Flint",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48502",
+    "website": "https://www.thosenaturepeople.com/",
+    "phone": "",
+    "hours": "Tuesday, Thursday and Saturday 9am–5pm",
+    "tagline": "Herbs, teas and handcrafted botanical goods in Flint.",
+    "description": "Those Nature People offers organic herbs, teas, spices, essential oils and handmade body products. Its Flint location is one of three shops listed by the Michigan business.\n\nThis year-round indoor market stall welcomes visitors on the market’s published shopping days.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.thosenaturepeople.com/",
+      "https://www.thosenaturepeople.com/visit-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 23,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Those Nature People Herb Haus - Davison",
+    "address": "8110 E Court Street, Davison Farmers’ Market",
+    "city": "Davison",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48423",
+    "website": "https://www.thosenaturepeople.com/",
+    "phone": "",
+    "hours": "Tuesday, Thursday and Saturday 9am–5pm",
+    "tagline": "Herbs, teas and handcrafted botanical goods in Davison.",
+    "description": "Those Nature People offers organic herbs, teas, spices, essential oils and handmade body products. Its Davison location is one of three shops listed by the Michigan business.\n\nThis year-round indoor market stall welcomes visitors on the market’s published shopping days.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.thosenaturepeople.com/",
+      "https://www.thosenaturepeople.com/visit-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 24,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/d2a8f3_d940940c4d264909be2ade680e994c96~mv2.jpg",
+        "sourcePage": "https://www.thosenaturepeople.com/",
+        "alt": "Bulk herbs offered by Those Nature People Herb Haus",
+        "localFile": "docs/listing-images/national-expansion-20261027/those-nature-people-herb-haus-davison-24a0346df950.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24a0346df950e001a1335d93652add5f689a4940fa5151c4ed03da366ca67b31"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Perry’s Place",
+    "address": "90 N Main Street, Suite B",
+    "city": "Cedar Springs",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "49319",
+    "website": "https://www.perrysplacellc.com/",
+    "phone": "616-439-0890",
+    "hours": "Tuesday–Saturday 11am–6pm",
+    "tagline": "A large selection of bulk herbs and teas in Cedar Springs.",
+    "description": "Perry’s Place is a natural health tea shop offering more than 145 bulk teas and 200 bulk herbs. It also carries essential oils, sea salts, culinary seasonings and Michigan honey.\n\nThe shop is at Main and Maple in downtown Cedar Springs. Private tea parties can be arranged outside normal opening hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.perrysplacellc.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.perrysplacellc.com/uploads/1/2/5/0/1250059/ppbf.jpg",
+        "sourcePage": "https://www.perrysplacellc.com/",
+        "alt": "Photo published by Perry’s Place",
+        "localFile": "docs/listing-images/national-expansion-20261027/perry-s-place-8c1b205f39c7.webp",
+        "width": 400,
+        "height": 278,
+        "sha256": "8c1b205f39c752ab677faa49e4801305642d2b9bc818324cfe40181f565d8f3c"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 25,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.perrysplacellc.com/uploads/1/2/5/0/1250059/ppbf.jpg",
+        "sourcePage": "https://www.perrysplacellc.com/",
+        "alt": "Photo published by Perry’s Place",
+        "localFile": "docs/listing-images/national-expansion-20261027/perry-s-place-8c1b205f39c7.webp",
+        "width": 400,
+        "height": 278,
+        "sha256": "8c1b205f39c752ab677faa49e4801305642d2b9bc818324cfe40181f565d8f3c"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Earthley Wellness - Columbus Store",
+    "address": "6903 E Broad Street",
+    "city": "Columbus",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "43213",
+    "website": "https://www.earthley.com/columbus",
+    "phone": "614-721-7696",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–7pm; Sunday 12pm–6pm",
+    "tagline": "A bulk herb wall and DIY classes in Columbus.",
+    "description": "Earthley’s Columbus retail store carries bulk dried herbs alongside the company’s herbal formulations, books, cleaning supplies and body care products. Its herb wall is available to in-store shoppers.\n\nThe store also hosts DIY classes and events. Visitors can browse the full Earthley range at the East Broad Street location.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.earthley.com/columbus"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://production-earthley-public-bucket.s3.us-east-1.amazonaws.com/media/retail_store_7bc1ab4bf2.png",
+        "sourcePage": "https://www.earthley.com/columbus",
+        "alt": "Earthley Wellness retail store exterior showing brick building facade with white Earthley logo sign above large glass storefront windows displaying products at address 6903",
+        "localFile": "docs/listing-images/national-expansion-20261027/earthley-wellness-columbus-store-8b8b7ffaf766.webp",
+        "width": 1536,
+        "height": 1434,
+        "sha256": "8b8b7ffaf766ebcf091434bbd462f99599c180895d6e7fbeb191834f4bf8c5ce"
+      },
+      {
+        "url": "https://production-earthley-public-bucket.s3.us-east-1.amazonaws.com/media/38_IMG_5243_2aa537d725.jpg",
+        "sourcePage": "https://www.earthley.com/columbus",
+        "alt": "Earthley Wellness retail store interior with wood shelving, herbal products, and curved checkout counter.",
+        "localFile": "docs/listing-images/national-expansion-20261027/earthley-wellness-columbus-store-5a478891b0ab.webp",
+        "width": 1600,
+        "height": 1224,
+        "sha256": "5a478891b0ab496363515d33087646292537d2db473f9ab5e17553fa292e29b4"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 26,
+    "photoSearchAttempts": [
+      {
+        "url": "https://production-earthley-public-bucket.s3.us-east-1.amazonaws.com/media/retail_store_7bc1ab4bf2.png",
+        "sourcePage": "https://www.earthley.com/columbus",
+        "alt": "Earthley Wellness retail store exterior showing brick building facade with white Earthley logo sign above large glass storefront windows displaying products at address 6903",
+        "localFile": "docs/listing-images/national-expansion-20261027/earthley-wellness-columbus-store-8b8b7ffaf766.webp",
+        "width": 1536,
+        "height": 1434,
+        "sha256": "8b8b7ffaf766ebcf091434bbd462f99599c180895d6e7fbeb191834f4bf8c5ce"
+      },
+      {
+        "url": "https://production-earthley-public-bucket.s3.us-east-1.amazonaws.com/media/38_IMG_5243_2aa537d725.jpg",
+        "sourcePage": "https://www.earthley.com/columbus",
+        "alt": "Earthley Wellness retail store interior with wood shelving, herbal products, and curved checkout counter.",
+        "localFile": "docs/listing-images/national-expansion-20261027/earthley-wellness-columbus-store-5a478891b0ab.webp",
+        "width": 1600,
+        "height": 1224,
+        "sha256": "5a478891b0ab496363515d33087646292537d2db473f9ab5e17553fa292e29b4"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Spirit Apothecary Botanicals & Findings",
+    "address": "691 Broadway Avenue",
+    "city": "Bedford",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "44146",
+    "website": "https://www.spiritapothecary.com/",
+    "phone": "440-439-4372",
+    "hours": "Monday–Saturday 12pm–7pm; Sunday closed",
+    "tagline": "Bulk botanicals, teas and oils in historic downtown Bedford.",
+    "description": "Spirit Apothecary offers bulk herbs, teas, essential oils, extracts and botanical supplies. Its website lists more than 500 medicinal, culinary and traditional-use herbs online.\n\nThe business identifies its current public shop at 691 Broadway Avenue in historic downtown Bedford. Orders can also be collected there.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.spiritapothecary.com/",
+      "https://www.spiritapothecary.com/visitourstore.html"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://npr-brightspot.s3.amazonaws.com/aa/92/b46aa58c4f59a53a623071b4d8a2/stewart.png",
+        "sourcePage": "https://www.ideastream.org/community/2025-08-26/witches-wizards-and-crones-inside-northeast-ohios-pagan-community",
+        "alt": "Spirit Apothecary co-owner Matt Stewart beside the shop’s herb jars",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-apothecary-botanicals-findings-aa3295fd2679.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa3295fd2679c611f3c619d7bc5d12b359f423371b3f2a23762803e94eeabe5b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official homepage and visit page both give current 691 Broadway address; visit page calls business Spirit Apotheosis. Phone440-439-HERB converted to digits4372.",
+    "inputIndex": 27,
+    "photoSearchAttempts": [
+      {
+        "url": "https://npr-brightspot.s3.amazonaws.com/aa/92/b46aa58c4f59a53a623071b4d8a2/stewart.png",
+        "sourcePage": "https://www.ideastream.org/community/2025-08-26/witches-wizards-and-crones-inside-northeast-ohios-pagan-community",
+        "alt": "Spirit Apothecary co-owner Matt Stewart beside the shop’s herb jars",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-apothecary-botanicals-findings-aa3295fd2679.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aa3295fd2679c611f3c619d7bc5d12b359f423371b3f2a23762803e94eeabe5b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Clintonville Natural Foods",
+    "address": "4398 Indianola Avenue",
+    "city": "Columbus",
+    "state": "Ohio",
+    "state_code": "OH",
+    "zip": "43214",
+    "website": "https://clintonvillenaturalfoods.com/",
+    "phone": "614-826-4357",
+    "hours": "Monday–Saturday 9am–8pm; Sunday 9am–4pm",
+    "tagline": "Bulk herbs and spices in Columbus’s Clintonville neighborhood.",
+    "description": "Clintonville Natural Foods carries bulk herbs and spices alongside natural foods and other shop goods. The business invites customers to call about its botanical selection.\n\nIts Indianola Avenue store is open seven days a week and supports products from local food producers.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://clintonvillenaturalfoods.com/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/2907fd69-5123-4ffa-8ca6-8aa0c85c35b6/Herb%20Wall%20Pic.JPG",
+        "sourcePage": "https://clintonvillenaturalfoods.com/",
+        "alt": "Photo published by Clintonville Natural Foods",
+        "localFile": "docs/listing-images/national-expansion-20261027/clintonville-natural-foods-c8ff4aa70cb5.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "c8ff4aa70cb55d640c4f959f92abab2e5b785307e30b9abeb57b12317151999b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 28,
+    "photoSearchAttempts": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/2907fd69-5123-4ffa-8ca6-8aa0c85c35b6/Herb%20Wall%20Pic.JPG",
+        "sourcePage": "https://clintonvillenaturalfoods.com/",
+        "alt": "Photo published by Clintonville Natural Foods",
+        "localFile": "docs/listing-images/national-expansion-20261027/clintonville-natural-foods-c8ff4aa70cb5.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "c8ff4aa70cb55d640c4f959f92abab2e5b785307e30b9abeb57b12317151999b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Bentley’s Apothecary",
+    "address": "339 N Broad Street",
+    "city": "Fremont",
+    "state": "Nebraska",
+    "state_code": "NE",
+    "zip": "68025",
+    "website": "https://bentleysapothecary.com/",
+    "phone": "402-620-8381",
+    "hours": "",
+    "tagline": "Small-batch herbal goods and bulk botanicals in Fremont.",
+    "description": "Bentley’s Apothecary offers bulk dried herbs, teas, botanical body products and sustainable home goods. The business began as a mother-and-daughter herbal venture.\n\nVisitors can browse its North Broad Street shop in Fremont. Contact the store to confirm current shopping hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://bentleysapothecary.com/",
+      "https://bentleysapothecary.com/our-story",
+      "https://visitfremontne.org/shop/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/df10f73e-1268-4238-b0a2-5c5a161e593c/IMG_5280.jpg",
+        "sourcePage": "https://bentleysapothecary.com/",
+        "alt": "Photo published by Bentley’s Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/bentley-s-apothecary-1fa29da0d5e6.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "1fa29da0d5e6e62d6ff990df3b91e79a75d313c4028c9b78dbb228602d774ebf"
+      },
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/df10f73e-1268-4238-b0a2-5c5a161e593c/IMG_3882_edited_edited.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25",
+        "sourcePage": "https://bentleysapothecary.com/",
+        "alt": "Photo published by Bentley’s Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/bentley-s-apothecary-09035616cb4b.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "09035616cb4ba7356196eeb2f7c10ba0bccc53e38efc123000c034c6ac694348"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official homepage gives339N Broad and4026208381. Story page lists a differentphone4024592543, so homepagephone retained. ZIP68025 corroborated by current local event listing; confirm Census geocode.",
+    "inputIndex": 29,
+    "photoSearchAttempts": [
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/df10f73e-1268-4238-b0a2-5c5a161e593c/IMG_5280.jpg",
+        "sourcePage": "https://bentleysapothecary.com/",
+        "alt": "Photo published by Bentley’s Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/bentley-s-apothecary-1fa29da0d5e6.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "1fa29da0d5e6e62d6ff990df3b91e79a75d313c4028c9b78dbb228602d774ebf"
+      },
+      {
+        "url": "https://img1.wsimg.com/isteam/ip/df10f73e-1268-4238-b0a2-5c5a161e593c/IMG_3882_edited_edited.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25",
+        "sourcePage": "https://bentleysapothecary.com/",
+        "alt": "Photo published by Bentley’s Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/bentley-s-apothecary-09035616cb4b.webp",
+        "width": 1600,
+        "height": 1600,
+        "sha256": "09035616cb4ba7356196eeb2f7c10ba0bccc53e38efc123000c034c6ac694348"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Prairie Star Botanicals",
+    "address": "321 N 16th Street",
+    "city": "Blair",
+    "state": "Nebraska",
+    "state_code": "NE",
+    "zip": "68008",
+    "website": "https://prairiestarbotanicals.com/",
+    "phone": "402-533-4433",
+    "hours": "Monday–Tuesday, Thursday–Friday 9am–5pm; Wednesday 9am–3pm",
+    "tagline": "Prairie-grown herbal extracts with a public Blair shop.",
+    "description": "Prairie Star Botanicals makes herbal extracts with a focus on prairie plants and regional growers. Its official site identifies a public store in Blair.\n\nCustomers can visit the North 16th Street location during published hours or choose free local order pickup.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://prairiestarbotanicals.com/pages/contact-us",
+      "https://prairiestarbotanicals.com/pages/herbal-products",
+      "https://prairiestarbotanicals.com/pages/shipping-and-returns"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://prairiestarbotanicals.com/cdn/shop/products/HappyNose_grande.png?v=1759259441",
+        "sourcePage": "https://prairiestarbotanicals.com/",
+        "alt": "Prairie Star Botanicals herbal extract product",
+        "localFile": "docs/listing-images/national-expansion-20261027/prairie-star-botanicals-94d35dc3207e.webp",
+        "width": 343,
+        "height": 600,
+        "sha256": "94d35dc3207e01f113a846886ede8d84439527e541efd758483fa60fbc35318f"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 30,
+    "photoSearchAttempts": [
+      {
+        "url": "https://prairiestarbotanicals.com/cdn/shop/products/HappyNose_grande.png?v=1759259441",
+        "sourcePage": "https://prairiestarbotanicals.com/",
+        "alt": "Prairie Star Botanicals herbal extract product",
+        "localFile": "docs/listing-images/national-expansion-20261027/prairie-star-botanicals-94d35dc3207e.webp",
+        "width": 343,
+        "height": 600,
+        "sha256": "94d35dc3207e01f113a846886ede8d84439527e541efd758483fa60fbc35318f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Wild Thyme Herbal Apothecary",
+    "address": "224 N 3rd Street",
+    "city": "Bardstown",
+    "state": "Kentucky",
+    "state_code": "KY",
+    "zip": "40004",
+    "website": "https://www.wildthymeherbal.com/",
+    "phone": "502-331-6061",
+    "hours": "Monday 12pm–5pm; Tuesday–Saturday 10am–5pm; Sunday closed",
+    "tagline": "Organic bulk herbs, tea blends and herbal consultations in Bardstown.",
+    "description": "Wild Thyme Herbal Apothecary is a community herb shop offering bulk herbs, tinctures, teas, salves, oils and botanical skin care. Its owner also makes many of the shop’s products.\n\nThe North Third Street store offers herbal consultations and classes. Visitors can browse its botanical selection in downtown Bardstown.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.wildthymeherbal.com/",
+      "https://members.bardstownchamber.com/list/member/wild-thyme-herbal-apothecary-4025"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.wildthymeherbal.com/uploads/1/3/1/5/131520553/s539955004426395310_p383_i3_w3024.jpeg?width=2560",
+        "sourcePage": "https://www.wildthymeherbal.com",
+        "alt": "Herbal product photograph published by Wild Thyme Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/wild-thyme-herbal-apothecary-0973c73aad35.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "0973c73aad35aab7336cd2183af7a25985e2d2f2dca546dfcec13917b6a4ca24"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site Thursday10pm typo resolved by local Chamber published Tue–Sat10am–5pm schedule.",
+    "inputIndex": 31,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.wildthymeherbal.com/uploads/1/3/1/5/131520553/s539955004426395310_p383_i3_w3024.jpeg?width=2560",
+        "sourcePage": "https://www.wildthymeherbal.com",
+        "alt": "Herbal product photograph published by Wild Thyme Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/wild-thyme-herbal-apothecary-0973c73aad35.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "0973c73aad35aab7336cd2183af7a25985e2d2f2dca546dfcec13917b6a4ca24"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Bloodroot Herb Shop",
+    "address": "208 W Michigan Avenue",
+    "city": "Ypsilanti",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "48197",
+    "website": "https://www.bloodrootherbshop.com/",
+    "phone": "734-802-5408",
+    "hours": "Wednesday–Thursday 11am–4pm; Friday 11am–5pm; Saturday–Sunday 11am–4pm",
+    "tagline": "Bulk herbs and community-centered herbal education in Ypsilanti.",
+    "description": "Bloodroot Herb Shop offers bulk herbs and teas, herbal goods, plants and zines. The nonprofit organization emphasizes accessible herbal education and community care.\n\nIts downtown Ypsilanti shop also hosts classes, consultations and community programs. Official store hours include Wednesday through Sunday shopping.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.bloodrootherbshop.com/pages/store-locator",
+      "https://hwbglobal.org/bloodroot-herb-shop-and-clinic/",
+      "https://www.ypsireal.com/listing/bloodroot-herb-shop/3850/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.bloodrootherbshop.com/cdn/shop/files/Banner-image.jpg?v=1789417061&width=3840",
+        "sourcePage": "https://www.bloodrootherbshop.com/",
+        "alt": "Photo published by Bloodroot Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bloodroot-herb-shop-f93e2d06de2f.webp",
+        "width": 1600,
+        "height": 545,
+        "sha256": "f93e2d06de2fb78bae63adc82f0a5ba82a9fec1cfaaba75315901817491ce411"
+      },
+      {
+        "url": "https://www.bloodrootherbshop.com/cdn/shop/files/Banner-image_3.jpg?v=1789417120&width=3840",
+        "sourcePage": "https://www.bloodrootherbshop.com/",
+        "alt": "Photo published by Bloodroot Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bloodroot-herb-shop-b41577871d26.webp",
+        "width": 1600,
+        "height": 545,
+        "sha256": "b41577871d26c342cbe45f7d3b5d6306910607b00bc03e76d609a1eff3227e64"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official business website identifies a public retail shop and visitor address; checked 2026-10-27.",
+    "inputIndex": 32,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.bloodrootherbshop.com/cdn/shop/files/Banner-image.jpg?v=1789417061&width=3840",
+        "sourcePage": "https://www.bloodrootherbshop.com/",
+        "alt": "Photo published by Bloodroot Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bloodroot-herb-shop-f93e2d06de2f.webp",
+        "width": 1600,
+        "height": 545,
+        "sha256": "f93e2d06de2fb78bae63adc82f0a5ba82a9fec1cfaaba75315901817491ce411"
+      },
+      {
+        "url": "https://www.bloodrootherbshop.com/cdn/shop/files/Banner-image_3.jpg?v=1789417120&width=3840",
+        "sourcePage": "https://www.bloodrootherbshop.com/",
+        "alt": "Photo published by Bloodroot Herb Shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bloodroot-herb-shop-b41577871d26.webp",
+        "width": 1600,
+        "height": 545,
+        "sha256": "b41577871d26c342cbe45f7d3b5d6306910607b00bc03e76d609a1eff3227e64"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Gathered Botanicals",
+    "address": "781 College Avenue NE",
+    "city": "Grand Rapids",
+    "state": "Michigan",
+    "state_code": "MI",
+    "zip": "49503",
+    "website": "https://shopgatheredbotanicals.com/",
+    "phone": "",
+    "hours": "Wednesday–Saturday; check store for daily hours",
+    "tagline": "Herbal teas, botanical skin care and weekly workshops in Grand Rapids.",
+    "description": "Gathered Botanicals offers herbal teas, tinctures, powders and botanical skin care from its College Avenue shop. Its own product line uses plant ingredients and traditional herbal methods.\n\nThe storefront hosts weekly hands-on workshops with local makers, herbalists and wellness practitioners. In-store pickup is available.",
+    "sources": [
+      "https://shopgatheredbotanicals.com/",
+      "https://www.michigan.org/property/gathered-botanicals",
+      "https://www.experiencegr.com/event/gathered-botanicals-herb-chat-herb-of-the-month-red-clover%21/98711/"
+    ],
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "status": "ready",
+    "verificationNote": "Official site confirms storefront781CollegeAveNE andWed–Sat. Michigan officialtourism confirmsZIP49503 andherbalinventory; localCVB July2026class confirms publiclocation.",
+    "photoCandidates": [
+      {
+        "url": "https://shopgatheredbotanicals.com/cdn/shop/files/EWP1199_1024x1024.jpg?v=1712941108",
+        "sourcePage": "https://shopgatheredbotanicals.com/",
+        "alt": "Photo published by Gathered Botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/gathered-botanicals-f4de1f70891b.webp",
+        "width": 683,
+        "height": 1024,
+        "sha256": "f4de1f70891ba3c2dee3cb927455a255757d8a2acae17ff39456f7ad73b674ca"
+      },
+      {
+        "url": "https://shopgatheredbotanicals.com/cdn/shop/files/EWP0969-Copy1_1024x1024.jpg?v=1712937748",
+        "sourcePage": "https://shopgatheredbotanicals.com/",
+        "alt": "Photo published by Gathered Botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/gathered-botanicals-ccbf7419fd81.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "ccbf7419fd8129bd4647454e4288820b5353e14f7611421396c9c022384ca710"
+      }
+    ],
+    "inputIndex": 33,
+    "photoSearchAttempts": [
+      {
+        "url": "https://shopgatheredbotanicals.com/cdn/shop/files/EWP1199_1024x1024.jpg?v=1712941108",
+        "sourcePage": "https://shopgatheredbotanicals.com/",
+        "alt": "Photo published by Gathered Botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/gathered-botanicals-f4de1f70891b.webp",
+        "width": 683,
+        "height": 1024,
+        "sha256": "f4de1f70891ba3c2dee3cb927455a255757d8a2acae17ff39456f7ad73b674ca"
+      },
+      {
+        "url": "https://shopgatheredbotanicals.com/cdn/shop/files/EWP0969-Copy1_1024x1024.jpg?v=1712937748",
+        "sourcePage": "https://shopgatheredbotanicals.com/",
+        "alt": "Photo published by Gathered Botanicals",
+        "localFile": "docs/listing-images/national-expansion-20261027/gathered-botanicals-ccbf7419fd81.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "ccbf7419fd8129bd4647454e4288820b5353e14f7611421396c9c022384ca710"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Juniper Apothecary",
+    "address": "2019 S Minnesota Avenue",
+    "city": "Sioux Falls",
+    "state": "South Dakota",
+    "state_code": "SD",
+    "zip": "57105",
+    "website": "https://juniperapothecary.com/",
+    "phone": "605-215-3918",
+    "hours": "Monday–Saturday 9am–5pm; Sunday closed",
+    "tagline": "Handcrafted herbal goods and a tea bar in Sioux Falls.",
+    "description": "Juniper Apothecary is a family-operated store offering small-batch herbal products, teas, tinctures and botanical body care. Its expanded shop includes an herbal tea and coffee bar.\n\nThe business relocated to South Minnesota Avenue in summer 2026. The official location page gives daily public shopping hours.",
+    "sources": [
+      "https://juniperapothecary.com/",
+      "https://juniperapothecary.com/store-location-hours/",
+      "https://juniperapothecary.com/contact/",
+      "https://www.experiencesiouxfalls.com/listing/juniper-apothecary",
+      "https://siouxfalls.business/coffee-shop-opens-inside-new-location-for-juniper-apothecary/"
+    ],
+    "category_ids": [
+      "shops"
+    ],
+    "status": "ready",
+    "verificationNote": "Officialcurrentlocation page+tourism corroborate2019SMinnesotaAve57105; July31,2026article confirmsmovecompleted. Older401E8thaddress/mapsobsolete. Classesplannedbutnotcategorisedasrunning.",
+    "photoCandidates": [
+      {
+        "url": "https://juniperapothecary.com/wp-content/uploads/2026/08/DSC_2089-1024x1024.jpg",
+        "sourcePage": "https://juniperapothecary.com/",
+        "alt": "Photo published by Juniper Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/juniper-apothecary-3778bdfe0b44.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "3778bdfe0b448d549e8ed542e868e41c459d6accf2d3a66729eed145448e1568"
+      },
+      {
+        "url": "https://juniperapothecary.com/wp-content/uploads/2026/07/dad1a2c6a54d4d3080be7bf95bfea2a3-1024x434.png",
+        "sourcePage": "https://juniperapothecary.com/",
+        "alt": "Photo published by Juniper Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/juniper-apothecary-e835c6996722.webp",
+        "width": 1024,
+        "height": 434,
+        "sha256": "e835c69967225911d339380ed34d951af718d499307be7fc0bfc7ffdfe1ca6aa"
+      }
+    ],
+    "inputIndex": 34,
+    "photoSearchAttempts": [
+      {
+        "url": "https://juniperapothecary.com/wp-content/uploads/2026/08/DSC_2089-1024x1024.jpg",
+        "sourcePage": "https://juniperapothecary.com/",
+        "alt": "Photo published by Juniper Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/juniper-apothecary-3778bdfe0b44.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "3778bdfe0b448d549e8ed542e868e41c459d6accf2d3a66729eed145448e1568"
+      },
+      {
+        "url": "https://juniperapothecary.com/wp-content/uploads/2026/07/dad1a2c6a54d4d3080be7bf95bfea2a3-1024x434.png",
+        "sourcePage": "https://juniperapothecary.com/",
+        "alt": "Photo published by Juniper Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/juniper-apothecary-e835c6996722.webp",
+        "width": 1024,
+        "height": 434,
+        "sha256": "e835c69967225911d339380ed34d951af718d499307be7fc0bfc7ffdfe1ca6aa"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Terry’s Health Products",
+    "address": "717 E Main Avenue",
+    "city": "Bismarck",
+    "state": "North Dakota",
+    "state_code": "ND",
+    "zip": "58501",
+    "website": "https://terryshp.com/index.html",
+    "phone": "701-223-1026",
+    "hours": "",
+    "tagline": "Bulk herbs, spices and natural goods in downtown Bismarck.",
+    "description": "Terry’s Health Products is an independent Bismarck shop carrying bulk herbs and spices, teas, supplements and natural foods. Its selection also includes essential oils and locally made goods.\n\nThe business has served the area since 1984. Visitors can shop at the East Main Avenue location; contact the store for current hours.",
+    "sources": [
+      "https://terryshp.com/index.html",
+      "https://www.prideofdakota.nd.gov/retailers/profile/terryshealthproducts",
+      "https://noboundariesnd.com/listing/terrys-health-products/",
+      "https://business.bismarckmandan.com/list/member/terry-s-health-products-7750"
+    ],
+    "category_ids": [
+      "shops"
+    ],
+    "status": "ready",
+    "verificationNote": "Officialwebsitecurrent2026award+herbsselection; NorthDakotaofficialPrideofDakota retailer confirmsaddressZIPphone; regionalCVB confirms300bulkherbs/spices/teas. AvoidusingphotosofunrelatedPeachGardenHempco-tenant.",
+    "photoCandidates": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "localFile": "docs/listing-images/national-expansion-20261027/terry-s-health-products-edcf9464d8f8.webp",
+        "width": 852,
+        "height": 283,
+        "sha256": "edcf9464d8f8b09d10b6c7c3aa9d93cdec2f0ed27d5f8881a46eaf246d2e583f"
+      }
+    ],
+    "inputIndex": 35,
+    "photoSearchAttempts": [
+      {
+        "url": "https://terryshp.com/uploads/3/4/9/7/34975738/published/panoramic-store-grocery.jpg?1675370520",
+        "sourcePage": "https://terryshp.com/index.html",
+        "alt": "Grocery and bulk-goods shelves inside Terry’s Health Products",
+        "localFile": "docs/listing-images/national-expansion-20261027/terry-s-health-products-edcf9464d8f8.webp",
+        "width": 852,
+        "height": 283,
+        "sha256": "edcf9464d8f8b09d10b6c7c3aa9d93cdec2f0ed27d5f8881a46eaf246d2e583f"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Official HTTPS image downloaded successfully today; previous SSL error did not recur. wwwhost does notresolve."
+  }
+]

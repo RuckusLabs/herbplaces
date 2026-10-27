@@ -1,0 +1,1452 @@
+[
+  {
+    "name": "Herbalist & Alchemist Retail Store",
+    "address": "401 East Washington Avenue",
+    "city": "Washington",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07882",
+    "website": "https://herbalist-alchemist.com/",
+    "phone": "",
+    "hours": "Tuesday–Friday 12–5:30pm; Saturday 10am–3pm; Sunday–Monday closed.",
+    "tagline": "Herbal extracts and public lectures at a New Jersey maker’s headquarters.",
+    "description": "Herbalist & Alchemist welcomes visitors to a retail shop at its Washington headquarters. The store stocks a selection of the company’s herbal extracts, compound formulas, capsules, oils and ointments.\n\nThe business also publishes a schedule of free public herbal lectures. Visitors seeking a particular product or bottle size are encouraged to call ahead to check store availability.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://herbalist-alchemist.com/pages/visit-the-store"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herbalist-alchemist.com/cdn/shop/files/1080X1080_HERBAL_FORMATS_5PRODUCTS.png?v=1787317389&width=810",
+        "sourcePage": "https://herbalist-alchemist.com/pages/visit-the-store",
+        "alt": "Herbalist & Alchemist herbal preparations",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbalist-alchemist-retail-store-7da009a51483.webp",
+        "width": 810,
+        "height": 810,
+        "sha256": "7da009a51483d75ff4f0964506d2fcbddb132513b02f9f03430d83f1ad623212"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 36,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herbalist-alchemist.com/cdn/shop/files/1080X1080_HERBAL_FORMATS_5PRODUCTS.png?v=1787317389&width=810",
+        "sourcePage": "https://herbalist-alchemist.com/pages/visit-the-store",
+        "alt": "Herbalist & Alchemist herbal preparations",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbalist-alchemist-retail-store-7da009a51483.webp",
+        "width": 810,
+        "height": 810,
+        "sha256": "7da009a51483d75ff4f0964506d2fcbddb132513b02f9f03430d83f1ad623212"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Bluestem Botanicals",
+    "address": "52A East State Street",
+    "city": "Doylestown",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "18901",
+    "website": "https://bluestembotanicals.com/",
+    "phone": "",
+    "hours": "Monday–Saturday 11am–6pm.",
+    "tagline": "Farm-grown herbs and botanical goods in downtown Doylestown.",
+    "description": "Bluestem Botanicals brings its farm products to a storefront on East State Street in Doylestown. The shop carries dried herbs, teas, extracts, herbal soaps and locally sourced honey.\n\nThe business began as Barefoot Gardens in 2008 and opened its farm store in 2024. Alongside its own botanicals, the store features candles, dried flowers and other goods from its community.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://bluestembotanicals.com/pages/visit-our-shop",
+      "https://bluestembotanicals.com/pages/place"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://bluestembotanicals.com/cdn/shop/files/Store_Inside_Image_Fall_2025_1400x.jpg?v=1786652784",
+        "sourcePage": "https://bluestembotanicals.com/pages/visit-our-shop",
+        "alt": "Inside Bluestem Botanicals’ Doylestown shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bluestem-botanicals-aaf566255bfc.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aaf566255bfc7d9e232ecf54b2ca78862bdcbb5d6c7a8a8dded6ff416b32a86b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 37,
+    "photoSearchAttempts": [
+      {
+        "url": "https://bluestembotanicals.com/cdn/shop/files/Store_Inside_Image_Fall_2025_1400x.jpg?v=1786652784",
+        "sourcePage": "https://bluestembotanicals.com/pages/visit-our-shop",
+        "alt": "Inside Bluestem Botanicals’ Doylestown shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/bluestem-botanicals-aaf566255bfc.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "aaf566255bfc7d9e232ecf54b2ca78862bdcbb5d6c7a8a8dded6ff416b32a86b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Dorothy’s Herb Shop & Herbal Apothecary",
+    "address": "6 West Diamond Street, inside The Shops on West Diamond",
+    "city": "Butler",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "16001",
+    "website": "https://www.dorothysherbshop.com/",
+    "phone": "",
+    "hours": "Wednesday–Saturday 10am–5pm; Sunday 10am–3pm; Monday–Tuesday closed.",
+    "tagline": "Herbal extracts and apothecary supplies inside a Butler collection of shops.",
+    "description": "Dorothy’s Herb Shop & Herbal Apothecary is a public retail shop inside The Shops on West Diamond in Butler. Its catalog includes herbal extracts, loose botanicals and herbal reference books.\n\nVisitors can browse the apothecary during the published shop hours. The online catalog provides a preview of the store’s extracts, topical goods and books before a visit.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.dorothysherbshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0616/0292/2553/files/Untitled_1200_x_800_px_1.png?v=1777994083",
+        "sourcePage": "https://www.dorothysherbshop.com/pages/about-us",
+        "alt": "Dorothy’s Herb Shop & Herbal Apothecary photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/dorothy-s-herb-shop-herbal-apothecary-3d32ccfd05fe.webp",
+        "width": 1200,
+        "height": 800,
+        "sha256": "3d32ccfd05fe26d8903daf948fb7cb66d951867d339b25fe4d9971676d7036bf"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 38,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0616/0292/2553/files/Untitled_1200_x_800_px_1.png?v=1777994083",
+        "sourcePage": "https://www.dorothysherbshop.com/pages/about-us",
+        "alt": "Dorothy’s Herb Shop & Herbal Apothecary photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/dorothy-s-herb-shop-herbal-apothecary-3d32ccfd05fe.webp",
+        "width": 1200,
+        "height": 800,
+        "sha256": "3d32ccfd05fe26d8903daf948fb7cb66d951867d339b25fe4d9971676d7036bf"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Spirit Wise Herbs & Magick",
+    "address": "60 State Street",
+    "city": "Portsmouth",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03801",
+    "website": "https://www.spiritwiseherbs.com/",
+    "phone": "",
+    "hours": "Check the shop’s current hours before visiting.",
+    "tagline": "Dried herbs, tea blends and herbal crafting in downtown Portsmouth.",
+    "description": "Spirit Wise Herbs & Magick is a downtown Portsmouth apothecary founded by herbalists Veronica and Erika. The shop carries dried herbs, custom tea blends, tinctures, tonics and flower essences.\n\nIts offerings also include tools for herbal crafting and a changing schedule of classes, workshops and community gatherings. The founders teach herbal studies at Misty Meadows.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.spiritwiseherbs.com/",
+      "https://heartellpress.com/pages/store-locator"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/59263095d1758e0e50bfc3ae/1765217969267-P6M6WEENF9GJZNR6WJK9/DSC_3557.jpg",
+        "sourcePage": "https://www.spiritwiseherbs.com/",
+        "alt": "Spirit Wise Herbs & Magick shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-wise-herbs-magick-b27acf80d908.webp",
+        "width": 1065,
+        "height": 1600,
+        "sha256": "b27acf80d9087776a821ce60e08421f6df7a13b68a7da2159475cd2f264ec6a2"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/59263095d1758e0e50bfc3ae/1765218030913-KUGTFKTWLWQ5UMCOZBUK/DSC_3326.jpg",
+        "sourcePage": "https://www.spiritwiseherbs.com/",
+        "alt": "Spirit Wise Herbs & Magick shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-wise-herbs-magick-e7c3652ea36e.webp",
+        "width": 1065,
+        "height": 1600,
+        "sha256": "e7c3652ea36ea606367cc7293aeb4560100c8cfed416bb88da6363ad0b9497df"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 39,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/59263095d1758e0e50bfc3ae/1765217969267-P6M6WEENF9GJZNR6WJK9/DSC_3557.jpg",
+        "sourcePage": "https://www.spiritwiseherbs.com/",
+        "alt": "Spirit Wise Herbs & Magick shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-wise-herbs-magick-b27acf80d908.webp",
+        "width": 1065,
+        "height": 1600,
+        "sha256": "b27acf80d9087776a821ce60e08421f6df7a13b68a7da2159475cd2f264ec6a2"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/59263095d1758e0e50bfc3ae/1765218030913-KUGTFKTWLWQ5UMCOZBUK/DSC_3326.jpg",
+        "sourcePage": "https://www.spiritwiseherbs.com/",
+        "alt": "Spirit Wise Herbs & Magick shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/spirit-wise-herbs-magick-e7c3652ea36e.webp",
+        "width": 1065,
+        "height": 1600,
+        "sha256": "e7c3652ea36ea606367cc7293aeb4560100c8cfed416bb88da6363ad0b9497df"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Greenwood Herbals",
+    "address": "561 Parsonsfield Road",
+    "city": "Limerick",
+    "state": "Maine",
+    "state_code": "ME",
+    "zip": "04048",
+    "website": "https://www.greenwoodherbals.com/",
+    "phone": "207-793-3553",
+    "hours": "Wednesday–Saturday 10am–4pm; Sunday noon–4pm.",
+    "tagline": "A Maine apothecary with herbal teas, extracts and gardens.",
+    "description": "Greenwood Herbals operates an apothecary and teaching center in Limerick. Its shop offers beverage teas, herbal tea blends, extracts, creams, salves and body products.\n\nThe property also includes gardens and a labyrinth. Visitors can shop during the published hours or contact the business to learn about current educational offerings.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.greenwoodherbals.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/55d9e933e4b004326c39c4f9/1605984871726-C3TTNRH0J6GGV7WB8K64/IMG_6795.jpg",
+        "sourcePage": "https://www.greenwoodherbals.com/",
+        "alt": "Greenwood Herbals apothecary photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/greenwood-herbals-08c928bc579c.webp",
+        "width": 640,
+        "height": 480,
+        "sha256": "08c928bc579c3a7b72b633a6c31bdade0d9025db81142672f003f8bffe46c88d"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/55d9e933e4b004326c39c4f9/1605984891530-BT9271CT1V8FCW4BR9Z8/IMG_6802.jpg",
+        "sourcePage": "https://www.greenwoodherbals.com/",
+        "alt": "Greenwood Herbals shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/greenwood-herbals-aa8e57e5a538.webp",
+        "width": 640,
+        "height": 480,
+        "sha256": "aa8e57e5a538dce10551b8ec8618a706f841bd9feb7ab098bfe7c3fa97d05a0b"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 40,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/55d9e933e4b004326c39c4f9/1605984871726-C3TTNRH0J6GGV7WB8K64/IMG_6795.jpg",
+        "sourcePage": "https://www.greenwoodherbals.com/",
+        "alt": "Greenwood Herbals apothecary photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/greenwood-herbals-08c928bc579c.webp",
+        "width": 640,
+        "height": 480,
+        "sha256": "08c928bc579c3a7b72b633a6c31bdade0d9025db81142672f003f8bffe46c88d"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/55d9e933e4b004326c39c4f9/1605984891530-BT9271CT1V8FCW4BR9Z8/IMG_6802.jpg",
+        "sourcePage": "https://www.greenwoodherbals.com/",
+        "alt": "Greenwood Herbals shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/greenwood-herbals-aa8e57e5a538.webp",
+        "width": 640,
+        "height": 480,
+        "sha256": "aa8e57e5a538dce10551b8ec8618a706f841bd9feb7ab098bfe7c3fa97d05a0b"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Herbal Path — Dover",
+    "address": "835 Central Avenue",
+    "city": "Dover",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03820",
+    "website": "https://www.herbalpath.com/",
+    "phone": "603-740-8400",
+    "hours": "Monday–Friday 9:30am–5:30pm; Saturday 9:30am–4pm; Sunday 10am–4pm.",
+    "tagline": "Herbal products and personal service on New Hampshire’s Seacoast.",
+    "description": "The Herbal Path’s Dover store carries herbal products and nutritional supplements. The business has served the New Hampshire Seacoast since 1997 and combines its retail selection with an educational focus.\n\nVisitors can browse the Central Avenue shop during its published daily hours. The team includes staff with varied backgrounds in herbs and natural products.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.herbalpath.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/14631b_3a33bfad6d5d4d1c9d0df29d3ec0dabd~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "The Herbal Path’s Dover exterior",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-dover-fb8d9666c783.webp",
+        "width": 1236,
+        "height": 1600,
+        "sha256": "fb8d9666c783f13192fe269ba43b3e2972411be5e9ac5269ce8459e8d0399309"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 41,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/14631b_3a33bfad6d5d4d1c9d0df29d3ec0dabd~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "The Herbal Path’s Dover exterior",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-dover-fb8d9666c783.webp",
+        "width": 1236,
+        "height": 1600,
+        "sha256": "fb8d9666c783f13192fe269ba43b3e2972411be5e9ac5269ce8459e8d0399309"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Herbal Path — Portsmouth",
+    "address": "1262 Woodbury Avenue",
+    "city": "Portsmouth",
+    "state": "New Hampshire",
+    "state_code": "NH",
+    "zip": "03801",
+    "website": "https://www.herbalpath.com/",
+    "phone": "603-766-6006",
+    "hours": "Monday–Friday 10am–6pm; Saturday 10am–4pm; Sunday 11am–4pm.",
+    "tagline": "A Seacoast herbal shop in a yellow house on Woodbury Avenue.",
+    "description": "The Herbal Path’s Portsmouth branch offers herbal products and nutritional supplements from a yellow house on Woodbury Avenue. It is one of the business’s two New Hampshire Seacoast retail locations.\n\nThe store publishes daily visitor hours and offers parking in front and behind the building. Its retail work is complemented by the wider Herbal Path team’s educational resources.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.herbalpath.com/",
+      "https://business.portsmouthchamber.org/list/member/the-herbal-path-12471"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/14631b_22c82f46e9394fb1a1c9fc2cefbb15d0~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "The Herbal Path’s Portsmouth storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-portsmouth-98e73a6e6f0b.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "98e73a6e6f0bc067b7cd02e27f144b02dca0070711d950a1fd0886b59e646422"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b8c7c2_113ff70b9c444439bb636d1f6eb9bdbc~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "Inside The Herbal Path’s Portsmouth store",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-portsmouth-db35e3ced058.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "db35e3ced058c89e51b770fae781856ef9bbfc9cd9090d08fcad202a2e2d6836"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official site has a Portsmouth ZIP typo (03820); Portsmouth Chamber explicitly confirms this street address as 03801.",
+    "inputIndex": 42,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/14631b_22c82f46e9394fb1a1c9fc2cefbb15d0~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "The Herbal Path’s Portsmouth storefront",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-portsmouth-98e73a6e6f0b.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "98e73a6e6f0bc067b7cd02e27f144b02dca0070711d950a1fd0886b59e646422"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b8c7c2_113ff70b9c444439bb636d1f6eb9bdbc~mv2.jpg",
+        "sourcePage": "https://www.herbalpath.com/meet-the-team",
+        "alt": "Inside The Herbal Path’s Portsmouth store",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-herbal-path-portsmouth-db35e3ced058.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "db35e3ced058c89e51b770fae781856ef9bbfc9cd9090d08fcad202a2e2d6836"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "The Alchemist’s Kitchen",
+    "address": "119 Crosby Street",
+    "city": "New York",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10012",
+    "website": "https://www.thealchemistskitchen.com/",
+    "phone": "518-625-3477",
+    "hours": "Daily 11am–6pm.",
+    "tagline": "Botanical shelves and an herbal counter in SoHo.",
+    "description": "The Alchemist’s Kitchen is a botanical dispensary on Crosby Street in SoHo. Its flagship store carries botanical products and offers an herbal counter where visitors can ask about the shop’s selection.\n\nThe business also organizes educational events and workshops. An adjacent elixir bar at 117 Crosby Street is associated with Anima Mundi; this profile represents the published flagship address at 119 Crosby Street.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.thealchemistskitchen.com/pages/visit-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.thealchemistskitchen.com/cdn/shop/files/The_Alchemists_Kitchen_CBD_and_Medicinal_Mushrooms.webp?v=1762528186&width=1500",
+        "sourcePage": "https://www.thealchemistskitchen.com/pages/visit-us",
+        "alt": "The Alchemist’s Kitchen botanical shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-alchemist-s-kitchen-5e68458dd21d.webp",
+        "width": 494,
+        "height": 640,
+        "sha256": "5e68458dd21d2471203d486cf341431fe967baaabe5e196a810aa57684fffcb3"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Flagship address 119 Crosby is distinct from adjacent collaborative Anima Mundi at 117 Crosby; root may choose one combined profile to avoid shared-business ambiguity.",
+    "inputIndex": 43,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.thealchemistskitchen.com/cdn/shop/files/The_Alchemists_Kitchen_CBD_and_Medicinal_Mushrooms.webp?v=1762528186&width=1500",
+        "sourcePage": "https://www.thealchemistskitchen.com/pages/visit-us",
+        "alt": "The Alchemist’s Kitchen botanical shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-alchemist-s-kitchen-5e68458dd21d.webp",
+        "width": 494,
+        "height": 640,
+        "sha256": "5e68458dd21d2471203d486cf341431fe967baaabe5e196a810aa57684fffcb3"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Grian Herbs Apothecary",
+    "address": "34 Elm Street",
+    "city": "Montpelier",
+    "state": "Vermont",
+    "state_code": "VT",
+    "zip": "05602",
+    "website": "https://www.grianherbs.com/",
+    "phone": "802-223-0043",
+    "hours": "Tuesday–Saturday noon–5pm.",
+    "tagline": "Small-batch herbal preparations in downtown Montpelier.",
+    "description": "Grian Herbs Apothecary makes small-batch herbal extracts, tea blends, syrups and botanical infusions. The Vermont business has been operating since 1997 and is led by herbalist and formulator Iris Gage.\n\nThe Elm Street shop welcomes walk-in visitors and offers curbside pickup during its posted hours. The business also publishes information about consultations, education and workshops.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.grianherbs.com/contact/",
+      "https://www.grianherbs.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.grianherbs.com/wp-content/uploads/2020/06/F8D80523-AE90-4A55-8845-D96E3E05BECF111.jpg",
+        "sourcePage": "https://www.grianherbs.com/",
+        "alt": "Grian Herbs Apothecary shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/grian-herbs-apothecary-f5e3d698dba4.webp",
+        "width": 508,
+        "height": 340,
+        "sha256": "f5e3d698dba4744d70136664bb3f6bb356edb9b316d2509302ce84cd7aa5370d"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 44,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.grianherbs.com/wp-content/uploads/2020/06/F8D80523-AE90-4A55-8845-D96E3E05BECF111.jpg",
+        "sourcePage": "https://www.grianherbs.com/",
+        "alt": "Grian Herbs Apothecary shop photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/grian-herbs-apothecary-f5e3d698dba4.webp",
+        "width": 508,
+        "height": 340,
+        "sha256": "f5e3d698dba4744d70136664bb3f6bb356edb9b316d2509302ce84cd7aa5370d"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Integrative Herbalism",
+    "address": "104 Boonton Avenue",
+    "city": "Kinnelon",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07405",
+    "website": "https://integrativeherbalism.com/",
+    "phone": "973-291-4041",
+    "hours": "Tuesday 11am–7pm; Wednesday 11am–5pm; Thursday–Friday noon–7pm; Saturday 11am–5pm; Sunday–Monday closed.",
+    "tagline": "An herbal apothecary and tea shop with classes in Kinnelon.",
+    "description": "Integrative Herbalism combines a retail herbal apothecary and tea shop with consultation services. Its Kinnelon storefront carries herbs and rotating specialty botanicals.\n\nThe business also hosts classes and individual workshops. Posted retail hours distinguish the public shop from scheduled private consultations.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://integrativeherbalism.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdcssl.ibsrv.net/ibimg/smb/1024x479_80/webmgr/09/e/t/5f2da14a9b9ba_Apothecarywall_20240402_1935.jpg.webp?2d34d23bb05a5400ebb02869a564e5f2",
+        "sourcePage": "https://integrativeherbalism.com/",
+        "alt": "The apothecary wall at Integrative Herbalism",
+        "localFile": "docs/listing-images/national-expansion-20261027/integrative-herbalism-72f42a6f766e.webp",
+        "width": 1024,
+        "height": 479,
+        "sha256": "72f42a6f766ea2e07017c8aa834ad697e7b77ad04f452730da843e8d677c6660"
+      },
+      {
+        "url": "https://cdcssl.ibsrv.net/ibimg/smb/1024x683_80/webmgr/09/e/t/5f31dbcbe58a0_FrontWindowDisplay2.jpg.webp?5c99dc42088875a48b0456b2b88d3290",
+        "sourcePage": "https://integrativeherbalism.com/",
+        "alt": "Integrative Herbalism’s front window display",
+        "localFile": "docs/listing-images/national-expansion-20261027/integrative-herbalism-24b6fa5e262e.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24b6fa5e262e657e6ae1babb698938e0ca62cd83a8c870808f522748eeaaeed5"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 45,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdcssl.ibsrv.net/ibimg/smb/1024x479_80/webmgr/09/e/t/5f2da14a9b9ba_Apothecarywall_20240402_1935.jpg.webp?2d34d23bb05a5400ebb02869a564e5f2",
+        "sourcePage": "https://integrativeherbalism.com/",
+        "alt": "The apothecary wall at Integrative Herbalism",
+        "localFile": "docs/listing-images/national-expansion-20261027/integrative-herbalism-72f42a6f766e.webp",
+        "width": 1024,
+        "height": 479,
+        "sha256": "72f42a6f766ea2e07017c8aa834ad697e7b77ad04f452730da843e8d677c6660"
+      },
+      {
+        "url": "https://cdcssl.ibsrv.net/ibimg/smb/1024x683_80/webmgr/09/e/t/5f31dbcbe58a0_FrontWindowDisplay2.jpg.webp?5c99dc42088875a48b0456b2b88d3290",
+        "sourcePage": "https://integrativeherbalism.com/",
+        "alt": "Integrative Herbalism’s front window display",
+        "localFile": "docs/listing-images/national-expansion-20261027/integrative-herbalism-24b6fa5e262e.webp",
+        "width": 1024,
+        "height": 683,
+        "sha256": "24b6fa5e262e657e6ae1babb698938e0ca62cd83a8c870808f522748eeaaeed5"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Flower Power Herbs & Roots — East Village",
+    "address": "406 East 9th Street",
+    "city": "New York",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10009",
+    "website": "https://www.flowerpower.net/",
+    "phone": "212-982-6664",
+    "hours": "Daily noon–7pm.",
+    "tagline": "An East Village gathering place for herbs and herbal learning.",
+    "description": "Flower Power Herbs & Roots has served New York’s herbal community since 1993. Its East Village shop offers bulk herbs, tinctures, salves, books and elixirs.\n\nThe business also runs herbal classes and a second shop in Piermont. Visitors can browse the East 9th Street location during the published daily opening hours.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.flowerpower.net/",
+      "https://hwbglobal.org/flower-power-herbs-roots-inc/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/91ed5bf9-f61e-4c77-a3f5-1ddc839ae3a4/Kerrianne-Lata-and-Kelli-at-counter-1.jpeg",
+        "sourcePage": "https://www.flowerpower.net/",
+        "alt": "Herbalists at the Flower Power counter",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-east-village-04ebe5d85c5c.webp",
+        "width": 720,
+        "height": 444,
+        "sha256": "04ebe5d85c5c79d41bf98e78d967a7b13b9c9f39126fc56dce0deb35ac1bc21a"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 46,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/91ed5bf9-f61e-4c77-a3f5-1ddc839ae3a4/Kerrianne-Lata-and-Kelli-at-counter-1.jpeg",
+        "sourcePage": "https://www.flowerpower.net/",
+        "alt": "Herbalists at the Flower Power counter",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-east-village-04ebe5d85c5c.webp",
+        "width": 720,
+        "height": 444,
+        "sha256": "04ebe5d85c5c79d41bf98e78d967a7b13b9c9f39126fc56dce0deb35ac1bc21a"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Flower Power Herbs & Roots — Piermont",
+    "address": "449 Piermont Avenue",
+    "city": "Piermont",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "10968",
+    "website": "https://www.flowerpower.net/",
+    "phone": "845-848-9911",
+    "hours": "Saturday–Sunday noon–6pm; other visits by appointment. Confirm before travel.",
+    "tagline": "A Hudson River village shop and formulary from Flower Power.",
+    "description": "Flower Power’s Piermont shop and formulary opened in 2019. It extends the New York herbal business’s selection of herbs, botanical preparations and books into a Hudson River village setting.\n\nThe official website publishes weekend hours and also welcomes inquiries about appointments. Because different banners on the site show different weekday schedules, calling before travel is recommended.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.flowerpower.net/",
+      "https://www.piermontchamber.org/shops-galleries",
+      "https://hwbglobal.org/flower-power-herbs-roots-inc/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-piermont-8460d0196102.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "8460d0196102bf5ecb41d5eb847d49ed123759ec9b374b5be454636254e0eacd"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official main body says Saturday–Sunday noon–6; footer says Wednesday–Sunday. Conservatively list verified weekend overlap and call ahead.",
+    "inputIndex": 47,
+    "photoSearchAttempts": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/626738a3ef46ac6401f0378a/1704652865905-G4BEVVLDE3KTLEMBZQHK/F081F60D-1CAF-43F4-9133-8F2262D3C400.png",
+        "sourcePage": "https://www.flowerpower.net/flower-power-herbs-roots/p/flower-power-meadowsweet-tincture",
+        "alt": "Flower Power’s own Meadowsweet tincture in a labeled dropper bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/flower-power-herbs-roots-piermont-8460d0196102.webp",
+        "width": 1080,
+        "height": 1080,
+        "sha256": "8460d0196102bf5ecb41d5eb847d49ed123759ec9b374b5be454636254e0eacd"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found authentic own-brand product photograph as branch-neutral alternative; homepage shopinteriors not selected because branch not explicit."
+  },
+  {
+    "name": "Herbs and Mylk",
+    "address": "650 Ten Rod Road, Suite 129A",
+    "city": "North Kingstown",
+    "state": "Rhode Island",
+    "state_code": "RI",
+    "zip": "02852",
+    "website": "https://herbsandmylk.com/",
+    "phone": "",
+    "hours": "Tuesday–Sunday 11am–5pm.",
+    "tagline": "A Rhode Island apothecary with botanical goods and a creative studio.",
+    "description": "Herbs and Mylk welcomes visitors to its apothecary in North Kingstown. Its botanical offerings include herbal goods and the business’s Santo Vivo line.\n\nThe shop is on the first floor at the front entrance of its Ten Rod Road address. The business also accepts inquiries about custom gift favors and studio events.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://herbsandmylk.com/pages/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herbsandmylk.com/cdn/shop/files/DSC06162.jpg?v=1789161342&width=3840",
+        "sourcePage": "https://herbsandmylk.com/",
+        "alt": "Herbs and Mylk photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbs-and-mylk-90b60093779d.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "90b60093779d719e089b08508eacfad517fd3d747beb146484b433886a7b9eaf"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 48,
+    "photoSearchAttempts": [
+      {
+        "url": "https://herbsandmylk.com/cdn/shop/files/DSC06162.jpg?v=1789161342&width=3840",
+        "sourcePage": "https://herbsandmylk.com/",
+        "alt": "Herbs and Mylk photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbs-and-mylk-90b60093779d.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "90b60093779d719e089b08508eacfad517fd3d747beb146484b433886a7b9eaf"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Wildcraft Herb Shoppe",
+    "address": "70 Main Street, Unit B",
+    "city": "East Hampton",
+    "state": "Connecticut",
+    "state_code": "CT",
+    "zip": "06424",
+    "website": "https://wildcraftherbshoppe.com/",
+    "phone": "860-365-5171",
+    "hours": "Wednesday 11am–5pm; Thursday–Saturday 11am–6pm; Sunday 11am–4pm.",
+    "tagline": "Herbs, spices, teas and artisan goods in East Hampton.",
+    "description": "Wildcraft Herb Shoppe is a mother-and-daughter apothecary business established in April 2023. Its East Hampton storefront carries herbs, spices, teas and artisan-made goods.\n\nVisitors can browse the store in person or preview the selection online. The shop also shares information about events, product tutorials and community activities.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://wildcraftherbshoppe.com/pages/contact",
+      "https://www.herbsociety.org/get-involved/hsa-business-member-directory.html"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://wildcraftherbshoppe.com/cdn/shop/files/IMG_3150.jpg?v=1716906147&width=3840",
+        "sourcePage": "https://wildcraftherbshoppe.com/",
+        "alt": "Wildcraft Herb Shoppe photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/wildcraft-herb-shoppe-a4ae2beb58d9.webp",
+        "width": 1280,
+        "height": 1600,
+        "sha256": "a4ae2beb58d9a0ec29ad4ded9a531d23bc4147882f11c84cdc1432ef206826ee"
+      },
+      {
+        "url": "https://wildcraftherbshoppe.com/cdn/shop/files/IMG_3153.jpg?v=1716906147&width=3840",
+        "sourcePage": "https://wildcraftherbshoppe.com/",
+        "alt": "Wildcraft Herb Shoppe photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/wildcraft-herb-shoppe-b67096c1111f.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "b67096c1111f57c87368f64e4ee32890009c0c8b2f636c4e09fb19f3aa305c63"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 49,
+    "photoSearchAttempts": [
+      {
+        "url": "https://wildcraftherbshoppe.com/cdn/shop/files/IMG_3150.jpg?v=1716906147&width=3840",
+        "sourcePage": "https://wildcraftherbshoppe.com/",
+        "alt": "Wildcraft Herb Shoppe photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/wildcraft-herb-shoppe-a4ae2beb58d9.webp",
+        "width": 1280,
+        "height": 1600,
+        "sha256": "a4ae2beb58d9a0ec29ad4ded9a531d23bc4147882f11c84cdc1432ef206826ee"
+      },
+      {
+        "url": "https://wildcraftherbshoppe.com/cdn/shop/files/IMG_3153.jpg?v=1716906147&width=3840",
+        "sourcePage": "https://wildcraftherbshoppe.com/",
+        "alt": "Wildcraft Herb Shoppe photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/wildcraft-herb-shoppe-b67096c1111f.webp",
+        "width": 1600,
+        "height": 1200,
+        "sha256": "b67096c1111f57c87368f64e4ee32890009c0c8b2f636c4e09fb19f3aa305c63"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Anima Mundi Apothecary — Brooklyn",
+    "address": "31 Noble Street",
+    "city": "Brooklyn",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "11222",
+    "website": "https://animamundiherbals.com/",
+    "phone": "929-397-0049",
+    "hours": "Daily 10am–7pm.",
+    "tagline": "A Greenpoint herbal shop and tonic bar beside the maker’s factory.",
+    "description": "Anima Mundi’s Brooklyn shop sits beside its herbal production space in Greenpoint. It offers bulk herbs, loose teas, tonics, elixirs and the business’s own botanical formulas.\n\nA seasonal tonic bar serves plant-based drinks while visitors browse the apothecary. The location also hosts events and offers custom formula ordering through its herbal team.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://animamundiherbals.com/pages/brooklyn",
+      "https://theshopkeepers.com/shops/anima-mundi-apothecary/brooklyn-store/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://animamundiherbals.com/cdn/shop/files/anima-mundi-apothecary-brooklyn-0267.jpg?v=1613723620&width=3840",
+        "sourcePage": "https://animamundiherbals.com/pages/brooklyn",
+        "alt": "Anima Mundi Apothecary in Brooklyn",
+        "localFile": "docs/listing-images/national-expansion-20261027/anima-mundi-apothecary-brooklyn-b83a50a02131.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "b83a50a021315f8e0c317bbbb4f0fb6657f883ab2546f009be142a344d51b7bc"
+      },
+      {
+        "url": "https://animamundiherbals.com/cdn/shop/files/BROOKLYN_2.jpg?v=1712943406&width=3840",
+        "sourcePage": "https://animamundiherbals.com/pages/brooklyn",
+        "alt": "Anima Mundi’s Brooklyn apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/anima-mundi-apothecary-brooklyn-3ebc844f05af.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "3ebc844f05afce5102592ce6622f376a60f212417c184c492958fb4732f04ac9"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 50,
+    "photoSearchAttempts": [
+      {
+        "url": "https://animamundiherbals.com/cdn/shop/files/anima-mundi-apothecary-brooklyn-0267.jpg?v=1613723620&width=3840",
+        "sourcePage": "https://animamundiherbals.com/pages/brooklyn",
+        "alt": "Anima Mundi Apothecary in Brooklyn",
+        "localFile": "docs/listing-images/national-expansion-20261027/anima-mundi-apothecary-brooklyn-b83a50a02131.webp",
+        "width": 1600,
+        "height": 1067,
+        "sha256": "b83a50a021315f8e0c317bbbb4f0fb6657f883ab2546f009be142a344d51b7bc"
+      },
+      {
+        "url": "https://animamundiherbals.com/cdn/shop/files/BROOKLYN_2.jpg?v=1712943406&width=3840",
+        "sourcePage": "https://animamundiherbals.com/pages/brooklyn",
+        "alt": "Anima Mundi’s Brooklyn apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/anima-mundi-apothecary-brooklyn-3ebc844f05af.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "3ebc844f05afce5102592ce6622f376a60f212417c184c492958fb4732f04ac9"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Remedies Herb Shop — Brooklyn",
+    "address": "453 Court Street",
+    "city": "Brooklyn",
+    "state": "New York",
+    "state_code": "NY",
+    "zip": "11231",
+    "website": "https://remediesherbshop.com/",
+    "phone": "718-643-4372",
+    "hours": "Monday–Thursday noon–7pm; Friday noon–6pm; Saturday noon–7pm; Sunday noon–5pm.",
+    "tagline": "Loose herbs and botanical supplies in Carroll Gardens.",
+    "description": "Remedies Herb Shop opened in Carroll Gardens in 2014. Its shelves include loose herbs, roots, spices, teas, tinctures, essential oils and flower essences.\n\nThe shop also carries bath and body products, books and supplies for tea and herbal preparation. Visitors can shop in person or arrange pickup; the business publishes a separate Brooklyn class schedule.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://remediesherbshop.com/hours-and-information/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-z7hlvv/images/stencil/original/image-manager/20230328-154621.jpg?t=1681614601",
+        "sourcePage": "https://remediesherbshop.com/hours-and-information/",
+        "alt": "Remedies Herb Shop in Carroll Gardens, Brooklyn",
+        "localFile": "docs/listing-images/national-expansion-20261027/remedies-herb-shop-brooklyn-64033f1943e1.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "64033f1943e1d3921d1a36dfad966a4a3f36962e911838d6a7450f6f2d98f9ed"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 51,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-z7hlvv/images/stencil/original/image-manager/20230328-154621.jpg?t=1681614601",
+        "sourcePage": "https://remediesherbshop.com/hours-and-information/",
+        "alt": "Remedies Herb Shop in Carroll Gardens, Brooklyn",
+        "localFile": "docs/listing-images/national-expansion-20261027/remedies-herb-shop-brooklyn-64033f1943e1.webp",
+        "width": 900,
+        "height": 1600,
+        "sha256": "64033f1943e1d3921d1a36dfad966a4a3f36962e911838d6a7450f6f2d98f9ed"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Red Antler Apothecary — Lowell",
+    "address": "101 Paige Street, Hive Public Market",
+    "city": "Lowell",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01852",
+    "website": "https://www.redantlerapothecary.com/",
+    "phone": "",
+    "hours": "Wednesday–Saturday 11am–6pm; Sunday 11am–5pm.",
+    "tagline": "Handcrafted botanical goods at Lowell’s Hive Public Market.",
+    "description": "Red Antler Apothecary makes botanical soaps, body-care goods and herbal preparations. Its Lowell retail location is inside Hive Public Market on Paige Street.\n\nThe team develops its own recipes and grows some ingredients. The official website identifies an herbal counter and staff with experience in herb growing and formulation.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.redantlerapothecary.com/",
+      "https://www.redantlerapothecary.com/meet-our-staff"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.redantlerapothecary.com/uploads/b/4651eac0-d0f0-11e9-9872-4391d4fa9924/2e1fc300-d0f1-11e9-bc02-5b1947f349ad.jpg",
+        "sourcePage": "https://www.redantlerapothecary.com/",
+        "alt": "Handcrafted Red Antler Apothecary goods",
+        "localFile": "docs/listing-images/national-expansion-20261027/red-antler-apothecary-salem-9c994b9fc530.webp",
+        "width": 807,
+        "height": 458,
+        "sha256": "9c994b9fc530ac3fbad6efe131b8d83ddfc5dbef581fc553928bb61239c1c477"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Use current official 101 Paige Street address; older directories still show 250 Jackson or 462 Merrimack.",
+    "inputIndex": 52,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.redantlerapothecary.com/uploads/b/4651eac0-d0f0-11e9-9872-4391d4fa9924/2e1fc300-d0f1-11e9-bc02-5b1947f349ad.jpg",
+        "sourcePage": "https://www.redantlerapothecary.com/",
+        "alt": "Handcrafted Red Antler Apothecary goods",
+        "localFile": "docs/listing-images/national-expansion-20261027/red-antler-apothecary-salem-9c994b9fc530.webp",
+        "width": 807,
+        "height": 458,
+        "sha256": "9c994b9fc530ac3fbad6efe131b8d83ddfc5dbef581fc553928bb61239c1c477"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Red Antler Apothecary — Salem",
+    "address": "30 Church Street, inside Hive & Forge",
+    "city": "Salem",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01970",
+    "website": "https://www.redantlerapothecary.com/",
+    "phone": "",
+    "hours": "Monday–Friday noon–6pm; Saturday 11am–6pm.",
+    "tagline": "Red Antler’s handcrafted botanical goods inside Salem’s Hive & Forge.",
+    "description": "Red Antler Apothecary’s Salem retail counter is housed inside Hive & Forge on Church Street. The business creates soaps, botanical body-care products and herbal preparations.\n\nIts Salem shop is part of the same small-batch operation as the Lowell apothecary. The official website publishes separate Salem hours and identifies staff who work at this location.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.redantlerapothecary.com/",
+      "https://www.redantlerapothecary.com/meet-our-staff",
+      "https://brownbearherbs.com/pages/stockists"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.redantlerapothecary.com/uploads/b/4651eac0-d0f0-11e9-9872-4391d4fa9924/2e1fc300-d0f1-11e9-bc02-5b1947f349ad.jpg",
+        "sourcePage": "https://www.redantlerapothecary.com/",
+        "alt": "Handcrafted Red Antler Apothecary goods",
+        "localFile": "docs/listing-images/national-expansion-20261027/red-antler-apothecary-salem-9c994b9fc530.webp",
+        "width": 807,
+        "height": 458,
+        "sha256": "9c994b9fc530ac3fbad6efe131b8d83ddfc5dbef581fc553928bb61239c1c477"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 53,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.redantlerapothecary.com/uploads/b/4651eac0-d0f0-11e9-9872-4391d4fa9924/2e1fc300-d0f1-11e9-bc02-5b1947f349ad.jpg",
+        "sourcePage": "https://www.redantlerapothecary.com/",
+        "alt": "Handcrafted Red Antler Apothecary goods",
+        "localFile": "docs/listing-images/national-expansion-20261027/red-antler-apothecary-salem-9c994b9fc530.webp",
+        "width": 807,
+        "height": 458,
+        "sha256": "9c994b9fc530ac3fbad6efe131b8d83ddfc5dbef581fc553928bb61239c1c477"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Penn Herb Company — Flagship Store",
+    "address": "601 North Second Street",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "19123",
+    "website": "https://www.pennherb.com/",
+    "phone": "215-632-6100",
+    "hours": "Monday–Saturday 10am–6pm; Sunday noon–5pm; closed major holidays.",
+    "tagline": "A Philadelphia flagship stocked with herbs and natural products.",
+    "description": "Penn Herb Company’s flagship store offers a large retail selection of herbs, vitamins and natural products. The public shop is on North Second Street in Philadelphia.\n\nVisitors can browse its herbal catalog in person during published daily hours. Penn Herb also operates a separate factory store in Northeast Philadelphia.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.pennherb.com/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 54,
+    "photoSearchAttempts": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "Penn Herb Company — Factory Store",
+    "address": "10601 Decatur Road",
+    "city": "Philadelphia",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "19154",
+    "website": "https://www.pennherb.com/",
+    "phone": "215-632-6100",
+    "hours": "Monday–Friday 10am–5pm; closed weekends and major holidays.",
+    "tagline": "Herbs and natural products at Penn Herb’s Northeast Philadelphia factory store.",
+    "description": "Penn Herb Company’s Decatur Road factory store welcomes retail visitors in Northeast Philadelphia. It stocks herbs, vitamins and natural products alongside a limited selection of snacks and refrigerated beverages.\n\nThe factory shop offers weekday hours and is a separate visitor location from Penn Herb’s North Second Street flagship. The official contact page provides directions for both stores.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.pennherb.com/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 55,
+    "photoSearchAttempts": [
+      {
+        "url": "https://pennherb.com/herbstore/images/V9201.jpg",
+        "sourcePage": "https://www.pennherb.com/mushroom-immune-support-60-vegan-V9201",
+        "alt": "Penn Herb’s Nature’s Wonderland Mushroom Immune Support bottle",
+        "localFile": "docs/listing-images/national-expansion-20261027/penn-herb-company-factory-store-14111536ce3c.webp",
+        "width": 585,
+        "height": 798,
+        "sha256": "14111536ce3c5e3fabb9f8523924f72758561b2767428beed0af8027a73f48d9"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Found sufficiently large authentic own-brand labeled product bottle photo after undersized premises and older bottle photos."
+  },
+  {
+    "name": "The Rosemary House & Gardens",
+    "address": "120 South Market Street",
+    "city": "Mechanicsburg",
+    "state": "Pennsylvania",
+    "state_code": "PA",
+    "zip": "17055",
+    "website": "https://www.therosemaryhouse.com/",
+    "phone": "717-697-5111",
+    "hours": "Tuesday–Friday 10am–6pm; Saturday 10am–4pm; Sunday–Monday closed.",
+    "tagline": "A family herb and spice shop with a garden behind the storefront.",
+    "description": "The Rosemary House & Gardens is a family-run herb and spice specialty shop founded in 1968. Its selection includes bulk dried botanicals, culinary herbs, teas, herbal extracts, essential oils and seasonal live plants.\n\nThe Mechanicsburg storefront also carries seeds, books and tea supplies. A Peace Garden behind the shop is open daily from dawn to dusk.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.therosemaryhouse.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "http://www.therosemaryhouse.com/wp-content/uploads/2015/03/peace-garden-for-web-1024x1024.jpg",
+        "sourcePage": "https://www.therosemaryhouse.com/",
+        "alt": "The Peace Garden behind The Rosemary House",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-rosemary-house-gardens-16d389e94291.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "16d389e9429156135b84169df913363beb3881c861fc1f7a5061a2fa2d15d1c8"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 56,
+    "photoSearchAttempts": [
+      {
+        "url": "http://www.therosemaryhouse.com/wp-content/uploads/2015/03/peace-garden-for-web-1024x1024.jpg",
+        "sourcePage": "https://www.therosemaryhouse.com/",
+        "alt": "The Peace Garden behind The Rosemary House",
+        "localFile": "docs/listing-images/national-expansion-20261027/the-rosemary-house-gardens-16d389e94291.webp",
+        "width": 1024,
+        "height": 1024,
+        "sha256": "16d389e9429156135b84169df913363beb3881c861fc1f7a5061a2fa2d15d1c8"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Village Green Apothecary",
+    "address": "5415 West Cedar Lane",
+    "city": "Bethesda",
+    "state": "Maryland",
+    "state_code": "MD",
+    "zip": "20814",
+    "website": "https://myvillagegreen.com/",
+    "phone": "301-530-0800",
+    "hours": "Monday–Friday 8:30am–6pm; Saturday 8:30am–5pm; Sunday closed.",
+    "tagline": "Herbal products, supplements and a pharmacy in Bethesda.",
+    "description": "Village Green Apothecary combines a public retail supplement store with a pharmacy in Bethesda. Its retail catalog includes herbs, mushroom products, teas and a broad range of nutritional supplements.\n\nVisitors can shop at the West Cedar Lane location during posted retail hours. The business also offers consultation and educational resources.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://myvillagegreen.com/pages/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0319/0960/9603/files/store-500.jpg?v=1774625490&width=2048",
+        "sourcePage": "https://myvillagegreen.com/pages/brand-story",
+        "alt": "Staff inside Village Green Apothecary in Bethesda",
+        "localFile": "docs/listing-images/national-expansion-20261027/village-green-apothecary-c5463bf7cc10.webp",
+        "width": 500,
+        "height": 358,
+        "sha256": "c5463bf7cc10a4300f0bdb9e46ab00dc48e1bdc7bf0ede38014efd2fbee31d2d"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official contact page includes 2026 holiday closures and current retail hours.",
+    "inputIndex": 57,
+    "photoSearchAttempts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0319/0960/9603/files/store-500.jpg?v=1774625490&width=2048",
+        "sourcePage": "https://myvillagegreen.com/pages/brand-story",
+        "alt": "Staff inside Village Green Apothecary in Bethesda",
+        "localFile": "docs/listing-images/national-expansion-20261027/village-green-apothecary-c5463bf7cc10.webp",
+        "width": 500,
+        "height": 358,
+        "sha256": "c5463bf7cc10a4300f0bdb9e46ab00dc48e1bdc7bf0ede38014efd2fbee31d2d"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Raine n River Apothecary",
+    "address": "299 Grove Street",
+    "city": "Jersey City",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07302",
+    "website": "https://www.rainenriver.com/",
+    "phone": "201-360-2384",
+    "hours": "Monday–Friday 10am–7pm; Saturday 10am–8pm; Sunday 11am–6pm.",
+    "tagline": "Herbs, teas and small-batch botanical formulas on Grove Street.",
+    "description": "Raine n River Apothecary is a Jersey City shop founded by herbalist Natasha Bony. Its offerings include loose herbs and spices, teas, tinctures, syrups and botanical body products.\n\nThe store also stocks books and spiritual tools. The official website publishes its Grove Street address and daily visitor hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.rainenriver.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.rainenriver.com/cdn/shop/files/RaineNRiver9_x1024.jpg?v=1629050433",
+        "sourcePage": "https://www.rainenriver.com/",
+        "alt": "A glass shelf of herbal candles at Raine n River Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/raine-n-river-apothecary-5d48a4bc8b05.webp",
+        "width": 1518,
+        "height": 1024,
+        "sha256": "5d48a4bc8b05acb77635b8451739e6699ba11bb21b36154708577e5ecb52813b"
+      },
+      {
+        "url": "https://www.rainenriver.com/cdn/shop/files/IMG-1256_x1024.png?v=1625789295",
+        "sourcePage": "https://www.rainenriver.com/",
+        "alt": "Natasha preparing a bottled herbal formula",
+        "localFile": "docs/listing-images/national-expansion-20261027/raine-n-river-apothecary-2fa3d3f060a8.webp",
+        "width": 667,
+        "height": 1000,
+        "sha256": "2fa3d3f060a88d2677b5b17f862b84fb225708cb253bff67ae8ab405f4f34f65"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 58,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.rainenriver.com/cdn/shop/files/RaineNRiver9_x1024.jpg?v=1629050433",
+        "sourcePage": "https://www.rainenriver.com/",
+        "alt": "A glass shelf of herbal candles at Raine n River Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/raine-n-river-apothecary-5d48a4bc8b05.webp",
+        "width": 1518,
+        "height": 1024,
+        "sha256": "5d48a4bc8b05acb77635b8451739e6699ba11bb21b36154708577e5ecb52813b"
+      },
+      {
+        "url": "https://www.rainenriver.com/cdn/shop/files/IMG-1256_x1024.png?v=1625789295",
+        "sourcePage": "https://www.rainenriver.com/",
+        "alt": "Natasha preparing a bottled herbal formula",
+        "localFile": "docs/listing-images/national-expansion-20261027/raine-n-river-apothecary-2fa3d3f060a8.webp",
+        "width": 667,
+        "height": 1000,
+        "sha256": "2fa3d3f060a88d2677b5b17f862b84fb225708cb253bff67ae8ab405f4f34f65"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Herbal Root Organics",
+    "address": "107 William Street",
+    "city": "Boonton",
+    "state": "New Jersey",
+    "state_code": "NJ",
+    "zip": "07005",
+    "website": "https://www.herbalrootorganics.com/",
+    "phone": "973-265-0087",
+    "hours": "Wednesday 10am–6pm; Thursday noon–6pm; Friday noon–7pm; Saturday noon–6pm.",
+    "tagline": "An herbal shop, cafe and learning space in Boonton.",
+    "description": "Herbal Root Organics operates a public shop and cafe in Boonton. The business offers herbal products and botanical goods alongside seasonal drinks and recipes.\n\nIts William Street location also provides studio space for classes and community events. The business accepts appointments for product questions and herbal recommendations.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.herbalrootorganics.com/contact-us",
+      "https://www.herbalrootorganics.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/82096f_da0af42a77d34888a4668fe9d6343fb4~mv2.jpg",
+        "sourcePage": "https://www.herbalrootorganics.com/",
+        "alt": "The Herbal Root Organics shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-root-organics-ea43e51ef2a0.webp",
+        "width": 1600,
+        "height": 1066,
+        "sha256": "ea43e51ef2a054199fdc49c6e580f861ab70d27a4698887ebeb612eba29d5493"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 59,
+    "photoSearchAttempts": [
+      {
+        "url": "https://static.wixstatic.com/media/82096f_da0af42a77d34888a4668fe9d6343fb4~mv2.jpg",
+        "sourcePage": "https://www.herbalrootorganics.com/",
+        "alt": "The Herbal Root Organics shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/herbal-root-organics-ea43e51ef2a0.webp",
+        "width": 1600,
+        "height": 1066,
+        "sha256": "ea43e51ef2a054199fdc49c6e580f861ab70d27a4698887ebeb612eba29d5493"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Forrest Green Farm",
+    "address": "2317 Evergreen Road",
+    "city": "Louisa",
+    "state": "Virginia",
+    "state_code": "VA",
+    "zip": "23093",
+    "website": "https://forrestgreenfarm.com/",
+    "phone": "434-882-2648",
+    "hours": "Thursday–Monday 10am–5pm; Tuesday–Wednesday closed.",
+    "tagline": "Herbal teas, plant starts and a year-round farm market in Louisa.",
+    "description": "Forrest Green Farm is a family-run farm with a year-round public market and gift shop. Its botanical products include herbal teas, individual herbs, seasoning blends, salves and flower essences.\n\nThe farm also grows culinary and medicinal herb starts and offers herbalism and gardening classes. Visitors can browse the market and explore gardens during the posted farm hours.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://forrestgreenfarm.com/pages/market-on-the-farm-gift-shop",
+      "https://forrestgreenfarm.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://forrestgreenfarm.com/cdn/shop/files/DE1F7067-D679-4308-A355-A6AE231FFB91_1_105_c.jpg?v=1690561250&width=480",
+        "sourcePage": "https://forrestgreenfarm.com/",
+        "alt": "Forrest Green Farm’s public market and gift shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/forrest-green-farm-d87b56206020.webp",
+        "width": 480,
+        "height": 360,
+        "sha256": "d87b5620602069f69b39bf02b1ec3b29d1218a72a2290623b479617c9f353e51"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 60,
+    "photoSearchAttempts": [
+      {
+        "url": "https://forrestgreenfarm.com/cdn/shop/files/DE1F7067-D679-4308-A355-A6AE231FFB91_1_105_c.jpg?v=1690561250&width=480",
+        "sourcePage": "https://forrestgreenfarm.com/",
+        "alt": "Forrest Green Farm’s public market and gift shop",
+        "localFile": "docs/listing-images/national-expansion-20261027/forrest-green-farm-d87b56206020.webp",
+        "width": 480,
+        "height": 360,
+        "sha256": "d87b5620602069f69b39bf02b1ec3b29d1218a72a2290623b479617c9f353e51"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  },
+  {
+    "name": "Alternatives For Health Herbal Apothecary",
+    "address": "426 Main Street",
+    "city": "Sturbridge",
+    "state": "Massachusetts",
+    "state_code": "MA",
+    "zip": "01566",
+    "website": "https://www.alternatives-4health.com/",
+    "phone": "508-347-2111",
+    "hours": "Wednesday–Saturday 10am–4pm; Sunday noon–4pm; Monday–Tuesday closed.",
+    "tagline": "Bulk herbs and supplies for home herbal crafting in Sturbridge.",
+    "description": "Alternatives For Health Herbal Apothecary stocks bulk herbs, teas, herbal extracts, essential oils and supplies. Its Sturbridge shop also carries books, tea accessories and botanical bath products.\n\nThe store provides a space for browsing herbal resources and publishes information about classes and herbal apprenticeships. Visitors can also arrange advance orders for pickup.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.alternatives-4health.com/category/Hours_and_Directions/c72",
+      "https://www.alternatives-4health.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/alternatives-for-health-herbal-apothecary-492f596ae8de.webp",
+        "width": 256,
+        "height": 341,
+        "sha256": "492f596ae8de33e53d1e2eacf4a57910edfa82d4fda8fc8276ce9a9e702f8058"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 61,
+    "photoSearchAttempts": [
+      {
+        "url": "https://www.alternatives-4health.com/images/Bulk_Teas.jpg",
+        "sourcePage": "https://www.alternatives-4health.com/",
+        "alt": "Bulk herbs and teas inside Alternatives For Health Herbal Apothecary",
+        "localFile": "docs/listing-images/national-expansion-20261027/alternatives-for-health-herbal-apothecary-492f596ae8de.webp",
+        "width": 256,
+        "height": 341,
+        "sha256": "492f596ae8de33e53d1e2eacf4a57910edfa82d4fda8fc8276ce9a9e702f8058"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Second-pass photographs visually reviewed and approved."
+    },
+    "secondPassPhotoSearch": "Authentic native256x341portrait shopphoto available; meets orientation-aware200short/300long minimum; previous fixedwidth300 rule excluded it."
+  },
+  {
+    "name": "Homegrown Herb & Tea",
+    "address": "195 Congress Street",
+    "city": "Portland",
+    "state": "Maine",
+    "state_code": "ME",
+    "zip": "04101",
+    "website": "https://homegrownherbandtea.com/",
+    "phone": "207-774-3484",
+    "hours": "Contact the shop for current hours.",
+    "tagline": "Hand-blended herbal tisanes on Portland’s Munjoy Hill.",
+    "description": "Homegrown Herb & Tea specializes in blending herbal tisanes in an apothecary tradition. Its Congress Street shop offers house tea blends, imported teas and individual botanical ingredients.\n\nThe business is led by tea maker Sarah Richards and has long been part of Portland’s Munjoy Hill neighborhood. Its online catalog lets visitors explore the range of blends before stopping by.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://homegrownherbandtea.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://homegrownherbandtea.com/wp-content/uploads/2023/07/10-1-1024x579.jpg",
+        "sourcePage": "https://homegrownherbandtea.com/",
+        "alt": "Homegrown Herb & Tea photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/homegrown-herb-tea-839cdec2c797.webp",
+        "width": 1024,
+        "height": 579,
+        "sha256": "839cdec2c7971915d69e2b5c2ee98f854733e228be0b993270dcb1b5f6dbda65"
+      }
+    ],
+    "status": "ready",
+    "verificationNote": "Official website explicitly lists a public retail location and visitor information; reviewed October 27, 2026.",
+    "inputIndex": 62,
+    "photoSearchAttempts": [
+      {
+        "url": "https://homegrownherbandtea.com/wp-content/uploads/2023/07/10-1-1024x579.jpg",
+        "sourcePage": "https://homegrownherbandtea.com/",
+        "alt": "Homegrown Herb & Tea photograph",
+        "localFile": "docs/listing-images/national-expansion-20261027/homegrown-herb-tea-839cdec2c797.webp",
+        "width": 1024,
+        "height": 579,
+        "sha256": "839cdec2c7971915d69e2b5c2ee98f854733e228be0b993270dcb1b5f6dbda65"
+      }
+    ],
+    "photoReview": {
+      "reviewedAt": "2026-10-27",
+      "result": "Selected genuine shop, staff, garden, or product photograph(s)."
+    }
+  }
+]
