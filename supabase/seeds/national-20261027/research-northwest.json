@@ -1,0 +1,704 @@
+[
+  {
+    "inputIndex": 19,
+    "name": "Battleground Healing Arts",
+    "status": "ready",
+    "reason": "Original clinic and Healing Arts Apothecary verified at 408 E Main; do not confuse with separately named retailer at 715 W Main. No suitable shop photo found; official homepage imagery mostly stock or practitioner portraits.",
+    "website": "https://battlegroundhealingarts.com/apothecary",
+    "address": "408 East Main Street",
+    "city": "Battle Ground",
+    "state": "Washington",
+    "zip": "98604",
+    "phone": "360-687-4492",
+    "hours": "Mon–Fri 9am–6pm; Sat 10am–4pm; Sun closed",
+    "tagline": "An herbal apothecary on Battle Ground’s Main Street",
+    "description": "Healing Arts Apothecary is part of Battle Ground Healing Arts on East Main Street. Its offerings include dried herbs, herbal tinctures, custom tea blends, mushrooms, skin care, candles, and locally made art. The center also hosts classes and individual practitioner appointments, giving visitors several ways to explore herbal traditions and botanical products.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://battlegroundhealingarts.com/apothecary",
+      "https://battlegroundhealingarts.com/contact",
+      "https://battlegroundhealingarts.com/"
+    ],
+    "photoCandidates": [],
+    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://battlegroundhealingarts.com/apothecary, https://battlegroundhealingarts.com/contact, https://battlegroundhealingarts.com/"
+  },
+  {
+    "inputIndex": 20,
+    "name": "Living Earth Herbs",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://livingearthherbs.com/",
+    "address": "1411 Cornwall Avenue",
+    "city": "Bellingham",
+    "state": "Washington",
+    "zip": "98225",
+    "phone": "360-734-3207",
+    "hours": "Mon–Sat 10am–6pm; Sun noon–6pm",
+    "tagline": "Organic herbs and custom blends in downtown Bellingham",
+    "description": "Living Earth Herbs is a downtown Bellingham apothecary with organic bulk herbs, teas, tinctures, essential oils, salves, and flower essences. The shop makes custom tea, tincture, and essential oil blends and carries locally made botanical goods. Its Cornwall Avenue location is close to the downtown transit hub, making it an easy stop for neighborhood shoppers.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://livingearthherbs.com/",
+      "https://livingearthherbs.com/directions/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://livingearthherbs.com/wp-content/uploads/2014/10/IMG_0784-scaled.jpg",
+        "sourcePage": "https://livingearthherbs.com/",
+        "alt": "Bulk herbs and wooden shelves inside Living Earth Herbs",
+        "localFile": "docs/listing-images/national-20261027/living-earth-herbs.webp",
+        "inspected": true,
+        "width": 2560,
+        "height": 1920,
+        "sha256": "9d6b9a68292624b4668113c84e9c54091a9885953bac81d1b386711191a90137"
+      }
+    ]
+  },
+  {
+    "inputIndex": 21,
+    "name": "Moddejonge’s Herbals",
+    "status": "hold",
+    "reason": "Only historical owner/profile and news references found; no current primary-source storefront/hours verified. Do not infer current operations from older directories.",
+    "website": "https://www.facebook.com/magickandmore/",
+    "address": "1905 1/2 Hewitt Avenue",
+    "city": "Everett",
+    "state": "Washington",
+    "zip": "98201",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.linkedin.com/in/lynnmoddejonge",
+      "https://tulalipnews.com/2017/07/07/local-apothecary-focuses-on-traditional-healing/"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 22,
+    "name": "Northsea Apothecary",
+    "status": "ready",
+    "reason": "Official footer says Wed–Sat; homepage summer text says Tue–Sat. Use footer hours with seasonal caveat; no phone published.",
+    "website": "https://www.northseaapothecary.com/",
+    "address": "135A Lopez Road",
+    "city": "Lopez Island",
+    "state": "Washington",
+    "zip": "98261",
+    "phone": null,
+    "hours": "Wed–Sat 11am–4pm; seasonal hours may vary",
+    "tagline": "Island herbs, seasonal preparations, and magical goods",
+    "description": "Founded by folk herbalist Callie Blue Heron North, Northsea Apothecary occupies a small shop in Lopez Village. Its herb room offers more than 250 bulk herbs, spices, teas, mushrooms, clays, resins, salts, and sprouting seeds. Visitors can also browse handcrafted seasonal preparations, incense, candles, tarot cards, and a selection of vintage and locally consigned clothing.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.northseaapothecary.com/",
+      "https://www.northseaapothecary.com/about"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/61eb04f67a4a4d1ac79b88c6/0f30020d-86cb-4ef7-8506-54ccabb15862/IMG_2231.JPG",
+        "sourcePage": "https://www.northseaapothecary.com/",
+        "alt": "Northsea Apothecary storefront on Lopez Island",
+        "localFile": "docs/listing-images/national-20261027/northsea-apothecary.webp",
+        "inspected": true,
+        "width": 2500,
+        "height": 3750,
+        "sha256": "4ab4b620c875484b76a39699dde02fa04107c454c2983190902f55ba078f78b2"
+      }
+    ]
+  },
+  {
+    "inputIndex": 23,
+    "name": "Radiance & Kindred Moon Apothecary",
+    "status": "ready",
+    "reason": "Official page explicitly confirms the two stores recombined at 106 5th Ave SE in 2026. Gallery may depict earlier business premises; captions should not imply new-location photography.",
+    "website": "https://www.radianceherbs.com/visit-radiance",
+    "address": "106 5th Avenue SE",
+    "city": "Olympia",
+    "state": "Washington",
+    "zip": "98501",
+    "phone": "360-357-5250",
+    "hours": "Daily 11am–6pm",
+    "tagline": "Olympia’s longstanding apothecary, together in a new home",
+    "description": "Radiance and Kindred Moon Apothecary share a new downtown Olympia location on Fifth Avenue. Their combined shop offers more than 300 varieties of bulk and packaged herbs, teas, and spices alongside tinctures, body care, candles, books, crystals, and gifts. Radiance dates to 1975, with practitioner services available by appointment in addition to daily retail shopping.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.radianceherbs.com/visit-radiance"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/690ba2dd11989219819db288/35b36110-e556-459a-b851-e9e5e7ea80dd/492107142_1231016949031606_8244986184489536361_n.jpg",
+        "sourcePage": "https://www.radianceherbs.com/visit-radiance",
+        "alt": "Books and gifts displayed at Radiance",
+        "localFile": "docs/listing-images/national-20261027/radiance-herbs.webp",
+        "inspected": true,
+        "width": 1440,
+        "height": 1080,
+        "sha256": "fcc73bbea2f6908ec04bfcc7151db966584d7fb01d5a4b49837bc1dbbffa1c71"
+      }
+    ]
+  },
+  {
+    "inputIndex": 24,
+    "name": "Mountain Spirit Herbals",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://www.mountainspiritherbals.com/",
+    "address": "3110 3rd Street",
+    "city": "Port Townsend",
+    "state": "Washington",
+    "zip": "98368",
+    "phone": "360-385-4491",
+    "hours": "By appointment only; call or text",
+    "tagline": "Small-batch herbal goods from a Port Townsend maker",
+    "description": "Mountain Spirit Herbals is Denise Joy’s small herbal company, established in 1985 in Port Townsend. The catalog spans loose teas, individual tinctures, bulk herbs, essential oils, infused body oils, balms, and creams. Local shopping is available by appointment at the Third Street address; call or text ahead to arrange a visit to this working herbal business.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.mountainspiritherbals.com/",
+      "https://www.mountainspiritherbals.com/pages/contact-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.mountainspiritherbals.com/cdn/shop/collections/all_singtinc2_large.jpg?v=1701565632",
+        "sourcePage": "https://www.mountainspiritherbals.com/",
+        "alt": "Mountain Spirit Herbals bottled herbal tinctures",
+        "localFile": "docs/listing-images/national-20261027/mountain-spirit-herbals.webp",
+        "inspected": true,
+        "width": 480,
+        "height": 360,
+        "sha256": "aee6f30a871a73fb8683074032ae991cb017f6d459ffd302fdb70355a5f25307"
+      }
+    ],
+    "photoNote": "Official product/botanical photo; no verified current shop interior image found."
+  },
+  {
+    "inputIndex": 25,
+    "name": "SugarPill Apothecary",
+    "status": "ready",
+    "reason": "Official homepage confirms relocation from Seattle to Langley. It asks customers to call, text, or follow Instagram for current hours.",
+    "website": "https://sugarpillseattle.com/",
+    "address": "214 1st Street",
+    "city": "Langley",
+    "state": "Washington",
+    "zip": "98260",
+    "phone": "206-322-7455",
+    "hours": "Hours vary; call or text before visiting",
+    "tagline": "A neighborhood apothecary by Langley’s waterfront",
+    "description": "SugarPill is a neighborhood apothecary on First Street in Langley, on Whidbey Island. The independent shop combines herbal and personal-care goods with thoughtfully chosen gifts, pantry items, greeting cards, and alcohol-removed wines. Formerly located on Seattle’s Capitol Hill, it now welcomes visitors in Langley and posts changing hours and shop updates through its social channels.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://sugarpillseattle.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/642caa78f8c6184adc3d6049/50b66c81-81b5-4f97-a785-ab1d10d0c305/image000001.jpg",
+        "sourcePage": "https://sugarpillseattle.com/",
+        "alt": "SugarPill shop window and hanging sign in Langley",
+        "localFile": "docs/listing-images/national-20261027/sugarpill-apothecary.webp",
+        "inspected": true,
+        "width": 1280,
+        "height": 1600,
+        "sha256": "d16912e6b7b05084148c027a439cc04a748b713bc384843ec08c8c2755712806"
+      }
+    ]
+  },
+  {
+    "inputIndex": 26,
+    "name": "Tenzing Momo",
+    "status": "ready",
+    "reason": "Current official market operator page verifies shop, address and hours. tenzingmomo.com contains unrelated gambling/pharmacy links; use market page as website. Genuine shop interior image retrieved from old business site.",
+    "website": "https://www.pikeplacemarket.org/vendor/tenzing-momo/",
+    "address": "93 Pike Street",
+    "city": "Seattle",
+    "state": "Washington",
+    "zip": "98101",
+    "phone": "206-623-9837",
+    "hours": "Daily 10am–5pm",
+    "tagline": "Bulk herbs, oils, and incense in Pike Place Market",
+    "description": "Tenzing Momo is an herbal shop in Pike Place Market’s Economy Atrium. Its shelves hold hundreds of herbs and a broad selection of bulk teas, fragrances, essential oils, incense, resins, tinctures, soaps, salves, and bath goods. Tibetan and Buddhist statuary and divination supplies round out the shop, and staff can prepare custom herbal blends.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.pikeplacemarket.org/vendor/tenzing-momo/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://tenzingmomo.com/img/home_cov_test2.png",
+        "sourcePage": "https://tenzingmomo.com/",
+        "alt": "Interior herb shelves at Tenzing Momo",
+        "localFile": "docs/listing-images/national-20261027/tenzing-momo.webp",
+        "width": 612,
+        "height": 240,
+        "sha256": "591c74b3867d2fa68239b28f060ffe83cffa057f6d6914570014bf8714b9de2f",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 27,
+    "name": "Dandelion Botanical Co.",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://dandelionbotanical.com/",
+    "address": "4681 Sequim Dungeness Way",
+    "city": "Sequim",
+    "state": "Washington",
+    "zip": "98382",
+    "phone": "206-545-8892",
+    "hours": "Wed–Sun 10am–6pm; Mon–Tue closed",
+    "tagline": "A family-owned botanical apothecary in Sequim’s farming community",
+    "description": "Dandelion Botanical Company is a family-owned herbal apothecary in Sequim, housed in the former Nash’s Farm Store. The shop emphasizes organic and ethically wildcrafted botanicals and works with Olympic Peninsula growers. Visitors can browse bulk herbs, teas, tinctures, essential oils, and botanical products, with occasional classes and community offerings listed on the business website.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://dandelionbotanical.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://dandelionbotanical.com/newfrontpic.jpg",
+        "sourcePage": "https://dandelionbotanical.com/",
+        "alt": "Interior herb shelves at Dandelion Botanical Co.",
+        "localFile": "docs/listing-images/national-20261027/dandelion-botanical-co.webp",
+        "width": 720,
+        "height": 239,
+        "sha256": "723890621b0c108f81ae04c59fedb6c859601d6c8c4053bc30ace6d2f4cff1c1",
+        "inspected": true
+      }
+    ]
+  },
+  {
+    "inputIndex": 28,
+    "name": "Salt Creek Apothecary",
+    "status": "hold",
+    "reason": "Official domain unavailable. Third-party records conflict: downtown directory retains listing while Wanderlog marks permanently closed. Hold pending direct current confirmation.",
+    "website": "https://saltcreekapothecary.com/",
+    "address": "28 North Wenatchee Avenue",
+    "city": "Wenatchee",
+    "state": "Washington",
+    "zip": "98801",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://downtownwenatchee.org/explore",
+      "https://wanderlog.com/place/details/4165156/salt-creek-apothecary"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 29,
+    "name": "Starlight Herb & Spice Company",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://www.starlightherb.com/pages/about-us",
+    "address": "208 East 37th Street, Suite 6",
+    "city": "Garden City",
+    "state": "Idaho",
+    "zip": "83714",
+    "phone": "208-863-2484",
+    "hours": "Mon–Wed 10am–6pm; Thu–Sat 10am–4pm; Sun closed",
+    "tagline": "Culinary herbs, spices, and custom blends in Garden City",
+    "description": "Starlight Herb & Spice Company offers a Garden City storefront for cooks exploring herbs, spices, and seasonings. Its selection includes individual culinary herbs, rubs, blends, salts, peppers, dip mixes, and gift assortments. The business also offers custom blending and supplies other retailers and restaurants, alongside direct shopping at its East 37th Street location.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.starlightherb.com/pages/about-us",
+      "https://www.starlightherb.com/collections/herbs-spices"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.starlightherb.com/cdn/shop/files/AllspiceWhole.png?v=1692307621&width=533",
+        "sourcePage": "https://www.starlightherb.com/collections/herbs-spices",
+        "alt": "Whole allspice offered by Starlight Herb & Spice Company",
+        "localFile": "docs/listing-images/national-20261027/starlight-herb-spice-company.webp",
+        "inspected": true,
+        "width": 533,
+        "height": 533,
+        "sha256": "965751e729d5fa7ec0d10d99eec7297b08cb7a70c7b1931ba13185f45d983c87"
+      }
+    ],
+    "photoNote": "Official product/botanical photo; no verified current shop interior image found."
+  },
+  {
+    "inputIndex": 30,
+    "name": "Red Clover Herbs and Market",
+    "status": "ready",
+    "reason": "Current official hours/location page verifies storefront. Official site uses generic stock hero photos and supplier logos; no suitable genuine shop photo found.",
+    "website": "https://redcloverherbs.com/pages/physical-store",
+    "address": "1655 South Woodruff Avenue",
+    "city": "Idaho Falls",
+    "state": "Idaho",
+    "zip": "83404",
+    "phone": "208-528-8855",
+    "hours": "Mon–Fri 10am–6pm; Sat–Sun closed",
+    "tagline": "Bulk herbs and tea-making essentials in Idaho Falls",
+    "description": "Red Clover Herbs & Market is a family-run Idaho Falls shop carrying nearly 200 bulk dried herbs and spices. Its shelves include the house Harmony Blend herbal tea, essential oils, herbal supplements, local honey, goat-milk soaps, books, and tea-making accessories. Shoppers can browse the Woodruff Avenue store during weekday hours or explore selected products online.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://redcloverherbs.com/pages/physical-store"
+    ],
+    "photoCandidates": [],
+    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://redcloverherbs.com/pages/physical-store"
+  },
+  {
+    "inputIndex": 31,
+    "name": "Tendril Herbal Apothecary and Healing Center",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://tendrilapothecary.com/",
+    "address": "532 Main Street",
+    "city": "Sandpoint",
+    "state": "Idaho",
+    "zip": "83864",
+    "phone": "208-597-7944",
+    "hours": "Mon–Fri 10am–6pm; Sat–Sun closed",
+    "tagline": "An herbal apothecary and learning space in Sandpoint",
+    "description": "Tendril Herbal Apothecary and Healing Center brings an herb shop and practitioner space together on Sandpoint’s Main Street. Its herbalists prepare teas, tinctures, syrups, and other botanical blends, with consultations and educational offerings available. The center also hosts a range of separately scheduled services, and visitors can browse the apothecary during its published weekday hours.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://tendrilapothecary.com/",
+      "https://tendrilapothecary.com/contact/",
+      "https://tendrilapothecary.com/about/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://tendrilapothecary.com/wp-content/uploads/tendrilapothecary-1.jpg",
+        "sourcePage": "https://tendrilapothecary.com/",
+        "alt": "Preparing botanicals at Tendril Apothecary",
+        "localFile": "docs/listing-images/national-20261027/tendril-herbal-apothecary-and-healing-center.webp",
+        "inspected": true,
+        "width": 1080,
+        "height": 1350,
+        "sha256": "8ea88acbf1ce3e65971cd7b90632ea1d736c539b1c73c1acb7069f659707b95e"
+      }
+    ]
+  },
+  {
+    "inputIndex": 32,
+    "name": "Jade Forest Wellness",
+    "status": "hold",
+    "reason": "Official domain could not be retrieved and current public retail address could not be verified. Registry/directory addresses differ; do not publish historical address.",
+    "website": "https://jadeforestwellness.com/",
+    "address": "223 North 29th Street",
+    "city": "Billings",
+    "state": "Montana",
+    "zip": "59101",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 33,
+    "name": "Butterfly Herbs",
+    "status": "ready",
+    "reason": "Current Destination Missoula visitor bureau directory lists storefront and phone; July 2026 consumer reviews corroborate activity. Own domain is parked and precise hours conflict, so require call before visit.",
+    "website": "https://destinationmissoula.org/restaurants",
+    "address": "232 North Higgins Avenue",
+    "city": "Missoula",
+    "state": "Montana",
+    "zip": "59802",
+    "phone": "406-728-8780",
+    "hours": "Call to confirm current shop and café hours",
+    "tagline": "Bulk herbs, tea, and a longstanding downtown coffee bar",
+    "description": "Butterfly Herbs is a longstanding downtown Missoula shop combining bulk herbs, teas, spices, and gifts with a coffee bar at the back. Visitors can browse botanical ingredients, scented oils, toiletries, and locally made or imported goods before stopping for a drink. The North Higgins Avenue storefront remains listed by the local visitor bureau; call for current hours.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://destinationmissoula.org/restaurants",
+      "https://www.restaurantji.com/mt/missoula/butterfly-herbs-/",
+      "https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403"
+    ],
+    "photoCandidates": [],
+    "photoUnavailableReason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://destinationmissoula.org/restaurants, https://www.restaurantji.com/mt/missoula/butterfly-herbs-/, https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403"
+  },
+  {
+    "inputIndex": 34,
+    "name": "Meadowsweet",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://www.meadowsweet-herbs.com/",
+    "address": "180 South 3rd Street West",
+    "city": "Missoula",
+    "state": "Montana",
+    "zip": "59801",
+    "phone": "406-728-0543",
+    "hours": "Mon–Fri 10am–6pm; Sat 10am–5pm; Sun closed",
+    "tagline": "Bulk botanicals and house-made goods on Missoula’s Hip Strip",
+    "description": "Meadowsweet Herbs is a woman-owned, family business staffed by trained herbalists on Missoula’s Hip Strip. The shop carries bulk herbs and tinctures, an essential oil blending bar, tea, botanical body care, books, gifts, and supplies for making herbal preparations. Its own salves and infused products sit alongside local makers and selected national brands.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.meadowsweet-herbs.com/",
+      "https://www.meadowsweet-herbs.com/about-us/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://i0.wp.com/4xy.5bf.myftpupload.com/wp-content/uploads/2019/05/Bulk-Herbs.jpg?resize=1620%2C1080&ssl=1",
+        "sourcePage": "https://www.meadowsweet-herbs.com/about-us/",
+        "alt": "Rows of bulk herb jars inside Meadowsweet Herbs",
+        "localFile": "docs/listing-images/national-20261027/meadowsweet.webp",
+        "inspected": true,
+        "width": 1620,
+        "height": 1080,
+        "sha256": "9d4aad25abb73f7c3417b0940deefc76934c58c0430642897ca6946f06ea57bd"
+      }
+    ]
+  },
+  {
+    "inputIndex": 35,
+    "name": "Herbal Junction Elixirs",
+    "status": "hold",
+    "reason": "Official Square website exists but returns a JavaScript shell; current public storefront at historical manufacturing address not verified. 2025 fair participation confirms business activity only.",
+    "website": "https://www.herbaljunctionelixirs.com/",
+    "address": "50 East 25th Avenue",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.oregoncountryfair.org/wp-content/uploads/2025/06/2025-OCF-Peach-Pit-Program-Guide.pdf"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 36,
+    "name": "Mountain Rose Herbs",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://mountainroseherbs.com/mercantiles/eugene",
+    "address": "152 West 5th Avenue, Suite 3",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97401",
+    "phone": "541-868-8420",
+    "hours": "Mon–Sat 10am–6pm; Sun 10am–5pm",
+    "tagline": "Organic botanicals and herbal supplies at Eugene’s Mercantile",
+    "description": "Mountain Rose Herbs Mercantile occupies the Farmers’ Union Marketplace in downtown Eugene. The retail shop brings together organic herbs and spices, teas, essential oils, extracts, natural body care, books, and supplies for home herbal projects. Visitors can explore a curated portion of the company’s catalog in a bright marketplace setting, with store-specific events and offerings throughout the year.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://mountainroseherbs.com/mercantiles/eugene"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-8466dwhhql/images/stencil/original/image-manager/mercantile-eugene-hero.jpg?t=1724272538",
+        "sourcePage": "https://mountainroseherbs.com/mercantiles/eugene",
+        "alt": "Interior of Mountain Rose Herbs Mercantile in Eugene",
+        "localFile": "docs/listing-images/national-20261027/mountain-rose-herbs.webp",
+        "inspected": true,
+        "width": 1152,
+        "height": 600,
+        "sha256": "f77738b335979cfa1d385a0b639ee72fa4fac19a2dd04a48bb342ef400f4a201"
+      }
+    ]
+  },
+  {
+    "inputIndex": 37,
+    "name": "Mrs. Thompsons Herbs, Gifts & Folklore",
+    "status": "ready",
+    "reason": "Official site updated for 32 years in business confirms new address; June 2026 storefront photograph obtained. Former W 5th address is obsolete.",
+    "website": "https://celticherbs.wordpress.com/",
+    "address": "776 West Park Street",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97401",
+    "phone": "541-686-6136",
+    "hours": "Tue–Sat noon–6pm; Sun–Mon closed",
+    "tagline": "Eugene’s Celtic herbal apothecary at a new downtown address",
+    "description": "Mrs. Thompson’s Herbs, Gifts & Folklore is the Eugene apothecary associated with clinical herbalist Heather Nic an Fhleisdeir and the Academy of Scottish Herbalism. Its work connects herbalism with aromatherapy, ethnobotany, and plant traditions. The business now welcomes visitors on West Park Street in downtown Eugene, with apothecary hours Tuesday through Saturday afternoons.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://celticherbs.wordpress.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://celticherbs.wordpress.com/wp-content/uploads/2026/06/20260424_122420.jpg",
+        "sourcePage": "https://celticherbs.wordpress.com/",
+        "alt": "Current West Park Street entrance to Mrs. Thompson’s apothecary",
+        "localFile": "docs/listing-images/national-20261027/mrs-thompsons-herbs-gifts-folklore.webp",
+        "inspected": true,
+        "width": 2992,
+        "height": 4000,
+        "sha256": "978ff9ca6dee39c7e43b76546be71827bb8bd73e9fe831bd87d6697cf99cc313"
+      }
+    ]
+  },
+  {
+    "inputIndex": 38,
+    "name": "OmChi Herbs",
+    "status": "hold",
+    "reason": "Official current contact page lists PO Box 5352 only; walk-in retail availability at historical Highway 99 address is unverified.",
+    "website": "https://www.omchiherbs.com/store/index.php?route=information%2Fcontact",
+    "address": "85833 Highway 99 South",
+    "city": "Eugene",
+    "state": "Oregon",
+    "zip": "97405",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.omchiherbs.com/store/index.php?information_id=4&route=information%2Finformation"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 39,
+    "name": "Clary Sage Herbarium",
+    "status": "ready",
+    "reason": "Current official website confirms physical location and offerings.",
+    "website": "https://clarysageherbarium.com/",
+    "address": "2901 NE Alberta Street",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97211",
+    "phone": "503-236-6737",
+    "hours": "Daily 10am–6pm; holiday/weather exceptions",
+    "tagline": "Organic herbs and botanical goods in Alberta’s arts district",
+    "description": "Clary Sage Herbarium is a Boricua woman-owned apothecary in Portland’s Alberta Arts District, established in 2011. The shop carries organic dried herbs, teas, herbal extracts, essential oils, house-made flower essences, body care, candles, crystals, natural incense, and books. Its selection also includes regional makers, with an emphasis on sourcing and thoughtful packaging.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://clarysageherbarium.com/",
+      "https://clarysageherbarium.com/about-us/",
+      "https://clarysageherbarium.com/contact-us/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-s76r68eena/product_images/uploaded_images/img-20190517-190937-1604448962.jpg",
+        "sourcePage": "https://clarysageherbarium.com/about-us/",
+        "alt": "Clary Sage Herbarium storefront and team",
+        "localFile": "docs/listing-images/national-20261027/clary-sage-herbarium.webp",
+        "inspected": true,
+        "width": 1200,
+        "height": 900,
+        "sha256": "2e3c4ac665a202bea56a807056516aa57d93e3f8c1747c5b3ad11598e8254fe6"
+      }
+    ]
+  },
+  {
+    "inputIndex": 40,
+    "name": "Essential Elements Apothecary Shop",
+    "status": "hold",
+    "reason": "Official website unavailable; third-party record marks business closed. No current primary confirmation of storefront or closure; hold.",
+    "website": "https://essentialelementshhc.com/",
+    "address": "7704 SE 13th Avenue",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97202",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 41,
+    "name": "The Herb Shoppe",
+    "status": "closed",
+    "reason": "Current official website explicitly says Shop Online Only. Do not add former Mississippi Avenue storefront as an active place.",
+    "website": "https://theherbshoppepdx.com/",
+    "address": "3912 North Mississippi Avenue",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97227",
+    "phone": null,
+    "hours": null,
+    "tagline": null,
+    "description": null,
+    "category_ids": [],
+    "sources": [
+      "https://theherbshoppepdx.com/"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 42,
+    "name": "Vibrance Ayurveda",
+    "status": "ready",
+    "reason": "Current official site confirms physical address, shop and appointment-based services. General walk-in retail hours are not published; use appointment caveat.",
+    "website": "https://vibranceayurveda.com/",
+    "address": "8083 SE 13th Avenue, Suite 5",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97202",
+    "phone": "503-788-3038",
+    "hours": "Mon–Sat by appointment; confirm retail visit in advance",
+    "tagline": "Ayurvedic consultations and an herbal supply shop in Sellwood",
+    "description": "Vibrance Ayurveda is a women-owned Portland practice with an Ayurvedic supply shop and full-service apothecary. Its products include organic bulk herbs and spices, herbal formulas, massage oils, essential oils, locally made ghee, and everyday Ayurvedic accessories. Consultations, education, and traditional body therapies are available by appointment at its Southeast 13th Avenue location.",
+    "category_ids": [
+      "shops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://vibranceayurveda.com/",
+      "https://vibranceayurveda.com/about/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn11.bigcommerce.com/s-7mjgcmfsxy/product_images/uploaded_images/vib-banner-herbalmedicine2.jpg",
+        "sourcePage": "https://vibranceayurveda.com/about/",
+        "alt": "Botanical ingredients featured by Vibrance Ayurveda",
+        "localFile": "docs/listing-images/national-20261027/vibrance-ayurveda.webp",
+        "inspected": true,
+        "width": 2000,
+        "height": 350,
+        "sha256": "ce7205dd05660f486ecf39713fe78f45e33625049bee8f5e6795ec603a5789e8"
+      }
+    ],
+    "photoNote": "Official product/botanical photo; no verified current shop interior image found."
+  }
+]

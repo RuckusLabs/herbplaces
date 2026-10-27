@@ -1,0 +1,600 @@
+[
+  {
+    "inputIndex": 0,
+    "name": "Humboldt Herbals",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.humboldtherbals.com/",
+    "address": "300 2nd Street",
+    "city": "Eureka",
+    "state": "California",
+    "zip": "95501",
+    "phone": "(707) 442-3541",
+    "hours": "Monday–Saturday: 10:30am–5:30pm; Sunday: 11am–5pm.",
+    "tagline": "Bulk herbs, teas, and botanical supplies in Eureka’s Old Town.",
+    "description": "Humboldt Herbals has served Eureka since 1998. Its Old Town shop stocks bulk herbs and teas, culinary spices, tinctures, aromatherapy products, and botanical body care. Containers, glassware, and other herbalist supplies make it a useful stop for home blending and preparation projects.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.humboldtherbals.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0842/8961/8162/files/Our_New_Shingle_Sign_at_300_2nd_Street.jpg?v=1785870331",
+        "sourcePage": "https://humboldtherbals.com/pages/about-us",
+        "alt": "Humboldt Herbals hanging sign outside the shop at 300 2nd Street",
+        "localFile": "docs/listing-images/national-20261027/humboldt-herbals-1.webp",
+        "width": 721,
+        "height": 1600,
+        "sha256": "666c5ca77fe1ce0dc6b4f6867b3a186fd6fe3abd81ad1f3f2d267db682bb5e18"
+      }
+    ]
+  },
+  {
+    "inputIndex": 2,
+    "name": "Bridget’s Botanicals",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.bridgetsbotanicalworld.com/",
+    "address": "5733 S Prince Street",
+    "city": "Littleton",
+    "state": "Colorado",
+    "zip": "80120",
+    "phone": "(303) 506-6790",
+    "hours": "Wednesday–Thursday: 11am–4pm; Friday: 11am–5pm; Saturday: 10am–5pm. Sunday openings vary; check with the shop.",
+    "tagline": "Small-batch botanicals and hands-on herbal experiences in historic Littleton.",
+    "description": "Bridget’s Botanicals combines a downtown Littleton apothecary with botanical education and private events. Founded by a scientist and certified herbalist, the business makes small-batch products with sustainably sourced ingredients. Its workshops include tea blending, aromatherapy mists, and botanical crafts, with a focus on women’s wellness.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.bridgetsbotanicalworld.com/visit-us",
+      "https://www.bridgetsbotanicalworld.com/learn",
+      "https://visitlittleton.org/partner/bridgets-botanicals/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/78d428_102e2139d8eb4a0697e0683da87d1274~mv2.jpg",
+        "sourcePage": "https://www.bridgetsbotanicalworld.com/",
+        "alt": "Bridget’s Botanicals herbal products display at a botanical garden event",
+        "localFile": "docs/listing-images/national-20261027/bridget-s-botanicals-1.webp",
+        "width": 1080,
+        "height": 720,
+        "sha256": "471c8648fe9665a65bf4fba66f4ebf3314a370aa933974efdeb365e86937bece"
+      }
+    ]
+  },
+  {
+    "inputIndex": 4,
+    "name": "Orion’s Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.orionsapothecary.com/",
+    "address": "270 E 29th Street",
+    "city": "Loveland",
+    "state": "Colorado",
+    "zip": "80538",
+    "phone": "(970) 617-2996",
+    "hours": "Monday–Saturday: 10am–6pm; Sunday: 10am–3pm.",
+    "tagline": "An herbal shop and learning space for curious plant and mushroom enthusiasts.",
+    "description": "Established in 2019, Orion’s Apothecary offers herbal blends, teas, mushroom products, and locally made botanical goods in Loveland. Its calendar includes tincture-making, tea classes for children, mushroom-growing workshops, and community meetups. Visit the shop to browse ingredients and seasonal products or check the website for upcoming classes.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.orionsapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://static.wixstatic.com/media/67be6f_2f3faf41ad3e4d38932cf7f79f7049ca~mv2.jpg",
+        "sourcePage": "https://www.orionsapothecary.com/about",
+        "alt": "Orion’s Apothecary fire cider bottles",
+        "localFile": "docs/listing-images/national-20261027/orion-s-apothecary-1.webp",
+        "width": 1440,
+        "height": 1581,
+        "sha256": "69a93bf736162d277f84bea5298933e3d21fe1361b90b4e4fbf88f378a474390"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/05f304_fa4e721c50df4f1e8bc3c9367a13dd3d~mv2.jpg",
+        "sourcePage": "https://www.orionsapothecary.com/",
+        "alt": "Colorado Sunshine Tea from Orion’s Apothecary",
+        "localFile": "docs/listing-images/national-20261027/orion-s-apothecary-2.webp",
+        "width": 1251,
+        "height": 1251,
+        "sha256": "7ab14e91d39a679177355a79a189a20c00ac5c8ae344c6680c9c83230e684e2e"
+      }
+    ]
+  },
+  {
+    "inputIndex": 5,
+    "name": "Sacred Vibes Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.sacredvibeshealing.com/",
+    "address": "717 Coney Island Avenue",
+    "city": "Brooklyn",
+    "state": "New York",
+    "zip": "11218",
+    "phone": "(718) 284-2890",
+    "hours": "Wednesday–Sunday: noon–6pm; Monday–Tuesday: closed.",
+    "tagline": "A Brooklyn apothecary rooted in spiritual herbalism and community learning.",
+    "description": "Founded by herbalist Karen Rose, Sacred Vibes Apothecary brings herbal teas, tinctures, and botanical preparations together in Brooklyn. The shop is also home to an educational community centered on spiritual herbalism. Its Art and Practice of Spiritual Herbalism apprenticeship offers a structured path for deeper study.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://www.sacredvibeshealing.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/56ddc3192fe131f85912885f/1542062946721-Q1AZ36XX3FPHKVBQF2N5/DSC_6132.jpg",
+        "sourcePage": "https://www.sacredvibeshealing.com/about-sacred-vibes",
+        "alt": "Archival photo of Sacred Vibes Apothecary’s earlier storefront with its founder",
+        "localFile": "docs/listing-images/national-20261027/sacred-vibes-apothecary-1.webp",
+        "width": 1600,
+        "height": 1068,
+        "sha256": "44cb9ed57e55e22b7762fdc47815c90a000ee1d39256940d48ece8355679ac6b"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/56ddc3192fe131f85912885f/1542073399854-F6J929VOFIU72OW2YCHC/gw150603apoth0451.jpg",
+        "sourcePage": "https://www.sacredvibeshealing.com/about-sacred-vibes",
+        "alt": "Herb jars on the shelves at Sacred Vibes Apothecary",
+        "localFile": "docs/listing-images/national-20261027/sacred-vibes-apothecary-2.webp",
+        "width": 1280,
+        "height": 853,
+        "sha256": "4cdaddb8aa55abe07fb7a6de8a0c5db04b79ae399df1cfc3a6ef92d848991a35"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/56ddc3192fe131f85912885f/1463971644177-SI0C1Q7L98SB8XA1APB4/Herbal+Consultations+at+Sacred+Vibes",
+        "sourcePage": "https://www.sacredvibeshealing.com/about-sacred-vibes",
+        "alt": "Herbal consultation table inside Sacred Vibes Apothecary",
+        "localFile": "docs/listing-images/national-20261027/sacred-vibes-apothecary-3.webp",
+        "width": 1064,
+        "height": 757,
+        "sha256": "47971c9e62ef21c1b4b7cd41ace68b7acc03db8d0e21a000beec7a1d97051331"
+      }
+    ]
+  },
+  {
+    "inputIndex": 6,
+    "name": "Moonrise Herbs",
+    "status": "ready",
+    "reason": "",
+    "website": "https://www.moonriseherbs.com/",
+    "address": "826 G Street",
+    "city": "Arcata",
+    "state": "California",
+    "zip": "95521",
+    "phone": "(707) 822-5296",
+    "hours": "Monday–Saturday: 10:30am–5:30pm; Sunday: noon–5pm. Confirm closing time before visiting; the website lists conflicting weekday hours.",
+    "tagline": "An Arcata Plaza herb shop sharing botanical ingredients and plant knowledge since 1985.",
+    "description": "Moonrise Herbs carries bulk herbs, teas, tinctures, essential oils, body care, books, and gifts on the Arcata Plaza. Founded by sisters Sarah and Lisa Hoyt in 1985, the business also hosts classes and offers herbal consultations by appointment. Its shelves include supplies for making your own herbal preparations.",
+    "category_ids": [
+      "shops",
+      "workshops",
+      "herbalists"
+    ],
+    "sources": [
+      "https://www.moonriseherbs.com/contact-us.html",
+      "https://www.moonriseherbs.com/about-us.html"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://www.moonriseherbs.com/images/homeslide/shoponline.jpg",
+        "sourcePage": "https://www.moonriseherbs.com/",
+        "alt": "Interior shelves and displays at Moonrise Herbs",
+        "localFile": "docs/listing-images/national-20261027/moonrise-herbs-1.webp",
+        "width": 710,
+        "height": 300,
+        "sha256": "915f1b9da58ee385f08e5c809b00f5d3f68012d27f4ecbad703b8305287c3fdc"
+      }
+    ]
+  },
+  {
+    "inputIndex": 7,
+    "name": "Great Cape Herbs",
+    "status": "hold",
+    "reason": "2022 operator notice closed storefront/gardens; 2025 farm guide conflicts; original domain now parked. Current walk-in access unconfirmed.",
+    "website": "",
+    "address": "2624 Main Street",
+    "city": "Brewster",
+    "state": "Massachusetts",
+    "zip": "02631",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+      "https://greatcape.com/",
+      "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 8,
+    "name": "MXED GREENS",
+    "status": "closed",
+    "reason": "Official store explicitly says MXED GREENS is now closed.",
+    "website": "https://mxedgreens.com/",
+    "address": "150 Pleasant Street, Suite 213",
+    "city": "Easthampton",
+    "state": "Massachusetts",
+    "zip": "01027",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://mxedgreens.com/products/greasewood-plantwater-hydrosol",
+      "https://mxedgreens.com/pages/contact-us"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 9,
+    "name": "Soulful Body & Mind Apothecary",
+    "status": "hold",
+    "reason": "Historical official contact and 2025 local tour confirm shop, but original domain now redirects to unrelated adult content. Current official website, storefront status, and usable photos require confirmation. Do not link repurposed domain.",
+    "website": "",
+    "address": "12 Elm Street",
+    "city": "Baldwinville",
+    "state": "Massachusetts",
+    "zip": "01468",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://www.countryroadschristmas.com/",
+      "https://www.soulful-body-mind.com/contact"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 10,
+    "name": "Thyme Herbal Apothecary",
+    "status": "ready",
+    "reason": "",
+    "website": "https://thymeherbalapothecary.com/",
+    "address": "277 Shrewsbury Street",
+    "city": "Worcester",
+    "state": "Massachusetts",
+    "zip": "01604",
+    "phone": "(508) 796-5040",
+    "hours": "Tuesday–Friday: 10am–6pm; Saturday: 10am–4pm; Sunday–Monday: closed.",
+    "tagline": "Bulk herbs, house-blended teas, and botanical goods on Shrewsbury Street.",
+    "description": "Thyme Herbal Apothecary stocks more than 200 organic and sustainably wildcrafted herbs, teas, and spices in Worcester. The shop makes its own herbal tisanes, tinctures, syrups, balms, and oils, alongside a selection of bath products, beeswax candles, and local honey. It has served the neighborhood since 2022.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://thymeherbalapothecary.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://thymeherbalapothecary.com/cdn/shop/files/dsc_3677_1500x.jpg?v=1682444872",
+        "sourcePage": "https://thymeherbalapothecary.com/",
+        "alt": "Bulk herb jars at Thyme Herbal Apothecary",
+        "localFile": "docs/listing-images/national-20261027/thyme-herbal-apothecary-1.webp",
+        "width": 1280,
+        "height": 1600,
+        "sha256": "0c87877a860e5b2a84cf96c1ba7bb830baa4c2361b1bb088df09d498a132fdfd"
+      },
+      {
+        "url": "https://thymeherbalapothecary.com/cdn/shop/files/DSC_4232_1500x.jpg?v=1682444982",
+        "sourcePage": "https://thymeherbalapothecary.com/",
+        "alt": "Thyme Herbal Apothecary shop interior",
+        "localFile": "docs/listing-images/national-20261027/thyme-herbal-apothecary-2.webp",
+        "width": 1280,
+        "height": 1600,
+        "sha256": "4ad3a4d29d6e34975349bcf5e988aeaa304f240dd0d00f4b4cb7dad0221425e1"
+      }
+    ]
+  },
+  {
+    "inputIndex": 11,
+    "name": "Wild Heart Herb House",
+    "status": "ready",
+    "reason": "",
+    "website": "https://wildheartherbhouse.com/",
+    "address": "777 Shawmut Avenue",
+    "city": "New Bedford",
+    "state": "Massachusetts",
+    "zip": "02746",
+    "phone": "(774) 510-7929",
+    "hours": "Wednesday–Friday: noon–5pm; Saturday: 10am–3pm.",
+    "tagline": "A community apothecary at the entrance to New Bedford’s Haskell Gardens.",
+    "description": "Wild Heart Herb House is a queer- and women-owned apothecary with more than 100 dried herbs and mushrooms sold by the ounce. It carries preparations from local herbalists, making supplies, candles, incense, and handmade gifts. Classes, workshops, and free community events are part of its regular offerings.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://wildheartherbhouse.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5b620c1731d4dfdb714342cf/c22fd37a-235d-47e2-9f50-ff5977aaa7d6/BESTwildheart+-+1.jpg",
+        "sourcePage": "https://wildheartherbhouse.com/",
+        "alt": "Wild Heart Herb House entrance framed by garden plants",
+        "localFile": "docs/listing-images/national-20261027/wild-heart-herb-house-1.webp",
+        "width": 1600,
+        "height": 1224,
+        "sha256": "139e0e070326c139bd462b7edbf05f783c4e16704bf9f2a9d45aab9d39b100e7"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5b620c1731d4dfdb714342cf/1780752051096-99K97U6AWZBK4F1THGSJ/image-asset.jpeg",
+        "sourcePage": "https://wildheartherbhouse.com/",
+        "alt": "Garden at Wild Heart Herb House",
+        "localFile": "docs/listing-images/national-20261027/wild-heart-herb-house-2.webp",
+        "width": 1201,
+        "height": 1600,
+        "sha256": "fce89e35c61ad53d421a5ee8bfa59361f38aa211b8091ad16f4393788e485295"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5b620c1731d4dfdb714342cf/1779280164834-9705ARBTVCEUUNSRGZTM/image-asset.jpeg",
+        "sourcePage": "https://wildheartherbhouse.com/",
+        "alt": "Wild Heart Herb House shop entrance",
+        "localFile": "docs/listing-images/national-20261027/wild-heart-herb-house-3.webp",
+        "width": 1201,
+        "height": 1600,
+        "sha256": "6ea31ce7752c4df2855690113d6c668bafc9f9a719524ffa9c5307ed2e0be887"
+      }
+    ]
+  },
+  {
+    "inputIndex": 12,
+    "name": "Found Herbal Apothecary",
+    "status": "hold",
+    "reason": "Current official website identifies an Austin clinical practice; does not confirm the historical Bronxville storefront. Do not publish the outdated New York address.",
+    "website": "https://foundherbal.com/",
+    "address": "118 Kraft Avenue",
+    "city": "Bronxville",
+    "state": "New York",
+    "zip": "10708",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://foundherbal.com/"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 13,
+    "name": "Briar Patch Herbs",
+    "status": "hold",
+    "reason": "Official site announces new owners/name and reopening; September 2026 partner events still use Briarpatch name. Need current business identity and hours before publishing.",
+    "website": "https://briarpatchherbs.com/",
+    "address": "4480 SW Garden Home Road",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97219",
+    "phone": "",
+    "hours": "",
+    "tagline": "",
+    "description": "",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://briarpatchherbs.com/",
+      "https://vitalforceherbs.com/events"
+    ],
+    "photoCandidates": []
+  },
+  {
+    "inputIndex": 14,
+    "name": "Dragon Herbarium",
+    "status": "ready",
+    "reason": "",
+    "website": "https://dragonherbarium.com/",
+    "address": "4638 SW Beaverton-Hillsdale Highway",
+    "city": "Portland",
+    "state": "Oregon",
+    "zip": "97221",
+    "phone": "(503) 244-7049",
+    "hours": "Monday–Saturday: 11am–6pm; Sunday: closed.",
+    "tagline": "A family-run Portland apothecary with hundreds of bulk herbs and teas.",
+    "description": "Dragon Herbarium carries more than 400 bulk organic herbs and teas, along with botanical supplies and gifts. The Keith family has operated the business for over 40 years, building on a shop first opened in the 1970s. Visit its Beaverton-Hillsdale Highway storefront for ingredients and blends.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://dragonherbarium.com/pages/contact-us",
+      "https://dragonherbarium.com/pages/about-us"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/1100/3960/files/Wendi-Bob_large.jpg?v=1469697663",
+        "sourcePage": "https://dragonherbarium.com/pages/about-us",
+        "alt": "Dragon Herbarium owners inside the shop",
+        "localFile": "docs/listing-images/national-20261027/dragon-herbarium-1.webp",
+        "width": 300,
+        "height": 225,
+        "sha256": "1b03a5e469733a32726769128fc6c85444e51014792ad7864f57ea6627b5bce3"
+      }
+    ]
+  },
+  {
+    "inputIndex": 15,
+    "name": "The Herb Shop",
+    "status": "ready",
+    "reason": "",
+    "website": "https://bulkherbshop.com/",
+    "address": "247 SW G Street",
+    "city": "Grants Pass",
+    "state": "Oregon",
+    "zip": "97526",
+    "phone": "(541) 479-3602",
+    "hours": "Monday–Friday: 9am–6pm; Saturday: 9am–5pm.",
+    "tagline": "Bulk herbs, teas, and spices in historic downtown Grants Pass.",
+    "description": "The Herb Shop offers bulk herbs, teas, spices, herbal extracts, essential oils, and supplements in downtown Grants Pass. Its selection includes botanicals sourced from growers in the Rogue Valley, with organic and wildcrafted options. Browse the storefront for blending ingredients, aromatherapy products, and other herbal supplies.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://bulkherbshop.com/pages/about-us",
+      "https://traveloregon.com/things-to-do/oregon-attractions/shopping/the-herb-shop/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://visitgrantspass.com/wp-content/uploads/2023/01/Herb-Shop.jpeg",
+        "sourcePage": "https://visitgrantspass.com/blog/healthy-living-in-grants-pass/",
+        "alt": "The Herb Shop storefront and floral mural in Grants Pass",
+        "localFile": "docs/listing-images/national-20261027/the-herb-shop-1.webp",
+        "width": 1200,
+        "height": 1600,
+        "sha256": "7172f343a5de8e9ccf9a3cf2575e03cc513abac9a6953f64279bad3d6d75768f"
+      }
+    ]
+  },
+  {
+    "inputIndex": 16,
+    "name": "Clover Apothecary at Clover Gift Shop",
+    "status": "ready",
+    "reason": "",
+    "website": "https://clovergiftshop.com/",
+    "address": "10 Elm Street",
+    "city": "Woodstock",
+    "state": "Vermont",
+    "zip": "05091",
+    "phone": "(802) 457-2527",
+    "hours": "Monday–Saturday: 10am–5pm; Sunday: 11am–4pm.",
+    "tagline": "Vermont-made botanical products inside Woodstock’s historic Clover Gift Shop.",
+    "description": "Clover Apothecary is the house botanical product line at Clover Gift Shop, a Woodstock business established in 1928. The shop offers locally crafted salves, lotions, skin creams, and hemp-derived CBD products alongside gifts and home goods. It supports Vermont makers and hosts workshops and product demonstrations.",
+    "category_ids": [
+      "shops",
+      "workshops"
+    ],
+    "sources": [
+      "https://clovergiftshop.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://dhgf5mcbrms62.cloudfront.net/134787786/cover-kcqJRQ/gmhNftr-1200x1200.webp",
+        "sourcePage": "https://clovergiftshop.com/",
+        "alt": "Clover Gift Shop storefront in Woodstock",
+        "localFile": "docs/listing-images/national-20261027/clover-apothecary-at-clover-gift-shop-1.webp",
+        "width": 1101,
+        "height": 1600,
+        "sha256": "440f28556d6a79f706869fae18d6e4388d3373c3f7c5054770f7e324b21994fd"
+      },
+      {
+        "url": "https://dhgf5mcbrms62.cloudfront.net/134787786/location-Gq7Zgm/WmphwqV-1200x1200.webp",
+        "sourcePage": "https://clovergiftshop.com/",
+        "alt": "Interior of Clover Gift Shop with gifts and displays",
+        "localFile": "docs/listing-images/national-20261027/clover-apothecary-at-clover-gift-shop-2.webp",
+        "width": 1600,
+        "height": 900,
+        "sha256": "a8901f703576a3262dae5cdd12fab29736153c8ab3f8d9aceb603a3cc59a3363"
+      }
+    ]
+  },
+  {
+    "inputIndex": 17,
+    "name": "Herban Wellness",
+    "status": "ready",
+    "reason": "",
+    "website": "https://herbanwellness.net/",
+    "address": "103 Lake Street S",
+    "city": "Kirkland",
+    "state": "Washington",
+    "zip": "98033",
+    "phone": "(206) 330-2171",
+    "hours": "Check the shop website or call for current hours.",
+    "tagline": "A Kirkland apothecary for bulk herbs, custom blends, and herbal learning.",
+    "description": "Herban Wellness carries bulk herbs and powders, house-blended teas and tinctures, essential oils, and botanical skincare in downtown Kirkland. Custom blends, herbal consultations, and educational events complement the retail selection. Visit the shop to explore ingredients or ask about arranging a consultation.",
+    "category_ids": [
+      "shops",
+      "herbalists",
+      "workshops"
+    ],
+    "sources": [
+      "https://herbanwellness.net/",
+      "https://herbanwellness.net/pages/contact"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://herbanwellness.net/cdn/shop/files/Herban_Wellness-43.jpg?v=1725564868&width=3840",
+        "sourcePage": "https://herbanwellness.net/pages/about-us",
+        "alt": "Herban Wellness shop interior and botanical products",
+        "localFile": "docs/listing-images/national-20261027/herban-wellness-1.webp",
+        "width": 1600,
+        "height": 1069,
+        "sha256": "c442213f2e34876dbfad4f50b1026c772fc07763c3b84728739c5fbe656cfd6f"
+      },
+      {
+        "url": "https://herbanwellness.net/cdn/shop/files/Herban_Wellness_Products_0253ffbf-ed52-4603-869f-bed3fb802447.png?v=1681938524&width=3840",
+        "sourcePage": "https://herbanwellness.net/",
+        "alt": "Herban Wellness teas and tinctures",
+        "localFile": "docs/listing-images/national-20261027/herban-wellness-2.webp",
+        "width": 1415,
+        "height": 799,
+        "sha256": "29ed4495dc98157aad0ad2d9db0f2ed7fb9b134acb91d8fa8f5b0181fba5f122"
+      }
+    ]
+  },
+  {
+    "inputIndex": 18,
+    "name": "Wonderland Herbs, Teas & Spices",
+    "status": "ready",
+    "reason": "",
+    "website": "https://wonderlandherbsteasspices.wordpress.com/",
+    "address": "1305 Railroad Avenue",
+    "city": "Bellingham",
+    "state": "Washington",
+    "zip": "98225",
+    "phone": "(360) 733-0517",
+    "hours": "Call the shop for current hours.",
+    "tagline": "A family-owned herb, tea, and spice shop serving Bellingham since 1976.",
+    "description": "Wonderland Herbs, Teas & Spices is a family-run shop on Railroad Avenue in downtown Bellingham. Founded by Linda Quintana in 1976, it has grown into a multigenerational business. Its focus remains freshly sourced herbs, teas, and spices, with a long connection to the local community.",
+    "category_ids": [
+      "shops"
+    ],
+    "sources": [
+      "https://wonderlandherbsteasspices.wordpress.com/"
+    ],
+    "photoCandidates": [
+      {
+        "url": "https://wonderlandherbsteasspices.wordpress.com/wp-content/uploads/2018/06/img_0700-edited-e1528493784350.jpg",
+        "sourcePage": "https://wonderlandherbsteasspices.wordpress.com/",
+        "alt": "Wonderland Herbs, Teas & Spices shop sign",
+        "localFile": "docs/listing-images/national-20261027/wonderland-herbs-teas-spices-1.webp",
+        "width": 1600,
+        "height": 779,
+        "sha256": "d279e6ecd993a8f859c92efe5d56e41f82b4cd069f055afff95c959ed42f7578"
+      }
+    ]
+  },
+  {
+    "inputIndex": 1,
+    "name": "Balanced Root Apothecary",
+    "status": "duplicate",
+    "reason": "Already in public directory; preserve existing profile."
+  },
+  {
+    "inputIndex": 3,
+    "name": "Little Herbal Apothecary",
+    "status": "duplicate",
+    "reason": "Already in public directory; preserve existing profile."
+  }
+]

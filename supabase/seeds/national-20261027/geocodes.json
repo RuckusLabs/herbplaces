@@ -1,0 +1,1480 @@
+{
+  "0": {
+    "query": "300 2nd Street, Eureka, California 95501",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=300+2nd+Street%2C+Eureka%2C+California+95501&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "112989012"
+        },
+        "coordinates": {
+          "x": -124.168118745121,
+          "y": 40.804109774439
+        },
+        "addressComponents": {
+          "zip": "95501",
+          "streetName": "2ND",
+          "preType": "",
+          "city": "EUREKA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "200",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "398",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "300 2ND ST, EUREKA, CA, 95501"
+      }
+    ]
+  },
+  "2": {
+    "query": "5733 S Prince Street, Littleton, Colorado 80120",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=5733+S+Prince+Street%2C+Littleton%2C+Colorado+80120&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "177335539"
+        },
+        "coordinates": {
+          "x": -105.016272113125,
+          "y": 39.613358391233
+        },
+        "addressComponents": {
+          "zip": "80120",
+          "streetName": "PRINCE",
+          "preType": "",
+          "city": "LITTLETON",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "5701",
+          "state": "CO",
+          "suffixType": "ST",
+          "toAddress": "5799",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "5733 S PRINCE ST, LITTLETON, CO, 80120"
+      }
+    ]
+  },
+  "4": {
+    "query": "270 E 29th Street, Loveland, Colorado 80538",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=270+E+29th+Street%2C+Loveland%2C+Colorado+80538&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "188485159"
+        },
+        "coordinates": {
+          "x": -105.073356868774,
+          "y": 40.421654721211
+        },
+        "addressComponents": {
+          "zip": "80538",
+          "streetName": "29TH",
+          "preType": "",
+          "city": "LOVELAND",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "298",
+          "state": "CO",
+          "suffixType": "ST",
+          "toAddress": "200",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "270 E 29TH ST, LOVELAND, CO, 80538"
+      }
+    ]
+  },
+  "5": {
+    "query": "717 Coney Island Avenue, Brooklyn, New York 11218",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=717+Coney+Island+Avenue%2C+Brooklyn%2C+New+York+11218&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "642653611"
+        },
+        "coordinates": {
+          "x": -73.968891350737,
+          "y": 40.639940599552
+        },
+        "addressComponents": {
+          "zip": "11218",
+          "streetName": "CONEY ISLAND",
+          "preType": "",
+          "city": "BROOKLYN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "653",
+          "state": "NY",
+          "suffixType": "AVE",
+          "toAddress": "745",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "717 CONEY ISLAND AVE, BROOKLYN, NY, 11218"
+      }
+    ]
+  },
+  "6": {
+    "query": "826 G Street, Arcata, California 95521",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=826+G+Street%2C+Arcata%2C+California+95521&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "112992399"
+        },
+        "coordinates": {
+          "x": -124.085900241932,
+          "y": 40.86822654787
+        },
+        "addressComponents": {
+          "zip": "95521",
+          "streetName": "G",
+          "preType": "",
+          "city": "ARCATA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "800",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "898",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "826 G ST, ARCATA, CA, 95521"
+      }
+    ]
+  },
+  "10": {
+    "query": "277 Shrewsbury Street, Worcester, Massachusetts 01604",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=277+Shrewsbury+Street%2C+Worcester%2C+Massachusetts+01604&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "40014068"
+        },
+        "coordinates": {
+          "x": -71.781211858109,
+          "y": 42.268069343521
+        },
+        "addressComponents": {
+          "zip": "01604",
+          "streetName": "SHREWSBURY",
+          "preType": "",
+          "city": "WORCESTER",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "273",
+          "state": "MA",
+          "suffixType": "ST",
+          "toAddress": "297",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "277 SHREWSBURY ST, WORCESTER, MA, 01604"
+      }
+    ]
+  },
+  "11": {
+    "query": "777 Shawmut Avenue, New Bedford, Massachusetts 02746",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=777+Shawmut+Avenue%2C+New+Bedford%2C+Massachusetts+02746&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "46751233"
+        },
+        "coordinates": {
+          "x": -70.945150908599,
+          "y": 41.655330220063
+        },
+        "addressComponents": {
+          "zip": "02746",
+          "streetName": "SHAWMUT",
+          "preType": "",
+          "city": "NEW BEDFORD",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "777",
+          "state": "MA",
+          "suffixType": "AVE",
+          "toAddress": "827",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "777 SHAWMUT AVE, NEW BEDFORD, MA, 02746"
+      }
+    ]
+  },
+  "14": {
+    "query": "4638 SW Beaverton-Hillsdale Highway, Portland, Oregon 97221",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4638+SW+Beaverton-Hillsdale+Highway%2C+Portland%2C+Oregon+97221&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "647850178"
+        },
+        "coordinates": {
+          "x": -122.724427298349,
+          "y": 45.485844488148
+        },
+        "addressComponents": {
+          "zip": "97221",
+          "streetName": "BEAVERTON-HILLSDALE",
+          "preType": "",
+          "city": "PORTLAND",
+          "preDirection": "SW",
+          "suffixDirection": "",
+          "fromAddress": "4500",
+          "state": "OR",
+          "suffixType": "HWY",
+          "toAddress": "4734",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4638 SW BEAVERTON-HILLSDALE HWY, PORTLAND, OR, 97221"
+      }
+    ]
+  },
+  "15": {
+    "query": "247 SW G Street, Grants Pass, Oregon 97526",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=247+SW+G+Street%2C+Grants+Pass%2C+Oregon+97526&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "156572299"
+        },
+        "coordinates": {
+          "x": -123.329037910486,
+          "y": 42.439457033106
+        },
+        "addressComponents": {
+          "zip": "97526",
+          "streetName": "G",
+          "preType": "",
+          "city": "GRANTS PASS",
+          "preDirection": "SW",
+          "suffixDirection": "",
+          "fromAddress": "299",
+          "state": "OR",
+          "suffixType": "ST",
+          "toAddress": "201",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "247 SW G ST, GRANTS PASS, OR, 97526"
+      }
+    ]
+  },
+  "16": {
+    "query": "10 Elm Street, Woodstock, Vermont 05091",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=10+Elm+Street%2C+Woodstock%2C+Vermont+05091&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "139236072"
+        },
+        "coordinates": {
+          "x": -72.518544845155,
+          "y": 43.625515859703
+        },
+        "addressComponents": {
+          "zip": "05091",
+          "streetName": "ELM",
+          "preType": "",
+          "city": "WOODSTOCK",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "VT",
+          "suffixType": "ST",
+          "toAddress": "38",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "10 ELM ST, WOODSTOCK, VT, 05091"
+      }
+    ]
+  },
+  "17": {
+    "query": "103 Lake Street S, Kirkland, Washington 98033",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=103+Lake+Street+S%2C+Kirkland%2C+Washington+98033&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "186603454"
+        },
+        "coordinates": {
+          "x": -122.206618392602,
+          "y": 47.675456566781
+        },
+        "addressComponents": {
+          "zip": "98033",
+          "streetName": "LAKE",
+          "preType": "",
+          "city": "KIRKLAND",
+          "preDirection": "",
+          "suffixDirection": "S",
+          "fromAddress": "101",
+          "state": "WA",
+          "suffixType": "ST",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "103 LAKE ST S, KIRKLAND, WA, 98033"
+      }
+    ]
+  },
+  "18": {
+    "query": "1305 Railroad Avenue, Bellingham, Washington 98225",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1305+Railroad+Avenue%2C+Bellingham%2C+Washington+98225&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "183772255"
+        },
+        "coordinates": {
+          "x": -122.478069747305,
+          "y": 48.749202137545
+        },
+        "addressComponents": {
+          "zip": "98225",
+          "streetName": "RAILROAD",
+          "preType": "",
+          "city": "BELLINGHAM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1301",
+          "state": "WA",
+          "suffixType": "AVE",
+          "toAddress": "1399",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1305 RAILROAD AVE, BELLINGHAM, WA, 98225"
+      }
+    ]
+  },
+  "43": {
+    "query": "29 North Market Street, Asheville, North Carolina 28801",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=29+North+Market+Street%2C+Asheville%2C+North+Carolina+28801&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "617257749"
+        },
+        "coordinates": {
+          "x": -82.551210400066,
+          "y": 35.596695227672
+        },
+        "addressComponents": {
+          "zip": "28801",
+          "streetName": "MARKET",
+          "preType": "",
+          "city": "ASHEVILLE",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "1",
+          "state": "NC",
+          "suffixType": "ST",
+          "toAddress": "33",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "29 N MARKET ST, ASHEVILLE, NC, 28801"
+      }
+    ]
+  },
+  "44": {
+    "query": "604 West Morehead Street, Charlotte, North Carolina 28208",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=604+West+Morehead+Street%2C+Charlotte%2C+North+Carolina+28208&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "648379791"
+        },
+        "coordinates": {
+          "x": -80.855884355754,
+          "y": 35.225931364092
+        },
+        "addressComponents": {
+          "zip": "28208",
+          "streetName": "MOREHEAD",
+          "preType": "",
+          "city": "CHARLOTTE",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "600",
+          "state": "NC",
+          "suffixType": "ST",
+          "toAddress": "618",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "604 W MOREHEAD ST, CHARLOTTE, NC, 28208"
+      }
+    ]
+  },
+  "47": {
+    "query": "627 US Highway 64, Manteo, North Carolina 27954",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=627+US+Highway+64%2C+Manteo%2C+North+Carolina+27954&benchmark=Public_AR_Current&format=json",
+    "matches": [],
+    "alternateLookups": [
+      {
+        "query": "627 US 64, Manteo NC 27954",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=627+US+64%2C+Manteo+NC+27954&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      },
+      {
+        "query": "627 US-64, Manteo NC 27954",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=627+US-64%2C+Manteo+NC+27954&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      }
+    ]
+  },
+  "48": {
+    "query": "35 West Passaic Street, Peachland, North Carolina 28133",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=35+West+Passaic+Street%2C+Peachland%2C+North+Carolina+28133&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "12780114"
+        },
+        "coordinates": {
+          "x": -80.2654894185,
+          "y": 34.992901198796
+        },
+        "addressComponents": {
+          "zip": "28133",
+          "streetName": "PASSIAC",
+          "preType": "",
+          "city": "PEACHLAND",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "31",
+          "state": "NC",
+          "suffixType": "ST",
+          "toAddress": "65",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "35 W PASSIAC ST, PEACHLAND, NC, 28133"
+      }
+    ]
+  },
+  "49": {
+    "query": "4725 Yadkinville Road, Pfafftown, North Carolina 27040",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4725+Yadkinville+Road%2C+Pfafftown%2C+North+Carolina+27040&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "84600413"
+        },
+        "coordinates": {
+          "x": -80.361306777883,
+          "y": 36.152862962776
+        },
+        "addressComponents": {
+          "zip": "27040",
+          "streetName": "YADKINVILLE",
+          "preType": "",
+          "city": "PFAFFTOWN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "4601",
+          "state": "NC",
+          "suffixType": "RD",
+          "toAddress": "4749",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4725 YADKINVILLE RD, PFAFFTOWN, NC, 27040"
+      }
+    ]
+  },
+  "50": {
+    "query": "118A West Broad Street, Statesville, North Carolina 28677",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=118A+West+Broad+Street%2C+Statesville%2C+North+Carolina+28677&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "46027001"
+        },
+        "coordinates": {
+          "x": -80.88905563356,
+          "y": 35.784449687577
+        },
+        "addressComponents": {
+          "zip": "28677",
+          "streetName": "BROAD",
+          "preType": "",
+          "city": "STATESVILLE",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "120",
+          "state": "NC",
+          "suffixType": "ST",
+          "toAddress": "100",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "118A W BROAD ST, STATESVILLE, NC, 28677"
+      }
+    ]
+  },
+  "51": {
+    "query": "211-5 Atlantic Beach Causeway, Atlantic Beach, North Carolina 28512",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=211-5+Atlantic+Beach+Causeway%2C+Atlantic+Beach%2C+North+Carolina+28512&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "223876375"
+        },
+        "coordinates": {
+          "x": -76.738212385481,
+          "y": 34.70246890563
+        },
+        "addressComponents": {
+          "zip": "28512",
+          "streetName": "ATLANTIC BEACH",
+          "preType": "",
+          "city": "ATLANTIC BEACH",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "101",
+          "state": "NC",
+          "suffixType": "CSWY",
+          "toAddress": "299",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "211 ATLANTIC BEACH CSWY, ATLANTIC BEACH, NC, 28512"
+      }
+    ]
+  },
+  "52": {
+    "query": "6412 South MacDill Avenue, Tampa, Florida 33611",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=6412+South+MacDill+Avenue%2C+Tampa%2C+Florida+33611&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "655992381"
+        },
+        "coordinates": {
+          "x": -82.493975269739,
+          "y": 27.87623596165
+        },
+        "addressComponents": {
+          "zip": "33611",
+          "streetName": "MACDILL",
+          "preType": "",
+          "city": "TAMPA",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "6370",
+          "state": "FL",
+          "suffixType": "AVE",
+          "toAddress": "6498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "6412 S MACDILL AVE, TAMPA, FL, 33611"
+      }
+    ]
+  },
+  "54": {
+    "query": "5221 14th Street West, Bradenton, Florida 34207",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=5221+14th+Street+West%2C+Bradenton%2C+Florida+34207&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "637504867"
+        },
+        "coordinates": {
+          "x": -82.575341131347,
+          "y": 27.448453849772
+        },
+        "addressComponents": {
+          "zip": "34207",
+          "streetName": "14TH",
+          "preType": "",
+          "city": "BRADENTON",
+          "preDirection": "",
+          "suffixDirection": "W",
+          "fromAddress": "5173",
+          "state": "FL",
+          "suffixType": "ST",
+          "toAddress": "5299",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "5221 14TH ST W, BRADENTON, FL, 34207"
+      }
+    ]
+  },
+  "55": {
+    "query": "28 Howard Street, Burlington, Vermont 05401",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=28+Howard+Street%2C+Burlington%2C+Vermont+05401&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "135828211"
+        },
+        "coordinates": {
+          "x": -73.213884442004,
+          "y": 44.467211184766
+        },
+        "addressComponents": {
+          "zip": "05401",
+          "streetName": "HOWARD",
+          "preType": "",
+          "city": "BURLINGTON",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "2",
+          "state": "VT",
+          "suffixType": "ST",
+          "toAddress": "46",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "28 HOWARD ST, BURLINGTON, VT, 05401"
+      }
+    ]
+  },
+  "56": {
+    "query": "248 Cole Avenue, Williamstown, Massachusetts 01267",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=248+Cole+Avenue%2C+Williamstown%2C+Massachusetts+01267&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "3915426"
+        },
+        "coordinates": {
+          "x": -73.192452716857,
+          "y": 42.716488315085
+        },
+        "addressComponents": {
+          "zip": "01267",
+          "streetName": "COLE",
+          "preType": "",
+          "city": "WILLIAMSTOWN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "240",
+          "state": "MA",
+          "suffixType": "AVE",
+          "toAddress": "260",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "248 COLE AVE, WILLIAMSTOWN, MA, 01267"
+      }
+    ]
+  },
+  "57": {
+    "query": "469 Highland Avenue, Augusta, Georgia 30904",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=469+Highland+Avenue%2C+Augusta%2C+Georgia+30904&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "604699830"
+        },
+        "coordinates": {
+          "x": -82.029937823617,
+          "y": 33.484385651992
+        },
+        "addressComponents": {
+          "zip": "30909",
+          "streetName": "HIGHLAND",
+          "preType": "",
+          "city": "AUGUSTA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "457",
+          "state": "GA",
+          "suffixType": "AVE",
+          "toAddress": "471",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "469 HIGHLAND AVE, AUGUSTA, GA, 30909"
+      }
+    ]
+  },
+  "58": {
+    "query": "8065 South Main Street, Helen, Georgia 30545",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=8065+South+Main+Street%2C+Helen%2C+Georgia+30545&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "656411402"
+        },
+        "coordinates": {
+          "x": -83.721264309043,
+          "y": 34.698412344318
+        },
+        "addressComponents": {
+          "zip": "30545",
+          "streetName": "S MAIN",
+          "preType": "",
+          "city": "HELEN",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "8049",
+          "state": "GA",
+          "suffixType": "ST",
+          "toAddress": "8499",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "8065 S MAIN ST, HELEN, GA, 30545"
+      }
+    ]
+  },
+  "59": {
+    "query": "604 Crain Highway South, Glen Burnie, Maryland 21061",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=604+Crain+Highway+South%2C+Glen+Burnie%2C+Maryland+21061&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "68157963"
+        },
+        "coordinates": {
+          "x": -76.629610722161,
+          "y": 39.156854396318
+        },
+        "addressComponents": {
+          "zip": "21061",
+          "streetName": "CRAIN",
+          "preType": "",
+          "city": "GLEN BURNIE",
+          "preDirection": "",
+          "suffixDirection": "S",
+          "fromAddress": "600",
+          "state": "MD",
+          "suffixType": "HWY",
+          "toAddress": "698",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "604 CRAIN HWY S, GLEN BURNIE, MD, 21061"
+      }
+    ]
+  },
+  "60": {
+    "query": "4 River Lane, Sperryville, Virginia 22740",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4+River+Lane%2C+Sperryville%2C+Virginia+22740&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "641142085"
+        },
+        "coordinates": {
+          "x": -78.216948675955,
+          "y": 38.658378770301
+        },
+        "addressComponents": {
+          "zip": "22740",
+          "streetName": "RIVER",
+          "preType": "",
+          "city": "SPERRYVILLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "98",
+          "state": "VA",
+          "suffixType": "LN",
+          "toAddress": "2",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4 RIVER LN, SPERRYVILLE, VA, 22740"
+      }
+    ]
+  },
+  "61": {
+    "query": "257 South 20th Street, Philadelphia, Pennsylvania 19103",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=257+South+20th+Street%2C+Philadelphia%2C+Pennsylvania+19103&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "131407725"
+        },
+        "coordinates": {
+          "x": -75.174153903365,
+          "y": 39.948620419775
+        },
+        "addressComponents": {
+          "zip": "19103",
+          "streetName": "20TH",
+          "preType": "",
+          "city": "PHILADELPHIA",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "243",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "259",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "257 S 20TH ST, PHILADELPHIA, PA, 19103"
+      }
+    ]
+  },
+  "62": {
+    "query": "1136 Arch Street, Reading Terminal Market, Philadelphia, Pennsylvania 19107",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1136+Arch+Street%2C+Reading+Terminal+Market%2C+Philadelphia%2C+Pennsylvania+19107&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "658087955"
+        },
+        "coordinates": {
+          "x": -75.15847322124,
+          "y": 39.953769188622
+        },
+        "addressComponents": {
+          "zip": "19107",
+          "streetName": "ARCH",
+          "preType": "",
+          "city": "PHILADELPHIA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1100",
+          "state": "PA",
+          "suffixType": "ST",
+          "toAddress": "1198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1136 ARCH ST, PHILADELPHIA, PA, 19107"
+      }
+    ]
+  },
+  "64": {
+    "query": "408 Main Street, Avon-by-the-Sea, New Jersey 07717",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=408+Main+Street%2C+Avon-by-the-Sea%2C+New+Jersey+07717&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "90464433"
+        },
+        "coordinates": {
+          "x": -74.021843108496,
+          "y": 40.191811598991
+        },
+        "addressComponents": {
+          "zip": "07717",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "AVON BY THE SEA",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "400",
+          "state": "NJ",
+          "suffixType": "ST",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "408 MAIN ST, AVON BY THE SEA, NJ, 07717"
+      }
+    ]
+  },
+  "65": {
+    "query": "14 Liberty Square, Sparta, Tennessee 38583",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=14+Liberty+Square%2C+Sparta%2C+Tennessee+38583&benchmark=Public_AR_Current&format=json",
+    "matches": [],
+    "alternateLookups": [
+      {
+        "query": "14 Liberty Sq, Sparta TN 38583",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=14+Liberty+Sq%2C+Sparta+TN+38583&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      }
+    ]
+  },
+  "66": {
+    "query": "132 England Lane, Clinton, Tennessee 37716",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=132+England+Lane%2C+Clinton%2C+Tennessee+37716&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "90129228"
+        },
+        "coordinates": {
+          "x": -84.257754425899,
+          "y": 36.046964513017
+        },
+        "addressComponents": {
+          "zip": "37716",
+          "streetName": "ENGLAND",
+          "preType": "",
+          "city": "CLINTON",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "132",
+          "state": "TN",
+          "suffixType": "DR",
+          "toAddress": "146",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "132 ENGLAND DR, CLINTON, TN, 37716"
+      }
+    ]
+  },
+  "68": {
+    "query": "12220 Highway N14, Cedar Crest, New Mexico 87008",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=12220+Highway+N14%2C+Cedar+Crest%2C+New+Mexico+87008&benchmark=Public_AR_Current&format=json",
+    "matches": []
+  },
+  "19": {
+    "query": "408 East Main Street, Battle Ground, Washington 98604",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=408+East+Main+Street%2C+Battle+Ground%2C+Washington+98604&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "158315089"
+        },
+        "coordinates": {
+          "x": -122.532889068895,
+          "y": 45.780971814064
+        },
+        "addressComponents": {
+          "zip": "98604",
+          "streetName": "MAIN",
+          "preType": "",
+          "city": "BATTLE GROUND",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "404",
+          "state": "WA",
+          "suffixType": "ST",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "408 E MAIN ST, BATTLE GROUND, WA, 98604"
+      }
+    ]
+  },
+  "20": {
+    "query": "1411 Cornwall Avenue, Bellingham, Washington 98225",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1411+Cornwall+Avenue%2C+Bellingham%2C+Washington+98225&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "183772271"
+        },
+        "coordinates": {
+          "x": -122.477535900949,
+          "y": 48.750935451225
+        },
+        "addressComponents": {
+          "zip": "98225",
+          "streetName": "CORNWALL",
+          "preType": "",
+          "city": "BELLINGHAM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1401",
+          "state": "WA",
+          "suffixType": "AVE",
+          "toAddress": "1499",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1411 CORNWALL AVE, BELLINGHAM, WA, 98225"
+      }
+    ]
+  },
+  "22": {
+    "query": "135A Lopez Road, Lopez Island, Washington 98261",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=135A+Lopez+Road%2C+Lopez+Island%2C+Washington+98261&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "638814611"
+        },
+        "coordinates": {
+          "x": -122.912488671543,
+          "y": 48.522709588042
+        },
+        "addressComponents": {
+          "zip": "98261",
+          "streetName": "LOPEZ",
+          "preType": "",
+          "city": "LOPEZ ISLAND",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "1",
+          "state": "WA",
+          "suffixType": "RD",
+          "toAddress": "199",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "135A LOPEZ RD, LOPEZ ISLAND, WA, 98261"
+      }
+    ]
+  },
+  "23": {
+    "query": "106 5th Avenue SE, Olympia, Washington 98501",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=106+5th+Avenue+SE%2C+Olympia%2C+Washington+98501&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "180944163"
+        },
+        "coordinates": {
+          "x": -122.901412263169,
+          "y": 47.044139581791
+        },
+        "addressComponents": {
+          "zip": "98501",
+          "streetName": "5TH",
+          "preType": "",
+          "city": "OLYMPIA",
+          "preDirection": "",
+          "suffixDirection": "SE",
+          "fromAddress": "100",
+          "state": "WA",
+          "suffixType": "AVE",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "106 5TH AVE SE, OLYMPIA, WA, 98501"
+      }
+    ]
+  },
+  "24": {
+    "query": "3110 3rd Street, Port Townsend, Washington 98368",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3110+3rd+Street%2C+Port+Townsend%2C+Washington+98368&benchmark=Public_AR_Current&format=json",
+    "matches": [],
+    "alternateLookups": [
+      {
+        "query": "3110 S 3rd St, Port Townsend, WA 98368",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=3110+S+3rd+St%2C+Port+Townsend%2C+WA+98368&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      }
+    ]
+  },
+  "25": {
+    "query": "214 1st Street, Langley, Washington 98260",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=214+1st+Street%2C+Langley%2C+Washington+98260&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "187617399"
+        },
+        "coordinates": {
+          "x": -122.40850915649,
+          "y": 48.040848639675
+        },
+        "addressComponents": {
+          "zip": "98260",
+          "streetName": "1ST",
+          "preType": "",
+          "city": "LANGLEY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "106",
+          "state": "WA",
+          "suffixType": "ST",
+          "toAddress": "298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "214 1ST ST, LANGLEY, WA, 98260"
+      },
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "187617399"
+        },
+        "coordinates": {
+          "x": -122.40850915649,
+          "y": 48.040848639675
+        },
+        "addressComponents": {
+          "zip": "98260",
+          "streetName": "FIRST",
+          "preType": "",
+          "city": "LANGLEY",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "106",
+          "state": "WA",
+          "suffixType": "ST",
+          "toAddress": "298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "214 FIRST ST, LANGLEY, WA, 98260"
+      }
+    ]
+  },
+  "26": {
+    "query": "93 Pike Street, Seattle, Washington 98101",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=93+Pike+Street%2C+Seattle%2C+Washington+98101&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "186589390"
+        },
+        "coordinates": {
+          "x": -122.340414994561,
+          "y": 47.608683464633
+        },
+        "addressComponents": {
+          "zip": "98101",
+          "streetName": "PIKE",
+          "preType": "",
+          "city": "SEATTLE",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "99",
+          "state": "WA",
+          "suffixType": "ST",
+          "toAddress": "1",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "93 PIKE ST, SEATTLE, WA, 98101"
+      }
+    ]
+  },
+  "27": {
+    "query": "4681 Sequim Dungeness Way, Sequim, Washington 98382",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=4681+Sequim+Dungeness+Way%2C+Sequim%2C+Washington+98382&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "150846595"
+        },
+        "coordinates": {
+          "x": -123.123880080901,
+          "y": 48.142403611185
+        },
+        "addressComponents": {
+          "zip": "98382",
+          "streetName": "SEQUIM-DUNGENESS",
+          "preType": "",
+          "city": "SEQUIM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "4661",
+          "state": "WA",
+          "suffixType": "WAY",
+          "toAddress": "4719",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "4681 SEQUIM-DUNGENESS WAY, SEQUIM, WA, 98382"
+      }
+    ]
+  },
+  "29": {
+    "query": "208 East 37th Street, Garden City, Idaho 83714",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=208+East+37th+Street%2C+Garden+City%2C+Idaho+83714&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "640433611"
+        },
+        "coordinates": {
+          "x": -116.240807564429,
+          "y": 43.626452171765
+        },
+        "addressComponents": {
+          "zip": "83714",
+          "streetName": "37TH",
+          "preType": "",
+          "city": "GARDEN CITY",
+          "preDirection": "E",
+          "suffixDirection": "",
+          "fromAddress": "200",
+          "state": "ID",
+          "suffixType": "ST",
+          "toAddress": "498",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "208 E 37TH ST, GARDEN CITY, ID, 83714"
+      }
+    ]
+  },
+  "30": {
+    "query": "1655 South Woodruff Avenue, Idaho Falls, Idaho 83404",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1655+South+Woodruff+Avenue%2C+Idaho+Falls%2C+Idaho+83404&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "119184093"
+        },
+        "coordinates": {
+          "x": -112.000536986859,
+          "y": 43.483008051848
+        },
+        "addressComponents": {
+          "zip": "83404",
+          "streetName": "WOODRUFF",
+          "preType": "",
+          "city": "IDAHO FALLS",
+          "preDirection": "S",
+          "suffixDirection": "",
+          "fromAddress": "1601",
+          "state": "ID",
+          "suffixType": "AVE",
+          "toAddress": "1699",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "1655 S WOODRUFF AVE, IDAHO FALLS, ID, 83404"
+      }
+    ]
+  },
+  "31": {
+    "query": "532 Main Street, Sandpoint, Idaho 83864",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=532+Main+Street%2C+Sandpoint%2C+Idaho+83864&benchmark=Public_AR_Current&format=json",
+    "matches": [],
+    "alternateLookups": [
+      {
+        "query": "532 Main St, Sandpoint ID 83864",
+        "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=532+Main+St%2C+Sandpoint+ID+83864&benchmark=Public_AR_Current&format=json",
+        "matches": []
+      }
+    ]
+  },
+  "34": {
+    "query": "180 South 3rd Street West, Missoula, Montana 59801",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=180+South+3rd+Street+West%2C+Missoula%2C+Montana+59801&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "205262267"
+        },
+        "coordinates": {
+          "x": -113.998840495979,
+          "y": 46.86701383864
+        },
+        "addressComponents": {
+          "zip": "59801",
+          "streetName": "3RD",
+          "preType": "",
+          "city": "MISSOULA",
+          "preDirection": "S",
+          "suffixDirection": "W",
+          "fromAddress": "100",
+          "state": "MT",
+          "suffixType": "ST",
+          "toAddress": "180",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "180 S 3RD ST W, MISSOULA, MT, 59801"
+      }
+    ]
+  },
+  "36": {
+    "query": "152 West 5th Avenue, Eugene, Oregon 97401",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=152+West+5th+Avenue%2C+Eugene%2C+Oregon+97401&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "178167003"
+        },
+        "coordinates": {
+          "x": -123.095062009058,
+          "y": 44.05427935099
+        },
+        "addressComponents": {
+          "zip": "97401",
+          "streetName": "5TH",
+          "preType": "",
+          "city": "EUGENE",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "100",
+          "state": "OR",
+          "suffixType": "AVE",
+          "toAddress": "198",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "152 W 5TH AVE, EUGENE, OR, 97401"
+      }
+    ]
+  },
+  "37": {
+    "query": "776 West Park Street, Eugene, Oregon 97401",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=776+West+Park+Street%2C+Eugene%2C+Oregon+97401&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "618377886"
+        },
+        "coordinates": {
+          "x": -123.092133290571,
+          "y": 44.05117468029
+        },
+        "addressComponents": {
+          "zip": "97401",
+          "streetName": "PARK",
+          "preType": "",
+          "city": "EUGENE",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "700",
+          "state": "OR",
+          "suffixType": "ST",
+          "toAddress": "798",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "776 W PARK ST, EUGENE, OR, 97401"
+      }
+    ]
+  },
+  "39": {
+    "query": "2901 NE Alberta Street, Portland, Oregon 97211",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2901+NE+Alberta+Street%2C+Portland%2C+Oregon+97211&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "157580606"
+        },
+        "coordinates": {
+          "x": -122.635782944265,
+          "y": 45.559098131384
+        },
+        "addressComponents": {
+          "zip": "97211",
+          "streetName": "ALBERTA",
+          "preType": "",
+          "city": "PORTLAND",
+          "preDirection": "NE",
+          "suffixDirection": "",
+          "fromAddress": "2901",
+          "state": "OR",
+          "suffixType": "ST",
+          "toAddress": "2919",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2901 NE ALBERTA ST, PORTLAND, OR, 97211"
+      }
+    ]
+  },
+  "42": {
+    "query": "8083 SE 13th Avenue, Portland, Oregon 97202",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=8083+SE+13th+Avenue%2C+Portland%2C+Oregon+97202&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "157526318"
+        },
+        "coordinates": {
+          "x": -122.653078367333,
+          "y": 45.464534773501
+        },
+        "addressComponents": {
+          "zip": "97202",
+          "streetName": "13TH",
+          "preType": "",
+          "city": "PORTLAND",
+          "preDirection": "SE",
+          "suffixDirection": "",
+          "fromAddress": "8037",
+          "state": "OR",
+          "suffixType": "AVE",
+          "toAddress": "8099",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "8083 SE 13TH AVE, PORTLAND, OR, 97202"
+      }
+    ]
+  },
+  "33": {
+    "query": "232 North Higgins Avenue, Missoula, Montana 59802",
+    "source": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=232+North+Higgins+Avenue%2C+Missoula%2C+Montana+59802&benchmark=Public_AR_Current&format=json",
+    "matches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "205239435"
+        },
+        "coordinates": {
+          "x": -113.994382535853,
+          "y": 46.871457472013
+        },
+        "addressComponents": {
+          "zip": "59802",
+          "streetName": "HIGGINS",
+          "preType": "",
+          "city": "MISSOULA",
+          "preDirection": "N",
+          "suffixDirection": "",
+          "fromAddress": "200",
+          "state": "MT",
+          "suffixType": "AVE",
+          "toAddress": "298",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "232 N HIGGINS AVE, MISSOULA, MT, 59802"
+      }
+    ]
+  }
+}

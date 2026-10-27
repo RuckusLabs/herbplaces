@@ -1,0 +1,564 @@
+{
+  "seedId": "national-20261027",
+  "projectRef": "qtpepsebztlremlhpxdt",
+  "seededAt": "2026-10-27T16:17:19.353Z",
+  "inserted": 49,
+  "totalListings": 65,
+  "photos": 54,
+  "unchangedExisting": 16,
+  "missingPhotos": [
+    {
+      "name": "Battleground Healing Arts",
+      "reason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://battlegroundhealingarts.com/apothecary, https://battlegroundhealingarts.com/contact, https://battlegroundhealingarts.com/"
+    },
+    {
+      "name": "Red Clover Herbs and Market",
+      "reason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://redcloverherbs.com/pages/physical-store"
+    },
+    {
+      "name": "Butterfly Herbs",
+      "reason": "No suitable genuine business photograph found in accessible primary pages. Sources searched: https://destinationmissoula.org/restaurants, https://www.restaurantji.com/mt/missoula/butterfly-herbs-/, https://pub-missoula.escribemeetings.com/filestream.ashx?DocumentId=308403"
+    }
+  ],
+  "places": [
+    {
+      "id": 26,
+      "name": "Bridget’s Botanicals",
+      "urlSlug": "bridget-s-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/bridget-s-botanicals"
+    },
+    {
+      "id": 37,
+      "name": "Battleground Healing Arts",
+      "urlSlug": "battleground-healing-arts",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/battleground-healing-arts"
+    },
+    {
+      "id": 25,
+      "name": "Humboldt Herbals",
+      "urlSlug": "humboldt-herbals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/humboldt-herbals"
+    },
+    {
+      "id": 27,
+      "name": "Orion’s Apothecary",
+      "urlSlug": "orion-s-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/orion-s-apothecary"
+    },
+    {
+      "id": 28,
+      "name": "Sacred Vibes Apothecary",
+      "urlSlug": "sacred-vibes-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/sacred-vibes-apothecary"
+    },
+    {
+      "id": 29,
+      "name": "Moonrise Herbs",
+      "urlSlug": "moonrise-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/moonrise-herbs"
+    },
+    {
+      "id": 30,
+      "name": "Thyme Herbal Apothecary",
+      "urlSlug": "thyme-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/thyme-herbal-apothecary"
+    },
+    {
+      "id": 36,
+      "name": "Wonderland Herbs, Teas & Spices",
+      "urlSlug": "wonderland-herbs-teas-spices",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wonderland-herbs-teas-spices"
+    },
+    {
+      "id": 31,
+      "name": "Wild Heart Herb House",
+      "urlSlug": "wild-heart-herb-house",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wild-heart-herb-house"
+    },
+    {
+      "id": 32,
+      "name": "Dragon Herbarium",
+      "urlSlug": "dragon-herbarium",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dragon-herbarium"
+    },
+    {
+      "id": 33,
+      "name": "The Herb Shop",
+      "urlSlug": "the-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herb-shop"
+    },
+    {
+      "id": 34,
+      "name": "Clover Apothecary at Clover Gift Shop",
+      "urlSlug": "clover-apothecary-at-clover-gift-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/clover-apothecary-at-clover-gift-shop"
+    },
+    {
+      "id": 35,
+      "name": "Herban Wellness",
+      "urlSlug": "herban-wellness",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herban-wellness"
+    },
+    {
+      "id": 38,
+      "name": "Living Earth Herbs",
+      "urlSlug": "living-earth-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/living-earth-herbs"
+    },
+    {
+      "id": 39,
+      "name": "Northsea Apothecary",
+      "urlSlug": "northsea-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/northsea-apothecary"
+    },
+    {
+      "id": 40,
+      "name": "Radiance & Kindred Moon Apothecary",
+      "urlSlug": "radiance-kindred-moon-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/radiance-kindred-moon-apothecary"
+    },
+    {
+      "id": 41,
+      "name": "Mountain Spirit Herbals",
+      "urlSlug": "mountain-spirit-herbals",
+      "geocode_status": "review",
+      "listingUrl": "https://littleherbplaces.com/place/mountain-spirit-herbals"
+    },
+    {
+      "id": 42,
+      "name": "SugarPill Apothecary",
+      "urlSlug": "sugarpill-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/sugarpill-apothecary"
+    },
+    {
+      "id": 43,
+      "name": "Tenzing Momo",
+      "urlSlug": "tenzing-momo",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/tenzing-momo"
+    },
+    {
+      "id": 44,
+      "name": "Dandelion Botanical Co.",
+      "urlSlug": "dandelion-botanical-co",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dandelion-botanical-co"
+    },
+    {
+      "id": 45,
+      "name": "Starlight Herb & Spice Company",
+      "urlSlug": "starlight-herb-spice-company",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/starlight-herb-spice-company"
+    },
+    {
+      "id": 46,
+      "name": "Red Clover Herbs and Market",
+      "urlSlug": "red-clover-herbs-and-market",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/red-clover-herbs-and-market"
+    },
+    {
+      "id": 47,
+      "name": "Tendril Herbal Apothecary and Healing Center",
+      "urlSlug": "tendril-herbal-apothecary-and-healing-center",
+      "geocode_status": "review",
+      "listingUrl": "https://littleherbplaces.com/place/tendril-herbal-apothecary-and-healing-center"
+    },
+    {
+      "id": 48,
+      "name": "Butterfly Herbs",
+      "urlSlug": "butterfly-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/butterfly-herbs"
+    },
+    {
+      "id": 49,
+      "name": "Meadowsweet",
+      "urlSlug": "meadowsweet",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/meadowsweet"
+    },
+    {
+      "id": 50,
+      "name": "Mountain Rose Herbs",
+      "urlSlug": "mountain-rose-herbs",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/mountain-rose-herbs"
+    },
+    {
+      "id": 51,
+      "name": "Mrs. Thompsons Herbs, Gifts & Folklore",
+      "urlSlug": "mrs-thompsons-herbs-gifts-folklore",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/mrs-thompsons-herbs-gifts-folklore"
+    },
+    {
+      "id": 52,
+      "name": "Clary Sage Herbarium",
+      "urlSlug": "clary-sage-herbarium",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/clary-sage-herbarium"
+    },
+    {
+      "id": 53,
+      "name": "Vibrance Ayurveda",
+      "urlSlug": "vibrance-ayurveda",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/vibrance-ayurveda"
+    },
+    {
+      "id": 54,
+      "name": "Herbiary Asheville",
+      "urlSlug": "herbiary-asheville",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbiary-asheville"
+    },
+    {
+      "id": 55,
+      "name": "Musa Moon",
+      "urlSlug": "musa-moon",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/musa-moon"
+    },
+    {
+      "id": 56,
+      "name": "Healing House Herbs (formerly Natural Selection Apothecary)",
+      "urlSlug": "healing-house-herbs-formerly-natural-selection-apothecary",
+      "geocode_status": "review",
+      "listingUrl": "https://littleherbplaces.com/place/healing-house-herbs-formerly-natural-selection-apothecary"
+    },
+    {
+      "id": 57,
+      "name": "Simply Herbal Organics",
+      "urlSlug": "simply-herbal-organics",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/simply-herbal-organics"
+    },
+    {
+      "id": 58,
+      "name": "Remedy Apothecary",
+      "urlSlug": "remedy-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/remedy-apothecary"
+    },
+    {
+      "id": 59,
+      "name": "Native Ceuticals Apothecary",
+      "urlSlug": "native-ceuticals-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/native-ceuticals-apothecary"
+    },
+    {
+      "id": 60,
+      "name": "Chandra Botanicals",
+      "urlSlug": "chandra-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/chandra-botanicals"
+    },
+    {
+      "id": 61,
+      "name": "Modern Herbal Apothecary",
+      "urlSlug": "modern-herbal-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/modern-herbal-apothecary"
+    },
+    {
+      "id": 62,
+      "name": "The Herbal Haberdashery",
+      "urlSlug": "the-herbal-haberdashery",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/the-herbal-haberdashery"
+    },
+    {
+      "id": 63,
+      "name": "Railyard Apothecary",
+      "urlSlug": "railyard-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/railyard-apothecary"
+    },
+    {
+      "id": 64,
+      "name": "Wild Soul River",
+      "urlSlug": "wild-soul-river",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wild-soul-river"
+    },
+    {
+      "id": 65,
+      "name": "2 Wolves Herbal Apothecary - Augusta",
+      "urlSlug": "2-wolves-herbal-apothecary-augusta",
+      "geocode_status": "review",
+      "listingUrl": "https://littleherbplaces.com/place/2-wolves-herbal-apothecary-augusta"
+    },
+    {
+      "id": 66,
+      "name": "2 Wolves Herbal Apothecary - Helen",
+      "urlSlug": "2-wolves-herbal-apothecary-helen",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/2-wolves-herbal-apothecary-helen"
+    },
+    {
+      "id": 67,
+      "name": "Dande-Lion Herb Shop",
+      "urlSlug": "dande-lion-herb-shop",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dande-lion-herb-shop"
+    },
+    {
+      "id": 68,
+      "name": "Wild Roots Apothecary",
+      "urlSlug": "wild-roots-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/wild-roots-apothecary"
+    },
+    {
+      "id": 69,
+      "name": "Dope Botanicals",
+      "urlSlug": "dope-botanicals",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/dope-botanicals"
+    },
+    {
+      "id": 70,
+      "name": "Herbiary Philadelphia",
+      "urlSlug": "herbiary-philadelphia",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/herbiary-philadelphia"
+    },
+    {
+      "id": 71,
+      "name": "Of the Earth Apothecary",
+      "urlSlug": "of-the-earth-apothecary",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/of-the-earth-apothecary"
+    },
+    {
+      "id": 72,
+      "name": "Synergy Herbal Works - Sparta",
+      "urlSlug": "synergy-herbal-works-sparta",
+      "geocode_status": "review",
+      "listingUrl": "https://littleherbplaces.com/place/synergy-herbal-works-sparta"
+    },
+    {
+      "id": 73,
+      "name": "Erin’s Meadow Herb Farm",
+      "urlSlug": "erin-s-meadow-herb-farm",
+      "geocode_status": "confirmed",
+      "listingUrl": "https://littleherbplaces.com/place/erin-s-meadow-herb-farm"
+    }
+  ],
+  "held": [
+    {
+      "inputIndex": 7,
+      "name": "Great Cape Herbs",
+      "status": "hold",
+      "reason": "2022 operator notice closed storefront/gardens; 2025 farm guide conflicts; original domain now parked. Current walk-in access unconfirmed.",
+      "sources": [
+        "https://gctv.cc/closure-of-the-great-cape-arboretum-and-gardens/",
+        "https://greatcape.com/",
+        "https://www.buyfreshbuylocalcapecod.org/wp-content/uploads/2025/05/2025-BFBLCC-Guide-web.pdf"
+      ]
+    },
+    {
+      "inputIndex": 8,
+      "name": "MXED GREENS",
+      "status": "closed",
+      "reason": "Official store explicitly says MXED GREENS is now closed.",
+      "sources": [
+        "https://mxedgreens.com/products/greasewood-plantwater-hydrosol",
+        "https://mxedgreens.com/pages/contact-us"
+      ]
+    },
+    {
+      "inputIndex": 9,
+      "name": "Soulful Body & Mind Apothecary",
+      "status": "hold",
+      "reason": "Historical official contact and 2025 local tour confirm shop, but original domain now redirects to unrelated adult content. Current official website, storefront status, and usable photos require confirmation. Do not link repurposed domain.",
+      "sources": [
+        "https://www.countryroadschristmas.com/",
+        "https://www.soulful-body-mind.com/contact"
+      ]
+    },
+    {
+      "inputIndex": 12,
+      "name": "Found Herbal Apothecary",
+      "status": "hold",
+      "reason": "Current official website identifies an Austin clinical practice; does not confirm the historical Bronxville storefront. Do not publish the outdated New York address.",
+      "sources": [
+        "https://foundherbal.com/"
+      ]
+    },
+    {
+      "inputIndex": 13,
+      "name": "Briar Patch Herbs",
+      "status": "hold",
+      "reason": "Official site announces new owners/name and reopening; September 2026 partner events still use Briarpatch name. Need current business identity and hours before publishing.",
+      "sources": [
+        "https://briarpatchherbs.com/",
+        "https://vitalforceherbs.com/events"
+      ]
+    },
+    {
+      "inputIndex": 21,
+      "name": "Moddejonge’s Herbals",
+      "status": "hold",
+      "reason": "Only historical owner/profile and news references found; no current primary-source storefront/hours verified. Do not infer current operations from older directories.",
+      "sources": [
+        "https://www.linkedin.com/in/lynnmoddejonge",
+        "https://tulalipnews.com/2017/07/07/local-apothecary-focuses-on-traditional-healing/"
+      ]
+    },
+    {
+      "inputIndex": 28,
+      "name": "Salt Creek Apothecary",
+      "status": "hold",
+      "reason": "Official domain unavailable. Third-party records conflict: downtown directory retains listing while Wanderlog marks permanently closed. Hold pending direct current confirmation.",
+      "sources": [
+        "https://downtownwenatchee.org/explore",
+        "https://wanderlog.com/place/details/4165156/salt-creek-apothecary"
+      ]
+    },
+    {
+      "inputIndex": 32,
+      "name": "Jade Forest Wellness",
+      "status": "hold",
+      "reason": "Official domain could not be retrieved and current public retail address could not be verified. Registry/directory addresses differ; do not publish historical address.",
+      "sources": [
+        "https://friendsofthetreesbotanicals.com/blogs/herb-stores-in-the-pacific-northwest/herb-stores-in-the-pacific-northwest"
+      ]
+    },
+    {
+      "inputIndex": 35,
+      "name": "Herbal Junction Elixirs",
+      "status": "hold",
+      "reason": "Official Square website exists but returns a JavaScript shell; current public storefront at historical manufacturing address not verified. 2025 fair participation confirms business activity only.",
+      "sources": [
+        "https://www.oregoncountryfair.org/wp-content/uploads/2025/06/2025-OCF-Peach-Pit-Program-Guide.pdf"
+      ]
+    },
+    {
+      "inputIndex": 38,
+      "name": "OmChi Herbs",
+      "status": "hold",
+      "reason": "Official current contact page lists PO Box 5352 only; walk-in retail availability at historical Highway 99 address is unverified.",
+      "sources": [
+        "https://www.omchiherbs.com/store/index.php?information_id=4&route=information%2Finformation"
+      ]
+    },
+    {
+      "inputIndex": 40,
+      "name": "Essential Elements Apothecary Shop",
+      "status": "hold",
+      "reason": "Official website unavailable; third-party record marks business closed. No current primary confirmation of storefront or closure; hold.",
+      "sources": [
+        "https://www.allbiz.com/business/essential-elements-holistic-healing-503-231-2831"
+      ]
+    },
+    {
+      "inputIndex": 41,
+      "name": "The Herb Shoppe",
+      "status": "closed",
+      "reason": "Current official website explicitly says Shop Online Only. Do not add former Mississippi Avenue storefront as an active place.",
+      "sources": [
+        "https://theherbshoppepdx.com/"
+      ]
+    },
+    {
+      "inputIndex": 45,
+      "name": "Simply Vibes Apothecary",
+      "status": "hold",
+      "reason": "Former official website serves unrelated content; current storefront not confirmed; owner fundraiser raised closure risk in July 2025.",
+      "sources": [
+        "https://www.gofundme.com/f/help-destinee-keep-simply-vibes-apothecary-alive",
+        "https://www.simplyvibesapothecary.com/"
+      ]
+    },
+    {
+      "inputIndex": 46,
+      "name": "Casablanca Herbal Shop",
+      "status": "hold",
+      "reason": "Official domain does not resolve; conflicting 3035 and 3109 Fayetteville Street addresses need direct verification.",
+      "sources": [
+        "https://whippedcreambody.com/pages/shop-in-store",
+        "https://casablancaherbs.com/"
+      ]
+    },
+    {
+      "inputIndex": 63,
+      "name": "Smile Herb Shop",
+      "status": "hold",
+      "reason": "Official website rebuilt with placeholder San Francisco address and hours; no current primary walk-in confirmation.",
+      "sources": [
+        "https://www.smileherb.com/"
+      ]
+    },
+    {
+      "inputIndex": 67,
+      "name": "Nanny’s Little House of Healing Herbs Apothecary",
+      "status": "hold",
+      "reason": "No verifiable current official presence or continued operation inside host business found.",
+      "sources": []
+    },
+    {
+      "inputIndex": 68,
+      "name": "Village Apothecary",
+      "status": "hold",
+      "reason": "Primary producer stockist confirms location, but no current direct shop website, operating schedule, or genuine shop photo could be verified. Profile incomplete.",
+      "sources": [
+        "https://www.lotustreeherbal.com/retail-locations-1",
+        "https://researchherbals.com/"
+      ]
+    }
+  ],
+  "duplicates": [
+    {
+      "inputIndex": 1,
+      "name": "Balanced Root Apothecary"
+    },
+    {
+      "inputIndex": 3,
+      "name": "Little Herbal Apothecary"
+    },
+    {
+      "inputIndex": 53,
+      "name": "Earth Commons"
+    }
+  ],
+  "checks": [
+    "All new profiles anonymously readable with matching content",
+    "Every uploaded image publicly delivered with matching checksum",
+    "All pre-existing records unchanged",
+    "No Featured or Verified badge assigned"
+  ],
+  "staticRefresh": {
+    "status": "complete",
+    "deploymentUrl": "https://github.com/RuckusLabs/herbplaces/actions/runs/40541408056",
+    "publishedCommit": "9120f928040f60a98abe494760f5b29a69b84a9d",
+    "placePages": 65,
+    "productionAssetsPreserved": 71,
+    "checks": [
+      "All new profiles present in live sitemap",
+      "Sample new static pages and share images returned HTTP 200",
+      "All 71 production app assets preserved byte-for-byte"
+    ],
+    "note": "Data-only static refresh generated locally after the original server package download stalled; original duplicate run cancelled."
+  }
+}
