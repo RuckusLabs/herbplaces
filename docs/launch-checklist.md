@@ -31,6 +31,8 @@ After final approval, enable both purchase flags together with the matching fron
 
 ## Operational follow-through
 
+The owner explicitly deferred backup and map-placement work on October 26 and asked to continue launch preparation. Keep automated backups disabled and the current safety snapshot local. Keep automatic geocoding paused and manual placement available. These deferred items no longer block the owner’s requested sales-review milestone; they are follow-up work, not completed recovery coverage.
+
 - Automatic geocoding is explicitly paused in the hosted function and `AUTOMATIC_GEOCODING_ENABLED=false`. New/unconfirmed addresses go to admin review; existing confirmed coordinates remain. Confirm permanent Mapbox entitlement before re-enabling stored lookups.
 - Support inbox receipt was confirmed by the owner on October 26. The owner approved a seven-day first-payment refund per place; renewals are reviewed for billing errors. Review the updated Help and membership terms; process requests manually through support/Stripe.
 - A fresh local supplemental snapshot covers 16 application tables and 18 uploaded photos, with photo integrity checked. Supabase Scheduled backups explicitly reports Free has no project backups. The owner chose a separate private encrypted backup job; it is prepared but disabled pending its database secret, key safekeeping, actual export and isolated restore/scheduled-run verification. Resolve these before paid launch; the local snapshot excludes Auth/schema/platform configuration and is not full disaster recovery.

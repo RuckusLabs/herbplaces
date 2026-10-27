@@ -56,3 +56,8 @@ The owner chose separate off-device backups and explicitly paused automatic geoc
 The dedicated private repository `RuckusLabs/herbplaces-backups` contains a gated daily encrypted export job. It remains disabled pending `BACKUP_DATABASE_URL`, a secure second copy of the private recovery key, an actual export, isolated restore verification, and a scheduled-run check. No Storage admin key is required: the job uses the database object index and public photo downloads. Database URL credentials and private recovery keys must never enter chat, logs, source commits, or public artifacts.
 
 A local AES-GCM/RSA-wrapped copy of the supplemental safety snapshot passed decryption/hash round-trip verification. Unit tests verify round trip, tamper rejection, wrong-key rejection, and failed-decryption cleanup. This is not a complete database restore. The owner chose to keep the encrypted snapshot local; no customer records or photos were uploaded to GitHub. Do not upload it or activate scheduled exports without a new explicit instruction authorizing the data and destination. See `ops/backups/README.md` for activation, retention, recovery limits, and the private-repository gate. Public purchases remain off.
+
+
+## Owner-directed launch scope
+
+The owner explicitly asked to set aside backups and map placement and continue. Leave backup activation/data uploads out of this release, keep the safety snapshot local, and preserve the geocoding pause/manual map workflow. Proceed to the final publication and live-sales approval milestone without treating those deferred tasks as prerequisites. Do not describe automated backup recovery as complete.
