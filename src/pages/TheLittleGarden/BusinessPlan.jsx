@@ -13,6 +13,7 @@ const inquiry = `mailto:help@littleherbplaces.com?subject=Thrive%20pilot%20inqui
 export default function BusinessPlan({ plan }) {
   const content = planPages[plan];
   const thrive = plan === 'thrive';
+  const priceReference = id => <sup className={styles.noteReference}><a id={id} href="#plan-price-note" aria-label={`Read ${content.name} pricing footnote 1`}>1</a></sup>;
   useEffect(() => {
     document.body.classList.add('has-plan-action');
     document.documentElement.classList.add('has-plan-action');
@@ -46,7 +47,7 @@ export default function BusinessPlan({ plan }) {
           <div className={styles.offerImage}><img src={content.heroPhoto} alt={content.heroAlt} style={{ objectPosition: content.heroPosition }} width={900} height={450} fetchPriority="high" /></div>
           <div className={styles.offerCopy}>
             <div className={styles.offerTitle}><div><span className={styles.eyebrow}>{thrive ? 'Invitation-only pilot' : 'Your place, thoughtfully presented'}</span><h2>{content.name}</h2></div><Icon name={content.icon} size={46} /></div>
-            <p className={styles.price}>${content.price}<span>/ month per place</span></p>
+            <p className={styles.price}>${content.price}<span>/ month per place{priceReference('plan-price-reference')}</span></p>
             <p className={styles.currency}>{thrive ? 'Planned paid price · USD' : 'USD · plus applicable tax'}</p>
             <ul>{included.map(item => <li key={item}><img src="/assets/icons/checkmark--green.svg" alt="" width="14" height="14" />{item}</li>)}</ul>
             {action()}
@@ -56,8 +57,8 @@ export default function BusinessPlan({ plan }) {
         </div>
       </aside>
     </div>
-    <aside className={styles.legalNotes} aria-label={`${content.name} membership notes`}><p>{content.showcaseNote}</p><p><Link to="/membership-terms">Membership terms</Link> · <Link to="/help#billing">Billing help</Link> · <Link to="/privacy">Privacy</Link></p></aside>
-    <div className={styles.mobileAction} role="region" aria-label={`${content.name} quick signup`}><div><strong>{content.name} <span>${content.price}</span></strong><span>{thrive ? 'Planned price · pilot by invitation' : '/ month per place · plus tax'}</span></div>{action(true)}</div>
+    <aside className={styles.legalNotes} aria-label={`${content.name} membership notes`}><p id="plan-price-note" tabIndex={-1}><sup className={styles.noteReference}>1</sup>{' '}{content.priceFootnote} {content.showcaseNote}</p><p><Link to="/membership-terms">Membership terms</Link> · <Link to="/help#billing">Billing help</Link> · <Link to="/privacy">Privacy</Link></p></aside>
+    <div className={styles.mobileAction} role="region" aria-label={`${content.name} quick signup`}><div><strong>{content.name} <span>${content.price}</span></strong><span>/ month per place{priceReference('plan-mobile-price-reference')} · {thrive ? 'planned price' : 'plus tax'}</span></div>{action(true)}</div>
   </main>;
 }
 BusinessPlan.propTypes = { plan: PropTypes.oneOf(['bloom', 'thrive']).isRequired };
