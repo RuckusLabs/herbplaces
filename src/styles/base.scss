@@ -68,3 +68,17 @@ button:disabled { cursor: not-allowed; }
 .favorite-button[aria-pressed='true'] > svg { color: rgb(var(--tertiary-color)); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+// Keep navigation and a recovery action available when a page download fails.
+.route-error {
+  min-height: 45vh;
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+.route-error-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+}

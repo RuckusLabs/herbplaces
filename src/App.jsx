@@ -1,4 +1,6 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
+import { lazyPage } from './utilities/lazyPage';
+import PageErrorBoundary from './components/PageErrorBoundary/PageErrorBoundary';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import ScrollToTop from './utilities/ScrollToTop';
@@ -9,28 +11,28 @@ import { FavoritesProvider } from './hooks/useFavorites';
 import ManagementProvider from './contexts/ManagementProvider';
 import Seo from './components/Seo/Seo';
 
-const Settings = lazy(() => import('./pages/Settings/Settings'));
-const About = lazy(() => import('./pages/About/About'));
-const Help = lazy(() => import('./pages/Help/Help'));
-const Shop = lazy(() => import('./pages/Shop/Shop'));
-const Map = lazy(() => import('./pages/Map/Map'));
-const Place = lazy(() => import('./pages/Place/Place'));
-const FavoritesList = lazy(() => import('./components/FavoritesList/FavoritesList'));
-const TheLittleGarden = lazy(() => import('./pages/TheLittleGarden/TheLittleGarden'));
-const StartBusiness = lazy(() => import('./pages/TheLittleGarden/StartBusiness'));
-const BusinessPlan = lazy(() => import('./pages/TheLittleGarden/BusinessPlan'));
-const SproutSignup = lazy(() => import('./pages/TheLittleGarden/SproutSignup'));
-const AuthCallback = lazy(() => import('./pages/Auth/AuthCallback'));
-const Login = lazy(() => import('./pages/Auth/Login'));
-const Register = lazy(() => import('./pages/Auth/Register'));
-const AccountRecovery = lazy(() => import('./pages/Auth/AccountRecovery'));
-const Admin = lazy(() => import('./pages/Management/Admin'));
-const MyPlaces = lazy(() => import('./pages/Management/MyPlaces'));
-const RequestPlace = lazy(() => import('./pages/Management/RequestPlace'));
-const Policies = lazy(() => import('./pages/Help/Policies'));
-const Browse = lazy(() => import('./pages/Browse/Browse'));
-const Discover = lazy(() => import('./pages/Discover/Discover'));
-const ReportUnsubscribe = lazy(() => import('./pages/Reports/ReportUnsubscribe'));
+const Settings = lazyPage(() => import('./pages/Settings/Settings'));
+const About = lazyPage(() => import('./pages/About/About'));
+const Help = lazyPage(() => import('./pages/Help/Help'));
+const Shop = lazyPage(() => import('./pages/Shop/Shop'));
+const Map = lazyPage(() => import('./pages/Map/Map'));
+const Place = lazyPage(() => import('./pages/Place/Place'));
+const FavoritesList = lazyPage(() => import('./components/FavoritesList/FavoritesList'));
+const TheLittleGarden = lazyPage(() => import('./pages/TheLittleGarden/TheLittleGarden'));
+const StartBusiness = lazyPage(() => import('./pages/TheLittleGarden/StartBusiness'));
+const BusinessPlan = lazyPage(() => import('./pages/TheLittleGarden/BusinessPlan'));
+const SproutSignup = lazyPage(() => import('./pages/TheLittleGarden/SproutSignup'));
+const AuthCallback = lazyPage(() => import('./pages/Auth/AuthCallback'));
+const Login = lazyPage(() => import('./pages/Auth/Login'));
+const Register = lazyPage(() => import('./pages/Auth/Register'));
+const AccountRecovery = lazyPage(() => import('./pages/Auth/AccountRecovery'));
+const Admin = lazyPage(() => import('./pages/Management/Admin'));
+const MyPlaces = lazyPage(() => import('./pages/Management/MyPlaces'));
+const RequestPlace = lazyPage(() => import('./pages/Management/RequestPlace'));
+const Policies = lazyPage(() => import('./pages/Help/Policies'));
+const Browse = lazyPage(() => import('./pages/Browse/Browse'));
+const Discover = lazyPage(() => import('./pages/Discover/Discover'));
+const ReportUnsubscribe = lazyPage(() => import('./pages/Reports/ReportUnsubscribe'));
 
 function SavedPlacesRoute() {
   const { search, hash } = useLocation();
@@ -76,12 +78,14 @@ function AppContent() {
     <Seo />
     <Nav variant={currentRoute?.navVariant || 'garden'} minimal={ownerSetup} />
     <ScrollToTop />
-    <Suspense fallback={<div className="route-loading" role="status">Finding your little place…</div>}>
+    <PageErrorBoundary key={pathname}>
+    <Suspense fallback={<main id="main-content" className="route-loading" role="status">Finding your little place…</main>}>
       <Routes>
         {routes.map(route => <Route key={route.path} path={route.path} element={route.element} />)}
         <Route path="*" element={<main id="main-content" className="container" style={{ paddingBottom: 80 }}><h1>A little off the beaten path.</h1><p>We couldn’t find that page. <Link to="/">Head back home</Link> or <Link to="/map">explore the directory</Link>.</p></main>} />
       </Routes>
     </Suspense>
+    </PageErrorBoundary>
     {!ownerSetup && <Footer />}
   </>;
 }
