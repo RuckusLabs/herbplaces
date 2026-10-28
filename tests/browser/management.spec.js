@@ -520,7 +520,7 @@ test('My Places is separate from saved places and preserves old billing return l
   const mobileMenu = await menu.isVisible();
   if (mobileMenu) await menu.click();
   await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'Business Plans & Pricing', exact: true })).toHaveCount(0);
   await page.getByRole('navigation').first().locator('button[aria-controls]:not([aria-controls="main-navigation"])').click();
   await expect(page.getByRole('navigation').first().getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
   if (mobileMenu) await page.getByRole('button', { name: 'Close menu' }).click();
@@ -1356,7 +1356,7 @@ test('account dropdown identifies the user and supports dismissal and sign out',
   const account = navigation.getByRole('button', { name: displayName || 'owner', exact: true });
   await expect(account).toBeVisible();
   await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(0);
-  await expect(navigation.getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(0);
+  await expect(navigation.getByRole('link', { name: 'Business Plans & Pricing', exact: true })).toHaveCount(0);
   await account.click();
   await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toBeVisible();
   await expect(navigation.getByText('owner@example.com', { exact: true })).toBeVisible();
@@ -1384,7 +1384,7 @@ for (const role of ['member', 'owner', 'admin']) test(`account settings work for
   const navigation = page.getByRole('navigation', { name: 'Main navigation' });
   await expect(navigation.getByRole('link', { name: 'Liked Places', exact: true })).toBeVisible();
   await expect(navigation.getByRole('link', { name: 'Our Story', exact: true })).toHaveCount(0);
-  await expect(navigation.getByRole('link', { name: 'For Business Owners', exact: true })).toHaveCount(role === 'member' ? 1 : 0);
+  await expect(navigation.getByRole('link', { name: 'Business Plans & Pricing', exact: true })).toHaveCount(role === 'member' ? 1 : 0);
   await navigation.getByRole('button', { name: role, exact: true }).click();
   await expect(navigation.getByRole('link', { name: 'My Places', exact: true })).toHaveCount(role === 'member' ? 0 : 1);
   await navigation.getByRole('link', { name: 'Account Settings', exact: true }).click();
