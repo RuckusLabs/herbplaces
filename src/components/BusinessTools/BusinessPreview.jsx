@@ -27,7 +27,7 @@ export default function BusinessPreview({ thrive = false, growth = false }) {
   return <figure className={styles.preview} aria-label={`Example ${thrive ? 'Thrive' : 'Bloom'} business listing`}>
     <div className={styles.frame}>
       <div className={styles.chrome}><span aria-hidden="true"><i /><i /><i /></span><span>littleherbplaces.com/place/willow-root</span><span className={styles.exampleLabel}>Example</span></div>
-      <div className={styles.siteHeader}><img src="/assets/little-herb-places-logo.svg" alt="" width="42" height="42" /><span>Explore Places <span>Our Story</span><span>For Business Owners</span></span><Icon name="heart" size={23} /><span className={styles.miniJoin}>Join the Community <Icon name="arrow" size={11} /></span></div>
+      <div className={styles.siteHeader}><img src="/assets/little-herb-places-logo.svg" alt="" width="42" height="42" /><span>Explore Places <span>Our Story</span><span>Business Plans & Pricing</span></span><Icon name="heart" size={23} /><span className={styles.miniJoin}>Join the Community <Icon name="arrow" size={11} /></span></div>
       <div className={styles.profilePage}>
         <span className={styles.backLink}><Icon name="arrow" size={12} />All Places</span>
         <header className={styles.profileHeader}>

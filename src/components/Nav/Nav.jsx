@@ -50,7 +50,7 @@ export default function Nav({ variant, className = '', minimal = false }) {
       <div id="main-navigation" className={`${styles.links} ${open ? styles.open : ''}`}>
         <NavLink to="/map">Explore Places</NavLink>
         {!user && <NavLink to="/about">Our Story</NavLink>}
-        {!(user && hasOwnerActivity) && <NavLink to="/the-little-garden">For Business Owners</NavLink>}
+        {!(user && hasOwnerActivity) && <NavLink to="/the-little-garden">Business Plans & Pricing</NavLink>}
         <NavLink className={styles.saved} to="/favorites" aria-label={user ? 'Liked Places' : 'Saved Places'}><Icon name="heart" size={30} /><span>{user ? 'Liked Places' : 'Saved Places'}</span></NavLink>
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         {user ? <div className={styles.account} ref={account} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false); }}>
