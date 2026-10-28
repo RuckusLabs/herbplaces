@@ -847,7 +847,7 @@ test('renewing owners keep editing while their cycle invoice processes', async (
 test('Bloom starts an inline claim and resumes in the guided flow after sign-in', async ({ page }) => {
   const state = await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/bloom');
-  await page.getByRole('link', { name: 'Claim Your Place for Free', exact: true }).first().click();
+  await page.getByRole('complementary', { name: 'Bloom plan details', exact: true }).getByRole('link', { name: 'Get Started with Bloom', exact: true }).click();
   await expect(page).toHaveURL(/the-little-garden\/start\?plan=bloom$/);
   await page.getByRole('searchbox', { name: 'Business name or city', exact: true }).fill('Moss');
   await page.getByRole('button', { name: 'Continue with Moss Apothecary', exact: true }).click();

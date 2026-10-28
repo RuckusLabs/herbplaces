@@ -43,10 +43,11 @@ body {
 button, input, select { font: inherit; }
 button, a, input, select { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 2px solid rgb(var(--tertiary-color)); outline-offset: 5px; }
+#main-content h1[data-route-focus-target]:focus { outline: none; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
-.skip-link { position: fixed; top: -70px; left: 20px; z-index: 100; padding: 12px 20px; background: #fff; }
-.skip-link:focus { top: 10px; }
+.skip-link { position: fixed; top: 10px; left: 20px; z-index: 100; padding: 12px 20px; background: #fff; transform: translateY(-200%); clip-path: inset(50%); }
+.skip-link:focus { transform: none; clip-path: none; }
 .route-loading { min-height: 50vh; display: grid; place-items: center; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }

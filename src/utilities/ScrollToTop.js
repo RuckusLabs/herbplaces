@@ -15,6 +15,7 @@ const ScrollToTop = () => {
       const heading = document.querySelector('#main-content h1');
       if (!heading || !heading.getClientRects().length || document.querySelector('dialog[open]')) return false;
       heading.tabIndex = -1;
+      heading.setAttribute('data-route-focus-target', '');
       heading.focus({ preventScroll: true });
       return true;
     };

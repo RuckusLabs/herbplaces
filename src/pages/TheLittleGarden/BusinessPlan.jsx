@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/Icons/Icon';
@@ -12,27 +13,51 @@ const inquiry = `mailto:help@littleherbplaces.com?subject=Thrive%20pilot%20inqui
 export default function BusinessPlan({ plan }) {
   const content = planPages[plan];
   const thrive = plan === 'thrive';
-  const action = thrive ? <a className="button" href={inquiry}>Ask About the Thrive Pilot <Icon name="arrow" size={18} /></a> : <Link className="button" to={`/the-little-garden/start?plan=${plan}`}>Claim Your Place for Free <Icon name="arrow" size={18} /></Link>;
+  useEffect(() => {
+    document.body.classList.add('has-plan-action');
+    document.documentElement.classList.add('has-plan-action');
+    return () => { document.body.classList.remove('has-plan-action'); document.documentElement.classList.remove('has-plan-action'); };
+  }, []);
+  const action = (compact = false) => thrive
+    ? <a className="button" href={inquiry}>{compact ? 'Ask About Pilot' : 'Ask About the Thrive Pilot'} <Icon name="arrow" size={17} /></a>
+    : <Link className="button" to={`/the-little-garden/start?plan=${plan}`}>{compact ? 'Get Bloom' : 'Get Started with Bloom'} <Icon name="arrow" size={17} /></Link>;
+  const included = thrive ? ['Everything in Bloom', '10 products or services', '10 workshops or events', 'Offering and event insights'] : ['Your story and up to 10 photos', ...(growthEnabled ? ['Clear customer actions', 'Activity reports and updates'] : ['Hours, contact details, and links']), 'All approved managers'];
   return <main id="main-content" className={styles.page}>
     <div className={styles.breadcrumb}><Link to="/the-little-garden">The Little Garden</Link><span aria-hidden="true">/</span><span>{content.name}</span></div>
-    <section className={styles.hero} aria-labelledby="plan-title">
-      <div className={styles.heroCopy}>
-        <Icon name={content.icon} size={76} /><p className={styles.eyebrow}>{content.eyebrow}</p>
-        <h1 id="plan-title">{content.heading}</h1><p className={styles.intro}>{content.intro}</p>
-        <div className={styles.actions}>{action}{thrive ? <Link to="/the-little-garden/start?plan=thrive">Start with Your Place</Link> : <Link to="/the-little-garden/start?plan=bloom&new=1">Not listed yet? Add your place</Link>}</div>
-        <p className={styles.availability}>{thrive ? 'Tell us what you would share. An inquiry starts no payment or commitment.' : bloomAvailable ? 'Free to claim. Ownership approval comes before payment.' : 'Free to claim now. Bloom purchases are coming soon.'}</p>
+    <div className={styles.salesLayout}>
+      <div className={styles.mainColumn}>
+        <section className={styles.hero} aria-labelledby="plan-title">
+          <Icon name={content.icon} size={62} /><p className={styles.eyebrow}>{content.eyebrow}</p>
+          <h1 id="plan-title">{content.heading}</h1><p className={styles.intro}>{content.intro}</p>
+          <a className={styles.exploreLink} href="#included">See what’s included <span aria-hidden="true">↓</span></a>
+        </section>
+        <section id="included" className={styles.features} aria-labelledby="features-title">
+          <div className={styles.sectionIntro}><p className={styles.eyebrow}>{thrive ? 'Included in the pilot' : 'What’s included in Bloom'}</p><h2 id="features-title">{content.sectionTitle}</h2><p>{content.sectionIntro}</p></div>
+          <div className={styles.featureGrid}>{getPlanFeatures(plan, growthEnabled, emailReportsEnabled).map(feature => <article key={feature.title}><span className={styles.featureIcon}><Icon name={feature.icon} size={27} /></span><h3>{feature.title.replace(/^Pilot: /, '')}</h3><p>{feature.text}</p></article>)}</div>
+        </section>
+        <section className={styles.showcase} aria-labelledby="showcase-title"><div className={styles.sectionIntro}><p className={styles.eyebrow}>A little look at your listing</p><h2 id="showcase-title">{content.showcaseTitle}</h2><p>{content.showcaseText}</p></div><BusinessPreview thrive={thrive} growth={growthEnabled} /></section>
+        <section className={styles.journey} aria-labelledby="journey-title"><div className={styles.sectionIntro}><p className={styles.eyebrow}>Start with a free claim</p><h2 id="journey-title">From finding your place to making it yours.</h2></div><ol>{ownerSteps.map(step => <li key={step.title}><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol><div className={styles.journeyLinks}><Link to={`/the-little-garden/start?plan=${plan}&new=1`}>Request a Missing Listing</Link><Link to="/my-places">Already approved? Open My Places</Link></div></section>
+        <section className={styles.assistance} aria-label="Assisted setup"><Icon name="plan-team" size={30} /><div><h2>A little help getting started.</h2><p>Ask about a setup session for your profile and first offerings. We agree the scope and any one-time price before work begins.</p><a href="mailto:help@littleherbplaces.com?subject=Assisted%20business%20setup">Ask About Assisted Setup <span aria-hidden="true">↗</span></a></div></section>
+        <section className={styles.faq} aria-labelledby="faq-title"><h2 id="faq-title">A few things you might be wondering.</h2><div>{content.faqs.map(faq => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div></section>
+        <section className={styles.closing}><h2>{thrive ? 'Let’s shape what comes next.' : 'Give your little place room to bloom.'}</h2><p>{thrive ? 'Tell us about your place and the offerings you’d love people to discover.' : 'Find your listing and introduce yourself. A useful profile starts with you.'}</p><div className={styles.journeyLinks}><Link to={`/the-little-garden/start?plan=${plan}`}>Find Your Place <Icon name="arrow" size={16} /></Link><Link to={`/the-little-garden/${thrive ? 'bloom' : 'thrive'}`}>{thrive ? 'Explore Bloom' : 'Explore Thrive'}</Link></div></section>
       </div>
-      <aside className={styles.offer} aria-label={`${content.name} plan details`}>
-        <div className={styles.offerImage}><img src={content.heroPhoto} alt={content.heroAlt} style={{ objectPosition: content.heroPosition }} width={thrive ? 500 : 900} height={thrive ? 500 : 1350} fetchPriority="high" /></div>
-        <div className={styles.offerCopy}><span className={styles.eyebrow}>{thrive ? 'Invitation-only pilot' : 'Help visitors choose your place'}</span><h2>{content.name}</h2><p className={styles.price}>${content.price}<span>{content.priceNote}</span></p><p>{thrive ? 'Pilot: Bloom tools, searchable offerings, events, and activity reporting.' : growthEnabled ? 'A rich profile, customer actions, announcements, activity reporting, and all approved managers.' : 'Listing edits, up to 10 photos, and all approved managers.'}</p><a href="#included">Explore the {thrive ? 'planned features' : 'features'} ↓</a></div>
+      <aside id="plan-offer" className={styles.planRail} aria-label={`${content.name} plan details`}>
+        <div className={styles.offer}>
+          <div className={styles.offerImage}><img src={content.heroPhoto} alt={content.heroAlt} style={{ objectPosition: content.heroPosition }} width={900} height={450} fetchPriority="high" /></div>
+          <div className={styles.offerCopy}>
+            <div className={styles.offerTitle}><div><span className={styles.eyebrow}>{thrive ? 'Invitation-only pilot' : 'Your place, thoughtfully presented'}</span><h2>{content.name}</h2></div><Icon name={content.icon} size={46} /></div>
+            <p className={styles.price}>${content.price}<span>/ month per place</span></p>
+            <p className={styles.currency}>{thrive ? 'Planned paid price · USD' : 'USD · plus applicable tax'}</p>
+            <ul>{included.map(item => <li key={item}><img src="/assets/icons/checkmark--green.svg" alt="" width="14" height="14" />{item}</li>)}</ul>
+            {action()}
+            <p className={styles.checkoutNote}>{thrive ? 'Pilot by invitation. An inquiry starts no payment or commitment.' : bloomAvailable ? 'Free ownership review before payment. Renews monthly; cancel future renewals anytime.' : 'Claim your place for free. Bloom purchases are coming soon.'}</p>
+            <Link className={styles.ownerLink} to={thrive ? '/the-little-garden/start?plan=thrive' : '/my-places'}>{thrive ? 'Start with Your Place' : 'Already approved? Open My Places'}</Link>
+          </div>
+        </div>
       </aside>
-    </section>
-    <section id="included" className={styles.features} aria-labelledby="features-title"><div className={styles.sectionIntro}><p className={styles.eyebrow}>{thrive ? 'The idea behind Thrive' : 'What’s included in Bloom'}</p><h2 id="features-title">{content.sectionTitle}</h2><p>{content.sectionIntro}</p></div><div className={styles.featureGrid}>{getPlanFeatures(plan, growthEnabled, emailReportsEnabled).map(feature => <article key={feature.title}><Icon name={feature.icon} size={40} /><h3>{feature.title}</h3><p>{feature.text}</p></article>)}</div></section>
-    <section className={styles.showcase} aria-labelledby="showcase-title"><div><p className={styles.eyebrow}>{thrive ? 'Imagine the possibilities' : 'Details that welcome people in'}</p><h2 id="showcase-title">{content.showcaseTitle}</h2><p>{content.showcaseText}</p><p className={styles.small}>{content.showcaseNote}</p></div><BusinessPreview thrive={thrive} growth={growthEnabled} /></section>
-    <section className={styles.journey} aria-labelledby="journey-title"><div className={styles.sectionIntro}><p className={styles.eyebrow}>Start with a free claim</p><h2 id="journey-title">From finding your place to making it yours.</h2><p>Already listed or just joining the directory? Both paths lead to the same ownership review before paid editing.</p></div><ol>{ownerSteps.map(step => <li key={step.title}><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol><div className={styles.journeyLinks}><Link to={`/the-little-garden/start?plan=${plan}&new=1`}>Request a Missing Listing</Link><Link to="/my-places">Already approved? Open My Places</Link></div></section>
-    <section className={styles.showcase} aria-label="Assisted setup"><div><h2>A little help getting started.</h2><p>Have good photos and offerings, but little time to put them together? Ask about a bounded setup session to shape your profile and first offerings. Scope and any one-time price are agreed before work begins.</p><a href="mailto:help@littleherbplaces.com?subject=Assisted%20business%20setup">Ask About Assisted Setup</a></div></section>
-    <section className={styles.faq} aria-labelledby="faq-title"><h2 id="faq-title">A few things you might be wondering.</h2><div>{content.faqs.map(faq => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div><p><Link to="/help#billing">More billing help</Link> · <Link to="/membership-terms">Membership terms</Link> · <Link to="/privacy">Privacy</Link></p></section>
-    <section className={styles.closing}><Icon name={content.icon} size={60} /><h2>{thrive ? 'Let’s shape what comes next.' : 'Give your little place room to bloom.'}</h2><p>{thrive ? 'Tell us about your place and the offerings you’d love people to discover.' : 'Find your listing, introduce yourself, and take the first step. Claiming is free.'}</p>{action}<p className={styles.small}>{thrive ? <Link to="/the-little-garden/bloom">Explore Bloom for your listing essentials</Link> : <Link to="/the-little-garden/thrive">Looking to share products or services? Explore Thrive</Link>}</p></section>
+    </div>
+    <aside className={styles.legalNotes} aria-label={`${content.name} membership notes`}><p>{content.showcaseNote}</p><p><Link to="/membership-terms">Membership terms</Link> · <Link to="/help#billing">Billing help</Link> · <Link to="/privacy">Privacy</Link></p></aside>
+    <div className={styles.mobileAction} role="region" aria-label={`${content.name} quick signup`}><div><strong>{content.name} <span>${content.price}</span></strong><span>{thrive ? 'Planned price · pilot by invitation' : '/ month per place · plus tax'}</span></div>{action(true)}</div>
   </main>;
 }
 BusinessPlan.propTypes = { plan: PropTypes.oneOf(['bloom', 'thrive']).isRequired };
