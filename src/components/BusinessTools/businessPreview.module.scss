@@ -1,0 +1,28 @@
+.preview {
+margin: 0; min-width: 0; color: #2c542f;
+.frame { background: #fff; border: 1px solid #d4decb; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 35px #2c542f0b; }
+.chrome { display: flex; align-items: center; gap: 20px; padding: 11px 15px; background: #f2f5ec; border-bottom: 1px solid #e1e7d8; font: 9px/1.4 Inter, sans-serif; color: #637454; > span:first-child { display: flex; gap: 4px; i { display: block; width: 5px; height: 5px; border-radius: 50%; background: #b6c4a6; } } }
+.siteHeader { display: flex; align-items: center; gap: 20px; padding: 12px 22px; border-bottom: 1px solid #e2e8d8; font: 9px/1.5 Inter, sans-serif; > img { width: 35px; height: 39px; object-fit: contain; margin-right: auto; } > span > span { margin-left: 14px; } .miniJoin { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 20px; background: #eaff82; } }
+.profilePage { padding: 24px; }
+.profileHeader { .location { margin: 0 0 10px; font-size: 9px; letter-spacing: .02em; color: #5a7452; } h3 { font: 200 clamp(27px, 3vw, 37px)/1.15 'Editorial', Georgia, serif; margin: 0 0 10px; } > p:not(.location) { font-size: 11px; line-height: 1.7; margin: 0; } }
+.profileActions { display: flex; align-items: center; gap: 12px; margin: 17px 0 22px; font: 10px/1.4 Inter, sans-serif; }
+.primaryAction, .saveAction { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 22px; }
+.primaryAction { background: #eaff82; }
+.saveAction { border: 1px solid #d9e2cb; }
+.photos { display: grid; grid-template-columns: 1.6fr 1fr; gap: 8px; border-radius: 12px; overflow: hidden; height: 190px; > img { width: 100%; height: 190px; object-fit: cover; object-position: center 35%; min-width: 0; } }
+.profileBody { display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-top: 27px; h4 { font: 200 23px/1.2 'Editorial', Georgia, serif; margin: 0 0 11px; } p { font: 11px/1.8 Inter, sans-serif; margin: 0; } }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; > span { border: 1px solid #e1e8d3; border-radius: 16px; padding: 5px 8px; font: 9px/1.5 Inter, sans-serif; background: #fbfcf7; } }
+.visit { border-left: 1px solid #dfe6d5; padding-left: 21px; p { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; font-size: 10px; } > span { display: inline-flex; gap: 10px; align-items: center; font: 10px/1.6 Inter, sans-serif; text-decoration: underline; text-underline-offset: 3px; margin-top: 5px; } svg { flex-shrink: 0; } }
+.announcement { display: flex; align-items: start; gap: 16px; margin-top: 25px; padding: 20px; background: #f7fae9; border: 1px solid #e2e9cb; border-radius: 12px; h4 { font: 200 24px/1.2 'Editorial', Georgia, serif; margin: 6px 0 9px; } p { font: 11px/1.7 Inter, sans-serif; margin: 0; } p.overline { font-size: 8px; } }
+.announcementIcon { margin-top: 4px; flex-shrink: 0; }
+.overline { font: 500 8px/1.6 Inter, sans-serif; text-transform: uppercase; letter-spacing: .07em; }
+.offerings { margin-top: 27px; border-top: 1px solid #dfe6d5; padding-top: 24px; > h4 { font: 200 26px/1.2 'Editorial', Georgia, serif; margin: 0 0 17px; } }
+.offeringGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; article { min-width: 0; border: 1px solid #dfe6d5; border-radius: 12px; overflow: hidden; > img { width: 100%; height: 135px; object-fit: cover; display: block; } > div { padding: 15px; } } h4 { font: 200 22px/1.2 'Editorial', Georgia, serif; margin: 8px 0; } p { font: 10px/1.7 Inter, sans-serif; margin: 0; } }
+.itemAction { display: flex; align-items: center; justify-content: space-between; gap: 10px; font: 11px/1.5 Inter, sans-serif; margin-top: 16px; > span { font-size: 9px; text-decoration: underline; text-underline-offset: 3px; } }
+.event { display: flex; align-items: center; gap: 13px; border: 1px solid #dfe6d5; padding: 16px; border-radius: 12px; margin-top: 14px; h4 { font: 200 23px/1.2 'Editorial', Georgia, serif; margin: 6px 0 0; } }
+.eventIcon { display: grid; place-items: center; width: 43px; height: 47px; background: #f0f5dd; border-radius: 10px; flex-shrink: 0; }
+.eventAction { display: inline-flex; gap: 6px; align-items: center; font: 10px/1.5 Inter, sans-serif; margin-left: auto; white-space: nowrap; }
+.caption { font: 11px/1.7 Inter, sans-serif; margin-top: 12px; color: #536b48; }
+@media(max-width: 640px) { .chrome { gap: 12px; font-size: 8px; } .siteHeader { padding: 10px 15px; gap: 10px; > span:nth-child(2) { display: none; } } .profilePage { padding: 18px; } .profileHeader h3 { font-size: 30px; } .photos { height: 145px; > img { height: 145px; } } .profileBody { grid-template-columns: 1fr; gap: 22px; margin-top: 22px; } .visit { border-left: 0; border-top: 1px solid #dfe6d5; padding: 18px 0 0; } .announcement { padding: 17px; gap: 12px; } .offeringGrid { grid-template-columns: 1fr; article > img { height: 170px; } } .event { flex-wrap: wrap; .eventAction { margin-left: 56px; } } }
+
+}
