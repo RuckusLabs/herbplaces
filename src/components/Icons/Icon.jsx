@@ -54,6 +54,10 @@ const paths = {
 export default function Icon({ name, size = 20, ...props }) {
   const BrandIcon = brandIcons[name];
   if (BrandIcon) return <BrandIcon data-icon={name} width={size} height={size} aria-hidden="true" focusable="false" {...props} />;
-  return <svg data-icon={name} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={name.startsWith('plan-') ? 1.6 : 1.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>;
+  if (name.startsWith('plan-')) return <svg data-icon={name} width={size} height={size} viewBox="0 0 38 43" fill="none" aria-hidden="true" focusable="false" {...props}>
+    <path fill="#EAFF82" d="M15.5 43C27.374 43 38 31.374 38 19.5S32.374 0 20.5 0 0 7.626 0 19.5 3.626 43 15.5 43Z" />
+    <g transform="translate(7 10)" stroke="#C0D16B" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</g>
+  </svg>;
+  return <svg data-icon={name} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>;
 }
 Icon.propTypes = { name: PropTypes.string.isRequired, size: PropTypes.number };

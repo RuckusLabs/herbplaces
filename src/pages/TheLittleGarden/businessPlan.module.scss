@@ -17,7 +17,7 @@
 .sectionIntro { max-width: 660px; margin-bottom: 30px; h2 { margin: 14px 0 20px; } p { margin-bottom: 0; } }
 .features { padding: 42px 0 55px; border-top: 1px solid #dce4cf; scroll-margin-top: 24px; }
 .featureGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; article { border-top: 1px solid #e1e6d8; padding-top: 24px; min-width: 0; } h3 { margin: 19px 0 12px; } p { margin: 0; font-size: 13px; line-height: 1.8; } }
-.featureIcon { display: inline-flex; width: 51px; height: 51px; justify-content: center; align-items: center; background: #f1f7da; border: 1px solid #e3ebc8; border-radius: 15px; color: #3c6037; }
+.featureIcon { display: inline-flex; width: 62px; height: 62px; align-items: center; }
 .showcase { padding: 35px 0 55px; .sectionIntro { margin-bottom: 28px; } }
 .journey { padding: 35px 0 50px; border-top: 1px solid #dce4cf; ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; counter-reset: journey; padding: 0; gap: 28px; } li { counter-increment: journey; &::before { content: '0' counter(journey); display: block; font-family: 'Editorial', Georgia, serif; font-size: 30px; color: #738a55; border-bottom: 1px solid #dce4cf; padding-bottom: 13px; } h3 { font-size: 24px; margin: 18px 0 12px; } p { font-size: 13px; } } }
 .journeyLinks { display: flex; flex-wrap: wrap; gap: 15px 25px; margin-top: 22px; font-size: 13px; a { display: inline-flex; align-items: center; gap: 9px; } }
