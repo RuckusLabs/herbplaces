@@ -1,0 +1,1 @@
+import{j as e,H as t}from"./index-Bs304nsl.js";function s(){return e.jsxs(e.Fragment,{children:[e.jsx(t,{children:e.jsx("title",{children:"Little Herb Places | Shop"})}),e.jsx("h1",{children:"Shop"})]})}export{s as default};
