@@ -1,5 +1,11 @@
 import { bloomOffer, thriveOffer } from '../../supabase/functions/_shared/billingCatalog.js';
 
+export const gardenPlanNotes = [
+  { number: 1, label: 'free access', text: 'Sprout is our free community plan for discovering and saving places. Businesses can request a listing, claim ownership, and correct essential information for free.' },
+  { number: 2, label: 'billing and pilot terms', text: `Bloom is ${bloomOffer.label}, and renews monthly until canceled. Cancel in Manage Billing with Stripe to stop the next renewal; editing continues through the paid period. Published listings stay visible after editing access ends. Thrive is not available for purchase. Its invitation-only pilot has an agreed end date and collects no Thrive payment.` },
+  { number: 3, label: 'ownership verification', text: 'Ownership verification is independent of payment. A verified listing is not an endorsement of products or medical advice.' },
+];
+
 export const ownerSteps = [
   { title: 'Find your place', text: 'Search the directory. If your place is missing, send a free listing request and follow its review status in Your Listing Requests.' },
   { title: 'Claim your listing', text: 'Once the listing is available, open it and choose Claim This Place. Sign in or create a free account, confirm your email, and share your connection to the business.' },

@@ -5,10 +5,11 @@ import Reveal from '../../components/Reveal/Reveal';
 import styles from './thelittlegarden.module.scss';
 import { growthEnabled, emailReportsEnabled } from '../../utilities/growthApi';
 import { bloomAvailable } from '../../utilities/managementApi';
-import { getBusinessPlans } from '../../utilities/planPages';
+import { getBusinessPlans, gardenPlanNotes } from '../../utilities/planPages';
 import { bloomOffer } from '../../../supabase/functions/_shared/billingCatalog.js';
 
 
+const noteReference = (number, id) => <sup className={styles.noteReference}><a id={id} href={`#plan-note-${number}`} aria-label={`Read footnote ${number}: ${gardenPlanNotes[number - 1].label}`}>{number}</a></sup>;
 
 export default function TheLittleGarden() {
   const plans = getBusinessPlans({ growthEnabled, bloomAvailable, emailReportsEnabled });
@@ -35,21 +36,19 @@ export default function TheLittleGarden() {
         {plans.map(plan => <article key={plan.name} className={`${styles.plan} ${plan.name === 'Bloom' ? styles.available : ''}`}>
           <div className={styles.planTop}><Icon name={plan.icon} size={64} />{!plan.available && <span className={styles.comingSoon}>{plan.name === 'Thrive' ? 'Pilot · Paid Plan Coming Soon' : 'Purchases Coming Soon'}</span>}</div>
           <h3>{plan.name}</h3><p className={styles.planDescription}>{plan.description}</p>
-          <p className={styles.price}>{plan.price}{plan.name !== 'Sprout' && <span> / month per place</span>}</p>
+          <p className={styles.price}>{plan.price}{noteReference(plan.name === 'Sprout' ? 1 : 2, `plan-ref-${plan.name.toLowerCase()}`)}{plan.name !== 'Sprout' && <span> / month per place</span>}</p>
           <ul>{plan.features.map(feature => <li key={feature}><img src="/assets/icons/checkmark--green.svg" alt="" width="15" height="15" />{feature}</li>)}</ul>
           <Link to={plan.path} className="button">{plan.action} <Icon name="arrow" size={18} /></Link>
         </article>)}
       </div>
     </Reveal>
     <section className={styles.howItWorks} aria-labelledby="business-steps"><h2 id="business-steps">From Your Place to Your People.</h2>
-      <ol><li><strong>Find your place.</strong><p>Search the directory, or <Link to="/request-place">request a listing</Link> if it’s missing.</p></li><li><strong>Confirm your connection.</strong><p>Create a free account and send your ownership details for our team to review. No payment is taken with a claim.</p></li><li><strong>Make it your own.</strong><p>After approval, correct essential details for free or choose Bloom when checkout is enabled to build a richer profile.</p></li></ol>
+      <ol><li><strong>Find your place.</strong><p>Search the directory, or <Link to="/request-place">request a listing</Link> if it’s missing.</p></li><li><strong>Confirm your connection.</strong><p>Create a free account and send your ownership details for our team to review.{noteReference(3, 'plan-ref-verification')} No payment is taken with a claim.</p></li><li><strong>Make it your own.</strong><p>After approval, correct essential details for free or choose Bloom when checkout is enabled to build a richer profile.</p></li></ol>
       <p>Already approved? <Link to="/my-places">Open My Places</Link>. Here to discover places? <Link to="/the-little-garden/sprout">Explore our free community updates</Link>.</p>
     </section>
     <Reveal className={styles.invitation}><div className={styles.invitationInner}><Icon name="community" size={56} /><div><h2>Good Company Makes All the Difference.</h2><p>Meet the little places and plant people at the heart of our community.</p></div><Link to="/map" className="button">Explore Places <Icon name="arrow" size={18} /></Link></div></Reveal>
     <aside className={styles.footnotes} aria-label="Plan notes">
-      <p>Sprout is our free community plan for discovering and saving places. Businesses can request a listing, claim ownership, and correct essential information for free.</p>
-      <p>Bloom is {bloomOffer.label}, and renews monthly until canceled. Cancel in Manage Billing with Stripe to stop the next renewal; editing continues through the paid period. Published listings stay visible after editing access ends. Thrive is not available for purchase. Its invitation-only pilot has an agreed end date and collects no Thrive payment.</p>
-      <p>Ownership verification is independent of payment. A verified listing is not an endorsement of products or medical advice. <Link to="/help#billing">Billing questions</Link> · <Link to="/membership-terms">Membership terms</Link></p>
+      {gardenPlanNotes.map(note => <p id={`plan-note-${note.number}`} key={note.number} tabIndex={-1}><sup className={styles.noteReference}>{note.number}</sup>{' '}{note.text}{note.number === 3 && <> <Link to="/help#billing">Billing questions</Link> · <Link to="/membership-terms">Membership terms</Link></>}</p>)}
     </aside>
   </main>;
 }
