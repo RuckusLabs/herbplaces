@@ -36,7 +36,7 @@ export default function TheLittleGarden() {
         {plans.map(plan => <article key={plan.name} className={`${styles.plan} ${plan.name === 'Bloom' ? styles.available : ''}`}>
           <div className={styles.planTop}><Icon name={plan.icon} size={64} />{!plan.available && <span className={styles.comingSoon}>{plan.name === 'Thrive' ? 'Pilot · Paid Plan Coming Soon' : 'Purchases Coming Soon'}</span>}</div>
           <h3>{plan.name}</h3><p className={styles.planDescription}>{plan.description}</p>
-          <p className={styles.price}>{plan.price}{noteReference(plan.name === 'Sprout' ? 1 : 2, `plan-ref-${plan.name.toLowerCase()}`)}{plan.name !== 'Sprout' && <span> / month per place</span>}</p>
+          <p className={styles.price}>{plan.price}{plan.name === 'Sprout' ? noteReference(1, 'plan-ref-sprout') : <span> / month per place{noteReference(2, `plan-ref-${plan.name.toLowerCase()}`)}</span>}</p>
           <ul>{plan.features.map(feature => <li key={feature}><img src="/assets/icons/checkmark--green.svg" alt="" width="15" height="15" />{feature}</li>)}</ul>
           <Link to={plan.path} className="button">{plan.action} <Icon name="arrow" size={18} /></Link>
         </article>)}

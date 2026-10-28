@@ -21,6 +21,7 @@ export const planPages = {
     description: 'Keep your herb shop, herbal practice, or garden listing current with Bloom. Share photos, hours, and useful links for $19/month per place, plus applicable tax, after ownership approval.',
     intro: 'Turn a curious visitor into someone ready to visit, shop, or get in touch. Give your business a useful home in a directory built around herbs, plants, and the people who care for them.',
     price: bloomOffer.amount / 100, priceNote: 'USD / month per place · plus applicable tax · renews monthly',
+    priceFootnote: 'USD, plus applicable tax. Renews monthly; cancel future renewals in Manage Billing.',
     sectionTitle: 'A profile that helps people take the next step.',
     sectionIntro: 'Bloom puts your listing in the hands of the people who know it best. Keep the essentials together, and give visitors a reason to take a closer look.',
     features: [
@@ -52,6 +53,7 @@ export const planPages = {
     description: 'Explore the Thrive pilot: business profiles, searchable products and services, workshops, and activity reports. Planned paid price: $49/month per place.',
     intro: 'Put your products, consultations, and workshops in front of people exploring herb businesses. Join a small pilot to help shape a useful next step beyond your listing.',
     price: thriveOffer.amount / 100, priceNote: 'USD / month per place · planned paid price · pilot by invitation',
+    priceFootnote: 'Planned paid price in USD. Thrive is not available for purchase; a pilot inquiry starts no payment or subscription.',
     sectionTitle: 'Make room for what you make.',
     sectionIntro: 'The pilot tests whether searchable offerings, timely events, and useful reporting help visitors take the next step. Paid Thrive subscriptions are not open.',
     features: [
