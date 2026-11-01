@@ -15,7 +15,7 @@ export default function Home() {
   const navigate = useNavigate();
   const search = event => {
     event.preventDefault();
-    navigate(`/map?view=map${query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''}`);
+    navigate(`/map?view=list${query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''}`);
   };
   return <>
     <Helmet>
@@ -28,8 +28,8 @@ export default function Home() {
           <p className={styles.heroIntro}><Icon name="map" size={22} />Your Guide to Plant-Loving Places</p>
           <h1 id="hero-title">A Little Closer<br />to <em>Nature.</em></h1>
           <p>Follow a little curiosity. Find independent herb shops,<br className={styles.desktopBreak} /> herbalists, gardens, and gatherings that bring<br className={styles.desktopBreak} /> you closer to plants — and each other.</p>
-          <PlaceSearch id="home-search" className={styles.homeSearch} value={query} onChange={setQuery} onSubmit={search} buttonLabel="Explore the Map" />
-          <div className={styles.heroCategories} aria-label="Explore by kind of place">{categories.map(category => <Link key={category.id} to={`/map?view=map&category=${category.id}`}><Icon name={category.icon} size={28} />{category.short}</Link>)}</div>
+          <PlaceSearch id="home-search" className={styles.homeSearch} value={query} onChange={setQuery} onSubmit={search} buttonLabel="Explore Places" />
+          <div className={styles.heroCategories} aria-label="Explore by kind of place">{categories.map(category => <Link key={category.id} to={`/map?view=list&category=${category.id}`}><Icon name={category.icon} size={28} />{category.short}</Link>)}</div>
         </div>
         <HeroMap />
       </section>

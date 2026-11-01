@@ -3,7 +3,7 @@ import { reconcileSubscription } from '../_shared/billing.ts';
 import { validateCheckoutPrice } from '../_shared/billingCatalog.js';
 import { findPlaceSubscription } from '../_shared/billingRecovery.js';
 import { checkoutTaxOptions } from '../_shared/billingEnvironment.js';
-import { coordinatesFromGeocode, hasImageSignature, PHOTO_BYTES, validatePhotoFile } from '../_shared/entitlements.js';
+import { hasImageSignature, PHOTO_BYTES, validatePhotoFile } from '../_shared/entitlements.js';
 
 Deno.serve(async req => {
   const headers = corsHeaders(req);
@@ -62,25 +62,9 @@ Deno.serve(async req => {
 
     if (action === 'geocode') {
       if (access.place.geocode_status === 'confirmed') return json({ status: 'confirmed' }, 200, headers);
-      if (Deno.env.get('AUTOMATIC_GEOCODING_ENABLED') !== 'true') {
-        await checked(await db.rpc('apply_place_geocode', { p_place_id: placeId, p_address_version: access.place.content_version, p_latitude: null, p_longitude: null }));
-        return json({ status: 'review' }, 200, headers);
-      }
-      const place = await checked(await db.rpc('reserve_place_geocode', { p_place_id: placeId, p_user_id: user.id }));
-      if (!place) return json({ status: 'review' }, 200, headers);
-      let coordinates = null;
-      try {
-        const url = new URL('https://api.mapbox.com/search/geocode/v6/forward');
-        url.search = new URLSearchParams({ access_token: required('MAPBOX_GEOCODING_TOKEN'),
-          q: [place.address, place.city, place.state, place.zip].filter(Boolean).join(', '),
-          permanent: 'true', autocomplete: 'false', types: 'address', limit: '1' }).toString();
-        const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
-        if (!response.ok) throw new Error('Geocoding unavailable.');
-        coordinates = coordinatesFromGeocode(await response.json());
-      } catch { /* Content is already published. An admin can resolve the location. */ }
-      await checked(await db.rpc('apply_place_geocode', { p_place_id: placeId, p_address_version: place.content_version,
-        p_latitude: coordinates?.latitude ?? null, p_longitude: coordinates?.longitude ?? null }));
-      return json({ status: coordinates ? 'confirmed' : 'review' }, 200, headers);
+      // Paid address lookup is disabled, regardless of deployed environment settings.
+      await checked(await db.rpc('apply_place_geocode', { p_place_id: placeId, p_address_version: access.place.content_version, p_latitude: null, p_longitude: null }));
+      return json({ status: 'review' }, 200, headers);
     }
 
     const stripe = stripeClient();
