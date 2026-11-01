@@ -11,13 +11,21 @@ Create a local `.env` file (never commit credentials):
 ```dotenv
 VITE_SUPABASE_URL=your-project-url
 VITE_SUPABASE_ANON_KEY=your-public-anon-key
+# Required for the homepage map and Discover Map view
+VITE_MAPBOX_TOKEN=your-public-mapbox-token
 ```
 
-Use a public Supabase anon key with appropriate row-level security policies, never a service-role key. Without Supabase configuration, the site renders normally and directory/account requests show an unavailable state. Restart Vite after changing environment variables.
+Use a public Supabase anon key with appropriate row-level security policies, never a service-role key. Use a public Mapbox token for maps; configure it in the build environment as well as locally. Without Supabase configuration, the site renders normally and directory/account requests show an unavailable state. Restart Vite after changing environment variables.
 
-## Mapbox disabled
+## Address lookups disabled
 
-Mapbox is disabled to prevent API charges. The homepage uses a bundled photo and the directory always shows a list, including old `?view=map` links. Builds do not read a Mapbox token. The place-management function no longer calls Mapbox; new or edited addresses require manual coordinate confirmation. Keep `AUTOMATIC_GEOCODING_ENABLED=false` on the live Supabase project for older function versions as well. Revoke project tokens in Mapbox to also block stale clients and any other token usage.
+Automatic address geocoding is disabled because permanent geocoding has no free allowance. The live place-management function does not call Mapbox, `AUTOMATIC_GEOCODING_ENABLED` is false, and its geocoding credential has been removed. New or changed addresses require manual coordinate confirmation. Interactive maps and homepage static maps remain enabled under their separate free allowances; usage above those allowances can still incur charges.
+
+## Maps in GitHub Pages deployments
+
+GitHub Actions must have a repository secret named `VITE_MAPBOX_TOKEN` (Settings → Secrets and variables → Actions). Local `.env.local` settings do not reach GitHub Actions. The deployment workflow passes this secret into the Vite build and stops with a clear error if it is missing. Redeploy after adding or changing it; the value is embedded at build time.
+
+Use the same working public Mapbox token for the homepage Static Images API and the interactive Discover map. If maps still fail, check the failed request: 401 means an invalid or deleted token; 403 can mean missing permissions or a URL restriction. Allow the actual site origin (`https://littleherbplaces.com`, plus `https://www.littleherbplaces.com` if used) and local preview origins on restricted tokens. See [Mapbox token troubleshooting](https://docs.mapbox.com/help/troubleshooting/token-errors/).
 
 ## Checks
 
@@ -27,13 +35,21 @@ Mapbox is disabled to prevent API charges. The homepage uses a bundled photo and
 
 ## Directory behavior
 
-Homepage searches and category links open the list directory. Search, categories, nearby filtering, pagination, saved places, and business management remain available. Places share one pending request and a five-minute memory/local-storage cache; navigation and window focus revalidate public listings.
+Homepage search links to `/map?view=map&q=...`. Category links use `/map?category=shops` (or `herbalists`, `gardens`, `workshops`); hero shortcuts also preserve Map view. Filters remain in the URL, so filtered views can be bookmarked. Categories match terms in existing listing fields; a dedicated taxonomy can replace this when the database provides one.
+
+The homepage hero uses a lightweight Mapbox static image with accessible pins positioned from actual listing coordinates. Nearby places share a pin; selecting a grouped pin opens the map fitted to that group’s area. Single-place pins open the place’s detail page directly. The Open the Full Map button opens the map directory. Hero searches and category shortcuts open Map view with the requested filters. Both maps share their pin components; Discover retains saving, dismissible popups, and mobile bottom sheets. Its individual pin labels appear on hover, keyboard focus, or selection to keep nearby places legible. The full map library remains lazy-loaded in the directory.
+
+Directory lists and the map results panel show at most 15 places per page. Previous/Next controls preserve filters and the current page in the URL. Filter and area changes reset to page one. All matching map pins remain available, and selecting a pin brings its result page into view. The list is the default view. `?view=map` preserves Map view in shareable URLs. Mapbox and its styles load only when the visitor chooses Map. Map view links place cards to category pins, clusters nearby places, and offers an explicit area search. Filtering preserves the current camera; Show All Places clears the area restriction and fits the matching places. On mobile, selected places appear in a bottom sheet and the results list can be expanded. Places share one pending request and a five-minute memory/local-storage cache; navigation and window focus revalidate public listings. Blocked, full, or malformed storage does not prevent loading places. Retry refreshes the cache.
+
+Map usage is reduced in two ways: Discover enables `reuseMaps`, so switching List/Map or returning from another route reuses the existing Mapbox instance in the current page session instead of initializing another billable map load. The homepage groups similar viewport dimensions into shared static-image requests, with pins projected into that exact camera so they remain aligned when the image scales. Small resizes within a size bucket do not generate different map URLs. Static images use the browser's ordinary HTTP cache and Mapbox's `Cache-Control` headers (currently 12 hours); there is no separate tile store or cache that overrides expiration. The places-data cache above is separate from Mapbox billing.
+
+This reduces redundant requests but does not cap charges: full page reloads, separate tabs, new visitors, and Mapbox's session limits can still create loads. See [Mapbox GL JS billing](https://docs.mapbox.com/mapbox-gl-js/guides/pricing/), [map reuse](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#minimize-cost-from-frequent-re-mounting), and [static-image caching](https://docs.mapbox.com/api/maps/static-images/#static-images-api-restrictions-and-limits). Use token URL restrictions and review usage in Mapbox to limit unauthorized use and spot unusual traffic.
 
 Guests save places on their device; a successful new save opens an account prompt with Create an Account, Sign In, and Keep Browsing options. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
 
 Authenticated favorites use the existing Supabase `favorites` table. Guest saves merge automatically after sign-in or an email-confirmation callback, without replacing existing account saves. Device copies are removed only after the database confirms the merge. Failures retain local saves and provide a retry. The account forms preserve the return destination and send visitors from the save prompt to `/favorites` after syncing.
 
-Places Near Me is available on the homepage and after All Places in the directory filters. It explains the location request before asking the browser for permission; if location permission is already granted, it opens nearby results directly. Once allowed, `/map?view=map&lat=...&lng=...` shows a list of places within 50 miles. The Places Near Me chip shows whether nearby filtering is active; select it again to remove that filter. Denied or unavailable location access leaves directory search available. Show Places Everywhere removes the location filter.
+Places Near Me is available on the homepage and after All Places in the directory filters. It explains the location request before asking the browser for permission; if location permission is already granted, it opens nearby results directly. Once allowed, `/map?view=map&lat=...&lng=...` shows places within 50 miles in both Map and List views. Map view marks the location with a branded pin and a You are here label. The Places Near Me chip shows whether nearby filtering is active; select it again to remove that filter. Denied or unavailable location access offers manual map exploration. Show Places Everywhere removes the location filter.
 
 ## Live account verification
 

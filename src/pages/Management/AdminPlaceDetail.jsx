@@ -5,7 +5,7 @@ import DeletePlaceDialog from './DeletePlaceDialog';
 import AdminPilotControls from '../../components/BusinessTools/AdminPilotControls';
 import Modal from '../../components/Modal/Modal';
 import { useManagement } from '../../contexts/ManagementContext';
-import { geocodePublishedPlace, managementAction, managementRpc } from '../../utilities/managementApi';
+import { geocodePublishedPlace, managementRpc } from '../../utilities/managementApi';
 import { refreshPlaces, updatePublishedPlace } from '../../utilities/placesStore';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
@@ -88,8 +88,8 @@ export default function AdminPlaceDetail({ placeId, onClose, onDeleted }) {
         <label className={styles.check}><input type="checkbox" checked={settings.featured} onChange={event => setSettings(previous => ({ ...previous, featured: event.target.checked }))} disabled={busy} />Featured place</label>
         <p className={styles.small}>Approved manager access also verifies ownership independently of subscription status. Editorial verification remains a separate team decision.</p>
         <div className={styles.formRow}><label>Latitude<input type="number" step="any" min="-85.051129" max="85.051129" value={settings.latitude} onChange={event => setSettings(previous => ({ ...previous, latitude: event.target.value }))} disabled={busy} /></label><label>Longitude<input type="number" step="any" min="-180" max="180" value={settings.longitude} onChange={event => setSettings(previous => ({ ...previous, longitude: event.target.value }))} disabled={busy} /></label></div>
-        <p className={styles.small}>Map status: {detail.place.geocode_status}. Enter both coordinates to confirm a location, or retry automatic lookup.</p>
-        <div className={styles.actions}><button className="button" disabled={busy}>Save Settings</button>{detail.place.geocode_status !== 'confirmed' && <button className="button" type="button" disabled={busy} onClick={() => run(() => managementAction('geocode', placeId), 'Map lookup completed. Check the location status.')}>Retry Address Lookup</button>}</div>
+        <p className={styles.small}>Map status: {detail.place.geocode_status}. Enter both coordinates to confirm a location. Automatic address lookup is disabled.</p>
+        <div className={styles.actions}><button className="button" disabled={busy}>Save Settings</button></div>
       </form></section>
       <section className={styles.card}><h3>Content History</h3>{!detail.revisions.length ? <p>No previous versions yet.</p> : <ul className={styles.list}>{detail.revisions.map(item => <li key={item.id}>Version {item.version} · {new Date(item.created_at).toLocaleString()} <button className="button" disabled={busy} onClick={() => run(async () => setRevision(await managementRpc('admin_get_revision', { p_place_id: String(placeId), p_revision_id: item.id })), 'Revision loaded below.')}>Review</button></li>)}</ul>}
         {revision && <section className={styles.preview} aria-label="Revision content"><h3>Version {revision.version}: {revision.content.name}</h3><p>{revision.content.tagline}</p><p>{revision.content.description}</p><p>{[revision.content.address, revision.content.city, revision.content.state, revision.content.zip].filter(Boolean).join(', ')}</p><p>{revision.content.website}</p><p>{revision.content.phone}</p><p>{revision.content.hours}</p>{revision.content.social_links?.map((link, index) => <p key={index}>{link.label}: {link.url}</p>)}<p>Categories: {revision.content.category_ids?.join(', ') || 'Inferred from listing'}</p><div className={styles.photoGrid}>{revision.content.photos?.map(photo => <img key={photo} src={photo} alt={revision.content.photo_alt?.[photo] || 'Photo in this revision'} />)}</div><button className="button" disabled={busy} onClick={restore}>Restore This Version</button></section>}

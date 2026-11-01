@@ -1,2 +1,1 @@
-// Mapbox is disabled to prevent paid API usage, even if an old token remains configured.
-export const MAPBOX_TOKEN = '';
+export const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
