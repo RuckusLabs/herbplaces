@@ -1,0 +1,1 @@
+import{j as o}from"./index-CCcLRQLC.js";import{A as r}from"./AuthForm-DdgWc3dN.js";import"./EmailCodeForm-BONdy4wp.js";import"./auth.module-CWEW36E9.js";function p(){return o.jsx(r,{mode:"login"})}export{p as default};
