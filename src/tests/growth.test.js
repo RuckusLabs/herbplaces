@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,orderedSectionKeys,moveInOrder,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
+import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,itemButtonLabel,orderedSectionKeys,moveInOrder,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
 import { getBrowsePages } from '../utilities/browse.js';
 import { openingHoursSchema } from '../utilities/openingHoursSchema.js';
 import { discoveryItems,filterDiscovery } from '../utilities/discovery.js';
@@ -83,4 +83,11 @@ test('section and item ordering validates, defaults missing sections, and render
   const content={...base,specialties:['Tea'],section_order:['offerings','specialties'],offerings:[item,{...item,id:'20000000-0000-0000-0000-000000000002',title:'A Second'}]};
   const html=renderGrowthContent({id:'1',urlSlug:'tea',growth:{place_id:'1',operating_status:'open',content}});
   assert.ok(html.indexOf('Z First')<html.indexOf('A Second'));assert.ok(html.indexOf('A Second')<html.indexOf('What You’ll Find Here.'));
+});
+
+test('item button labels default, validate, and render safely with a single approved image',()=>{
+ const image='https://example.com/upload.png';const item={id:crypto.randomUUID(),title:'Tea',kind:'product',url:'https://example.com/',image,button_label:'  Shop This Blend  '};
+ const result=prepareGrowth({...emptyGrowth(),offerings:[item]},[image]).offerings[0];assert.equal(result.image,image);assert.equal(result.button_label,'Shop This Blend');assert.equal(itemButtonLabel(result),'Shop This Blend');assert.equal(itemButtonLabel({...result,button_label:''}),'View at Their Shop');assert.equal(itemButtonLabel({...result,button_label:''},true),'Details & Registration');
+ for(const label of [5,'x'.repeat(61)])assert.throws(()=>prepareGrowth({...emptyGrowth(),offerings:[{...item,button_label:label}]},[image]),/button text/);
+ const html=renderDiscoveryContent([],{...result,button_label:'<Shop & Book>',place:{urlSlug:'tea',name:'Tea'}});assert.match(html,/&lt;Shop &amp; Book&gt;/);assert.doesNotMatch(html,/<Shop/);
 });

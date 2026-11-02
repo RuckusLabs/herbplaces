@@ -21,6 +21,8 @@ export function moveInOrder(items, index, direction) {
   return next;
 }
 
+export const itemButtonLabel = (item, event = false) => item.button_label?.trim() || (event ? 'Details & Registration' : item.kind === 'service' ? 'Learn More & Book' : 'View at Their Shop');
+
 export const emptyGrowth = () => ({ section_order: [], section_titles: {}, primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
 const text = (value, max) => String(value || '').trim().slice(0, max);
 const link = value => { if (!String(value || '').trim()) return ''; const url = getWebsiteUrl(value); if (!url) throw new Error('Use a valid HTTP or HTTPS link.'); return url; };
@@ -48,8 +50,9 @@ export function prepareGrowth(input, photos = []) {
     itemIds.add(item.id);
     const url = link(item.url);
     if (!url) throw new Error('Add a booking, registration, or shopping link for each item.');
+    if (item.button_label !== undefined && (typeof item.button_label !== 'string' || item.button_label.trim().length > 60)) throw new Error('Use button text of up to 60 characters.');
     const image = photos.includes(item.image) ? item.image : '';
-    const result = { id: item.id, title: text(item.title, 120), description: text(item.description, 1500), price: text(item.price, 100), url, image, image_alt: text(item.image_alt, 300) };
+    const result = { id: item.id, button_label: (item.button_label || '').trim(), title: text(item.title, 120), description: text(item.description, 1500), price: text(item.price, 100), url, image, image_alt: text(item.image_alt, 300) };
     if (event) {
       const starts_at = instant(item.starts_at); const ends_at = instant(item.ends_at);
       if (!starts_at || !ends_at || Date.parse(starts_at) >= Date.parse(ends_at)) throw new Error('Events need a start and a later end time.');

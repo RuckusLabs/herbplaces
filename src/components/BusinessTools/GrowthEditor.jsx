@@ -4,8 +4,9 @@ import { createPortal } from 'react-dom';
 import Modal from '../Modal/Modal';
 import Icon from '../Icons/Icon';
 import OrderControls from './OrderControls';
-import { ACTION_LABELS, emptyGrowth, prepareGrowth, SECTION_HEADINGS, SPECIALTIES, HIGHLIGHT_SECTIONS, orderedSectionKeys, moveInOrder } from '../../utilities/placeGrowth';
-import { managementRpc } from '../../utilities/managementApi';
+import { ACTION_LABELS, emptyGrowth, prepareGrowth, SECTION_HEADINGS, SPECIALTIES, HIGHLIGHT_SECTIONS, orderedSectionKeys, moveInOrder, itemButtonLabel } from '../../utilities/placeGrowth';
+import { validatePhotoFile } from '../../../supabase/functions/_shared/entitlements.js';
+import { managementAction, managementRpc } from '../../utilities/managementApi';
 import styles from './growth.module.scss';
 
 const editorSections = [
@@ -35,6 +36,9 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
   useEffect(() => { const field = initialSection === 'announcement' ? announcementField : initialSection === 'action' ? actionField : null; field?.current?.focus(); }, [initialSection]);
   const [draft, setDraft] = useState(() => { const base = emptyGrowth(); const saved = access.profile?.content; return { ...base, ...saved, primary_action: { ...base.primary_action, ...saved?.primary_action }, announcement: { ...base.announcement, ...saved?.announcement } }; });
   const [orderNotice, setOrderNotice] = useState('');
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploading, setUploading] = useState(false);
+  const allowedImages = [...(place.photos || []), ...(access.profile?.content?.offerings || []).map(item=>item.image), ...(access.profile?.content?.events || []).map(item=>item.image), ...uploadedImages].filter(Boolean);
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false); const [preview, setPreview] = useState(null);
   const previewTitle = useRef(null);
   useEffect(() => { onPreview(preview); return () => onPreview(null); }, [preview, onPreview]);
@@ -58,25 +62,40 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
   const updateItem = (field,index,key,value) => update(field,draft[field].map((item,i) => i === index ? { ...item,[key]:value } : item));
   const preparedDraft = () => {
     for (const item of editorSections) {
-      try { prepareGrowth({ ...emptyGrowth(), ...Object.fromEntries(item.fields.map(field => [field, draft[field]])), section_titles: item.titleKey ? { [item.titleKey]: draft.section_titles?.[item.titleKey] || '' } : {} }, place.photos || []); }
+      try { prepareGrowth({ ...emptyGrowth(), ...Object.fromEntries(item.fields.map(field => [field, draft[field]])), section_titles: item.titleKey ? { [item.titleKey]: draft.section_titles?.[item.titleKey] || '' } : {} }, allowedImages); }
       catch (failure) {
         setSection(item.id); setPreview(null);
         if (['offerings', 'events'].includes(item.id)) {
           for (const entry of draft[item.id]) {
-            try { prepareGrowth({ ...emptyGrowth(), [item.id]: [entry] }, place.photos || []); }
+            try { prepareGrowth({ ...emptyGrowth(), [item.id]: [entry] }, allowedImages); }
             catch { setExpandedItem(entry.id); break; }
           }
         }
         throw failure;
       }
     }
-    return prepareGrowth(draft, place.photos || []);
+    return prepareGrowth(draft, allowedImages);
   };
   const save = async event => {
     event.preventDefault(); setError(''); setBusy(true);
     try { await managementRpc('publish_place_growth', { p_place_id: String(place.id), p_content: preparedDraft(), p_expected_version: access.profile.version }); onSaved(); }
     catch (failure) { setError(failure.message); }
     finally { setBusy(false); }
+  };
+  const uploadItemPhoto = async (event, field, itemId) => {
+    const files = Array.from(event.target.files || []); event.target.value = '';
+    if (!files.length) return;
+    setError('');
+    try {
+      if (files.length !== 1) throw new Error('Choose one image per offering or event.');
+      validatePhotoFile(files[0]); setBusy(true); setUploading(true);
+      const form = new FormData(); form.set('file',files[0]);
+      const result = await managementAction('upload',place.id,form);
+      if (!result?.url) throw new Error('The image could not upload. Please try again.');
+      setUploadedImages(previous=>[...previous,result.url]);
+      setDraft(previous=>({...previous,[field]:previous[field].map(item=>item.id===itemId ? {...item,image:result.url,image_alt:''} : item)})); setPreview(null);
+    } catch(failure) { setError(failure.message); }
+    finally { setBusy(false); setUploading(false); }
   };
   const headingControl = key => <div className={styles.headingControl}><label>Public Section Title<input value={draft.section_titles?.[key] || ''} maxLength={80} placeholder={SECTION_HEADINGS[key]} onChange={event=>update('section_titles',{...draft.section_titles,[key]:event.target.value})} /></label><div><p>Leave blank to use “{SECTION_HEADINGS[key]}” on your listing.</p>{draft.section_titles?.[key] && <button type="button" onClick={()=>update('section_titles',{...draft.section_titles,[key]:''})}>Use Default</button>}</div></div>;
   const itemFields = (field,eventMode,item,index) => <div id={`${titleId}-${item.id}`} className={styles.itemFields}>
@@ -85,9 +104,10 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       {!eventMode && <label>Kind<select value={item.kind} onChange={event => updateItem(field,index,'kind',event.target.value)}><option value="product">Product</option><option value="service">Service</option></select></label>}
       <label>Description<textarea value={item.description} maxLength={1500} onChange={event => updateItem(field,index,'description',event.target.value)} /></label>
       <div className={styles.row}><label>Price or price range<input value={item.price} maxLength={100} placeholder="$35 · or Contact for pricing" onChange={event => updateItem(field,index,'price',event.target.value)} /></label><label>{eventMode ? 'Registration link' : 'Shopping or booking link'}<input value={item.url} maxLength={2000} inputMode="url" required onChange={event => updateItem(field,index,'url',event.target.value)} /></label></div>
+      <label>Button Text<input value={item.button_label || ''} maxLength={60} placeholder={itemButtonLabel({...item,button_label:''},eventMode)} onChange={event=>updateItem(field,index,'button_label',event.target.value)} /></label><p className={styles.hint}>Leave blank to use “{itemButtonLabel({...item,button_label:''},eventMode)}”.</p>
       {eventMode && <><div className={styles.row}><label>Starts (your device time)<input type="datetime-local" value={localTime(item.starts_at)} required onChange={event => updateItem(field,index,'starts_at',isoTime(event.target.value))} /></label><label>Ends (your device time)<input type="datetime-local" value={localTime(item.ends_at)} required onChange={event => updateItem(field,index,'ends_at',isoTime(event.target.value))} /></label></div><p className={styles.hint}>Event time zone: {item.timezone}</p><label>Location or online details<input value={item.location} maxLength={300} onChange={event => updateItem(field,index,'location',event.target.value)} /></label></>}
-      <label>Photo from your listing<select value={item.image || ''} onChange={event => updateItem(field,index,'image',event.target.value)}><option value="">No photo</option>{(place.photos || []).map((photo,i) => <option key={photo} value={photo}>Listing photo {i+1}</option>)}</select></label>
-      {item.image && <label>Photo description<input value={item.image_alt} maxLength={300} onChange={event => updateItem(field,index,'image_alt',event.target.value)} /></label>}
+      <div className={styles.offeringPhoto}><div><strong>{eventMode ? 'Event Image' : 'Offering Image'}</strong><p>One image per item. Upload a photo or choose one from your listing.</p></div>{item.image && <img src={item.image} alt={item.image_alt || item.title || 'Selected image'} width="240" height="160" />}<label className={styles.offeringUpload}>{item.image ? 'Replace Image' : 'Upload Image'}<input aria-label={item.image ? 'Replace Image' : 'Upload Image'} type="file" accept="image/jpeg,image/png,image/webp" onChange={event=>uploadItemPhoto(event,field,item.id)} /></label><p className={styles.hint}>JPEG, PNG, or WebP · Up to 10 MB</p><label>Photo from your listing<select value={item.image || ''} onChange={event => updateItem(field,index,'image',event.target.value)}><option value="">No photo</option>{item.image && !(place.photos || []).includes(item.image) && <option value={item.image}>Uploaded item image</option>}{(place.photos || []).map((photo,i) => <option key={photo} value={photo}>Listing photo {i+1}</option>)}</select></label>
+      {item.image && <><label>Photo description<input value={item.image_alt} maxLength={300} onChange={event => updateItem(field,index,'image_alt',event.target.value)} /></label><button type="button" className={styles.discardPreview} onClick={()=>{update(field,draft[field].map(entry=>entry.id===item.id ? {...entry,image:'',image_alt:''} : entry));}}>Remove Image</button></>}</div>
       <button type="button" className="button" onClick={() => update(field,draft[field].filter((_,i) => i !== index))}>Remove {eventMode ? 'event' : 'offering'} {index+1}</button>
   </div>;
   const items = (field, eventMode) => <fieldset className={styles.itemList} disabled={busy || !access.can_manage_offerings}><legend>{eventMode ? 'Workshops & Events' : 'Products & Services'}</legend>
@@ -131,7 +151,7 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       <p role="status" className="sr-only">{orderNotice}</p>
       {error && <p role="alert" className={styles.error}>{error}</p>}
       </div></div>
-      <footer><span className={styles.saveHint}>Changes publish together.</span><button type="button" className="button" aria-label="Preview Highlights" disabled={busy} onClick={() => { try { setPreview(preparedDraft()); setError(''); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); } catch(failure) { setError(failure.message); } }}>Preview</button><button className="button" aria-label="Publish Highlights" disabled={busy}>{busy ? 'Publishing…' : 'Publish Changes'}</button></footer>
+      <footer><span role={uploading ? 'status' : undefined} className={styles.saveHint}>{uploading ? 'Uploading image…' : 'Changes publish together.'}</span><button type="button" className="button" aria-label="Preview Highlights" disabled={busy} onClick={() => { try { setPreview(preparedDraft()); setError(''); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); } catch(failure) { setError(failure.message); } }}>Preview</button><button className="button" aria-label="Publish Highlights" disabled={busy}>{busy ? 'Publishing…' : 'Publish Changes'}</button></footer>
     </form>
   </Modal></>;
 }

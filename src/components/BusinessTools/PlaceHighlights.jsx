@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
 import Icon from '../Icons/Icon';
-import { publicGrowth, sectionHeading, orderedSectionKeys } from '../../utilities/placeGrowth';
+import { publicGrowth, sectionHeading, orderedSectionKeys, itemButtonLabel } from '../../utilities/placeGrowth';
 import { trackPlaceActivity } from '../../utilities/growthApi';
 import styles from './placeHighlights.module.scss';
 
@@ -47,7 +47,7 @@ export function OfferingCard({ item, placeId, event = false, track = true, compa
       <h3>{item.title}</h3>
       {event && <p className={styles.eventMeta}><time dateTime={item.starts_at}>{date}</time><span>{timeZone}</span>{item.location && <span>{item.location}</span>}</p>}
       {item.description && <p className={styles.description}>{description}</p>}{longDescription && <button type="button" className={styles.readMore} aria-expanded={expanded} onClick={()=>setExpanded(value=>!value)}>{expanded ? 'Show Less' : 'Read More'}<span className="sr-only"> about {item.title}</span></button>}
-      <div className={styles.cardFooter}>{item.price && <p className={styles.price}>{item.price}</p>}<a className={styles.itemLink} href={item.url} target="_blank" rel="noopener noreferrer" onClick={() => { if (track) trackPlaceActivity(placeId, event ? 'event_click' : 'offering_click', item.id); }}>{event ? 'Details & Registration' : item.kind === 'service' ? 'Learn More & Book' : 'View at Their Shop'}<Icon name="arrow" size={15} /><span className="sr-only">: {item.title} (opens in a new tab)</span></a></div>
+      <div className={styles.cardFooter}>{item.price && <p className={styles.price}>{item.price}</p>}<a className={styles.itemLink} href={item.url} target="_blank" rel="noopener noreferrer" onClick={() => { if (track) trackPlaceActivity(placeId, event ? 'event_click' : 'offering_click', item.id); }}><span className={styles.buttonLabel}>{itemButtonLabel(item,event)}</span><Icon name="arrow" size={15} /><span className="sr-only">: {item.title} (opens in a new tab)</span></a></div>
     </div>
   </article>;
 }

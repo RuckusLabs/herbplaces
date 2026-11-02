@@ -5,7 +5,7 @@ import { getOpeningHours, getWebsiteUrl } from '../../src/utilities/placeDetails
 import { getPlaceCategories } from '../../src/utilities/placeFilters.js';
 import { relatedPlaces } from '../../src/utilities/relatedPlaces.js';
 import { browsePagePath, getBrowsePages, localVisitGuide } from '../../src/utilities/browse.js';
-import { publicGrowth, sectionHeading, orderedSectionKeys } from '../../src/utilities/placeGrowth.js';
+import { publicGrowth, sectionHeading, orderedSectionKeys, itemButtonLabel } from '../../src/utilities/placeGrowth.js';
 import { discoveryItems } from '../../src/utilities/discovery.js';
 import { getPlanFeatures, getPlanIntro, getBusinessPlans } from '../../src/utilities/planPages.js';
 
@@ -84,5 +84,5 @@ export function renderGrowthContent(place) {
 export function renderDiscoveryContent(places, item = null) {
   const items = discoveryItems(places, places.map(place => place.growth).filter(Boolean));
   if (!item) return `<main id="main-content" class="static-page">${navigation}<h1>Herbal products, services & workshops</h1><p>Explore offerings from independent businesses. Shop, book, and register directly with each business.</p>${items.length ? `<ul>${items.map(entry => `<li>${link(`${entry.path}/`, entry.title)} — ${escapeHtml(entry.place.name)} · ${escapeHtml([entry.place.city, entry.place.state].filter(Boolean).join(', '))}</li>`).join('')}</ul>` : '<p>More offerings are on their way.</p>'}</main>`;
-  return `<main id="main-content" class="static-page">${navigation}<h1>${escapeHtml(item.title)}</h1><p>From ${link(`/place/${item.place.urlSlug}/`, item.place.name)}</p>${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.image_alt || item.title)}" width="600" height="450">` : ''}<p>${escapeHtml(item.description)}</p>${item.event ? `<p><time datetime="${escapeHtml(item.starts_at)}">${escapeHtml(new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: item.timezone }).format(new Date(item.starts_at)))}</time> · ${escapeHtml(item.timezone)} · ${escapeHtml(item.location)}</p>` : ''}${item.price ? `<p>${escapeHtml(item.price)}</p>` : ''}<p>${link(item.url, item.event ? 'Details & Registration' : 'Shop or Book Directly')}</p><p>${link('/discover/', 'Explore all offerings and events')}</p></main>`;
+  return `<main id="main-content" class="static-page">${navigation}<h1>${escapeHtml(item.title)}</h1><p>From ${link(`/place/${item.place.urlSlug}/`, item.place.name)}</p>${item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.image_alt || item.title)}" width="600" height="450">` : ''}<p>${escapeHtml(item.description)}</p>${item.event ? `<p><time datetime="${escapeHtml(item.starts_at)}">${escapeHtml(new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: item.timezone }).format(new Date(item.starts_at)))}</time> · ${escapeHtml(item.timezone)} · ${escapeHtml(item.location)}</p>` : ''}${item.price ? `<p>${escapeHtml(item.price)}</p>` : ''}<p>${link(item.url, itemButtonLabel(item,item.event))}</p><p>${link('/discover/', 'Explore all offerings and events')}</p></main>`;
 }

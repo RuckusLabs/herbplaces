@@ -30,3 +30,5 @@
 @media(max-width:340px) { .compactCards { grid-template-columns: 1fr; } }
 .highlights h2 { overflow-wrap: anywhere; }
 @media(max-width:600px) { .readMore { min-height: 44px; } }
+
+.buttonLabel { min-width: 0; overflow-wrap: anywhere; }

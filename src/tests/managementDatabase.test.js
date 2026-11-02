@@ -68,6 +68,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(bloomAdvancedMigration);
   await database.exec(sectionTitlesMigration);
   await database.exec(await readFile(new URL('../../supabase/migrations/202611020003_highlight_order.sql', import.meta.url), 'utf8'));
+  await database.exec(await readFile(new URL('../../supabase/migrations/202611020004_offering_photos_and_buttons.sql', import.meta.url), 'utf8'));
 }
 
 before(async () => {
@@ -1127,4 +1128,20 @@ test('section order and item array order persist publicly and survive older clie
     assert.deepEqual(reset.content.section_order,[]);
   });
   for(const order of [null,{},'events',['unknown'],['events','events'],[1]])await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_order:order})),1],['','::jsonb'])),/section|layout order/);
+});
+
+test('item images require place-owned uploads and button labels survive older clients',async()=>{
+  const image='https://test.supabase.co/storage/v1/object/public/place-photos/custom-item.png';
+  await db.exec('begin');
+  try {
+    await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)',['custom-item.png',ids.place,image,ids.owner]);
+    await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)',['other-item.png',ids.otherPlace,image+'?foreign',ids.outsider]);
+    await db.exec('set local role authenticated');await db.query("select set_config('request.jwt.claim.sub',$1,true)",[ids.owner]);
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image,button_label:'Book a Tea Tasting'}]})),1],['','::jsonb']);
+    assert.equal(saved.content.offerings[0].image,image);assert.equal(saved.content.offerings[0].button_label,'Book a Tea Tasting');
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image}]})),2],['','::jsonb']);assert.equal(legacy.content.offerings[0].button_label,'Book a Tea Tasting');
+    const cleared=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image:'',button_label:''}]})),3],['','::jsonb']);assert.equal(cleared.content.offerings[0].button_label,'');assert.equal(cleared.content.offerings[0].image,'');
+    await assert.rejects(rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image:image+'?foreign'}]})),4],['','::jsonb']),/upload an image for this place/);
+  } finally {await db.exec('rollback');}
+  for(const value of [{button_label:'x'.repeat(61)},{button_label:null},{button_label:5},{image:'https://untrusted.example/image.jpg'}])await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,...value}]})),1],['','::jsonb'])),/button text|upload an image/);
 });

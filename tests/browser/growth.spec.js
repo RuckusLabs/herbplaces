@@ -10,6 +10,7 @@ async function site(page,{owner=false,paid=true}={}) {
   const state={profile:{place_id:place.id,place_slug:place.urlSlug,version:1,operating_status:'open',content:structuredClone(initial)},events:[],rpcCalls:[],saved:null,essentials:null,preference:{enabled:false,eligible:paid,last_report:null}};
   const subscription={status:paid?'active':'none',paid_until:paid?new Date(Date.now()+86400000).toISOString():null};
   if(owner){const user={id:'00000000-0000-0000-0000-000000000001',email:'owner@example.com',email_confirmed_at:'2026-01-01',aud:'authenticated',app_metadata:{},user_metadata:{}};const expires_at=Math.floor(Date.now()/1000)+3600;const token=`${Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url')}.${Buffer.from(JSON.stringify({sub:user.id,exp:expires_at,role:'authenticated'})).toString('base64url')}.test`;const session={access_token:token,refresh_token:'test',token_type:'bearer',expires_at,expires_in:3600,user};await page.addInitScript(value=>localStorage.setItem('sb-127-auth-token',JSON.stringify(value)),session);await page.route('**/auth/v1/**',route=>route.fulfill({json:route.request().url().includes('/token')?session:user}));}
+  await page.route('**/functions/v1/place-management',route=>{state.uploads=(state.uploads||0)+1;return route.fulfill(state.uploadError ? {status:503,json:{error:'Upload could not finish.'}} : {json:{url:`/assets/pages/home/hero.jpg?item-upload=${state.uploads}`}});});
   await page.route('**/functions/v1/place-activity',route=>{state.events.push(route.request().postDataJSON());return route.fulfill({json:{accepted:true}});});
   await page.route('**/rest/v1/**',route=>{
     const path=new URL(route.request().url()).pathname;const name=path.split('/').at(-1);const body=route.request().postDataJSON()||{};state.rpcCalls.push(name);
@@ -285,7 +286,7 @@ test('offering editor keeps a compact item list and edits one item at a time',as
 
 test('public offerings show two compact cards and let visitors expand longer descriptions',async({page})=>{
   const state=await site(page);const description='A welcoming session exploring herbs and tea, with time to ask questions and discover flavors that fit your favorite daily rituals. Take home practical notes for your next cup.';
-  state.profile.content.offerings=[{...offering,description,image:photo},{...offering,id:crypto.randomUUID(),title:'Seasonal Tea Blend',kind:'product'}];
+  state.profile.content.offerings=[{...offering,description,image:photo},{...offering,id:crypto.randomUUID(),title:'Seasonal Tea Blend',kind:'product',button_label:'A'.repeat(60)}];
   await page.goto('/place/moss-apothecary');const products=page.getByRole('region',{name:'Products and services',exact:true});
   const cards=products.getByRole('article');await expect(cards).toHaveCount(2);
   const a=await cards.nth(0).boundingBox();const b=await cards.nth(1).boundingBox();expect(Math.abs(a.y-b.y)).toBeLessThanOrEqual(1);
@@ -323,4 +324,25 @@ test('owners reorder items and whole sections, preview, publish, and restore lay
   await expect(dialog).toHaveCount(0);expect(state.saved.p_content.section_order).toEqual([]);
   expect((await products.boundingBox()).y).toBeLessThan((await events.boundingBox()).y);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+
+test('owners upload one item image, replace it, customize labels, preview and publish',async({page})=>{
+ const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary?business=offerings');const dialog=page.getByRole('dialog');
+ await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();
+ await expect(dialog.getByLabel('Upload Image',{exact:true})).not.toHaveAttribute('multiple');
+ const upload={name:'tea.png',mimeType:'image/png',buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jR1cAAAAASUVORK5CYII=','base64')};
+ await dialog.getByLabel('Upload Image',{exact:true}).setInputFiles(upload);await expect(dialog.getByLabel('Photo from your listing')).toHaveValue('/assets/pages/home/hero.jpg?item-upload=1');
+ await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles(upload);await expect(dialog.getByLabel('Photo from your listing')).toHaveValue('/assets/pages/home/hero.jpg?item-upload=2');
+ await dialog.getByLabel('Photo description',{exact:true}).fill('Our custom tea blend');await dialog.getByLabel('Button Text',{exact:true}).fill('Book a Tea Tasting');
+ await dialog.getByRole('button',{name:'Workshops & Events 1',exact:true}).click();await dialog.getByRole('button',{name:/Seasonal tea workshop.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Save My Seat');
+ await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+ const products=page.getByRole('region',{name:'Products and services',exact:true});await expect(products.getByRole('img',{name:'Our custom tea blend'})).toHaveAttribute('src','/assets/pages/home/hero.jpg?item-upload=2');await expect(products.getByRole('link',{name:/Book a Tea Tasting/})).toBeVisible();await expect(page.getByRole('link',{name:/Save My Seat/})).toBeVisible();expect(state.saved).toBe(null);
+ await page.getByRole('button',{name:'Publish Highlights',exact:true}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.offerings[0].image).toContain('item-upload=2');expect(state.saved.p_content.offerings[0].button_label).toBe('Book a Tea Tasting');expect(place.photos).toEqual([photo]);
+ await page.reload();await expect(products.getByRole('img',{name:'Our custom tea blend'})).toBeVisible();
+ await page.goto('/place/moss-apothecary?business=offerings');await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('');await dialog.getByRole('button',{name:'Remove Image',exact:true}).click();await dialog.getByRole('button',{name:'Publish Highlights',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(products.getByRole('img')).toHaveCount(0);await expect(products.getByRole('link',{name:/Learn More & Book/})).toBeVisible();
+});
+test('failed or invalid item uploads keep the existing image and draft edits',async({page})=>{
+ const state=await site(page,{owner:true});state.profile.content.offerings[0].image=photo;await page.goto('/place/moss-apothecary?business=offerings');const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Book Now');
+ await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles({name:'bad.svg',mimeType:'image/svg+xml',buffer:Buffer.from('<svg/>')});await expect(dialog.getByRole('alert')).toContainText('JPEG, PNG, or WebP');expect(state.uploads||0).toBe(0);
+ state.uploadError=true;await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles({name:'tea.png',mimeType:'image/png',buffer:Buffer.from('valid-test-fixture')});await expect(dialog.getByRole('alert')).toContainText('Upload could not finish');await expect(dialog.getByLabel('Photo from your listing')).toHaveValue(photo);await expect(dialog.getByLabel('Button Text',{exact:true})).toHaveValue('Book Now');expect(state.saved).toBe(null);expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
 });
