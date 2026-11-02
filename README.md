@@ -53,7 +53,7 @@ Directory lists and the map results panel show at most 15 places per page. Previ
 
 Renderers are destroyed when leaving a map, so explicit retries create a fresh instance. Homepage pins and the background use the same camera at the actual container size, including after resizing. The places-data cache is separate from map resources.
 
-Guests save places on their device; a successful new save opens an account prompt with Sign In and Keep Browsing options. Signup links and public Thrive promotions are hidden; existing accounts can still sign in. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
+Guests save places on their device; a successful new save opens an account prompt with Sign In and Keep Browsing options. The main account entry combines Sign In / Sign Up through email codes; public Thrive promotions stay hidden. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
 
 Authenticated favorites use the existing Supabase `favorites` table. Guest saves merge automatically after sign-in or an email-confirmation callback, without replacing existing account saves. Device copies are removed only after the database confirms the merge. Failures retain local saves and provide a retry. The account forms preserve the return destination and send visitors from the save prompt to `/favorites` after syncing.
 
@@ -61,7 +61,7 @@ Places Near Me is available on the homepage and after All Places in the director
 
 ## Live account verification
 
-Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Sign In with an existing account, and complete email verification. Public signup links are hidden. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
+Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Sign In / Sign Up, accept the displayed terms, and complete email verification. The same flow supports new addresses and existing accounts; `/register` remains a compatible entry point. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
 
 If email confirmation is enabled, Supabase's allowed redirect URLs must include the tested origin's `/auth/callback` URL, including localhost during local verification.
 
@@ -130,3 +130,7 @@ References: [GitHub workflow dispatch API](https://docs.github.com/en/rest/actio
 ## Business growth tools
 
 See [Business growth rollout](docs/business-growth-rollout.md) for database/function deployment order, feature flags, privacy and retention, Bloom offerings and events, and verification. Bloom is the only paid plan; the separate Thrive offer has been retired.
+
+## Unified account entry
+
+With email-code authentication enabled, `/login` and `/register` both offer Sign In or Sign Up. Consent is required before requesting a code; Supabase may create an account for a new email address while returning users keep their existing account. The verified session is still required before continuing, and safe return destinations, favorites synchronization, retry handling, resend cooldowns, and explicit ownership-claim review remain in place. Settings email verification continues to use its existing account-only behavior. The explicit password fallback remains available when `VITE_PASSWORDLESS_ENABLED=false`.

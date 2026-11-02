@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './nav.module.scss';
 import Logo from '../../assets/little-herb-places-logo.svg?react';
 import Icon from '../Icons/Icon';
+import { passwordlessEnabled } from '../../utilities/authFeatures';
 import { growthEnabled } from '../../utilities/growthApi';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
@@ -57,7 +58,7 @@ export default function Nav({ variant, className = '', minimal = false }) {
         {user ? <div className={styles.account} ref={account} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false); }}>
           <button ref={accountButton} type="button" className={styles.accountToggle} aria-expanded={accountOpen} aria-controls={accountId} onClick={() => setAccountOpen(value => !value)}><span className={styles.avatar} aria-hidden="true">{accountName.slice(0, 1).toUpperCase()}</span><span className={styles.accountName}>{accountName}</span><svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
           {accountOpen && <div id={accountId} className={styles.accountDropdown}><p>Signed in as<strong>{accountName}</strong><span>{user.email}</span></p>{hasOwnerActivity && <NavLink className={styles.accountSettings} to="/my-places"><Icon name="shop" size={28} />My Places</NavLink>}{hasOwnerActivity && growthEnabled && <NavLink className={styles.accountSettings} to="/business-tools" onClick={()=>setAccountOpen(false)}><Icon name="plan-report" size={28} />Business Tools & Activity</NavLink>}<Link className={styles.accountSettings} to="/settings"><Icon name="settings" size={28} />Account Settings</Link><button type="button" onClick={logout} disabled={signingOut}><Icon name="sign-out" size={28} />{signingOut ? 'Signing Out…' : 'Sign Out'}</button>{logoutError && <p role="alert" className={styles.logoutError}>{logoutError}</p>}</div>}
-        </div> : <Link className={`button ${styles.join}`} to="/login">Sign In <Icon name="arrow" size={15} /></Link>}
+        </div> : <Link className={`button ${styles.join}`} to="/login">{passwordlessEnabled ? 'Sign In / Sign Up' : 'Sign In'} <Icon name="arrow" size={15} /></Link>}
       </div>
     </nav>
   </>;
