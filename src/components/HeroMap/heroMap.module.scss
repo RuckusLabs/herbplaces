@@ -1,10 +1,11 @@
 .scene { position: absolute; inset: 0; background: #edf0e6; }
 .map { position: absolute; inset: 0; overflow: hidden; }
-.basemap { display: block; width: 100%; height: 100%; object-fit: fill; filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
+.basemap { position: absolute; inset: 0; filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
 .wash { position: absolute; inset: 0; background: linear-gradient(90deg, #f7f9f1 0%, rgba(247,249,241,.98) 27%, rgba(247,249,241,.9) 36%, rgba(247,249,241,.15) 58%, transparent 75%); pointer-events: none; }
 .pins { position: absolute; inset: 0; pointer-events: none; }
 .openMap { position: absolute; right: 6%; bottom: 48px; z-index: 3; display: flex !important; align-items: center; justify-content: center; gap: 9px; width: fit-content; font-size: 11px; }
-.attribution { position: absolute; bottom: 7px; right: 12px; left: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 9px; a { text-decoration: none; } > a img { display: block; } > span { background: rgba(255,255,255,.88); padding: 3px 5px; } }
+.attribution { position: absolute; bottom: 7px; right: 12px; left: 12px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; font-size: 9px; a { text-decoration: none; } > a img { display: block; } > span { background: rgba(255,255,255,.88); padding: 3px 5px; } }
 @media (max-width: 760px) {
   .scene { position: relative; height: auto; background: none; padding-bottom: 28px; }
   .map { position: relative; height: 325px; background: #edf0e6; }

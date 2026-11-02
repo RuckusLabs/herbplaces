@@ -53,7 +53,7 @@ export default function AuthForm({ mode }) {
     } finally { setSubmitting(false); }
   };
 
-  const switchingPath = `/${registering ? 'login' : 'register'}?next=${encodeURIComponent(destination)}`;
+  const switchingPath = `/login?next=${encodeURIComponent(destination)}`;
   return <main id="main-content" className={styles.authSection}>
     <Helmet><title>{registering ? 'Create an Account' : 'Sign In'} | Little Herb Places</title></Helmet>
     <section className={`${styles.card} ${passwordlessEnabled ? styles.signInCard : ''}`} aria-labelledby="auth-title">
@@ -74,7 +74,7 @@ export default function AuthForm({ mode }) {
         {!registering && <p><Link to={`/auth/forgot-password?next=${encodeURIComponent(destination)}`}>Forgot Your Password?</Link></p>}
         <p><Link to={`/auth/resend-confirmation?next=${encodeURIComponent(destination)}`}>Need a Confirmation Email?</Link></p>
         </>}
-        {!codeEmail && <div className={styles.switchAccount}><p>{registering ? 'Already have an account?' : 'New to Little Herb Places?'}</p><Link className={`button ${styles.secondary}`} to={switchingPath}>{registering ? 'Sign In' : 'Create an Account'}</Link></div>}
+        {registering && !codeEmail && <div className={styles.switchAccount}><p>{registering ? 'Already have an account?' : 'New to Little Herb Places?'}</p><Link className={`button ${styles.secondary}`} to={switchingPath}>{registering ? 'Sign In' : 'Create an Account'}</Link></div>}
       </>}
     </section>
   </main>;

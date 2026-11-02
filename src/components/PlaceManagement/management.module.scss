@@ -1,3 +1,4 @@
+@use '../../styles/select' as dropdown;
 .page { max-width: 1160px; margin: auto; padding: 40px 5% 80px; min-height: 55vh; h1, h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; } h1 { font-size: clamp(38px, 5vw, 58px); margin: 12px 0 20px; } h2 { font-size: 30px; } p { line-height: 1.7; } }
 .intro { max-width: 650px; margin-bottom: 30px; }
 .savedManagement { margin: 0 0 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(var(--tertiary-color), .18); h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; } > h2 { font-size: 36px; margin: 0 0 15px; } h3 { font-size: 28px; } p { line-height: 1.7; } }
@@ -53,7 +54,7 @@
 @media(max-width: 650px) { .claimBody { padding: 32px 20px 24px; .editorHeading { font-size: 28px; } .form fieldset { padding: 16px 14px; } .actions { align-items: stretch; flex-direction: column; } } }
 
 .listingFields { display: flex; flex-direction: column; gap: 24px; }
-.form select { appearance: none; -webkit-appearance: none; padding-right: 44px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%232c542f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 16px; }
+.form select { @include dropdown.control(12px); }
 
 .simpleRequest { max-width: 620px; margin-inline: auto; h1 { font-family: 'Editorial', Georgia, serif; font-size: clamp(34px, 4vw, 46px); font-weight: 200; line-height: 1.15; margin: 12px 0 18px; outline: none; } p { font-size: 14px; line-height: 1.75; } .small { font-size: 12px; margin: 0; } }
 .flowCard { padding: 30px; border: 1px solid rgba(var(--tertiary-color), .16); border-radius: 20px; background: #fff; > p { margin-bottom: 24px; } > .small:last-child { margin-top: 22px; margin-bottom: 0; } .form > :global(.button) { width: 100%; } }
@@ -168,3 +169,5 @@
 @media(max-width:650px) { .adminDialog { width: calc(100% - 20px); max-height: calc(100dvh - 20px); } .adminDialog .adminBody { padding: 32px 22px 24px; } }
 
 .adminRemovalDialog { width: min(540px, calc(100% - 20px)); }
+
+.ownerPrimaryActions .ownerSecondaryAction { background: transparent; border: 1px solid rgba(var(--tertiary-color), .35); box-shadow: none; &:hover { background: #f1f7db; box-shadow: none; } }

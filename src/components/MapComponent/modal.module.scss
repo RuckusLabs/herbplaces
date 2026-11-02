@@ -1,4 +1,4 @@
 .popup {
-  :global(.mapboxgl-popup-content) { padding: 0; background: transparent; border-radius: 12px; box-shadow: none; }
-  :global(.mapboxgl-popup-tip) { border-top-color: #fff; }
+  :global(.maplibregl-popup-content) { padding: 0; background: transparent; border-radius: 12px; box-shadow: none; }
+  :global(.maplibregl-popup-tip) { border-top-color: #fff; }
 }

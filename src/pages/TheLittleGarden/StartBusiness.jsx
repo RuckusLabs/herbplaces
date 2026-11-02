@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useSearchParams } from 'react-router-dom';
 import Icon from '../../components/Icons/Icon';
+import BusinessSteps from '../../components/BusinessTools/BusinessSteps';
+import { trackBusinessJourney } from '../../utilities/businessJourney';
 import PlaceClaim from '../../components/PlaceManagement/PlaceClaim';
 import RequestPlace from '../Management/RequestPlace';
 import usePlaces from '../../hooks/usePlaces';
@@ -13,8 +15,7 @@ import styles from './startBusiness.module.scss';
 
 export default function StartBusiness() {
   const [params, setParams] = useSearchParams();
-  const thrive = params.get('plan') === 'thrive';
-  const plan = thrive ? 'thrive' : 'bloom';
+  const plan = 'bloom';
   const adding = params.get('new') === '1';
   const selectedSlug = params.get('place') || '';
   const [query, setQuery] = useState('');
@@ -27,14 +28,16 @@ export default function StartBusiness() {
   const pending = selected && management.claims.find(item => String(item.place_id) === String(selected.id) && item.status === 'pending');
   const statusNotice = notice?.slug === selectedSlug ? notice.message : '';
   const matches = query.trim().length >= 2 ? filterPlaces(places, query) : [];
-  const choose = place => { setNotice(null); setParams({ plan, place: place.urlSlug, claim: '1' }); };
+  const choose = place => { trackBusinessJourney('business_selected', plan); setNotice(null); setParams({ plan, place: place.urlSlug, claim: '1' }); };
   const closeClaim = () => setParams({ plan, place: selectedSlug }, { replace: true });
+  useEffect(() => { if (adding) trackBusinessJourney('listing_request_started', plan, 'missing'); }, [adding, plan]);
+  const listingRequest = management.listingRequests.requests.find(request => request.status === 'listed' && request.place_slug === selectedSlug);
   const returnPath = `/the-little-garden/start?${new URLSearchParams({ plan, place: selectedSlug, claim: '1' })}`;
   return <main id="main-content" className={styles.page}>
-    <Helmet><title>Get Started with {thrive ? 'Thrive' : 'Bloom'} | Little Herb Places</title></Helmet>
-    <Link className={styles.back} to={adding ? `/the-little-garden/start?plan=${plan}` : `/the-little-garden/${plan}`}>← {adding ? 'Find an Existing Place' : `Back to ${thrive ? 'Thrive' : 'Bloom'}`}</Link>
-    {!adding && <header className={styles.header}><Icon name={thrive ? 'thrive' : 'sun'} size={48} /><h1>{selected ? 'Your place.' : 'Find your place.'}</h1><p>{selected ? 'A little closer to making it yours.' : 'Search for your business, or add it if it’s missing.'}</p></header>}
-    {thrive && <p className={styles.availabilityNote}>Thrive is coming soon. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20inquiry">Ask about Thrive</a></p>}
+    <Helmet><title>Get Started with Bloom | Little Herb Places</title></Helmet>
+    <Link className={styles.back} to={adding ? `/the-little-garden/start?plan=${plan}` : `/the-little-garden/${plan}`}>← {adding ? 'Find an Existing Place' : 'Back to Bloom'}</Link>
+    {!adding && <header className={styles.header}><Icon name="sun" size={48} /><h1>{selected ? 'Your place.' : 'Find your place.'}</h1><p>{selected ? 'A little closer to making it yours.' : 'Search for your business, or add it if it’s missing.'}</p></header>}
+    <BusinessSteps current={membership ? 2 : selected || pending || statusNotice ? 1 : 0} />
     {adding ? <RequestPlace embedded /> : <>
 
       {selected ? <section className={styles.panel} aria-labelledby="selected-title"><h2 id="selected-title">{selected.name}</h2><p>{[selected.city, selected.state].filter(Boolean).join(', ')}</p>
@@ -53,6 +56,6 @@ export default function StartBusiness() {
       {selectedSlug && !selected && !loading && !error && <p role="status">That listing is no longer available. Search again or request a listing.</p>}
     </>}
     {!adding && <p className={styles.small}>Already approved? <Link to="/my-places">Open My Places</Link>.</p>}
-    {selected && params.get('claim') === '1' && !management.loading && !management.error && !membership && !pending && !statusNotice && selected.is_claimed === false && <PlaceClaim key={selected.id} place={selected} returnPath={returnPath} onClose={closeClaim} onSubmitted={message => { setNotice({ slug: selectedSlug, message }); closeClaim(); }} />}
+    {selected && params.get('claim') === '1' && !management.loading && !management.error && !membership && !pending && !statusNotice && selected.is_claimed === false && <PlaceClaim key={selected.id} place={selected} initialWebsite={listingRequest?.website} returnPath={returnPath} onClose={closeClaim} onSubmitted={message => { setNotice({ slug: selectedSlug, message }); closeClaim(); }} />}
   </main>;
 }

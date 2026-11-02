@@ -27,8 +27,8 @@ export default function Home() {
         <div className={styles.heroCopy}>
           <p className={styles.heroIntro}><Icon name="map" size={22} />Your Guide to Plant-Loving Places</p>
           <h1 id="hero-title">A Little Closer<br />to <em>Nature.</em></h1>
-          <p>Follow a little curiosity. Find independent herb shops,<br className={styles.desktopBreak} /> herbalists, gardens, and gatherings that bring<br className={styles.desktopBreak} /> you closer to plants — and each other.</p>
-          <PlaceSearch id="home-search" className={styles.homeSearch} value={query} onChange={setQuery} onSubmit={search} buttonLabel="Explore the Map" />
+          <p>Find independent herb shops, herbalists, and gardens near you.<br className={styles.desktopBreak} /> Explore places to visit, people to learn from,<br className={styles.desktopBreak} /> and workshops that bring you closer to plants.</p>
+          <PlaceSearch id="home-search" className={styles.homeSearch} value={query} onChange={setQuery} onSubmit={search} buttonLabel="Explore the Map" mobileButtonLabel="Search" placeholder="City or place" />
           <div className={styles.heroCategories} aria-label="Explore by kind of place">{categories.map(category => <Link key={category.id} to={`/map?view=map&category=${category.id}`}><Icon name={category.icon} size={28} />{category.short}</Link>)}</div>
         </div>
         <HeroMap />
@@ -60,7 +60,7 @@ export default function Home() {
       </Reveal>
       <Reveal className={styles.community} aria-labelledby="community-title"><div className={styles.communityInner}>
         <div className={styles.communityImage}><img src="/assets/pages/home/herb-image-1.jpg" alt="A botanical tea blend surrounded by fresh flowers" width="500" height="500" loading="lazy" decoding="async" /><span>Plants bring us together.</span></div>
-        <div className={styles.communityCopy}><h2 id="community-title">Good Things Grow<br />With <em>Good Company.</em></h2><p>For the growers, the makers, the endlessly curious.<br />The Little Garden is a place to share your craft, put down roots, and connect with a community that cares.</p><Link to="/the-little-garden" className={`button ${styles.primaryLink}`}>Come Grow With Us <Icon name="arrow" size={18} /></Link><Link to="/about" className={`button ${styles.storyLink}`}>A Little More About Us</Link></div>
+        <div className={styles.communityCopy}><h2 id="community-title">Good Things Grow<br />With <em>Good Company.</em></h2><p>For the growers, the makers, the endlessly curious.<br />The Little Garden is a place to share your craft, put down roots, and connect with a community that cares.</p><Link to="/the-little-garden" className={`button ${styles.primaryLink}`}>Explore Business Plans <Icon name="arrow" size={18} /></Link><Link to="/about" className={`button ${styles.storyLink}`}>A Little More About Us</Link></div>
       </div></Reveal>
       <section className={styles.closing}><div className={styles.closingInner}>
         <Icon name="community" size={50} /><p>There’s a little herb place for everyone.</p><Link to="/map" className={`button ${styles.textLink}`}>Let’s Find Yours <Icon name="arrow" size={18} /></Link>

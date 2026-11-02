@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import Icon from '../Icons/Icon';
 import styles from './placeSearch.module.scss';
 
-export default function PlaceSearch({ id, value, onChange, onSubmit, buttonLabel = 'Search Places', className = '' }) {
+export default function PlaceSearch({ id, value, onChange, onSubmit, buttonLabel = 'Search Places', mobileButtonLabel, placeholder = 'Your city, state, or a little herb place', className = '' }) {
   return <form className={`${styles.search} ${className}`} onSubmit={onSubmit} role="search">
     <Icon name="pin" size={21} />
     <label className={styles.srOnly} htmlFor={id}>Search by city, state, or place</label>
-    <input id={id} type="search" placeholder="Your city, state, or a little herb place" value={value} onChange={event => onChange(event.target.value)} />
-    <button type="submit" className="button">{buttonLabel} <Icon name="arrow" size={18} /></button>
+    <input id={id} type="search" placeholder={placeholder} value={value} onChange={event => onChange(event.target.value)} />
+    <button type="submit" className="button" aria-label={mobileButtonLabel ? buttonLabel : undefined}><span className={mobileButtonLabel ? styles.desktopButtonLabel : undefined}>{buttonLabel}</span>{mobileButtonLabel && <span className={styles.mobileButtonLabel}>{mobileButtonLabel}</span>} <Icon name="arrow" size={18} /></button>
   </form>;
 }
 
@@ -17,5 +17,7 @@ PlaceSearch.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   buttonLabel: PropTypes.string,
+  mobileButtonLabel: PropTypes.string,
+  placeholder: PropTypes.string,
   className: PropTypes.string,
 };

@@ -1,18 +1,21 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '../Icons/Icon';
 import MapPlacePin from '../MapPlacePin/MapPlacePin';
+import FreeMap from '../FreeMap/FreeMap';
 import usePlaces from '../../hooks/usePlaces';
-import { getHeroMapView } from '../../utilities/heroMap';
+import { getHeroMapLayout } from '../../utilities/heroMap';
 import { getMapBounds } from '../../utilities/mapBounds';
-import { MAPBOX_TOKEN } from '../../utilities/mapConfig';
 import styles from './heroMap.module.scss';
 
 export default function HeroMap() {
   const container = useRef(null);
+  const mapRef = useRef(null);
   const [size, setSize] = useState(null);
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState(false);
+  const failMap = useCallback(() => { setError(true); setReady(false); }, []);
   const navigate = useNavigate();
-  const [imageError, setImageError] = useState(false);
   const { places, loading } = usePlaces();
 
   useEffect(() => {
@@ -26,24 +29,31 @@ export default function HeroMap() {
     observer.observe(container.current);
     return () => { observer.disconnect(); clearTimeout(timeout); };
   }, []);
+  useEffect(() => { mapRef.current?.resize(); }, [size]);
 
-  const layout = useMemo(() => size && getHeroMapView(places, size.width, size.height, size.mobile), [places, size]);
-  const mapUrl = MAPBOX_TOKEN && layout && !loading && `https://api.mapbox.com/styles/v1/mapbox/light-v11/static/${layout.longitude},${layout.latitude},${layout.zoom},0/${layout.imageWidth}x${layout.imageHeight}@2x?access_token=${MAPBOX_TOKEN}&logo=false&attribution=false`;
+  // Allow horizontal wrapping below: the camera is offset for the introduction,
+  // and clamping it to one world would move the basemap away from the pins.
+  const layout = useMemo(() => size?.width > 0 && size?.height > 0 && getHeroMapLayout(places, size.width, size.height, size.mobile), [places, size]);
 
   return <div className={styles.scene}>
     <div ref={container} className={styles.map}>
-      {mapUrl && !imageError && <img key={mapUrl} className={styles.basemap} src={mapUrl} alt="" width={size.width} height={size.height} loading="eager" decoding="async" onError={() => setImageError(true)} />}
+      {!ready && <img className={styles.photo} src="/assets/pages/home/hero.jpg" alt="" width="900" height="1350" decoding="async" />}
+      {layout && !loading && !error && <div className={styles.basemap} aria-hidden="true" inert="">
+        <FreeMap ref={mapRef} longitude={layout.longitude} latitude={layout.latitude} zoom={layout.zoom} pitch={0} bearing={0} interactive={false} renderWorldCopies attributionControl={false} onFailure={failMap} onLoad={event => { event.target.getCanvas().tabIndex = -1; setReady(true); }} style={{ width: '100%', height: '100%' }} />
+      </div>}
       <div className={styles.wash} />
-      <div className={styles.pins} role="group" aria-label="Explore little places">
-        {layout?.groups.map(item => {
-          const place = item.places[0];
-          const grouped = item.places.length > 1;
-          const destination = grouped ? `/map?${new URLSearchParams({ view: 'map', bounds: getMapBounds(item.places).flat().join(',') })}` : `/place/${place.urlSlug}`;
-          return <MapPlacePin key={place.id} place={place} count={item.places.length} style={{ position: 'absolute', left: item.x, top: item.y, transform: 'translate(-50%, -100%)' }} ariaLabel={grouped ? `Explore ${item.places.length} places in this area` : `Visit ${place.name}`} onClick={() => navigate(destination)} />;
-        })}
-      </div>
-      <div className={styles.attribution}><a href="https://www.mapbox.com/" target="_blank" rel="noopener noreferrer" aria-label="Mapbox maps"><img src="/assets/maps/mapbox-logo.svg" width="88" height="23" alt="Mapbox" /></a><span>© <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noopener noreferrer">Mapbox</a> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://apps.mapbox.com/feedback/" target="_blank" rel="noopener noreferrer">Improve This Map</a></span></div>
+      {ready && !error && <>
+        <div className={styles.pins} role="group" aria-label="Explore little places">
+          {layout?.groups.map(item => {
+            const place = item.places[0];
+            const grouped = item.places.length > 1;
+            const destination = grouped ? `/map?${new URLSearchParams({ view: 'map', bounds: getMapBounds(item.places).flat().join(',') })}` : `/place/${place.urlSlug}`;
+            return <MapPlacePin key={place.id} place={place} count={item.places.length} style={{ position: 'absolute', left: item.x, top: item.y, transform: 'translate(-50%, -100%)' }} ariaLabel={grouped ? `Explore ${item.places.length} places in this area` : `Visit ${place.name}`} onClick={() => navigate(destination)} />;
+          })}
+        </div>
+        <div className={styles.attribution}><span><a href="https://openfreemap.org/" target="_blank" rel="noopener noreferrer">OpenFreeMap</a> · © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener noreferrer">OpenMapTiles</a> · Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a></span></div>
+      </>}
     </div>
-    <Link className={`button ${styles.openMap}`} to="/map?view=map"><Icon name="expand" size={17} />Open the Full Map</Link>
+    <Link className={`button ${styles.openMap}`} to={error ? '/map' : '/map?view=map'}><Icon name={error ? 'places' : 'expand'} size={17} />{error ? 'Explore the Directory' : 'Open the Full Map'}</Link>
   </div>;
 }

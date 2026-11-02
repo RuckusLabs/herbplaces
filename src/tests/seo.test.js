@@ -16,8 +16,9 @@ test('place metadata uses its own title, description, absolute share image, and 
   assert.equal(getPlaceSeo({ ...place, city: '', state: '' }).title, 'Moss & Fern | Little Herb Places');
 });
 test('website pages have their own share cards, including non-indexable account pages', () => {
-  assert.equal(sitePageCards.length, 12);
-  assert.equal(new Set(sitePageCards.map(siteShareImagePath)).size, 12);
+  assert.equal(sitePageCards.length, 11);
+  assert.ok(!sitePageCards.some(card => card.path === '/the-little-garden/thrive'));
+  assert.equal(new Set(sitePageCards.map(siteShareImagePath)).size, 11);
   for (const page of sitePageCards) assert.equal(getRouteSeo(`${page.path}/`).image, `https://littleherbplaces.com${siteShareImagePath(page)}`);
   assert.notEqual(getRouteSeo('/about').image, getRouteSeo('/map').image);
   assert.equal(getRouteSeo('/login').robots, 'noindex,follow');
@@ -72,7 +73,8 @@ test('sitemaps list canonical public URLs and real modification dates only', () 
 
 test('business plan pages are discoverable with full sales content before JavaScript loads', () => {
   const sitemap = renderSitemap([]);
-  for (const plan of ['bloom', 'thrive']) {
+  assert.ok(!sitemap.includes('/the-little-garden/thrive/'));
+  for (const plan of ['bloom']) {
     const path = `/the-little-garden/${plan}`;
     const route = publicRoutes.find(item => item.path === path);
     const seo = getRouteSeo(path);
@@ -84,7 +86,7 @@ test('business plan pages are discoverable with full sales content before JavaSc
     assert.match(html, /Membership Terms/);
     assert.match(html, /href="\/my-places\/"/);
     assert.ok(!html.includes('/favorites/#my-places'));
-    assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /Thrive is \$49 USD per month per place/);
+    assert.match(html, plan === 'bloom' ? /up to 10 photos/ : /planned paid price is \$49 USD per month per place/);
     assert.match(html, plan === 'bloom' ? /\$19/ : /\$49/);
   }
 });
@@ -102,7 +104,7 @@ test('privacy and membership HTML includes usable full disclosures without JavaS
   assert.match(terms, /Subscriptions renew monthly until canceled/);
   assert.match(terms, /seven days of editing from the first failure/);
   assert.match(terms, /refund requests/);
-  assert.match(terms, /Thrive is not available for purchase/);
+  assert.ok(!terms.includes('Thrive'));
 });
 
 test('profiles without photos retain visit details without an invented listing image', () => {

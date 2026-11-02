@@ -4,13 +4,38 @@ export const SPECIALTIES = ['Bulk herbs', 'Custom blends', 'Herbal consultations
 export const ACTION_LABELS = ['Book a consultation', 'Shop online', 'See upcoming classes', 'Contact us'];
 export const ACTIVITY_KINDS = ['profile_view', 'website_click', 'directions_click', 'phone_click', 'primary_click', 'announcement_click', 'offering_click', 'event_click'];
 export const ACTIVITY_LABELS = { profile_view: 'Profile views', website_click: 'Website clicks', directions_click: 'Direction clicks', phone_click: 'Phone-link clicks', primary_click: 'Main action clicks', announcement_click: 'Announcement clicks', offering_click: 'Offering clicks', event_click: 'Event registration clicks' };
-export const emptyGrowth = () => ({ primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
+export const SECTION_HEADINGS = Object.freeze({ specialties: 'What You’ll Find Here.', offerings: 'A Little of What We Offer.', events: 'Come Learn Something New.' });
+export const sectionHeading = (content, key) => content.section_titles?.[key]?.trim() || SECTION_HEADINGS[key];
+
+export const HIGHLIGHT_SECTIONS = Object.freeze([
+  { id: 'specialties', label: 'Specialties', icon: 'plan-access' },
+  { id: 'announcement', label: 'Announcement', icon: 'plan-announcement' },
+  { id: 'offerings', label: 'Products & Services', icon: 'plan-offerings' },
+  { id: 'events', label: 'Workshops & Events', icon: 'plan-events' },
+]);
+export const orderedSectionKeys = content => [...new Set([...(Array.isArray(content.section_order) ? content.section_order.filter(key=>HIGHLIGHT_SECTIONS.some(section=>section.id===key)) : []), ...HIGHLIGHT_SECTIONS.map(section=>section.id)])];
+export function moveInOrder(items, index, direction) {
+  const next = [...items]; const destination = index + direction;
+  if (index < 0 || index >= next.length || destination < 0 || destination >= next.length) return next;
+  [next[index],next[destination]] = [next[destination],next[index]];
+  return next;
+}
+
+export const itemButtonLabel = (item, event = false) => item.button_label?.trim() || (event ? 'Details & Registration' : item.kind === 'service' ? 'Learn More & Book' : 'View at Their Shop');
+
+export const emptyGrowth = () => ({ section_order: [], section_titles: {}, primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
 const text = (value, max) => String(value || '').trim().slice(0, max);
 const link = value => { if (!String(value || '').trim()) return ''; const url = getWebsiteUrl(value); if (!url) throw new Error('Use a valid HTTP or HTTPS link.'); return url; };
 const instant = value => { if (!value) return ''; if (!Number.isFinite(Date.parse(value))) throw new Error('Choose a valid date and time.'); return new Date(value).toISOString(); };
 
 export function prepareGrowth(input, photos = []) {
   const base = emptyGrowth();
+  const order = input.section_order ?? [];
+  if (!Array.isArray(order) || order.some(key=>!HIGHLIGHT_SECTIONS.some(section=>section.id===key)) || new Set(order).size!==order.length) throw new Error('Choose each section once in the layout order.');
+  const section_order = [...order];
+  const titles = input.section_titles ?? {};
+  if (typeof titles !== 'object' || Array.isArray(titles) || Object.entries(titles).some(([key,value]) => !Object.hasOwn(SECTION_HEADINGS,key) || typeof value !== 'string' || value.trim().length > 80)) throw new Error('Use section titles of up to 80 characters.');
+  const section_titles = Object.fromEntries(Object.entries(titles).map(([key,value]) => [key,value.trim()]).filter(([,value])=>value));
   const action = input.primary_action || base.primary_action;
   if (action.url && !ACTION_LABELS.includes(action.label)) throw new Error('Choose a label for your main action.');
   const announcement = { ...base.announcement, ...input.announcement };
@@ -25,8 +50,9 @@ export function prepareGrowth(input, photos = []) {
     itemIds.add(item.id);
     const url = link(item.url);
     if (!url) throw new Error('Add a booking, registration, or shopping link for each item.');
+    if (item.button_label !== undefined && (typeof item.button_label !== 'string' || item.button_label.trim().length > 60)) throw new Error('Use button text of up to 60 characters.');
     const image = photos.includes(item.image) ? item.image : '';
-    const result = { id: item.id, title: text(item.title, 120), description: text(item.description, 1500), price: text(item.price, 100), url, image, image_alt: text(item.image_alt, 300) };
+    const result = { id: item.id, button_label: (item.button_label || '').trim(), title: text(item.title, 120), description: text(item.description, 1500), price: text(item.price, 100), url, image, image_alt: text(item.image_alt, 300) };
     if (event) {
       const starts_at = instant(item.starts_at); const ends_at = instant(item.ends_at);
       if (!starts_at || !ends_at || Date.parse(starts_at) >= Date.parse(ends_at)) throw new Error('Events need a start and a later end time.');
@@ -36,7 +62,7 @@ export function prepareGrowth(input, photos = []) {
     }
     return { ...result, kind: item.kind === 'service' ? 'service' : 'product' };
   };
-  return { primary_action: { label: action.url ? action.label : '', url: link(action.url) },
+  return { section_order, section_titles, primary_action: { label: action.url ? action.label : '', url: link(action.url) },
     specialties: SPECIALTIES.filter(item => input.specialties?.includes(item)), languages: text(input.languages, 200), access_notes: text(input.access_notes, 1000),
     announcement: { title: text(announcement.title, 120), body: text(announcement.body, 1000), code: text(announcement.code, 40), url: link(announcement.url), starts_at: starts, expires_at: expires },
     offerings: (input.offerings || []).map(item => prepareItem(item, false)), events: (input.events || []).map(item => prepareItem(item, true)) };

@@ -1,6 +1,6 @@
 # Place management setup and release
 
-Place management stays in the current React site. Supabase runs trusted operations; Stripe processes Bloom subscriptions. Public listings and favorites retain their IDs. Thrive's external-link product store remains a later release.
+Place management stays in the current React site. Supabase runs trusted operations; Stripe processes Bloom subscriptions. Public listings and favorites retain their IDs. Bloom includes external-link offerings and events after the migration described in docs/business-growth-rollout.md.
 
 ## Current live billing status — October 26, 2026
 
@@ -39,9 +39,9 @@ Implemented for review:
 - Migration `202610210001_customer_launch.sql` makes verification independent of payment and adds listing requests plus a private customer email queue. Existing editorial verification is preserved. Review existing editorial flags as part of launch preparation; they are not reinterpreted as a new ownership check.
 - The existing claim dispatcher now also handles customer receipts and decisions and listing-request notifications. Both queues use independent leases, stable provider idempotency keys, eight attempts, and a 23-hour automatic retry window. No historical messages are backfilled.
 - Billing recovery discovers subscriptions by customer even when the first webhook was lost and the customer never returned. Customer pagination uses a stable place-ID cursor; Stripe discovery traverses all pages. Multiple current subscriptions stop recovery for support review rather than choosing arbitrarily.
-- Website and checkout use shared launch-offer definitions. Only the USD $19 monthly Bloom offer is sellable. `STRIPE_BLOOM_PREVIOUS_PRICE_IDS` optionally lists explicitly approved prior Bloom Price IDs for existing subscriptions; it does not change the price for new checkout. Annual billing, Thrive checkout, automatic price increases, and founding-price expiration are **not enabled** in this milestone.
+- Website and checkout use shared launch-offer definitions. Only the USD $19 monthly Bloom offer is sellable. `STRIPE_BLOOM_PREVIOUS_PRICE_IDS` optionally lists explicitly approved prior Bloom Price IDs for existing subscriptions; it does not change the price for new checkout. Annual billing, separate plan checkout, automatic price increases, and founding-price expiration are **not enabled** in this milestone.
 - Unpublished listing edits recover within the same tab/account for 24 hours. A newer published version blocks publishing the recovered draft until the owner resolves the conflict. Successful publishing stays successful even if the directory cannot refresh afterward.
-- Business-plan copy, account versus newsletter signup, next-step messages, help/billing FAQs, privacy information, and membership terms are prepared for review. Thrive's promotion scope remains explicitly unconfirmed. No traffic, revenue, or ranking guarantees are advertised.
+- Business-plan copy, account versus newsletter signup, next-step messages, help/billing FAQs, privacy information, and membership terms are prepared for review. Promotional placements are not included. No traffic, revenue, or ranking guarantees are advertised.
 
 ### Deployment and hosted release gate
 
@@ -60,14 +60,14 @@ Implemented for review:
 
 - **Hosted launch gate:** complete the setup and real-delivery/payment checks above after the local milestone review. No local check proves that live email, portal configuration, or payment processing is ready.
 - **Expanded Bloom:** primary action buttons, events/workshops with timezones and expiration, seasonal announcements, listing completion guidance, owner-excluded interaction analytics, and a concise monthly report. Evaluate $29/month or $290/year only after features and value are validated.
-- **Thrive pilot:** up to 10 product/service links, per-offering activity, trackable offers, assisted onboarding, promotion requests, and an admin fulfillment calendar for 5–10 businesses. Confirm audience and delivery capacity before promising a newsletter/social cadence. Measure fulfillment time and retention before testing $79/month or $790/year.
+- **Bloom advanced tools:** up to 10 product/service links and 10 workshops/events, with item activity insights. See the current rollout document; no separate pilot or promotional placement is sold.
 - **Pricing and audience:** build regional guides and opt-in digests, measure real visitor actions and customer renewal, add server-approved plan/annual-price catalogs and upgrade/downgrade rules, then implement explicit founding terms and advance renewal notices. Optional $149 setup needs a defined deliverable and measured labor cost. Reviews, messaging, and marketplace checkout remain deferred.
 
 ## Current beta deployment
 
 With the user's approval, migrations `202610190001`, `202610190002`, `202610190003`, and `202610190004` and the four Edge Functions were installed in project `qtpepsebztlremlhpxdt` on October 19, 2026. The nine existing places were retained, and both the legacy `places` endpoint and `public_places` returned HTTP 200 after installation. The existing beta site's public content reads remain compatible; direct browser writes and private table access are denied. The first real administrator was enabled for the verified account designated by the user.
 
-The photo bucket accepts JPEG, PNG, and WebP up to 10 MB. Server configuration allows the public site plus `http://localhost:5173` and `http://127.0.0.1:5173`. Checkout and portal returns use the requesting allowed origin so local testing returns to localhost. The existing Mapbox token is configured for the server's lookup; permanent-geocoding eligibility still needs confirmation before testing a real address change.
+The photo bucket accepts JPEG, PNG, and WebP up to 10 MB. Server configuration allows the public site plus `http://localhost:5173` and `http://127.0.0.1:5173`. Checkout and portal returns use the requesting allowed origin so local testing returns to localhost. Automatic address lookup has since been removed. New or changed addresses go to manual location review; no geocoding token is required. The local frontend uses MapLibre and OpenFreeMap; see the README for the pending deployment and legacy-token cleanup.
 
 An ignored local backup of listing data and original permissions is saved under `supabase/.temp/backups/`. Deployment credentials are kept out of Git. Frontend releases are reviewed through a GitHub pull request before merging to main.
 
@@ -152,7 +152,7 @@ Set these Supabase project secrets. Never use `VITE_` prefixes for private crede
 | `STRIPE_SECRET_KEY` | Restricted sandbox API key (`rk_test_…`) for verification; live restricted key only after launch review |
 | `STRIPE_BLOOM_PRICE_ID` | USD $19/month recurring Price ID in the same Stripe mode |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for the deployed Stripe destination |
-| `MAPBOX_GEOCODING_TOKEN` | Server token for an account eligible for permanent geocoding |
+| `AUTOMATIC_GEOCODING_ENABLED` | Keep `false` as a safeguard for older function versions; the current function has no external geocoding call |
 | `BILLING_RECONCILE_SECRET` | Random secret for the hourly reconciliation scheduler |
 | `BLOOM_ENABLED` | `false` during setup, `true` after verification |
 
@@ -164,7 +164,7 @@ Stripe SDK 23.0.0 and API version `2026-09-30.endive` are explicitly pinned toge
 
 ### Stripe settings
 
-Create a Bloom product with one USD $19/month recurring price and no trial. Configure the customer portal for payment methods, invoices, and cancellation at period end. Disable plan switching until Thrive is implemented. Enable Stripe payment-failure emails. Configure retries to keep subscriptions `past_due` for the seven-day grace window before marking them `unpaid` or `canceled`.
+Create a Bloom product with one USD $19/month recurring price and no trial. Configure the customer portal for payment methods, invoices, and cancellation at period end. Disable plan switching; Bloom is the only paid plan. Enable Stripe payment-failure emails. Configure retries to keep subscriptions `past_due` for the seven-day grace window before marking them `unpaid` or `canceled`.
 
 Register `/functions/v1/stripe-webhook` on your Supabase project for:
 
@@ -178,7 +178,7 @@ Eligibility follows verified webhooks, not browser return URLs. Checkout reserva
 
 Use `supabase/setup-billing-reconciliation.sql` with its Vault URL/secret pair, or schedule an hourly POST to `/functions/v1/billing-reconcile` with `Authorization: Bearer YOUR_BILLING_RECONCILE_SECRET` through your scheduler or Supabase Cron. Store the header as a scheduler secret. Monitor its non-200 responses, Stripe webhook failures, and Supabase function logs. Reconciliation catches missed events; database-time checks still enforce paid and grace expiry.
 
-Mapbox lookups use permanent storage mode, accept only high-confidence address matches, and allow one attempt per place per minute. Failed matches publish the address while hiding stale map pins. Admin Location Review supports retry and manual confirmation. A delayed lookup cannot overwrite a newer content version.
+Automatic address lookup is removed. Address edits publish while hiding stale map coordinates until an administrator confirms both coordinates in Location Review. Existing confirmed coordinates remain available. There is no automatic lookup or retry, and no Mapbox geocoding credential should be configured. The version check prevents an older location update from overwriting a newer address edit.
 
 Photo paths are immutable. Published and previously published photos are retained for restoration. Unpublished canceled uploads are also retained in this release; monitor the bucket's size. Back up Storage objects separately from database backups.
 
@@ -200,7 +200,7 @@ In staging, verify real confirmed accounts can claim, receive approval, and subs
 
 ## 5. Enable and pause purchases
 
-After verifying the migration, functions, and Stripe lifecycle, set server `BLOOM_ENABLED=true` and frontend `VITE_BLOOM_ENABLED=true`, then rebuild. GitHub Pages reads the frontend flag from repository variable `VITE_BLOOM_ENABLED` and public keys from the existing secrets. The workflow now passes `VITE_MAPBOX_TOKEN` as well.
+After verifying the migration, functions, and Stripe lifecycle, set server `BLOOM_ENABLED=true` and frontend `VITE_BLOOM_ENABLED=true`, then rebuild. GitHub Pages reads the frontend flag from repository variable `VITE_BLOOM_ENABLED` and public keys from the existing secrets. The local workflow no longer reads `VITE_MAPBOX_TOKEN`; maps use MapLibre and OpenFreeMap without a token. Publish the migration only when authorized, then remove the obsolete hosted token and revoke old Mapbox account tokens as described in the README.
 
 To pause new subscriptions, turn both flags off and rebuild. Existing paid editing and portal access continue. Existing beta builds retain read access to known public listing columns, allowing a frontend rollback without reopening writes. Preserve memberships, subscriptions, revisions, and Storage objects when reverting application code.
 

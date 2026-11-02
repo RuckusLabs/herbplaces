@@ -39,29 +39,7 @@ test('owner sales pages explain the request-to-claim handoff and work on every s
   await expect(page.getByRole('heading', { name: 'Add your place.', exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Continue', exact: true })).toBeVisible();
   await page.goto('/the-little-garden/thrive/');
-  await expect(page.getByRole('heading', { name: 'Give people a reason to shop, book, or join you.', exact: true })).toBeVisible();
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://littleherbplaces.com/the-little-garden/thrive/');
-  await expect(page.getByRole('link', { name: 'Ask About the Thrive Pilot', exact: true }).first()).toHaveAttribute('href', /^mailto:/);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.getByText('Can I subscribe to Thrive today?', { exact: true }).click();
-  await expect(page.getByText('Thrive is not available for purchase.', { exact: false })).toBeVisible();
+  await expect(page).toHaveURL(/the-little-garden\/?$/);
+  await expect(page.getByRole('heading', { name: 'Bloom', exact: true })).toBeVisible();
+  await expect(page.locator('a[href*="/thrive"], a[href*="/register"], a[href*="/sprout"]')).toHaveCount(0);
 });
-
-for (const coverOnly of [false, true]) {
-  test(coverOnly ? 'a cover-only profile keeps its photo viewer' : 'an imageless profile hides its viewer and retains visit details', async ({ page }) => {
-    await page.route('**/rest/v1/**', route => route.fulfill({ json: [{ ...place, photos: [], coverPhoto: coverOnly ? place.coverPhoto : '' }] }));
-    await page.goto('/place/moss-and-fern/');
-    await expect(page.getByRole('heading', { name: 'Moss & Fern', exact: true })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Get Directions', exact: true })).toBeVisible();
-    await expect(page.getByRole('region', { name: 'Photos of Moss & Fern', exact: true })).toHaveCount(coverOnly ? 1 : 0);
-    await expect(page.getByRole('button', { name: 'View Full Image', exact: true })).toHaveCount(coverOnly ? 1 : 0);
-    if (coverOnly) {
-      await page.getByRole('button', { name: 'View Full Image', exact: true }).click();
-      await expect(page.getByRole('dialog')).toBeVisible();
-    } else {
-      await expect(page.getByRole('dialog')).toHaveCount(0);
-      const data = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
-      expect(data['@graph'][0].image).toEqual([]);
-    }
-  });
-}

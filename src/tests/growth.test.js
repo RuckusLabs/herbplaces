@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyGrowth,prepareGrowth,publicGrowth,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
+import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,itemButtonLabel,orderedSectionKeys,moveInOrder,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
 import { getBrowsePages } from '../utilities/browse.js';
 import { openingHoursSchema } from '../utilities/openingHoursSchema.js';
 import { discoveryItems,filterDiscovery } from '../utilities/discovery.js';
 import { getDiscoverySeo } from '../utilities/seo.js';
-import { renderRouteContent,renderSitemap,renderDiscoveryContent } from '../../scripts/seo/render.mjs';
+import { renderRouteContent,renderSitemap,renderDiscoveryContent,renderGrowthContent } from '../../scripts/seo/render.mjs';
 import { directoryHash } from '../../scripts/seo/directory.mjs';
 import { createPlaceActivityHandler } from '../../supabase/functions/_shared/placeActivity.js';
 
@@ -54,10 +54,40 @@ test('public activity endpoint enforces origins, hashes IPs, honors DNT, and for
   now=new Date('2026-10-28T12:00:00Z');await handler(make());assert.notEqual(records[0].p_visitor_hash,records[1].p_visitor_hash);
   assert.equal((await handler(make({}, {kind:'invented',event_id:'bad'}))).status,400);
 });
-test('plan comparison preserves Sprout, Bloom, and Thrive and advertises growth tools only when enabled',()=>{
+test('plan comparison offers Bloom without Thrive or signup links and advertises enabled tools',()=>{
   const route={path:'/the-little-garden'};
   const disabled=renderRouteContent(route,[],{growthEnabled:false});
   const enabled=renderRouteContent(route,[],{growthEnabled:true,bloomAvailable:true});
-  assert.match(enabled,/Create a Free Account/);assert.match(enabled,/30-day Activity Report and CSV/);assert.match(enabled,/Thrive is not available for purchase/);
-  assert.ok(enabled.includes('Sprout'));assert.ok(!disabled.includes('30-day Activity Report and CSV'));
+  assert.match(enabled,/Bloom/);assert.match(enabled,/30-day Activity Report and CSV/);
+  assert.doesNotMatch(enabled,/Thrive|Sprout|href="[^"]*(?:register|sprout|thrive)/);assert.ok(!disabled.includes('30-day Activity Report and CSV'));
+});
+
+test('section headings default cleanly, preserve owner text, and escape static HTML',()=>{
+  const base=emptyGrowth();
+  assert.equal(sectionHeading(base,'offerings'),'A Little of What We Offer.');
+  const draft=prepareGrowth({...base,section_titles:{specialties:'  Our Little Shop  ',offerings:'  ',events:'Gather & Learn'}});
+  assert.deepEqual(draft.section_titles,{specialties:'Our Little Shop',events:'Gather & Learn'});
+  assert.equal(sectionHeading(publicGrowth({content:draft}),'offerings'),'A Little of What We Offer.');
+  for(const titles of [{events:'x'.repeat(81)},{events:7},{unknown:'No'},[]])assert.throws(()=>prepareGrowth({...base,section_titles:titles}),/section titles/);
+  const html=renderGrowthContent({growth:{operating_status:'open',content:{...base,specialties:['Tea'],section_titles:{specialties:'<img src=x onerror=alert(1)>'}}}});
+  assert.match(html,/&lt;img/);assert.doesNotMatch(html,/<img/);
+});
+
+test('section and item ordering validates, defaults missing sections, and renders in saved order',()=>{
+  assert.deepEqual(orderedSectionKeys({section_order:['events','offerings']}),['events','offerings','specialties','announcement']);
+  assert.deepEqual(moveInOrder(['a','b','c'],2,-1),['a','c','b']);
+  assert.deepEqual(moveInOrder(['a','b'],0,-1),['a','b']);
+  const base=emptyGrowth();assert.deepEqual(prepareGrowth({...base,section_order:['events','offerings']}).section_order,['events','offerings']);
+  for(const order of [['events','events'],['invalid'],{},[null]])assert.throws(()=>prepareGrowth({...base,section_order:order}),/layout order/);
+  const item={id:'20000000-0000-0000-0000-000000000001',kind:'service',title:'Z First',url:'https://example.com/',description:'',price:'',image:'',image_alt:''};
+  const content={...base,specialties:['Tea'],section_order:['offerings','specialties'],offerings:[item,{...item,id:'20000000-0000-0000-0000-000000000002',title:'A Second'}]};
+  const html=renderGrowthContent({id:'1',urlSlug:'tea',growth:{place_id:'1',operating_status:'open',content}});
+  assert.ok(html.indexOf('Z First')<html.indexOf('A Second'));assert.ok(html.indexOf('A Second')<html.indexOf('What You’ll Find Here.'));
+});
+
+test('item button labels default, validate, and render safely with a single approved image',()=>{
+ const image='https://example.com/upload.png';const item={id:crypto.randomUUID(),title:'Tea',kind:'product',url:'https://example.com/',image,button_label:'  Shop This Blend  '};
+ const result=prepareGrowth({...emptyGrowth(),offerings:[item]},[image]).offerings[0];assert.equal(result.image,image);assert.equal(result.button_label,'Shop This Blend');assert.equal(itemButtonLabel(result),'Shop This Blend');assert.equal(itemButtonLabel({...result,button_label:''}),'View at Their Shop');assert.equal(itemButtonLabel({...result,button_label:''},true),'Details & Registration');
+ for(const label of [5,'x'.repeat(61)])assert.throws(()=>prepareGrowth({...emptyGrowth(),offerings:[{...item,button_label:label}]},[image]),/button text/);
+ const html=renderDiscoveryContent([],{...result,button_label:'<Shop & Book>',place:{urlSlug:'tea',name:'Tea'}});assert.match(html,/&lt;Shop &amp; Book&gt;/);assert.doesNotMatch(html,/<Shop/);
 });

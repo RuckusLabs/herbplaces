@@ -18,28 +18,28 @@ const credits = [
   ['Gaia&Co', 'https://unsplash.com/photos/1X7SJhapVLM'],
 ];
 
-export default function BusinessPreview({ thrive = false, growth = false }) {
-  const gallery = thrive ? [jars, shop, herbs, pouring] : [shop, jars, herbs, tea];
+export default function BusinessPreview({ growth = false }) {
+  const gallery = [shop, jars, herbs, tea];
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const selectPhoto = index => setPhotoIndex((index + gallery.length) % gallery.length);
   const selected = gallery[photoIndex];
-  return <figure className={styles.preview} aria-label={`Example ${thrive ? 'Thrive' : 'Bloom'} business listing`}>
+  return <figure className={styles.preview} aria-label={'Example Bloom business listing'}>
     <div className={styles.frame}>
       <div className={styles.chrome}><span aria-hidden="true"><i /><i /><i /></span><span>littleherbplaces.com/place/willow-root</span><span className={styles.exampleLabel}>Example</span></div>
-      <div className={styles.siteHeader}><img src="/assets/little-herb-places-logo.svg" alt="" width="42" height="42" /><span>Explore Places <span>Our Story</span><span>Business Plans & Pricing</span></span><Icon name="heart" size={23} /><span className={styles.miniJoin}>Join the Community <Icon name="arrow" size={11} /></span></div>
+      <div className={styles.siteHeader}><img src="/assets/little-herb-places-logo.svg" alt="" width="42" height="42" /><span>Explore Places <span>Our Story</span><span>Business Plans & Pricing</span></span><Icon name="heart" size={23} /><span className={styles.miniJoin}>Sign In <Icon name="arrow" size={11} /></span></div>
       <div className={styles.profilePage}>
         <span className={styles.backLink}><Icon name="arrow" size={12} />All Places</span>
         <header className={styles.profileHeader}>
           <div><p className={styles.location}><Icon name="pin" size={18} />Portland, Oregon</p><h3>Willow & Root Apothecary</h3><p className={styles.tagline}>Small-batch teas, everyday rituals, and a little room to grow.</p><div className={styles.categories}><span><Icon name="shop" size={20} />Herb Shops & Apothecaries</span><span><Icon name="craft" size={20} />Classes & Workshops</span></div></div>
           <span className={styles.saveAction}><Icon name="heart" size={24} />Save Place</span>
         </header>
-        {(growth || thrive) && <div className={styles.highlights}>
-          <span className={styles.primaryAction}>{thrive ? 'Explore Our Workshops' : 'Shop Our Tea Collection'} <Icon name="arrow" size={12} /></span>
+        {growth && <div className={styles.highlights}>
+          <span className={styles.primaryAction}>Shop Our Tea Collection <Icon name="arrow" size={12} /></span>
           <h4>What You’ll Find Here</h4><div className={styles.tags}><span>Loose-Leaf Teas</span><span>Bulk Herbs</span><span>Botanical Gifts</span><span>Small-Group Classes</span></div>
           <div className={styles.access}><p><strong>Languages:</strong> English and Spanish</p><p><strong>Access Information From the Business:</strong> Step-free shop entrance, wide browsing aisles, and seating at the tasting table. Contact us before a workshop if you’d like help planning your visit.</p></div>
           <section className={styles.announcement}><h4>A New Season on the Tea Shelf.</h4><p>Our autumn blends have arrived, with bright citrus, fragrant flowers, and warming spices. Drop in for a cup at the tasting table, meet the ingredients, and take a little inspiration home.</p><span className={styles.textLink}>Learn More <Icon name="arrow" size={11} /></span></section>
-          {thrive && <>
+          {growth && <>
             <section className={styles.offerings}><h4>A Little of What We Offer</h4><div className={styles.offeringGrid}>
               <article><img src={tea.src} alt={tea.alt} width="700" height="525" loading="lazy" /><p className={styles.overline}>Product</p><h5>Seasonal Tea Blend</h5><p>A floral, caffeine-free blend of chamomile, lemon balm, and rose petals, mixed in small batches. Brew a pot for a slow afternoon, or give someone a little moment to themselves.</p><p className={styles.itemPrice}>$18 · 50 g loose-leaf pouch</p><span className={styles.cardAction}>View at Their Shop <Icon name="arrow" size={11} /></span></article>
               <article><img src={pouring.src} alt={pouring.alt} width="700" height="525" loading="lazy" /><p className={styles.overline}>Service</p><h5>A Tea Consultation</h5><p>Spend an unhurried hour exploring flavor, aroma, and your favorite daily rituals with our tea blender. Taste three infusions and leave with a personal blend and simple brewing notes.</p><p className={styles.itemPrice}>$65 · 60-minute tasting</p><span className={styles.cardAction}>Learn More & Book <Icon name="arrow" size={11} /></span></article>
@@ -57,10 +57,10 @@ export default function BusinessPreview({ thrive = false, growth = false }) {
           <aside className={styles.visit}><Icon name="shop" size={43} /><h4>Plan a Little Visit.</h4><div className={styles.visitRow}><Icon name="pin" size={15} /><div><h5>Address</h5><p>123 Example Lane<br />Portland, Oregon 97214</p></div></div><div className={styles.visitRow}><Icon name="clock" size={15} /><div><h5>Opening Hours</h5><p>Tuesday–Friday · 10 am–6 pm<br />Saturday · 10 am–4 pm<br />Sunday–Monday · Closed</p></div></div><div className={styles.visitRow}><Icon name="phone" size={15} /><div><h5>Phone</h5><p>(503) 555-0142</p></div></div><div className={styles.visitActions}><span><Icon name="pin" size={16} />Get Directions</span><span><Icon name="globe" size={14} />Visit Their Website <Icon name="arrow" size={11} /></span><span><Icon name="link" size={14} />Instagram <Icon name="arrow" size={11} /></span></div></aside>
         </div>
       </div>
-      <div className={styles.siteFooter}><div><img src="/assets/little-herb-places-logo.svg" alt="" width="44" height="49" /><p>Rooted in nature.<br />Connected through community.</p></div><div><strong>Wander a Little</strong><span>Explore Places</span><span>Our Story</span><span>Your Saved Places</span></div><div><strong>Put Down Roots</strong><span>For Business Owners</span><span>Join the Community</span><span>Get in Touch</span></div></div>
+      <div className={styles.siteFooter}><div><img src="/assets/little-herb-places-logo.svg" alt="" width="44" height="49" /><p>Rooted in nature.<br />Connected through community.</p></div><div><strong>Wander a Little</strong><span>Explore Places</span><span>Our Story</span><span>Your Saved Places</span></div><div><strong>Put Down Roots</strong><span>For Business Owners</span><span>Sign In</span><span>Get in Touch</span></div></div>
     </div>
     <figcaption className={styles.caption}>Illustrative listing · not a real business. Photos on Unsplash by {credits.map(([name, url], index) => <span key={url}>{index > 0 && ', '}<a href={url} target="_blank" rel="noopener noreferrer">{name}</a></span>)}.</figcaption>
     <PhotoLightbox photos={gallery.map(image => image.src)} descriptions={Object.fromEntries(gallery.map(image => [image.src, image.alt]))} index={lightboxIndex} name="Willow & Root Apothecary · Example" onClose={() => setLightboxIndex(null)} onChange={index => { setLightboxIndex(index); selectPhoto(index); }} />
   </figure>;
 }
-BusinessPreview.propTypes = { thrive: PropTypes.bool, growth: PropTypes.bool };
+BusinessPreview.propTypes = { growth: PropTypes.bool };

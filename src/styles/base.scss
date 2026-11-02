@@ -43,7 +43,7 @@ body {
 button, input, select { font: inherit; }
 button, a, input, select { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 2px solid rgb(var(--tertiary-color)); outline-offset: 5px; }
-#main-content h1[data-route-focus-target]:focus { outline: none; }
+#main-content [data-route-focus-target]:focus { outline: none; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 .skip-link { position: fixed; top: 10px; left: 20px; z-index: 100; padding: 12px 20px; background: #fff; transform: translateY(-200%); clip-path: inset(50%); }

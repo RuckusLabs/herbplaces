@@ -2,6 +2,10 @@
 
 Checkpoint: October 26, 2026. The website is published; new purchases remain disabled in both the frontend and hosted server. This document records preparation, not authorization to charge a customer.
 
+## Mapping update — November 2, 2026
+
+Mapbox is removed from the local frontend in favor of MapLibre and OpenFreeMap. This migration is prepared for review in the combined draft PR and has not been deployed. The live management function already makes no external geocoding calls, its geocoding credential is removed, and new or changed addresses require manual confirmation. The local build and workflows do not use a Mapbox token. After the separately authorized frontend deployment is verified, delete its obsolete hosted secret and revoke old Mapbox account tokens. Historical entitlement/token notes below are superseded by this removal; do not re-enable automatic geocoding. See the README for current mapping behavior and the remaining rollout steps.
+
 ## Verified live configuration
 
 Use only Little Herb Places LIVE, `acct_1UT1v28pv7NMGO0i`. The latest account read reports payments and payouts enabled, details submitted, no currently due requirements, and no pending verification. The owner completed private onboarding directly in Stripe. Branding uses primary `#2c542f`, accent `#eaff82`, and the uploaded logo/icon. Support is `help@littleherbplaces.com`.
@@ -44,14 +48,14 @@ References: [Stripe go-live checklist](https://docs.stripe.com/get-started/check
 
 ## Final review checkpoint
 
-PR #12 passed CI at `8713b7f` before the final refund-copy update. Both purchase flags remain false. A fresh private supplemental snapshot contains 16 application tables and all 18 place-photos objects (4,570,198 bytes); saved photo bytes were hashed and checked. This local snapshot excludes Auth, SQL schema, secrets, platform configuration, and Stripe records. It does not establish automated off-device backup coverage or a tested full restore. Keep the October 21 schema/function evidence as history. Permanent Mapbox geocoding entitlement remains unverified; a geocoding credential is present, so verify entitlement before relying on stored automatic lookups.
+PR #12 passed CI at `8713b7f` before the final refund-copy update. Both purchase flags remain false. A fresh private supplemental snapshot contains 16 application tables and all 18 place-photos objects (4,570,198 bytes); saved photo bytes were hashed and checked. This local snapshot excludes Auth, SQL schema, secrets, platform configuration, and Stripe records. It does not establish automated off-device backup coverage or a tested full restore. Keep the October 21 schema/function evidence as history. Historical geocoding status at this checkpoint: permanent-storage entitlement was unverified and a credential was present. This is superseded by the mapping update above; the credential has since been removed.
 
 Supabase Dashboard's Scheduled backups page explicitly reports the organization is on Free and project backups are not included. Automated hosted database recovery is therefore a confirmed launch gap, not merely unverified. No plan upgrade was purchased. The owner is reviewing Pro plus separate photo backups versus an off-device backup system, and permanent-geocoding entitlement/manual placement. Publication and purchases remain unchanged pending this milestone.
 
 
 ## Separate backup preparation and geocoding pause
 
-The owner chose separate off-device backups and explicitly paused automatic geocoding. Hosted `AUTOMATIC_GEOCODING_ENABLED=false` and the deployed management function prevent Mapbox calls; existing confirmed coordinates are preserved and new/unconfirmed addresses enter manual review. Re-enable only after permanent-storage entitlement is confirmed.
+The owner chose separate off-device backups and explicitly paused automatic geocoding. Hosted `AUTOMATIC_GEOCODING_ENABLED=false` and the deployed management function prevent Mapbox calls; existing confirmed coordinates are preserved and new/unconfirmed addresses enter manual review. Automatic lookup has since been removed entirely; keep manual placement (see the mapping update above).
 
 The dedicated private repository `RuckusLabs/herbplaces-backups` contains a gated daily encrypted export job. It remains disabled pending `BACKUP_DATABASE_URL`, a secure second copy of the private recovery key, an actual export, isolated restore verification, and a scheduled-run check. No Storage admin key is required: the job uses the database object index and public photo downloads. Database URL credentials and private recovery keys must never enter chat, logs, source commits, or public artifacts.
 

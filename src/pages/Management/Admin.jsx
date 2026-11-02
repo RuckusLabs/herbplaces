@@ -131,6 +131,7 @@ export default function Admin() {
   const allowed = !!user && management.is_admin;
   return <main id="main-content" className={`${styles.page} ${adminStyles.page}`}>
     <Helmet><title>Admin | Little Herb Places</title><meta name="robots" content="noindex" /></Helmet>
+    <Link to="/admin/business-growth">Business Growth →</Link>
     <header className={adminStyles.header}><div><p className={adminStyles.eyebrow}>Directory workspace</p><h1>Little Herb Places Admin</h1><p>Connect people to places. Keep the directory growing with care.</p></div>{allowed && <button className="button" onClick={() => { setCreationDraft(null); setCreationRequest(null); setCreating(true); }}><Icon name="sprout" size={24} />Add Place</button>}</header>
     {authLoading || (management.loading && !allowed) ? <p role="status">Checking admin access…</p>
       : !user ? <Link className="button" to={`/login?next=${encodeURIComponent(`/admin${params.size ? `?${params}` : ''}`)}`}>Sign In</Link>

@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import MapCanvas, { Marker, Popup, NavigationControl } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import { Marker, Popup, NavigationControl } from 'react-map-gl/maplibre';
+import MapCanvas from '../FreeMap/FreeMap';
 import styles from './map.module.scss';
 import modalStyles from './modal.module.scss';
 import MapPlacePreview from '../MapPlacePreview/MapPlacePreview';
@@ -11,13 +11,14 @@ import Icon from '../Icons/Icon';
 import Pagination from '../Pagination/Pagination';
 import { paginatePlaces, PLACES_PER_PAGE } from '../../utilities/pagination';
 import { getMapPlaces, getMapBounds, getPlacesInBounds, createPlaceIndex } from '../../utilities/mapPlaces';
-import { MAPBOX_TOKEN } from '../../utilities/mapConfig';
+import ListComponent from '../List/List';
 
 const accessibleMarker = marker => { if (marker) { marker.getElement().setAttribute('role', 'presentation'); marker.getElement().removeAttribute('aria-label'); } };
 const duration = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650;
 const readBounds = map => { const bounds = map.getBounds(); return [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()]; };
 
 export default function MapComponent({ places, nearby = null, onClearNearby, selectedPlaceId = null, focusBounds = null, pageValue = null, onPageChange }) {
+  const failMap = useCallback(() => setError(true), []);
   const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState(false);
   const [ready, setReady] = useState(false);
@@ -108,6 +109,12 @@ export default function MapComponent({ places, nearby = null, onClearNearby, sel
   };
   const preview = selected && <MapPlacePreview id="discover-place-preview" place={selected} onClose={closePreview} closeButtonRef={closePreviewRef} showSave />;
 
+  const fallbackPagination = paginatePlaces(places, pageValue);
+  if (error) return <section ref={explorerRef} aria-label="Places results">
+    <div className={styles.fallback} role="status"><h2>A Little Trouble Finding Our Way.</h2><p>The map couldn’t load. Explore the places below, or try the map again.</p><button className="button" onClick={() => { setReady(false); setError(false); }}>Try the Map Again</button></div>
+    <ListComponent places={fallbackPagination.items} /><Pagination {...fallbackPagination} onChange={onPageChange} />
+  </section>;
+
   return <section ref={explorerRef} className={styles.explorer} aria-label="Explore places on the map">
     <div className={styles.mapActions}>
       <div><button className="button" disabled={!ready || error} onClick={() => { setArea(readBounds(mapRef.current)); onPageChange(1); }}>Search This Area</button><button className="button" disabled={!ready || error} onClick={showAll}>Show All Places</button></div>
@@ -125,7 +132,7 @@ export default function MapComponent({ places, nearby = null, onClearNearby, sel
         <div className={styles.resultsPagination}><Pagination {...pagination} onChange={page => { setSelectedId(null); onPageChange(page); }} /></div>
       </aside>
       <div className={styles.mapPanel}>
-        {error ? <div className={styles.error} role="status"><h2>A Little Trouble Finding Our Way.</h2><p>The map couldn’t load. You can still explore every place in the results list.</p><button className="button" onClick={() => { setError(false); setReady(false); }}>Try the Map Again</button></div> : <MapCanvas reuseMaps ref={mapRef} initialViewState={initial.current} mapStyle="mapbox://styles/mapbox/light-v11" mapboxAccessToken={MAPBOX_TOKEN} renderWorldCopies={false} cooperativeGestures onLoad={event => { setReady(true); updateViewport(event); }} onMoveEnd={updateViewport} onResize={updateViewport} onError={event => { if (!event.target?.isStyleLoaded()) setError(true); }} style={{ width: '100%', height: '100%' }}>
+        <MapCanvas ref={mapRef} initialViewState={initial.current} onFailure={failMap} renderWorldCopies={false} cooperativeGestures onLoad={event => { setReady(true); updateViewport(event); }} onMoveEnd={updateViewport} onResize={updateViewport} style={{ width: '100%', height: '100%' }}>
           <NavigationControl position="top-right" />
           {nearby && <Marker longitude={nearby.longitude} latitude={Math.max(-85.051129, Math.min(85.051129, nearby.latitude))} anchor="bottom" offset={[0, 7]} style={{ zIndex: 3 }}>
             <div className={`${pinStyles.pin} ${pinStyles.active} ${styles.userLocation}`} role="img" aria-label="Your approximate location"><span className={pinStyles.pinIcon}><Icon name="nearby" size={43} /></span><span className={pinStyles.pinLabel}>You are here</span></div>
@@ -142,7 +149,7 @@ export default function MapComponent({ places, nearby = null, onClearNearby, sel
           })}
           {selected && <Marker ref={accessibleMarker} longitude={Number(selected.longitude)} latitude={Number(selected.latitude)} anchor="bottom" offset={[0, 7]}><MapPlacePin place={selected} selected ariaLabel={`Selected: ${selected.name}`} ariaControls="discover-place-preview" onClick={() => select(selected)} /></Marker>}
           {selected && !mobile && <Popup longitude={Number(selected.longitude)} latitude={Number(selected.latitude)} closeOnClick={false} closeButton={false} onClose={() => setSelectedId(null)} anchor="bottom" offset={84} maxWidth="350px" className={modalStyles.popup}>{preview}</Popup>}
-        </MapCanvas>}
+        </MapCanvas>
         {ready && !error && !visible.length && <div className={styles.noPlaces} role="status"><h2>No Places Here Just Yet.</h2><p>{!places.length ? 'Try another search or category, or clear your filters.' : !coordinates.length ? 'These places don’t have map locations yet. Switch to List to explore them.' : 'Choose Show All Places, or try another area.'}</p></div>}
         {!ready && !error && <p className={styles.mapLoading} role="status">Opening the Map…</p>}
         {selected && mobile && <div className={styles.mobilePreview} role="region" aria-label={`Selected place: ${selected.name}`}>{preview}</div>}

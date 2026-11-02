@@ -36,12 +36,3 @@ export function hasImageSignature(bytes, type) {
 export function renewalGraceDeadline(existing, failureAt) {
   return existing || new Date(failureAt + GRACE_MS).toISOString();
 }
-
-export function coordinatesFromGeocode(result) {
-  const feature = result?.features?.[0];
-  const match = feature?.properties?.match_code;
-  const coords = feature?.geometry?.coordinates;
-  if (feature?.properties?.feature_type !== 'address' || !['exact', 'high'].includes(match?.confidence)) return null;
-  if (!Array.isArray(coords) || coords.length !== 2 || !coords.every(Number.isFinite) || Math.abs(coords[0]) > 180 || Math.abs(coords[1]) > 85.051129) return null;
-  return { longitude: coords[0], latitude: coords[1] };
-}

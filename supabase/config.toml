@@ -64,3 +64,7 @@ verify_jwt = false
 [functions.admin-places]
 # Confirmed administrator status is checked against the database per request.
 verify_jwt = false
+
+[functions.business-journey]
+# Anonymous allowlisted events; origin checks and rate limits apply.
+verify_jwt = false

@@ -1,6 +1,6 @@
 # Little Herb Places
 
-A React and Vite directory for independent herb shops, herbalists, gardens, and plant communities. Styling uses custom Sass modules; no Tailwind or shadcn.
+A React and Vite directory for independent herb shops, herbalists, gardens, and plant communities. Maps use MapLibre GL JS and OpenFreeMap; Mapbox has been removed from this codebase. Styling uses custom Sass modules; no Tailwind or shadcn.
 
 ## Local development
 
@@ -11,41 +11,49 @@ Create a local `.env` file (never commit credentials):
 ```dotenv
 VITE_SUPABASE_URL=your-project-url
 VITE_SUPABASE_ANON_KEY=your-public-anon-key
-# Required for the homepage map and Discover Map view
-VITE_MAPBOX_TOKEN=your-public-mapbox-token
 ```
 
-Use a public Supabase anon key with appropriate row-level security policies, never a service-role key. Use a public Mapbox token for maps; configure it in the build environment as well as locally. Without Supabase configuration, the site renders normally and directory/account requests show an unavailable state. Restart Vite after changing environment variables.
+Use a public Supabase anon key with appropriate row-level security policies, never a service-role key. Without Supabase configuration, the site renders normally and directory/account requests show an unavailable state. Restart Vite after changing environment variables.
 
 ## Address lookups disabled
 
-Automatic address geocoding is disabled because permanent geocoding has no free allowance. The live place-management function does not call Mapbox, `AUTOMATIC_GEOCODING_ENABLED` is false, and its geocoding credential has been removed. New or changed addresses require manual coordinate confirmation. Interactive maps and homepage static maps remain enabled under their separate free allowances; usage above those allowances can still incur charges.
+Automatic address lookups are removed: the place-management function makes no external geocoding requests. Existing confirmed coordinates are preserved; new or changed addresses need manual coordinate confirmation in admin Location Review. The hosted geocoding credential has already been removed, and `AUTOMATIC_GEOCODING_ENABLED=false` remains a safeguard for older function versions. Keep address lookup disabled; no Mapbox entitlement or replacement paid geocoder is needed.
 
-## Maps in GitHub Pages deployments
+## Free maps
 
-GitHub Actions must have a repository secret named `VITE_MAPBOX_TOKEN` (Settings → Secrets and variables → Actions). Local `.env.local` settings do not reach GitHub Actions. The deployment workflow passes this secret into the Vite build and stops with a clear error if it is missing. Redeploy after adding or changing it; the value is embedded at build time.
+Both maps use MapLibre GL JS with the OpenFreeMap Positron style. No map account, API key, or metered service is configured. Map tile, sprite, and font requests are restricted to `tiles.openfreemap.org`; there is no paid fallback. MapLibre's worker is bundled locally with Vite. OpenFreeMap, OpenMapTiles, and OpenStreetMap attribution remains visible.
 
-Use the same working public Mapbox token for the homepage Static Images API and the interactive Discover map. If maps still fail, check the failed request: 401 means an invalid or deleted token; 403 can mean missing permissions or a URL restriction. Allow the actual site origin (`https://littleherbplaces.com`, plus `https://www.littleherbplaces.com` if used) and local preview origins on restricted tokens. See [Mapbox token troubleshooting](https://docs.mapbox.com/help/troubleshooting/token-errors/).
+Map failures, unavailable WebGL, or a 15-second initialization timeout show the paginated directory. The homepage falls back to a bundled botanical photo with a directory link and no geographic pins. Retry is explicit. OpenFreeMap is a free public service without an availability guarantee; a failure never enables a paid provider.
+
+### Retired Mapbox configuration and rollout
+
+This migration is prepared for review in the combined draft PR; it has not been deployed. The live frontend can still use Mapbox until the migration is published and old tokens are revoked. Local code changes alone do not stop usage from the live site or previously opened browser tabs.
+
+- Local builds, `.env.example`, and GitHub workflow files no longer read `VITE_MAPBOX_TOKEN`; `mapbox-gl` and the unused logo are removed. No map-related secrets are required to build either map.
+- After a separately authorized deployment is verified, delete the obsolete GitHub Actions `VITE_MAPBOX_TOKEN` secret and revoke the site's old tokens in the Mapbox account. The server-side `MAPBOX_GEOCODING_TOKEN` has already been removed. Do not restore either credential or roll back to a Mapbox build; use the photo/list fallback if needed.
+- Mapbox references in regression tests are intentional: tests inject an obsolete token, reject Mapbox requests, and check that a style cannot redirect assets to a metered provider. Keep those protections.
+- Some dependency names still contain `@mapbox`, and `react-map-gl` includes optional Mapbox adapter metadata. These are transitive open-source dependencies, not a configured Mapbox service. Do not remove required MapLibre dependencies merely because their names contain Mapbox.
+
 
 ## Checks
 
 - `npm test` checks directory search, category filtering, resilient caching, guest saves, account merges, and safe account redirects.
 - `npm run build` generates the production site in `dist`.
 - `npm run preview` serves the production build locally.
+- `npx playwright test tests/browser/freeMaps.spec.js` checks maps, failure fallbacks, camera alignment, and blocked Mapbox requests.
+- `npx playwright test --config playwright.maps.config.js` checks the production renderer and bundled worker without a Mapbox token.
 
 ## Directory behavior
 
 Homepage search links to `/map?view=map&q=...`. Category links use `/map?category=shops` (or `herbalists`, `gardens`, `workshops`); hero shortcuts also preserve Map view. Filters remain in the URL, so filtered views can be bookmarked. Categories match terms in existing listing fields; a dedicated taxonomy can replace this when the database provides one.
 
-The homepage hero uses a lightweight Mapbox static image with accessible pins positioned from actual listing coordinates. Nearby places share a pin; selecting a grouped pin opens the map fitted to that group’s area. Single-place pins open the place’s detail page directly. The Open the Full Map button opens the map directory. Hero searches and category shortcuts open Map view with the requested filters. Both maps share their pin components; Discover retains saving, dismissible popups, and mobile bottom sheets. Its individual pin labels appear on hover, keyboard focus, or selection to keep nearby places legible. The full map library remains lazy-loaded in the directory.
+The homepage hero lazy-loads a non-draggable free map with accessible pins positioned from actual listing coordinates. Nearby places share a pin; selecting a grouped pin opens the map fitted to that group’s area. Single-place pins open the place’s detail page directly. The Open the Full Map button opens the map directory. Hero searches and category shortcuts open Map view with the requested filters. Both maps share their pin components; Discover retains saving, dismissible popups, and mobile bottom sheets. Its individual pin labels appear on hover, keyboard focus, or selection to keep nearby places legible. The renderer is shared and lazy-loaded by both maps.
 
-Directory lists and the map results panel show at most 15 places per page. Previous/Next controls preserve filters and the current page in the URL. Filter and area changes reset to page one. All matching map pins remain available, and selecting a pin brings its result page into view. The list is the default view. `?view=map` preserves Map view in shareable URLs. Mapbox and its styles load only when the visitor chooses Map. Map view links place cards to category pins, clusters nearby places, and offers an explicit area search. Filtering preserves the current camera; Show All Places clears the area restriction and fits the matching places. On mobile, selected places appear in a bottom sheet and the results list can be expanded. Places share one pending request and a five-minute memory/local-storage cache; navigation and window focus revalidate public listings. Blocked, full, or malformed storage does not prevent loading places. Retry refreshes the cache.
+Directory lists and the map results panel show at most 15 places per page. Previous/Next controls preserve filters and the current page in the URL. Filter and area changes reset to page one. All matching map pins remain available, and selecting a pin brings its result page into view. The list is the default view. `?view=map` preserves Map view in shareable URLs. The directory loads its renderer only when the visitor chooses Map. Map view links place cards to category pins, clusters nearby places, and offers an explicit area search. Filtering preserves the current camera; Show All Places clears the area restriction and fits the matching places. On mobile, selected places appear in a bottom sheet and the results list can be expanded. Places share one pending request and a five-minute memory/local-storage cache; navigation and window focus revalidate public listings. Blocked, full, or malformed storage does not prevent loading places. Retry refreshes the cache.
 
-Map usage is reduced in two ways: Discover enables `reuseMaps`, so switching List/Map or returning from another route reuses the existing Mapbox instance in the current page session instead of initializing another billable map load. The homepage groups similar viewport dimensions into shared static-image requests, with pins projected into that exact camera so they remain aligned when the image scales. Small resizes within a size bucket do not generate different map URLs. Static images use the browser's ordinary HTTP cache and Mapbox's `Cache-Control` headers (currently 12 hours); there is no separate tile store or cache that overrides expiration. The places-data cache above is separate from Mapbox billing.
+Renderers are destroyed when leaving a map, so explicit retries create a fresh instance. Homepage pins and the background use the same camera at the actual container size, including after resizing. The places-data cache is separate from map resources.
 
-This reduces redundant requests but does not cap charges: full page reloads, separate tabs, new visitors, and Mapbox's session limits can still create loads. See [Mapbox GL JS billing](https://docs.mapbox.com/mapbox-gl-js/guides/pricing/), [map reuse](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#minimize-cost-from-frequent-re-mounting), and [static-image caching](https://docs.mapbox.com/api/maps/static-images/#static-images-api-restrictions-and-limits). Use token URL restrictions and review usage in Mapbox to limit unauthorized use and spot unusual traffic.
-
-Guests save places on their device; a successful new save opens an account prompt with Create an Account, Sign In, and Keep Browsing options. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
+Guests save places on their device; a successful new save opens an account prompt with Sign In and Keep Browsing options. Signup links and public Thrive promotions are hidden; existing accounts can still sign in. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
 
 Authenticated favorites use the existing Supabase `favorites` table. Guest saves merge automatically after sign-in or an email-confirmation callback, without replacing existing account saves. Device copies are removed only after the database confirms the merge. Failures retain local saves and provide a retry. The account forms preserve the return destination and send visitors from the save prompt to `/favorites` after syncing.
 
@@ -53,7 +61,7 @@ Places Near Me is available on the homepage and after All Places in the director
 
 ## Live account verification
 
-Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Create an Account (or Sign In for an existing account), and complete any email confirmation. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
+Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Sign In with an existing account, and complete email verification. Public signup links are hidden. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
 
 If email confirmation is enabled, Supabase's allowed redirect URLs must include the tested origin's `/auth/callback` URL, including localhost during local verification.
 
@@ -64,7 +72,11 @@ Detail-page photo previews fit the whole image and cap their height at 480px on 
 
 ## Place ownership and subscriptions
 
-Owners edit directly on their place page after claim approval and an eligible Bloom subscription. Saved Places (`/favorites`) also shows My Places access, claim status, and billing for accounts with a managed place or a pending/approved claim. Existing `/my-places` links redirect there and preserve billing return parameters; `/admin` provides user lookup, claims, manager assignments, protected settings, and revision restoration. Bloom purchases stay disabled until server and frontend release flags are enabled. The customer-launch milestone adds account recovery, visible rejected claims/access errors, missing-listing requests at `/request-place`, customer notification queues, independent ownership verification, and billing recovery for missed initial webhooks. The October 21 database and function changes are deployed, while the frontend remains under review and purchases remain disabled. The separate Stripe sandbox lifecycle and hourly billing reconciliation are verified. Mailbox delivery, the live billing setup, and frontend publication remain release gates. Run `node scripts/check-launch-readiness.mjs` to inspect configuration without exposing keys.
+Approved managers use **My Places** (`/my-places`) for their listings, ownership claims, requests, membership, and billing. Saved Places (`/favorites`) stays separate. The signed-in user menu opens **Business Tools & Activity** (`/business-tools`): a private workspace with Overview, Listing & Highlights, Activity, and optional Email Reports sections. Managers can choose among their approved places; administrators can select a directory listing. Reports and preferences load only when their section is opened. Essential corrections remain free, while paid tools follow the existing Bloom access rules.
+
+Editing links open the actual place page, where managers can preview unpublished changes with a sticky toolbar before publishing. The public listing and My Places no longer contain an embedded activity dashboard. Existing report action links continue through sign-in, and sharing advice opens the activity workspace. The workspace is excluded from indexing and requires sign-in; server checks still enforce listing access. See [Business growth rollout](docs/business-growth-rollout.md) for release requirements and [place management setup](docs/place-management-setup.md) for billing and administrative configuration. A frontend build performs no hosted migration or function deployment.
+
+Managers can rename the public specialties, products/services, and workshops/events headings in the highlights editor. Blank titles use the default wording. Products and events use a compact item list beside one editing form, keeping other items visible while editing. Public products/services appear in a compact two-column grid with expandable longer descriptions. Custom headings require the included `202611020002_custom_section_titles.sql` backend migration before deployment. Owners can reorder product/service and event items with up/down controls and arrange highlight sections in **Layout & Order**. Preview shows the saved order on the listing; blank layouts use the default order. Apply `202611020003_highlight_order.sql` before deploying ordering support. Each product/service or event supports one image, uploaded separately from the listing gallery or chosen from existing listing photos, plus optional custom button text (up to 60 characters). JPEG, PNG, and WebP uploads use the existing 10 MB validation and place-owned upload service. Apply `202611020004_offering_photos_and_buttons.sql` before publishing this editor.
 
 See [setup and verification](docs/place-management-setup.md) before applying the included Supabase migration or enabling payments. No hosted database changes or billing deployment happen as part of a frontend build.
 
@@ -86,7 +98,7 @@ For an offline reproducible export after an app build, `node scripts/build-seo.m
 
 The default flow is **GitHub checks public listings once daily at 06:17 UTC → compares them with the last published content → regenerates and deploys only when content changed**. New places, edits, and deletions are all detected. The check and export use the same public snapshot, and failed/empty directory reads stop the run while preserving the deployed site. Pushes to `main` and manual workflow runs always rebuild, including design-only changes.
 
-The repository's existing `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_MAPBOX_TOKEN` secrets were synchronized with the working local configuration on October 20, 2026; Actions is enabled and Pages publishes the `gh-pages` branch at `littleherbplaces.com`. No additional token or Supabase database setup is needed for scheduled checks. To activate:
+The repository's existing `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` secrets were synchronized with the working local configuration on October 20, 2026; Actions is enabled and Pages publishes the `gh-pages` branch at `littleherbplaces.com`. No additional token or Supabase database setup is needed for scheduled checks. To activate:
 
 1. Review and merge this PR into `main`. This triggers the first complete deployment and installs the schedule on the default branch.
 2. Open **GitHub → Actions → Deploy to GitHub Pages** and wait for the merge-triggered run to pass. Check `/og/preview.html` and one `/place/<slug>/` URL on the live site.
@@ -117,4 +129,4 @@ References: [GitHub workflow dispatch API](https://docs.github.com/en/rest/actio
 
 ## Business growth tools
 
-See [Business growth rollout](docs/business-growth-rollout.md) for database/function deployment order, feature flags, privacy and retention, the Thrive pilot, and verification. Paid Thrive checkout remains closed.
+See [Business growth rollout](docs/business-growth-rollout.md) for database/function deployment order, feature flags, privacy and retention, Bloom offerings and events, and verification. Bloom is the only paid plan; the separate Thrive offer has been retired.

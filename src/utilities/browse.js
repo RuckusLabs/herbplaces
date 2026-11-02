@@ -9,6 +9,20 @@ const regionName = value => stateNames[String(value || '').trim().toUpperCase()]
 const categorySlugs = { shops: 'herb-shops', herbalists: 'herbalists', gardens: 'gardens', workshops: 'classes' };
 export const browsePagePath = page => page <= 1 ? '/browse' : `/browse/page/${page}`;
 
+export function localVisitGuide(page) {
+  if (!page?.city) return [];
+  const descriptions = {
+    shops: 'Check current opening hours and ask the shop about stock before making a special trip.',
+    herbalists: 'Ask about consultation format, practitioner experience, availability, and booking requirements.',
+    gardens: 'Confirm visitor access, seasonal opening times, and whether a tour needs advance booking.',
+    workshops: 'Confirm upcoming dates, skill level, included materials, and registration directly with the organizer.',
+  };
+  return categories.flatMap(category => {
+    const count = page.places.filter(place => getPlaceCategories(place).some(item => item.id === category.id)).length;
+    return count ? [{ id: category.id, name: category.name, count, text: descriptions[category.id], href: `/map?view=list&q=${encodeURIComponent(page.city)}&category=${category.id}` }] : [];
+  });
+}
+
 export function getLocalCollections(places) {
   const cities = new Map();
   for (const place of places) {

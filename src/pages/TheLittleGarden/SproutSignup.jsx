@@ -9,7 +9,7 @@ export default function SproutSignup() {
     <Helmet><title>Join Sprout | The Little Garden | Little Herb Places</title></Helmet>
     <Link to="/the-little-garden" className={styles.backLink}><Icon name="arrow" size={17} />The Little Garden</Link>
     <Reveal as="div" className={styles.signupLayout}>
-      <section className={styles.signupIntro}><Icon name="sprout" size={80} /><h1>Every Good Thing Starts With a Little Seed.</h1><p>Join Sprout, our free community plan, and make a little room for connection. For herbalists, growers, makers, and the endlessly plant-curious.</p><p>Keep your favorite places close with a free account, and join the community below for updates.</p><Link to="/register?next=%2Ffavorites" className="button">Create a Free Account <Icon name="arrow" size={18} /></Link></section>
+      <section className={styles.signupIntro}><Icon name="sprout" size={80} /><h1>Every Good Thing Starts With a Little Seed.</h1><p>Join Sprout, our free community plan, and make a little room for connection. For herbalists, growers, makers, and the endlessly plant-curious.</p><p>Join the community below for updates.</p></section>
       <section className={styles.signupCard} aria-labelledby="signup-title">
         <h2 id="signup-title">Community Updates</h2><p>Occasional emails from Little Herb Places. This newsletter signup does not create a website account or start a paid plan.</p>
         <form action="https://littleherbplaces.us11.list-manage.com/subscribe/post?u=ac649b78dd0024f5b2ecd08e5&id=566234165b&f_id=0063c6e3f0" method="POST" target="_blank" rel="noopener noreferrer" className={styles.form}>

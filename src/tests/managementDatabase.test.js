@@ -26,6 +26,9 @@ const placeDeletionMigration = await readFile(new URL('../../supabase/migrations
 const customerCutoverMigration = await readFile(new URL('../../supabase/migrations/202610260004_customer_email_cutover.sql', import.meta.url), 'utf8');
 const growthMigration = await readFile(new URL('../../supabase/migrations/202610270001_business_growth.sql', import.meta.url), 'utf8');
 const activityEmailMigration = await readFile(new URL('../../supabase/migrations/202610270002_activity_email_reports.sql', import.meta.url), 'utf8');
+const journeyMigration = await readFile(new URL('../../supabase/migrations/202610290001_business_journey.sql', import.meta.url), 'utf8');
+const bloomAdvancedMigration = await readFile(new URL('../../supabase/migrations/202611020001_bloom_advanced_features.sql', import.meta.url), 'utf8');
+const sectionTitlesMigration = await readFile(new URL('../../supabase/migrations/202611020002_custom_section_titles.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -61,6 +64,11 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(customerCutoverMigration);
   await database.exec(growthMigration);
   await database.exec(activityEmailMigration);
+  await database.exec(journeyMigration);
+  await database.exec(bloomAdvancedMigration);
+  await database.exec(sectionTitlesMigration);
+  await database.exec(await readFile(new URL('../../supabase/migrations/202611020003_highlight_order.sql', import.meta.url), 'utf8'));
+  await database.exec(await readFile(new URL('../../supabase/migrations/202611020004_offering_photos_and_buttons.sql', import.meta.url), 'utf8'));
 }
 
 before(async () => {
@@ -898,7 +906,7 @@ const offering = { id: '20000000-0000-0000-0000-000000000001', title: 'Herbal co
 test('business highlights authorize managers, enforce versions and keep private data out of the public projection', async () => {
   await asRole('authenticated', ids.owner, async () => {
     const access = await rpc('get_growth_access', [ids.place]);
-    assert.equal(access.can_edit, true); assert.equal(access.can_thrive, false);
+    assert.equal(access.can_edit, true); assert.equal(access.can_manage_offerings, true);
     const saved = await rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft()), 1], ['', '::jsonb']);
     assert.equal(saved.content.primary_action.label, 'Shop online'); assert.equal(saved.version, 2);
     const report = await rpc('get_place_activity', [ids.place]);
@@ -906,32 +914,53 @@ test('business highlights authorize managers, enforce versions and keep private 
     await assert.rejects(rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft()), 1], ['', '::jsonb']), /Someone updated/);
   });
   await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('get_growth_access', [ids.place])), /Approved manager/);
-  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('get_place_activity', [ids.place])), /Bloom or/);
+  await assert.rejects(asRole('authenticated', ids.outsider, () => rpc('get_place_activity', [ids.place])), /active Bloom/);
   await assert.rejects(asRole('anon', null, () => db.query('select * from public.place_activity')), /permission denied/);
   await asRole('anon', null, async () => { await db.query('select content,version,operating_status from public.public_place_growth'); });
 });
 
-test('Bloom cannot self-upgrade by publishing showcase fields or writing a pilot grant', async () => {
-  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft({ offerings: [offering] })), 1], ['', '::jsonb'])), /active Thrive pilot/);
-  await assert.rejects(asRole('authenticated', ids.owner, () => rpc('admin_set_thrive_pilot', [ids.place, '2099-01-01'])), /Administrator/);
-  await assert.rejects(asRole('authenticated', ids.owner, () => db.query('insert into public.place_growth_pilots(place_id,expires_at) values($1,now()+interval \'10 days\')', [ids.place])), /permission denied/);
+test('paid Bloom managers can publish offerings without a pilot or separate plan', async () => {
+  await asRole('authenticated', ids.owner, async () => {
+    const saved = await rpc('publish_place_growth', [ids.place, JSON.stringify(growthDraft({ offerings: [offering] })), 1], ['', '::jsonb']);
+    assert.equal(saved.content.offerings.length, 1);
+    assert.equal((await rpc('get_growth_access', [ids.place])).can_manage_offerings, true);
+    await db.exec('reset role');
+    await db.query("update public.place_subscriptions set status='canceled',paid_until=now()-interval '1 day' where place_id=$1",[ids.place]);
+    await db.exec('set local role authenticated');
+    assert.equal((await rpc('get_growth_access',[ids.place])).can_manage_offerings,false);
+    assert.equal((await db.query('select content from public.public_place_growth where place_id=$1',[ids.place])).rows[0].content.offerings.length,1);
+    await assert.rejects(rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft()),2],['','::jsonb']),/active Bloom/);
+
+  });
 });
 
-test('Thrive pilots are bounded, enable Bloom editing, and preserve published content when the pilot ends', async () => {
-  await asRole('authenticated', ids.admin, async () => {
-    await rpc('admin_set_thrive_pilot', [ids.otherPlace, new Date(Date.now()+7*86400000).toISOString()]);
-    await rpc('admin_assign_manager',[ids.otherPlace,'owner@example.com',false]);
-    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.owner]);
-    const access = await rpc('get_growth_access', [ids.otherPlace]);
-    assert.equal(access.can_thrive,true); assert.equal(access.can_edit,true);
-    assert.ok(await rpc('get_editable_place', [ids.otherPlace]));
-    await rpc('publish_place_growth', [ids.otherPlace, JSON.stringify(growthDraft({ offerings:[offering] })),1], ['', '::jsonb']);
-    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.admin]);
-    await rpc('admin_set_thrive_pilot', [ids.otherPlace,null]);
-    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.owner]);
-    assert.equal((await rpc('get_growth_access', [ids.otherPlace])).can_edit,false);
-    assert.equal((await db.query('select content from public.public_place_growth where place_id=$1',[ids.otherPlace])).rows[0].content.offerings.length,1);
+test('Bloom includes ten offerings and ten events, with item insights in monthly snapshots', async () => {
+  const offerings=Array.from({length:10},(_,index)=>({...offering,id:crypto.randomUUID(),title:`Offering ${index+1}`}));
+  const events=Array.from({length:10},(_,index)=>({...offering,id:crypto.randomUUID(),title:`Workshop ${index+1}`,starts_at:'2099-01-01T12:00:00Z',ends_at:'2099-01-01T14:00:00Z',timezone:'America/Denver',location:'Our shop'}));
+  await asRole('authenticated',ids.owner,async()=>{
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings,events})),1],['','::jsonb']);
+    assert.equal(saved.content.offerings.length,10); assert.equal(saved.content.events.length,10);
+    await db.exec('reset role');
+    await db.query("insert into public.place_activity(event_id,place_id,kind,item_id,visitor_hash,created_at) values($1,$2,'event_click',$3,$4,'2026-09-15T12:00:00Z')",[crypto.randomUUID(),ids.place,events[0].id,'f'.repeat(64)]);
+    const snapshot=(await db.query("select place_management_private.activity_month_snapshot($1,'2026-09-01','2026-10-01') data",[ids.place])).rows[0].data;
+    assert.equal(snapshot.items[0].title,'Workshop 1'); assert.equal(snapshot.items[0].total,1);
   });
+  for(const content of [growthDraft({offerings:[...offerings,{...offering,id:crypto.randomUUID()}]}),growthDraft({events:[...events,{...events[0],id:crypto.randomUUID()}]})]) {
+    await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb'])),/up to 10/);
+  }
+});
+
+test('legacy pilot rows grant no access and unpaid managers cannot publish advanced content', async () => {
+  await db.exec('begin');
+  try {
+    await db.query("insert into public.place_memberships(place_id,user_id) values($1,$2) on conflict do nothing", [ids.otherPlace,ids.owner]);
+    await db.query("insert into public.place_growth_pilots(place_id,expires_at) values($1,now()+interval '10 days')", [ids.otherPlace]);
+    await db.query("select set_config('request.jwt.claim.sub',$1,true)", [ids.owner]);
+    await db.exec('set local role authenticated');
+    const access=await rpc('get_growth_access',[ids.otherPlace]);
+    assert.equal(access.can_edit,false); assert.equal(access.can_manage_offerings,false);
+    await assert.rejects(rpc('publish_place_growth',[ids.otherPlace,JSON.stringify(growthDraft({offerings:[offering]})),1],['','::jsonb']),/active Bloom/);
+  } finally { await db.exec('rollback'); }
 });
 
 test('free essential corrections cannot alter paid fields and invalidate moved map coordinates', async () => {
@@ -1031,4 +1060,88 @@ test('monthly report retries stop before the provider idempotency window expires
     assert.deepEqual(await rpc('take_activity_email_reports'),[]);
     await db.exec('set local role authenticated');assert.equal((await rpc('get_activity_email_preference',[ids.place])).last_report.status,'needs_attention');
   });
+});
+
+test('business interest is service-only, deduplicated, allowlisted and unavailable to visitors', async () => {
+  await asRole('service_role', '', async () => {
+    const session = crypto.randomUUID();
+    const args = [crypto.randomUUID(), session, 'plan_view', 'bloom', 'existing', 'mobile', 'a'.repeat(64)];
+    await rpc('record_business_interest', args);
+    await rpc('record_business_interest', [crypto.randomUUID(), ...args.slice(1)]);
+    const result = await db.query('select count(*)::int total from public.business_interest where session_id=$1', [session]);
+    assert.equal(result.rows[0].total, 1);
+  });
+  await asRole('anon', '', async () => { await assert.rejects(rpc('record_business_interest', [crypto.randomUUID(),crypto.randomUUID(),'plan_view','bloom','existing','mobile','a'.repeat(64)]), /permission denied/); });
+  await asRole('authenticated', ids.outsider, async () => { await assert.rejects(rpc('admin_business_overview'), /Administrator access required/); });
+});
+
+test('billing milestones come from saved state, ignore retries and separate period extension from activation', async () => {
+  await db.exec('begin');
+  try {
+    await db.query("insert into public.place_subscriptions(place_id,status) values($1,'none') on conflict(place_id) do update set stripe_subscription_id=null,paid_until=null,status='none'",[ids.otherPlace]);
+    await db.query("update public.place_subscriptions set checkout_session_id='cs_local_journey' where place_id=$1",[ids.otherPlace]);
+    await db.query("update public.place_subscriptions set stripe_subscription_id='sub_local_journey',status='active',paid_until=now()+interval '30 days' where place_id=$1",[ids.otherPlace]);
+    await db.query("update public.place_subscriptions set updated_at=now() where place_id=$1",[ids.otherPlace]);
+    const before=(await db.query('select kind,count(*)::int total from public.business_milestones where place_id=$1 group by kind',[ids.otherPlace])).rows;
+    assert.equal(before.find(row=>row.kind==='subscription_active').total,1);
+    assert.equal(before.find(row=>row.kind==='checkout_started').total,1);
+    assert.ok(!before.some(row=>row.kind==='paid_period_extended'));
+    await db.query("update public.place_subscriptions set paid_until=paid_until+interval '1 month' where place_id=$1",[ids.otherPlace]);
+    assert.equal((await db.query("select count(*)::int total from public.business_milestones where place_id=$1 and kind='paid_period_extended'",[ids.otherPlace])).rows[0].total,1);
+  } finally { await db.exec('rollback'); }
+});
+
+test('owner publish milestones exclude administrative edits and deduplicate profile and highlights publishing', async () => {
+  await db.exec('begin');
+  try {
+    await db.query('insert into public.place_growth_revisions(place_id,actor_id,version,content) values($1,$2,1,$3::jsonb)',[ids.place,ids.admin,'{}']);
+    assert.equal((await db.query("select count(*)::int total from public.business_milestones where place_id=$1 and kind='first_profile_published'",[ids.place])).rows[0].total,0);
+    await db.query('insert into public.place_growth_revisions(place_id,actor_id,version,content) values($1,$2,2,$3::jsonb)',[ids.place,ids.owner,'{}']);
+    await db.query('insert into public.place_revisions(place_id,actor_id,version,content) values($1,$2,2,$3::jsonb)',[ids.place,ids.owner,'{}']);
+    assert.equal((await db.query("select count(*)::int total from public.business_milestones where place_id=$1 and kind='first_profile_published'",[ids.place])).rows[0].total,1);
+  } finally { await db.exec('rollback'); }
+});
+
+test('custom section titles are bounded, public, and retained when older clients publish', async () => {
+  await asRole('authenticated',ids.owner,async()=>{
+    const content=growthDraft({section_titles:{specialties:'Our Specialties',offerings:'The Tea Shelf',events:'Gather With Us'}});
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb']);
+    assert.equal(saved.content.section_titles.offerings,'The Tea Shelf');
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft()),2],['','::jsonb']);
+    assert.deepEqual(legacy.content.section_titles,content.section_titles);
+    const reset=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_titles:{}})),3],['','::jsonb']);
+    assert.deepEqual(reset.content.section_titles,{});
+  });
+  for(const titles of [{offerings:'x'.repeat(81)},{offerings:' '.repeat(81)},{offerings:42},{private:'Not allowed'},[],null]) {
+    await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_titles:titles})),1],['','::jsonb'])),/section titles/);
+  }
+});
+
+test('section order and item array order persist publicly and survive older clients',async()=>{
+  await asRole('authenticated',ids.owner,async()=>{
+    const content=growthDraft({section_order:['events','offerings','announcement','specialties']});
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb']);
+    assert.deepEqual(saved.content.section_order,content.section_order);
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft()),2],['','::jsonb']);
+    assert.deepEqual(legacy.content.section_order,content.section_order);
+    const reset=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_order:[]})),3],['','::jsonb']);
+    assert.deepEqual(reset.content.section_order,[]);
+  });
+  for(const order of [null,{},'events',['unknown'],['events','events'],[1]])await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_order:order})),1],['','::jsonb'])),/section|layout order/);
+});
+
+test('item images require place-owned uploads and button labels survive older clients',async()=>{
+  const image='https://test.supabase.co/storage/v1/object/public/place-photos/custom-item.png';
+  await db.exec('begin');
+  try {
+    await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)',['custom-item.png',ids.place,image,ids.owner]);
+    await db.query('insert into public.place_uploads(path,place_id,url,created_by) values($1,$2,$3,$4)',['other-item.png',ids.otherPlace,image+'?foreign',ids.outsider]);
+    await db.exec('set local role authenticated');await db.query("select set_config('request.jwt.claim.sub',$1,true)",[ids.owner]);
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image,button_label:'Book a Tea Tasting'}]})),1],['','::jsonb']);
+    assert.equal(saved.content.offerings[0].image,image);assert.equal(saved.content.offerings[0].button_label,'Book a Tea Tasting');
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image}]})),2],['','::jsonb']);assert.equal(legacy.content.offerings[0].button_label,'Book a Tea Tasting');
+    const cleared=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image:'',button_label:''}]})),3],['','::jsonb']);assert.equal(cleared.content.offerings[0].button_label,'');assert.equal(cleared.content.offerings[0].image,'');
+    await assert.rejects(rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,image:image+'?foreign'}]})),4],['','::jsonb']),/upload an image for this place/);
+  } finally {await db.exec('rollback');}
+  for(const value of [{button_label:'x'.repeat(61)},{button_label:null},{button_label:5},{image:'https://untrusted.example/image.jpg'}])await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({offerings:[{...offering,...value}]})),1],['','::jsonb'])),/button text|upload an image/);
 });

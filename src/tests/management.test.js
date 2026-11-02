@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { coordinatesFromGeocode, GRACE_MS, hasImageSignature, renewalGraceDeadline, subscriptionAllowsEditing, validatePhotoFile } from '../../supabase/functions/_shared/entitlements.js';
+import { GRACE_MS, hasImageSignature, renewalGraceDeadline, subscriptionAllowsEditing, validatePhotoFile } from '../../supabase/functions/_shared/entitlements.js';
 import { createPlaceDraft, placeSlug, preparePlaceContent } from '../utilities/placeContent.js';
 import { filterPlaces, getPlaceCategories } from '../utilities/placeFilters.js';
 import { createSharedPlaces } from '../utilities/sharedPlaces.js';
@@ -30,13 +30,7 @@ test('photo validation rejects oversized, empty, unsupported, and disguised file
   assert.equal(hasImageSignature(new TextEncoder().encode('<script>'), 'image/png'), false);
   assert.equal(hasImageSignature(new TextEncoder().encode('RIFF1234WEBP'), 'image/webp'), true);
 });
-test('only reliable, finite address matches produce coordinates', () => {
-  const result = { features: [{ properties: { feature_type: 'address', match_code: { confidence: 'high' } }, geometry: { coordinates: [-105, 40] } }] };
-  assert.deepEqual(coordinatesFromGeocode(result), { longitude: -105, latitude: 40 });
-  result.features[0].properties.match_code.confidence = 'medium'; assert.equal(coordinatesFromGeocode(result), null);
-  result.features[0].properties.match_code.confidence = 'high'; result.features[0].geometry.coordinates = [999, 40]; assert.equal(coordinatesFromGeocode(result), null);
-  assert.equal(coordinatesFromGeocode({ features: [] }), null);
-});
+
 test('place drafts isolate edits, preserve photos, normalize URLs, and reject unsafe links', () => {
   const original = { name: 'Moss Apothecary', photos: ['a','b'], coverPhoto: 'a', social_links: [{ label: 'Instagram', url: 'instagram.com/moss' }] };
   const draft = createPlaceDraft(original); draft.photos.reverse(); draft.name = ' Moss '; draft.website = 'example.com';

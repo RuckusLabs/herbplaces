@@ -53,10 +53,12 @@ export default function Map() {
   };
   return <main id="main-content" className={`${styles.directory} ${view === 'map' ? styles.mapDirectory : ''}`}>
     <Helmet><title>Explore Places | Little Herb Places</title></Helmet>
-    <h1>Somewhere Good Is Growing.</h1>
-    <p className={styles.intro}>Find independent herb shops, plant people, and spaces to put down roots.</p>
-    <PlaceSearch id="directory-search" className={styles.directorySearch} value={query} onChange={value => update('q', value)} onSubmit={event => event.preventDefault()} />
-    <p className={styles.intro}><Link to="/browse">Browse by city</Link> · Can’t find your place? <Link to="/request-place">Request a Listing</Link>.</p>
+    <header className={styles.directoryHeader}><h1>Somewhere Good Is Growing.</h1>
+      <p className={styles.intro}>Find independent herb shops, plant people, and spaces to put down roots.</p></header>
+    <section className={styles.searchSection} aria-label="Find places">
+      <PlaceSearch id="directory-search" className={styles.directorySearch} value={query} onChange={value => update('q', value)} onSubmit={event => event.preventDefault()} buttonLabel="Search" placeholder="City or place" />
+      <div className={styles.searchLinks}><Link to="/browse">Browse by city <Icon name="arrow" size={14} /></Link><span>Missing a place? <Link to="/request-place">Request a Listing</Link></span></div>
+    </section>
     {nearby && <div className={styles.nearbyFilter}><p role="status">Showing places within {NEARBY_RADIUS_MILES} miles of your location.</p><button className="button" onClick={clearNearby}>Show Places Everywhere</button></div>}
     <div className={styles.filterHeading}><span id="category-label">Kind of place</span>{(query || category || nearby) && <button className={styles.clearFilters} onClick={() => setParams({ view })}>Clear Filters</button>}</div>
     <div className={styles.filters} role="group" aria-labelledby="category-label"><button className="button" aria-pressed={!category && !nearby} onClick={showAllPlaces}><Icon name="places" size={24} />All Places</button><NearbyPlaces />{categories.map(item => <button className="button" key={item.id} aria-pressed={category === item.id} onClick={() => update('category', item.id)}><Icon name={item.icon} size={24} />{item.short}</button>)}</div>

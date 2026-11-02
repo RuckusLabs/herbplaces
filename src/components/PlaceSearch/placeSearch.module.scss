@@ -38,3 +38,9 @@
 @media (max-width: 380px) {
   .search { gap: 4px; > svg { width: 17px; } button { padding-inline: 10px; font-size: 10px; } }
 }
+
+.mobileButtonLabel { display: none; }
+@media (max-width: 760px) {
+  .desktopButtonLabel { display: none; }
+  .mobileButtonLabel { display: inline; }
+}

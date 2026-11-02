@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 import useGrowthProfiles from '../../hooks/useGrowthProfiles';
 import { trackPlaceActivity } from '../../utilities/growthApi';
-import PlaceHighlights from '../../components/BusinessTools/PlaceHighlights';
+import PlaceHighlights, { PlacePrimaryAction, PlaceOperatingStatus, PlaceVisitorInfo } from '../../components/BusinessTools/PlaceHighlights';
 import BusinessTools from '../../components/BusinessTools/BusinessTools';
 import usePlaces from '../../hooks/usePlaces';
 import { getOpeningHours, getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
@@ -26,13 +26,15 @@ const slideScrollLeft = (rail, slide) => Math.max(0, Math.min(slide.offsetLeft, 
 
 export default function Place() {
   const { slug } = useParams();
+  const [params] = useSearchParams();
+  const reportAction = ['layout','action','announcement','share','highlights','offerings','events','visitors','essentials'].includes(params.get('business'));
   const { places, loading, error, retry } = usePlaces();
   const publishedPlace = places.find(item => item.urlSlug === slug);
   const { user } = useAuth();
   const userId = user?.id;
   const management = useManagement();
   const growth = useGrowthProfiles();
-  const growthProfile = growth.profiles.find(item => item.place_id === String(publishedPlace?.id));
+  const publishedGrowthProfile = growth.profiles.find(item => item.place_id === String(publishedPlace?.id));
   const managesPlace = management.is_admin || management.memberships.some(item => String(item.place_id) === String(publishedPlace?.id));
   const placeId = publishedPlace?.id;
   const previewTargetId = useId();
@@ -41,6 +43,11 @@ export default function Place() {
   const showingPreview = !!draftPreview;
   const place = draftPreview ? { ...publishedPlace, ...draftPreview } : publishedPlace;
   const onPreview = useCallback(content => { setPreviewState(content ? { owner: userId, placeId, content } : null); }, [userId, placeId]);
+  const [growthPreviewState, setGrowthPreviewState] = useState(null);
+  const growthDraft = managesPlace && growthPreviewState?.owner === userId && growthPreviewState?.placeId === placeId ? growthPreviewState.content : null;
+  const onGrowthPreview = useCallback(content => { setGrowthPreviewState(content ? { owner: userId, placeId, content } : null); }, [userId, placeId]);
+  const growthProfile = growthDraft ? { ...publishedGrowthProfile, content: growthDraft } : publishedGrowthProfile;
+
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [photoRatios, setPhotoRatios] = useState({});
@@ -101,7 +108,7 @@ export default function Place() {
 
   useEffect(() => {
     if (placeId && !management.loading && !managesPlace && !showingPreview) trackPlaceActivity(placeId, 'profile_view');
-  }, [placeId, management.loading, managesPlace, showingPreview]);
+  }, [placeId, management.loading, managesPlace, showingPreview, photos.length]);
 
   if (loading) return <main id="main-content" className={styles.page}><div className={styles.loading} role="status"><Icon name="sprout" size={60} /><p>Getting to Know This Little Place…</p></div></main>;
   if (!place) return <main id="main-content" className={styles.page}>{!error && <Helmet><title>Place Not Found | Little Herb Places</title><meta name="robots" content="noindex,follow" /></Helmet>}<div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
@@ -113,13 +120,15 @@ export default function Place() {
   const others = relatedPlaces(publishedPlace, places);
   const hours = getOpeningHours(place.hours);
 
+  if (managesPlace && params.get('business') === 'share') return <Navigate to={`/business-tools?place=${placeId}&tab=activity`} replace />;
+
   return <><div id={previewTargetId} className={styles.previewMount} /><main id="main-content" className={styles.page}>
     <Seo metadata={getPlaceSeo(publishedPlace)} />
-    {draftPreview && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
+    {(draftPreview || growthDraft) && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
     <Link to="/map" className={styles.backLink}><Icon name="arrow" size={17} />All Places</Link>
     <header className={styles.heading}>
       <div>
-        <div className={styles.editAction}><PlaceManagement key={place.id} place={publishedPlace} placement="top" onPreview={onPreview} previewTargetId={previewTargetId} previewing={!!draftPreview} /></div>
+        <div className={styles.editAction}><PlaceManagement key={place.id} place={publishedPlace} placement="top" onPreview={onPreview} previewTargetId={previewTargetId} previewing={!!draftPreview || !!growthDraft} /></div>
         <p className={styles.location}><Icon name="pin" size={23} />{location}</p>
         <div className={styles.nameLine}><h1>{place.name}</h1><PlaceBadge place={place} /></div>
         {place.tagline && <p className={styles.tagline}>{place.tagline}</p>}
@@ -131,10 +140,11 @@ export default function Place() {
           </li>)}
         </ul>}
       </div>
-      <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
+      <div className={styles.headingActions}><PlacePrimaryAction profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} /><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
-    {managesPlace && !showingPreview && <BusinessTools place={publishedPlace} onChanged={growth.refresh} />}
-    {growthProfile && <PlaceHighlights profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
+    {managesPlace && !showingPreview && <BusinessTools view="editor" key={`${userId}:${placeId}`} place={publishedPlace} onChanged={growth.refresh} onPreview={onGrowthPreview} previewing={!!growthDraft} previewTargetId={previewTargetId} />}
+    {reportAction && !managesPlace && !management.loading && !showingPreview && <p className={styles.reportSignIn}>{!user ? <><Link to={`/login?next=${encodeURIComponent(`/place/${slug}?${params}`)}`}>Sign in to open your business tools</Link> and continue from your report.</> : <>Business tools are available to approved managers. <Link to="/my-places">Check your management access</Link>.</>}</p>}
+    <PlaceOperatingStatus profile={growthProfile} />
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
         <div ref={gallery} className={styles.photoGallery} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
@@ -191,13 +201,16 @@ export default function Place() {
             <div><h3 className={styles.visitLabel}>Phone</h3><a className={styles.phone} href={`tel:${place.phone}`} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'phone_click'); }}>{place.phone}</a></div>
           </div>}
         </div>
+        <PlaceVisitorInfo profile={growthProfile} now={growth.now} />
         <div className={styles.visitActions}>
+          {!hours.length && <p>Opening hours haven’t been added here. Check with the business before visiting.</p>}
           {address && <a className="button" onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'directions_click'); }} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
           {website && <a className="button" href={website} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'website_click'); }} target="_blank" rel="noopener noreferrer"><Icon name="globe" size={20} />Visit Their Website <Icon name="arrow" size={17} /></a>}
           {(place.social_links || []).map((link, index) => getWebsiteUrl(link.url) && <a className="button" href={getWebsiteUrl(link.url)} key={index} target="_blank" rel="noopener noreferrer"><Icon name="link" size={20} />{link.label}<Icon name="arrow" size={17} /></a>)}
           <PlaceManagement key={place.id} place={publishedPlace} placement="visit" />
         </div>
       </aside>
+      {growthProfile && <PlaceHighlights className={styles.listingExtras} profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
     </div>
     {others.length > 0 && <Reveal className={styles.related}><div className={styles.sectionHeading}><h2>Keep Wandering.</h2><Link to="/map" className="button">Explore All Places <Icon name="arrow" size={17} /></Link></div><List places={others} /></Reveal>}
   </main></>;
