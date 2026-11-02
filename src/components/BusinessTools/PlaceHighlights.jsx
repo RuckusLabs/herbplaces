@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Icon from '../Icons/Icon';
-import { publicGrowth, sectionHeading } from '../../utilities/placeGrowth';
+import { publicGrowth, sectionHeading, orderedSectionKeys } from '../../utilities/placeGrowth';
 import { trackPlaceActivity } from '../../utilities/growthApi';
 import styles from './placeHighlights.module.scss';
 
@@ -57,11 +57,14 @@ export default function PlaceHighlights({ profile, placeId, track = true, now = 
   const content = publicGrowth(profile, now);
   const announcement = content.announcement;
   if (!content.specialties.length && !announcement && !content.offerings.length && !content.events.length) return null;
+  const sections = {
+    specialties: (content.specialties.length > 0 && <section className={styles.specialties} aria-label="Business specialties"><h2>{sectionHeading(content,'specialties')}</h2><ul>{content.specialties.map(item => <li key={item}>{item}</li>)}</ul></section>),
+    announcement: (announcement && <section className={styles.announcement} aria-label="Current announcement"><p className={styles.eyebrow}><Icon name="leaf" size={18} />A Little Update</p><h2>{announcement.title}</h2><p className={styles.announcementBody}>{announcement.body}</p><div className={styles.announcementFooter}>{announcement.code && <p className={styles.offerCode}>Offer code: <strong>{announcement.code}</strong></p>}{announcement.url && <a className={styles.itemLink} href={announcement.url} target="_blank" rel="noopener noreferrer" onClick={() => { if (track) trackPlaceActivity(placeId, 'announcement_click'); }}>Learn More<Icon name="arrow" size={15} /><span className="sr-only"> about {announcement.title} (opens in a new tab)</span></a>}</div></section>),
+    offerings: (content.offerings.length > 0 && <section className={styles.collection} aria-label="Products and services"><header className={styles.collectionHeading}><Icon name="shop" size={30} /><div><p className={styles.eyebrow}>Products & Services</p><h2>{sectionHeading(content,'offerings')}</h2></div></header><div className={styles.compactCards}>{content.offerings.map(item => <OfferingCard key={item.id} item={item} placeId={placeId} track={track} compact />)}</div></section>),
+    events: (content.events.length > 0 && <section className={styles.collection} aria-label="Upcoming workshops and events"><header className={styles.collectionHeading}><Icon name="craft" size={30} /><div><p className={styles.eyebrow}>Workshops & Events</p><h2>{sectionHeading(content,'events')}</h2></div></header><div className={styles.events}>{content.events.map(item => <OfferingCard key={item.id} item={item} placeId={placeId} event track={track} />)}</div></section>),
+  };
   return <div className={`${styles.highlights} ${className}`}>
-    {content.specialties.length > 0 && <section className={styles.specialties} aria-label="Business specialties"><h2>{sectionHeading(content,'specialties')}</h2><ul>{content.specialties.map(item => <li key={item}>{item}</li>)}</ul></section>}
-    {announcement && <section className={styles.announcement} aria-label="Current announcement"><p className={styles.eyebrow}><Icon name="leaf" size={18} />A Little Update</p><h2>{announcement.title}</h2><p className={styles.announcementBody}>{announcement.body}</p><div className={styles.announcementFooter}>{announcement.code && <p className={styles.offerCode}>Offer code: <strong>{announcement.code}</strong></p>}{announcement.url && <a className={styles.itemLink} href={announcement.url} target="_blank" rel="noopener noreferrer" onClick={() => { if (track) trackPlaceActivity(placeId, 'announcement_click'); }}>Learn More<Icon name="arrow" size={15} /><span className="sr-only"> about {announcement.title} (opens in a new tab)</span></a>}</div></section>}
-    {content.offerings.length > 0 && <section className={styles.collection} aria-label="Products and services"><header className={styles.collectionHeading}><Icon name="shop" size={30} /><div><p className={styles.eyebrow}>Products & Services</p><h2>{sectionHeading(content,'offerings')}</h2></div></header><div className={styles.compactCards}>{content.offerings.map(item => <OfferingCard key={item.id} item={item} placeId={placeId} track={track} compact />)}</div></section>}
-    {content.events.length > 0 && <section className={styles.collection} aria-label="Upcoming workshops and events"><header className={styles.collectionHeading}><Icon name="craft" size={30} /><div><p className={styles.eyebrow}>Workshops & Events</p><h2>{sectionHeading(content,'events')}</h2></div></header><div className={styles.events}>{content.events.map(item => <OfferingCard key={item.id} item={item} placeId={placeId} event track={track} />)}</div></section>}
+    {orderedSectionKeys(content).map(key=><Fragment key={key}>{sections[key]}</Fragment>)}
   </div>;
 }
 PlaceHighlights.propTypes = { ...highlightsProps, className: PropTypes.string };

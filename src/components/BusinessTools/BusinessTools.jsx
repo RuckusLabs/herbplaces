@@ -66,7 +66,7 @@ function ToolsPanel({ place, onChanged, onPreview, previewing, previewTargetId, 
     {view === 'overview' && !access.can_edit && <div className={styles.notice}><h2>Start With the Essentials</h2><p>Correct your address, hours, phone, and operating status for free. Bloom adds richer listing edits and activity insights.</p><button className="button" onClick={() => edit('essentials')}>Correct Essential Details</button> <Link to="/my-places">Membership & Billing</Link></div>}
     {view === 'listing' && <section aria-label="Listing tools"><h2>Care for Your Listing</h2><p>Choose what you’d like to update. You’ll preview changes on your actual listing before publishing.</p><div className={styles.toolLinks}>
       {access.can_edit && <><Link to={`/place/${place.urlSlug}?edit=1`}><Icon name="plan-story" size={38} /><div><h3>Story & Photos</h3><p>Your description, cover image, and gallery.</p></div><Icon name="arrow" size={16} /></Link>
-      {[['action','plan-action','Main Action','Guide visitors to your shop or booking page.'],['announcement','plan-announcement','Announcement','Share a timely update or seasonal offer.'],['offerings','plan-offerings','Products & Services','Manage up to 10 things people can shop or book.'],['events','plan-events','Workshops & Events','Manage upcoming dates and registration links.'],['visitors','plan-access','Visitor Information','Specialties, languages, and access notes.']].map(([section,icon,title,description])=><button key={section} onClick={()=>edit(section)}><Icon name={icon} size={38} /><div><h3>{title}</h3><p>{description}</p></div><Icon name="arrow" size={16} /></button>)}</>}
+      {[['layout','plan-profile','Layout & Order','Arrange sections on your listing.'],['action','plan-action','Main Action','Guide visitors to your shop or booking page.'],['announcement','plan-announcement','Announcement','Share a timely update or seasonal offer.'],['offerings','plan-offerings','Products & Services','Manage up to 10 things people can shop or book.'],['events','plan-events','Workshops & Events','Manage upcoming dates and registration links.'],['visitors','plan-access','Visitor Information','Specialties, languages, and access notes.']].map(([section,icon,title,description])=><button key={section} onClick={()=>edit(section)}><Icon name={icon} size={38} /><div><h3>{title}</h3><p>{description}</p></div><Icon name="arrow" size={16} /></button>)}</>}
       <button onClick={()=>edit('essentials')}><Icon name="pin" size={38} className={styles.essentialIcon} /><div><h3>Essential Details</h3><p>Address, hours, phone, and operating status. Always free.</p></div><Icon name="arrow" size={16} /></button>
     </div>{!access.can_edit && <p><Link to="/my-places">Explore Bloom access in My Places</Link>.</p>}</section>}
     {view === 'email' && <ActivityEmailPreference placeId={String(place.id)} />}
@@ -75,7 +75,7 @@ function ToolsPanel({ place, onChanged, onPreview, previewing, previewTargetId, 
       <ActivityReport place={place} access={access} onEdit={edit} />
     </> : <div className={styles.notice}><h2>Activity Insights Come With Bloom</h2><p>Your listing remains visible. Open My Places to check your membership and billing access.</p><Link to="/my-places">Open My Places</Link></div>)}
     </div>
-    {view === 'editor' && access.can_edit && ['highlights','action','announcement','offerings','events','visitors'].includes(mode) && <GrowthEditor onPreview={onPreview} previewTargetId={previewTargetId} initialSection={mode} place={place} access={access} onClose={closeEditor} onSaved={saved} />}
+    {view === 'editor' && access.can_edit && ['highlights','layout','action','announcement','offerings','events','visitors'].includes(mode) && <GrowthEditor onPreview={onPreview} previewTargetId={previewTargetId} initialSection={mode} place={place} access={access} onClose={closeEditor} onSaved={saved} />}
     {view === 'editor' && mode==='essentials' && <EssentialEditor place={place} profile={access.profile} onClose={closeEditor} onSaved={saved} />}
   </>;
 }
@@ -85,7 +85,7 @@ export default function BusinessTools({ place, onChanged, onPreview, previewing 
   const [params] = useSearchParams();
   const [notice,setNotice] = useState('');
   if(!growthEnabled) return null;
-  if(view === 'editor' && !['highlights','action','announcement','offerings','events','visitors','essentials'].includes(params.get('business'))) return notice ? <p role="status" className={styles.notice}>{notice}</p> : null;
+  if(view === 'editor' && !['highlights','layout','action','announcement','offerings','events','visitors','essentials'].includes(params.get('business'))) return notice ? <p role="status" className={styles.notice}>{notice}</p> : null;
   return <ToolsPanel key={`${place.id}:${view === 'editor' ? params.get('business') : view}`} place={place} onChanged={()=>{setNotice('Your changes are published.');onChanged?.();}} onPreview={onPreview} previewing={previewing} previewTargetId={previewTargetId} view={view} onEdit={onEdit} />;
 }
 BusinessTools.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func,previewing:PropTypes.bool,previewTargetId:PropTypes.string,view:PropTypes.string,onEdit:PropTypes.func };

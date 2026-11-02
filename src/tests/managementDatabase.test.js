@@ -67,6 +67,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(journeyMigration);
   await database.exec(bloomAdvancedMigration);
   await database.exec(sectionTitlesMigration);
+  await database.exec(await readFile(new URL('../../supabase/migrations/202611020003_highlight_order.sql', import.meta.url), 'utf8'));
 }
 
 before(async () => {
@@ -1113,4 +1114,17 @@ test('custom section titles are bounded, public, and retained when older clients
   for(const titles of [{offerings:'x'.repeat(81)},{offerings:' '.repeat(81)},{offerings:42},{private:'Not allowed'},[],null]) {
     await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_titles:titles})),1],['','::jsonb'])),/section titles/);
   }
+});
+
+test('section order and item array order persist publicly and survive older clients',async()=>{
+  await asRole('authenticated',ids.owner,async()=>{
+    const content=growthDraft({section_order:['events','offerings','announcement','specialties']});
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb']);
+    assert.deepEqual(saved.content.section_order,content.section_order);
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft()),2],['','::jsonb']);
+    assert.deepEqual(legacy.content.section_order,content.section_order);
+    const reset=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_order:[]})),3],['','::jsonb']);
+    assert.deepEqual(reset.content.section_order,[]);
+  });
+  for(const order of [null,{},'events',['unknown'],['events','events'],[1]])await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_order:order})),1],['','::jsonb'])),/section|layout order/);
 });

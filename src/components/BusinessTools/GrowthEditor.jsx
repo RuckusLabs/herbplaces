@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import Modal from '../Modal/Modal';
 import Icon from '../Icons/Icon';
-import { ACTION_LABELS, emptyGrowth, prepareGrowth, SECTION_HEADINGS, SPECIALTIES } from '../../utilities/placeGrowth';
+import OrderControls from './OrderControls';
+import { ACTION_LABELS, emptyGrowth, prepareGrowth, SECTION_HEADINGS, SPECIALTIES, HIGHLIGHT_SECTIONS, orderedSectionKeys, moveInOrder } from '../../utilities/placeGrowth';
 import { managementRpc } from '../../utilities/managementApi';
 import styles from './growth.module.scss';
 
 const editorSections = [
+  { id: 'layout', icon: 'plan-profile', label: 'Layout & Order', description: 'Arrange the sections on your listing.', fields: ['section_order'] },
   { id: 'action', icon: 'plan-action', label: 'Main Action', description: 'Choose where visitors go next.', fields: ['primary_action'] },
   { titleKey: 'specialties', id: 'visitors', icon: 'plan-access', label: 'Visitor Information', description: 'Help people know what to expect.', fields: ['specialties', 'languages', 'access_notes'] },
   { id: 'announcement', icon: 'plan-announcement', label: 'Announcement', description: 'Share one timely update or seasonal offer.', fields: ['announcement'] },
@@ -32,6 +34,7 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
   const actionField = useRef(null); const announcementField = useRef(null);
   useEffect(() => { const field = initialSection === 'announcement' ? announcementField : initialSection === 'action' ? actionField : null; field?.current?.focus(); }, [initialSection]);
   const [draft, setDraft] = useState(() => { const base = emptyGrowth(); const saved = access.profile?.content; return { ...base, ...saved, primary_action: { ...base.primary_action, ...saved?.primary_action }, announcement: { ...base.announcement, ...saved?.announcement } }; });
+  const [orderNotice, setOrderNotice] = useState('');
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false); const [preview, setPreview] = useState(null);
   const previewTitle = useRef(null);
   useEffect(() => { onPreview(preview); return () => onPreview(null); }, [preview, onPreview]);
@@ -51,6 +54,7 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
   }, [preview, previewTargetId]);
 
   const update = (field, value) => { setDraft(previous => ({ ...previous, [field]: value })); setPreview(null); };
+  const reorder = (field, values, index, direction, label) => { update(field,moveInOrder(values,index,direction)); setOrderNotice(`${label} moved to position ${index+direction+1} of ${values.length}.`); };
   const updateItem = (field,index,key,value) => update(field,draft[field].map((item,i) => i === index ? { ...item,[key]:value } : item));
   const preparedDraft = () => {
     for (const item of editorSections) {
@@ -92,7 +96,7 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
     {eventMode && <p className={styles.hint}>Enter dates in your device’s time zone: {deviceZone}. Visitors see the event’s saved time zone.</p>}
     <div className={styles.inventoryLayout}>
       <div className={styles.inventoryBrowser}><div className={styles.inventoryHeader}><strong>{draft[field].length} of 10 {eventMode ? 'events' : 'offerings'}</strong>{draft[field].length < 10 && <button type="button" onClick={() => { const id = crypto.randomUUID(); update(field,[...draft[field],{ id,title:'',description:'',price:'',url:'',image:'',image_alt:'',...(eventMode ? { starts_at:'',ends_at:'',timezone:deviceZone,location:'' } : { kind:'product' }) }]); setExpandedItem(id); }}>Add {eventMode ? 'Event' : 'Offering'}</button>}</div>
-        <div className={styles.inventoryList} aria-label={eventMode ? 'Event list' : 'Offering list'}>{draft[field].map(item=><button key={item.id} type="button" className={styles.inventoryRow} aria-label={`${item.title || (eventMode ? 'New event' : 'New offering')} · ${eventMode ? 'Event' : item.kind==='service' ? 'Service' : 'Product'} · ${expandedItem===item.id ? 'Editing' : 'Edit'}`} aria-expanded={expandedItem===item.id} aria-controls={`${titleId}-${item.id}`} onClick={()=>setExpandedItem(item.id)}>{item.image && <img src={item.image} alt="" width="40" height="40" />}<span><strong>{item.title || `New ${eventMode ? 'event' : 'offering'}`}</strong><small>{eventMode ? 'Event' : item.kind==='service' ? 'Service' : 'Product'}{item.price ? ` · ${item.price}` : ''}</small></span><span>{expandedItem===item.id ? 'Editing' : 'Edit'}</span></button>)}</div>
+        <div className={styles.inventoryList} aria-label={eventMode ? 'Event list' : 'Offering list'}>{draft[field].map((item,index)=><div key={item.id} className={styles.inventoryEntry}><button type="button" className={styles.inventoryRow} aria-label={`${item.title || (eventMode ? 'New event' : 'New offering')} · ${eventMode ? 'Event' : item.kind==='service' ? 'Service' : 'Product'} · ${expandedItem===item.id ? 'Editing' : 'Edit'}`} aria-expanded={expandedItem===item.id} aria-controls={`${titleId}-${item.id}`} onClick={()=>setExpandedItem(item.id)}>{item.image && <img src={item.image} alt="" width="40" height="40" />}<span><strong>{item.title || `New ${eventMode ? 'event' : 'offering'}`}</strong><small>{eventMode ? 'Event' : item.kind==='service' ? 'Service' : 'Product'}{item.price ? ` · ${item.price}` : ''}</small></span><span>{expandedItem===item.id ? 'Editing' : 'Edit'}</span></button><OrderControls label={item.title || `New ${eventMode ? 'event' : 'offering'}`} index={index} count={draft[field].length} onMove={direction=>reorder(field,draft[field],index,direction,item.title || 'Item')} /></div>)}</div>
         {!draft[field].length && <p className={styles.emptyItems}>Add your first {eventMode ? 'event' : 'product or service'} when you’re ready.</p>}
       </div>
       <div className={styles.inventoryDetail}>{draft[field].some(item=>item.id===expandedItem) ? draft[field].filter(item=>item.id===expandedItem).map(item=><div key={item.id}>{itemFields(field,eventMode,item,draft[field].findIndex(entry=>entry.id===item.id))}</div>) : <div className={styles.chooseItem}><Icon name={eventMode ? 'plan-events' : 'plan-offerings'} size={52} /><h4>Choose an {eventMode ? 'Event' : 'Offering'}</h4><p>Select an item to edit its details, or add something new. Your list stays in view.</p></div>}</div>
@@ -121,8 +125,10 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       }
       {!preview && section === 'announcement' && <fieldset disabled={busy}><legend>Current Announcement or Seasonal Offer</legend><label>Title<input ref={announcementField} value={draft.announcement.title} maxLength={120} onChange={event => update('announcement',{ ...draft.announcement,title:event.target.value })} /></label><label>Message<textarea value={draft.announcement.body} maxLength={1000} onChange={event => update('announcement',{ ...draft.announcement,body:event.target.value })} /></label><div className={styles.row}><label>Learn-more link (optional)<input value={draft.announcement.url} inputMode="url" maxLength={2000} onChange={event => update('announcement',{ ...draft.announcement,url:event.target.value })} /></label><label>Offer code (optional)<input value={draft.announcement.code} maxLength={40} onChange={event => update('announcement',{ ...draft.announcement,code:event.target.value })} /></label></div><p className={styles.hint}>Dates use {deviceZone}. An empty start means immediately. Expired announcements are hidden automatically.</p><div className={styles.row}><label>Starts<input type="datetime-local" value={localTime(draft.announcement.starts_at)} onChange={event => update('announcement',{ ...draft.announcement,starts_at:isoTime(event.target.value) })} /></label><label>Ends<input type="datetime-local" value={localTime(draft.announcement.expires_at)} required={!!draft.announcement.title} onChange={event => update('announcement',{ ...draft.announcement,expires_at:isoTime(event.target.value) })} /></label></div></fieldset>
       }
+      {!preview && section === 'layout' && <fieldset className={styles.layoutOrder} disabled={busy}><legend>Section Order</legend><p className={styles.hint}>Move sections up or down. Empty sections stay hidden; their position is kept for when you add content. Your story and visit details stay in place.</p><ol>{orderedSectionKeys(draft).map((key,index)=>{const item=HIGHLIGHT_SECTIONS.find(section=>section.id===key);return <li key={key}><Icon name={item.icon} size={30} /><strong>{draft.section_titles?.[key] || item.label}</strong><OrderControls label={item.label} index={index} count={HIGHLIGHT_SECTIONS.length} onMove={direction=>reorder('section_order',orderedSectionKeys(draft),index,direction,item.label)} /></li>;})}</ol><button type="button" className={styles.discardPreview} onClick={()=>{update('section_order',[]);setOrderNotice('Default section order restored.');}}>Use Default Order</button></fieldset>}
       {!preview && section === 'offerings' && items('offerings',false)}
       {!preview && section === 'events' && items('events',true)}
+      <p role="status" className="sr-only">{orderNotice}</p>
       {error && <p role="alert" className={styles.error}>{error}</p>}
       </div></div>
       <footer><span className={styles.saveHint}>Changes publish together.</span><button type="button" className="button" aria-label="Preview Highlights" disabled={busy} onClick={() => { try { setPreview(preparedDraft()); setError(''); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); } catch(failure) { setError(failure.message); } }}>Preview</button><button className="button" aria-label="Publish Highlights" disabled={busy}>{busy ? 'Publishing…' : 'Publish Changes'}</button></footer>

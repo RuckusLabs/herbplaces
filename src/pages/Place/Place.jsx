@@ -27,7 +27,7 @@ const slideScrollLeft = (rail, slide) => Math.max(0, Math.min(slide.offsetLeft, 
 export default function Place() {
   const { slug } = useParams();
   const [params] = useSearchParams();
-  const reportAction = ['action','announcement','share','highlights','offerings','events','visitors','essentials'].includes(params.get('business'));
+  const reportAction = ['layout','action','announcement','share','highlights','offerings','events','visitors','essentials'].includes(params.get('business'));
   const { places, loading, error, retry } = usePlaces();
   const publishedPlace = places.find(item => item.urlSlug === slug);
   const { user } = useAuth();

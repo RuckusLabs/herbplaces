@@ -271,7 +271,7 @@ test('owners can preview, publish, and reset public section headings',async({pag
 test('offering editor keeps a compact item list and edits one item at a time',async({page},testInfo)=>{
   const state=await site(page,{owner:true});state.profile.content.offerings=Array.from({length:6},(_,index)=>({...offering,id:crypto.randomUUID(),title:`Tea offering ${index+1}`}));
   await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Products & Services/}).click();const dialog=page.getByRole('dialog');
-  const list=dialog.locator('[aria-label="Offering list"]');await expect(list.getByRole('button')).toHaveCount(6);
+  const list=dialog.locator('[aria-label="Offering list"]');await expect(list.locator('button[aria-expanded]')).toHaveCount(6);
   await list.getByRole('button',{name:/Tea offering 1.*Edit/}).click();
   await expect(dialog.getByLabel('Title',{exact:true})).toHaveCount(1);
   await dialog.getByLabel('Title',{exact:true}).fill('A Personal Tea Tasting');
@@ -292,5 +292,35 @@ test('public offerings show two compact cards and let visitors expand longer des
   const more=products.getByRole('button',{name:/Read More about Tea consultation/});await more.click();
   await expect(products).toContainText(description);
   await expect(products.getByRole('button',{name:/Show Less about Tea consultation/})).toHaveAttribute('aria-expanded','true');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
+
+test('owners reorder items and whole sections, preview, publish, and restore layout defaults',async({page})=>{
+  const state=await site(page,{owner:true});
+  state.profile.content.offerings.push({...offering,id:crypto.randomUUID(),title:'Second product'});
+  state.profile.content.events.push({...event,id:crypto.randomUUID(),title:'Second workshop'});
+  await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Layout & Order/}).click();
+  const dialog=page.getByRole('dialog');
+  await expect(dialog.getByRole('button',{name:'Move Specialties up',exact:true})).toBeDisabled();
+  for(let i=0;i<3;i++)await dialog.getByRole('button',{name:'Move Workshops & Events up',exact:true}).click();
+  await expect(dialog.getByRole('button',{name:'Move Workshops & Events down',exact:true})).toBeFocused();
+  await dialog.getByRole('button',{name:'Products & Services 2',exact:true}).click();
+  await dialog.getByRole('button',{name:'Move Second product up',exact:true}).click();
+  await expect(dialog.locator('[aria-label="Offering list"] button[aria-expanded]').first()).toHaveAccessibleName(/Second product/);
+  await dialog.getByRole('button',{name:'Workshops & Events 2',exact:true}).click();
+  await dialog.getByRole('button',{name:'Move Second workshop up',exact:true}).click();
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  const events=page.getByRole('region',{name:'Upcoming workshops and events',exact:true});const products=page.getByRole('region',{name:'Products and services',exact:true});
+  await expect(events.getByRole('heading',{level:3}).first()).toHaveText('Second workshop');await expect(products.getByRole('heading',{level:3}).first()).toHaveText('Second product');
+  expect((await events.boundingBox()).y).toBeLessThan((await page.getByRole('region',{name:'Business specialties'}).boundingBox()).y);
+  expect(state.saved).toBe(null);
+  await page.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(page.getByRole('region',{name:'Unpublished Highlights Preview'})).toHaveCount(0);
+  expect(state.saved.p_content.section_order[0]).toBe('events');expect(state.saved.p_content.offerings[0].title).toBe('Second product');expect(state.saved.p_content.events[0].title).toBe('Second workshop');
+  await page.reload();await expect(events.getByRole('heading',{level:3}).first()).toHaveText('Second workshop');
+  expect((await events.boundingBox()).y).toBeLessThan((await products.boundingBox()).y);
+  await page.goto('/place/moss-apothecary?business=layout');await dialog.getByRole('button',{name:'Use Default Order',exact:true}).click();await dialog.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(dialog).toHaveCount(0);expect(state.saved.p_content.section_order).toEqual([]);
+  expect((await products.boundingBox()).y).toBeLessThan((await events.boundingBox()).y);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

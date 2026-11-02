@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
+import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,orderedSectionKeys,moveInOrder,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
 import { getBrowsePages } from '../utilities/browse.js';
 import { openingHoursSchema } from '../utilities/openingHoursSchema.js';
 import { discoveryItems,filterDiscovery } from '../utilities/discovery.js';
@@ -71,4 +71,16 @@ test('section headings default cleanly, preserve owner text, and escape static H
   for(const titles of [{events:'x'.repeat(81)},{events:7},{unknown:'No'},[]])assert.throws(()=>prepareGrowth({...base,section_titles:titles}),/section titles/);
   const html=renderGrowthContent({growth:{operating_status:'open',content:{...base,specialties:['Tea'],section_titles:{specialties:'<img src=x onerror=alert(1)>'}}}});
   assert.match(html,/&lt;img/);assert.doesNotMatch(html,/<img/);
+});
+
+test('section and item ordering validates, defaults missing sections, and renders in saved order',()=>{
+  assert.deepEqual(orderedSectionKeys({section_order:['events','offerings']}),['events','offerings','specialties','announcement']);
+  assert.deepEqual(moveInOrder(['a','b','c'],2,-1),['a','c','b']);
+  assert.deepEqual(moveInOrder(['a','b'],0,-1),['a','b']);
+  const base=emptyGrowth();assert.deepEqual(prepareGrowth({...base,section_order:['events','offerings']}).section_order,['events','offerings']);
+  for(const order of [['events','events'],['invalid'],{},[null]])assert.throws(()=>prepareGrowth({...base,section_order:order}),/layout order/);
+  const item={id:'20000000-0000-0000-0000-000000000001',kind:'service',title:'Z First',url:'https://example.com/',description:'',price:'',image:'',image_alt:''};
+  const content={...base,specialties:['Tea'],section_order:['offerings','specialties'],offerings:[item,{...item,id:'20000000-0000-0000-0000-000000000002',title:'A Second'}]};
+  const html=renderGrowthContent({id:'1',urlSlug:'tea',growth:{place_id:'1',operating_status:'open',content}});
+  assert.ok(html.indexOf('Z First')<html.indexOf('A Second'));assert.ok(html.indexOf('A Second')<html.indexOf('What You’ll Find Here.'));
 });

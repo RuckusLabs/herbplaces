@@ -7,13 +7,30 @@ export const ACTIVITY_LABELS = { profile_view: 'Profile views', website_click: '
 export const SECTION_HEADINGS = Object.freeze({ specialties: 'What You’ll Find Here.', offerings: 'A Little of What We Offer.', events: 'Come Learn Something New.' });
 export const sectionHeading = (content, key) => content.section_titles?.[key]?.trim() || SECTION_HEADINGS[key];
 
-export const emptyGrowth = () => ({ section_titles: {}, primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
+export const HIGHLIGHT_SECTIONS = Object.freeze([
+  { id: 'specialties', label: 'Specialties', icon: 'plan-access' },
+  { id: 'announcement', label: 'Announcement', icon: 'plan-announcement' },
+  { id: 'offerings', label: 'Products & Services', icon: 'plan-offerings' },
+  { id: 'events', label: 'Workshops & Events', icon: 'plan-events' },
+]);
+export const orderedSectionKeys = content => [...new Set([...(Array.isArray(content.section_order) ? content.section_order.filter(key=>HIGHLIGHT_SECTIONS.some(section=>section.id===key)) : []), ...HIGHLIGHT_SECTIONS.map(section=>section.id)])];
+export function moveInOrder(items, index, direction) {
+  const next = [...items]; const destination = index + direction;
+  if (index < 0 || index >= next.length || destination < 0 || destination >= next.length) return next;
+  [next[index],next[destination]] = [next[destination],next[index]];
+  return next;
+}
+
+export const emptyGrowth = () => ({ section_order: [], section_titles: {}, primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
 const text = (value, max) => String(value || '').trim().slice(0, max);
 const link = value => { if (!String(value || '').trim()) return ''; const url = getWebsiteUrl(value); if (!url) throw new Error('Use a valid HTTP or HTTPS link.'); return url; };
 const instant = value => { if (!value) return ''; if (!Number.isFinite(Date.parse(value))) throw new Error('Choose a valid date and time.'); return new Date(value).toISOString(); };
 
 export function prepareGrowth(input, photos = []) {
   const base = emptyGrowth();
+  const order = input.section_order ?? [];
+  if (!Array.isArray(order) || order.some(key=>!HIGHLIGHT_SECTIONS.some(section=>section.id===key)) || new Set(order).size!==order.length) throw new Error('Choose each section once in the layout order.');
+  const section_order = [...order];
   const titles = input.section_titles ?? {};
   if (typeof titles !== 'object' || Array.isArray(titles) || Object.entries(titles).some(([key,value]) => !Object.hasOwn(SECTION_HEADINGS,key) || typeof value !== 'string' || value.trim().length > 80)) throw new Error('Use section titles of up to 80 characters.');
   const section_titles = Object.fromEntries(Object.entries(titles).map(([key,value]) => [key,value.trim()]).filter(([,value])=>value));
@@ -42,7 +59,7 @@ export function prepareGrowth(input, photos = []) {
     }
     return { ...result, kind: item.kind === 'service' ? 'service' : 'product' };
   };
-  return { section_titles, primary_action: { label: action.url ? action.label : '', url: link(action.url) },
+  return { section_order, section_titles, primary_action: { label: action.url ? action.label : '', url: link(action.url) },
     specialties: SPECIALTIES.filter(item => input.specialties?.includes(item)), languages: text(input.languages, 200), access_notes: text(input.access_notes, 1000),
     announcement: { title: text(announcement.title, 120), body: text(announcement.body, 1000), code: text(announcement.code, 40), url: link(announcement.url), starts_at: starts, expires_at: expires },
     offerings: (input.offerings || []).map(item => prepareItem(item, false)), events: (input.events || []).map(item => prepareItem(item, true)) };
