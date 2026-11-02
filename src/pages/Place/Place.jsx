@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
 import useGrowthProfiles from '../../hooks/useGrowthProfiles';
 import { trackPlaceActivity } from '../../utilities/growthApi';
-import PlaceHighlights from '../../components/BusinessTools/PlaceHighlights';
+import PlaceHighlights, { PlacePrimaryAction, PlaceOperatingStatus, PlaceVisitorInfo } from '../../components/BusinessTools/PlaceHighlights';
 import BusinessTools from '../../components/BusinessTools/BusinessTools';
 import usePlaces from '../../hooks/usePlaces';
 import { getOpeningHours, getPlacePhotos, getWebsiteUrl } from '../../utilities/placeDetails';
@@ -138,11 +138,11 @@ export default function Place() {
           </li>)}
         </ul>}
       </div>
-      <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
+      <div className={styles.headingActions}><PlacePrimaryAction profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} /><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
     {managesPlace && !showingPreview && <BusinessTools key={`${userId}:${placeId}`} place={publishedPlace} onChanged={growth.refresh} onPreview={onGrowthPreview} previewing={!!growthDraft} previewTargetId={previewTargetId} />}
     {reportAction && !managesPlace && !management.loading && !showingPreview && <p className={styles.reportSignIn}>{!user ? <><Link to={`/login?next=${encodeURIComponent(`/place/${slug}?${params}`)}`}>Sign in to open your business tools</Link> and continue from your report.</> : <>Business tools are available to approved managers. <Link to="/my-places">Check your management access</Link>.</>}</p>}
-    {growthProfile && <PlaceHighlights profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
+    <PlaceOperatingStatus profile={growthProfile} />
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
         <div ref={gallery} className={styles.photoGallery} tabIndex={0} onPointerDown={() => { requestedPhoto.current = null; }} onWheel={() => { requestedPhoto.current = null; }} aria-label="Photo gallery. Use the left and right arrow keys to browse." onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); showPhoto(photoIndex + (event.key === 'ArrowRight' ? 1 : -1)); } }} onScroll={event => {
@@ -199,6 +199,7 @@ export default function Place() {
             <div><h3 className={styles.visitLabel}>Phone</h3><a className={styles.phone} href={`tel:${place.phone}`} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'phone_click'); }}>{place.phone}</a></div>
           </div>}
         </div>
+        <PlaceVisitorInfo profile={growthProfile} now={growth.now} />
         <div className={styles.visitActions}>
           {!hours.length && <p>Opening hours haven’t been added here. Check with the business before visiting.</p>}
           {address && <a className="button" onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'directions_click'); }} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
@@ -207,6 +208,7 @@ export default function Place() {
           <PlaceManagement key={place.id} place={publishedPlace} placement="visit" />
         </div>
       </aside>
+      {growthProfile && <PlaceHighlights className={styles.listingExtras} profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
     </div>
     {others.length > 0 && <Reveal className={styles.related}><div className={styles.sectionHeading}><h2>Keep Wandering.</h2><Link to="/map" className="button">Explore All Places <Icon name="arrow" size={17} /></Link></div><List places={others} /></Reveal>}
   </main></>;

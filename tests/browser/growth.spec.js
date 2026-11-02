@@ -195,3 +195,22 @@ test('leaving a private highlights preview clears the toolbar and never carries 
   await expect(page.getByRole('link',{name:/Shop online/})).toHaveAttribute('href','https://example.com/shop');
   expect(state.saved).toBe(null);
 });
+
+test('listing highlights follow the gallery and story and share the existing visit sidebar',async({page,isMobile},testInfo)=>{
+  const state=await site(page);
+  state.profile.content.offerings=[{...offering,image:photo,image_alt:'Botanical shop shelves'}, {...offering,id:crypto.randomUUID(),title:'Seasonal Tea Collection',kind:'product',price:'From $18',image:'',description:'Small-batch blends for everyday rituals.'}];
+  await page.goto('/place/moss-apothecary');
+  const gallery=page.getByRole('region',{name:'Photos of Moss Apothecary',exact:true});
+  const products=page.getByRole('region',{name:'Products and services',exact:true});
+  const events=page.getByRole('region',{name:'Upcoming workshops and events',exact:true});
+  const visit=page.getByRole('complementary',{name:'Plan a Little Visit.',exact:true});
+  await expect(visit.getByRole('region',{name:'Visitor information',exact:true})).toContainText('English');
+  const galleryBox=await gallery.boundingBox();const productsBox=await products.boundingBox();const visitBox=await visit.boundingBox();
+  expect(galleryBox.y+galleryBox.height).toBeLessThan(productsBox.y);
+  if(isMobile)expect(visitBox.y+visitBox.height).toBeLessThan(productsBox.y);
+  else expect(productsBox.x+productsBox.width).toBeLessThanOrEqual(visitBox.x);
+  await expect(products.getByRole('link',{name:/Learn More & Book/})).not.toHaveClass(/button/);
+  await expect(events.getByRole('time')).toHaveCount(1);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('integrated-listing-highlights.png'),fullPage:true,animations:'disabled'});
+});

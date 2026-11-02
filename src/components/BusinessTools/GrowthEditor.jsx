@@ -37,14 +37,16 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
     if (!preview) return;
     document.body.classList.add('has-growth-preview');
     const nav = document.querySelector('nav[aria-label="Main navigation"]');
-    const measure = () => document.body.style.setProperty('--growth-nav-height', `${nav?.getBoundingClientRect().height || 0}px`);
+    const toolbar = document.getElementById(previewTargetId);
+    const measure = () => { document.body.style.setProperty('--growth-nav-height', `${nav?.getBoundingClientRect().height || 0}px`); document.body.style.setProperty('--growth-toolbar-height', `${toolbar?.getBoundingClientRect().height || 0}px`); };
     measure();
     const observer = new ResizeObserver(measure);
     if (nav) observer.observe(nav);
+    if (toolbar) observer.observe(toolbar);
     window.scrollTo({ top: 0, behavior: 'instant' });
     previewTitle.current?.focus({ preventScroll: true });
-    return () => { observer.disconnect(); document.body.classList.remove('has-growth-preview'); document.body.style.removeProperty('--growth-nav-height'); };
-  }, [preview]);
+    return () => { observer.disconnect(); document.body.classList.remove('has-growth-preview'); document.body.style.removeProperty('--growth-nav-height'); document.body.style.removeProperty('--growth-toolbar-height'); };
+  }, [preview, previewTargetId]);
 
   const update = (field, value) => { setDraft(previous => ({ ...previous, [field]: value })); setPreview(null); };
   const updateItem = (field,index,key,value) => update(field,draft[field].map((item,i) => i === index ? { ...item,[key]:value } : item));
