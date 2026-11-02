@@ -67,3 +67,9 @@ Managers can rename the specialties, products/services, and workshops/events pub
 Product/event editing keeps a compact item list beside a single detail form on desktop, with a bounded two-column chooser on mobile. Switching items preserves draft changes. Public products/services use compact cards, two across at normal mobile widths, with expandable longer descriptions. External shopping and booking links remain unchanged.
 
 Validation: 200 unit/database tests and 46 desktop/mobile workspace/highlights checks passed, including custom heading save/reset, older-client preservation, invalid values, item switching, compact cards, and description expansion. Lint passed with the two existing warnings. No hosted backend changes were applied.
+
+## Report workspace polish
+
+Email Reports aligns its opt-in checkbox with the label, displays the signed-in account email used for delivery, and links to Account Settings. Recipient, consent, and supporting notes have separate spacing. Essential Details uses the existing site location icon at the same visual size as the other tools. Activity groups individual product/service and event link counts into labeled lists, and removes the UTC/partial-day sentence from the displayed date range. Collection windows and reporting behavior remain unchanged.
+
+Validation: all 46 desktop/mobile highlights/workspace checks passed, including checkbox alignment, delivery address, item groups/counts, existing consent/error recovery, and the location icon. Production build and lint passed (two existing Fast Refresh warnings).

@@ -20,7 +20,7 @@ async function site(page,{owner=false,paid=true}={}) {
     if(name==='set_activity_email_preference'){if(state.preferenceError)return route.fulfill({status:503,json:{message:'Report preference could not be saved.'}});state.preference={...state.preference,enabled:body.p_enabled};return route.fulfill({json:state.preference});}
     if(name==='get_growth_access')return route.fulfill({json:{can_edit:paid,can_manage_offerings:paid,profile:state.profile}});
     if(name==='get_editable_place')return route.fulfill({json:place});
-    if(name==='get_place_activity')return route.fulfill({json:{from:'2026-09-28',through:'2026-10-27',current:{profile_view:12,primary_click:3},previous:{profile_view:6},daily:[{day:'2026-10-27',profile_view:12}],items:[{kind:'offering_click',item_id:offering.id,total:2}]}});
+    if(name==='get_place_activity')return route.fulfill({json:{from:'2026-09-28',through:'2026-10-27',current:{profile_view:12,primary_click:3},previous:{profile_view:6},daily:[{day:'2026-10-27',profile_view:12}],items:[{kind:'offering_click',item_id:offering.id,total:2},{kind:'event_click',item_id:event.id,total:4}]}});
     if(name==='publish_place_growth'){if(state.publishError)return route.fulfill({status:503,json:{message:'Publishing is unavailable. Please try again.'}});state.saved=body;state.profile={...state.profile,content:body.p_content,version:state.profile.version+1};return route.fulfill({json:state.profile});}
     if(name==='update_place_essentials'){state.essentials=body;return route.fulfill({json:{...place,...body.p_content,content_version:2}});}
     return route.fulfill({json:path.includes('/rpc/')?null:[]});
@@ -57,6 +57,9 @@ test('saved-place links keep a name at tablet widths and photo descriptions surv
 
 test('monthly business report emails require opt-in and can be stopped independently of membership',async({page})=>{
  const state=await site(page,{owner:true});await page.goto('/business-tools?tab=email');
+ await expect(page.getByRole('region',{name:'Monthly report emails'})).toContainText('owner@example.com');
+ await expect(page.getByRole('link',{name:'Account Settings',exact:true})).toHaveAttribute('href','/settings');
+ const checkbox=page.getByRole('checkbox',{name:'Email me this place’s monthly activity report',exact:true});const checkBox=await checkbox.boundingBox();const labelBox=await page.getByText('Email me this place’s monthly activity report',{exact:true}).boundingBox();expect(Math.abs(checkBox.y-labelBox.y)).toBeLessThan(5);expect(checkBox.x+checkBox.width).toBeLessThan(labelBox.x);
  const consent=page.getByRole('checkbox',{name:'Email me this place’s monthly activity report',exact:true});await expect(consent).not.toBeChecked();await consent.check();await expect(page.getByRole('status').filter({hasText:'Monthly reports are on'})).toBeVisible();expect(state.preference.enabled).toBe(true);
  await consent.uncheck();await expect(page.getByRole('status').filter({hasText:'Future monthly reports are off'})).toBeVisible();expect(state.preference.enabled).toBe(false);
  state.preferenceError=true;await consent.click();await expect(page.getByRole('alert')).toContainText('Report preference could not be saved.');await expect(consent).not.toBeChecked();
@@ -229,6 +232,9 @@ test('the owner menu opens a focused workspace and listings no longer load activ
   await page.getByRole('navigation',{name:'Business tools sections'}).getByRole('button',{name:'Activity',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Your Last 30 Days'})).toBeVisible();
   expect(state.rpcCalls).toContain('get_place_activity');
+  const interest=page.getByRole('region',{name:'Interest in Your Offerings & Events',exact:true});
+  await expect(interest.getByRole('heading',{name:'Products & Services',exact:true})).toBeVisible();await expect(interest.getByRole('heading',{name:'Workshops & Events',exact:true})).toBeVisible();await expect(interest.getByLabel('2 clicks',{exact:true})).toBeVisible();await expect(interest.getByLabel('4 clicks',{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Business activity report'})).not.toContainText('UTC');await expect(page.getByRole('region',{name:'Business activity report'})).not.toContainText('partial day');
   await expect(page.getByRole('checkbox',{name:'Email me this place’s monthly activity report'})).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
@@ -242,6 +248,7 @@ test('business tools preserve a signed-out return URL and keep guests outside th
 
 test('owners can preview, publish, and reset public section headings',async({page})=>{
   const state=await site(page,{owner:true});await page.goto('/business-tools?tab=listing');
+  await expect(page.getByRole('button',{name:/^Essential Details/}).locator('[data-icon="pin"]')).toHaveCount(1);
   await page.getByRole('button',{name:/^Products & Services/}).click();const dialog=page.getByRole('dialog');
   await dialog.getByLabel('Public Section Title',{exact:true}).fill('The Tea Shelf');
   await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();
