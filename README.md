@@ -76,6 +76,8 @@ Approved managers use **My Places** (`/my-places`) for their listings, ownership
 
 Editing links open the actual place page, where managers can preview unpublished changes with a sticky toolbar before publishing. The public listing and My Places no longer contain an embedded activity dashboard. Existing report action links continue through sign-in, and sharing advice opens the activity workspace. The workspace is excluded from indexing and requires sign-in; server checks still enforce listing access. See [Business growth rollout](docs/business-growth-rollout.md) for release requirements and [place management setup](docs/place-management-setup.md) for billing and administrative configuration. A frontend build performs no hosted migration or function deployment.
 
+Managers can rename the public specialties, products/services, and workshops/events headings in the highlights editor. Blank titles use the default wording. Products and events use a compact item list beside one editing form, keeping other items visible while editing. Public products/services appear in a compact two-column grid with expandable longer descriptions. Custom headings require the included `202611020002_custom_section_titles.sql` backend migration before deployment.
+
 See [setup and verification](docs/place-management-setup.md) before applying the included Supabase migration or enabling payments. No hosted database changes or billing deployment happen as part of a frontend build.
 
 ## GitHub Pages SEO and share cards

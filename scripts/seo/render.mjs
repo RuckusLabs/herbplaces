@@ -5,7 +5,7 @@ import { getOpeningHours, getWebsiteUrl } from '../../src/utilities/placeDetails
 import { getPlaceCategories } from '../../src/utilities/placeFilters.js';
 import { relatedPlaces } from '../../src/utilities/relatedPlaces.js';
 import { browsePagePath, getBrowsePages, localVisitGuide } from '../../src/utilities/browse.js';
-import { publicGrowth } from '../../src/utilities/placeGrowth.js';
+import { publicGrowth, sectionHeading } from '../../src/utilities/placeGrowth.js';
 import { discoveryItems } from '../../src/utilities/discovery.js';
 import { getPlanFeatures, getPlanIntro, getBusinessPlans } from '../../src/utilities/planPages.js';
 
@@ -73,7 +73,7 @@ export function renderGrowthContent(place) {
   const content = publicGrowth(place.growth);
   const items = discoveryItems([place], [place.growth]);
   const a = content.announcement;
-  return `${place.growth.operating_status !== 'open' ? `<p>${escapeHtml(place.growth.operating_status === 'permanently_closed' ? 'Reported permanently closed' : 'Temporarily closed')}. Confirm directly before visiting.</p>` : ''}${content.primary_action?.url ? `<p>${link(content.primary_action.url, content.primary_action.label)}</p>` : ''}${content.specialties.length ? `<h2>What you’ll find here</h2><p>${content.specialties.map(escapeHtml).join(' · ')}</p>` : ''}${content.languages ? `<p>Languages: ${escapeHtml(content.languages)}</p>` : ''}${content.access_notes ? `<p>Access information from the business: ${escapeHtml(content.access_notes)}</p>` : ''}${a ? `<section><h2>${escapeHtml(a.title)}</h2><p>${escapeHtml(a.body)}</p>${a.code ? `<p>Offer code: ${escapeHtml(a.code)}</p>` : ''}${a.url ? link(a.url, 'Learn More') : ''}</section>` : ''}${items.length ? `<h2>Offerings & upcoming events</h2><ul>${items.map(item => `<li>${link(`${item.path}/`, item.title)} — ${escapeHtml(item.description)}</li>`).join('')}</ul>` : ''}`;
+  return `${place.growth.operating_status !== 'open' ? `<p>${escapeHtml(place.growth.operating_status === 'permanently_closed' ? 'Reported permanently closed' : 'Temporarily closed')}. Confirm directly before visiting.</p>` : ''}${content.primary_action?.url ? `<p>${link(content.primary_action.url, content.primary_action.label)}</p>` : ''}${content.specialties.length ? `<h2>${escapeHtml(sectionHeading(content,'specialties'))}</h2><p>${content.specialties.map(escapeHtml).join(' · ')}</p>` : ''}${content.languages ? `<p>Languages: ${escapeHtml(content.languages)}</p>` : ''}${content.access_notes ? `<p>Access information from the business: ${escapeHtml(content.access_notes)}</p>` : ''}${a ? `<section><h2>${escapeHtml(a.title)}</h2><p>${escapeHtml(a.body)}</p>${a.code ? `<p>Offer code: ${escapeHtml(a.code)}</p>` : ''}${a.url ? link(a.url, 'Learn More') : ''}</section>` : ''}${['offerings','events'].map(key => { const group=items.filter(item => key==='events' ? item.event : !item.event); return group.length ? `<h2>${escapeHtml(sectionHeading(content,key))}</h2><ul>${group.map(item => `<li>${link(`${item.path}/`,item.title)} — ${escapeHtml(item.description)}</li>`).join('')}</ul>` : ''; }).join('')}`;
 }
 
 export function renderDiscoveryContent(places, item = null) {

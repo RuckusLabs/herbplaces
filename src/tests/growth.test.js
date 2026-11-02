@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { emptyGrowth,prepareGrowth,publicGrowth,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
+import { emptyGrowth,prepareGrowth,publicGrowth,sectionHeading,profileChecklist,activityCsv } from '../utilities/placeGrowth.js';
 import { getBrowsePages } from '../utilities/browse.js';
 import { openingHoursSchema } from '../utilities/openingHoursSchema.js';
 import { discoveryItems,filterDiscovery } from '../utilities/discovery.js';
 import { getDiscoverySeo } from '../utilities/seo.js';
-import { renderRouteContent,renderSitemap,renderDiscoveryContent } from '../../scripts/seo/render.mjs';
+import { renderRouteContent,renderSitemap,renderDiscoveryContent,renderGrowthContent } from '../../scripts/seo/render.mjs';
 import { directoryHash } from '../../scripts/seo/directory.mjs';
 import { createPlaceActivityHandler } from '../../supabase/functions/_shared/placeActivity.js';
 
@@ -60,4 +60,15 @@ test('plan comparison offers Bloom without Thrive or signup links and advertises
   const enabled=renderRouteContent(route,[],{growthEnabled:true,bloomAvailable:true});
   assert.match(enabled,/Bloom/);assert.match(enabled,/30-day Activity Report and CSV/);
   assert.doesNotMatch(enabled,/Thrive|Sprout|href="[^"]*(?:register|sprout|thrive)/);assert.ok(!disabled.includes('30-day Activity Report and CSV'));
+});
+
+test('section headings default cleanly, preserve owner text, and escape static HTML',()=>{
+  const base=emptyGrowth();
+  assert.equal(sectionHeading(base,'offerings'),'A Little of What We Offer.');
+  const draft=prepareGrowth({...base,section_titles:{specialties:'  Our Little Shop  ',offerings:'  ',events:'Gather & Learn'}});
+  assert.deepEqual(draft.section_titles,{specialties:'Our Little Shop',events:'Gather & Learn'});
+  assert.equal(sectionHeading(publicGrowth({content:draft}),'offerings'),'A Little of What We Offer.');
+  for(const titles of [{events:'x'.repeat(81)},{events:7},{unknown:'No'},[]])assert.throws(()=>prepareGrowth({...base,section_titles:titles}),/section titles/);
+  const html=renderGrowthContent({growth:{operating_status:'open',content:{...base,specialties:['Tea'],section_titles:{specialties:'<img src=x onerror=alert(1)>'}}}});
+  assert.match(html,/&lt;img/);assert.doesNotMatch(html,/<img/);
 });

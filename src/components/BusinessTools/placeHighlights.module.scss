@@ -23,3 +23,10 @@
 .eventMeta { margin: 12px 0 0; font-size: 12px; line-height: 1.7; span { display: block; color: rgba(var(--tertiary-color), .75); overflow-wrap: anywhere; } }
 .visitorInfo { display: grid; gap: 18px; margin-top: 22px; padding-top: 22px; border-top: 1px solid rgba(var(--tertiary-color), .13); > div { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; align-items: start; > svg { margin-top: 3px; } } h3 { font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1.5; margin: 0 0 5px; color: rgba(var(--tertiary-color), .75); } p { margin: 0; font-size: 14px; line-height: 1.75; white-space: pre-line; overflow-wrap: anywhere; } }
 @media(max-width:600px) { .highlights { gap: 32px; h2 { font-size: 29px; } } .specialties h2 { font-size: 25px; } .announcement { padding: 22px; } .collection { padding-top: 28px; } .collectionHeading { gap: 12px; } .cards { grid-template-columns: 1fr; } .cardBody { padding: 22px; } .eventCard { padding: 20px; gap: 0 14px; grid-template-columns: 48px minmax(0, 1fr); .cardBody { padding: 0; } } }
+.compactCards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; align-items: stretch; }
+.compactCard { .itemImage { aspect-ratio: 16 / 9; } .cardBody { padding: 16px; h3 { font-size: 22px; } } .description { font-size: 12px; line-height: 1.7; } .cardFooter { padding-top: 16px; gap: 10px; } .itemLink { font-size: 11px; min-height: 36px; } }
+.readMore { width: fit-content; margin-top: 5px; padding: 5px 0; background: transparent; color: inherit; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:600px) { .compactCards { gap: 12px; } .compactCard { .cardBody { padding: 12px; h3 { font-size: 20px; } } .itemLink { min-height: 44px; } } }
+@media(max-width:340px) { .compactCards { grid-template-columns: 1fr; } }
+.highlights h2 { overflow-wrap: anywhere; }
+@media(max-width:600px) { .readMore { min-height: 44px; } }

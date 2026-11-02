@@ -4,13 +4,19 @@ export const SPECIALTIES = ['Bulk herbs', 'Custom blends', 'Herbal consultations
 export const ACTION_LABELS = ['Book a consultation', 'Shop online', 'See upcoming classes', 'Contact us'];
 export const ACTIVITY_KINDS = ['profile_view', 'website_click', 'directions_click', 'phone_click', 'primary_click', 'announcement_click', 'offering_click', 'event_click'];
 export const ACTIVITY_LABELS = { profile_view: 'Profile views', website_click: 'Website clicks', directions_click: 'Direction clicks', phone_click: 'Phone-link clicks', primary_click: 'Main action clicks', announcement_click: 'Announcement clicks', offering_click: 'Offering clicks', event_click: 'Event registration clicks' };
-export const emptyGrowth = () => ({ primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
+export const SECTION_HEADINGS = Object.freeze({ specialties: 'What You’ll Find Here.', offerings: 'A Little of What We Offer.', events: 'Come Learn Something New.' });
+export const sectionHeading = (content, key) => content.section_titles?.[key]?.trim() || SECTION_HEADINGS[key];
+
+export const emptyGrowth = () => ({ section_titles: {}, primary_action: { label: '', url: '' }, specialties: [], languages: '', access_notes: '', announcement: { title: '', body: '', url: '', code: '', starts_at: '', expires_at: '' }, offerings: [], events: [] });
 const text = (value, max) => String(value || '').trim().slice(0, max);
 const link = value => { if (!String(value || '').trim()) return ''; const url = getWebsiteUrl(value); if (!url) throw new Error('Use a valid HTTP or HTTPS link.'); return url; };
 const instant = value => { if (!value) return ''; if (!Number.isFinite(Date.parse(value))) throw new Error('Choose a valid date and time.'); return new Date(value).toISOString(); };
 
 export function prepareGrowth(input, photos = []) {
   const base = emptyGrowth();
+  const titles = input.section_titles ?? {};
+  if (typeof titles !== 'object' || Array.isArray(titles) || Object.entries(titles).some(([key,value]) => !Object.hasOwn(SECTION_HEADINGS,key) || typeof value !== 'string' || value.trim().length > 80)) throw new Error('Use section titles of up to 80 characters.');
+  const section_titles = Object.fromEntries(Object.entries(titles).map(([key,value]) => [key,value.trim()]).filter(([,value])=>value));
   const action = input.primary_action || base.primary_action;
   if (action.url && !ACTION_LABELS.includes(action.label)) throw new Error('Choose a label for your main action.');
   const announcement = { ...base.announcement, ...input.announcement };
@@ -36,7 +42,7 @@ export function prepareGrowth(input, photos = []) {
     }
     return { ...result, kind: item.kind === 'service' ? 'service' : 'product' };
   };
-  return { primary_action: { label: action.url ? action.label : '', url: link(action.url) },
+  return { section_titles, primary_action: { label: action.url ? action.label : '', url: link(action.url) },
     specialties: SPECIALTIES.filter(item => input.specialties?.includes(item)), languages: text(input.languages, 200), access_notes: text(input.access_notes, 1000),
     announcement: { title: text(announcement.title, 120), body: text(announcement.body, 1000), code: text(announcement.code, 40), url: link(announcement.url), starts_at: starts, expires_at: expires },
     offerings: (input.offerings || []).map(item => prepareItem(item, false)), events: (input.events || []).map(item => prepareItem(item, true)) };

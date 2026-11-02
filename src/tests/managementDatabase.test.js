@@ -28,6 +28,7 @@ const growthMigration = await readFile(new URL('../../supabase/migrations/202610
 const activityEmailMigration = await readFile(new URL('../../supabase/migrations/202610270002_activity_email_reports.sql', import.meta.url), 'utf8');
 const journeyMigration = await readFile(new URL('../../supabase/migrations/202610290001_business_journey.sql', import.meta.url), 'utf8');
 const bloomAdvancedMigration = await readFile(new URL('../../supabase/migrations/202611020001_bloom_advanced_features.sql', import.meta.url), 'utf8');
+const sectionTitlesMigration = await readFile(new URL('../../supabase/migrations/202611020002_custom_section_titles.sql', import.meta.url), 'utf8');
 let db;
 
 async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType = 'text', includeCreation = true) {
@@ -65,6 +66,7 @@ async function bootstrap(database, idType = 'uuid', photoType = 'jsonb', zipType
   await database.exec(activityEmailMigration);
   await database.exec(journeyMigration);
   await database.exec(bloomAdvancedMigration);
+  await database.exec(sectionTitlesMigration);
 }
 
 before(async () => {
@@ -1096,4 +1098,19 @@ test('owner publish milestones exclude administrative edits and deduplicate prof
     await db.query('insert into public.place_revisions(place_id,actor_id,version,content) values($1,$2,2,$3::jsonb)',[ids.place,ids.owner,'{}']);
     assert.equal((await db.query("select count(*)::int total from public.business_milestones where place_id=$1 and kind='first_profile_published'",[ids.place])).rows[0].total,1);
   } finally { await db.exec('rollback'); }
+});
+
+test('custom section titles are bounded, public, and retained when older clients publish', async () => {
+  await asRole('authenticated',ids.owner,async()=>{
+    const content=growthDraft({section_titles:{specialties:'Our Specialties',offerings:'The Tea Shelf',events:'Gather With Us'}});
+    const saved=await rpc('publish_place_growth',[ids.place,JSON.stringify(content),1],['','::jsonb']);
+    assert.equal(saved.content.section_titles.offerings,'The Tea Shelf');
+    const legacy=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft()),2],['','::jsonb']);
+    assert.deepEqual(legacy.content.section_titles,content.section_titles);
+    const reset=await rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_titles:{}})),3],['','::jsonb']);
+    assert.deepEqual(reset.content.section_titles,{});
+  });
+  for(const titles of [{offerings:'x'.repeat(81)},{offerings:' '.repeat(81)},{offerings:42},{private:'Not allowed'},[],null]) {
+    await assert.rejects(asRole('authenticated',ids.owner,()=>rpc('publish_place_growth',[ids.place,JSON.stringify(growthDraft({section_titles:titles})),1],['','::jsonb'])),/section titles/);
+  }
 });

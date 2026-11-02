@@ -239,3 +239,51 @@ test('business tools preserve a signed-out return URL and keep guests outside th
   expect(new URL(page.url()).searchParams.get('next')).toBe('/business-tools?place=private-place&tab=activity');
   await expect(page.getByRole('region',{name:'Business activity report'})).toHaveCount(0);
 });
+
+test('owners can preview, publish, and reset public section headings',async({page})=>{
+  const state=await site(page,{owner:true});await page.goto('/business-tools?tab=listing');
+  await page.getByRole('button',{name:/^Products & Services/}).click();const dialog=page.getByRole('dialog');
+  await dialog.getByLabel('Public Section Title',{exact:true}).fill('The Tea Shelf');
+  await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();
+  await dialog.getByLabel('Public Section Title',{exact:true}).fill('Inside Our Shop');
+  await dialog.getByRole('button',{name:'Workshops & Events 1',exact:true}).click();
+  await dialog.getByLabel('Public Section Title',{exact:true}).fill('Gather With Us');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  for(const name of ['The Tea Shelf','Inside Our Shop','Gather With Us'])await expect(page.getByRole('heading',{name,exact:true})).toBeVisible();
+  expect(state.saved).toBe(null);
+  await page.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(page.getByRole('region',{name:'Unpublished Highlights Preview'})).toHaveCount(0);
+  expect(state.saved.p_content.section_titles).toEqual({specialties:'Inside Our Shop',offerings:'The Tea Shelf',events:'Gather With Us'});
+  await page.reload();await expect(page.getByRole('heading',{name:'The Tea Shelf',exact:true})).toBeVisible();
+  await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Products & Services/}).click();
+  await dialog.getByRole('button',{name:'Use Default',exact:true}).click();
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'A Little of What We Offer.',exact:true})).toBeVisible();
+});
+
+test('offering editor keeps a compact item list and edits one item at a time',async({page},testInfo)=>{
+  const state=await site(page,{owner:true});state.profile.content.offerings=Array.from({length:6},(_,index)=>({...offering,id:crypto.randomUUID(),title:`Tea offering ${index+1}`}));
+  await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Products & Services/}).click();const dialog=page.getByRole('dialog');
+  const list=dialog.locator('[aria-label="Offering list"]');await expect(list.getByRole('button')).toHaveCount(6);
+  await list.getByRole('button',{name:/Tea offering 1.*Edit/}).click();
+  await expect(dialog.getByLabel('Title',{exact:true})).toHaveCount(1);
+  await dialog.getByLabel('Title',{exact:true}).fill('A Personal Tea Tasting');
+  await list.getByRole('button',{name:/Tea offering 2.*Edit/}).click();
+  await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('Tea offering 2');
+  await list.getByRole('button',{name:/A Personal Tea Tasting.*Edit/}).click();
+  await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('A Personal Tea Tasting');
+  expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('compact-offering-editor.png'),animations:'disabled'});
+});
+
+test('public offerings show two compact cards and let visitors expand longer descriptions',async({page})=>{
+  const state=await site(page);const description='A welcoming session exploring herbs and tea, with time to ask questions and discover flavors that fit your favorite daily rituals. Take home practical notes for your next cup.';
+  state.profile.content.offerings=[{...offering,description,image:photo},{...offering,id:crypto.randomUUID(),title:'Seasonal Tea Blend',kind:'product'}];
+  await page.goto('/place/moss-apothecary');const products=page.getByRole('region',{name:'Products and services',exact:true});
+  const cards=products.getByRole('article');await expect(cards).toHaveCount(2);
+  const a=await cards.nth(0).boundingBox();const b=await cards.nth(1).boundingBox();expect(Math.abs(a.y-b.y)).toBeLessThanOrEqual(1);
+  const more=products.getByRole('button',{name:/Read More about Tea consultation/});await more.click();
+  await expect(products).toContainText(description);
+  await expect(products.getByRole('button',{name:/Show Less about Tea consultation/})).toHaveAttribute('aria-expanded','true');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
