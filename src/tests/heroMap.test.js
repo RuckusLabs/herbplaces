@@ -1,69 +1,36 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getHeroMapLayout } from '../utilities/heroMap.js';
+import { heroMapDestination, heroMapPlaces } from '../utilities/heroMap.js';
+import { createPlaceIndex } from '../utilities/mapPlaces.js';
 
-const places = [
-  { id: 1, longitude: -116.31, latitude: 34.14 },
-  { id: 2, longitude: -110.97, latitude: 32.23 },
-  { id: 3, longitude: -97.77, latitude: 30.25, isVerified: true },
-  { id: 4, longitude: -97.71, latitude: 30.26 },
-];
+test('homepage overview includes all usable locations across countries', () => {
+  const places = [
+    { id: 'la', longitude: -118.38, latitude: 34.07 },
+    { id: 'long-beach', longitude: -118.19, latitude: 33.77 },
+    { id: 'london', longitude: -.12, latitude: 51.5 },
+    { id: 'tokyo', longitude: 139.69, latitude: 35.68 },
+    { id: 'sydney', longitude: 151.2, latitude: -33.86 },
+    { id: 'cape-town', longitude: 18.42, latitude: -33.92 },
+  ];
+  const located = heroMapPlaces([...places, { id: 'missing', longitude: null, latitude: null }]);
+  assert.equal(located.length, places.length);
+  const index = createPlaceIndex(located);
+  const world = [-180, -85, 180, 85];
+  const groups = index.getClusters(world, 1);
+  const ids = groups.flatMap(feature => feature.properties.cluster
+    ? index.getLeaves(feature.properties.cluster_id, Infinity).map(leaf => leaf.properties.placeId)
+    : [feature.properties.placeId]);
+  assert.deepEqual(ids.sort(), places.map(place => place.id).sort());
+  assert.ok(groups.length < places.length);
+  const cluster = groups.find(feature => feature.properties.cluster);
+  assert.ok(index.getClusterExpansionZoom(cluster.properties.cluster_id) > 1);
+});
 
-test('hero pins use real coordinates, keep the introduction clear, and group nearby places', () => {
-  const layout = getHeroMapLayout(places, 1440, 670);
-  assert.equal(layout.groups.length, 3);
-  assert.equal(layout.groups[0].places[0].id, 3);
-  assert.deepEqual(layout.groups[0].places.map(place => place.id), [3, 4]);
-  for (const group of layout.groups) {
-    assert.ok(group.x >= 1440 * .48 - 1 && group.x <= 1351);
-    assert.ok(group.y >= 124 && group.y <= 426);
+test('Explore This Area preserves supported bounds and safely handles world edges', () => {
+  const destination = new URL(heroMapDestination([-119, 32, -115, 35]), 'https://example.com');
+  assert.equal(destination.searchParams.get('bounds'), '-119,32,-115,35');
+  assert.equal(destination.searchParams.get('view'), 'map');
+  for (const bounds of [null, [-200, -85, 200, 85], [170, -30, 190, 30], [170, -30, -170, 30]]) {
+    assert.equal(heroMapDestination(bounds), '/map?view=map');
   }
-});
-
-test('mobile pins remain inside the map and every valid listing belongs to one group', () => {
-  const layout = getHeroMapLayout(places, 375, 325, true);
-  assert.deepEqual(layout.groups.flatMap(group => group.places.map(place => place.id)).sort(), [1, 2, 3, 4]);
-  for (const group of layout.groups) assert.ok(group.x >= 54 && group.x <= 321 && group.y >= 71 && group.y <= 241);
-});
-
-test('missing and invalid locations are omitted; an empty map still has a finite camera', () => {
-  const layout = getHeroMapLayout([{ id: 1, latitude: null, longitude: null }, { id: 2, latitude: 32, longitude: 250 }, { id: 3, latitude: 'bad', longitude: -110 }], 1200, 670);
-  assert.deepEqual(layout.groups, []);
-  assert.ok([layout.longitude, layout.latitude, layout.zoom].every(Number.isFinite));
-});
-
-test('hero pins match the renderer camera at phone, desktop, and large desktop sizes', () => {
-  for (const [width, height, mobile] of [[320, 325, true], [760, 325, true], [1280, 670, false], [1440, 670, false], [3840, 670, false]]) {
-    const view = getHeroMapLayout(places, width, height, mobile);
-    assert.ok([view.longitude, view.latitude, view.zoom].every(Number.isFinite));
-    const centerY = (1 - Math.log(Math.tan(Math.PI / 4 + view.latitude * Math.PI / 360)) / Math.PI) / 2;
-    const scale = 512 * 2 ** view.zoom;
-    for (const group of view.groups) {
-      const longitude = view.longitude + (group.x - width / 2) / scale * 360;
-      const y = centerY + (group.y - height / 2) / scale;
-      const latitude = Math.atan(Math.sinh(Math.PI * (1 - 2 * y))) * 180 / Math.PI;
-      assert.ok(Math.abs(longitude - group.places[0].longitude) < 1e-8);
-      assert.ok(Math.abs(latitude - group.places[0].latitude) < 1e-8);
-      assert.ok(group.x >= 0 && group.x <= width);
-      assert.ok(group.y >= 0 && group.y <= height);
-    }
-  }
-});
-
-test('home clusters preserve Southwest visibility and keep state boundaries at national scale',()=>{
- const entries=[
-  {id:'texas',name:'El Paso',state:'Texas',city:'El Paso',latitude:31.76,longitude:-106.49,isVerified:true},
-  {id:'tucson',name:'Tucson',state:'AZ',city:'Tucson',latitude:32.22,longitude:-110.97},
-  {id:'joshua',name:'Joshua Tree',state:'California',city:'Joshua Tree',latitude:34.13,longitude:-116.32},
-  {id:'palm',name:'Palm Springs',state:'CA',city:'Palm Springs',latitude:33.82,longitude:-116.54},
-  {id:'la',name:'Los Angeles',state:'California',city:'Los Angeles',latitude:34.07,longitude:-118.38},
-  {id:'maine',state:'Maine',latitude:44,longitude:-69},
-  {id:'hawaii',state:'Hawaii',latitude:19,longitude:-155},
- ];
- for(const [width,height,mobile] of [[1440,670,false],[375,325,true]]){
-  const layout=getHeroMapLayout(entries,width,height,mobile);
-  assert.equal(layout.count,entries.length);assert.equal(layout.groups.flatMap(group=>group.places).length,entries.length);
-  const az=layout.groups.find(group=>group.places.some(place=>place.id==='tucson'));assert.deepEqual(az.places.map(place=>place.id),['tucson']);
-  const joshua=layout.groups.find(group=>group.places.some(place=>place.id==='joshua'));assert.ok(!joshua.places.some(place=>['la','texas','tucson'].includes(place.id)));assert.ok(joshua.places.some(place=>place.id==='palm'));
- }
 });

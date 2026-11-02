@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { emptyMapStyle, mockFreeMaps } from './fixtures/freeMaps';
-import { getHeroMapLayout } from '../../src/utilities/heroMap';
 
 const forbiddenRequests = new WeakMap();
 
@@ -105,54 +104,36 @@ test('a style cannot redirect map resources to a metered provider', async ({ pag
   await expect(page.getByRole('heading', { name: 'Unlocated Herb Shop', exact: true })).toBeVisible();
 });
 
-test('homepage pins align with the actual renderer camera across world edges', async ({ page }, testInfo) => {
-  test.skip(testInfo.config.configFile.endsWith('playwright.maps.config.js'), 'Camera instrumentation reads the development module; production rendering is covered separately.');
-  const places = [place,
-    { ...place, id: 'alaska', name: 'Alaska Herbs', longitude: -149, latitude: 61 },
-    { ...place, id: 'hawaii', name: 'Hawaii Herbs', longitude: -155, latitude: 19 },
-    { ...place, id: 'maine', name: 'Maine Herbs', longitude: -69, latitude: 44 },
+test('homepage clusters zoom in place and reset to the full directory overview', async ({ page }) => {
+  const locations = [place,
+    { ...place, id: 'la', name: 'Los Angeles Herbs', urlSlug: 'los-angeles-herbs', longitude: -118.38, latitude: 34.07 },
+    { ...place, id: 'long-beach', name: 'Long Beach Herbs', longitude: -118.19, latitude: 33.77 },
+    { ...place, id: 'london', name: 'London Herbs', longitude: -.12, latitude: 51.5 },
+    { ...place, id: 'tokyo', name: 'Tokyo Herbs', longitude: 139.69, latitude: 35.68 },
+    { ...place, id: 'sydney', name: 'Sydney Herbs', longitude: 151.2, latitude: -33.86 },
+    { ...place, id: 'cape-town', name: 'Cape Town Herbs', longitude: 18.42, latitude: -33.92 },
   ];
-  await page.route('**/rest/v1/**', route => route.fulfill({ json: places }));
-  // Inspect the native camera without exposing debugging state in the application.
-  await page.route('**/src/components/FreeMap/FreeMap.jsx', async route => {
-    const response = await route.fetch();
-    const body = (await response.text()).replace('onLoad: loaded', 'onLoad: e => { window.testHeroMap = e.target; loaded(e); }');
-    await route.fulfill({ response, body });
-  });
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: locations }));
   await page.goto('/');
-  const pins = page.getByRole('group', { name: 'Explore little places' });
-  await expect(pins).toBeVisible();
-  for (const width of [1440, 390, 3840]) {
-    await page.setViewportSize({ width, height: 1000 });
-    await expect.poll(async () => {
-      const bounds = await pins.boundingBox();
-      const layout = getHeroMapLayout(places, Math.round(bounds.width), Math.round(bounds.height), width <= 760);
-      return pins.evaluate((element, coordinates) => {
-        const buttons = [...element.querySelectorAll('button')];
-        if (buttons.length !== coordinates.length) return Infinity;
-        return Math.max(...coordinates.map(([longitude, latitude], i) => {
-          const actual = window.testHeroMap.project([longitude, latitude]);
-          return Math.hypot(parseFloat(buttons[i].style.left) - actual.x, parseFloat(buttons[i].style.top) - actual.y);
-        }));
-      }, layout.groups.map(group => [group.places[0].longitude, group.places[0].latitude]));
-    }).toBeLessThan(1);
-  }
-});
-
-test('homepage keeps the national view and shows Southwest places as local pins',async({page},testInfo)=>{
- const locations=[{...place,id:'el-paso',name:'El Paso Herbs',urlSlug:'el-paso-herbs',state:'Texas',city:'El Paso',latitude:31.76,longitude:-106.49},
- {...place,id:'tucson',name:'Tucson Herb Store',urlSlug:'tucson-herb-store',state:'Arizona',city:'Tucson',latitude:32.22,longitude:-110.97},
- {...place,id:'joshua',name:'Joshua Tree Herbs',urlSlug:'joshua-tree-herbs',state:'California',city:'Joshua Tree',latitude:34.13,longitude:-116.32},
- {...place,id:'palm',name:'Palm Springs Herbs',urlSlug:'palm-springs-herbs',state:'CA',city:'Palm Springs',latitude:33.82,longitude:-116.54},
- {...place,id:'la',name:'Los Angeles Herbs',urlSlug:'los-angeles-herbs',state:'California',city:'Los Angeles',latitude:34.07,longitude:-118.38},
- {...place,id:'hawaii',state:'Hawaii',city:'Hilo',latitude:19,longitude:-155}, {...place,id:'maine',state:'Maine',city:'Portland',latitude:44,longitude:-69}];
- await page.route('**/rest/v1/**',route=>route.fulfill({json:locations}));await page.goto('/');const pins=page.getByRole('group',{name:'Explore little places'});
- await expect(pins.getByRole('button',{name:'Visit Tucson Herb Store',exact:true})).toBeVisible();
- await expect(pins.getByRole('button',{name:/Joshua Tree/})).toBeVisible();
- await expect(pins.getByRole('button',{name:'Visit Los Angeles Herbs',exact:true})).toBeVisible();
- await expect(pins.getByRole('button',{name:'Visit El Paso Herbs',exact:true})).toBeVisible();
- await expect(pins.getByRole('button')).toHaveCount(6);
- await expect(page.getByRole('combobox',{name:'Explore the Map',exact:true})).toHaveCount(0);
- await expect(page.getByRole('link',{name:'Open the Full Map',exact:true})).toHaveAttribute('href','/map?view=map');
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:testInfo.outputPath('regional-homepage-map.png'),fullPage:true,animations:'disabled'});
+  const map = page.getByRole('region', { name: 'Explore Little Herb Places Around the World', exact: true });
+  await expect(map.getByText(/^7 Little Herb Places/)).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Visit London Herbs' })).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Visit Sydney Herbs' })).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Visit Tokyo Herbs' })).toBeVisible();
+  const cluster = map.getByRole('button', { name: /Zoom in to \d+ Little Herb Places/ }).first();
+  await expect(cluster).toBeVisible();
+  await cluster.click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole('link', { name: 'Explore This Area', exact: true })).toHaveAttribute('href', /bounds=/);
+  const localGroup = map.getByRole('button', { name: 'Zoom in to 2 Little Herb Places', exact: true });
+  await expect(localGroup).toBeVisible();
+  await localGroup.click();
+  await expect(map.getByRole('button', { name: 'Visit Los Angeles Herbs' })).toBeVisible();
+  await page.getByRole('button', { name: 'Show All Places', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'Open the Full Map', exact: true })).toHaveAttribute('href', '/map?view=map');
+  await expect(map.getByRole('button', { name: 'Visit Sydney Herbs' })).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Visit London Herbs' })).toBeVisible();
+  await map.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Show All Places', exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
