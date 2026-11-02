@@ -89,3 +89,9 @@ Each product/service and event supports one image. Owners can upload, replace, r
 Optional button text accepts up to 60 characters and uses the existing kind-specific label when blank. Custom labels appear on the listing and discovery detail page, including static export. Server validation bounds labels; older clients omitting labels retain the saved value on matching item IDs. Existing paid access and version conflict protections remain unchanged.
 
 Apply `202611020004_offering_photos_and_buttons.sql` after the ordering migration before deploying the editor. The existing upload function needs no new endpoint or bucket. Validation: 204 unit/database tests, 52 desktop/mobile workspace/highlights checks, build, lint (two existing warnings), and full page export passed. Tests cover replacement, removal, default/custom labels, preview/publish/reload, invalid files, upload failures, and same-place image ownership. No hosted changes were performed.
+
+## Collapsible highlights menu
+
+Business Highlights keeps its section navigation on the left in all views. Hide Sections expands the form; Show Sections restores the same vertical menu. On mobile it starts closed and opens as a left-side panel, closing after selection. Drafts remain intact while hiding, reopening, or switching sections. The item browser responds to available panel width, stacking above the form when the sidebar is open in a narrower dialog. The toggle exposes its expanded state and controlled navigation to assistive technology.
+
+Validation: 54 desktop/mobile highlights/workspace checks passed, plus build and lint (two existing warnings). No backend changes are required for this follow-up.

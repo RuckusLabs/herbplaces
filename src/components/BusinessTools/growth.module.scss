@@ -29,7 +29,7 @@
 .editorHeader { padding-right: 36px; margin-bottom: 24px; h2 { font: 300 34px/1.15 'Editorial', Georgia, serif; margin: 0 0 10px; } }
 .editorEyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 600; }
 .editorForm { gap: 0; .editorPanel > fieldset, .editorPanel > :not(.example) > fieldset { border: 0; padding: 0; legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } } footer { border-top: 1px solid #dce3d4; margin-top: 24px; align-items: center; padding-block: 18px 0; } }
-.editorLayout { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px; align-items: start; }
+.editorLayout { position: relative; display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px; align-items: start; }
 .editorNav { display: grid; gap: 6px; position: sticky; top: 0; button { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px; border-radius: 10px; text-align: left; background: transparent; font-size: 14px; line-height: 1.4; color: inherit; border: 1px solid transparent; &[aria-current] { background: #f1f7db; border-color: #dce3c4; font-weight: 600; } span { font-size: 11px; min-width: 20px; padding: 2px 5px; border-radius: 20px; background: #fff; text-align: center; } } }
 .editorPanel { min-width: 0; min-height: 320px; .example { margin: 0; padding: 20px; } }
 .panelHeading { margin-bottom: 24px; h3 { margin: 0 0 8px; font-size: 20px; } p { margin: 0; font-size: 14px; line-height: 1.6; } }
@@ -39,7 +39,7 @@
 .itemFields { padding: 20px; display: grid; gap: 18px; }
 .emptyItems { padding: 24px; border: 1px dashed #c5cfb4; border-radius: 12px; font-size: 14px; line-height: 1.7; }
 .saveHint { font-size: 12px; margin-right: auto; }
-@media(max-width:700px) { .editorContent { padding: 28px 20px 20px; } .editorLayout { grid-template-columns: 1fr; gap: 24px; } .editorNav { position: static; display: flex; overflow-x: auto; padding-bottom: 8px; button { flex-shrink: 0; padding: 11px 13px; font-size: 12px; } } .editorPanel { min-height: 240px; } .editorForm footer { justify-content: stretch; > button { flex: 1; padding-inline: 14px; } } .saveHint { width: 100%; } .itemFields { padding: 16px; } }
+@media(max-width:700px) { .editorContent { padding: 28px 20px 20px; } .editorLayout { grid-template-columns: 1fr; gap: 24px; } .editorPanel { min-height: 240px; } .editorForm footer { justify-content: stretch; > button { flex: 1; padding-inline: 14px; } } .saveHint { width: 100%; } .itemFields { padding: 16px; } }
 .editorForm .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; label { min-width: 0; font-size: 13px; padding: 10px; border-color: #dce3d4; border-radius: 8px; } input { flex-shrink: 0; } }
 @media(max-width:700px) { .editorForm { input, select, textarea { font-size: 16px; } footer > button { min-height: 44px; font-size: 13px; } } }
 .editorHeader h2 { display: flex; align-items: center; gap: 12px; }
@@ -63,7 +63,7 @@
 @media(max-width:1100px) { .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 .reportTitle { margin: 0 0 12px; font-size: 17px; font-weight: 500; }
 .headingControl { margin-bottom: 12px; > div { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; } p { margin: 0; font-size: 11px; line-height: 1.5; color: #63745b; } button { flex-shrink: 0; padding: 5px 0; background: transparent; color: inherit; font-size: 11px; text-decoration: underline; text-underline-offset: 3px; } }
-.inventoryEditor { grid-template-columns: 1fr; gap: 20px; .editorNav { position: static; display: flex; overflow-x: auto; padding-bottom: 6px; gap: 4px; button { flex-shrink: 0; padding: 10px; font-size: 12px; } } }
+
 .inventoryLayout { display: grid; grid-template-columns: 240px minmax(0,1fr); gap: 24px; align-items: start; }
 .inventoryBrowser { position: sticky; top: 16px; min-width: 0; }
 .inventoryHeader { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 12px; strong { font-size: 12px; font-weight: 500; } button { font-size: 11px; padding: 9px 12px; border-radius: 20px; background: #eaff82; color: inherit; } }
@@ -95,3 +95,15 @@
 
 .form select { @include dropdown.control(12px); }
 .form .inventoryDetail select { @include dropdown.control(10px); }
+
+.sectionMenuToggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 12px; margin-top: 18px; background: #f8faef; border: 1px solid #dce3d4; border-radius: 9px; color: inherit; font-size: 12px; }
+.editorNav[hidden] { display: none; }
+.menuClosed { grid-template-columns: minmax(0,1fr); }
+
+@media(max-width:700px) { .editorNav { position: absolute; top: 0; left: 0; z-index: 3; width: min(240px,100%); max-height: 60dvh; overflow-y: auto; display: grid; gap: 6px; padding: 12px; border: 1px solid #dce3d4; border-radius: 12px; background: white; box-shadow: 8px 12px 28px #243b1730; button { padding: 12px; font-size: 13px; } } .editorLayout:not(.menuClosed) .inventoryLayout { grid-template-columns: 1fr; } }
+
+.editorPanel { container-type: inline-size; }
+.inventoryHeader strong { white-space: nowrap; }
+.inventoryHeader button { flex-shrink: 0; }
+@container (max-width:620px) { .inventoryLayout { grid-template-columns: 1fr; gap: 18px; } .inventoryBrowser { position: static; } .inventoryList { grid-template-columns: repeat(2,minmax(0,1fr)); max-height: 190px; } .inventoryRow > span:last-child { display: none; } }
+@container (max-width:400px) { .inventoryList { grid-template-columns: 1fr; } }

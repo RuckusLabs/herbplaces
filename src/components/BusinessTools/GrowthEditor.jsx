@@ -25,12 +25,14 @@ const isoTime = value => value ? new Date(value).toISOString() : '';
 export default function GrowthEditor({ place, access, onClose, onSaved, initialSection = 'highlights', onPreview, previewTargetId }) {
   const titleId = useId();
   const [section, setSection] = useState(() => editorSections.some(item => item.id === initialSection) ? initialSection : 'action');
+  const [menuOpen, setMenuOpen] = useState(()=>!window.matchMedia('(max-width:700px)').matches);
+  const menuId = `${titleId}-sections`;
   const [expandedItem, setExpandedItem] = useState(null);
   const panel = useRef(null);
   const itemTitleField = useRef(null);
   useEffect(() => { if (expandedItem) itemTitleField.current?.focus(); }, [expandedItem, section]);
   const activeSection = editorSections.find(item => item.id === section);
-  const chooseSection = id => { setSection(id); setPreview(null); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); };
+  const chooseSection = id => { setSection(id); if(window.matchMedia('(max-width:700px)').matches) setMenuOpen(false); setPreview(null); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); };
 
   const actionField = useRef(null); const announcementField = useRef(null);
   useEffect(() => { const field = initialSection === 'announcement' ? announcementField : initialSection === 'action' ? actionField : null; field?.current?.focus(); }, [initialSection]);
@@ -132,10 +134,10 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       </div></div>{error && <p role="alert" className={styles.error}>{error}</p>}
     </section>, previewTarget)}
     <Modal open={!preview} onClose={() => { if (!busy && window.confirm('Close without publishing these highlights?')) onClose(); }} className={styles.editorDialog} contentClassName={styles.editorContent} labelledBy={titleId} closeLabel="Close highlights editor">
-    <header className={styles.editorHeader}><p className={styles.editorEyebrow}>{place.name}</p><h2 id={titleId}>Business Highlights</h2><p className={styles.hint}>Update one section at a time. Publish when you’re ready.</p></header>
+    <header className={styles.editorHeader}><p className={styles.editorEyebrow}>{place.name}</p><h2 id={titleId}>Business Highlights</h2><p className={styles.hint}>Update one section at a time. Publish when you’re ready.</p><button type="button" className={styles.sectionMenuToggle} aria-label={menuOpen ? 'Hide Section Menu' : 'Show Section Menu'} aria-expanded={menuOpen} aria-controls={menuId} disabled={busy} onClick={()=>setMenuOpen(value=>!value)}><Icon name={menuOpen ? 'sidebar-collapse' : 'sidebar-expand'} size={20} />{menuOpen ? 'Hide Sections' : 'Show Sections'}</button></header>
     <form className={`${styles.form} ${styles.editorForm}`} onSubmit={save} noValidate>
-      <div className={`${styles.editorLayout} ${['offerings','events'].includes(section) ? styles.inventoryEditor : ''}`}>
-        <nav className={styles.editorNav} aria-label="Highlights sections">{editorSections.map(item => <button key={item.id} type="button" disabled={busy} aria-current={section === item.id && !preview ? 'step' : undefined} onClick={() => chooseSection(item.id)}><Icon name={item.icon} size={30} /><span className={styles.sectionLabel}>{item.label}</span>{['offerings','events'].includes(item.id) && <span>{draft[item.id].length}</span>}</button>)}</nav>
+      <div className={`${styles.editorLayout} ${!menuOpen ? styles.menuClosed : ''}`}>
+        <nav id={menuId} hidden={!menuOpen} className={styles.editorNav} aria-label="Highlights sections">{editorSections.map(item => <button key={item.id} type="button" disabled={busy} aria-current={section === item.id && !preview ? 'step' : undefined} onClick={() => chooseSection(item.id)}><Icon name={item.icon} size={30} /><span className={styles.sectionLabel}>{item.label}</span>{['offerings','events'].includes(item.id) && <span>{draft[item.id].length}</span>}</button>)}</nav>
         <div ref={panel} className={styles.editorPanel}>
           {!preview && <div className={styles.panelHeading}><Icon name={activeSection.icon} size={44} /><div><h3>{activeSection.label}</h3><p>{activeSection.description}</p></div></div>}
           {!preview && section === 'action' && <>

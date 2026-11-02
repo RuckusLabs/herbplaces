@@ -29,6 +29,13 @@ async function site(page,{owner=false,paid=true}={}) {
   return state;
 }
 
+async function chooseHighlightsSection(dialog, name) {
+  await expect(dialog).toBeVisible();
+  const menu = dialog.getByRole('navigation',{name:'Highlights sections'});
+  if (!await menu.isVisible()) await dialog.getByRole('button',{name:'Show Section Menu',exact:true}).click();
+  await menu.getByRole('button',{name,exact:true}).click();
+}
+
 test('visitors discover searchable offerings and event pages with direct business actions',async({page})=>{
   await site(page);await page.goto('/discover');await expect(page.getByRole('link',{name:'Seasonal tea workshop',exact:true})).toBeVisible();
   await page.getByLabel('Kind of offering').selectOption('service');await expect(page.getByRole('link',{name:'Seasonal tea workshop',exact:true})).toHaveCount(0);
@@ -39,7 +46,7 @@ test('visitors discover searchable offerings and event pages with direct busines
 test('owners can preview and publish highlights without recording their own profile views',async({page})=>{
   const state=await site(page,{owner:true});await page.goto('/business-tools?tab=activity');
   await expect(page.getByRole('heading',{name:'Your Last 30 Days'})).toBeVisible();await expect(page.getByRole('button',{name:'Download Daily Activity CSV'})).toBeVisible();
-  await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Main Action/}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
+  await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Main Action/}).click();const dialog=page.getByRole('dialog');await chooseHighlightsSection(dialog,'Visitor Information');await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
   await dialog.getByRole('button',{name:'Preview Highlights'}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('region',{name:'Visitor information',exact:true})).toContainText('English, Spanish');expect(state.saved).toBe(null);
   await page.getByRole('region',{name:'Unpublished Highlights Preview'}).getByRole('button',{name:'Publish Highlights'}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.languages).toBe('English, Spanish');expect(state.events.filter(event=>event.kind==='profile_view')).toHaveLength(0);
 });
@@ -112,16 +119,16 @@ test('highlight sections keep drafts while products and events open individually
   const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
   await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Main Action/}).click();const dialog=page.getByRole('dialog');
   await expect(dialog.getByLabel('Languages',{exact:true})).toHaveCount(0);
-  await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Visitor Information');
   await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
-  await dialog.getByRole('button',{name:'Products & Services 1',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Products & Services 1');
   await expect(dialog.getByLabel('Shopping or booking link',{exact:true})).toHaveCount(0);
   await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();
   await dialog.getByLabel('Title',{exact:true}).fill('Personal tea consultation');
-  await dialog.getByRole('button',{name:'Workshops & Events 1',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Workshops & Events 1');
   await expect(dialog.getByRole('button',{name:/Seasonal tea workshop.*Edit/})).toBeVisible();
   await expect(dialog.getByLabel('Registration link',{exact:true})).toHaveCount(0);
-  await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Visitor Information');
   await expect(dialog.getByLabel('Languages',{exact:true})).toHaveValue('English, Spanish');
   expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
   await page.screenshot({path:testInfo.outputPath('focused-highlights-editor.png'),animations:'disabled'});
@@ -133,10 +140,10 @@ test('highlight sections keep drafts while products and events open individually
 test('invalid items reveal their section before publishing and preserve other edits',async({page})=>{
   const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
   await page.goto('/business-tools?tab=listing');await page.getByRole('button',{name:/^Main Action/}).click();const dialog=page.getByRole('dialog');
-  await dialog.getByRole('button',{name:'Products & Services 1',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Products & Services 1');
   await dialog.getByRole('button',{name:'Add Offering',exact:true}).click();
   await dialog.getByLabel('Title',{exact:true}).fill('New seasonal tea');
-  await dialog.getByRole('button',{name:'Main Action',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Main Action');
   await dialog.getByRole('button',{name:'Publish Highlights',exact:true}).click();
   await expect(dialog.getByRole('alert')).toContainText('Add a booking, registration, or shopping link');
   await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('New seasonal tea');
@@ -252,9 +259,9 @@ test('owners can preview, publish, and reset public section headings',async({pag
   await expect(page.getByRole('button',{name:/^Essential Details/}).locator('[data-icon="pin"]')).toHaveCount(1);
   await page.getByRole('button',{name:/^Products & Services/}).click();const dialog=page.getByRole('dialog');
   await dialog.getByLabel('Public Section Title',{exact:true}).fill('The Tea Shelf');
-  await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Visitor Information');
   await dialog.getByLabel('Public Section Title',{exact:true}).fill('Inside Our Shop');
-  await dialog.getByRole('button',{name:'Workshops & Events 1',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Workshops & Events 1');
   await dialog.getByLabel('Public Section Title',{exact:true}).fill('Gather With Us');
   await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
   for(const name of ['The Tea Shelf','Inside Our Shop','Gather With Us'])await expect(page.getByRole('heading',{name,exact:true})).toBeVisible();
@@ -305,10 +312,10 @@ test('owners reorder items and whole sections, preview, publish, and restore lay
   await expect(dialog.getByRole('button',{name:'Move Specialties up',exact:true})).toBeDisabled();
   for(let i=0;i<3;i++)await dialog.getByRole('button',{name:'Move Workshops & Events up',exact:true}).click();
   await expect(dialog.getByRole('button',{name:'Move Workshops & Events down',exact:true})).toBeFocused();
-  await dialog.getByRole('button',{name:'Products & Services 2',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Products & Services 2');
   await dialog.getByRole('button',{name:'Move Second product up',exact:true}).click();
   await expect(dialog.locator('[aria-label="Offering list"] button[aria-expanded]').first()).toHaveAccessibleName(/Second product/);
-  await dialog.getByRole('button',{name:'Workshops & Events 2',exact:true}).click();
+  await chooseHighlightsSection(dialog,'Workshops & Events 2');
   await dialog.getByRole('button',{name:'Move Second workshop up',exact:true}).click();
   await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
   const events=page.getByRole('region',{name:'Upcoming workshops and events',exact:true});const products=page.getByRole('region',{name:'Products and services',exact:true});
@@ -334,7 +341,7 @@ test('owners upload one item image, replace it, customize labels, preview and pu
  await dialog.getByLabel('Upload Image',{exact:true}).setInputFiles(upload);await expect(dialog.getByLabel('Photo from your listing')).toHaveValue('/assets/pages/home/hero.jpg?item-upload=1');
  await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles(upload);await expect(dialog.getByLabel('Photo from your listing')).toHaveValue('/assets/pages/home/hero.jpg?item-upload=2');
  await dialog.getByLabel('Photo description',{exact:true}).fill('Our custom tea blend');await dialog.getByLabel('Button Text',{exact:true}).fill('Book a Tea Tasting');
- await dialog.getByRole('button',{name:'Workshops & Events 1',exact:true}).click();await dialog.getByRole('button',{name:/Seasonal tea workshop.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Save My Seat');
+ await chooseHighlightsSection(dialog,'Workshops & Events 1');await dialog.getByRole('button',{name:/Seasonal tea workshop.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Save My Seat');
  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
  const products=page.getByRole('region',{name:'Products and services',exact:true});await expect(products.getByRole('img',{name:'Our custom tea blend'})).toHaveAttribute('src','/assets/pages/home/hero.jpg?item-upload=2');await expect(products.getByRole('link',{name:/Book a Tea Tasting/})).toBeVisible();await expect(page.getByRole('link',{name:/Save My Seat/})).toBeVisible();expect(state.saved).toBe(null);
  await page.getByRole('button',{name:'Publish Highlights',exact:true}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.offerings[0].image).toContain('item-upload=2');expect(state.saved.p_content.offerings[0].button_label).toBe('Book a Tea Tasting');expect(place.photos).toEqual([photo]);
@@ -345,4 +352,16 @@ test('failed or invalid item uploads keep the existing image and draft edits',as
  const state=await site(page,{owner:true});state.profile.content.offerings[0].image=photo;await page.goto('/place/moss-apothecary?business=offerings');const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Book Now');
  await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles({name:'bad.svg',mimeType:'image/svg+xml',buffer:Buffer.from('<svg/>')});await expect(dialog.getByRole('alert')).toContainText('JPEG, PNG, or WebP');expect(state.uploads||0).toBe(0);
  state.uploadError=true;await dialog.getByLabel('Replace Image',{exact:true}).setInputFiles({name:'tea.png',mimeType:'image/png',buffer:Buffer.from('valid-test-fixture')});await expect(dialog.getByRole('alert')).toContainText('Upload could not finish');await expect(dialog.getByLabel('Photo from your listing')).toHaveValue(photo);await expect(dialog.getByLabel('Button Text',{exact:true})).toHaveValue('Book Now');expect(state.saved).toBe(null);expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
+});
+
+test('highlights sections stay in a left menu that owners can hide and reopen',async({page,isMobile})=>{
+ await site(page,{owner:true});await page.goto('/place/moss-apothecary?business=offerings');const dialog=page.getByRole('dialog');
+ const menu=dialog.getByRole('navigation',{name:'Highlights sections'});
+ if(isMobile)await dialog.getByRole('button',{name:'Show Section Menu',exact:true}).click();
+ await expect(menu).toBeVisible();
+ const buttons=menu.getByRole('button');const first=await buttons.first().boundingBox();const last=await buttons.last().boundingBox();expect(Math.abs(first.x-last.x)).toBeLessThan(2);expect(last.y).toBeGreaterThan(first.y);
+ await dialog.getByRole('button',{name:'Hide Section Menu',exact:true}).click();await expect(menu).toBeHidden();
+ await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();await dialog.getByLabel('Button Text',{exact:true}).fill('Book Your Tea');
+ await chooseHighlightsSection(dialog,'Workshops & Events 1');await chooseHighlightsSection(dialog,'Products & Services 1');await expect(dialog.getByLabel('Button Text',{exact:true})).toHaveValue('Book Your Tea');
+ expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
 });
