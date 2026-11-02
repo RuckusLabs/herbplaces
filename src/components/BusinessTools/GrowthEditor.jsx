@@ -99,7 +99,7 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       </div></div>{error && <p role="alert" className={styles.error}>{error}</p>}
     </section>, previewTarget)}
     <Modal open={!preview} onClose={() => { if (!busy && window.confirm('Close without publishing these highlights?')) onClose(); }} className={styles.editorDialog} contentClassName={styles.editorContent} labelledBy={titleId} closeLabel="Close highlights editor">
-    <header className={styles.editorHeader}><p className={styles.editorEyebrow}>{place.name}</p><h2 id={titleId}><Icon name="sun" size={40} />Business Highlights</h2><p className={styles.hint}>Update one section at a time. Publish when you’re ready.</p></header>
+    <header className={styles.editorHeader}><p className={styles.editorEyebrow}>{place.name}</p><h2 id={titleId}>Business Highlights</h2><p className={styles.hint}>Update one section at a time. Publish when you’re ready.</p></header>
     <form className={`${styles.form} ${styles.editorForm}`} onSubmit={save} noValidate>
       <div className={styles.editorLayout}>
         <nav className={styles.editorNav} aria-label="Highlights sections">{editorSections.map(item => <button key={item.id} type="button" disabled={busy} aria-current={section === item.id && !preview ? 'step' : undefined} onClick={() => chooseSection(item.id)}><Icon name={item.icon} size={30} /><span className={styles.sectionLabel}>{item.label}</span>{['offerings','events'].includes(item.id) && <span>{draft[item.id].length}</span>}</button>)}</nav>
