@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Icon from '../Icons/Icon';
 import styles from './placeSearch.module.scss';
 
-export default function PlaceSearch({ id, value, onChange, onSubmit, buttonLabel = 'Search Places', mobileButtonLabel, placeholder = 'Your city, state, or a little herb place', className = '' }) {
+export default function PlaceSearch({ id, value, onChange, onSubmit, buttonLabel = 'Search Places', mobileButtonLabel, placeholder = 'Your city, state, or a Little Herb Place', className = '' }) {
   return <form className={`${styles.search} ${className}`} onSubmit={onSubmit} role="search">
     <Icon name="pin" size={21} />
     <label className={styles.srOnly} htmlFor={id}>Search by city, state, or place</label>

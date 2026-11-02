@@ -20,7 +20,7 @@ export default function Home() {
   return <>
     <Helmet>
       <title>Find Herb Shops, Apothecaries & Herbalists | Little Herb Places</title>
-      <meta name="description" content="A thoughtful guide to independent herb shops, apothecaries, herbalists, and gardens. Discover a little herb place near you." />
+      <meta name="description" content="A thoughtful guide to independent herb shops, apothecaries, herbalists, and gardens. Discover a Little Herb Place near you." />
     </Helmet>
     <main id="main-content" className={styles.home}>
       <section className={styles.hero} aria-labelledby="hero-title">
@@ -63,7 +63,7 @@ export default function Home() {
         <div className={styles.communityCopy}><h2 id="community-title">Good Things Grow<br />With <em>Good Company.</em></h2><p>For the growers, the makers, the endlessly curious.<br />The Little Garden is a place to share your craft, put down roots, and connect with a community that cares.</p><Link to="/the-little-garden" className={`button ${styles.primaryLink}`}>Explore Business Plans <Icon name="arrow" size={18} /></Link><Link to="/about" className={`button ${styles.storyLink}`}>A Little More About Us</Link></div>
       </div></Reveal>
       <section className={styles.closing}><div className={styles.closingInner}>
-        <Icon name="community" size={50} /><p>There’s a little herb place for everyone.</p><Link to="/map" className={`button ${styles.textLink}`}>Let’s Find Yours <Icon name="arrow" size={18} /></Link>
+        <Icon name="community" size={50} /><p>There’s a Little Herb Place for everyone.</p><Link to="/map" className={`button ${styles.textLink}`}>Let’s Find Yours <Icon name="arrow" size={18} /></Link>
       </div></section>
     </main>
   </>;
