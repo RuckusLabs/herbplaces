@@ -41,3 +41,8 @@
 @media(max-width:700px) { .editorContent { padding: 28px 20px 20px; } .editorLayout { grid-template-columns: 1fr; gap: 24px; } .editorNav { position: static; display: flex; overflow-x: auto; padding-bottom: 8px; button { flex-shrink: 0; padding: 11px 13px; font-size: 12px; } } .editorPanel { min-height: 240px; } .editorForm footer { justify-content: stretch; > button { flex: 1; padding-inline: 14px; } } .saveHint { width: 100%; } .itemFields { padding: 16px; } }
 .editorForm .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; label { min-width: 0; font-size: 13px; padding: 10px; border-color: #dce3d4; border-radius: 8px; } input { flex-shrink: 0; } }
 @media(max-width:700px) { .editorForm { input, select, textarea { font-size: 16px; } footer > button { min-height: 44px; font-size: 13px; } } }
+.editorHeader h2 { display: flex; align-items: center; gap: 12px; }
+.editorHeader h2 svg, .editorNav svg, .panelHeading > svg { flex-shrink: 0; }
+.editorNav button { justify-content: flex-start; gap: 10px; .sectionLabel { flex: 1; min-width: 0; background: transparent; border-radius: 0; padding: 0; text-align: left; font: inherit; } }
+.panelHeading { display: flex; align-items: center; gap: 14px; }
+@media(max-width:700px) { .editorHeader h2 { font-size: 30px; } .editorNav button { gap: 6px; } }
