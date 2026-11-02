@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getHeroMapLayout, heroMapRegions } from '../utilities/heroMap.js';
+import { getHeroMapLayout } from '../utilities/heroMap.js';
 
 const places = [
   { id: 1, longitude: -116.31, latitude: 34.14 },
@@ -66,6 +66,4 @@ test('home clusters preserve Southwest visibility and keep state boundaries at n
   const az=layout.groups.find(group=>group.places.some(place=>place.id==='tucson'));assert.deepEqual(az.places.map(place=>place.id),['tucson']);
   const joshua=layout.groups.find(group=>group.places.some(place=>place.id==='joshua'));assert.ok(!joshua.places.some(place=>['la','texas','tucson'].includes(place.id)));assert.ok(joshua.places.some(place=>place.id==='palm'));
  }
- assert.deepEqual(heroMapRegions(entries).find(region=>region.name==='California'),{name:'California',count:3});
- assert.deepEqual(heroMapRegions(entries).find(region=>region.name==='Arizona'),{name:'Arizona',count:1});
 });

@@ -1,4 +1,3 @@
-@use '../../styles/select' as dropdown;
 .scene { position: absolute; inset: 0; background: #edf0e6; }
 .map { position: absolute; inset: 0; overflow: hidden; }
 .basemap { position: absolute; inset: 0; filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
@@ -14,6 +13,3 @@
   .openMap { position: relative; right: auto; bottom: auto; margin: 0 auto; }
   .attribution { bottom: 21px; right: 7px; left: 7px; font-size: 7px; gap: 5px; > a img { width: 65px; height: auto; } }
 }
-
-.coverage { position: absolute; top: 22px; right: 6%; z-index: 2; max-width: min(320px,45%); padding: 12px 14px; border: 1px solid #dce3d4; border-radius: 12px; background: rgba(255,255,255,.94); label { display: grid; gap: 7px; font-size: 10px; font-weight: 500; } select { width: 100%; min-width: 185px; padding: 10px; border: 1px solid #aab99c; border-radius: 8px; background: white; color: inherit; font: inherit; font-size: 12px; @include dropdown.control(10px); } p { margin: 8px 0 0; font-size: 9px; line-height: 1.5; } }
-@media(max-width:760px) { .coverage { position: relative; top: auto; right: auto; max-width: none; margin: 0 5% 8px; padding: 12px; } .coverage select { min-width: 0; min-height: 44px; font-size: 14px; } }

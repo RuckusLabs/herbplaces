@@ -12,12 +12,6 @@ const localDistanceKm = (a,b) => {
   return 6371*2*Math.asin(Math.sqrt(Math.min(1,h)));
 };
 export const heroMapPlaces = places => places.filter(place => place.longitude !== null && place.latitude !== null && String(place.longitude ?? '').trim() !== '' && String(place.latitude ?? '').trim() !== '' && Number.isFinite(Number(place.longitude)) && Number.isFinite(Number(place.latitude)) && Math.abs(Number(place.longitude)) <= 180 && Math.abs(Number(place.latitude)) <= 85);
-export function heroMapRegions(places) {
-  const regions=new Map();
-  for(const place of heroMapPlaces(places)){const name=regionName(place.state);if(name)regions.set(name,(regions.get(name)||0)+1);}
-  return [...regions].map(([name,count])=>({name,count})).sort((a,b)=>a.name.localeCompare(b.name));
-}
-
 // Fit the real directory locations into the space beside the introduction.
 export function getHeroMapLayout(places, width, height, mobile = false) {
   const valid = heroMapPlaces(places);
