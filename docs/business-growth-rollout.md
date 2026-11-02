@@ -50,3 +50,12 @@ Monthly email remains an explicit per-manager/place opt-in. Existing scheduling,
 - Lint passed with the two pre-existing Fast Refresh warnings; whitespace checks passed.
 
 These checks used local browser/database fixtures and a read-only directory snapshot. Hosted migrations, live email delivery, payment mutations, and deployment were not performed.
+
+
+## Owner workspace follow-up
+
+Business Tools & Activity now lives at `/business-tools`, linked from the owner account menu and each managed place in My Places. Overview, Listing & Highlights, Activity, and Email Reports separate setup, editing, reporting, and consent. The detailed checklist and complete metric breakdown are collapsed by default. Reports and email preferences load only on their respective tabs. Multiple-place selection preserves the active section in the URL; server RPCs remain the authority for access.
+
+Public listings and My Places no longer embed the dashboard. Editing actions open the listing with a specific `business` action, retaining the on-page private preview and sticky publishing toolbar. Existing report action links still work, including the sharing path to the new activity workspace. The new route requires sign-in and is included in the static export as non-indexable.
+
+Validation for this follow-up: 198 unit/database tests, 40 desktop/mobile workspace/highlights checks, and 12 existing owner-navigation checks passed. Lint passed with the two existing warnings. The complete static export passed for 187 listings and includes the new private route. No hosted change or deployment was performed.

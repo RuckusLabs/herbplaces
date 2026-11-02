@@ -28,6 +28,7 @@ const Register = lazyPage(() => import('./pages/Auth/Register'));
 const AccountRecovery = lazyPage(() => import('./pages/Auth/AccountRecovery'));
 const Admin = lazyPage(() => import('./pages/Management/Admin'));
 const AdminBusinessGrowth = lazyPage(() => import('./pages/Management/AdminBusinessGrowth'));
+const BusinessWorkspace = lazyPage(() => import('./pages/Management/BusinessWorkspace'));
 const MyPlaces = lazyPage(() => import('./pages/Management/MyPlaces'));
 const RequestPlace = lazyPage(() => import('./pages/Management/RequestPlace'));
 const Policies = lazyPage(() => import('./pages/Help/Policies'));
@@ -63,6 +64,7 @@ const routes = [
   { path: '/auth/forgot-password', element: <AccountRecovery mode="forgot" /> },
   { path: '/auth/reset-password', element: <AccountRecovery mode="reset" /> },
   { path: '/auth/resend-confirmation', element: <AccountRecovery mode="confirm" /> },
+  { path: '/business-tools', element: <BusinessWorkspace /> },
   { path: '/my-places', element: <MyPlaces /> },
   { path: '/reports/unsubscribe', element: <ReportUnsubscribe /> },
   { path: '/admin', element: <Admin /> },

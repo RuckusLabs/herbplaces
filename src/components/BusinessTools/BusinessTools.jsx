@@ -10,6 +10,7 @@ import { updatePublishedPlace } from '../../utilities/placesStore';
 import { activityAdvice, readableReportRange } from '../../utilities/activityAdvice';
 import { ACTIVITY_KINDS, ACTIVITY_LABELS, activityCsv, profileChecklist } from '../../utilities/placeGrowth';
 import styles from './growth.module.scss';
+import Icon from '../Icons/Icon';
 
 function EssentialEditor({ place, profile, onClose, onSaved }) {
   const titleId = useId(); const [busy,setBusy] = useState(false); const [error,setError] = useState('');
@@ -38,43 +39,53 @@ function ActivityReport({ place, access, onEdit }) {
     try { await navigator.clipboard.writeText(`${window.location.origin}/place/${place.urlSlug}/`); setShareNotice('Listing link copied.'); }
     catch { setShareNotice(`Your listing link: ${window.location.origin}/place/${place.urlSlug}/`); }
   };
-  return <section aria-label="Business activity report"><h3>Your last 30 days</h3><p>{readableReportRange(report.from, report.through)} · UTC · today is a partial day. Compared with the preceding 30 days.</p><div className={styles.metrics}>{keys.map(key => <article key={key}><h3>{ACTIVITY_LABELS[key]}</h3><strong>{Number(report.current?.[key] || 0)}</strong><p>{Number(report.previous?.[key] || 0)} in the previous period</p></article>)}</div><p className={styles.hint}>These are recorded actions, not unique visitors, confirmed calls, bookings, or sales. Repeat actions and known bots are filtered where possible. Tracking starts when collection is enabled; earlier activity is unavailable.</p><div className={styles.actions}><button className="button" onClick={exportReport}>Download Daily Activity CSV</button><button className="button" onClick={() => setAttempt(value => value+1)}>Refresh Activity</button></div>
-    {access.can_manage_offerings && report.items?.length > 0 && <><h3>Interest in your offerings & events</h3><ul>{report.items.map(item => <li key={`${item.kind}-${item.item_id}`}>{items.find(saved => saved.id===item.item_id)?.title || 'Previously published item'}: {item.total} {item.kind==='event_click' ? 'registration-link clicks' : 'offering clicks'}</li>)}</ul></>}
-    <div className={styles.notice}><h4>One thing to try next</h4><p>{advice.text}</p><button className="button" onClick={act}>{advice.action}</button>{shareNotice && <p role="status">{shareNotice}</p>}</div>
+  return <section aria-label="Business activity report"><h3 className={styles.reportTitle}>Your Last 30 Days</h3><p>{readableReportRange(report.from, report.through)} · UTC · today is a partial day. Compared with the preceding 30 days.</p><div className={styles.metrics}>{keys.filter(key=>['profile_view','primary_click','offering_click','event_click'].includes(key)).map(key => <article key={key}><h3>{ACTIVITY_LABELS[key]}</h3><strong>{Number(report.current?.[key] || 0)}</strong><p>{Number(report.previous?.[key] || 0)} in the previous period</p></article>)}</div><details className={styles.activityBreakdown}><summary>All Customer Actions</summary><table><thead><tr><th>Action</th><th>Last 30 Days</th><th>Previous Period</th></tr></thead><tbody>{keys.map(key=><tr key={key}><th scope="row">{ACTIVITY_LABELS[key]}</th><td>{Number(report.current?.[key] || 0)}</td><td>{Number(report.previous?.[key] || 0)}</td></tr>)}</tbody></table></details><p className={styles.hint}>These are recorded actions, not unique visitors, confirmed calls, bookings, or sales. Repeat actions and known bots are filtered where possible. Tracking starts when collection is enabled; earlier activity is unavailable.</p><div className={styles.actions}><button className="button" onClick={exportReport}>Download Daily Activity CSV</button><button className="button" onClick={() => setAttempt(value => value+1)}>Refresh Activity</button></div>
+    {access.can_manage_offerings && report.items?.length > 0 && <><h3>Interest in Your Offerings & Events</h3><ul>{report.items.map(item => <li key={`${item.kind}-${item.item_id}`}>{items.find(saved => saved.id===item.item_id)?.title || 'Previously published item'}: {item.total} {item.kind==='event_click' ? 'registration-link clicks' : 'offering clicks'}</li>)}</ul></>}
+    <div className={styles.notice}><h4>One Thing to Try Next</h4><p>{advice.text}</p><button className="button" onClick={act}>{advice.action}</button>{shareNotice && <p role="status">{shareNotice}</p>}</div>
   </section>;
 }
 ActivityReport.propTypes={ place:PropTypes.object.isRequired,access:PropTypes.object.isRequired,onEdit:PropTypes.func.isRequired };
 
-function ToolsPanel({ place, onChanged, onPreview, previewing, previewTargetId }) {
-  const [params] = useSearchParams();
-  const requestedMode = ['action','announcement'].includes(params.get('business')) ? params.get('business') : '';
+function ToolsPanel({ place, onChanged, onPreview, previewing, previewTargetId, view, onEdit }) {
+  const [params, setParams] = useSearchParams();
+  const requestedMode = view === 'editor' ? params.get('business') : '';
   const [access,setAccess]=useState(null); const [error,setError]=useState(''); const [mode,setMode]=useState(requestedMode); const [attempt,setAttempt]=useState(0); const [notice,setNotice]=useState('');
   useEffect(() => { let active=true; managementRpc('get_growth_access',{ p_place_id:String(place.id) }).then(result => { if(active) { setAccess(result); setError(''); } }).catch(failure => { if(active) setError(failure.message); }); return () => { active=false; }; },[place.id,attempt]);
-  const saved = () => { setMode('');setNotice('Your changes are published.');setAttempt(value => value+1);onChanged?.(); };
+  const closeEditor = () => { setMode(''); if (view === 'editor') { const next = new URLSearchParams(params); next.delete('business'); setParams(next, { replace: true }); } };
+  const edit = section => onEdit ? onEdit(section) : setMode(section);
+  const saved = () => { closeEditor();setNotice('Your changes are published.');setAttempt(value => value+1);onChanged?.(); };
   if(error) return <div role="alert"><p>{error}</p><button className="button" onClick={() => setAttempt(value=>value+1)}>Retry Business Tools</button></div>;
   if(!access) return <p role="status">Loading your business tools…</p>;
   const checklist=profileChecklist(place,access.profile);
   const announcement=access.profile?.content?.announcement;
   return <>
+    {view === 'editor' && mode !== 'essentials' && !access.can_edit && <p className={styles.notice}>These tools require active Bloom access. <Link to="/my-places">Open My Places</Link>.</p>}
     <div hidden={previewing}>
     {notice && <p role="status" className={styles.notice}>{notice}</p>}
-    {access.can_edit && <section className={styles.setup} aria-label="Profile setup checklist"><h3>Make your profile ready for visitors</h3><p>{checklist.filter(item=>item.done).length} of {checklist.length} essentials complete. Start with your description, a photo, and a clear customer action.</p><progress max={checklist.length} value={checklist.filter(item=>item.done).length} aria-label="Profile essentials complete" /><ul className={styles.checklist}>{checklist.map(item=><li key={item.label}>{item.done ? 'Complete: ' : 'Next: '}{item.label}</li>)}</ul><div className={styles.actions}><Link className="button" to={`/place/${place.urlSlug}?edit=1`}>Edit Description & Photos</Link><button className="button" onClick={() => setMode('action')}>Choose Your Main Action</button></div></section>}
-    <div className={styles.actions}><button className="button" onClick={() => setMode('essentials')}>Correct Essential Details</button>{access.can_edit ? <button className="button" onClick={() => setMode('highlights')}>Edit Business Highlights</button> : <Link className="button" to="/the-little-garden/bloom">Explore Bloom Tools</Link>}</div>
-    <ActivityEmailPreference placeId={String(place.id)} />
-    {access.can_edit && <>
-      {announcement?.title && Date.parse(announcement.expires_at)<Date.now()+7*86400000 && <p className={styles.notice}>{Date.parse(announcement.expires_at)<Date.now() ? 'Your announcement has expired and is hidden.' : 'Your announcement expires within the next seven days.'} Open Business Highlights to refresh it.</p>}
-      <ActivityReport place={place} access={access} onEdit={setMode} />
-    </>}
+    {view === 'overview' && access.can_edit && <section className={styles.setup} aria-label="Profile setup checklist"><h3>Make Your Profile Ready for Visitors</h3><p>{checklist.filter(item=>item.done).length} of {checklist.length} essentials complete. {checklist.find(item=>!item.done)?.label || 'Your essential profile details are complete.'}</p><progress max={checklist.length} value={checklist.filter(item=>item.done).length} aria-label="Profile essentials complete" /><details className={styles.setupDetails}><summary>View Profile Checklist</summary><ul className={styles.checklist}>{checklist.map(item=><li key={item.label}>{item.done ? 'Complete: ' : 'Next: '}{item.label}</li>)}</ul></details><div className={styles.actions}><Link className="button" to={`/place/${place.urlSlug}?edit=1`}>Edit Description & Photos</Link><button className="button" onClick={() => edit('action')}>Choose Your Main Action</button></div></section>}
+    {view === 'overview' && !access.can_edit && <div className={styles.notice}><h2>Start With the Essentials</h2><p>Correct your address, hours, phone, and operating status for free. Bloom adds richer listing edits and activity insights.</p><button className="button" onClick={() => edit('essentials')}>Correct Essential Details</button> <Link to="/my-places">Membership & Billing</Link></div>}
+    {view === 'listing' && <section aria-label="Listing tools"><h2>Care for Your Listing</h2><p>Choose what you’d like to update. You’ll preview changes on your actual listing before publishing.</p><div className={styles.toolLinks}>
+      {access.can_edit && <><Link to={`/place/${place.urlSlug}?edit=1`}><Icon name="plan-story" size={38} /><div><h3>Story & Photos</h3><p>Your description, cover image, and gallery.</p></div><Icon name="arrow" size={16} /></Link>
+      {[['action','plan-action','Main Action','Guide visitors to your shop or booking page.'],['announcement','plan-announcement','Announcement','Share a timely update or seasonal offer.'],['offerings','plan-offerings','Products & Services','Manage up to 10 things people can shop or book.'],['events','plan-events','Workshops & Events','Manage upcoming dates and registration links.'],['visitors','plan-access','Visitor Information','Specialties, languages, and access notes.']].map(([section,icon,title,description])=><button key={section} onClick={()=>edit(section)}><Icon name={icon} size={38} /><div><h3>{title}</h3><p>{description}</p></div><Icon name="arrow" size={16} /></button>)}</>}
+      <button onClick={()=>edit('essentials')}><Icon name="pin" size={30} /><div><h3>Essential Details</h3><p>Address, hours, phone, and operating status. Always free.</p></div><Icon name="arrow" size={16} /></button>
+    </div>{!access.can_edit && <p><Link to="/my-places">Explore Bloom access in My Places</Link>.</p>}</section>}
+    {view === 'email' && <ActivityEmailPreference placeId={String(place.id)} />}
+    {view === 'activity' && (access.can_edit ? <>
+      {announcement?.title && Date.parse(announcement.expires_at)<Date.now()+7*86400000 && <p className={styles.notice}>{Date.parse(announcement.expires_at)<Date.now() ? 'Your announcement has expired and is hidden.' : 'Your announcement expires within the next seven days.'} <button className="button" onClick={()=>edit('announcement')}>Update Announcement</button></p>}
+      <ActivityReport place={place} access={access} onEdit={edit} />
+    </> : <div className={styles.notice}><h2>Activity Insights Come With Bloom</h2><p>Your listing remains visible. Open My Places to check your membership and billing access.</p><Link to="/my-places">Open My Places</Link></div>)}
     </div>
-    {['highlights', 'action', 'announcement'].includes(mode) && <GrowthEditor onPreview={onPreview} previewTargetId={previewTargetId} initialSection={mode} place={place} access={access} onClose={()=>setMode('')} onSaved={saved} />}
-    {mode==='essentials' && <EssentialEditor place={place} profile={access.profile} onClose={()=>setMode('')} onSaved={saved} />}
+    {view === 'editor' && access.can_edit && ['highlights','action','announcement','offerings','events','visitors'].includes(mode) && <GrowthEditor onPreview={onPreview} previewTargetId={previewTargetId} initialSection={mode} place={place} access={access} onClose={closeEditor} onSaved={saved} />}
+    {view === 'editor' && mode==='essentials' && <EssentialEditor place={place} profile={access.profile} onClose={closeEditor} onSaved={saved} />}
   </>;
 }
-ToolsPanel.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func.isRequired,previewing:PropTypes.bool,previewTargetId:PropTypes.string.isRequired };
+ToolsPanel.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func,previewing:PropTypes.bool,previewTargetId:PropTypes.string,view:PropTypes.string.isRequired,onEdit:PropTypes.func };
 
-export default function BusinessTools({ place, onChanged, onPreview, previewing = false, previewTargetId }) {
-  const [open,setOpen]=useState(true);
+export default function BusinessTools({ place, onChanged, onPreview, previewing = false, previewTargetId, view = 'overview', onEdit }) {
+  const [params] = useSearchParams();
+  const [notice,setNotice] = useState('');
   if(!growthEnabled) return null;
-  return <details open={open} className={`${styles.tools} ${previewing ? styles.previewTools : ''}`} onToggle={event=>setOpen(event.currentTarget.open)}><summary>Business tools & activity</summary>{open && <ToolsPanel place={place} onChanged={onChanged} onPreview={onPreview} previewing={previewing} previewTargetId={previewTargetId} />}</details>;
+  if(view === 'editor' && !['highlights','action','announcement','offerings','events','visitors','essentials'].includes(params.get('business'))) return notice ? <p role="status" className={styles.notice}>{notice}</p> : null;
+  return <ToolsPanel key={`${place.id}:${view === 'editor' ? params.get('business') : view}`} place={place} onChanged={()=>{setNotice('Your changes are published.');onChanged?.();}} onPreview={onPreview} previewing={previewing} previewTargetId={previewTargetId} view={view} onEdit={onEdit} />;
 }
-BusinessTools.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func.isRequired,previewing:PropTypes.bool,previewTargetId:PropTypes.string.isRequired };
+BusinessTools.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func,previewing:PropTypes.bool,previewTargetId:PropTypes.string,view:PropTypes.string,onEdit:PropTypes.func };

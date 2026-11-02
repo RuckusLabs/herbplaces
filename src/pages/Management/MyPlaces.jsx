@@ -9,7 +9,7 @@ import { getSubscriptionLabel, subscriptionAllowsEditing } from '../../../supaba
 import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
 import { getMyPlacesView } from '../../utilities/myPlaces';
 import Icon from '../../components/Icons/Icon';
-import BusinessTools from '../../components/BusinessTools/BusinessTools';
+import { growthEnabled } from '../../utilities/growthApi';
 import styles from '../../components/PlaceManagement/management.module.scss';
 
 export default function MyPlaces() {
@@ -85,7 +85,7 @@ export default function MyPlaces() {
           {!canEdit && <Link to={`/place/${membership.place.urlSlug}`}>View Place <Icon name="arrow" size={16} /></Link>}
           {membership.is_billing_contact && subscription && subscription.status !== 'none' && (canEdit || !activeBilling) && <button className={styles.ownerTextButton} disabled={!!busy} onClick={() => billing('portal', membership.place_id)}>Manage Billing with Stripe</button>}
         </div>
-        <BusinessTools place={membership.place} onChanged={management.refresh} />
+        {growthEnabled && <Link className={styles.ownerTextButton} to={`/business-tools?place=${membership.place_id}`}>Business Tools & Activity <Icon name="arrow" size={16} /></Link>}
         <details className={styles.ownerMembership}><summary><span>Membership Details</span><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></summary><div className={styles.membershipPanel}>
           <div className={styles.membershipPlan}><Icon name="sun" size={40} /><div><h3>Bloom</h3><p>{bloomOffer.label}</p></div><span className={styles.membershipStatus}>{!subscription || subscription.status === 'none' ? 'Not subscribed' : getSubscriptionLabel(subscription)}</span></div>
           <p className={styles.membershipIncludes}>Listing edits · Up to 10 photos · All approved managers</p>

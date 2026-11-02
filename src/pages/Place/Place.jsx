@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
@@ -27,7 +27,7 @@ const slideScrollLeft = (rail, slide) => Math.max(0, Math.min(slide.offsetLeft, 
 export default function Place() {
   const { slug } = useParams();
   const [params] = useSearchParams();
-  const reportAction = ['action','announcement','share'].includes(params.get('business'));
+  const reportAction = ['action','announcement','share','highlights','offerings','events','visitors','essentials'].includes(params.get('business'));
   const { places, loading, error, retry } = usePlaces();
   const publishedPlace = places.find(item => item.urlSlug === slug);
   const { user } = useAuth();
@@ -120,6 +120,8 @@ export default function Place() {
   const others = relatedPlaces(publishedPlace, places);
   const hours = getOpeningHours(place.hours);
 
+  if (managesPlace && params.get('business') === 'share') return <Navigate to={`/business-tools?place=${placeId}&tab=activity`} replace />;
+
   return <><div id={previewTargetId} className={styles.previewMount} /><main id="main-content" className={styles.page}>
     <Seo metadata={getPlaceSeo(publishedPlace)} />
     {(draftPreview || growthDraft) && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
@@ -140,7 +142,7 @@ export default function Place() {
       </div>
       <div className={styles.headingActions}><PlacePrimaryAction profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} /><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
-    {managesPlace && !showingPreview && <BusinessTools key={`${userId}:${placeId}`} place={publishedPlace} onChanged={growth.refresh} onPreview={onGrowthPreview} previewing={!!growthDraft} previewTargetId={previewTargetId} />}
+    {managesPlace && !showingPreview && <BusinessTools view="editor" key={`${userId}:${placeId}`} place={publishedPlace} onChanged={growth.refresh} onPreview={onGrowthPreview} previewing={!!growthDraft} previewTargetId={previewTargetId} />}
     {reportAction && !managesPlace && !management.loading && !showingPreview && <p className={styles.reportSignIn}>{!user ? <><Link to={`/login?next=${encodeURIComponent(`/place/${slug}?${params}`)}`}>Sign in to open your business tools</Link> and continue from your report.</> : <>Business tools are available to approved managers. <Link to="/my-places">Check your management access</Link>.</>}</p>}
     <PlaceOperatingStatus profile={growthProfile} />
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
