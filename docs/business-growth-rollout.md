@@ -95,3 +95,7 @@ Apply `202611020004_offering_photos_and_buttons.sql` after the ordering migratio
 Business Highlights keeps its section navigation on the left in all views. Hide Sections expands the form; Show Sections restores the same vertical menu. On mobile it starts closed and opens as a left-side panel, closing after selection. Drafts remain intact while hiding, reopening, or switching sections. The item browser responds to available panel width, stacking above the form when the sidebar is open in a narrower dialog. The toggle exposes its expanded state and controlled navigation to assistive technology.
 
 Validation: 54 desktop/mobile highlights/workspace checks passed, plus build and lint (two existing warnings). No backend changes are required for this follow-up.
+
+## Report unsubscribe verification
+
+Monthly reports include an explicitly labeled unsubscribe link in HTML and plain text, plus List-Unsubscribe and List-Unsubscribe-Post headers. The website flow works signed out and asks for confirmation before changing consent; scanner GET/HEAD requests cannot stop reports. Unsubscribing affects that recipient’s reports for the place, leaving membership and newsletter preferences unchanged. Report delivery rechecks consent before sending. Email tests and desktop/mobile unsubscribe/error-retry checks passed; no live email was sent.
