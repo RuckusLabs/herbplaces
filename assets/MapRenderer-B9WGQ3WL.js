@@ -1,0 +1,1 @@
+import{r as e,j as s,ac as o}from"./index-BGY3d77j.js";import{m as t,N as p}from"./maplibre-gl-Cj81uBzY.js";const m="/assets/maplibre-gl-worker-8FvD_6Jq.js";p(m);const l=e.forwardRef(function(r,a){return s.jsx(o,{...r,ref:a,mapLib:t})});export{l as default};

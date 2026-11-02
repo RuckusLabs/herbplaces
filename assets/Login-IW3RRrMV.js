@@ -1,0 +1,1 @@
+import{j as o}from"./index-BGY3d77j.js";import{A as r}from"./AuthForm-AK_eev67.js";import"./EmailCodeForm-TMysXo-X.js";import"./auth.module-DpPyRM1G.js";function p(){return o.jsx(r,{mode:"login"})}export{p as default};
