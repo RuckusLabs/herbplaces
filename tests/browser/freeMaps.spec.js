@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { emptyMapStyle, mockFreeMaps } from './fixtures/freeMaps';
-import { getHeroMapLayout } from '../../src/utilities/heroMap';
 
 const forbiddenRequests = new WeakMap();
 
@@ -105,36 +104,48 @@ test('a style cannot redirect map resources to a metered provider', async ({ pag
   await expect(page.getByRole('heading', { name: 'Unlocated Herb Shop', exact: true })).toBeVisible();
 });
 
-test('homepage pins align with the actual renderer camera across world edges', async ({ page }, testInfo) => {
-  test.skip(testInfo.config.configFile.endsWith('playwright.maps.config.js'), 'Camera instrumentation reads the development module; production rendering is covered separately.');
-  const places = [place,
-    { ...place, id: 'alaska', name: 'Alaska Herbs', longitude: -149, latitude: 61 },
-    { ...place, id: 'hawaii', name: 'Hawaii Herbs', longitude: -155, latitude: 19 },
-    { ...place, id: 'maine', name: 'Maine Herbs', longitude: -69, latitude: 44 },
-  ];
-  await page.route('**/rest/v1/**', route => route.fulfill({ json: places }));
-  // Inspect the native camera without exposing debugging state in the application.
-  await page.route('**/src/components/FreeMap/FreeMap.jsx', async route => {
-    const response = await route.fetch();
-    const body = (await response.text()).replace('onLoad: loaded', 'onLoad: e => { window.testHeroMap = e.target; loaded(e); }');
-    await route.fulfill({ response, body });
-  });
+test('homepage preserves the production overview while allowing panning and reset', async ({ page, isMobile }) => {
   await page.goto('/');
-  const pins = page.getByRole('group', { name: 'Explore little places' });
-  await expect(pins).toBeVisible();
-  for (const width of [1440, 390, 3840]) {
-    await page.setViewportSize({ width, height: 1000 });
-    await expect.poll(async () => {
-      const bounds = await pins.boundingBox();
-      const layout = getHeroMapLayout(places, Math.round(bounds.width), Math.round(bounds.height), width <= 760);
-      return pins.evaluate((element, coordinates) => {
-        const buttons = [...element.querySelectorAll('button')];
-        if (buttons.length !== coordinates.length) return Infinity;
-        return Math.max(...coordinates.map(([longitude, latitude], i) => {
-          const actual = window.testHeroMap.project([longitude, latitude]);
-          return Math.hypot(parseFloat(buttons[i].style.left) - actual.x, parseFloat(buttons[i].style.top) - actual.y);
-        }));
-      }, layout.groups.map(group => [group.places[0].longitude, group.places[0].latitude]));
-    }).toBeLessThan(1);
+  const map = page.getByRole('region', { name: 'Explore Little Herb Places on the Map', exact: true });
+  const pin = map.getByRole('button', { name: 'Visit Moss Apothecary', exact: true });
+  await expect(pin).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Zoom in', exact: true })).toBeVisible();
+  const start = await pin.boundingBox();
+  const bounds = await map.boundingBox();
+  // Keyboard arrows offer the same panning on touch devices without interfering with page scrolling.
+  await map.locator('canvas').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
+  await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeGreaterThan(30);
+  await page.getByRole('button', { name: 'Reset Map', exact: true }).click();
+  await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeLessThan(1);
+  if (!isMobile) {
+    await page.mouse.move(bounds.x + bounds.width * .85, bounds.y + bounds.height * .4);
+    await page.mouse.down();
+    await page.mouse.move(bounds.x + bounds.width * .72, bounds.y + bounds.height * .4, { steps: 8 });
+    await page.mouse.up();
+    await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
+    await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeGreaterThan(30);
   }
+  await expect(page.getByRole('link', { name: 'Open the Full Map', exact: true })).toHaveAttribute('href', '/map?view=map');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+
+test('homepage zoom reveals nearby places and reset restores the opening scale', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: [place, { ...place, id: 'neighbor', name: 'Nearby Herbs', urlSlug: 'nearby-herbs', longitude: -104.8 }] }));
+  await page.goto('/');
+  const map = page.getByRole('region', { name: 'Explore Little Herb Places on the Map', exact: true });
+  const group = map.getByRole('button', { name: 'Explore 2 places in this area', exact: true });
+  await expect(group).toBeVisible();
+  const start = await group.boundingBox();
+  for (let i = 0; i < 3; i++) await map.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await expect(map.getByRole('button', { name: 'Visit Nearby Herbs', exact: true })).toBeInViewport();
+  await expect(map.getByRole('button', { name: 'Visit Moss Apothecary', exact: true })).toBeInViewport();
+  await page.getByRole('button', { name: 'Reset Map', exact: true }).click();
+  await expect(group).toBeVisible();
+  await expect.poll(async () => Math.abs((await group.boundingBox()).x - start.x)).toBeLessThan(1);
+  await map.getByRole('button', { name: 'Zoom out', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
 });
