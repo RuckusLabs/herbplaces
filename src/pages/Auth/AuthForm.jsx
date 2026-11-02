@@ -55,15 +55,15 @@ export default function AuthForm({ mode }) {
 
   const switchingPath = `/login?next=${encodeURIComponent(destination)}`;
   return <main id="main-content" className={styles.authSection}>
-    <Helmet><title>{registering ? 'Create an Account' : 'Sign In'} | Little Herb Places</title></Helmet>
+    <Helmet><title>{passwordlessEnabled ? 'Sign In or Sign Up' : registering ? 'Create an Account' : 'Sign In'} | Little Herb Places</title></Helmet>
     <section className={`${styles.card} ${passwordlessEnabled ? styles.signInCard : ''}`} aria-labelledby="auth-title">
       <Icon name="sprout" size={passwordlessEnabled ? 44 : 64} />
-      <h1 id="auth-title">{passwordlessEnabled && codeEmail ? 'Check your inbox.' : registering ? 'Create an Account' : passwordlessEnabled ? 'Welcome back.' : 'Welcome Back'}</h1>
+      <h1 id="auth-title">{passwordlessEnabled && codeEmail ? 'Check your inbox.' : passwordlessEnabled ? 'Sign In or Sign Up.' : registering ? 'Create an Account' : 'Welcome Back'}</h1>
       {(authLoading || user) && !codeBusy ? <>
         {syncError ? <div className={styles.status} role="alert"><p>{syncError}</p><button type="button" className="button" onClick={retry}>Try Syncing Again</button></div> : <p className={styles.status} role="status">Bringing Your Saved Places Together…</p>}
       </> : confirmation ? <div className={styles.status} role="status"><h2>Check Your Inbox.</h2><p>Use the confirmation link to finish creating your account. If you started a claim, continue in the same browser to recover your saved details. Creating an account does not submit your claim.</p><Link className="button" to={`/login?next=${encodeURIComponent(destination)}`}>Continue to Sign In <Icon name="arrow" size={17} /></Link><p><Link to={`/auth/resend-confirmation?next=${encodeURIComponent(destination)}`}>Send Another Confirmation Email</Link></p></div> : <>
-        {!codeEmail && <p className={styles.intro}>{destination.includes('claim=1') ? 'Sign in to review and send your ownership claim.' : registering ? 'Keep your favorite places together with a free account.' : 'Use your email to pick up where you left off.'}</p>}
-        {passwordlessEnabled ? <EmailCodeForm key={mode} registering={registering} destination={destination} onBusyChange={setCodeBusy} autoVerify onChallengeChange={setCodeEmail} /> : <>
+        {!codeEmail && <p className={styles.intro}>{passwordlessEnabled ? destination.includes('claim=1') ? 'Sign in or create a free account to review and send your ownership claim.' : 'Use your email to sign in or create a free account.' : destination.includes('claim=1') ? 'Sign in to review and send your ownership claim.' : registering ? 'Keep your favorite places together with a free account.' : 'Use your email to pick up where you left off.'}</p>}
+        {passwordlessEnabled ? <EmailCodeForm key={mode} registering destination={destination} onBusyChange={setCodeBusy} autoVerify onChallengeChange={setCodeEmail} /> : <>
         <form onSubmit={submit} className={styles.form}>
           <label htmlFor="auth-email">Email</label><input id="auth-email" type="email" autoComplete="email" value={email} onChange={event => setEmail(event.target.value)} placeholder="Your Email" required disabled={submitting} />
           <label htmlFor="auth-password">Password</label><input id="auth-password" type="password" autoComplete={registering ? 'new-password' : 'current-password'} value={password} onChange={event => setPassword(event.target.value)} placeholder="At Least 6 Characters" minLength={6} required disabled={submitting} />
@@ -74,7 +74,7 @@ export default function AuthForm({ mode }) {
         {!registering && <p><Link to={`/auth/forgot-password?next=${encodeURIComponent(destination)}`}>Forgot Your Password?</Link></p>}
         <p><Link to={`/auth/resend-confirmation?next=${encodeURIComponent(destination)}`}>Need a Confirmation Email?</Link></p>
         </>}
-        {registering && !codeEmail && <div className={styles.switchAccount}><p>{registering ? 'Already have an account?' : 'New to Little Herb Places?'}</p><Link className={`button ${styles.secondary}`} to={switchingPath}>{registering ? 'Sign In' : 'Create an Account'}</Link></div>}
+        {registering && !passwordlessEnabled && !codeEmail && <div className={styles.switchAccount}><p>{registering ? 'Already have an account?' : 'New to Little Herb Places?'}</p><Link className={`button ${styles.secondary}`} to={switchingPath}>{registering ? 'Sign In' : 'Create an Account'}</Link></div>}
       </>}
     </section>
   </main>;
