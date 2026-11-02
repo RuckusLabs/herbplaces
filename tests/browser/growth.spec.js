@@ -21,7 +21,7 @@ async function site(page,{owner=false,paid=true}={}) {
     if(name==='get_growth_access')return route.fulfill({json:{can_edit:paid,can_manage_offerings:paid,profile:state.profile}});
     if(name==='get_editable_place')return route.fulfill({json:place});
     if(name==='get_place_activity')return route.fulfill({json:{from:'2026-09-28',through:'2026-10-27',current:{profile_view:12,primary_click:3},previous:{profile_view:6},daily:[{day:'2026-10-27',profile_view:12}],items:[{kind:'offering_click',item_id:offering.id,total:2}]}});
-    if(name==='publish_place_growth'){state.saved=body;state.profile={...state.profile,content:body.p_content,version:state.profile.version+1};return route.fulfill({json:state.profile});}
+    if(name==='publish_place_growth'){if(state.publishError)return route.fulfill({status:503,json:{message:'Publishing is unavailable. Please try again.'}});state.saved=body;state.profile={...state.profile,content:body.p_content,version:state.profile.version+1};return route.fulfill({json:state.profile});}
     if(name==='update_place_essentials'){state.essentials=body;return route.fulfill({json:{...place,...body.p_content,content_version:2}});}
     return route.fulfill({json:path.includes('/rpc/')?null:[]});
   });
@@ -39,8 +39,8 @@ test('owners can preview and publish highlights without recording their own prof
   const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');await expect(page.getByText('Business tools & activity',{exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Your last 30 days'})).toBeVisible();await expect(page.getByRole('button',{name:'Download Daily Activity CSV'})).toBeVisible();
   await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'Visitor Information',exact:true}).click();await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
-  await dialog.getByRole('button',{name:'Preview Highlights'}).click();await expect(dialog.getByRole('region',{name:'Unpublished highlights preview'})).toContainText('English, Spanish');
-  await dialog.getByRole('button',{name:'Publish Highlights'}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.languages).toBe('English, Spanish');expect(state.events.filter(event=>event.kind==='profile_view')).toHaveLength(0);
+  await dialog.getByRole('button',{name:'Preview Highlights'}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('region',{name:'Visitor information',exact:true})).toContainText('English, Spanish');expect(state.saved).toBe(null);
+  await page.getByRole('region',{name:'Unpublished Highlights Preview'}).getByRole('button',{name:'Publish Highlights'}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.languages).toBe('English, Spanish');expect(state.events.filter(event=>event.kind==='profile_view')).toHaveLength(0);
 });
 test('approved free managers can correct essential details and cannot edit paid highlights',async({page})=>{
   const state=await site(page,{owner:true,paid:false});await page.goto('/place/moss-apothecary');await expect(page.getByText('Business tools & activity',{exact:true})).toBeVisible();
@@ -138,7 +138,60 @@ test('invalid items reveal their section before publishing and preserve other ed
   expect(state.saved).toBe(null);
   await dialog.getByLabel('Shopping or booking link',{exact:true}).fill('https://example.com/tea');
   await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
-  await expect(dialog.getByRole('region',{name:'Unpublished highlights preview'})).toContainText('New seasonal tea');
-  await dialog.getByRole('button',{name:'Back to Editing',exact:true}).click();
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('region',{name:'Products and services',exact:true})).toContainText('New seasonal tea');
+  await page.getByRole('button',{name:'Back to Editing',exact:true}).click();
   await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('New seasonal tea');
+});
+
+test('highlights preview replaces page content and keeps its toolbar below navigation while scrolling',async({page},testInfo)=>{
+  const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');
+  await dialog.getByLabel('Destination link',{exact:true}).fill('https://example.com/new-shop');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  const toolbar=page.getByRole('region',{name:'Unpublished Highlights Preview'});
+  await expect(toolbar).toBeVisible();await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('link',{name:/Shop online/})).toHaveAttribute('href','https://example.com/new-shop');
+  await expect(page.getByRole('button',{name:'Edit Business Highlights',exact:true})).toHaveCount(0);
+  expect(state.saved).toBe(null);
+  await page.evaluate(()=>window.scrollTo(0,1000));
+  const navBox=await page.getByRole('navigation',{name:'Main navigation',exact:true}).boundingBox();
+  const barBox=await toolbar.boundingBox();
+  expect(Math.abs(navBox.y)).toBeLessThanOrEqual(1);expect(Math.abs(barBox.y-navBox.height)).toBeLessThanOrEqual(1);
+  await page.screenshot({path:testInfo.outputPath('on-page-highlights-preview.png'),animations:'disabled'});
+  await toolbar.getByRole('button',{name:'Back to Editing',exact:true}).click();
+  await expect(dialog.getByLabel('Destination link',{exact:true})).toHaveValue('https://example.com/new-shop');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  await toolbar.getByRole('button',{name:'Discard Changes',exact:true}).click();
+  await expect(toolbar).toHaveCount(0);await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('link',{name:/Shop online/})).toHaveAttribute('href','https://example.com/shop');
+  expect(state.saved).toBe(null);expect(state.events.filter(event=>event.kind==='profile_view')).toHaveLength(0);
+  expect(await page.evaluate(()=>document.body.classList.contains('has-growth-preview'))).toBe(false);
+});
+
+test('publishing failure retains the private page preview and allows retry',async({page})=>{
+  const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');
+  await dialog.getByLabel('Destination link',{exact:true}).fill('https://example.com/new-shop');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  const toolbar=page.getByRole('region',{name:'Unpublished Highlights Preview'});
+  state.publishError=true;await toolbar.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(toolbar.getByRole('alert')).toContainText('Publishing is unavailable');
+  await expect(page.getByRole('link',{name:/Shop online/})).toHaveAttribute('href','https://example.com/new-shop');
+  expect(state.saved).toBe(null);state.publishError=false;
+  await toolbar.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(toolbar).toHaveCount(0);expect(state.saved.p_content.primary_action.url).toBe('https://example.com/new-shop');
+});
+
+test('leaving a private highlights preview clears the toolbar and never carries drafts to another listing',async({page})=>{
+  const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');
+  await dialog.getByLabel('Destination link',{exact:true}).fill('https://example.com/private-draft');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  await page.getByRole('link',{name:'Explore Places',exact:true}).first().click();
+  await expect(page.getByRole('region',{name:'Unpublished Highlights Preview'})).toHaveCount(0);
+  expect(await page.evaluate(()=>document.body.classList.contains('has-growth-preview'))).toBe(false);
+  await page.goto('/place/moss-apothecary');
+  await expect(page.getByRole('link',{name:/Shop online/})).toHaveAttribute('href','https://example.com/shop');
+  expect(state.saved).toBe(null);
 });

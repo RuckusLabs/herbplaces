@@ -46,3 +46,12 @@
 .editorNav button { justify-content: flex-start; gap: 10px; .sectionLabel { flex: 1; min-width: 0; background: transparent; border-radius: 0; padding: 0; text-align: left; font: inherit; } }
 .panelHeading { display: flex; align-items: center; gap: 14px; }
 @media(max-width:700px) { .editorHeader h2 { font-size: 30px; } .editorNav button { gap: 6px; } }
+.previewTools { margin: 0; border: 0; padding: 0; > summary { display: none; } }
+:global(body.has-growth-preview) :global(nav[aria-label="Main navigation"]) { position: sticky; top: 0; z-index: 50; }
+.pagePreviewToolbar { background: #f1f7db; border-bottom: 1px solid #c5cfb4; padding: 16px 5%; box-shadow: 0 3px 14px #243b1710; }
+.previewToolbarInner { max-width: 1160px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.previewToolbarLabel { display: flex; align-items: center; gap: 12px; strong { display: block; font-size: 15px; outline: none; } p { margin: 5px 0 0; font-size: 12px; line-height: 1.5; } > svg { flex-shrink: 0; } }
+.previewToolbarActions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; button { font-size: 12px; margin: 0; padding: 11px 15px; } }
+.discardPreview { background: transparent; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:850px) { .previewToolbarInner { flex-wrap: wrap; } }
+@media(max-width:540px) { .pagePreviewToolbar { padding: 12px 5%; } .previewToolbarActions { width: 100%; gap: 8px; button { min-height: 40px; font-size: 11px; padding: 10px; } } }

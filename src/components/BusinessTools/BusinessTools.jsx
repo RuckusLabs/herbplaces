@@ -45,7 +45,7 @@ function ActivityReport({ place, access, onEdit }) {
 }
 ActivityReport.propTypes={ place:PropTypes.object.isRequired,access:PropTypes.object.isRequired,onEdit:PropTypes.func.isRequired };
 
-function ToolsPanel({ place, onChanged }) {
+function ToolsPanel({ place, onChanged, onPreview, previewing, previewTargetId }) {
   const [params] = useSearchParams();
   const requestedMode = ['action','announcement'].includes(params.get('business')) ? params.get('business') : '';
   const [access,setAccess]=useState(null); const [error,setError]=useState(''); const [mode,setMode]=useState(requestedMode); const [attempt,setAttempt]=useState(0); const [notice,setNotice]=useState('');
@@ -56,6 +56,7 @@ function ToolsPanel({ place, onChanged }) {
   const checklist=profileChecklist(place,access.profile);
   const announcement=access.profile?.content?.announcement;
   return <>
+    <div hidden={previewing}>
     {notice && <p role="status" className={styles.notice}>{notice}</p>}
     {access.can_edit && <section className={styles.setup} aria-label="Profile setup checklist"><h3>Make your profile ready for visitors</h3><p>{checklist.filter(item=>item.done).length} of {checklist.length} essentials complete. Start with your description, a photo, and a clear customer action.</p><progress max={checklist.length} value={checklist.filter(item=>item.done).length} aria-label="Profile essentials complete" /><ul className={styles.checklist}>{checklist.map(item=><li key={item.label}>{item.done ? 'Complete: ' : 'Next: '}{item.label}</li>)}</ul><div className={styles.actions}><Link className="button" to={`/place/${place.urlSlug}?edit=1`}>Edit Description & Photos</Link><button className="button" onClick={() => setMode('action')}>Choose Your Main Action</button></div></section>}
     <div className={styles.actions}><button className="button" onClick={() => setMode('essentials')}>Correct Essential Details</button>{access.can_edit ? <button className="button" onClick={() => setMode('highlights')}>Edit Business Highlights</button> : <Link className="button" to="/the-little-garden/bloom">Explore Bloom Tools</Link>}</div>
@@ -64,15 +65,16 @@ function ToolsPanel({ place, onChanged }) {
       {announcement?.title && Date.parse(announcement.expires_at)<Date.now()+7*86400000 && <p className={styles.notice}>{Date.parse(announcement.expires_at)<Date.now() ? 'Your announcement has expired and is hidden.' : 'Your announcement expires within the next seven days.'} Open Business Highlights to refresh it.</p>}
       <ActivityReport place={place} access={access} onEdit={setMode} />
     </>}
-    {['highlights', 'action', 'announcement'].includes(mode) && <GrowthEditor initialSection={mode} place={place} access={access} onClose={()=>setMode('')} onSaved={saved} />}
+    </div>
+    {['highlights', 'action', 'announcement'].includes(mode) && <GrowthEditor onPreview={onPreview} previewTargetId={previewTargetId} initialSection={mode} place={place} access={access} onClose={()=>setMode('')} onSaved={saved} />}
     {mode==='essentials' && <EssentialEditor place={place} profile={access.profile} onClose={()=>setMode('')} onSaved={saved} />}
   </>;
 }
-ToolsPanel.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func };
+ToolsPanel.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func.isRequired,previewing:PropTypes.bool,previewTargetId:PropTypes.string.isRequired };
 
-export default function BusinessTools({ place, onChanged }) {
+export default function BusinessTools({ place, onChanged, onPreview, previewing = false, previewTargetId }) {
   const [open,setOpen]=useState(true);
   if(!growthEnabled) return null;
-  return <details open={open} className={styles.tools} onToggle={event=>setOpen(event.currentTarget.open)}><summary>Business tools & activity</summary>{open && <ToolsPanel place={place} onChanged={onChanged} />}</details>;
+  return <details open={open} className={`${styles.tools} ${previewing ? styles.previewTools : ''}`} onToggle={event=>setOpen(event.currentTarget.open)}><summary>Business tools & activity</summary>{open && <ToolsPanel place={place} onChanged={onChanged} onPreview={onPreview} previewing={previewing} previewTargetId={previewTargetId} />}</details>;
 }
-BusinessTools.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func };
+BusinessTools.propTypes={ place:PropTypes.object.isRequired,onChanged:PropTypes.func,onPreview:PropTypes.func.isRequired,previewing:PropTypes.bool,previewTargetId:PropTypes.string.isRequired };

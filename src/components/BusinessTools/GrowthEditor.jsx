@@ -1,10 +1,10 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 import Modal from '../Modal/Modal';
 import Icon from '../Icons/Icon';
 import { ACTION_LABELS, emptyGrowth, prepareGrowth, SPECIALTIES } from '../../utilities/placeGrowth';
 import { managementRpc } from '../../utilities/managementApi';
-import PlaceHighlights from './PlaceHighlights';
 import styles from './growth.module.scss';
 
 const editorSections = [
@@ -19,7 +19,7 @@ const deviceZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const localTime = value => value ? new Date(Date.parse(value) - new Date(value).getTimezoneOffset() * 60000).toISOString().slice(0,16) : '';
 const isoTime = value => value ? new Date(value).toISOString() : '';
 
-export default function GrowthEditor({ place, access, onClose, onSaved, initialSection = 'highlights' }) {
+export default function GrowthEditor({ place, access, onClose, onSaved, initialSection = 'highlights', onPreview, previewTargetId }) {
   const titleId = useId();
   const [section, setSection] = useState(() => editorSections.some(item => item.id === initialSection) ? initialSection : 'action');
   const [expandedItem, setExpandedItem] = useState(null);
@@ -31,6 +31,21 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
   useEffect(() => { const field = initialSection === 'announcement' ? announcementField : initialSection === 'action' ? actionField : null; field?.current?.focus(); }, [initialSection]);
   const [draft, setDraft] = useState(() => { const base = emptyGrowth(); const saved = access.profile?.content; return { ...base, ...saved, primary_action: { ...base.primary_action, ...saved?.primary_action }, announcement: { ...base.announcement, ...saved?.announcement } }; });
   const [error, setError] = useState(''); const [busy, setBusy] = useState(false); const [preview, setPreview] = useState(null);
+  const previewTitle = useRef(null);
+  useEffect(() => { onPreview(preview); return () => onPreview(null); }, [preview, onPreview]);
+  useEffect(() => {
+    if (!preview) return;
+    document.body.classList.add('has-growth-preview');
+    const nav = document.querySelector('nav[aria-label="Main navigation"]');
+    const measure = () => document.body.style.setProperty('--growth-nav-height', `${nav?.getBoundingClientRect().height || 0}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (nav) observer.observe(nav);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    previewTitle.current?.focus({ preventScroll: true });
+    return () => { observer.disconnect(); document.body.classList.remove('has-growth-preview'); document.body.style.removeProperty('--growth-nav-height'); };
+  }, [preview]);
+
   const update = (field, value) => { setDraft(previous => ({ ...previous, [field]: value })); setPreview(null); };
   const updateItem = (field,index,key,value) => update(field,draft[field].map((item,i) => i === index ? { ...item,[key]:value } : item));
   const preparedDraft = () => {
@@ -74,7 +89,16 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
     <p className={styles.hint}>{draft[field].length} of 10 {eventMode ? 'events' : 'offerings'}</p>
     {draft[field].length < 10 && <button type="button" className="button" onClick={() => { const id = crypto.randomUUID(); update(field,[...draft[field],{ id,title:'',description:'',price:'',url:'',image:'',image_alt:'',...(eventMode ? { starts_at:'',ends_at:'',timezone:deviceZone,location:'' } : { kind:'product' }) }]); setExpandedItem(id); }}>Add {eventMode ? 'Event' : 'Offering'}</button>}
   </fieldset>;
-  return <Modal open onClose={() => { if (!busy && window.confirm('Close without publishing these highlights?')) onClose(); }} className={styles.editorDialog} contentClassName={styles.editorContent} labelledBy={titleId} closeLabel="Close highlights editor">
+  const previewTarget = preview && document.getElementById(previewTargetId);
+  return <>
+    {previewTarget && createPortal(<section className={styles.pagePreviewToolbar} aria-label="Unpublished Highlights Preview">
+      <div className={styles.previewToolbarInner}><div className={styles.previewToolbarLabel}><Icon name="leaf" size={28} /><div><strong ref={previewTitle} tabIndex={-1}>Unpublished Preview</strong><p>Only you can see these changes.</p></div></div><div className={styles.previewToolbarActions}>
+        <button type="button" disabled={busy} className={styles.discardPreview} onClick={() => { setPreview(null); onClose(); }}>Discard Changes</button>
+        <button type="button" disabled={busy} className="button" onClick={() => setPreview(null)}>Back to Editing</button>
+        <button type="button" disabled={busy} className="button" aria-label="Publish Highlights" onClick={save}>{busy ? 'Publishing…' : 'Publish Changes'}</button>
+      </div></div>{error && <p role="alert" className={styles.error}>{error}</p>}
+    </section>, previewTarget)}
+    <Modal open={!preview} onClose={() => { if (!busy && window.confirm('Close without publishing these highlights?')) onClose(); }} className={styles.editorDialog} contentClassName={styles.editorContent} labelledBy={titleId} closeLabel="Close highlights editor">
     <header className={styles.editorHeader}><p className={styles.editorEyebrow}>{place.name}</p><h2 id={titleId}><Icon name="sun" size={40} />Business Highlights</h2><p className={styles.hint}>Update one section at a time. Publish when you’re ready.</p></header>
     <form className={`${styles.form} ${styles.editorForm}`} onSubmit={save} noValidate>
       <div className={styles.editorLayout}>
@@ -91,10 +115,9 @@ export default function GrowthEditor({ place, access, onClose, onSaved, initialS
       {!preview && section === 'offerings' && items('offerings',false)}
       {!preview && section === 'events' && items('events',true)}
       {error && <p role="alert" className={styles.error}>{error}</p>}
-      {preview && <section className={styles.example} aria-label="Unpublished highlights preview"><h3>Preview · Not Published</h3><PlaceHighlights profile={{ content:preview }} placeId={String(place.id)} track={false} /><p className={styles.hint}>Scheduled announcements appear here only while their dates are active.</p></section>}
       </div></div>
-      <footer><span className={styles.saveHint}>Changes publish together.</span><button type="button" className="button" aria-label={preview ? 'Back to Editing' : 'Preview Highlights'} disabled={busy} onClick={() => { try { if (preview) { setPreview(null); return; } setPreview(preparedDraft()); setError(''); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); } catch(failure) { setError(failure.message); } }}>{preview ? 'Back to Editing' : 'Preview'}</button><button className="button" aria-label="Publish Highlights" disabled={busy}>{busy ? 'Publishing…' : 'Publish Changes'}</button></footer>
+      <footer><span className={styles.saveHint}>Changes publish together.</span><button type="button" className="button" aria-label="Preview Highlights" disabled={busy} onClick={() => { try { setPreview(preparedDraft()); setError(''); panel.current?.closest('dialog')?.scrollTo({ top: 0 }); } catch(failure) { setError(failure.message); } }}>Preview</button><button className="button" aria-label="Publish Highlights" disabled={busy}>{busy ? 'Publishing…' : 'Publish Changes'}</button></footer>
     </form>
-  </Modal>;
+  </Modal></>;
 }
-GrowthEditor.propTypes = { initialSection: PropTypes.string, place:PropTypes.object.isRequired,access:PropTypes.object.isRequired,onClose:PropTypes.func.isRequired,onSaved:PropTypes.func.isRequired };
+GrowthEditor.propTypes = { onPreview:PropTypes.func.isRequired, previewTargetId:PropTypes.string.isRequired, initialSection: PropTypes.string, place:PropTypes.object.isRequired,access:PropTypes.object.isRequired,onClose:PropTypes.func.isRequired,onSaved:PropTypes.func.isRequired };

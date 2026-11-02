@@ -43,6 +43,6 @@
 
 .editAction { &:empty { display: none; } &:has(> :global(.button)) { margin-bottom: 20px; } }
 
-.previewMount { position: sticky; top: 0; z-index: 40; &:empty { display: none; } }
+.previewMount { position: sticky; top: var(--growth-nav-height, 0px); z-index: 40; &:empty { display: none; } }
 
 .reportSignIn { padding: 20px; border: 1px solid #c5cfb4; border-radius: 16px; background: #f8faef; line-height: 1.8; }

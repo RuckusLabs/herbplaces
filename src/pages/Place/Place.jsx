@@ -34,7 +34,7 @@ export default function Place() {
   const userId = user?.id;
   const management = useManagement();
   const growth = useGrowthProfiles();
-  const growthProfile = growth.profiles.find(item => item.place_id === String(publishedPlace?.id));
+  const publishedGrowthProfile = growth.profiles.find(item => item.place_id === String(publishedPlace?.id));
   const managesPlace = management.is_admin || management.memberships.some(item => String(item.place_id) === String(publishedPlace?.id));
   const placeId = publishedPlace?.id;
   const previewTargetId = useId();
@@ -43,6 +43,11 @@ export default function Place() {
   const showingPreview = !!draftPreview;
   const place = draftPreview ? { ...publishedPlace, ...draftPreview } : publishedPlace;
   const onPreview = useCallback(content => { setPreviewState(content ? { owner: userId, placeId, content } : null); }, [userId, placeId]);
+  const [growthPreviewState, setGrowthPreviewState] = useState(null);
+  const growthDraft = managesPlace && growthPreviewState?.owner === userId && growthPreviewState?.placeId === placeId ? growthPreviewState.content : null;
+  const onGrowthPreview = useCallback(content => { setGrowthPreviewState(content ? { owner: userId, placeId, content } : null); }, [userId, placeId]);
+  const growthProfile = growthDraft ? { ...publishedGrowthProfile, content: growthDraft } : publishedGrowthProfile;
+
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);
   const [photoRatios, setPhotoRatios] = useState({});
@@ -117,11 +122,11 @@ export default function Place() {
 
   return <><div id={previewTargetId} className={styles.previewMount} /><main id="main-content" className={styles.page}>
     <Seo metadata={getPlaceSeo(publishedPlace)} />
-    {draftPreview && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
+    {(draftPreview || growthDraft) && <Helmet><meta name="robots" content="noindex,nofollow" /></Helmet>}
     <Link to="/map" className={styles.backLink}><Icon name="arrow" size={17} />All Places</Link>
     <header className={styles.heading}>
       <div>
-        <div className={styles.editAction}><PlaceManagement key={place.id} place={publishedPlace} placement="top" onPreview={onPreview} previewTargetId={previewTargetId} previewing={!!draftPreview} /></div>
+        <div className={styles.editAction}><PlaceManagement key={place.id} place={publishedPlace} placement="top" onPreview={onPreview} previewTargetId={previewTargetId} previewing={!!draftPreview || !!growthDraft} /></div>
         <p className={styles.location}><Icon name="pin" size={23} />{location}</p>
         <div className={styles.nameLine}><h1>{place.name}</h1><PlaceBadge place={place} /></div>
         {place.tagline && <p className={styles.tagline}>{place.tagline}</p>}
@@ -135,7 +140,7 @@ export default function Place() {
       </div>
       <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
-    {managesPlace && !showingPreview && <BusinessTools place={publishedPlace} onChanged={growth.refresh} />}
+    {managesPlace && !showingPreview && <BusinessTools key={`${userId}:${placeId}`} place={publishedPlace} onChanged={growth.refresh} onPreview={onGrowthPreview} previewing={!!growthDraft} previewTargetId={previewTargetId} />}
     {reportAction && !managesPlace && !management.loading && !showingPreview && <p className={styles.reportSignIn}>{!user ? <><Link to={`/login?next=${encodeURIComponent(`/place/${slug}?${params}`)}`}>Sign in to open your business tools</Link> and continue from your report.</> : <>Business tools are available to approved managers. <Link to="/my-places">Check your management access</Link>.</>}</p>}
     {growthProfile && <PlaceHighlights profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
