@@ -1,12 +1,26 @@
+import { regionName } from './browse.js';
+
 const TILE_SIZE = 512;
 const worldPoint = (longitude, latitude) => {
   const lat = Math.max(-85, Math.min(85, Number(latitude))) * Math.PI / 180;
   return [(Number(longitude) + 180) / 360, (1 - Math.log(Math.tan(Math.PI / 4 + lat / 2)) / Math.PI) / 2];
 };
 
+const localDistanceKm = (a,b) => {
+  const radians=value=>Number(value)*Math.PI/180;
+  const h=Math.sin(radians(b.latitude-a.latitude)/2)**2+Math.cos(radians(a.latitude))*Math.cos(radians(b.latitude))*Math.sin(radians(b.longitude-a.longitude)/2)**2;
+  return 6371*2*Math.asin(Math.sqrt(Math.min(1,h)));
+};
+export const heroMapPlaces = places => places.filter(place => place.longitude !== null && place.latitude !== null && String(place.longitude ?? '').trim() !== '' && String(place.latitude ?? '').trim() !== '' && Number.isFinite(Number(place.longitude)) && Number.isFinite(Number(place.latitude)) && Math.abs(Number(place.longitude)) <= 180 && Math.abs(Number(place.latitude)) <= 85);
+export function heroMapRegions(places) {
+  const regions=new Map();
+  for(const place of heroMapPlaces(places)){const name=regionName(place.state);if(name)regions.set(name,(regions.get(name)||0)+1);}
+  return [...regions].map(([name,count])=>({name,count})).sort((a,b)=>a.name.localeCompare(b.name));
+}
+
 // Fit the real directory locations into the space beside the introduction.
 export function getHeroMapLayout(places, width, height, mobile = false) {
-  const valid = places.filter(place => place.longitude !== null && place.latitude !== null && place.longitude !== '' && place.latitude !== '' && Number.isFinite(Number(place.longitude)) && Number.isFinite(Number(place.latitude)) && Math.abs(Number(place.longitude)) <= 180 && Math.abs(Number(place.latitude)) <= 85);
+  const valid = heroMapPlaces(places);
   const points = valid.map(place => ({ place, point: worldPoint(place.longitude, place.latitude) }));
   const extent = points.length ? points.map(item => item.point) : [worldPoint(-116.3, 34.1), worldPoint(-97.7, 30.2)];
   const xs = extent.map(point => point[0]);
@@ -25,9 +39,11 @@ export function getHeroMapLayout(places, width, height, mobile = false) {
   points.sort((a, b) => Number(Boolean(b.place.isVerified || b.place.isFeatured)) - Number(Boolean(a.place.isVerified || a.place.isFeatured)) || String(a.place.id).localeCompare(String(b.place.id))).forEach(({ place, point }) => {
     const x = width / 2 + (point[0] - center[0]) * scale;
     const y = height / 2 + (point[1] - center[1]) * scale;
-    const nearby = groups.find(group => Math.hypot(group.x - x, group.y - y) < (mobile ? 80 : 90));
+    // Screen proximity alone can hide California/Arizona inside a Texas pin.
+    // Keep every cluster within one state and a 120 km local diameter.
+    const nearby = groups.find(group => Math.hypot(group.x - x, group.y - y) < (mobile ? 34 : 42) && regionName(group.places[0].state) === regionName(place.state) && group.places.every(member=>localDistanceKm(member,place)<=120));
     if (nearby) nearby.places.push(place);
     else groups.push({ x, y, places: [place] });
   });
-  return { longitude, latitude, zoom, groups };
+  return { longitude, latitude, zoom, groups, count: valid.length };
 }

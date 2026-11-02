@@ -5,7 +5,7 @@ export const MIN_LOCAL_PLACES = 3;
 const slug = value => String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const states = 'AL:Alabama|AK:Alaska|AZ:Arizona|AR:Arkansas|CA:California|CO:Colorado|CT:Connecticut|DE:Delaware|DC:District of Columbia|FL:Florida|GA:Georgia|HI:Hawaii|ID:Idaho|IL:Illinois|IN:Indiana|IA:Iowa|KS:Kansas|KY:Kentucky|LA:Louisiana|ME:Maine|MD:Maryland|MA:Massachusetts|MI:Michigan|MN:Minnesota|MS:Mississippi|MO:Missouri|MT:Montana|NE:Nebraska|NV:Nevada|NH:New Hampshire|NJ:New Jersey|NM:New Mexico|NY:New York|NC:North Carolina|ND:North Dakota|OH:Ohio|OK:Oklahoma|OR:Oregon|PA:Pennsylvania|RI:Rhode Island|SC:South Carolina|SD:South Dakota|TN:Tennessee|TX:Texas|UT:Utah|VT:Vermont|VA:Virginia|WA:Washington|WV:West Virginia|WI:Wisconsin|WY:Wyoming';
 const stateNames = Object.fromEntries(states.split('|').map(pair => pair.split(':')));
-const regionName = value => stateNames[String(value || '').trim().toUpperCase()] || String(value || '').trim();
+export const regionName = value => stateNames[String(value || '').trim().toUpperCase()] || String(value || '').trim();
 const categorySlugs = { shops: 'herb-shops', herbalists: 'herbalists', gardens: 'gardens', workshops: 'classes' };
 export const browsePagePath = page => page <= 1 ? '/browse' : `/browse/page/${page}`;
 

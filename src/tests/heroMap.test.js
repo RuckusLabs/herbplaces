@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getHeroMapLayout } from '../utilities/heroMap.js';
+import { getHeroMapLayout, heroMapRegions } from '../utilities/heroMap.js';
 
 const places = [
   { id: 1, longitude: -116.31, latitude: 34.14 },
@@ -48,4 +48,24 @@ test('hero pins match the renderer camera at phone, desktop, and large desktop s
       assert.ok(group.y >= 0 && group.y <= height);
     }
   }
+});
+
+test('home clusters preserve Southwest visibility and keep state boundaries at national scale',()=>{
+ const entries=[
+  {id:'texas',name:'El Paso',state:'Texas',city:'El Paso',latitude:31.76,longitude:-106.49,isVerified:true},
+  {id:'tucson',name:'Tucson',state:'AZ',city:'Tucson',latitude:32.22,longitude:-110.97},
+  {id:'joshua',name:'Joshua Tree',state:'California',city:'Joshua Tree',latitude:34.13,longitude:-116.32},
+  {id:'palm',name:'Palm Springs',state:'CA',city:'Palm Springs',latitude:33.82,longitude:-116.54},
+  {id:'la',name:'Los Angeles',state:'California',city:'Los Angeles',latitude:34.07,longitude:-118.38},
+  {id:'maine',state:'Maine',latitude:44,longitude:-69},
+  {id:'hawaii',state:'Hawaii',latitude:19,longitude:-155},
+ ];
+ for(const [width,height,mobile] of [[1440,670,false],[375,325,true]]){
+  const layout=getHeroMapLayout(entries,width,height,mobile);
+  assert.equal(layout.count,entries.length);assert.equal(layout.groups.flatMap(group=>group.places).length,entries.length);
+  const az=layout.groups.find(group=>group.places.some(place=>place.id==='tucson'));assert.deepEqual(az.places.map(place=>place.id),['tucson']);
+  const joshua=layout.groups.find(group=>group.places.some(place=>place.id==='joshua'));assert.ok(!joshua.places.some(place=>['la','texas','tucson'].includes(place.id)));assert.ok(joshua.places.some(place=>place.id==='palm'));
+ }
+ assert.deepEqual(heroMapRegions(entries).find(region=>region.name==='California'),{name:'California',count:3});
+ assert.deepEqual(heroMapRegions(entries).find(region=>region.name==='Arizona'),{name:'Arizona',count:1});
 });

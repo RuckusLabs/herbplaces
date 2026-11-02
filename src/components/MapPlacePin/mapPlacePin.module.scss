@@ -7,3 +7,5 @@ $ink: rgb(var(--tertiary-color));
 .count { position: absolute; right: -8px; top: -6px; display: grid; place-items: center; width: 24px; height: 24px; border: 2px solid white; border-radius: 50%; background: $ink; color: white; font-size: 11px; font-weight: 600; }
 @media (hover: hover) { .pin:hover .pinIcon { transform: translateY(-4px) rotate(-4deg); box-shadow: 0 0 0 5px rgba(var(--secondary-color), .45), 0 8px 18px rgba(var(--tertiary-color), .14); } }
 @media (max-width: 760px) { .pinIcon { width: 46px; height: 50px; margin-bottom: 9px; > svg { width: 35px; height: 35px; } &::after { width: 8px; height: 8px; bottom: -5px; left: 18px; } } .pinLabel { font-size: 9px; max-width: 120px; padding: 5px 7px; } .count { width: 22px; height: 22px; font-size: 10px; } }
+
+.compact { min-width: 44px; min-height: 44px; justify-content: center; .pinIcon { width: 30px; height: 34px; margin-bottom: 7px; > svg { width: 23px; height: 23px; } &::after { width: 7px; height: 7px; bottom: -4px; left: 10px; } } .count { width: 20px; height: 20px; font-size: 9px; right: -7px; top: -5px; } &:hover,&:focus-visible { z-index: 3; } }

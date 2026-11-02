@@ -138,3 +138,20 @@ test('homepage pins align with the actual renderer camera across world edges', a
     }).toBeLessThan(1);
   }
 });
+
+test('homepage groups nearby places locally and lets visitors focus California or Arizona',async({page},testInfo)=>{
+ const locations=[{...place,id:'el-paso',name:'El Paso Herbs',urlSlug:'el-paso-herbs',state:'Texas',city:'El Paso',latitude:31.76,longitude:-106.49},
+ {...place,id:'tucson',name:'Tucson Herb Store',urlSlug:'tucson-herb-store',state:'Arizona',city:'Tucson',latitude:32.22,longitude:-110.97},
+ {...place,id:'joshua',name:'Joshua Tree Herbs',urlSlug:'joshua-tree-herbs',state:'California',city:'Joshua Tree',latitude:34.13,longitude:-116.32},
+ {...place,id:'palm',name:'Palm Springs Herbs',urlSlug:'palm-springs-herbs',state:'CA',city:'Palm Springs',latitude:33.82,longitude:-116.54},
+ {...place,id:'la',name:'Los Angeles Herbs',urlSlug:'los-angeles-herbs',state:'California',city:'Los Angeles',latitude:34.07,longitude:-118.38},
+ {...place,id:'hawaii',state:'Hawaii',city:'Hilo',latitude:19,longitude:-155}, {...place,id:'maine',state:'Maine',city:'Portland',latitude:44,longitude:-69}];
+ await page.route('**/rest/v1/**',route=>route.fulfill({json:locations}));await page.goto('/');const pins=page.getByRole('group',{name:'Explore little places'});
+ await expect(pins.getByRole('button',{name:'Visit Tucson Herb Store',exact:true})).toBeVisible();
+ const region=page.getByRole('combobox',{name:'Explore the Map',exact:true});await expect(region.locator('option[value="California"]')).toHaveCount(1);
+ await region.selectOption('California');await expect(page.getByRole('status').filter({hasText:'3 places in California'})).toBeVisible();await expect(pins.getByRole('button',{name:/Tucson/})).toHaveCount(0);await expect(pins.getByRole('button',{name:/Joshua Tree/})).toBeVisible();
+ const href=await page.getByRole('link',{name:'Open the Full Map',exact:true}).getAttribute('href');expect(new URL(href,'http://localhost').searchParams.get('bounds')).toContain('-118.38');
+ await region.selectOption('Arizona');await expect(pins.getByRole('button')).toHaveCount(1);await expect(pins.getByRole('button',{name:'Visit Tucson Herb Store',exact:true})).toBeVisible();
+ await region.selectOption('');await expect(page.getByRole('status').filter({hasText:'7 places across the directory'})).toBeVisible();await expect(pins.getByRole('button',{name:'Visit Tucson Herb Store',exact:true})).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:testInfo.outputPath('regional-homepage-map.png'),fullPage:true,animations:'disabled'});
+});
