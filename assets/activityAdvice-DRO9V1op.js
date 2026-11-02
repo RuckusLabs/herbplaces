@@ -1,0 +1,1 @@
+function o(r,a){const e=t=>{const n=new Date(`${t}T12:00:00Z`);return Number.isFinite(n.getTime())?new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric",timeZone:"UTC"}).format(n):t};return`${e(r)} – ${e(a)}`}export{o as r};

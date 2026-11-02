@@ -1,0 +1,1 @@
+const n="_page_2vx3h_1",o="_collections_2vx3h_25",t="_pagination_2vx3h_46",i="_guide_2vx3h_55",_="_ownerInvitation_2vx3h_70",e={page:n,collections:o,pagination:t,guide:i,ownerInvitation:_};export{e as s};
