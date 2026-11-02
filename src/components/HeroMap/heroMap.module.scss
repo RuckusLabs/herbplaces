@@ -17,3 +17,5 @@
 
 .reset { position: absolute; right: 6%; bottom: 98px; z-index: 3; padding: 9px 13px; min-height: 44px; border: 1px solid #b5c3a8; border-radius: 24px; background: rgba(255,255,255,.94); color: rgb(var(--tertiary-color)); font-size: 11px; }
 @media (max-width: 760px) { .reset { position: relative; display: block; right: auto; bottom: auto; margin: 0 auto 8px; } }
+
+.zoomControls { position: absolute; top: 16px; right: 16px; z-index: 3; display: grid; overflow: hidden; border: 1px solid #b5c3a8; border-radius: 9px; background: white; box-shadow: 0 2px 7px rgba(var(--tertiary-color), .12); button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; background: white; color: rgb(var(--tertiary-color)); font-size: 24px; line-height: 1; + button { border-top: 1px solid #dce3d4; } &:hover { background: #f7f9f1; } &:focus-visible { outline-offset: -4px; } } }

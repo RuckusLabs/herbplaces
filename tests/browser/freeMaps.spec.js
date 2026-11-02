@@ -109,7 +109,7 @@ test('homepage preserves the production overview while allowing panning and rese
   const map = page.getByRole('region', { name: 'Explore Little Herb Places on the Map', exact: true });
   const pin = map.getByRole('button', { name: 'Visit Moss Apothecary', exact: true });
   await expect(pin).toBeVisible();
-  await expect(map.getByRole('button', { name: 'Zoom in', exact: true })).toHaveCount(0);
+  await expect(map.getByRole('button', { name: 'Zoom in', exact: true })).toBeVisible();
   const start = await pin.boundingBox();
   const bounds = await map.boundingBox();
   // Keyboard arrows offer the same panning on touch devices without interfering with page scrolling.
@@ -129,4 +129,23 @@ test('homepage preserves the production overview while allowing panning and rese
   }
   await expect(page.getByRole('link', { name: 'Open the Full Map', exact: true })).toHaveAttribute('href', '/map?view=map');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+
+test('homepage zoom reveals nearby places and reset restores the opening scale', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.route('**/rest/v1/**', route => route.fulfill({ json: [place, { ...place, id: 'neighbor', name: 'Nearby Herbs', urlSlug: 'nearby-herbs', longitude: -104.8 }] }));
+  await page.goto('/');
+  const map = page.getByRole('region', { name: 'Explore Little Herb Places on the Map', exact: true });
+  const group = map.getByRole('button', { name: 'Explore 2 places in this area', exact: true });
+  await expect(group).toBeVisible();
+  const start = await group.boundingBox();
+  for (let i = 0; i < 3; i++) await map.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await expect(map.getByRole('button', { name: 'Visit Nearby Herbs', exact: true })).toBeInViewport();
+  await expect(map.getByRole('button', { name: 'Visit Moss Apothecary', exact: true })).toBeInViewport();
+  await page.getByRole('button', { name: 'Reset Map', exact: true }).click();
+  await expect(group).toBeVisible();
+  await expect.poll(async () => Math.abs((await group.boundingBox()).x - start.x)).toBeLessThan(1);
+  await map.getByRole('button', { name: 'Zoom out', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
 });

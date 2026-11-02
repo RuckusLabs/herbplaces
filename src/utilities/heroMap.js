@@ -23,6 +23,15 @@ export function getHeroMapLayout(places, width, height, mobile = false) {
   const center = [(west + east) / 2 - (left - right) / (2 * scale), (north + south) / 2 - (top - bottom) / (2 * scale)];
   const longitude = center[0] * 360 - 180;
   const latitude = Math.atan(Math.sinh(Math.PI * (1 - 2 * center[1]))) * 180 / Math.PI;
+  const groups = getHeroMapGroups(valid, width, height, { longitude, latitude, zoom }, mobile);
+  return { longitude, latitude, zoom, groups };
+}
+
+// Reuse the production pin style, revealing smaller groups as the camera zooms in.
+export function getHeroMapGroups(places, width, height, camera, mobile = false) {
+  const points = getMapPlaces(places).map(place => ({ place, point: worldPoint(place.longitude, place.latitude) }));
+  const center = worldPoint(camera.longitude, camera.latitude);
+  const scale = TILE_SIZE * 2 ** camera.zoom;
   const groups = [];
   points.sort((a, b) => Number(Boolean(b.place.isVerified || b.place.isFeatured)) - Number(Boolean(a.place.isVerified || a.place.isFeatured)) || String(a.place.id).localeCompare(String(b.place.id))).forEach(({ place, point }) => {
     const x = width / 2 + (point[0] - center[0]) * scale;
@@ -31,5 +40,5 @@ export function getHeroMapLayout(places, width, height, mobile = false) {
     if (nearby) nearby.places.push(place);
     else groups.push({ x, y, places: [place] });
   });
-  return { longitude, latitude, zoom, groups };
+  return groups;
 }
