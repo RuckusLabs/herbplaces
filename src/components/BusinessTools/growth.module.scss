@@ -22,3 +22,22 @@
 
 .steps { margin: 0 0 28px; ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; } li { padding: 12px 0; font-size: 11px; line-height: 1.6; border-top: 2px solid #c5cfb4; span { display: block; margin-bottom: 5px; font-size: 17px; } &[aria-current] { border-color: #2c542f; font-weight: 600; } } p { font-size: 12px; line-height: 1.7; } }
 @media(max-width:500px) { .steps ol { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+.editorDialog { width: min(1000px, calc(100% - 32px)); }
+.editorContent { padding: 32px; text-align: left; }
+.editorHeader { padding-right: 36px; margin-bottom: 24px; h2 { font: 300 34px/1.15 'Editorial', Georgia, serif; margin: 0 0 10px; } }
+.editorEyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 600; }
+.editorForm { gap: 0; .editorPanel > fieldset, .editorPanel > :not(.example) > fieldset { border: 0; padding: 0; legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } } footer { border-top: 1px solid #dce3d4; margin-top: 24px; align-items: center; padding-block: 18px 0; } }
+.editorLayout { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px; align-items: start; }
+.editorNav { display: grid; gap: 6px; position: sticky; top: 0; button { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px; border-radius: 10px; text-align: left; background: transparent; font-size: 14px; line-height: 1.4; color: inherit; border: 1px solid transparent; &[aria-current] { background: #f1f7db; border-color: #dce3c4; font-weight: 600; } span { font-size: 11px; min-width: 20px; padding: 2px 5px; border-radius: 20px; background: #fff; text-align: center; } } }
+.editorPanel { min-width: 0; min-height: 320px; .example { margin: 0; padding: 20px; } }
+.panelHeading { margin-bottom: 24px; h3 { margin: 0 0 8px; font-size: 20px; } p { margin: 0; font-size: 14px; line-height: 1.6; } }
+.form .itemList { border: 0; padding: 0; > legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
+.editorItem { border: 1px solid #d0dac5; border-radius: 12px; overflow: hidden; }
+.itemToggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 20px; padding: 18px; text-align: left; background: #f8faef; color: inherit; strong { display: block; font-size: 15px; } small { display: block; margin-top: 6px; font-size: 12px; font-weight: 400; } > span:last-child { white-space: nowrap; font-size: 12px; } }
+.itemFields { padding: 20px; display: grid; gap: 18px; }
+.emptyItems { padding: 24px; border: 1px dashed #c5cfb4; border-radius: 12px; font-size: 14px; line-height: 1.7; }
+.saveHint { font-size: 12px; margin-right: auto; }
+@media(max-width:700px) { .editorContent { padding: 28px 20px 20px; } .editorLayout { grid-template-columns: 1fr; gap: 24px; } .editorNav { position: static; display: flex; overflow-x: auto; padding-bottom: 8px; button { flex-shrink: 0; padding: 11px 13px; font-size: 12px; } } .editorPanel { min-height: 240px; } .editorForm footer { justify-content: stretch; > button { flex: 1; padding-inline: 14px; } } .saveHint { width: 100%; } .itemFields { padding: 16px; } }
+.editorForm .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; label { min-width: 0; font-size: 13px; padding: 10px; border-color: #dce3d4; border-radius: 8px; } input { flex-shrink: 0; } }
+@media(max-width:700px) { .editorForm { input, select, textarea { font-size: 16px; } footer > button { min-height: 44px; font-size: 13px; } } }

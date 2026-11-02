@@ -38,7 +38,7 @@ test('visitors discover searchable offerings and event pages with direct busines
 test('owners can preview and publish highlights without recording their own profile views',async({page})=>{
   const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');await expect(page.getByText('Business tools & activity',{exact:true})).toBeVisible();
   await expect(page.getByRole('heading',{name:'Your last 30 days'})).toBeVisible();await expect(page.getByRole('button',{name:'Download Daily Activity CSV'})).toBeVisible();
-  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'Visitor information',exact:true}).click();await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
   await dialog.getByRole('button',{name:'Preview Highlights'}).click();await expect(dialog.getByRole('region',{name:'Unpublished highlights preview'})).toContainText('English, Spanish');
   await dialog.getByRole('button',{name:'Publish Highlights'}).click();await expect(dialog).toHaveCount(0);expect(state.saved.p_content.languages).toBe('English, Spanish');expect(state.events.filter(event=>event.kind==='profile_view')).toHaveLength(0);
 });
@@ -101,4 +101,44 @@ test('profile setup opens the description and photo editor directly',async({page
   await page.getByRole('link',{name:'Edit Description & Photos',exact:true}).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByRole('dialog').getByRole('textbox',{name:'Description',exact:true})).toHaveValue('Herbs, teas, and workshops.');
+});
+
+test('highlight sections keep drafts while products and events open individually',async({page},testInfo)=>{
+  const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');
+  await expect(dialog.getByLabel('Languages',{exact:true})).toHaveCount(0);
+  await dialog.getByRole('button',{name:'Visitor information',exact:true}).click();
+  await dialog.getByLabel('Languages',{exact:true}).fill('English, Spanish');
+  await dialog.getByRole('button',{name:'Products & services 1',exact:true}).click();
+  await expect(dialog.getByLabel('Shopping or booking link',{exact:true})).toHaveCount(0);
+  await dialog.getByRole('button',{name:/Tea consultation.*Edit/}).click();
+  await dialog.getByLabel('Title',{exact:true}).fill('Personal tea consultation');
+  await dialog.getByRole('button',{name:'Workshops & events 1',exact:true}).click();
+  await expect(dialog.getByRole('button',{name:/Seasonal tea workshop.*Edit/})).toBeVisible();
+  await expect(dialog.getByLabel('Registration link',{exact:true})).toHaveCount(0);
+  await dialog.getByRole('button',{name:'Visitor information',exact:true}).click();
+  await expect(dialog.getByLabel('Languages',{exact:true})).toHaveValue('English, Spanish');
+  expect(await dialog.evaluate(element=>element.scrollWidth<=element.clientWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('focused-highlights-editor.png'),animations:'disabled'});
+  await dialog.getByRole('button',{name:'Publish Highlights'}).click();
+  await expect(dialog).toHaveCount(0);expect(state.saved.p_content.offerings[0].title).toBe('Personal tea consultation');
+  expect(state.saved.p_content.languages).toBe('English, Spanish');
+});
+
+test('invalid items reveal their section before publishing and preserve other edits',async({page})=>{
+  const state=await site(page,{owner:true});await page.goto('/place/moss-apothecary');
+  await page.getByRole('button',{name:'Edit Business Highlights'}).click();const dialog=page.getByRole('dialog');
+  await dialog.getByRole('button',{name:'Products & services 1',exact:true}).click();
+  await dialog.getByRole('button',{name:'Add Offering',exact:true}).click();
+  await dialog.getByLabel('Title',{exact:true}).fill('New seasonal tea');
+  await dialog.getByRole('button',{name:'Main action',exact:true}).click();
+  await dialog.getByRole('button',{name:'Publish Highlights',exact:true}).click();
+  await expect(dialog.getByRole('alert')).toContainText('Add a booking, registration, or shopping link');
+  await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('New seasonal tea');
+  expect(state.saved).toBe(null);
+  await dialog.getByLabel('Shopping or booking link',{exact:true}).fill('https://example.com/tea');
+  await dialog.getByRole('button',{name:'Preview Highlights',exact:true}).click();
+  await expect(dialog.getByRole('region',{name:'Unpublished highlights preview'})).toContainText('New seasonal tea');
+  await dialog.getByRole('button',{name:'Back to Editing',exact:true}).click();
+  await expect(dialog.getByLabel('Title',{exact:true})).toHaveValue('New seasonal tea');
 });
