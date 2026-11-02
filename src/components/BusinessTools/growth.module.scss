@@ -1,3 +1,4 @@
+@use '../../styles/select' as dropdown;
 .tools { margin-block: 24px; border: 1px solid #718366; border-radius: 16px; padding: 20px; summary { cursor: pointer; font-size: 16px; font-weight: 600; } p { line-height: 1.7; } }
 .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-block: 18px; }
 .form { align-items: stretch; gap: 24px; width: 100%; label { display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 500; } input, select, textarea { width: 100%; padding: 12px; border: 1px solid #718366; border-radius: 8px; font: inherit; color: inherit; background: white; } textarea { resize: vertical; min-height: 90px; } fieldset { min-width: 0; border: 1px solid #718366; border-radius: 12px; padding: 22px; display: grid; gap: 16px; } legend { padding-inline: 8px; font-size: 17px; font-weight: 600; } button { margin-top: 0; } footer { display: flex; justify-content: flex-end; gap: 12px; position: sticky; bottom: -1px; padding: 15px 0; background: white; } }
@@ -91,3 +92,6 @@
 
 .offeringPhoto { display: grid; gap: 14px; padding: 18px; border: 1px solid #dce3d4; border-radius: 10px; background: #f8faef; strong { font-size: 13px; } p { margin: 6px 0 0; font-size: 12px; line-height: 1.6; } > img { width: 100%; max-height: 180px; object-fit: contain; background: white; border-radius: 8px; } }
 .form .offeringUpload { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; input { max-width: 100%; padding: 10px; background: white; font-size: 12px; } }
+
+.form select { @include dropdown.control(12px); }
+.form .inventoryDetail select { @include dropdown.control(10px); }
