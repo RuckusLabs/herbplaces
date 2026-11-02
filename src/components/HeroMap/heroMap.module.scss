@@ -1,15 +1,21 @@
 .scene { position: absolute; inset: 0; background: #edf0e6; }
 .map { position: absolute; inset: 0; overflow: hidden; }
-.basemap { position: absolute; inset: 0; filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
+.basemap { position: absolute; inset: 0; }
+.basemap :global(.maplibregl-marker) { z-index: 1; }
+.basemap :global(.maplibregl-canvas) { filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
 .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
-.wash { position: absolute; inset: 0; background: linear-gradient(90deg, #f7f9f1 0%, rgba(247,249,241,.98) 27%, rgba(247,249,241,.9) 36%, rgba(247,249,241,.15) 58%, transparent 75%); pointer-events: none; }
-.pins { position: absolute; inset: 0; pointer-events: none; }
+.wash, .basemap :global(.maplibregl-canvas-container)::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #f7f9f1 0%, rgba(247,249,241,.98) 27%, rgba(247,249,241,.9) 36%, rgba(247,249,241,.15) 58%, transparent 75%); pointer-events: none; }
 .openMap { position: absolute; right: 6%; bottom: 48px; z-index: 3; display: flex !important; align-items: center; justify-content: center; gap: 9px; width: fit-content; font-size: 11px; }
 .attribution { position: absolute; bottom: 7px; right: 12px; left: 12px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; font-size: 9px; a { text-decoration: none; } > a img { display: block; } > span { background: rgba(255,255,255,.88); padding: 3px 5px; } }
 @media (max-width: 760px) {
   .scene { position: relative; height: auto; background: none; padding-bottom: 28px; }
   .map { position: relative; height: 325px; background: #edf0e6; }
-  .wash { background: linear-gradient(180deg, #f7f9f1 0%, rgba(247,249,241,.2) 20%, transparent 45%, rgba(247,249,241,.7) 100%); }
+  .wash, .basemap :global(.maplibregl-canvas-container)::after { background: linear-gradient(180deg, #f7f9f1 0%, rgba(247,249,241,.2) 20%, transparent 45%, rgba(247,249,241,.7) 100%); }
   .openMap { position: relative; right: auto; bottom: auto; margin: 0 auto; }
   .attribution { bottom: 21px; right: 7px; left: 7px; font-size: 7px; gap: 5px; > a img { width: 65px; height: auto; } }
 }
+
+.reset { position: absolute; right: 6%; bottom: 98px; z-index: 3; padding: 9px 13px; min-height: 44px; border: 1px solid #b5c3a8; border-radius: 24px; background: rgba(255,255,255,.94); color: rgb(var(--tertiary-color)); font-size: 11px; }
+@media (max-width: 760px) { .reset { position: relative; display: block; right: auto; bottom: auto; margin: 0 auto 8px; } }
+
+.zoomControls { position: absolute; top: 16px; right: 16px; z-index: 3; display: grid; overflow: hidden; border: 1px solid #b5c3a8; border-radius: 9px; background: white; box-shadow: 0 2px 7px rgba(var(--tertiary-color), .12); button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; background: white; color: rgb(var(--tertiary-color)); font-size: 24px; line-height: 1; + button { border-top: 1px solid #dce3d4; } &:hover { background: #f7f9f1; } &:focus-visible { outline-offset: -4px; } } }

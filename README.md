@@ -40,20 +40,20 @@ This migration is prepared for review in the combined draft PR; it has not been 
 - `npm test` checks directory search, category filtering, resilient caching, guest saves, account merges, and safe account redirects.
 - `npm run build` generates the production site in `dist`.
 - `npm run preview` serves the production build locally.
-- `npx playwright test tests/browser/freeMaps.spec.js` checks maps, failure fallbacks, camera alignment, and blocked Mapbox requests.
+- `npx playwright test tests/browser/freeMaps.spec.js` checks maps, failure fallbacks, homepage panning/reset, and blocked Mapbox requests.
 - `npx playwright test --config playwright.maps.config.js` checks the production renderer and bundled worker without a Mapbox token.
 
 ## Directory behavior
 
 Homepage search links to `/map?view=map&q=...`. Category links use `/map?category=shops` (or `herbalists`, `gardens`, `workshops`); hero shortcuts also preserve Map view. Filters remain in the URL, so filtered views can be bookmarked. Categories match terms in existing listing fields; a dedicated taxonomy can replace this when the database provides one.
 
-The homepage hero lazy-loads a non-draggable free map with accessible pins positioned from actual listing coordinates. Nearby places share a pin; selecting a grouped pin opens the map fitted to that group’s area. Single-place pins open the place’s detail page directly. The Open the Full Map button opens the map directory. Hero searches and category shortcuts open Map view with the requested filters. Both maps share their pin components; Discover retains saving, dismissible popups, and mobile bottom sheets. Its individual pin labels appear on hover, keyboard focus, or selection to keep nearby places legible. The renderer is shared and lazy-loaded by both maps.
+The homepage hero retains the production layout: a softly blended free map behind the introduction, the original category pins and group counts, and an Open the Full Map link. Visitors can drag or zoom the map, with smaller groups appearing as they zoom in, then choose Reset Map to restore the opening position and zoom. Zoom buttons, pinch, double-click, and keyboard zoom are available; cooperative gestures preserve normal page scrolling and require Ctrl/Cmd for wheel zoom. Native geographic markers move with the map. Grouped pins open their area in Explore Places, while single pins open the listing. The opening view fits the directory’s actual coordinates as coverage grows. Discover retains its full pan/zoom controls, progressive clustering, saving, dismissible popups, and mobile bottom sheets. Both maps share their pin component and lazy-loaded renderer.
 
 Directory lists and the map results panel show at most 15 places per page. Previous/Next controls preserve filters and the current page in the URL. Filter and area changes reset to page one. All matching map pins remain available, and selecting a pin brings its result page into view. The list is the default view. `?view=map` preserves Map view in shareable URLs. The directory loads its renderer only when the visitor chooses Map. Map view links place cards to category pins, clusters nearby places, and offers an explicit area search. Filtering preserves the current camera; Show All Places clears the area restriction and fits the matching places. On mobile, selected places appear in a bottom sheet and the results list can be expanded. Places share one pending request and a five-minute memory/local-storage cache; navigation and window focus revalidate public listings. Blocked, full, or malformed storage does not prevent loading places. Retry refreshes the cache.
 
-Renderers are destroyed when leaving a map, so explicit retries create a fresh instance. Homepage pins and the background use the same camera at the actual container size, including after resizing. The places-data cache is separate from map resources.
+Renderers are destroyed when leaving a map, so explicit retries create a fresh instance. Homepage pins are native map markers, so they move with the basemap when panning, zooming, or resizing. The places-data cache is separate from map resources.
 
-Guests save places on their device; a successful new save opens an account prompt with Sign In and Keep Browsing options. Signup links and public Thrive promotions are hidden; existing accounts can still sign in. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
+Guests save places on their device; a successful new save opens an account prompt with Sign In and Keep Browsing options. The main account entry combines Sign In / Sign Up through email codes; public Thrive promotions stay hidden. Removing a save does not prompt. All cards and the saved-places page share a single favorites provider.
 
 Authenticated favorites use the existing Supabase `favorites` table. Guest saves merge automatically after sign-in or an email-confirmation callback, without replacing existing account saves. Device copies are removed only after the database confirms the merge. Failures retain local saves and provide a retry. The account forms preserve the return destination and send visitors from the save prompt to `/favorites` after syncing.
 
@@ -61,7 +61,7 @@ Places Near Me is available on the homepage and after All Places in the director
 
 ## Live account verification
 
-Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Sign In with an existing account, and complete email verification. Public signup links are hidden. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
+Use an email/account you control in the preview; do not share passwords in chat. While logged out, save a place, choose Sign In / Sign Up, accept the displayed terms, and complete email verification. The same flow supports new addresses and existing accounts; `/register` remains a compatible entry point. Confirm the place appears in Saved Places, reload, then sign out and sign back in to confirm account persistence. Repeat with an existing account that already has another favorite to verify both are retained. Automated tests cover merge failures and retries; actual hosted authentication, email delivery, and database permissions still require this live check.
 
 If email confirmation is enabled, Supabase's allowed redirect URLs must include the tested origin's `/auth/callback` URL, including localhost during local verification.
 
@@ -130,3 +130,7 @@ References: [GitHub workflow dispatch API](https://docs.github.com/en/rest/actio
 ## Business growth tools
 
 See [Business growth rollout](docs/business-growth-rollout.md) for database/function deployment order, feature flags, privacy and retention, Bloom offerings and events, and verification. Bloom is the only paid plan; the separate Thrive offer has been retired.
+
+## Unified account entry
+
+With email-code authentication enabled, `/login` and `/register` both offer Sign In or Sign Up. Consent is required before requesting a code; Supabase may create an account for a new email address while returning users keep their existing account. The verified session is still required before continuing, and safe return destinations, favorites synchronization, retry handling, resend cooldowns, and explicit ownership-claim review remain in place. Settings email verification continues to use its existing account-only behavior. The explicit password fallback remains available when `VITE_PASSWORDLESS_ENABLED=false`.

@@ -5,7 +5,7 @@ import { openingHoursSchema } from './openingHoursSchema.js';
 
 export const SITE_ORIGIN = 'https://littleherbplaces.com';
 export const SITE_NAME = 'Little Herb Places';
-export const DEFAULT_DESCRIPTION = 'Discover independent herb shops, apothecaries, herbalists, and gardens. Find your next little herb place and connect with a community rooted in nature.';
+export const DEFAULT_DESCRIPTION = 'Discover independent herb shops, apothecaries, herbalists, and gardens. Find your next Little Herb Place and connect with a community rooted in nature.';
 export const publicRoutes = [
   ...Object.entries(planPages).filter(([key]) => key === 'bloom').map(([key, plan]) => ({ path: `/the-little-garden/${key}`, title: plan.title, heading: plan.heading, description: plan.description })),
   { path: '/', title: 'Find Herb Shops, Apothecaries & Herbalists | Little Herb Places', heading: 'Find Your Little Herb Place.', description: DEFAULT_DESCRIPTION },

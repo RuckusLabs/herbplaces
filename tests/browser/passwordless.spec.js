@@ -36,7 +36,7 @@ async function setup(page) {
 }
 async function sendCode(page, registering = false) {
   await page.getByLabel('Email', { exact: true }).fill('owner@example.com');
-  if (registering) await page.getByRole('checkbox').check();
+  if (registering || await page.getByRole('checkbox').count()) await page.getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Send Email Code', exact: true }).click();
   await expect(page.getByLabel('Email code', { exact: true })).toBeFocused();
 }
@@ -75,7 +75,7 @@ test('existing account verifies a code and returns to a safe destination', async
   await page.screenshot({ path: testInfo.outputPath('email-entry.png'), fullPage: true });
   await sendCode(page);
   await page.screenshot({ path: testInfo.outputPath('code-entry.png'), fullPage: true });
-  expect(state.auth.find(item => item.path.endsWith('/otp')).body.create_user).toBe(false);
+  expect(state.auth.find(item => item.path.endsWith('/otp')).body.create_user).toBe(true);
   await expect(page.getByRole('button', { name: /Resend in/ })).toBeDisabled();
   await page.getByLabel('Email code', { exact: true }).fill('000000');
   await expect(page.getByRole('alert')).toContainText('invalid or has expired');
@@ -143,6 +143,7 @@ test('failed listing submission retains verified account and the same request fo
 
 test('send failures preserve the email and allow retry', async ({ page }) => {
   const state = await setup(page); state.sendError = true; await page.goto('/login');
+  await page.getByRole('checkbox').check();
   await page.getByLabel('Email', { exact: true }).fill('owner@example.com');
   await page.getByRole('button', { name: 'Send Email Code', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Please wait');
@@ -248,4 +249,19 @@ test('release help explains email codes and sales stay disabled for an approved 
   await expect(refund).toContainText('within seven days');
   await expect(refund).toContainText('Requesting a refund does not cancel future renewals.');
   await expect(refund.getByRole('link', { name: 'help@littleherbplaces.com', exact: true })).toHaveAttribute('href', 'mailto:help@littleherbplaces.com');
+});
+
+test('login and registration both offer the same consent-gated email flow for new users',async({page,isMobile})=>{
+ const state=await setup(page);
+ for(const path of ['/login','/register']){
+  await page.goto(`${path}?next=%2Ffavorites`);
+  await expect(page.getByRole('heading',{name:'Sign In or Sign Up.',exact:true})).toBeVisible();
+  await page.getByLabel('Email',{exact:true}).fill('new-person@example.com');
+  const before=state.auth.filter(item=>item.path.endsWith('/otp')).length;
+  await page.getByRole('button',{name:'Send Email Code',exact:true}).click();expect(state.auth.filter(item=>item.path.endsWith('/otp'))).toHaveLength(before);
+  await page.getByRole('checkbox').check();await page.getByRole('button',{name:'Send Email Code',exact:true}).click();await expect(page.getByLabel('Email code',{exact:true})).toBeVisible();
+  const sent=state.auth.filter(item=>item.path.endsWith('/otp')).at(-1).body;expect(sent.create_user).toBe(true);expect(sent.email).toBe('new-person@example.com');expect(sent).not.toHaveProperty('password');
+ }
+ await page.goto('/');if(isMobile)await page.getByRole('button',{name:'Open menu',exact:true}).click();await expect(page.getByRole('link',{name:'Sign In / Sign Up',exact:true})).toHaveAttribute('href','/login');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getHeroMapLayout } from '../utilities/heroMap.js';
+import { getHeroMapLayout, getHeroMapGroups } from '../utilities/heroMap.js';
 
 const places = [
   { id: 1, longitude: -116.31, latitude: 34.14 },
@@ -48,4 +48,13 @@ test('hero pins match the renderer camera at phone, desktop, and large desktop s
       assert.ok(group.y >= 0 && group.y <= height);
     }
   }
+});
+
+
+test('zooming separates nearby pins without losing any locations', () => {
+  const entries = [{ id: 'a', longitude: -104.9, latitude: 39.7 }, { id: 'b', longitude: -104.8, latitude: 39.7 }];
+  assert.equal(getHeroMapGroups(entries, 1200, 670, { longitude: -105, latitude: 40, zoom: 7 }).length, 1);
+  const closer = getHeroMapGroups(entries, 1200, 670, { longitude: -105, latitude: 40, zoom: 10 });
+  assert.equal(closer.length, 2);
+  assert.deepEqual(closer.flatMap(group => group.places.map(place => place.id)), ['a', 'b']);
 });

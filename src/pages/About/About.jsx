@@ -54,7 +54,7 @@ export default function About() {
     <Reveal className={styles.invitation} aria-labelledby="invitation-title">
       <Icon name="sparkles" size={76} />
       <h2 id="invitation-title">Follow a Little Curiosity.</h2>
-      <p>Find a new favorite shop. Meet a local maker. Get to know the green spaces around you. There’s a little herb place waiting to become part of your story.</p>
+      <p>Find a new favorite shop. Meet a local maker. Get to know the green spaces around you. There’s a Little Herb Place waiting to become part of your story.</p>
       <div className={styles.actions}>
         <Link className="button" to="/map">Explore Places <Icon name="arrow" size={18} /></Link>
         <Link className="button" to="/the-little-garden">Come Grow With Us <Icon name="arrow" size={18} /></Link>
