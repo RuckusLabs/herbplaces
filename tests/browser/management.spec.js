@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { Buffer } from 'node:buffer';
+import { mockFreeMaps } from './fixtures/freeMaps';
+
+test.beforeEach(async ({ page }) => { await mockFreeMaps(page); });
 
 const image = '/assets/pages/home/hero.jpg';
 const makePlace = () => ({ id: 'place-1', name: 'Moss Apothecary', urlSlug: 'moss-apothecary', tagline: 'A little care, rooted in plants.',
@@ -564,9 +567,6 @@ for (const start of ['/', '/map?category=shops']) {
     await mockSite(page, { role: 'guest' });
     await context.setGeolocation({ latitude: 39.7, longitude: -104.9 });
     await context.grantPermissions(['geolocation']);
-    await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
-    await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
-    await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
     await page.addInitScript(() => {
       window.locationDialogs = 0;
       const showModal = HTMLDialogElement.prototype.showModal;
@@ -614,9 +614,6 @@ test('homepage grouped pins open the map fitted to all places in the group', asy
     { ...makePlace(), id: 'fern', name: 'Fern Garden', urlSlug: 'fern-garden', latitude: 39.72, longitude: -104.88 },
     { ...makePlace(), id: 'distant', name: 'Distant Garden', urlSlug: 'distant-garden', latitude: 30.27, longitude: -97.74 },
   ];
-  await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
-  await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
-  await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
   await page.goto('/');
   await page.getByRole('button', { name: 'Explore 2 places in this area' }).click();
   await expect(page).toHaveURL(/map\?view=map&bounds=/);
@@ -668,9 +665,6 @@ test('directory pagination limits lists and map results to 15 and resets with fi
 test('map pins select results beyond the current pagination page', async ({ page }) => {
   const state = await mockSite(page, { role: 'guest' });
   state.extraPlaces = Array.from({ length: 30 }, (_, index) => ({ ...makePlace(), id: `place-${index + 2}`, name: `Test Place ${String(index + 2).padStart(2, '0')}`, urlSlug: `test-place-${index + 2}`, longitude: -104.9 + (index + 1) * .03 }));
-  await page.route('**/src/utilities/mapConfig.js', route => route.fulfill({ contentType: 'application/javascript', body: 'export const MAPBOX_TOKEN = "pk.browser-test-token";' }));
-  await page.route('https://api.mapbox.com/**', route => route.fulfill({ json: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#edf0e6' } }] } }));
-  await page.route('https://events.mapbox.com/**', route => route.fulfill({ status: 204 }));
   await page.goto('/map?view=map&bounds=-104.005,39.695,-103.995,39.705');
   await page.getByRole('button', { name: 'View Test Place 31 on Map', exact: true }).click();
   await expect(page).toHaveURL(/page=3/);
@@ -826,7 +820,7 @@ test('business plans explain purchase timing and keep newsletter signup distinct
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden');
   await expect(page.getByText('Claiming is free and ownership approval comes before payment.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Explore the Thrive Pilot', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Explore the Thrive Pilot', exact: true })).toHaveCount(0);
   await expect(page.getByText('Verified Place Badge', { exact: true })).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('business-plans.png'), fullPage: true });
   await page.goto('/the-little-garden/sprout');
@@ -910,15 +904,12 @@ test('guided start routes pending claims and claimed places to their next step',
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
-test('Thrive starts with a place while keeping upcoming availability clear', async ({ page }) => {
+test('old Thrive links return to the available business plans', async ({ page }) => {
   await mockSite(page, { role: 'guest' });
   await page.goto('/the-little-garden/thrive');
-  await page.getByRole('link', { name: 'Start with Your Place', exact: true }).first().click();
-  await expect(page).toHaveURL(/the-little-garden\/start\?plan=thrive$/);
-  await expect(page.getByText('Thrive is coming soon.', { exact: false })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Ask about Thrive', exact: true })).toHaveAttribute('href', /^mailto:/);
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,follow');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await expect(page).toHaveURL(/the-little-garden\/?$/);
+  await expect(page.getByRole('heading', { name: 'Bloom', exact: true })).toBeVisible();
+  await expect(page.locator('a[href*="/thrive"]')).toHaveCount(0);
 });
 
 
@@ -1372,7 +1363,7 @@ test('account dropdown identifies the user and supports dismissal and sign out',
   await navigation.getByRole('button', { name: 'Sign Out', exact: true }).click();
   await expect(account).toHaveCount(0);
   if (isMobile) await page.getByRole('button', { name: 'Open menu', exact: true }).click();
-  await expect(navigation.getByRole('link', { name: 'Join the Community' })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Sign In', exact: true })).toBeVisible();
   expect(state.authRequests.some(request => request.url.includes('/logout'))).toBe(true);
 });
 
@@ -1505,7 +1496,7 @@ test('admin badges show global pending counts, hide zeroes, and refresh after a 
 test('admin email review links preserve their section through sign-in', async ({ page }) => {
   await mockSite(page, { role: 'guest' });
   await page.goto('/admin?section=listing-requests');
-  await expect(page.getByRole('link', { name: 'Sign In', exact: true })).toHaveAttribute('href', '/login?next=%2Fadmin%3Fsection%3Dlisting-requests');
+  await expect(page.locator('#main-content').getByRole('link', { name: 'Sign In', exact: true })).toHaveAttribute('href', '/login?next=%2Fadmin%3Fsection%3Dlisting-requests');
 });
 
 test('admin sidebar collapses to icons, retains badges, and remembers its width', async ({ page, isMobile }, testInfo) => {

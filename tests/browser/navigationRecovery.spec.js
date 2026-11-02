@@ -5,7 +5,7 @@ test('a failed page download recovers once and preserves the destination', async
   let failed = false;
   let documents = 0;
   page.on('request', request => { if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documents++; });
-  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx', route => {
+  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx*', route => {
     if (!failed) { failed = true; return route.abort('failed'); }
     return route.continue();
   });
@@ -22,7 +22,7 @@ test('persistent download failures show a retry screen and can recover without l
   let blocked = true;
   let documents = 0;
   page.on('request', request => { if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documents++; });
-  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx', route => blocked ? route.abort('failed') : route.continue());
+  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx*', route => blocked ? route.abort('failed') : route.continue());
   await page.goto('/the-little-garden');
   await page.getByRole('link', { name: 'Explore Bloom', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Let’s try that page again.', exact: true })).toBeVisible();
@@ -40,7 +40,7 @@ test('a page rendering error leaves navigation available and does not automatica
   await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }));
   let documents = 0;
   page.on('request', request => { if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documents++; });
-  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx', route => route.fulfill({ contentType: 'application/javascript', body: 'export default function BusinessPlan() { throw new Error("Test page rendering failure"); }' }));
+  await page.route('**/src/pages/TheLittleGarden/BusinessPlan.jsx*', route => route.fulfill({ contentType: 'application/javascript', body: 'export default function BusinessPlan() { throw new Error("Test page rendering failure"); }' }));
   await page.goto('/the-little-garden');
   await page.getByRole('link', { name: 'Explore Bloom', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Let’s try that page again.', exact: true })).toBeVisible();

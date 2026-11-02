@@ -1,11 +1,11 @@
 .garden { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1440px) minmax(0, 1fr); > * { grid-column: 2; } h1, h2, h3 { font-family: 'Editorial', Georgia, serif; font-weight: 200; line-height: 1.1; } p { font-size: 14px; font-weight: 400; line-height: 1.85; color: rgba(var(--tertiary-color), .8); } :global(.button) { display: inline-flex; align-items: center; justify-content: center; gap: 12px; } }
 .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 9%; align-items: center; padding: 50px 7.2% 65px; }
-.heroCopy { > svg { margin-bottom: 22px; } h1 { font-size: clamp(64px, 7vw, 96px); margin-bottom: 25px; } > p:first-of-type { font-family: 'Editorial', Georgia, serif; font-size: 29px; line-height: 1.35; color: rgb(var(--tertiary-color)); } > p + p { margin-top: 18px; max-width: 440px; } > a { margin-top: 28px; } }
+.heroCopy { > svg { margin-bottom: 22px; } h1 { font-size: clamp(64px, 7vw, 96px); margin-top: 8px; margin-bottom: 25px; } > p:first-of-type { font-family: 'Editorial', Georgia, serif; font-size: 29px; line-height: 1.35; color: rgb(var(--tertiary-color)); } > p + p { margin-top: 18px; max-width: 440px; } > a { margin-top: 28px; } }
 .heroImage { position: relative; img { display: block; width: 100%; height: 560px; object-fit: cover; border-radius: 240px 240px var(--border-radius) var(--border-radius); } span { position: absolute; bottom: 22px; left: 22px; right: 22px; padding: 17px 20px; border-radius: 15px; text-align: center; background: rgba(255, 255, 255, .94); font-family: 'Editorial', Georgia, serif; font-size: 22px; } }
 .valuesInner { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 55px; padding: 42px min(7.2vw, 103.68px); h2 { font-size: 29px; margin: 16px 0 12px; } p { font-size: 13px; max-width: 290px; } }
 .plans { padding: 70px 7.2%; scroll-margin-top: 30px; }
 .sectionIntro { margin-bottom: 35px; max-width: 720px; h2 { font-size: clamp(36px, 4vw, 51px); margin: 0 0 20px; } }
-.planGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.planGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .plan { display: flex; flex-direction: column; padding: 30px; border: 1px solid rgba(var(--tertiary-color), .16); border-radius: var(--border-radius); background: rgba(var(--gray-color), .65); h3 { font-size: 40px; margin: 20px 0 12px; } .planDescription { font-size: 13px; min-height: 78px; } .price { font-family: 'Editorial', Georgia, serif; font-size: 39px; color: rgb(var(--tertiary-color)); margin-top: 22px; span { font-family: Inter, system-ui, sans-serif; font-size: 13px; } } ul { list-style: none; margin: 22px 0 30px; padding: 20px 0 0; border-top: 1px solid rgba(var(--tertiary-color), .13); flex: 1; } li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; line-height: 1.65; margin-bottom: 12px; img { flex-shrink: 0; margin-top: 3px; } } > a, > button { width: 100%; } > button:disabled { opacity: .65; } }
 .available { background: rgba(var(--primary-color), .18); border-color: rgb(var(--secondary-color)); }
 .planTop { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
@@ -37,3 +37,10 @@
 
 .planTop { flex-direction: column; align-items: flex-start; justify-content: flex-start; min-height: 112px; gap: 12px; }
 @media(max-width: 640px) { .planTop { min-height: 0; } }
+
+.hero { padding-bottom: 30px; gap: 5%; }
+.heroCopy { h1 { font-size: clamp(44px, 5vw, 69px); margin-bottom: 22px; } > p:first-of-type { font: 500 11px/1.6 Inter, system-ui, sans-serif; text-transform: uppercase; letter-spacing: .1em; } > p:nth-of-type(2) { font: 200 25px/1.4 'Editorial', Georgia, serif; } .heroNote { font-size: 12px; line-height: 1.7; margin-top: 16px; } .compareLink { display: block; font-size: 13px; margin-top: 18px; } }
+.heroImage img { height: 420px; }
+.plans { padding-top: 32px; }
+.communityOption { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin: 0 7.2% 48px; padding: 26px; border: 1px solid #c5cfb4; border-radius: 18px; h3 { font-size: 34px; margin: 0 0 10px; } p { max-width: 560px; margin: 0; } > svg { flex-shrink: 0; } > a { margin-left: auto; } }
+@media(max-width:640px) { .heroImage { display: none; } .heroCopy h1 { font-size: 48px; } .hero { padding-bottom: 22px; } .plans { padding-top: 20px; } .communityOption { margin-inline: 6%; > a { margin-left: 0; } } }

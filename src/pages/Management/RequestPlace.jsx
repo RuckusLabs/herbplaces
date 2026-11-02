@@ -8,6 +8,7 @@ import { passwordlessEnabled } from '../../utilities/authFeatures';
 import Icon from '../../components/Icons/Icon';
 import { useManagement } from '../../contexts/ManagementContext';
 import { getWebsiteUrl } from '../../utilities/placeDetails';
+import { trackBusinessJourney } from '../../utilities/businessJourney';
 import { managementRpc } from '../../utilities/managementApi';
 import ListingRequestCards from '../../components/PlaceManagement/ListingRequestCards';
 import styles from '../../components/PlaceManagement/management.module.scss';
@@ -30,7 +31,8 @@ function readDraft() {
 export default function RequestPlace({ embedded = false }) {
   const { pathname, search } = useLocation();
   const destination = encodeURIComponent(`${pathname}${search}`);
-  const plan = new URLSearchParams(search).get('plan') === 'thrive' ? 'thrive' : 'bloom';
+  const plan = 'bloom';
+  useEffect(() => { trackBusinessJourney('listing_request_started', plan, 'missing'); }, [plan]);
   const claimPath = slug => embedded ? `/the-little-garden/start?${new URLSearchParams({ plan, place: slug, claim: '1' })}` : `/place/${slug}?claim=1`;
   const Root = embedded ? 'section' : 'main';
 

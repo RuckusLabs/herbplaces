@@ -29,6 +29,5 @@ export default function Help() {
       <p>You can request a refund of the first Bloom subscription payment for a place within seven days of payment. Renewal payments are reviewed for billing errors. A refund request does not cancel future renewals; cancel those separately in Manage Billing with Stripe.</p>
       <p>For billing corrections or refund requests, email us with the listing name and invoice reference. Don’t send card details or passwords. See <Link to="/membership-terms">membership terms</Link> and our <Link to="/privacy">privacy information</Link>.</p>
     </section>
-    <section id="thrive" className={styles.card}><h2>What’s happening with Thrive?</h2><p>Thrive is coming soon at $49/month per place and is not yet available for purchase. Product and service showcases and promotion options are being developed. We’ll confirm exactly what’s included before accepting payment. <a href="mailto:help@littleherbplaces.com?subject=Thrive%20inquiry">Ask us about Thrive</a>.</p></section>
   </main>;
 }

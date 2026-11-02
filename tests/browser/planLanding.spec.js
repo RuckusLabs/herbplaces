@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-for (const plan of ['Bloom', 'Thrive']) {
+for (const plan of ['Bloom']) {
   test(`${plan} keeps its plan action available while reading and leaves footer links accessible`, async ({ page }) => {
     await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }));
     await page.goto(`/the-little-garden/${plan.toLowerCase()}/`);
@@ -10,7 +10,7 @@ for (const plan of ['Bloom', 'Thrive']) {
     const purchase = mobile ? page.getByRole('region', { name: `${plan} quick signup` }) : page.getByRole('complementary', { name: `${plan} plan details` });
     const action = purchase.getByRole('link', { name: plan === 'Bloom' ? mobile ? 'Get Bloom' : 'Get Started with Bloom' : mobile ? 'Ask About Pilot' : 'Ask About the Thrive Pilot', exact: true });
     await expect(action).toBeVisible();
-    await expect(action).toHaveAttribute('href', plan === 'Bloom' ? '/the-little-garden/start?plan=bloom' : /^mailto:/);
+    await expect(action).toHaveAttribute('href', plan === 'Bloom' ? '/the-little-garden/start?plan=bloom' : '#thrive-application');
     const box = await action.boundingBox();
     expect(box.y).toBeGreaterThanOrEqual(0);
     expect(box.y + box.height).toBeLessThanOrEqual(page.viewportSize().height);
@@ -40,7 +40,7 @@ for (const plan of ['Bloom', 'Thrive']) {
 
 test('route headings keep navigation focus without a green box, while keyboard controls stay outlined', async ({ page }) => {
   await page.route('**/rest/v1/**', route => route.fulfill({ json: [] }));
-  for (const [plan, heading] of [['Bloom', 'Help the right people choose your place.'], ['Thrive', 'Give people a reason to shop, book, or join you.']]) {
+  for (const [plan, heading] of [['Bloom', 'Help the right people choose your place.']]) {
     await page.goto('/the-little-garden/');
     const entry = page.getByRole('link', { name: plan === 'Bloom' ? 'Explore Bloom' : 'Explore the Thrive Pilot', exact: true });
     await entry.focus(); await entry.press('Enter');

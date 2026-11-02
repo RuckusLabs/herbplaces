@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../contexts/AuthContext';
 import { useManagement } from '../../contexts/ManagementContext';
@@ -26,6 +26,8 @@ const slideScrollLeft = (rail, slide) => Math.max(0, Math.min(slide.offsetLeft, 
 
 export default function Place() {
   const { slug } = useParams();
+  const [params] = useSearchParams();
+  const reportAction = ['action','announcement','share'].includes(params.get('business'));
   const { places, loading, error, retry } = usePlaces();
   const publishedPlace = places.find(item => item.urlSlug === slug);
   const { user } = useAuth();
@@ -101,7 +103,7 @@ export default function Place() {
 
   useEffect(() => {
     if (placeId && !management.loading && !managesPlace && !showingPreview) trackPlaceActivity(placeId, 'profile_view');
-  }, [placeId, management.loading, managesPlace, showingPreview]);
+  }, [placeId, management.loading, managesPlace, showingPreview, photos.length]);
 
   if (loading) return <main id="main-content" className={styles.page}><div className={styles.loading} role="status"><Icon name="sprout" size={60} /><p>Getting to Know This Little Place…</p></div></main>;
   if (!place) return <main id="main-content" className={styles.page}>{!error && <Helmet><title>Place Not Found | Little Herb Places</title><meta name="robots" content="noindex,follow" /></Helmet>}<div className={styles.loading}><Icon name="leaf" size={64} /><h1>{error ? 'A Little Pause in the Garden.' : 'A Little Off the Beaten Path.'}</h1><p>{error || 'We couldn’t find this little place.'}</p>{error && <button className="button" onClick={retry}>Try Again</button>}<Link className="button" to="/map">Back to All Places</Link></div></main>;
@@ -134,6 +136,7 @@ export default function Place() {
       <div className={styles.headingActions}><FavoriteButton itemId={place.id} className={`button ${styles.saveButton}`} showText /></div>
     </header>
     {managesPlace && !showingPreview && <BusinessTools place={publishedPlace} onChanged={growth.refresh} />}
+    {reportAction && !managesPlace && !management.loading && !showingPreview && <p className={styles.reportSignIn}>{!user ? <><Link to={`/login?next=${encodeURIComponent(`/place/${slug}?${params}`)}`}>Sign in to open your business tools</Link> and continue from your report.</> : <>Business tools are available to approved managers. <Link to="/my-places">Check your management access</Link>.</>}</p>}
     {growthProfile && <PlaceHighlights profile={growthProfile} now={growth.now} placeId={String(place.id)} track={!managesPlace && !showingPreview} />}
     {hasPhotos && <><section className={styles.photos} aria-label={`Photos of ${place.name}`} aria-roledescription="carousel">
       <div className={styles.photoFrame}>
@@ -192,6 +195,7 @@ export default function Place() {
           </div>}
         </div>
         <div className={styles.visitActions}>
+          {!hours.length && <p>Opening hours haven’t been added here. Check with the business before visiting.</p>}
           {address && <a className="button" onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'directions_click'); }} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer"><Icon name="pin" size={20} />Get Directions</a>}
           {website && <a className="button" href={website} onClick={() => { if (!managesPlace && !showingPreview) trackPlaceActivity(place.id, 'website_click'); }} target="_blank" rel="noopener noreferrer"><Icon name="globe" size={20} />Visit Their Website <Icon name="arrow" size={17} /></a>}
           {(place.social_links || []).map((link, index) => getWebsiteUrl(link.url) && <a className="button" href={getWebsiteUrl(link.url)} key={index} target="_blank" rel="noopener noreferrer"><Icon name="link" size={20} />{link.label}<Icon name="arrow" size={17} /></a>)}

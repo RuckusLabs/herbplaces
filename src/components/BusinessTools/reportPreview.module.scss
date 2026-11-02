@@ -1,0 +1,6 @@
+.report { margin: 28px 0 0; border: 1px solid #718366; border-radius: 18px; padding: clamp(20px, 3vw, 32px); background: #fffefa; color: #293d29; figcaption { display: grid; gap: 10px; margin-bottom: 24px; > span { font-size: 12px; line-height: 1.6; } > strong { font: 200 30px/1.2 'Editorial', Georgia, serif; } } p { line-height: 1.7; } }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; > div { display: grid; gap: 10px; padding: 18px; border: 1px solid #c2ccb6; border-radius: 12px; } span { font-size: 13px; } strong { font-size: 32px; } small { font-size: 12px; line-height: 1.5; } }
+.next { background: #f1f7db; border-radius: 12px; padding: 20px; margin-top: 22px; > span { font-size: 13px; line-height: 1.6; } }
+.offering { margin-top: 22px; font-size: 14px; }
+.report .note { font-size: 12px; margin: 20px 0 0; }
+@media(max-width: 550px) { .metrics { grid-template-columns: 1fr; > div { grid-template-columns: 1fr auto; align-items: center; } small { grid-column: 1 / -1; } } }

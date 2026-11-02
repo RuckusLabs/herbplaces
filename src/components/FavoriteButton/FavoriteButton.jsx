@@ -35,9 +35,8 @@ export default function FavoriteButton({ itemId, itemType = 'place', size = 30, 
       <div className={styles.prompt}>
         <Icon name="sprout" size={72} />
         <h2 id={`${promptId}-title`}>Keep Your Favorite Places Close.</h2>
-        <p id={`${promptId}-description`}>We’ve saved this place on this device. Create a free account to keep your favorites with you wherever you sign in.</p>
+        <p id={`${promptId}-description`}>We’ve saved this place on this device. If you already have an account, sign in to keep your favorites across devices.</p>
         <div className={styles.actions}>
-          <Link to="/register?next=%2Ffavorites" className="button" onClick={() => setShowAccountPrompt(false)}>Create an Account <Icon name="arrow" size={18} /></Link>
           <Link to="/login?next=%2Ffavorites" className={`button ${styles.secondary}`} onClick={() => setShowAccountPrompt(false)}>Already a Member? Sign In</Link>
           <button type="button" className={`button ${styles.browse}`} onClick={() => setShowAccountPrompt(false)}>Keep Browsing</button>
         </div>

@@ -45,3 +45,5 @@
   :global(body.has-plan-action) { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
 }
 @media(max-width: 540px) { .breadcrumb { margin-bottom: 25px; } .hero { padding-top: 0; h1 { font-size: 47px; } .intro { font-size: 15px; } } .offer { display: block; } .offerImage { height: 145px; min-height: 0; } .offerCopy { padding: 25px; } .featureGrid { grid-template-columns: 1fr; gap: 25px; } .sectionIntro h2 { font-size: 34px; } .features { padding-top: 30px; } .journey ol { grid-template-columns: 1fr; } .assistance { padding: 22px; gap: 15px; > svg { width: 25px; } h2 { font-size: 27px; } } .mobileAction { padding-inline: 5%; } }
+
+.realExample { padding: 25px; margin-bottom: 35px; border: 1px solid #c5cfb4; border-radius: 18px; h2 { font-size: 30px; margin-top: 0; } a { display: inline-flex; gap: 12px; align-items: center; } .exampleNote { font-size: 11px; margin-bottom: 0; } }

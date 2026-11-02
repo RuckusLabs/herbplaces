@@ -21,10 +21,10 @@ jobs:
     env:
       VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
       VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-      VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       VITE_PASSWORDLESS_ENABLED: ${{ vars.VITE_PASSWORDLESS_ENABLED || 'true' }}
       VITE_BLOOM_ENABLED: ${{ vars.VITE_BLOOM_ENABLED }}
       VITE_GROWTH_ENABLED: ${{ vars.VITE_GROWTH_ENABLED }}
+      VITE_BUSINESS_JOURNEY_ENABLED: ${{ vars.VITE_BUSINESS_JOURNEY_ENABLED || 'false' }}
       VITE_ACTIVITY_REPORTS_ENABLED: ${{ vars.VITE_ACTIVITY_REPORTS_ENABLED }}
       
     steps:
@@ -57,10 +57,6 @@ jobs:
         env:
           SEO_PLACES_FILE: ${{ runner.temp }}/seo-places.json
         run: |
-          if [ -z "$VITE_MAPBOX_TOKEN" ]; then
-            echo "::error::Add the VITE_MAPBOX_TOKEN repository secret before deploying maps."
-            exit 1
-          fi
           npx playwright install --with-deps chromium
           npm run build:pages
         

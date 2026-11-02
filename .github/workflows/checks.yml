@@ -13,9 +13,9 @@ jobs:
     env:
       VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
       VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-      VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
       VITE_BLOOM_ENABLED: ${{ vars.VITE_BLOOM_ENABLED }}
       VITE_GROWTH_ENABLED: ${{ vars.VITE_GROWTH_ENABLED }}
+      VITE_BUSINESS_JOURNEY_ENABLED: ${{ vars.VITE_BUSINESS_JOURNEY_ENABLED || 'false' }}
       VITE_ACTIVITY_REPORTS_ENABLED: ${{ vars.VITE_ACTIVITY_REPORTS_ENABLED }}
     steps:
       - uses: actions/checkout@v4
@@ -27,5 +27,6 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - run: npm run test:ui
+      - run: npx playwright test --config playwright.maps.config.js
       - run: npm run test:passwordless
       - run: npm run build:pages

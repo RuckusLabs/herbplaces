@@ -5,7 +5,6 @@ import BookIcon from '../../assets/icons/book.svg?react';
 import PolaroidIcon from '../../assets/icons/polaroid.svg?react';
 import BrandClockIcon from '../../assets/icons/brand-clock.svg?react';
 import PlaceIcon from '../../assets/icons/place.svg?react';
-import ThriveIcon from '../../assets/icons/thrive.svg?react';
 import LeafIcon from '../../assets/icons/leaf.svg?react';
 import SproutIcon from '../../assets/icons/sprout.svg?react';
 import BloomIcon from '../../assets/icons/bloom.svg?react';
@@ -21,7 +20,7 @@ import CraftIcon from '../../assets/icons/craft.svg?react';
 import MapPlaceIcon from '../../assets/icons/map.svg?react';
 import NearbyIcon from '../../assets/icons/nearby.svg?react';
 
-const brandIcons = { settings: SettingsIcon, 'sign-out': SignOutIcon, book: BookIcon, polaroid: PolaroidIcon, 'brand-clock': BrandClockIcon, shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, thrive: ThriveIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
+const brandIcons = { settings: SettingsIcon, 'sign-out': SignOutIcon, book: BookIcon, polaroid: PolaroidIcon, 'brand-clock': BrandClockIcon, shop: PlaceIcon, places: MapPlaceIcon, nearby: NearbyIcon, leaf: LeafIcon, sprout: SproutIcon, sun: BloomIcon, pin: LocationIcon, badge: BadgeIcon, heart: HeartIcon, lightbulb: LightbulbIcon, group: GroupIcon, community: CommunityIcon, sparkles: SparklesIcon, garden: GardenIcon, craft: CraftIcon };
 
 const paths = {
   'plan-story': <><path d="M5 3h10l4 4v14H5Z M14 3v5h5 M8 12h8 M8 16h6" /><path d="m8 7 2-2" /></>,

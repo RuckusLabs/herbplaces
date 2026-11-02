@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useManagement } from '../../contexts/ManagementContext';
@@ -17,6 +17,12 @@ export default function PlaceManagement({ place, placement = 'top', onPreview, p
   const claim = management.claims.find(item => String(item.place_id) === String(place.id) && item.status === 'pending');
   const canEdit = management.is_admin || (membership && (membership.can_edit || subscriptionAllowsEditing(membership.subscription)));
   const hasAccess = canEdit || !!membership;
+  useEffect(() => {
+    if (placement === 'top' && canEdit && !management.loading && params.get('edit') === '1') {
+      setEditing(true);
+      const next = new URLSearchParams(params); next.delete('edit'); setParams(next, { replace: true });
+    }
+  }, [placement, canEdit, management.loading, params, setParams]);
   const closeClaim = () => {
     setClaiming(false);
     if (params.has('claim')) {

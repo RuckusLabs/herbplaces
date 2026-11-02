@@ -9,12 +9,13 @@ import { claimEvidence, clearClaimDraft, readClaimDraft, saveClaimDraft } from '
 import Modal from '../Modal/Modal';
 import styles from './management.module.scss';
 
-export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) {
+export default function PlaceClaim({ place, onClose, onSubmitted, returnPath, initialWebsite = '' }) {
   const { user } = useAuth();
   const management = useManagement();
   const navigate = useNavigate();
   const id = useId();
-  const [draft, setDraft] = useState(() => readClaimDraft(place.id, user?.email));
+  const requestWebsite = initialWebsite || management.listingRequests.requests.find(request => request.status === 'listed' && request.place_slug === place.urlSlug)?.website || '';
+  const [draft, setDraft] = useState(() => { const saved = readClaimDraft(place.id, user?.email); return { ...saved, verificationUrl: saved.verificationUrl || requestWebsite }; });
   const [reviewing, setReviewing] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -51,7 +52,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) 
     finally { setBusy(false); }
   };
   return <Modal open onClose={() => { if (!busy) onClose(); }} labelledBy={`${id}-title`} describedBy={`${id}-intro`} closeLabel="Close claim request" className={styles.claimDialog} contentClassName={styles.claimBody}>
-    <p className={styles.claimStep}>Step {reviewing ? '2' : '1'} of 2 · {reviewing ? 'Review your request' : 'Ownership details'}</p>
+    <p className={styles.claimStep}>Ownership form · Step {reviewing ? '2' : '1'} of 2 · {reviewing ? 'Review your request' : 'Ownership details'}</p>
     <h2 id={`${id}-title`} className={styles.editorHeading} ref={heading} tabIndex={-1}>{reviewing ? 'A Little Check Before You Send.' : `Claim ${place.name}`}</h2>
     <p id={`${id}-intro`}>{reviewing ? `Check your details for ${place.name}. Our team reviews every claim before granting access.` : 'Help us confirm that you own this place or are authorized to manage it. Share a few details our team can check.'}</p>
     <form className={styles.form} onSubmit={submit}>
@@ -68,6 +69,7 @@ export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) 
           <p className={styles.small}>Use an email associated with the business, if you have one. We may use these details to confirm your connection.</p>
         </fieldset>
         <fieldset><legend>Help us verify ownership</legend>
+          {requestWebsite && <p className={styles.small}>We’ve carried over your listing request’s website. Check it below and add the details that show your connection to the business.</p>}
           <label>Verification link (optional)<input type="url" pattern="https?://.+" title="Enter a full website address starting with https:// or http://." value={draft.verificationUrl} onChange={update('verificationUrl')} maxLength={500} placeholder="https://your-business.com/about" aria-describedby={`${id}-link-help`} /></label>
           <p id={`${id}-link-help`} className={styles.small}>A business website, team page, or official social profile that connects you to this place.</p>
           <label>Ownership details<textarea value={draft.evidence} onChange={update('evidence')} required minLength={40} maxLength={1600} aria-describedby={`${id}-evidence-help`} placeholder="Tell us how you’re connected to the business and how we can confirm it." /></label>
@@ -98,4 +100,4 @@ export default function PlaceClaim({ place, onClose, onSubmitted, returnPath }) 
     </form>
   </Modal>;
 }
-PlaceClaim.propTypes = { place: PropTypes.object.isRequired, returnPath: PropTypes.string, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };
+PlaceClaim.propTypes = { place: PropTypes.object.isRequired, returnPath: PropTypes.string, initialWebsite: PropTypes.string, onClose: PropTypes.func.isRequired, onSubmitted: PropTypes.func.isRequired };

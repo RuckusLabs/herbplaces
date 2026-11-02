@@ -27,6 +27,7 @@ const Login = lazyPage(() => import('./pages/Auth/Login'));
 const Register = lazyPage(() => import('./pages/Auth/Register'));
 const AccountRecovery = lazyPage(() => import('./pages/Auth/AccountRecovery'));
 const Admin = lazyPage(() => import('./pages/Management/Admin'));
+const AdminBusinessGrowth = lazyPage(() => import('./pages/Management/AdminBusinessGrowth'));
 const MyPlaces = lazyPage(() => import('./pages/Management/MyPlaces'));
 const RequestPlace = lazyPage(() => import('./pages/Management/RequestPlace'));
 const Policies = lazyPage(() => import('./pages/Help/Policies'));
@@ -51,7 +52,7 @@ const routes = [
   { path: '/the-little-garden', element: <TheLittleGarden /> },
   { path: '/the-little-garden/start', element: <StartBusiness /> },
   { path: '/the-little-garden/bloom', element: <BusinessPlan plan="bloom" /> },
-  { path: '/the-little-garden/thrive', element: <BusinessPlan plan="thrive" /> },
+  { path: '/the-little-garden/thrive', element: <Navigate to="/the-little-garden" replace /> },
   { path: '/the-little-garden/sprout', element: <SproutSignup /> },
   { path: '/place/:slug', element: <Place /> },
   { path: '/login', element: <Login /> },
@@ -65,6 +66,7 @@ const routes = [
   { path: '/my-places', element: <MyPlaces /> },
   { path: '/reports/unsubscribe', element: <ReportUnsubscribe /> },
   { path: '/admin', element: <Admin /> },
+  { path: '/admin/business-growth', element: <AdminBusinessGrowth /> },
   { path: '/request-place', element: <RequestPlace /> },
   { path: '/privacy', element: <Policies mode="privacy" /> },
   { path: '/membership-terms', element: <Policies mode="terms" /> },

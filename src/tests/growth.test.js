@@ -54,10 +54,10 @@ test('public activity endpoint enforces origins, hashes IPs, honors DNT, and for
   now=new Date('2026-10-28T12:00:00Z');await handler(make());assert.notEqual(records[0].p_visitor_hash,records[1].p_visitor_hash);
   assert.equal((await handler(make({}, {kind:'invented',event_id:'bad'}))).status,400);
 });
-test('plan comparison preserves Sprout, Bloom, and Thrive and advertises growth tools only when enabled',()=>{
+test('plan comparison offers Bloom without Thrive or signup links and advertises enabled tools',()=>{
   const route={path:'/the-little-garden'};
   const disabled=renderRouteContent(route,[],{growthEnabled:false});
   const enabled=renderRouteContent(route,[],{growthEnabled:true,bloomAvailable:true});
-  assert.match(enabled,/Create a Free Account/);assert.match(enabled,/30-day Activity Report and CSV/);assert.match(enabled,/Thrive is not available for purchase/);
-  assert.ok(enabled.includes('Sprout'));assert.ok(!disabled.includes('30-day Activity Report and CSV'));
+  assert.match(enabled,/Bloom/);assert.match(enabled,/30-day Activity Report and CSV/);
+  assert.doesNotMatch(enabled,/Thrive|Sprout|href="[^"]*(?:register|sprout|thrive)/);assert.ok(!disabled.includes('30-day Activity Report and CSV'));
 });
