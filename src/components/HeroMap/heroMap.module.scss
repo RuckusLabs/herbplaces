@@ -1,18 +1,19 @@
-.scene { position: absolute; inset: 0; background: #f7f9f1; }
-.map { position: absolute; inset: 0 0 0 46%; overflow: hidden; background: #edf0e6; }
-.basemap { position: absolute; inset: 0; filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
+.scene { position: absolute; inset: 0; background: #edf0e6; }
+.map { position: absolute; inset: 0; overflow: hidden; }
+.basemap { position: absolute; inset: 0; }
+.basemap :global(.maplibregl-marker) { z-index: 1; }
+.basemap :global(.maplibregl-canvas) { filter: sepia(.2) saturate(.75) hue-rotate(20deg); }
 .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
-.hint { position: absolute; top: 20px; left: 20px; right: 58px; width: fit-content; margin: 0; padding: 10px 13px; border: 1px solid #dce3d4; border-radius: 10px; background: rgba(255,255,255,.94); color: rgb(var(--tertiary-color)); font-size: 12px; font-weight: 500; pointer-events: none; span { display: block; margin-top: 5px; font-size: 10px; font-weight: 400; } }
-.cluster { display: grid; place-items: center; min-width: 46px; height: 46px; padding: 0 10px; border: 3px solid white; border-radius: 50%; background: rgb(var(--secondary-color)); color: rgb(var(--tertiary-color)); box-shadow: 0 3px 10px rgba(var(--tertiary-color),.17); font-size: 14px; font-weight: 600; &:hover { background: #f1ffb5; } &:focus-visible { outline: 2px solid rgb(var(--tertiary-color)); outline-offset: 3px; } }
-.actions { position: absolute; right: 4%; bottom: 44px; z-index: 3; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
-.openMap { display: flex !important; align-items: center; justify-content: center; gap: 9px; width: fit-content; font-size: 11px; }
-.reset { min-height: 44px; padding: 10px 14px; border: 1px solid #b5c3a8; border-radius: 24px; background: white; color: rgb(var(--tertiary-color)); font-size: 11px; }
-.attribution { position: absolute; bottom: 7px; right: 8px; left: 8px; display: flex; justify-content: flex-end; font-size: 9px; a { text-decoration: none; } > span { background: rgba(255,255,255,.92); padding: 3px 5px; } }
-@media (min-width: 761px) { .map { border-radius: 24px 0 0 24px; } }
+.wash, .basemap :global(.maplibregl-canvas-container)::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #f7f9f1 0%, rgba(247,249,241,.98) 27%, rgba(247,249,241,.9) 36%, rgba(247,249,241,.15) 58%, transparent 75%); pointer-events: none; }
+.openMap { position: absolute; right: 6%; bottom: 48px; z-index: 3; display: flex !important; align-items: center; justify-content: center; gap: 9px; width: fit-content; font-size: 11px; }
+.attribution { position: absolute; bottom: 7px; right: 12px; left: 12px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; font-size: 9px; a { text-decoration: none; } > a img { display: block; } > span { background: rgba(255,255,255,.88); padding: 3px 5px; } }
 @media (max-width: 760px) {
-  .scene { position: relative; width: 100%; padding-bottom: 24px; background: none; }
-  .map { position: relative; inset: auto; height: 380px; margin: 8px 0 0; }
-  .hint { top: 12px; left: 12px; font-size: 11px; span { font-size: 9px; } }
-  .actions { position: relative; right: auto; bottom: auto; justify-content: center; margin: 14px 12px 0; }
-  .attribution { font-size: 8px; }
+  .scene { position: relative; height: auto; background: none; padding-bottom: 28px; }
+  .map { position: relative; height: 325px; background: #edf0e6; }
+  .wash, .basemap :global(.maplibregl-canvas-container)::after { background: linear-gradient(180deg, #f7f9f1 0%, rgba(247,249,241,.2) 20%, transparent 45%, rgba(247,249,241,.7) 100%); }
+  .openMap { position: relative; right: auto; bottom: auto; margin: 0 auto; }
+  .attribution { bottom: 21px; right: 7px; left: 7px; font-size: 7px; gap: 5px; > a img { width: 65px; height: auto; } }
 }
+
+.reset { position: absolute; right: 6%; bottom: 98px; z-index: 3; padding: 9px 13px; min-height: 44px; border: 1px solid #b5c3a8; border-radius: 24px; background: rgba(255,255,255,.94); color: rgb(var(--tertiary-color)); font-size: 11px; }
+@media (max-width: 760px) { .reset { position: relative; display: block; right: auto; bottom: auto; margin: 0 auto 8px; } }

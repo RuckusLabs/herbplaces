@@ -104,36 +104,29 @@ test('a style cannot redirect map resources to a metered provider', async ({ pag
   await expect(page.getByRole('heading', { name: 'Unlocated Herb Shop', exact: true })).toBeVisible();
 });
 
-test('homepage clusters zoom in place and reset to the full directory overview', async ({ page }) => {
-  const locations = [place,
-    { ...place, id: 'la', name: 'Los Angeles Herbs', urlSlug: 'los-angeles-herbs', longitude: -118.38, latitude: 34.07 },
-    { ...place, id: 'long-beach', name: 'Long Beach Herbs', longitude: -118.19, latitude: 33.77 },
-    { ...place, id: 'london', name: 'London Herbs', longitude: -.12, latitude: 51.5 },
-    { ...place, id: 'tokyo', name: 'Tokyo Herbs', longitude: 139.69, latitude: 35.68 },
-    { ...place, id: 'sydney', name: 'Sydney Herbs', longitude: 151.2, latitude: -33.86 },
-    { ...place, id: 'cape-town', name: 'Cape Town Herbs', longitude: 18.42, latitude: -33.92 },
-  ];
-  await page.route('**/rest/v1/**', route => route.fulfill({ json: locations }));
+test('homepage preserves the production overview while allowing panning and reset', async ({ page, isMobile }) => {
   await page.goto('/');
-  const map = page.getByRole('region', { name: 'Explore Little Herb Places Around the World', exact: true });
-  await expect(map.getByText(/^7 Little Herb Places/)).toBeVisible();
-  await expect(map.getByRole('button', { name: 'Visit London Herbs' })).toBeVisible();
-  await expect(map.getByRole('button', { name: 'Visit Sydney Herbs' })).toBeVisible();
-  await expect(map.getByRole('button', { name: 'Visit Tokyo Herbs' })).toBeVisible();
-  const cluster = map.getByRole('button', { name: /Zoom in to \d+ Little Herb Places/ }).first();
-  await expect(cluster).toBeVisible();
-  await cluster.click();
-  await expect(page).toHaveURL(/\/$/);
-  await expect(page.getByRole('link', { name: 'Explore This Area', exact: true })).toHaveAttribute('href', /bounds=/);
-  const localGroup = map.getByRole('button', { name: 'Zoom in to 2 Little Herb Places', exact: true });
-  await expect(localGroup).toBeVisible();
-  await localGroup.click();
-  await expect(map.getByRole('button', { name: 'Visit Los Angeles Herbs' })).toBeVisible();
-  await page.getByRole('button', { name: 'Show All Places', exact: true }).click();
+  const map = page.getByRole('region', { name: 'Explore Little Herb Places on the Map', exact: true });
+  const pin = map.getByRole('button', { name: 'Visit Moss Apothecary', exact: true });
+  await expect(pin).toBeVisible();
+  await expect(map.getByRole('button', { name: 'Zoom in', exact: true })).toHaveCount(0);
+  const start = await pin.boundingBox();
+  const bounds = await map.boundingBox();
+  // Keyboard arrows offer the same panning on touch devices without interfering with page scrolling.
+  await map.locator('canvas').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
+  await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeGreaterThan(30);
+  await page.getByRole('button', { name: 'Reset Map', exact: true }).click();
+  await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeLessThan(1);
+  if (!isMobile) {
+    await page.mouse.move(bounds.x + bounds.width * .85, bounds.y + bounds.height * .4);
+    await page.mouse.down();
+    await page.mouse.move(bounds.x + bounds.width * .72, bounds.y + bounds.height * .4, { steps: 8 });
+    await page.mouse.up();
+    await expect(page.getByRole('button', { name: 'Reset Map', exact: true })).toBeVisible();
+    await expect.poll(async () => Math.abs((await pin.boundingBox()).x - start.x)).toBeGreaterThan(30);
+  }
   await expect(page.getByRole('link', { name: 'Open the Full Map', exact: true })).toHaveAttribute('href', '/map?view=map');
-  await expect(map.getByRole('button', { name: 'Visit Sydney Herbs' })).toBeVisible();
-  await expect(map.getByRole('button', { name: 'Visit London Herbs' })).toBeVisible();
-  await map.getByRole('button', { name: 'Zoom in', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Show All Places', exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
